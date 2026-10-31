@@ -62,4 +62,26 @@ describe('listening production inventory', () => {
       }),
     ).toBe('published');
   });
+
+  // ADR 0013: a recording cleared by its automatic QA is published once its files are in, with no
+  // approval to wait for. Reading it as "awaiting approval" would list the shipped A2 Hören set as
+  // work nobody has to do.
+  test('a recording cleared by automatic QA is published, not awaiting an approval', () => {
+    const manifest = { cleared_by: 'automatic-qa', qa: { passed: true } };
+    expect(deriveStatus({ brief: true, manifest, artifact: true, audio: true })).toBe('published');
+    expect(deriveStatus({ brief: true, manifest, artifact: false, audio: false })).toBe('approved');
+    expect(
+      deriveStatus({
+        brief: true,
+        manifest: { cleared_by: 'automatic-qa', qa: { passed: false } },
+        artifact: true,
+        audio: true,
+      }),
+    ).toBe('qa_failed');
+  });
+
+  test('the A2 Hören recordings are published', () => {
+    const rows = inventory(import.meta.dir + '/..').filter((row) => row.collection);
+    expect(rows.filter((row) => row.status === 'published')).toHaveLength(36);
+  });
 });

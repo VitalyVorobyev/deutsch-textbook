@@ -729,6 +729,9 @@ def publish_checked_command(
         # `kind` gate on every pass and bury the refusals that need a person.
         if project.kind != "dialogue":
             continue
+        # An archived project was set aside on purpose; it is not a candidate, not a refusal.
+        if project.archived_at is not None:
+            continue
         stage = Stage(project.stage)
         if stage == Stage.AUTOMATICALLY_CHECKED:
             report = store.scene_qa_report(revision.id, PUBLISHED_VARIANT) or {}

@@ -854,3 +854,25 @@ def test_the_batch_verb_takes_every_checked_dialogue_and_skips_a_failed_one(
     assert payload["refused"] == [
         {"slug": scene.slug, "gate": "test-audio", "detail": payload["refused"][0]["detail"]}
     ]
+
+
+def test_an_archived_scene_is_not_published(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Archiving is how a scene is set aside — a probe, a superseded draft. A batch that published
+    it anyway would ship the one thing the owner took out of the way."""
+
+    from conftest import RUNNER
+
+    import listening_studio.scene.cli as scene_cli
+
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None
+    store.archive_scene(stored[0].id, True)
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "archived"
+
+    monkeypatch.setattr(scene_cli, "Store", lambda: store)
+    result = RUNNER.invoke(
+        scene_cli.app, ["publish-checked", "--repo", str(repo), "--dry-run", "--json"]
+    )
+    payload = json.loads(result.stdout)
+    assert payload["published"] == [] and payload["refused"] == []

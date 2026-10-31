@@ -1,0 +1,2448 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-10-31T14:00:20.946776+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34",
+  "generation_brief": {
+    "path": "data/prompts/2026-10-31-ls-pruefung-a2-2-hoeren-12-listening.md",
+    "sha256": "b861157117a8de10fe985bd62b7efb3a9a6f4da8b193e55583f122be6749651b"
+  },
+  "id": "ls-pruefung-a2-2-hoeren-12",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "173f5f6ff6b245af8e19aee637c2404c0062730c62b1da8560ddab3ccb458a69",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "db7de62fd1c44dcb18d1154b6053133509e556008fa78d2f481fd27f5b7ff7a2",
+    "soundscape": {
+      "bed_count": 0,
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 1,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 6,
+          "measured_lines": 6,
+          "minimum_similarity": 0.9616029488732222,
+          "pitch_max_hz": 167.5438596491228,
+          "pitch_min_hz": 125.0,
+          "pitch_spread_hz": 42.543859649122794,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_count": 5,
+          "measured_lines": 5,
+          "minimum_similarity": 0.9662891603748719,
+          "pitch_max_hz": 149.53271028037383,
+          "pitch_min_hz": 114.28571428571429,
+          "pitch_spread_hz": 35.24699599465954,
+          "speaker": "Daniel"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.3680860215784787,
+          "speakers": [
+            "Moderatorin",
+            "Daniel"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.983010958960158,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9908313119857425,
+          "speaker": "Daniel"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9629738797696367,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_id": "line-4",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.991232896105759,
+          "speaker": "Daniel"
+        },
+        {
+          "line_id": "line-5",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9677178542318164,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_id": "line-6",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9927269988342986,
+          "speaker": "Daniel"
+        },
+        {
+          "line_id": "line-7",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9616029488732222,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_id": "line-8",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9662891603748719,
+          "speaker": "Daniel"
+        },
+        {
+          "line_id": "line-9",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9727219170160308,
+          "speaker": "Moderatorin"
+        },
+        {
+          "line_id": "line-10",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9782328689887703,
+          "speaker": "Daniel"
+        },
+        {
+          "line_id": "line-11",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9863447291623855,
+          "speaker": "Moderatorin"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 11718,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 18779,
+        "start_ms": 12168,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 21638,
+        "start_ms": 19229,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 35138,
+        "start_ms": 22088,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 37697,
+        "start_ms": 35588,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 52248,
+        "start_ms": 38147,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 54397,
+        "start_ms": 52698,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 62925,
+        "start_ms": 54847,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 65997,
+        "start_ms": 63375,
+        "utterance_id": "line-9"
+      },
+      {
+        "end_ms": 77056,
+        "start_ms": 66447,
+        "utterance_id": "line-10"
+      },
+      {
+        "end_ms": 80414,
+        "start_ms": 77506,
+        "utterance_id": "line-11"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-10-31T13:39:31.621227+00:00",
+      "failures": [],
+      "full_transcript": "Herzlich willkommen zu Junge Leute im Beruf. Heute ist Daniel Weber bei uns. Daniel, du bist 20 und machst eine Ausbildung. Was lernst du? Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg. Jetzt bin ich im zweiten Jahr. Wolltest du schon immer Koch werden? Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht. Wie sieht dein Arbeitstag aus? Ich fange um 10 Uhr an und arbeite oft bis 10 Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten. Dafür habe ich am Montag und am Dienstag frei. Und die Berufsschule? Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit. Was möchtest du nach der Ausbildung machen? Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant. Daniel, vielen Dank und viel Glück!",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Herzlich willkommen zu „Junge Leute im Beruf“. Heute ist Daniel Weber bei uns. Daniel, du bist zwanzig und machst eine Ausbildung. Was lernst du?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Herzlich willkommen zu Junge Leute im Beruf. Heute ist Daniel Weber bei uns. Daniel, du bist 20 und machst eine Ausbildung. Was lernst du?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg, jetzt bin ich im zweiten Jahr.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg. Jetzt bin ich im zweiten Jahr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wolltest du schon immer Koch werden?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wolltest du schon immer Koch werden?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wie sieht dein Arbeitstag aus?",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wie sieht dein Arbeitstag aus?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich fange um zehn Uhr an und arbeite oft bis zehn Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten, dafür habe ich am Montag und am Dienstag frei.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich fange um 10 Uhr an und arbeite oft bis 10 Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten. Dafür habe ich am Montag und am Dienstag frei.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und die Berufsschule?",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und die Berufsschule?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Was möchtest du nach der Ausbildung machen?",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Was möchtest du nach der Ausbildung machen?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant.",
+          "line_id": "line-10",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Daniel, vielen Dank und viel Glück!",
+          "line_id": "line-11",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Daniel, vielen Dank und viel Glück!",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "studio": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "studio",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.04
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "14d265a857788b91f7e1aa9912c75e1555add4032ccac1ac0e00203ca56e5f53"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "11b615c6e6f8071f072e35d884936f13ffe19ca82901722ee20bd7dbb6960ef7"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "1f1a690f50a6ccc972fbe629aa6d8b56026d1cac693ba199f447bbb95071911b"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-4.wav",
+        "sha256": "d7b835dc33d4f5a7794d08d04c29ed939fc5184ea16d9f3214f867e841f05928"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-5.wav",
+        "sha256": "d345a1aad35e71b170b615c3dfdf24210fc4a88fa0842a556923449fb02ffc17"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-6.wav",
+        "sha256": "d6eb78e9b9e245137667213f71be8b93e8265d3189a1ecb031f30181a7d5239f"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-7.wav",
+        "sha256": "f55fa76c5e89283017342246b2a93c39d2127bd36ebdd99d755514e76b9b9dc6"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-8.wav",
+        "sha256": "87506f32c3d851c4696b5998d183dcc977904a9d7e5b3f878f55be951fcc3fff"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-9.wav",
+        "sha256": "4a27c379ee8d81b05daf7594263aa59cbd05d95521508e3bed5b6618b69dd9e2"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-10.wav",
+        "sha256": "600cbfcb6a4e616b80b6a4362a3fbc5ad356eb29d031471c1a24654f03e4e943"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-11.wav",
+        "sha256": "0c3f88e967452542b9ce3b69e1aaf9a5581e6f1604f9881b1a1020f628aded81"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "0bd4843cbfc6a562194856f683827d70d38e78a780f55d280ada8e835ddd5766"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "173f5f6ff6b245af8e19aee637c2404c0062730c62b1da8560ddab3ccb458a69"
+      }
+    ],
+    "assets": {
+      "0407627659e67d8ba4394fc5d5fb4cd28bdce05a15a5bf8daccf1d4a697ddadc": {
+        "file": "0407627659e67d8ba4394fc5d5fb4cd28bdce05a15a5bf8daccf1d4a697ddadc.wav",
+        "impl_version": 1,
+        "inputs": [
+          "dbee78d0022b2ecb70a61d60058729f38f0520200a7a7433e1694a6d27fc2e52"
+        ],
+        "kind": "pace",
+        "node_hash": "b2ce734b86cad1beb2ef5026ee62f86b43d84b7c6c4c498630fdf14b51cf8ee7",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "064ff380713b001244d0fae486ea88e2bed3029a664fe38cb9d75fcf902d0ff1": {
+        "file": "064ff380713b001244d0fae486ea88e2bed3029a664fe38cb9d75fcf902d0ff1.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b669c2d04f7f506fec16fda7edda43e95159de75c1415631ce57ae094591f99f"
+        ],
+        "kind": "pace",
+        "node_hash": "b787d0bcaa243fba0303ffd3f5f7bf97455e77aeaf81616699ee617b3b663628",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "0bd4843cbfc6a562194856f683827d70d38e78a780f55d280ada8e835ddd5766": {
+        "encoding": "qa",
+        "file": "0bd4843cbfc6a562194856f683827d70d38e78a780f55d280ada8e835ddd5766.wav",
+        "kind": "encode",
+        "source": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34"
+      },
+      "0c3f88e967452542b9ce3b69e1aaf9a5581e6f1604f9881b1a1020f628aded81": {
+        "file": "0c3f88e967452542b9ce3b69e1aaf9a5581e6f1604f9881b1a1020f628aded81.wav",
+        "impl_version": 1,
+        "inputs": [
+          "0d554e488ccb079e3c6c71e20cea0baaf69b96b876060be0b64f1cdc1dcf2399"
+        ],
+        "kind": "track",
+        "node_hash": "a475019a8af0145c1d8dad369fe49b0f0ce0f1471de8099b652f5ae05435ad12",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 77506,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "0d554e488ccb079e3c6c71e20cea0baaf69b96b876060be0b64f1cdc1dcf2399": {
+        "file": "0d554e488ccb079e3c6c71e20cea0baaf69b96b876060be0b64f1cdc1dcf2399.wav",
+        "impl_version": 1,
+        "inputs": [
+          "1f5378cce4061d43125aac24013cbe364d624ca44ccb61236bfa036e7c50f937"
+        ],
+        "kind": "pace",
+        "node_hash": "f9663874a3291de0c87038e1b424a9864a6a619a18dc28bf98b054498f8c7405",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-11"
+      },
+      "11b615c6e6f8071f072e35d884936f13ffe19ca82901722ee20bd7dbb6960ef7": {
+        "file": "11b615c6e6f8071f072e35d884936f13ffe19ca82901722ee20bd7dbb6960ef7.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b870bb53c262e3253c2565daae12089a5331d396cd5a7878d0d0b4bd1255a5fc"
+        ],
+        "kind": "track",
+        "node_hash": "2808a8845adc449afc1f9cbe18db46ed22a51e3d6118c10ed549ada97b93711d",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 12168,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "14d265a857788b91f7e1aa9912c75e1555add4032ccac1ac0e00203ca56e5f53": {
+        "file": "14d265a857788b91f7e1aa9912c75e1555add4032ccac1ac0e00203ca56e5f53.wav",
+        "impl_version": 1,
+        "inputs": [
+          "064ff380713b001244d0fae486ea88e2bed3029a664fe38cb9d75fcf902d0ff1"
+        ],
+        "kind": "track",
+        "node_hash": "446e964025e776864332c835fa6a4392e0d9734bed2537119a49a563a0e589cc",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "173f5f6ff6b245af8e19aee637c2404c0062730c62b1da8560ddab3ccb458a69": {
+        "encoding": "publish",
+        "file": "173f5f6ff6b245af8e19aee637c2404c0062730c62b1da8560ddab3ccb458a69.mp3",
+        "kind": "encode",
+        "source": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34"
+      },
+      "1f1a690f50a6ccc972fbe629aa6d8b56026d1cac693ba199f447bbb95071911b": {
+        "file": "1f1a690f50a6ccc972fbe629aa6d8b56026d1cac693ba199f447bbb95071911b.wav",
+        "impl_version": 1,
+        "inputs": [
+          "0407627659e67d8ba4394fc5d5fb4cd28bdce05a15a5bf8daccf1d4a697ddadc"
+        ],
+        "kind": "track",
+        "node_hash": "77d742554087d19d7ce959064c02277eb88f7195b500521bc87d56d1d897bb58",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 19229,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "1f5378cce4061d43125aac24013cbe364d624ca44ccb61236bfa036e7c50f937": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "1f5378cce4061d43125aac24013cbe364d624ca44ccb61236bfa036e7c50f937.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "843e21a117b7881c6cee39195d9b7f3b21a9e421f94899be14dd6629af308e5d",
+        "seed": 110
+      },
+      "2637ec13ae202edd31ab072875f66e1d948bed831a2453b42a2e9538ca9bfad0": {
+        "file": "2637ec13ae202edd31ab072875f66e1d948bed831a2453b42a2e9538ca9bfad0.wav",
+        "impl_version": 1,
+        "inputs": [
+          "a4fa310b3dbeabe14285420edc9620444abf955a21dca83f1f060a424494e4b0"
+        ],
+        "kind": "pace",
+        "node_hash": "65abab11886eb88b8b537f7eda9ed3f8324e73d07def6c4998146fee1ee41602",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-9"
+      },
+      "48e7d365892d36ff7c0614941a47a9a8b7f39283c5e3ce824f8c9cc328b0fbb8": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "48e7d365892d36ff7c0614941a47a9a8b7f39283c5e3ce824f8c9cc328b0fbb8.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "fffeb7a7a0a535c268aa25bef84d2d2b25e120fb3675a9d277b7277208d89076",
+        "seed": 120
+      },
+      "4a27c379ee8d81b05daf7594263aa59cbd05d95521508e3bed5b6618b69dd9e2": {
+        "file": "4a27c379ee8d81b05daf7594263aa59cbd05d95521508e3bed5b6618b69dd9e2.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2637ec13ae202edd31ab072875f66e1d948bed831a2453b42a2e9538ca9bfad0"
+        ],
+        "kind": "track",
+        "node_hash": "8a526b859f75e82871e7d15058224dc6efeda159363e648ab1da79a33cf24e43",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 63375,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "4afc367e07f9e18143ac1406bd9b0e792e60a7e58a2bfd6e588842844a01590e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "4afc367e07f9e18143ac1406bd9b0e792e60a7e58a2bfd6e588842844a01590e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "59a9d876dc3a21b37f7300f3a622648720b7d38ee4c1397bc73573655412ba5a",
+        "seed": 120
+      },
+      "600cbfcb6a4e616b80b6a4362a3fbc5ad356eb29d031471c1a24654f03e4e943": {
+        "file": "600cbfcb6a4e616b80b6a4362a3fbc5ad356eb29d031471c1a24654f03e4e943.wav",
+        "impl_version": 1,
+        "inputs": [
+          "90814e33553daec39cf5cc31530413902a7d423a3d4c3adf13337c1be9e9aae5"
+        ],
+        "kind": "track",
+        "node_hash": "6b997223bf7f8397acff7be8ba5b3ba89c860772a18ef529cdf2af5f2f1abbfa",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 66447,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "656167b7a4417627024a18a3723b45d04b56fe2436d3ae9c6826cf357e285e46": {
+        "file": "656167b7a4417627024a18a3723b45d04b56fe2436d3ae9c6826cf357e285e46.wav",
+        "impl_version": 2,
+        "inputs": [
+          "14d265a857788b91f7e1aa9912c75e1555add4032ccac1ac0e00203ca56e5f53",
+          "11b615c6e6f8071f072e35d884936f13ffe19ca82901722ee20bd7dbb6960ef7",
+          "1f1a690f50a6ccc972fbe629aa6d8b56026d1cac693ba199f447bbb95071911b",
+          "d7b835dc33d4f5a7794d08d04c29ed939fc5184ea16d9f3214f867e841f05928",
+          "d345a1aad35e71b170b615c3dfdf24210fc4a88fa0842a556923449fb02ffc17",
+          "d6eb78e9b9e245137667213f71be8b93e8265d3189a1ecb031f30181a7d5239f",
+          "f55fa76c5e89283017342246b2a93c39d2127bd36ebdd99d755514e76b9b9dc6",
+          "87506f32c3d851c4696b5998d183dcc977904a9d7e5b3f878f55be951fcc3fff",
+          "4a27c379ee8d81b05daf7594263aa59cbd05d95521508e3bed5b6618b69dd9e2",
+          "600cbfcb6a4e616b80b6a4362a3fbc5ad356eb29d031471c1a24654f03e4e943",
+          "0c3f88e967452542b9ce3b69e1aaf9a5581e6f1604f9881b1a1020f628aded81",
+          "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+        ],
+        "kind": "mix",
+        "node_hash": "145fce75e3d2a7a0a2d30e1989824e11785f3d0e061111e14c1d2302d0b376a9",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-10"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-11"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        }
+      },
+      "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34": {
+        "file": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34.wav",
+        "impl_version": 1,
+        "inputs": [
+          "656167b7a4417627024a18a3723b45d04b56fe2436d3ae9c6826cf357e285e46"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "d253825d4fdc5b947183bb52a9c84af12277e9dab27ff7deb0733e6579a0e71f",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "74f4570a68506bb2e535e55f7f2e6ce5720b5d355d4b8fe36ceeb119991258d2": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "74f4570a68506bb2e535e55f7f2e6ce5720b5d355d4b8fe36ceeb119991258d2.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "692647fced286496b4a38b9637b89fbee518f2b577459555a3eb42a87df63d21",
+        "seed": 120
+      },
+      "7f9228ae1f1a256a536909e4ed7c104ae63b183c6fee1a510c14cf1d716b9499": {
+        "file": "7f9228ae1f1a256a536909e4ed7c104ae63b183c6fee1a510c14cf1d716b9499.wav",
+        "impl_version": 1,
+        "inputs": [
+          "4afc367e07f9e18143ac1406bd9b0e792e60a7e58a2bfd6e588842844a01590e"
+        ],
+        "kind": "pace",
+        "node_hash": "09921024cf49be93be657257f277d05339712680b24877bd6ece11d439eda950",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-8"
+      },
+      "87506f32c3d851c4696b5998d183dcc977904a9d7e5b3f878f55be951fcc3fff": {
+        "file": "87506f32c3d851c4696b5998d183dcc977904a9d7e5b3f878f55be951fcc3fff.wav",
+        "impl_version": 1,
+        "inputs": [
+          "7f9228ae1f1a256a536909e4ed7c104ae63b183c6fee1a510c14cf1d716b9499"
+        ],
+        "kind": "track",
+        "node_hash": "c20d6b3063cc079867a780572fb6b31223a473c2810d07d758c994d3bf7d0d08",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 54847,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "90814e33553daec39cf5cc31530413902a7d423a3d4c3adf13337c1be9e9aae5": {
+        "file": "90814e33553daec39cf5cc31530413902a7d423a3d4c3adf13337c1be9e9aae5.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e33a0ef2f25419657ba749f06d92161dda53ffd357cdc5d73a5fd13ed30f565d"
+        ],
+        "kind": "pace",
+        "node_hash": "8c48350fea37d9e49b6385eed4d126e3e59f2aa10f0608d054ff81adcfccf388",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-10"
+      },
+      "a4fa310b3dbeabe14285420edc9620444abf955a21dca83f1f060a424494e4b0": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "a4fa310b3dbeabe14285420edc9620444abf955a21dca83f1f060a424494e4b0.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "1d8f058da48cac2a8ce5c5637b466ecbe6743b3af2fe6ba2af7ba3d969dbf6ae",
+        "seed": 110
+      },
+      "b3137ee57304c86e66b781ba7e4098eae60b292548ead02778ff05d863356fb1": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "b3137ee57304c86e66b781ba7e4098eae60b292548ead02778ff05d863356fb1.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "b96f7a08a2949c4ba0e3fd80e2b9a32d3f1bc7f8ae5700b5250ed6cc3fa7cd87",
+        "seed": 110
+      },
+      "b669c2d04f7f506fec16fda7edda43e95159de75c1415631ce57ae094591f99f": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "b669c2d04f7f506fec16fda7edda43e95159de75c1415631ce57ae094591f99f.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "b444e9c900be01c73eac6c2f822e26024e875e586653f276d3dcf60ffb018573",
+        "seed": 110
+      },
+      "b870bb53c262e3253c2565daae12089a5331d396cd5a7878d0d0b4bd1255a5fc": {
+        "file": "b870bb53c262e3253c2565daae12089a5331d396cd5a7878d0d0b4bd1255a5fc.wav",
+        "impl_version": 1,
+        "inputs": [
+          "74f4570a68506bb2e535e55f7f2e6ce5720b5d355d4b8fe36ceeb119991258d2"
+        ],
+        "kind": "pace",
+        "node_hash": "adaa66520891c8e33d63ab62252c6c00b180a7decaa907facfced3378436199b",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "c5a54eb39726a28f5463d0f374b2f9294b093f2fae904200bacd635ef0c9bda4": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "c5a54eb39726a28f5463d0f374b2f9294b093f2fae904200bacd635ef0c9bda4.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "382fbfe4142998a19432f9d52527e885efab1271eeb97725255a746e079486b6",
+        "seed": 110
+      },
+      "cba9a78138356e49d53b79a4748e7563a953ffb79f4fa115acfcf3a45e2376ac": {
+        "file": "cba9a78138356e49d53b79a4748e7563a953ffb79f4fa115acfcf3a45e2376ac.wav",
+        "impl_version": 1,
+        "inputs": [
+          "c5a54eb39726a28f5463d0f374b2f9294b093f2fae904200bacd635ef0c9bda4"
+        ],
+        "kind": "pace",
+        "node_hash": "141947c83e62d49ed2409ca72a1dc31805d316b98ca6d10ac3eac23e44ca37cd",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-7"
+      },
+      "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.25,
+          "early_reflections": 3,
+          "lowpass_hz": 9000.0,
+          "pre_delay_ms": 4,
+          "seed": 1101
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "d1b1b034270a392c384bb3b82ad745bec2e91ad073cb5119ad7c9347b30dbb2f": {
+        "file": "d1b1b034270a392c384bb3b82ad745bec2e91ad073cb5119ad7c9347b30dbb2f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "de0f20f4f5c2c5b1f1a46b50be2c51782c2c69899e24ec25b243b4f121d9a4ef"
+        ],
+        "kind": "pace",
+        "node_hash": "e4ad652e1f83e8b5c1fde3857a099b7a892b2bdbc8906da490bb46c662d85b0e",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-4"
+      },
+      "d345a1aad35e71b170b615c3dfdf24210fc4a88fa0842a556923449fb02ffc17": {
+        "file": "d345a1aad35e71b170b615c3dfdf24210fc4a88fa0842a556923449fb02ffc17.wav",
+        "impl_version": 1,
+        "inputs": [
+          "d7a7374592632575ed15830ae3286198d88a16db46c5581be7ac356d0296deff"
+        ],
+        "kind": "track",
+        "node_hash": "4540f17a3157cf9d4f774c09732f26b49dab9e3a05fb5dd4c46ef4f94e9c6cf7",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 35588,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "d6eb78e9b9e245137667213f71be8b93e8265d3189a1ecb031f30181a7d5239f": {
+        "file": "d6eb78e9b9e245137667213f71be8b93e8265d3189a1ecb031f30181a7d5239f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "ef5ec281d3c2c0bc660332feb8c484b0ef0851645993ca81c24e42e374ed84c3"
+        ],
+        "kind": "track",
+        "node_hash": "2a8f52ec7199f06de362980dad0d880a070b1ea3071313f5fe5bcb2c65f612b0",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 38147,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "d7a7374592632575ed15830ae3286198d88a16db46c5581be7ac356d0296deff": {
+        "file": "d7a7374592632575ed15830ae3286198d88a16db46c5581be7ac356d0296deff.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b3137ee57304c86e66b781ba7e4098eae60b292548ead02778ff05d863356fb1"
+        ],
+        "kind": "pace",
+        "node_hash": "0e59de0b3fc742fe0de179537d9b5e8170eaf441bfac44f85e25ec2db9b884e9",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-5"
+      },
+      "d7b835dc33d4f5a7794d08d04c29ed939fc5184ea16d9f3214f867e841f05928": {
+        "file": "d7b835dc33d4f5a7794d08d04c29ed939fc5184ea16d9f3214f867e841f05928.wav",
+        "impl_version": 1,
+        "inputs": [
+          "d1b1b034270a392c384bb3b82ad745bec2e91ad073cb5119ad7c9347b30dbb2f"
+        ],
+        "kind": "track",
+        "node_hash": "a0fbe150424da6da5be8de0b7e8a563247e68c679cddaf0819c5a395f48ed32c",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 22088,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "dbee78d0022b2ecb70a61d60058729f38f0520200a7a7433e1694a6d27fc2e52": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "dbee78d0022b2ecb70a61d60058729f38f0520200a7a7433e1694a6d27fc2e52.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "ce2082ab171de2166542fe616e3a9dde725456a7e8f8672d68be84b1f1ec452a",
+        "seed": 110
+      },
+      "de0f20f4f5c2c5b1f1a46b50be2c51782c2c69899e24ec25b243b4f121d9a4ef": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "de0f20f4f5c2c5b1f1a46b50be2c51782c2c69899e24ec25b243b4f121d9a4ef.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "8f60a47cbafdca88543ec1a2af102d82f0d0e4955f36966c2fb3cc1ded3059c6",
+        "seed": 120
+      },
+      "e33a0ef2f25419657ba749f06d92161dda53ffd357cdc5d73a5fd13ed30f565d": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "e33a0ef2f25419657ba749f06d92161dda53ffd357cdc5d73a5fd13ed30f565d.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "4d2bd125e1c4dc69f52194a618bac590f2223b6bed48c74b285983a383cc0c4d",
+        "seed": 120
+      },
+      "ef5ec281d3c2c0bc660332feb8c484b0ef0851645993ca81c24e42e374ed84c3": {
+        "file": "ef5ec281d3c2c0bc660332feb8c484b0ef0851645993ca81c24e42e374ed84c3.wav",
+        "impl_version": 1,
+        "inputs": [
+          "48e7d365892d36ff7c0614941a47a9a8b7f39283c5e3ce824f8c9cc328b0fbb8"
+        ],
+        "kind": "pace",
+        "node_hash": "864cccb974d120e230b561b3bb9420f9b38e06ecd1c2c134cb5a9e1187445877",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-6"
+      },
+      "f55fa76c5e89283017342246b2a93c39d2127bd36ebdd99d755514e76b9b9dc6": {
+        "file": "f55fa76c5e89283017342246b2a93c39d2127bd36ebdd99d755514e76b9b9dc6.wav",
+        "impl_version": 1,
+        "inputs": [
+          "cba9a78138356e49d53b79a4748e7563a953ffb79f4fa115acfcf3a45e2376ac"
+        ],
+        "kind": "track",
+        "node_hash": "3010300959837e4ac5f8b8462a59ec6e178decb64d3dca68d8b064a74b6caf4a",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 52698,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      }
+    },
+    "created_at": "2026-10-31T13:39:17.917209+00:00",
+    "duration_ms": 80414,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "b669c2d04f7f506fec16fda7edda43e95159de75c1415631ce57ae094591f99f",
+        "cached": false,
+        "hash": "e111cf931c235eac35c6a36deb7dab06eae58657772184ce5af00e13843385ff",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Herzlich willkommen zu „Junge Leute im Beruf“. Heute ist Daniel Weber bei uns. Daniel, du bist zwanzig und machst eine Ausbildung. Was lernst du?",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "064ff380713b001244d0fae486ea88e2bed3029a664fe38cb9d75fcf902d0ff1",
+        "cached": false,
+        "hash": "b787d0bcaa243fba0303ffd3f5f7bf97455e77aeaf81616699ee617b3b663628",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "74f4570a68506bb2e535e55f7f2e6ce5720b5d355d4b8fe36ceeb119991258d2",
+        "cached": false,
+        "hash": "cb82ac0403cda695c98792cd7a54b7014bda22c885c93ab7f43ab6fae4320874",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg, jetzt bin ich im zweiten Jahr.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "b870bb53c262e3253c2565daae12089a5331d396cd5a7878d0d0b4bd1255a5fc",
+        "cached": false,
+        "hash": "adaa66520891c8e33d63ab62252c6c00b180a7decaa907facfced3378436199b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "dbee78d0022b2ecb70a61d60058729f38f0520200a7a7433e1694a6d27fc2e52",
+        "cached": false,
+        "hash": "22f714f5c3e420a155dbafab48f76e7d02374554ef57a32d03cfb3c704ecd42c",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Wolltest du schon immer Koch werden?",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "0407627659e67d8ba4394fc5d5fb4cd28bdce05a15a5bf8daccf1d4a697ddadc",
+        "cached": false,
+        "hash": "b2ce734b86cad1beb2ef5026ee62f86b43d84b7c6c4c498630fdf14b51cf8ee7",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "de0f20f4f5c2c5b1f1a46b50be2c51782c2c69899e24ec25b243b4f121d9a4ef",
+        "cached": false,
+        "hash": "85c8a8aa515fec32d18601119f26ca82a877595f30f1d77c864f4004e4d5613f",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "d1b1b034270a392c384bb3b82ad745bec2e91ad073cb5119ad7c9347b30dbb2f",
+        "cached": false,
+        "hash": "e4ad652e1f83e8b5c1fde3857a099b7a892b2bdbc8906da490bb46c662d85b0e",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "b3137ee57304c86e66b781ba7e4098eae60b292548ead02778ff05d863356fb1",
+        "cached": false,
+        "hash": "e82d3741d9362f3ff8f666b8f0e87e2b85e9087771cd0226d367ab025b197493",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Wie sieht dein Arbeitstag aus?",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "d7a7374592632575ed15830ae3286198d88a16db46c5581be7ac356d0296deff",
+        "cached": false,
+        "hash": "0e59de0b3fc742fe0de179537d9b5e8170eaf441bfac44f85e25ec2db9b884e9",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "48e7d365892d36ff7c0614941a47a9a8b7f39283c5e3ce824f8c9cc328b0fbb8",
+        "cached": false,
+        "hash": "eea94567773286741672ed7af9a16caff4824273547fa2aee64b10d65f1a9630",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Ich fange um zehn Uhr an und arbeite oft bis zehn Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten, dafür habe ich am Montag und am Dienstag frei.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "ef5ec281d3c2c0bc660332feb8c484b0ef0851645993ca81c24e42e374ed84c3",
+        "cached": false,
+        "hash": "864cccb974d120e230b561b3bb9420f9b38e06ecd1c2c134cb5a9e1187445877",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "c5a54eb39726a28f5463d0f374b2f9294b093f2fae904200bacd635ef0c9bda4",
+        "cached": false,
+        "hash": "57540519b9b40fc14d1103fc16703b9bffebae8ee7c60ad8354049721a251067",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Und die Berufsschule?",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "cba9a78138356e49d53b79a4748e7563a953ffb79f4fa115acfcf3a45e2376ac",
+        "cached": false,
+        "hash": "141947c83e62d49ed2409ca72a1dc31805d316b98ca6d10ac3eac23e44ca37cd",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "4afc367e07f9e18143ac1406bd9b0e792e60a7e58a2bfd6e588842844a01590e",
+        "cached": false,
+        "hash": "c47bf43a50f4aa7f11b0ee504e68733a5e2733cb2170ed295508ad1dd2d6ad58",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "7f9228ae1f1a256a536909e4ed7c104ae63b183c6fee1a510c14cf1d716b9499",
+        "cached": false,
+        "hash": "09921024cf49be93be657257f277d05339712680b24877bd6ece11d439eda950",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "a4fa310b3dbeabe14285420edc9620444abf955a21dca83f1f060a424494e4b0",
+        "cached": false,
+        "hash": "c4b8129ffe91d9439c012c2b19bac75cd9c0bf03fedc61f7d7c2b06f8ca12203",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Was möchtest du nach der Ausbildung machen?",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "2637ec13ae202edd31ab072875f66e1d948bed831a2453b42a2e9538ca9bfad0",
+        "cached": false,
+        "hash": "65abab11886eb88b8b537f7eda9ed3f8324e73d07def6c4998146fee1ee41602",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "e33a0ef2f25419657ba749f06d92161dda53ffd357cdc5d73a5fd13ed30f565d",
+        "cached": false,
+        "hash": "94412d327749a762b1c49218dadbdc1e10ebf39a1d5780170b0a190d89e1a8f1",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "90814e33553daec39cf5cc31530413902a7d423a3d4c3adf13337c1be9e9aae5",
+        "cached": false,
+        "hash": "8c48350fea37d9e49b6385eed4d126e3e59f2aa10f0608d054ff81adcfccf388",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "1f5378cce4061d43125aac24013cbe364d624ca44ccb61236bfa036e7c50f937",
+        "cached": false,
+        "hash": "573233300dcdb33371dfb573ede68d060fb915b6bac8a19474d0a5599e253e4b",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Daniel, vielen Dank und viel Glück!",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "0d554e488ccb079e3c6c71e20cea0baaf69b96b876060be0b64f1cdc1dcf2399",
+        "cached": false,
+        "hash": "f9663874a3291de0c87038e1b424a9864a6a619a18dc28bf98b054498f8c7405",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+        "cached": true,
+        "hash": "e0bf0366e9dbfced2e725932d588bb35635585193efcd4e6c1e2f22378c9172b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.25,
+            "early_reflections": 3,
+            "lowpass_hz": 9000.0,
+            "pre_delay_ms": 4,
+            "seed": 1101
+          },
+          "rate": 48000,
+          "room": "studio",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "14d265a857788b91f7e1aa9912c75e1555add4032ccac1ac0e00203ca56e5f53",
+        "cached": false,
+        "hash": "446e964025e776864332c835fa6a4392e0d9734bed2537119a49a563a0e589cc",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "11b615c6e6f8071f072e35d884936f13ffe19ca82901722ee20bd7dbb6960ef7",
+        "cached": false,
+        "hash": "2808a8845adc449afc1f9cbe18db46ed22a51e3d6118c10ed549ada97b93711d",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 12168,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "1f1a690f50a6ccc972fbe629aa6d8b56026d1cac693ba199f447bbb95071911b",
+        "cached": false,
+        "hash": "77d742554087d19d7ce959064c02277eb88f7195b500521bc87d56d1d897bb58",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 19229,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "d7b835dc33d4f5a7794d08d04c29ed939fc5184ea16d9f3214f867e841f05928",
+        "cached": false,
+        "hash": "a0fbe150424da6da5be8de0b7e8a563247e68c679cddaf0819c5a395f48ed32c",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 22088,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "d345a1aad35e71b170b615c3dfdf24210fc4a88fa0842a556923449fb02ffc17",
+        "cached": false,
+        "hash": "4540f17a3157cf9d4f774c09732f26b49dab9e3a05fb5dd4c46ef4f94e9c6cf7",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 35588,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "d6eb78e9b9e245137667213f71be8b93e8265d3189a1ecb031f30181a7d5239f",
+        "cached": false,
+        "hash": "2a8f52ec7199f06de362980dad0d880a070b1ea3071313f5fe5bcb2c65f612b0",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 38147,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "f55fa76c5e89283017342246b2a93c39d2127bd36ebdd99d755514e76b9b9dc6",
+        "cached": false,
+        "hash": "3010300959837e4ac5f8b8462a59ec6e178decb64d3dca68d8b064a74b6caf4a",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 52698,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "87506f32c3d851c4696b5998d183dcc977904a9d7e5b3f878f55be951fcc3fff",
+        "cached": false,
+        "hash": "c20d6b3063cc079867a780572fb6b31223a473c2810d07d758c994d3bf7d0d08",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 54847,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "4a27c379ee8d81b05daf7594263aa59cbd05d95521508e3bed5b6618b69dd9e2",
+        "cached": false,
+        "hash": "8a526b859f75e82871e7d15058224dc6efeda159363e648ab1da79a33cf24e43",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 63375,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "600cbfcb6a4e616b80b6a4362a3fbc5ad356eb29d031471c1a24654f03e4e943",
+        "cached": false,
+        "hash": "6b997223bf7f8397acff7be8ba5b3ba89c860772a18ef529cdf2af5f2f1abbfa",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 66447,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "0c3f88e967452542b9ce3b69e1aaf9a5581e6f1604f9881b1a1020f628aded81",
+        "cached": false,
+        "hash": "a475019a8af0145c1d8dad369fe49b0f0ce0f1471de8099b652f5ae05435ad12",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 77506,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "656167b7a4417627024a18a3723b45d04b56fe2436d3ae9c6826cf357e285e46",
+        "cached": false,
+        "hash": "145fce75e3d2a7a0a2d30e1989824e11785f3d0e061111e14c1d2302d0b376a9",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-10"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-11"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34",
+        "cached": false,
+        "hash": "d253825d4fdc5b947183bb52a9c84af12277e9dab27ff7deb0733e6579a0e71f",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "656167b7a4417627024a18a3723b45d04b56fe2436d3ae9c6826cf357e285e46",
+        "cached": true,
+        "hash": "145fce75e3d2a7a0a2d30e1989824e11785f3d0e061111e14c1d2302d0b376a9",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-10"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-11"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "7475e209c36a240d76d16c7c470bf90d1ba51eb692f461b13d07d487a5ef0b34",
+        "cached": true,
+        "hash": "d253825d4fdc5b947183bb52a9c84af12277e9dab27ff7deb0733e6579a0e71f",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "0bd4843cbfc6a562194856f683827d70d38e78a780f55d280ada8e835ddd5766",
+        "cached": false,
+        "hash": "712f8be2446d27caaa39fcfe7c2640abcc6bf8b705d3184fefe07b544aea8926",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "173f5f6ff6b245af8e19aee637c2404c0062730c62b1da8560ddab3ccb458a69",
+        "cached": false,
+        "hash": "74348511709aa2625fd64f7ddb6952e48391422b3cd65ca4a19893b11aa751e3",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 3,
+    "nodes_evaluated": 37,
+    "timeline": [
+      {
+        "end_ms": 11718,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 18779,
+        "entry_id": "line-2",
+        "start_ms": 12168,
+        "type": "speech"
+      },
+      {
+        "end_ms": 21638,
+        "entry_id": "line-3",
+        "start_ms": 19229,
+        "type": "speech"
+      },
+      {
+        "end_ms": 35138,
+        "entry_id": "line-4",
+        "start_ms": 22088,
+        "type": "speech"
+      },
+      {
+        "end_ms": 37697,
+        "entry_id": "line-5",
+        "start_ms": 35588,
+        "type": "speech"
+      },
+      {
+        "end_ms": 52248,
+        "entry_id": "line-6",
+        "start_ms": 38147,
+        "type": "speech"
+      },
+      {
+        "end_ms": 54397,
+        "entry_id": "line-7",
+        "start_ms": 52698,
+        "type": "speech"
+      },
+      {
+        "end_ms": 62925,
+        "entry_id": "line-8",
+        "start_ms": 54847,
+        "type": "speech"
+      },
+      {
+        "end_ms": 65997,
+        "entry_id": "line-9",
+        "start_ms": 63375,
+        "type": "speech"
+      },
+      {
+        "end_ms": 77056,
+        "entry_id": "line-10",
+        "start_ms": 66447,
+        "type": "speech"
+      },
+      {
+        "end_ms": 80414,
+        "entry_id": "line-11",
+        "start_ms": 77506,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 11718,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 18779,
+        "start_ms": 12168,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 21638,
+        "start_ms": 19229,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 35138,
+        "start_ms": 22088,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 37697,
+        "start_ms": 35588,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 52248,
+        "start_ms": 38147,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 54397,
+        "start_ms": 52698,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 62925,
+        "start_ms": 54847,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 65997,
+        "start_ms": 63375,
+        "utterance_id": "line-9"
+      },
+      {
+        "end_ms": 77056,
+        "start_ms": 66447,
+        "utterance_id": "line-10"
+      },
+      {
+        "end_ms": 80414,
+        "start_ms": 77506,
+        "utterance_id": "line-11"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "studio",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        75,
+        121
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "aufgaben-beschreiben"
+      ],
+      "scenario": "Radiointerview „Junge Leute im Beruf“: Daniel Weber über seine Ausbildung",
+      "topic": "lernen-verstehen",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "anna-keller",
+          "version": 2
+        },
+        "role": "Moderatorin",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 110,
+          "style": null,
+          "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "jonas",
+          "version": 2
+        },
+        "role": "Daniel",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 120,
+          "style": null,
+          "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Herzlich willkommen zu „Junge Leute im Beruf“. Heute ist Daniel Weber bei uns. Daniel, du bist zwanzig und machst eine Ausbildung. Was lernst du?",
+        "id": "line-1",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg, jetzt bin ich im zweiten Jahr.",
+        "id": "line-2",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Daniel",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Wolltest du schon immer Koch werden?",
+        "id": "line-3",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht.",
+        "id": "line-4",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Daniel",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Wie sieht dein Arbeitstag aus?",
+        "id": "line-5",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich fange um zehn Uhr an und arbeite oft bis zehn Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten, dafür habe ich am Montag und am Dienstag frei.",
+        "id": "line-6",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Daniel",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Und die Berufsschule?",
+        "id": "line-7",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit.",
+        "id": "line-8",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Daniel",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Was möchtest du nach der Ausbildung machen?",
+        "id": "line-9",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant.",
+        "id": "line-10",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Daniel",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Daniel, vielen Dank und viel Glück!",
+        "id": "line-11",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderatorin",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-pruefung-a2-2-hoeren-12",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-4"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-5"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-6"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-7"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-8"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-9"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-10"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-11"
+      }
+    ],
+    "title": {
+      "en": "Young people at work: Daniel, a trainee cook",
+      "ru": "Молодёжь и профессия: Даниэль учится на повара",
+      "uk": "Молодь і професія: Даніель учиться на кухаря"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "db7de62fd1c44dcb18d1154b6053133509e556008fa78d2f481fd27f5b7ff7a2",
+  "script_sha256": "1ca55249d584d55239fb35076baa008e4472a1bdb9c00505070ff85af9013e69",
+  "version": 2,
+  "voices": [
+    {
+      "character": "jonas",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his mid-twenties speaking clear standard German. Relaxed, medium-low voice with an easy, thoughtful conversational rhythm; casual but clear.",
+      "reference_sha256": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+      "role": "Daniel",
+      "seed": 120,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "anna-keller",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman around forty speaking clear standard German. Calm, precise, medium-low voice with a polished, unhurried delivery, like a good radio magazine presenter; neutral and approachable.",
+      "reference_sha256": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+      "role": "Moderatorin",
+      "seed": 110,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

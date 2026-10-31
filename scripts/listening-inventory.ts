@@ -13,11 +13,15 @@ export type ListeningInventoryStatus =
 
 export function deriveStatus(input: {
   brief: boolean;
-  manifest?: { qa?: { passed?: boolean }; approval?: { status?: string } };
+  manifest?: { qa?: { passed?: boolean }; approval?: { status?: string }; cleared_by?: string };
   artifact: boolean;
   audio: boolean;
 }): ListeningInventoryStatus {
-  const approved = input.manifest?.approval?.status === 'complete';
+  // Cleared means a person approved it, or (ADR 0013) its automatic QA passed and the publisher
+  // recorded that as what let it out. A failed report clears nothing, whatever the field says.
+  const approved =
+    input.manifest?.approval?.status === 'complete' ||
+    (input.manifest?.cleared_by === 'automatic-qa' && input.manifest.qa?.passed === true);
   if (approved && input.artifact && input.audio) return 'published';
   if (approved) return 'approved';
   if (input.manifest?.qa?.passed === true) return 'awaiting_approval';
@@ -57,6 +61,7 @@ export function inventory(root: string) {
       ? (JSON.parse(readFileSync(manifestPath, 'utf8')) as {
           qa?: { passed?: boolean };
           approval?: { status?: string };
+          cleared_by?: string;
         })
       : undefined;
     const status = deriveStatus({

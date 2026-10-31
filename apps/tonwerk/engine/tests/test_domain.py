@@ -3,7 +3,13 @@
 import pytest
 from pydantic import ValidationError
 
-from listening_studio.domain import Bilingual, Question, SingleChoice, word_error_rate
+from listening_studio.domain import (
+    Bilingual,
+    Question,
+    SingleChoice,
+    normalized_words,
+    word_error_rate,
+)
 from listening_studio.qa import check_units
 
 
@@ -210,3 +216,35 @@ def test_the_qwen_download_script_fetches_the_revision_the_engine_loads() -> Non
     spec.loader.exec_module(script)
     assert script.pinned("custom-voice") == (QwenSpeech.model_id, QwenSpeech.revision)
     assert script.pinned("base") == (QwenBaseClone.model_id, QwenBaseClone.revision)
+
+
+def test_a_motorway_or_a_gate_is_the_same_words_spelled_closed() -> None:
+    # Whisper writes `A3` and `Gate C4` where the script spells `A drei` and `Gate C vier`; read as
+    # one token, the number was "missing" from a flawless take of a traffic report.
+    assert word_error_rate("Fahren Sie bitte über die A sieben.", "Fahren Sie bitte über die A7.") == 0
+    assert word_error_rate(
+        "nicht von Gate B zwölf, sondern von Gate C vier", "nicht von Gate B12, sondern von Gate C4"
+    ) == 0
+    assert word_error_rate("über die A sieben", "über die A8") > 0
+    # The protected-token check compares word sets, so the number must be a word of its own.
+    assert normalized_words("Auf der A3 und der A7") == normalized_words("Auf der A drei und der A sieben")
+    assert normalized_words("Gate B12") == ["gate", "b", "1", "2"]
+
+
+def test_a_spelled_abbreviation_is_its_letters() -> None:
+    # The script spells what the voice must say letter by letter (`I C E`); Whisper writes the
+    # abbreviation (`ICE`). Both are the same three letters.
+    assert word_error_rate("Anschluss an den I C E nach München", "Anschluss an den ICE nach München") == 0
+    assert word_error_rate("zum Flug L H zweihundertdreißig", "zum Flug LH 230") == 0
+    assert word_error_rate("Anschluss an den I C E", "Anschluss an den IC") > 0
+    assert normalized_words("den ICE und die S-Bahn") == normalized_words("den I C E und die S-Bahn")
+    # Only an abbreviation is spelled out: a capitalised noun stays a word.
+    assert normalized_words("Der Bus") == ["der", "bus"]
+
+
+def test_minutes_past_the_hour_are_said_without_their_leading_zero() -> None:
+    # `11.05 Uhr` is spoken `elf Uhr fünf`, never `elf Uhr null fünf`; a full hour has no minutes.
+    assert word_error_rate("Abfahrt elf Uhr fünf von Gleis sechs", "Abfahrt 11.05 Uhr von Gleis 6") == 0
+    assert word_error_rate("Abfahrt elf Uhr", "Abfahrt 11.00 Uhr") == 0
+    assert word_error_rate("Abfahrt elf Uhr fünfzehn", "Abfahrt 11.15 Uhr") == 0
+    assert word_error_rate("Abfahrt elf Uhr fünf", "Abfahrt 11.50 Uhr") > 0

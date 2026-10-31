@@ -19,18 +19,18 @@ only after this queue
     preview of stems before a render, and undo inside the draft, on `@vitavision/*` per
     [ADR 0011](../adrs/0011-shared-ui-from-vitavision-packages.md).
   - **First step:** drag a line on the timeline to set its `at_ms`.
-- **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 115 of 195
-  `audio-comprehension` items and all 85 `listen` items. No Lesetext has narration, and the 36 A2
-  Hören scripts are unrecorded (`grep -rh "recording:" content/exercises | wc -l` gives 80).
+- **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 55 of 195
+  `audio-comprehension` items and all 85 `listen` items, and no Lesetext has narration
+  (`grep -rh "^ *recording:" content/exercises | wc -l` gives 140).
   After an answer, an `audio-comprehension` item already replays any one line, follows the
   transcript and plays slower; every published recording carries turn cues. The roster speaks
   through its designed voices on `qwen_tts_designed` (ADR 0013), and a dialogue publishes on its
   automatic QA with `scene publish-checked`.
-  - **Production order:** A2 Hören, then TTS-only items, then unstarted plan artifacts, then
-    narrations, then recasting the 40 published dialogues from their presets to the roster.
+  - **Production order:** the TTS-only items, then unstarted plan artifacts, then narrations,
+    then recasting the 40 published dialogues from their presets to the roster.
   - **Learner app:** `listen` items may cut a turn from a recording instead of TTS.
-  - **First step:** fetch the 1.7B Base weights, render one A2 Hören scene cast from the catalog,
-    and publish it with `scene publish-checked`.
+  - **First step:** plan the 55 TTS-only items as recordings in `data/listening-plan.yaml`, the
+    way the A2 Hören collections are planned.
 
 ## Open defects
 

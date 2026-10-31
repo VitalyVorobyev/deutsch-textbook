@@ -139,6 +139,21 @@ ASR_SPELLINGS = {"dr": "doktor"}
 #: recording to contain "Uhr" at all.
 CLOCK = re.compile(r"\b(\d{1,2})[.:](\d{2})\s*Uhr\b", re.IGNORECASE)
 
+
+def _clock(match: re.Match[str]) -> str:
+    """`11.05 Uhr` as it is said: `11 Uhr 5`. Minutes lose their leading zero, a full hour its
+    minutes — nobody says `elf Uhr null fünf` or `elf Uhr null null`."""
+
+    minutes = int(match.group(2))
+    return f"{match.group(1)} Uhr {minutes}" if minutes else f"{match.group(1)} Uhr"
+
+
+#: An abbreviation said letter by letter: two to four capitals, written closed (`ICE`, `LH`).
+ABBREVIATION = re.compile(r"[A-ZÄÖÜ]{2,4}")
+
+#: A designation that is letters then a number, written closed (`A3`, `B12`, `C4`).
+DESIGNATION = re.compile(r"([A-Za-zÄÖÜäöü]{1,2})(\d+)")
+
 #: The same reordering, for money. German says `zwei Euro fünfzig` and Whisper writes `2,50 Euro`,
 #: which moves the unit word exactly as the clock case does — and it failed a flawless take of a
 #: market-stall dialogue on two of its seven lines, the two carrying the prices the item asks
@@ -281,8 +296,21 @@ def normalized_words(text: str) -> list[str]:
     which is the right trade for a screen whose job is to catch defects before a human listens.
     """
 
-    spoken = PRICE.sub(r"\1 Euro \2", CLOCK.sub(r"\1 Uhr \2", text))
-    words = [word.casefold() for word in WORD.findall(spoken)]
+    spoken = PRICE.sub(r"\1 Euro \2", CLOCK.sub(_clock, text))
+    words: list[str] = []
+    for word in WORD.findall(spoken):
+        # An abbreviation is said letter by letter, and the script spells it that way (`I C E`)
+        # while Whisper writes it closed (`ICE`); a road or a gate is a letter and a number the
+        # script spells apart (`A drei`) and Whisper closes up (`A3`). Both become their parts, so
+        # the protected-token check, which compares word sets, finds the number as a word.
+        if ABBREVIATION.fullmatch(word):
+            words.extend(letter.casefold() for letter in word)
+            continue
+        designation = DESIGNATION.fullmatch(word)
+        if designation:
+            words.extend([designation.group(1).casefold(), designation.group(2)])
+            continue
+        words.append(word.casefold())
     out: list[str] = []
     for word in words:
         word = ASR_SPELLINGS.get(word, word)

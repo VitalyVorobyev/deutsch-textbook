@@ -20,6 +20,7 @@ items:
         - { speaker: Durchsage, text: "Im dritten Stock bekommen alle Kinder bis zwölf Jahre ein kostenloses Eis." }
         - { speaker: Durchsage, text: "Und für Sie gibt es heute zwanzig Prozent auf alle Schuhe – aber nur bis vierzehn Uhr." }
         - { speaker: Durchsage, text: "Unser Restaurant im vierten Stock ist heute leider geschlossen." }
+    recording: ls-pruefung-a2-1-hoeren-01
     question: "Bis wann sind die Schuhe heute billiger?"
     options: ["bis zwölf Uhr", "bis vierzehn Uhr", "bis vier Uhr"]
     correct: 1
@@ -37,6 +38,7 @@ items:
         - { speaker: Praxis, text: "Frau Kowalski, Sie haben morgen um neun Uhr einen Termin bei uns. Leider ist Doktor Berger morgen krank." }
         - { speaker: Praxis, text: "Können Sie vielleicht am Donnerstag um halb elf kommen? Bitte rufen Sie uns bis heute Abend an." }
         - { speaker: Praxis, text: "Unsere Nummer ist null zwei eins eins, vier fünf sechs sieben acht. Vielen Dank!" }
+    recording: ls-pruefung-a2-1-hoeren-02
     question: "Was soll Frau Kowalski tun?"
     options: ["morgen um neun Uhr in die Praxis kommen", "die Praxis anrufen", "zu einem anderen Arzt gehen"]
     correct: 1
@@ -54,6 +56,7 @@ items:
         - { speaker: Radio, text: "Am Samstag ist es noch sonnig und warm, bis fünfundzwanzig Grad." }
         - { speaker: Radio, text: "Am Sonntag kommt dann Regen aus dem Westen, und es wird kühler: nur noch achtzehn Grad." }
         - { speaker: Radio, text: "Im Süden kann es am Sonntagabend auch ein Gewitter geben." }
+    recording: ls-pruefung-a2-1-hoeren-03
     question: "Wie ist das Wetter am Sonntag?"
     options: ["Es ist sonnig und warm.", "Es regnet.", "Es ist fünfundzwanzig Grad warm."]
     correct: 1
@@ -70,6 +73,7 @@ items:
         - { speaker: Durchsage, text: "Achtung an Gleis drei." }
         - { speaker: Durchsage, text: "Der Regionalexpress nach Würzburg, Abfahrt zehn Uhr zwölf, hat heute circa fünfzehn Minuten Verspätung." }
         - { speaker: Durchsage, text: "Grund ist eine Reparatur am Zug. Wir bitten um Entschuldigung." }
+    recording: ls-pruefung-a2-1-hoeren-04
     question: "Wann fährt der Zug heute ab?"
     options: ["um zehn Uhr zwölf", "um zehn Uhr fünfzehn", "um zehn Uhr siebenundzwanzig"]
     correct: 2
@@ -86,6 +90,7 @@ items:
         - { speaker: Kemal, text: "Hallo Paula, hier ist Kemal." }
         - { speaker: Kemal, text: "Wir wollten doch am Samstag zusammen ins Schwimmbad gehen. Aber das Hallenbad ist am Wochenende geschlossen, das habe ich gerade gelesen." }
         - { speaker: Kemal, text: "Wollen wir lieber Fahrrad fahren? Wir können uns um zwei Uhr am Park treffen. Ruf mich kurz an!" }
+    recording: ls-pruefung-a2-1-hoeren-05
     question: "Was möchte Kemal jetzt am Samstag machen?"
     options: ["ins Schwimmbad gehen", "im Park spazieren gehen", "Fahrrad fahren"]
     correct: 2
@@ -110,6 +115,7 @@ items:
         - { speaker: Anna, text: "Und am Freitag?" }
         - { speaker: Ben, text: "Am Freitag fahre ich zu meinen Eltern. Aber am Samstag habe ich Zeit, dann helfe ich dir gern!" }
         - { speaker: Anna, text: "Super, Samstag passt auch. Danke!" }
+    recording: ls-pruefung-a2-1-hoeren-06
     question: "Was macht Ben am Montag?"
     options: &t2opts ["zum Zahnarzt gehen", "Fußball spielen", "ins Kino gehen", "lange arbeiten", "zum Deutschkurs gehen", "die Eltern besuchen", "einkaufen", "beim Umzug helfen", "die Wohnung putzen"]
     correct: 0
@@ -121,6 +127,7 @@ items:
     outcomes: [termine-zeit-verstehen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-1-hoeren-06
     question: "Was macht Ben am Dienstag?"
     options: *t2opts
     correct: 2
@@ -132,6 +139,7 @@ items:
     outcomes: [termine-zeit-verstehen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-1-hoeren-06
     question: "Was macht Ben am Mittwoch?"
     options: *t2opts
     correct: 3
@@ -143,6 +151,7 @@ items:
     outcomes: [termine-zeit-verstehen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-1-hoeren-06
     question: "Was macht Ben am Donnerstag?"
     options: *t2opts
     correct: 4
@@ -154,6 +163,7 @@ items:
     outcomes: [termine-zeit-verstehen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-1-hoeren-06
     question: "Was macht Ben am Freitag?"
     options: *t2opts
     correct: 5
@@ -173,6 +183,7 @@ items:
         - { speaker: Kundin, text: "Ich hätte gern sechs Brötchen, bitte." }
         - { speaker: Verkäufer, text: "Gern. Sonst noch etwas? Wir haben heute ein sehr gutes Brot mit Käse." }
         - { speaker: Kundin, text: "Nein danke, Brot habe ich noch zu Hause. Aber geben Sie mir bitte noch zwei Stück Apfelkuchen." }
+    recording: ls-pruefung-a2-1-hoeren-07
     question: "Was kauft die Frau?"
     options: ["Brötchen und Brot", "Brot und Kuchen", "Brötchen und Kuchen"]
     correct: 2
@@ -190,6 +201,7 @@ items:
         - { speaker: Frau, text: "Ja, eigentlich um zehn. Aber Herr Klein kommt erst um elf aus Berlin zurück." }
         - { speaker: Frau, text: "Wir haben sie deshalb auf halb zwölf verschoben." }
         - { speaker: Mann, text: "Gut, also um halb zwölf. Danke!" }
+    recording: ls-pruefung-a2-1-hoeren-08
     question: "Wann beginnt die Besprechung?"
     options: ["um zehn Uhr", "um halb zwölf", "um elf Uhr"]
     correct: 1
@@ -206,6 +218,7 @@ items:
         - { speaker: Frau, text: "Entschuldigung, wo ist hier die Post?" }
         - { speaker: Mann, text: "Die Post? Die war früher hier am Marktplatz, neben dem Café." }
         - { speaker: Mann, text: "Jetzt ist sie im Einkaufszentrum, gegenüber vom Bahnhof. Gehen Sie hier geradeaus, dann sehen Sie es schon." }
+    recording: ls-pruefung-a2-1-hoeren-09
     question: "Wo ist die Post jetzt?"
     options: ["am Marktplatz", "im Einkaufszentrum", "neben dem Café"]
     correct: 1
@@ -222,6 +235,7 @@ items:
         - { speaker: Apothekerin, text: "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen." }
         - { speaker: Mann, text: "Auch am Abend?" }
         - { speaker: Apothekerin, text: "Ja, morgens, mittags und abends. Aber nicht länger als fünf Tage. Wenn es dann nicht besser ist, gehen Sie bitte wieder zum Arzt." }
+    recording: ls-pruefung-a2-1-hoeren-10
     question: "Wie soll der Mann die Tabletten nehmen?"
     options: ["dreimal am Tag nach dem Essen", "fünfmal am Tag", "nur am Abend"]
     correct: 0
@@ -240,6 +254,7 @@ items:
         - { speaker: Mann, text: "Eine CD? Wer kauft heute noch CDs!" }
         - { speaker: Frau, text: "Stimmt. Aber er geht doch so gern ins Kino. Wir schenken ihm Kinokarten!" }
         - { speaker: Mann, text: "Gute Idee, das machen wir." }
+    recording: ls-pruefung-a2-1-hoeren-11
     question: "Was schenken sie Jonas?"
     options: ["ein Buch", "eine CD", "Kinokarten"]
     correct: 2
@@ -266,6 +281,7 @@ items:
         - { speaker: Moderator, text: "Was ist für Sie das Schönste am Leben im Dorf?" }
         - { speaker: Sandra Klein, text: "Die Ruhe. Und ich gehe jeden Morgen eine Stunde am Meer spazieren, bevor ich das Café aufmache. Das war in Berlin nicht möglich." }
         - { speaker: Moderator, text: "Frau Klein, vielen Dank für das Gespräch." }
+    recording: ls-pruefung-a2-1-hoeren-12
     question: "Frau Klein hat in Berlin in einem Büro gearbeitet."
     options: &jn ["Ja", "Nein"]
     correct: 0
@@ -277,6 +293,7 @@ items:
     outcomes: [lebensstationen-ordnen]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-1-hoeren-12
     question: "Frau Klein hat das Haus an der Ostsee gekauft."
     options: *jn
     correct: 1
@@ -288,6 +305,7 @@ items:
     outcomes: [lebensstationen-ordnen]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-1-hoeren-12
     question: "Im Café gibt es auch ein Mittagessen."
     options: *jn
     correct: 0
@@ -299,6 +317,7 @@ items:
     outcomes: [lebensstationen-ordnen]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-1-hoeren-12
     question: "Im Winter ist das Café jeden Tag geöffnet."
     options: *jn
     correct: 1
@@ -310,6 +329,7 @@ items:
     outcomes: [lebensstationen-ordnen]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-1-hoeren-12
     question: "Frau Klein hat im Dorf keine Freunde."
     options: *jn
     correct: 1

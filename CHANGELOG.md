@@ -19,7 +19,8 @@ GitHub Release notes.
   They are original tasks, always available, and work without the official materials.
 - **Hören for the three A2 practice sets**: the exam's four parts — five short announcements and
   phone messages, one conversation matched to nine answers, five short conversations, a radio
-  interview with Ja/Nein — read aloud by your browser's German voice. Each part says how often the
+  interview with Ja/Nein — as recorded audio: station and shop announcements over the room's
+  sound, messages on a phone line, a radio report through a radio. Each part says how often the
   exam plays its text, and a question allows no more plays than that.
 
 ### Changed
