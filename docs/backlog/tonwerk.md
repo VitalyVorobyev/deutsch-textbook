@@ -40,13 +40,14 @@ only after this queue
   - **Takes:** render N seeds of a line and pick one.
 - **TON-4 · The timeline editor.** The scene editor is forms, and its Mischung timeline is
   read-only (`apps/tonwerk/ui/src/views/Szene.tsx`). The scene contract and the renderer already
-  carry speech gain, effects, ducking and room and device overrides (engine README, "Acoustics");
-  no view edits them yet.
-  - **Engine endpoints:** per-node peaks and stems.
-  - **UI:** a canvas multitrack timeline with drag, fades, an inspector, a mixer strip, a Web
+  carry speech gain, effects, ducking and room and device overrides (engine README, "Acoustics"),
+  and Mischung's timeline draws each stem's waveform and plays a stem or the master from any
+  point; no view edits the mixing fields yet.
+  - **UI:** dragging on that timeline, fades, an inspector, a mixer strip, a Web
     Audio preview of stems, and undo inside the draft. It is built on `@vitavision/*` per
     [ADR 0011](../adrs/0011-shared-ui-from-vitavision-packages.md).
-  - **First step:** the peaks and stems endpoints, so the timeline has waveforms to draw.
+  - **First step:** the owner's call on whether the editor's controls wait for Tonwerk's move to
+    `@vitavision/*` or are built on Tonwerk's current CSS and migrated with the rest.
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 115 of 195
   `audio-comprehension` items and all 85 `listen` items. No Lesetext has narration, and the 36 A2
   Hören scripts are unrecorded (`grep -rh "recording:" content/exercises | wc -l` gives 80).

@@ -26,18 +26,14 @@
 import { useMemo, useRef } from 'react';
 import { Marke, Platte, Zustand } from '../../components/Platte';
 import { Spielbereich, Spieler } from '../../components/Spieler';
-import { dauer, kurzSha, prozent, sekunden, zahl, zeitpunkt } from '../../format';
+import { dauer, kurzSha, prozent, zahl, zeitpunkt } from '../../format';
 import { href } from '../../router';
 import { useVorgang } from '../../vorgang';
 import { fehlerText } from '../fehler';
+import { Zeitleiste } from './Zeitleiste';
 import type { Api } from '../../api';
-import type { Approval, QaReport, RenderRow, SpeakerQa, Span } from '../../contracts';
+import type { Approval, QaReport, RenderRow, SpeakerQa } from '../../contracts';
 import type { Scene } from '@da/schema/audio-scene';
-
-const SPUR_HOEHE = 26;
-const LEISTE = 150;
-const BREITE = 1000;
-const KOPF = 22;
 
 export function MischungModus({
   scene,
@@ -218,11 +214,15 @@ export function MischungModus({
       <Platte
         titel="Zeitleiste"
         zaehler={stand?.rendered ? dauer(stand.duration_ms) : undefined}
-        erklaerung="Wo alles im fertigen Master tatsächlich liegt — gemessen beim Rendern, nicht geplant."
+        erklaerung="Wo alles im fertigen Master tatsächlich liegt — gemessen beim Rendern, nicht geplant. Jedes Stück zeigt die Wellenform seiner eigenen Spur und lässt sich einzeln hören."
         randlos
       >
         {stand?.rendered && stand.timeline.length > 0 ? (
-          <Spuren
+          <Zeitleiste
+            api={api}
+            slug={slug}
+            variante={variante}
+            stand={`${stand.master_sha256 ?? ''}@${stand.created_at ?? ''}`}
             spans={stand.timeline}
             dauerMs={stand.duration_ms ?? 0}
             rollen={rollen}
@@ -287,140 +287,6 @@ export function MischungModus({
       <Freigabe approval={approval} sceneSha={sceneSha} slug={slug} stage={stage} />
     </Spielbereich>
   );
-}
-
-/**
- * The lanes.
- *
- * One lane per cast role in cast order — so the picture reads in the order the Besetzung panel
- * lists — plus a lane for beds and a lane for events. A role with no measured turn keeps its lane:
- * an empty lane says "this voice is silent in this variant", and a lane that disappears says
- * nothing at all.
- */
-function Spuren({
-  spans,
-  dauerMs,
-  rollen,
-  reihenfolge,
-  urteile,
-}: {
-  spans: Span[];
-  dauerMs: number;
-  rollen: Map<string, string>;
-  reihenfolge: string[];
-  urteile: Map<string, boolean>;
-}): React.JSX.Element {
-  const gesamt = Math.max(dauerMs, ...spans.map((span) => span.end_ms), 1);
-  const spuren: { name: string; art: 'speech' | 'ambience' | 'sfx'; spans: Span[] }[] =
-    reihenfolge.map((rolle) => ({
-      name: rolle,
-      art: 'speech' as const,
-      spans: spans.filter((span) => span.type === 'speech' && rollen.get(span.entry_id) === rolle),
-    }));
-  const betten = spans.filter((span) => span.type === 'ambience');
-  const ereignisse = spans.filter((span) => span.type === 'sfx');
-  if (betten.length) spuren.push({ name: 'Umgebung', art: 'ambience', spans: betten });
-  if (ereignisse.length) spuren.push({ name: 'Ereignisse', art: 'sfx', spans: ereignisse });
-
-  const hoehe = KOPF + spuren.length * SPUR_HOEHE + 6;
-  const x = (ms: number) => LEISTE + (ms / gesamt) * (BREITE - LEISTE - 8);
-  const schritt = tickSchritt(gesamt);
-
-  return (
-    <div className="spuren">
-      <svg
-        viewBox={`0 0 ${BREITE} ${hoehe}`}
-        width="100%"
-        height={hoehe}
-        preserveAspectRatio="xMinYMin meet"
-        role="img"
-        aria-label={`Gerenderte Zeitleiste, ${spuren.length} Spuren, Länge ${dauer(gesamt)}`}
-      >
-        {/* The scale plate: engraved ticks with their seconds printed, the way a meter is ruled. */}
-        {Array.from(
-          { length: Math.floor(gesamt / schritt) + 1 },
-          (_, index) => index * schritt,
-        ).map((ms) => (
-          <g key={ms}>
-            <line
-              x1={x(ms)}
-              x2={x(ms)}
-              y1={KOPF - 6}
-              y2={hoehe - 4}
-              stroke="var(--ton-kante)"
-              strokeWidth={1}
-            />
-            <text
-              x={x(ms) + 3}
-              y={KOPF - 10}
-              className="spur-skala"
-              fill="var(--ton-schrift-weg)"
-              fontSize={10}
-            >
-              {sekunden(ms)}
-            </text>
-          </g>
-        ))}
-
-        {spuren.map((spur, index) => {
-          const y = KOPF + index * SPUR_HOEHE;
-          return (
-            <g key={`${spur.art}-${spur.name}`}>
-              <line x1={0} x2={BREITE} y1={y} y2={y} stroke="var(--ton-kante)" strokeWidth={1} />
-              <text
-                x={0}
-                y={y + 16}
-                className="spur-name"
-                fill={spur.art === 'speech' ? 'var(--ton-signal)' : 'var(--ton-schrift-weg)'}
-                fontSize={10}
-              >
-                {spur.name}
-              </text>
-              {spur.spans.map((span) => {
-                const links = x(span.start_ms);
-                const breite = Math.max(2, x(span.end_ms) - links);
-                if (spur.art === 'sfx') {
-                  return (
-                    <g key={span.entry_id}>
-                      <rect x={links} y={y + 6} width={2} height={14} fill="var(--ton-messung)" />
-                      <circle cx={links + 1} cy={y + 5} r={2.5} fill="var(--ton-messung)" />
-                      <title>{`${span.entry_id} · ${dauer(span.start_ms)}`}</title>
-                    </g>
-                  );
-                }
-                const bett = spur.art === 'ambience';
-                const durchgefallen = urteile.get(span.entry_id) === false;
-                return (
-                  <rect
-                    key={span.entry_id}
-                    x={links}
-                    y={y + (bett ? 8 : 6)}
-                    width={breite}
-                    height={bett ? 10 : 14}
-                    rx={1}
-                    fill={bett ? 'var(--ton-ruhe)' : 'var(--ton-messung)'}
-                    fillOpacity={bett ? 0.55 : 1}
-                    stroke={durchgefallen ? 'var(--ton-alarm)' : 'none'}
-                    strokeWidth={durchgefallen ? 1.5 : 0}
-                  >
-                    <title>{`${span.entry_id} · ${dauer(span.start_ms)} – ${dauer(span.end_ms)}`}</title>
-                  </rect>
-                );
-              })}
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
-/** A tick every 1, 2, 5, 10, 15, 30 or 60 s — whichever puts roughly eight marks on the plate. */
-function tickSchritt(gesamt: number): number {
-  for (const schritt of [1000, 2000, 5000, 10000, 15000, 30000, 60000]) {
-    if (gesamt / schritt <= 10) return schritt;
-  }
-  return 60000;
 }
 
 function Sprecherchip({ speaker }: { speaker: SpeakerQa | undefined }): React.JSX.Element {

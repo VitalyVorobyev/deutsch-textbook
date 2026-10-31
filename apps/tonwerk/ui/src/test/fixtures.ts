@@ -708,6 +708,9 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     reviseScene: refuse('reviseScene'),
     renderScene: refuse('renderScene'),
     runQa: refuse('runQa'),
+    // A lane without a waveform is still a lane, so the default is a refusal: the timeline must
+    // draw from the render's timeline whether or not the peaks arrive.
+    peaks: refuse('peaks'),
     generateSound: refuse('generateSound'),
     narrationProfiles: refuse('narrationProfiles'),
     approveScene: refuse('approveScene'),

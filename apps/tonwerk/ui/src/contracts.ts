@@ -352,6 +352,31 @@ export const renderRowSchema = z.looseObject({
 });
 export type RenderRow = z.infer<typeof renderRowSchema>;
 
+/**
+ * A render's waveform, from `GET …/renders/{variant}/peaks`: the master's levels over its whole
+ * length, and each timeline entry's over the span the render measured for it. A level is 0..`levels`
+ * on a scale `floor_dbfs` deep, so a quiet bed still has a shape beside the speech.
+ */
+export const peaksTrackSchema = z.looseObject({
+  entry_id: z.string(),
+  type: z.string(),
+  start_ms: z.number(),
+  end_ms: z.number(),
+  path: z.string(),
+  peaks: z.array(z.number()),
+});
+export type PeaksTrack = z.infer<typeof peaksTrackSchema>;
+
+export const renderPeaksSchema = z.looseObject({
+  resolution_ms: z.number(),
+  floor_dbfs: z.number(),
+  levels: z.number(),
+  duration_ms: z.number().nullable(),
+  master: z.array(z.number()),
+  tracks: z.array(peaksTrackSchema),
+});
+export type RenderPeaks = z.infer<typeof renderPeaksSchema>;
+
 export const utteranceQaSchema = z.looseObject({
   line_id: z.string(),
   expected: z.string(),

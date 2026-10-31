@@ -147,7 +147,9 @@ instructions.
    button carries its elapsed second, and the answer says how many nodes came out of the cache.
 6. Press **Automatisch prüfen**. It transcribes the master and holds it against the script. The
    timeline that appears is *measured* — where each turn, bed and event actually landed after pace,
-   overlap and the difficulty deltas — not what the document asked for.
+   overlap and the difficulty deltas — not what the document asked for. Each piece shows its own
+   track's waveform. A click on the time scale plays the master from that moment, and a click on a
+   piece (or Enter on it) plays that track alone, from where it starts.
 7. Read the report. A turn whose transcript check failed is outlined in red; that is the only place
    this app spends a colour on a verdict.
 8. The scene is now `automatically_checked` and appears in **Prüfung**. Approving is not done here:

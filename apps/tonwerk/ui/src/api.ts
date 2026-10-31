@@ -28,6 +28,7 @@ import {
   doctorSchema,
   qaResultSchema,
   registrySchema,
+  renderPeaksSchema,
   renderResultSchema,
   reviseResultSchema,
   sceneDeletionSchema,
@@ -51,6 +52,7 @@ import {
   type NarrationProfiles,
   type QaResult,
   type Registry,
+  type RenderPeaks,
   type RenderResult,
   type ReviseResult,
   type SceneDetail,
@@ -161,6 +163,13 @@ export interface Api {
   reviseScene(slug: string, scene: Scene, exercise: unknown): Promise<ReviseResult>;
   renderScene(slug: string, variant: string, soundEngine?: string): Promise<RenderResult>;
   runQa(slug: string, variant: string): Promise<QaResult>;
+  /** The waveform of one render, one level per `resolutionMs` window. 404 before a render. */
+  peaks(
+    slug: string,
+    variant: string,
+    resolutionMs: number,
+    signal?: AbortSignal,
+  ): Promise<RenderPeaks>;
   generateSound(request: SoundGenerationRequest): Promise<SoundRow>;
 
   /** The human signature. A 409 here means the master changed — re-listen, do not retry. */
@@ -342,6 +351,13 @@ export function createApi(options: ApiOptions = {}): Api {
         method: 'POST',
         body: { variant, ...(soundEngine ? { sound_engine: soundEngine } : {}) },
       }),
+
+    peaks: (slug, variant, resolutionMs, signal) =>
+      read(
+        `/api/scenes/${encodeURIComponent(slug)}/renders/${encodeURIComponent(variant)}/peaks?resolution_ms=${resolutionMs}`,
+        renderPeaksSchema,
+        signal,
+      ),
 
     runQa: (slug, variant) =>
       read(`/api/scenes/${encodeURIComponent(slug)}/qa`, qaResultSchema, undefined, {

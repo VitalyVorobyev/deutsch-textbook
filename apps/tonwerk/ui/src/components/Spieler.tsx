@@ -26,12 +26,20 @@ import type { ReactNode } from 'react';
 import { useEngineBlob } from '../useEngine';
 import { dauer } from '../format';
 
-interface Bereich {
+export interface Bereich {
   anmelden(element: HTMLAudioElement): () => void;
   waehlen(element: HTMLAudioElement): void;
 }
 
 const BereichContext = createContext<Bereich | null>(null);
+
+/**
+ * The region a custom transport sits in, so it joins the same rules as a `Spieler`: Space toggles
+ * it, and starting it pauses whatever else in the region was playing.
+ */
+export function useSpielbereich(): Bereich | null {
+  return useContext(BereichContext);
+}
 
 /** Keys a control already owns. Space inside one of these is that control's, not the transport's. */
 const EIGENE = new Set(['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'A', 'AUDIO']);
