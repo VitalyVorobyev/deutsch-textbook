@@ -22,12 +22,14 @@
  * how it is heard (Szene), what came out (Mischung).
  */
 import { Button, ButtonLink } from '@vitavision/ui';
+import { Redo2, Undo2 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { STUFE_LABEL } from '../contracts';
 import { kurzSha, zahl, zeitpunkt } from '../format';
 import { href, navigate, sperreNavigation, useQueryState } from '../router';
 import { istGeaendert } from '../scene-draft';
+import { useVerlauf } from '../verlauf';
 import { useApi, useEngineRead } from '../useEngine';
 import { AufbauModus } from './szene/AufbauModus';
 import { MischungModus } from './szene/MischungModus';
@@ -104,7 +106,17 @@ function Editor({
   neuLaden(): void;
 }): React.JSX.Element {
   const original = data.document.scene;
-  const [entwurf, setEntwurf] = useState<Scene>(original);
+  // The draft with its own undo history (`verlauf.ts`); a save remounts this editor and starts a
+  // new one, so undo never reaches past the stored revision.
+  const {
+    wert: entwurf,
+    setzen: setEntwurf,
+    zuruecksetzen,
+    zurueck,
+    vor,
+    kannZurueck,
+    kannVor,
+  } = useVerlauf<Scene>(original);
   const [modus, setModus] = useQueryState('modus', 'skript');
   const [variante, setVariante] = useQueryState(
     'variante',
@@ -222,9 +234,27 @@ function Editor({
         <div className="werkbank-knoepfe">
           <Button
             size="sm"
+            aria-label="Rückgängig"
+            title="Rückgängig (Cmd/Strg + Z)"
+            disabled={!bearbeitbar || !kannZurueck || speichert}
+            onClick={zurueck}
+          >
+            <Undo2 aria-hidden />
+          </Button>
+          <Button
+            size="sm"
+            aria-label="Wiederholen"
+            title="Wiederholen (Cmd/Strg + Umschalt + Z)"
+            disabled={!bearbeitbar || !kannVor || speichert}
+            onClick={vor}
+          >
+            <Redo2 aria-hidden />
+          </Button>
+          <Button
+            size="sm"
             disabled={!geaendert || speichert}
             onClick={() => {
-              setEntwurf(original);
+              zuruecksetzen(original);
               setProblem(null);
             }}
           >

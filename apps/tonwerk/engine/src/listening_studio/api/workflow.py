@@ -35,7 +35,7 @@ from ..generative.registry import ENGINES, SOUND_ENGINES, engine_for, sound_engi
 from ..generative.voices import ResolvedVoices, resolve_voices
 from ..graph.assets import sha256_file as sha256
 from ..graph.peaks import RESOLUTION_MAX_MS, RESOLUTION_MIN_MS, render_peaks
-from ..graph.render import designed_digests, render_scene
+from ..graph.render import designed_digests, plan_scene, render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
 from ..scene.publish import (
@@ -94,6 +94,14 @@ class RenderRequest(BaseModel):
     #: `stable_audio_sfx` or `fake`. Absent means *no generator*, and a scene that asks for a
     #: `SoundSpec` is then refused rather than rendered silently without it — the renderer's
     #: rule, not this endpoint's.
+    sound_engine: str | None = None
+
+
+class PlanRequest(BaseModel):
+    """A draft scene to time, unsaved, under one variant. The same sound-engine rule as a render."""
+
+    scene: Scene
+    variant: str = "natural"
     sound_engine: str | None = None
 
 
@@ -212,6 +220,18 @@ def _sound_engine(name: str | None, allow_test_adapters: bool) -> SoundGenerator
     return sound_engine_for(name)
 
 
+def _rendered_sound_engine(directory: Path) -> str | None:
+    """The sound engine a render's manifest records, or None when it used none or does not exist."""
+
+    try:
+        manifest = json.loads((directory / "render.json").read_text())
+    except (OSError, ValueError):
+        return None
+    engines = manifest.get("engines")
+    names = sorted(name for name in engines if name in SOUND_ENGINES) if isinstance(engines, dict) else []
+    return names[0] if names else None
+
+
 def _required_checks(scene: Scene, has_exercise: bool) -> set[str]:
     """Which of the eight a reviewer must certify for *this* scene.
 
@@ -247,6 +267,57 @@ def router(
 
     def render_dir(scene: Scene, variant: str) -> Path:
         return store.root / "renders" / scene.sha256() / variant
+
+    @api.post("/scenes/{slug}/plan")
+    def plan(slug: str, request: PlanRequest) -> dict[str, Any]:
+        """Where an unsaved draft's entries would land, from takes the cache already holds.
+
+        Nothing is written and the stage does not move: a plan is a question about the draft, not
+        a step in the workflow. 409 for whatever a render of the same draft would refuse.
+        """
+
+        _, _, saved, _ = stored(slug)
+        scene = request.scene
+        if scene.slug != slug:
+            raise HTTPException(409, f"this scene is {slug}; the draft is {scene.slug}")
+        resolved = _resolved_voices(store, scene)
+        designed = _resolved_designed(store, scene)
+        speech = _speech_engines(scene, allow_test_adapters, resolved, designed)
+        # A plan generates nothing, so a generated sound only has to be *named* to be looked up.
+        # Unless the request names an engine, it is the one the saved scene's last render of this
+        # variant used: the cache entry a draft can reuse is that render's.
+        sound_name = request.sound_engine or _rendered_sound_engine(
+            render_dir(saved, request.variant)
+        )
+        sound = _sound_engine(sound_name, allow_test_adapters)
+        try:
+            result = plan_scene(
+                scene,
+                store.root,
+                variant=request.variant,
+                speech_engines=speech,
+                voices=resolved.refs,
+                sound_engine=sound,
+                repo=repo,
+            )
+        except ValueError as error:
+            raise HTTPException(409, str(error)) from error
+        return {
+            "slug": slug,
+            "variant": result.variant,
+            "complete": result.complete,
+            "missing": result.missing,
+            "duration_ms": result.duration_ms,
+            "timeline": [
+                {
+                    "entry_id": row.entry_id,
+                    "type": row.type,
+                    "start_ms": row.start_ms,
+                    "end_ms": row.end_ms,
+                }
+                for row in result.timeline
+            ],
+        }
 
     @api.post("/scenes/{slug}/render")
     def render(slug: str, request: RenderRequest) -> dict[str, Any]:

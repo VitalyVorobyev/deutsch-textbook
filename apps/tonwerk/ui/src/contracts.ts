@@ -644,6 +644,22 @@ export const reviseResultSchema = z.looseObject({
 export type ReviseResult = z.infer<typeof reviseResultSchema>;
 
 /** What a render answers. `nodes_evaluated`/`nodes_cached` is the incremental story, shown. */
+/**
+ * Where an unsaved draft's entries would land, from `POST …/plan`: the render's own timing over
+ * takes the cache already holds. `missing` names every entry no render has produced a take or sound
+ * for yet; while anything is missing there is no timeline, because a guessed duration would move
+ * every sequential turn after it.
+ */
+export const scenePlanSchema = z.looseObject({
+  slug: z.string(),
+  variant: z.string(),
+  complete: z.boolean(),
+  missing: z.array(z.string()).default([]),
+  duration_ms: z.number().nullable(),
+  timeline: z.array(spanSchema).default([]),
+});
+export type ScenePlan = z.infer<typeof scenePlanSchema>;
+
 export const renderResultSchema = z.looseObject({
   slug: z.string(),
   revision: z.number(),

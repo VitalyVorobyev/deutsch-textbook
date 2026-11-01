@@ -143,6 +143,10 @@ instructions.
      **Pult** sets each line's level, its three equalizer bands (low, mid, high) and its share of
      the room, and how far a background drops under speech. The Pult edits the draft like every
      other field: a change is heard after saving and rendering again.
+
+   Undo and redo work across all three modes, for everything since the last save: the arrow
+   buttons beside **Verwerfen**, or `⌘/Strg + Z` and `⌘/Strg + Umschalt + Z`. A fader move or a
+   typed number counts as one step. Inside a text field, the shortcut undoes your typing instead.
 4. **Save.** `⌘/Strg + S`, and nothing autosaves. Saving creates a new immutable revision and
    returns the project to `draft`; the previous QA report and any previous approval described the
    audio of the previous text and do not follow it forward.
@@ -154,9 +158,25 @@ instructions.
    overlap and the difficulty deltas — not what the document asked for. Each piece shows its own
    track's waveform. A click on the time scale plays the master from that moment, and a click on a
    piece (or Enter on it) plays that track alone, from where it starts.
-7. Read the report. A turn whose transcript check failed is outlined in red; that is the only place
+7. To change the timing, drag on the timeline after a render:
+   - **A line**: drag it to where it should start. It then has a fixed start, and the lines after it
+     that had none follow it. Overlap and interruption are made this way. A line with a fixed start
+     cannot be reordered in **Skript**; select it and press **Zeit lösen** to let it follow the
+     previous line again.
+   - **A sound event**: drag it to its moment.
+   - **A background**: drag its body to move it, or one of its edges to change where it starts or
+     ends. Its fades are drawn as ramps.
+   - **The keyboard**: the arrow keys move the focused piece by 10 ms, and with Shift by 100 ms.
+
+   The piece you moved shows its exact numbers under the timeline, where you can also type them.
+   The timeline then shows where the next render would place everything, worked out by the engine
+   from the recordings it already has. A dashed outline marks where the last render put it.
+   **Entwurf hören** plays the last render's tracks at the new times, without the room or the
+   loudness balancing; that is enough to hear whether two lines overlap as you meant. A line whose
+   text, voice or pace changed has no recording yet, so until the next render there is no plan.
+8. Read the report. A turn whose transcript check failed is outlined in red; that is the only place
    this app spends a colour on a verdict.
-8. The scene is now `automatically_checked` and appears in **Prüfung**. If the check passed, it can
+9. The scene is now `automatically_checked` and appears in **Prüfung**. If the check passed, it can
    be published as it is ([Publishing](#publishing)). Approving is not done here: a *freigeben*
    button beside the render button would put a signature one click away from the thing that
    invalidates it.

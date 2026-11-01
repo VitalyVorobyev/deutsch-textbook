@@ -1,11 +1,13 @@
 /**
  * Mischung — what the render actually produced, and the two buttons that produce it.
  *
- * **Everything drawn here is measured, never planned.** The lanes come from the render manifest's
- * own `timeline`: where each turn, bed and event landed after pace, overlap and the difficulty
- * deltas were applied. A scene's authored `at_ms` is a *request*, and drawing it as a time would
- * make the picture agree with the document exactly when the render disagrees with both. Before a
- * render there is no picture — which is the honest state, not an empty one.
+ * **Everything drawn here is measured, or planned by the engine.** The lanes come from the render
+ * manifest's own `timeline`: where each turn, bed and event landed after pace, overlap and the
+ * difficulty deltas were applied. A scene's authored `at_ms` is a *request*, and drawing it as a
+ * time would make the picture agree with the document exactly when the render disagrees with both.
+ * A draft dragged on the timeline is drawn where the engine's plan puts it, from the same timing
+ * code and the takes it already holds (`Zeitleiste`). Before a render there is no picture — which
+ * is the honest state, not an empty one.
  *
  * **The lanes are drawn in shape, not in a new colour.** Tonwerk spends hue on one distinction —
  * what a machine measured against what a person vouched for — so a bed is a dim graphite band, a
@@ -217,7 +219,7 @@ export function MischungModus({
       <Platte
         titel="Zeitleiste"
         zaehler={stand?.rendered ? dauer(stand.duration_ms) : undefined}
-        erklaerung="Wo alles im fertigen Master tatsächlich liegt — gemessen beim Rendern, nicht geplant. Jedes Stück zeigt die Wellenform seiner eigenen Spur und lässt sich einzeln hören."
+        erklaerung="Wo alles im fertigen Master tatsächlich liegt — gemessen beim Rendern. Jedes Stück zeigt die Wellenform seiner eigenen Spur und lässt sich einzeln hören. Ziehen verschiebt es im Entwurf; dann zeigt die Leiste, wo der nächste Render es hinlegen würde."
         randlos
       >
         {stand?.rendered && stand.timeline.length > 0 ? (
@@ -231,6 +233,10 @@ export function MischungModus({
             rollen={rollen}
             reihenfolge={scene.cast.map((member) => member.role)}
             urteile={urteile}
+            original={scene}
+            entwurf={entwurf}
+            setEntwurf={setEntwurf}
+            bearbeitbar={bearbeitbar}
           />
         ) : (
           <Zustand

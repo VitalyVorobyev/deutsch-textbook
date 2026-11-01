@@ -707,6 +707,8 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     sounds: () => Promise.resolve(soundsFixture as never),
     reviseScene: refuse('reviseScene'),
     renderScene: refuse('renderScene'),
+    planScene: refuse('planScene'),
+    audioBytes: refuse('audioBytes'),
     runQa: refuse('runQa'),
     // A lane without a waveform is still a lane, so the default is a refusal: the timeline must
     // draw from the render's timeline whether or not the peaks arrive.
