@@ -36,6 +36,7 @@ import type { GradingDecision } from '@da/schema';
 import { LID_EXAM, type LidBank, type LidTopics } from '@da/schema/lid';
 import { lidReadiness, lidStatuses, type LidState } from '../src/lib/lid';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
+import { migrateAttemptSetIds } from '../src/lib/set-id-migration';
 import {
   armedAt,
   dueProbes,
@@ -428,7 +429,9 @@ export function readSnapshot(path: string): AuditSnapshot {
     version: parsed.version!,
     exportedAt: parsed.exportedAt ?? '',
     profile: parsed.profile,
-    attempts: parsed.attempts,
+    // Snapshot files are read here directly, not through the app's import path, so the set
+    // rename map is applied here too.
+    attempts: migrateAttemptSetIds(parsed.attempts),
     cards: parsed.cards,
     sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
     topics: parsed.topics && typeof parsed.topics === 'object' ? parsed.topics : {},

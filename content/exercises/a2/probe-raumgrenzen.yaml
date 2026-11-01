@@ -2,13 +2,13 @@ topic: wohnen-umzug
 role: probe
 title: {en: "Probe — spatial boundary and path", ru: "Проверка — пространственная граница и путь", uk: "Перевірка — просторова межа та шлях"}
 arming:
-  - a2/wohnen-raumgrenzen::mc-ausserhalb
-  - a2/wohnen-raumgrenzen::cloze-gegen
-  - a2/wohnen-raumgrenzen::cloze-um-herum
-  - a2/wohnen-raumgrenzen::mc-kein-wechselkasus
-  - a2/wohnen-raumgrenzen-transfer::translate-oeffnungszeiten
-  - a2/wohnen-raumgrenzen-transfer::translate-zaun
-  - a2/wohnen-raumgrenzen-transfer::translate-bahnhof-herum
+  - a2/wohnen-umzug-raumgrenzen::mc-ausserhalb
+  - a2/wohnen-umzug-raumgrenzen::cloze-gegen
+  - a2/wohnen-umzug-raumgrenzen::cloze-um-herum
+  - a2/wohnen-umzug-raumgrenzen::mc-kein-wechselkasus
+  - a2/wohnen-umzug-raumgrenzen-transfer::translate-oeffnungszeiten
+  - a2/wohnen-umzug-raumgrenzen-transfer::translate-zaun
+  - a2/wohnen-umzug-raumgrenzen-transfer::translate-bahnhof-herum
 items:
   - id: variant-a
     outcomes: [wohnung-beschreiben]

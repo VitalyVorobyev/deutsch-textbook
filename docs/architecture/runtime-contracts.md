@@ -32,8 +32,10 @@ authoring rules.
 
 ## Non-negotiable invariants
 
-- Persisted identities are contracts. Renaming topics, items, outcomes, decks or card headwords
-  requires an explicit migration.
+- Persisted identities are contracts. Renaming topics, exercise sets, items, outcomes, decks or
+  card headwords requires an explicit migration. Set renames go through one permanent map
+  (`src/lib/set-id-migration.ts`), applied at snapshot import, in the attempt dedupe key, on every
+  read of the attempt log and in `progress:audit`.
 - Historical attempts keep their logged result and revision; current answer keys never replay them.
 - Unverified writing and speaking remain practice evidence and never raise measured mastery.
 - Placement may advance the recommended path but never raises a topic’s measured tier.

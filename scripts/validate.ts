@@ -81,6 +81,7 @@ import { authorshipProvenanceProblems } from '@da/content/authorship-provenance'
 import { audioProvenanceProblems } from '@da/schema/audio-provenance';
 import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 import { lidProblems } from '@da/content/lid';
+import { SET_ID_MIGRATION } from '../src/lib/set-id-migration';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -1130,6 +1131,52 @@ for (const { file, data } of wortnetze.values()) {
       byLevel.set(dir, setId);
     }
   }
+}
+
+/**
+ * A teaching set's name says its owner and its job (ADR 0014): `<topic>`, `<topic>-produktion`,
+ * `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
+ * `<topic>[-<point>]-ausblenden` / `-remediation`, and `drill-<focus>` for drills. Without the
+ * rule, names drifted into five conventions, and a name stopped telling an editor which topic a
+ * file belongs to.
+ *
+ * And no set may take an id the rename map retired: an attempt logged under that id would be
+ * filed under the set the map points to.
+ */
+const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|dokument)$/;
+for (const [setId, { file, data }] of exerciseSets) {
+  if (Object.hasOwn(SET_ID_MIGRATION, setId))
+    fail(
+      file,
+      `"${setId}" is a retired set id, renamed to "${SET_ID_MIGRATION[setId]}" — pick another name`,
+    );
+  if (!['practice', 'drill', 'pretest'].includes(data.role)) continue;
+  const name = setId.split('/')[1]!;
+  if (name.startsWith('drill-')) {
+    if (data.role !== 'drill') fail(file, `only a role: drill set may be named drill-*`);
+    continue;
+  }
+  if (name !== data.topic && !name.startsWith(`${data.topic}-`)) {
+    fail(
+      file,
+      `set name "${name}" must be its topic "${data.topic}" or start with "${data.topic}-" (drills: drill-<focus>)`,
+    );
+    continue;
+  }
+  if (data.role === 'drill' && !name.endsWith('-remediation'))
+    fail(file, `a drill is named drill-<focus>, or <topic>[-<point>]-remediation`);
+  if (data.role !== 'practice') continue;
+  if (TRANSFER_SUFFIX.test(name) !== (data.stage === 'transfer'))
+    fail(
+      file,
+      data.stage === 'transfer'
+        ? `a transfer set ends in -produktion, -transfer, -hoeren or -dokument`
+        : `-produktion, -transfer, -hoeren and -dokument name transfer sets, but stage is "${data.stage}"`,
+    );
+  if (name.endsWith('-hoeren') && !data.items.every((item) => item.type === 'audio-comprehension'))
+    fail(file, `a -hoeren set holds audio-comprehension items only`);
+  if (name.endsWith('-diktat') && !data.items.some((item) => item.type === 'listen'))
+    fail(file, `a -diktat set holds listen items`);
 }
 
 /**

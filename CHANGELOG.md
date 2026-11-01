@@ -34,6 +34,8 @@ GitHub Release notes.
 
 ### Changed
 
+- **Exercise sets renamed to one convention**, so each file name starts with its topic. Your
+  answer history moves to the new names automatically; update the desktop app to keep it in step.
 - **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page
   reports the level's Wortliste, grammar and checkpoint figures from the content itself.
 - **After you answer a listening question, the recording becomes something to study.** Tap any

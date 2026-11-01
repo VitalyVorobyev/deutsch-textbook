@@ -294,7 +294,7 @@ For the next time each file is touched.
 - `a2/probe-man-und-besitz-genitiv::probe-genitiv-von-kollegin` rejects the correct genitive
   *das Buch meiner Kollegin*; accepting it drops the pinned `von` — a design decision.
 - `a2/trennbare-verben`: the inseparable-prefix list reads as closed (no *emp-, miss-, zer-*).
-- `a2/drill-dativ-ausloeser::cloze-nach-durch-park` and `a2/hoeren-dativ::hoeren-rufst-ihn` declare
+- `a2/drill-dativ-ausloeser::cloze-nach-durch-park` and `a2/dativ-diktat::hoeren-rufst-ihn` declare
   dative outcomes on accusative contrast items — decide whether contrast evidence counts.
 - `a2/alltag-tagesablauf`: the sequencer list omits *zuletzt/später/schließlich*.
 - `a2/modalverben`: no modal without infinitive (*Ich muss nach Hause*), no offer *Soll ich …?*.
