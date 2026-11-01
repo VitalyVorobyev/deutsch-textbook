@@ -66,12 +66,12 @@ Course content: articles, items, probes, vocabulary, readings and their language
 - **CON-3 · B1 competences that do not survive the delay.** Seven B1 rows retain 0–20% at 21–30
   days: adjektiv-nomen, irreale-bedingung, lassen-verwendung, partizip-adjektiv,
   relativ-praeposition, passiv-modal, praeteritum-vollverben (`bun run progress:audit --profile
-  vitaly`, *Retention by competence*). Every row except passiv-modal now has a remediation drill. Each
-  competence is carried by one probe family whose three attempts are spent, so **the drills cannot
-  show up in retention until a second family exists**. First step: a second three-variant family for
-  each, armed by the drill items, with `armedAt` measured before and after. passiv-modal's misses are
-  participle forms (*überwiesen*, *ausgeschaltet*, *unterschrieben*), so check `partizip2-form`
-  depth before giving it its own drill.
+  vitaly`, *Retention by competence*). Each row except passiv-modal now has a remediation drill
+  and a further probe family armed by that drill's items alone, so the next three readings of
+  each row measure the drill. Next step: read those rows once their 21-day stage is taken
+  (`--project` before the date). passiv-modal's misses are participle forms (*überwiesen*,
+  *ausgeschaltet*, *unterschrieben*), so check `partizip2-form` depth before giving it its own
+  drill.
 - **CON-4 · A direction phrase stays beside its verb.** Four rulings in `data/grading-decisions.yaml`
   show the same slip — *heute zur Arbeit nicht kommen*, *zur Oma oft gefahren* — and no item
   grades it outside A1's `nicht-position`. First step: a drill under `nicht-position` with

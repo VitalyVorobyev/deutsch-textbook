@@ -1,0 +1,108 @@
+# Delayed probe family — ONE competence: building lassen's bracket cold, with the conjugated
+# lassen in second position (or first, in a question) and a BARE infinitive at the end. The
+# topic's first family and the gesundheit-wohlbefinden family probe the same bracket and are
+# spent; this one is armed by the remediation drill alone, so the 2/7/21 clock starts when the
+# drill is first practised and the curve reads what survived it.
+#
+# Translate, as in both earlier families: half of the competence is a position, and a cloze
+# prints the slot. The drill's misses add a word or swap the form (zu bauen, gebaut, a werden
+# passive), which key_tokens cannot see, so every variant declares focus_evidence: it fails a
+# zu-infinitive, a participle, a werden in place of lassen and a missing lassen form, and reads
+# lassen with the bare infinitive at the end as retained.
+#
+# The instruction names lassen and the lexical verb, so the item grades the bracket, never the
+# choice of construction. Cells: lässt in a question (du), lässt in a statement (3sg, the umlaut
+# cell), lassen (3pl). Pairings fresh: Pizza + liefern, Schule + bauen, Essen + bringen occur in
+# no practice item, no drill item and neither earlier family.
+topic: sucht-lebensstil
+role: probe
+title:
+  en: "Delayed check — lassen and the bare infinitive, once more"
+  ru: "Отложенная проверка — lassen и голый инфинитив, ещё раз"
+  uk: "Відкладена перевірка — lassen і голий інфінітив, ще раз"
+  de: "Kontrolle mit Abstand — lassen und der bloße Infinitiv, noch einmal"
+arming:
+  - b1/drill-lassen-verwendung::cloze-laesst-lassen
+  - b1/drill-lassen-verwendung::mc-moebel-liefern
+  - b1/drill-lassen-verwendung::cloze-perfekt-lassen
+  - b1/drill-lassen-verwendung::uebersetzen-kueche-renovieren
+  - b1/drill-lassen-verwendung::uebersetzen-lebenslauf-korrigieren
+  - b1/drill-lassen-verwendung::uebersetzen-eltern-party
+  - b1/drill-lassen-verwendung::uebersetzen-augen-testen
+items:
+  - id: variant-a
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu liefern\\b", "\\bgeliefert\\b", "\\b(wird|werden)\\b", "\\bliefern\\b.+$", "^(?!.*\\blässt\\b)"]
+      retained: ["\\blässt\\b.*\\bliefern$"]
+    instruction:
+      en: "Translate with lassen. For 'deliver' take liefern."
+      ru: "Переведите через lassen. Для «доставить» возьмите liefern."
+      uk: "Перекладіть через lassen. Для «доставити» візьміть liefern."
+      de: "Übersetze mit lassen. Für das Bringen nimm liefern."
+    prompt_en: "Are you having the pizza delivered to your home?"
+    prompt_ru: "Тебе привезут пиццу домой?"
+    prompt_uk: "Тобі привезуть піцу додому?"
+    answer: "Lässt du die Pizza nach Hause liefern?"
+    accept:
+      # The dative of benefit is the everyday German for «тебе» / "to your home".
+      - "Lässt du dir die Pizza nach Hause liefern?"
+    key_tokens: ["Lässt", "liefern"]
+    explain:
+      en: "In a yes/no question lassen moves to the front, Lässt du …, and the bare infinitive liefern still closes the sentence. lassen works like a modal verb here: no zu, no participle, and no werden either, since the question is about what you arrange, not about what will happen. lässt keeps the umlaut for du as for er, sie, es."
+      ru: "В вопросе без вопросительного слова lassen встаёт в начало — Lässt du …, — а голый инфинитив liefern по-прежнему закрывает предложение. lassen работает здесь как модальный глагол: без zu, без причастия и без werden — вопрос о том, что вы поручаете, а не о том, что произойдёт. Форма lässt сохраняет умлаут для du, как и для er, sie, es."
+      uk: "У питанні без питального слова lassen стає на початок — Lässt du …, — а голий інфінітив liefern так само закриває речення. lassen працює тут як модальне дієслово: без zu, без дієприкметника і без werden — питання про те, що ви доручаєте, а не про те, що станеться. Форма lässt зберігає умлаут для du, як і для er, sie, es."
+      de: "In einer Ja/Nein-Frage rückt lassen nach vorn, Lässt du …, und der bloße Infinitiv liefern schließt den Satz trotzdem ab. lassen arbeitet hier wie ein Modalverb: kein zu, kein Partizip und auch kein werden, denn die Frage ist, was du veranlasst, nicht was passieren wird. lässt behält den Umlaut bei du wie bei er, sie, es."
+
+  - id: variant-b
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu bauen\\b", "\\bgebaut\\b", "\\b(wird|werden)\\b", "\\bbauen\\b.+$", "^(?!.*\\blässt\\b)"]
+      retained: ["\\blässt\\b.*\\bbauen$"]
+    instruction:
+      en: "Translate with lassen. For 'build' take bauen."
+      ru: "Переведите через lassen. Для «строить» возьмите bauen."
+      uk: "Перекладіть через lassen. Для «будувати» візьміть bauen."
+      de: "Übersetze mit lassen. Für das Bauen nimm bauen."
+    prompt_en: "The town is having a new school built."
+    prompt_ru: "Город строит новую школу."
+    prompt_uk: "Місто будує нову школу."
+    answer: "Die Stadt lässt eine neue Schule bauen."
+    key_tokens: ["lässt", "bauen"]
+    explain:
+      en: "The town arranges the work and a building firm does it, which is exactly the meaning of lassen: lässt in second position, bauen bare at the end. The Russian and Ukrainian sentences say only that the town builds, and English uses a participle (having it built); German uses neither. The town lässt, and the school is built by others."
+      ru: "Город заказывает работу, а строит фирма — именно это и значит lassen: lässt на втором месте, голое bauen в конце. По-русски достаточно сказать «город строит», хотя сам город кирпичей не кладёт; немецкий в таком случае обычно говорит lassen. И никакого причастия: gebaut здесь означало бы пассив или перфект, а не поручение."
+      uk: "Місто замовляє роботу, а будує фірма — саме це й означає lassen: lässt на другому місці, голе bauen у кінці. Українською досить сказати «місто будує», хоча саме місто цеглу не кладе; німецька в такому разі зазвичай каже lassen. І жодного дієприкметника: gebaut тут означав би пасив або перфект, а не доручення."
+      de: "Die Stadt gibt die Arbeit in Auftrag, eine Baufirma führt sie aus — genau das bedeutet lassen: lässt auf Position zwei, bauen bloß am Ende. Englisch nimmt dafür ein Partizip (having it built), Deutsch nicht. Die Stadt lässt bauen, und gebaut wird von anderen."
+
+  - id: variant-c
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu bringen\\b", "\\bgebracht\\b", "\\b(wird|werden)\\b", "\\bbringen\\b.+$", "^(?!.*\\blassen\\b)"]
+      retained: ["\\blassen\\b.*\\bbringen$"]
+    instruction:
+      en: "Translate with lassen, starting with Meine Großeltern. For 'bring' take bringen."
+      ru: "Переведите через lassen, начиная с Meine Großeltern. Для «приносить» возьмите bringen."
+      uk: "Перекладіть через lassen, починаючи з Meine Großeltern. Для «приносити» візьміть bringen."
+      de: "Übersetze mit lassen und beginne mit Meine Großeltern. Für das Bringen nimm bringen."
+    prompt_en: "My grandparents have their meals brought to them every day."
+    prompt_ru: "Бабушка и дедушка каждый день заказывают себе еду на дом."
+    prompt_uk: "Бабуся й дідусь щодня замовляють собі їжу додому."
+    answer: "Meine Großeltern lassen sich jeden Tag das Essen bringen."
+    accept:
+      - "Meine Großeltern lassen sich das Essen jeden Tag bringen."
+      - "Meine Großeltern lassen jeden Tag das Essen bringen."
+      - "Meine Großeltern lassen sich jeden Tag das Essen nach Hause bringen."
+      - "Meine Großeltern lassen sich das Essen jeden Tag nach Hause bringen."
+    key_tokens: ["lassen", "bringen"]
+    explain:
+      en: "Plural subject, so lassen without an umlaut, in second position; bringen bare at the end. sich is the dative of benefit (they have it brought for themselves) and sits right after lassen. Between the two verbs stands everything else, time first and then the object, but nothing that belongs to the bracket."
+      ru: "Подлежащее во множественном числе, поэтому lassen без умлаута, на втором месте; голое bringen в конце. sich — датив пользы («себе») и стоит сразу после lassen. Между двумя глаголами — всё остальное: сначала время, потом объект, но ничего из самой рамки."
+      uk: "Підмет у множині, тому lassen без умлаута, на другому місці; голе bringen у кінці. sich — датив користі («собі») і стоїть одразу після lassen. Між двома дієсловами — усе інше: спершу час, потім об'єкт, але нічого з самої рамки."
+      de: "Subjekt im Plural, also lassen ohne Umlaut auf Position zwei; bringen bloß am Ende. sich ist der Dativ des Nutzens (sie lassen es sich bringen) und steht direkt nach lassen. Zwischen den beiden Verben steht alles andere, erst die Zeit, dann das Objekt, aber nichts vom Rahmen."

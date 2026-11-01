@@ -1,0 +1,104 @@
+# Delayed probe family — ONE competence: giving an adjective used as a noun the ending its
+# article word leaves over, in a sentence the learner builds. The topic's cloze family prints
+# the article word beside the gap; here the learner chooses it too, so the ending has to follow
+# from a determiner they wrote themselves.
+#
+# Armed by the remediation drill alone, so the 2/7/21 clock starts when the drill is first
+# practised and the curve reads what survived it.
+#
+# Each instruction names the base adjective and the article word, so the item grades the
+# ending and nothing else. Pinned is the adjectival noun alone; it occurs once in each defining
+# rendering. Cells: possessive + plural (unsere Verwandten, weak -en), ein + masculine
+# nominative (ein Bekannter, strong -er, the cell the learner missed with Verwandte after ein),
+# viele + plural (viele Kranke, strong -e). None of the drill's cells (Deutsche/Deutscher,
+# Erwachsene/Erwachsenen, etwas Neues, nichts Besonderes, Beamter, der Jugendliche, der Kranken)
+# recurs with the same article word.
+topic: arbeit-bewerbung
+role: probe
+title:
+  en: "Delayed check — adjectives as nouns, the whole sentence"
+  ru: "Отложенная проверка — прилагательное как существительное, всё предложение"
+  uk: "Відкладена перевірка — прикметник як іменник, усе речення"
+  de: "Kontrolle mit Abstand — Adjektive als Nomen im ganzen Satz"
+arming:
+  - b1/drill-adjektiv-nomen::cloze-deutsch-paar
+  - b1/drill-adjektiv-nomen::cloze-erwachsen-plural
+  - b1/drill-adjektiv-nomen::cloze-etwas-nichts
+  - b1/drill-adjektiv-nomen::mc-jugendlicher-bus
+  - b1/drill-adjektiv-nomen::uebersetzen-vater-beamter
+  - b1/drill-adjektiv-nomen::uebersetzen-jugendliche-handy
+  - b1/drill-adjektiv-nomen::uebersetzen-kranken-essen
+  - b1/drill-adjektiv-nomen::uebersetzen-erwachsene-preis
+items:
+  - id: variant-a
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'relatives' make a noun from verwandt, after unsere; for 'visit' take besuchen."
+      ru: "Переведите. Для «родственников» образуйте существительное от verwandt после unsere; для «навещать» возьмите besuchen."
+      uk: "Перекладіть. Для «родичів» утворіть іменник від verwandt після unsere; для «відвідувати» візьміть besuchen."
+      de: "Übersetze. Bilde aus verwandt ein Nomen nach unsere; für den Besuch nimm besuchen."
+    prompt_en: "At the weekend we are visiting our relatives in Poland."
+    prompt_ru: "На выходных мы навещаем наших родственников в Польше."
+    prompt_uk: "На вихідних ми відвідуємо наших родичів у Польщі."
+    answer: "Am Wochenende besuchen wir unsere Verwandten in Polen."
+    accept:
+      - "Wir besuchen am Wochenende unsere Verwandten in Polen."
+    key_tokens: ["Verwandten"]
+    explain:
+      en: "unsere already shows the plural and the case, so the noun made from verwandt takes the weak plural ending, -en: unsere Verwandten. It declines exactly as an adjective would in unsere netten Nachbarn. Without an article word the same plural is Verwandte (Wir haben Verwandte in Polen); the ending depends on what stands in front, not on the word itself."
+      ru: "unsere уже показывает и число, и падеж, поэтому существительное от verwandt получает слабое окончание множественного числа -en: unsere Verwandten. Оно склоняется ровно как прилагательное в unsere netten Nachbarn. Без артиклевого слова то же множественное — Verwandte (Wir haben Verwandte in Polen): окончание зависит от того, что стоит перед словом, а не от самого слова."
+      uk: "unsere вже показує і число, і відмінок, тому іменник від verwandt отримує слабке закінчення множини -en: unsere Verwandten. Він відмінюється рівно як прикметник у unsere netten Nachbarn. Без артиклевого слова та сама множина — Verwandte (Wir haben Verwandte in Polen): закінчення залежить від того, що стоїть перед словом, а не від самого слова."
+      de: "unsere zeigt Plural und Kasus schon an, also bekommt das Nomen aus verwandt die schwache Pluralendung -en: unsere Verwandten. Es dekliniert genau wie ein Adjektiv in unsere netten Nachbarn. Ohne Artikelwort heißt derselbe Plural Verwandte (Wir haben Verwandte in Polen); die Endung hängt davon ab, was davorsteht, nicht vom Wort selbst."
+
+  - id: variant-b
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'an acquaintance' make a noun from bekannt, after ein; for 'call' take anrufen."
+      ru: "Переведите. Для «знакомого» образуйте существительное от bekannt после ein; для «позвонить» возьмите anrufen."
+      uk: "Перекладіть. Для «знайомого» утворіть іменник від bekannt після ein; для «зателефонувати» візьміть anrufen."
+      de: "Übersetze. Bilde aus bekannt ein Nomen nach ein; für den Anruf nimm anrufen."
+    prompt_en: "Yesterday an acquaintance from school called me."
+    prompt_ru: "Вчера мне позвонил один знакомый со школы."
+    prompt_uk: "Учора мені зателефонував один знайомий зі школи."
+    answer: "Gestern hat mich ein Bekannter aus der Schule angerufen."
+    accept:
+      - "Ein Bekannter aus der Schule hat mich gestern angerufen."
+      - "Gestern rief mich ein Bekannter aus der Schule an."
+      - "Ein Bekannter aus der Schule rief mich gestern an."
+      - "Gestern hat mich ein Bekannter von der Schule angerufen."
+      - "Ein Bekannter von der Schule hat mich gestern angerufen."
+    key_tokens: ["Bekannter"]
+    explain:
+      en: "ein has no ending in the masculine nominative, so it cannot show the gender, and the noun has to: ein Bekannter, with the strong -er. Bekannte after ein is no form at all: it belongs to eine (eine Bekannte, a woman) or to the plural; with der in front the -er would be gone again (der Bekannte), because der already shows the gender."
+      ru: "У ein в мужском роде именительного падежа нет окончания, поэтому род показать оно не может — его показывает существительное: ein Bekannter, с сильным -er. Bekannte после ein — вообще не форма: она бывает после eine (eine Bekannte — женщина) или во множественном числе; а после der окончание -er снова исчезает (der Bekannte), потому что род уже показал артикль."
+      uk: "У ein у чоловічому роді називного відмінка немає закінчення, тому рід показати воно не може — його показує іменник: ein Bekannter, із сильним -er. Bekannte після ein — узагалі не форма: вона буває після eine (eine Bekannte — жінка) або в множині; а після der закінчення -er знову зникає (der Bekannte), бо рід уже показав артикль."
+      de: "ein hat im Maskulinum Nominativ keine Endung und kann das Genus nicht zeigen, also muss das Nomen es tun: ein Bekannter, mit dem starken -er. Bekannte nach ein ist gar keine Form: Sie gehört zu eine (eine Bekannte, eine Frau) oder zum Plural; nach der fällt das -er wieder weg (der Bekannte), weil der das Genus schon zeigt."
+
+  - id: variant-c
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'sick people' make a noun from krank, after viele; for 'at the doctor's' take beim Arzt."
+      ru: "Переведите. Для «больных» образуйте существительное от krank после viele; для «у врача» возьмите beim Arzt."
+      uk: "Перекладіть. Для «хворих» утворіть іменник від krank після viele; для «у лікаря» візьміть beim Arzt."
+      de: "Übersetze. Bilde aus krank ein Nomen nach viele; für den Ort nimm beim Arzt."
+    prompt_en: "In winter there are always a lot of sick people at the doctor's."
+    prompt_ru: "Зимой у врача всегда много больных."
+    prompt_uk: "Узимку в лікаря завжди багато хворих."
+    answer: "Im Winter gibt es beim Arzt immer viele Kranke."
+    accept:
+      - "Beim Arzt gibt es im Winter immer viele Kranke."
+      - "Im Winter gibt es immer viele Kranke beim Arzt."
+      - "Im Winter sind beim Arzt immer viele Kranke."
+      - "Beim Arzt sind im Winter immer viele Kranke."
+    key_tokens: ["Kranke"]
+    explain:
+      en: "viele works like no article at all: it is a quantity word that leaves the ending to the noun, and the strong plural ending is -e, so viele Kranke, exactly like viele kranke Menschen. Kranken would need an article word that already shows the case, as in die Kranken or mit den Kranken."
+      ru: "viele работает как отсутствие артикля: это слово количества, которое оставляет окончание существительному, а сильное окончание множественного числа — -e. Поэтому viele Kranke, ровно как viele kranke Menschen. Kranken требует артиклевого слова, которое уже показало падеж: die Kranken, mit den Kranken."
+      uk: "viele працює як відсутність артикля: це слово кількості, яке залишає закінчення іменникові, а сильне закінчення множини — -e. Тому viele Kranke, рівно як viele kranke Menschen. Kranken потребує артиклевого слова, яке вже показало відмінок: die Kranken, mit den Kranken."
+      de: "viele wirkt wie gar kein Artikel: Es ist ein Mengenwort und überlässt die Endung dem Nomen, und die starke Pluralendung ist -e, also viele Kranke, genau wie viele kranke Menschen. Kranken braucht ein Artikelwort, das den Kasus schon zeigt, wie in die Kranken oder mit den Kranken."

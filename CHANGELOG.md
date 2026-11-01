@@ -26,6 +26,11 @@ GitHub Release notes.
   preposition with its relative pronoun (*die Familie, bei der …*), adjectives used as nouns
   (*ein Jugendlicher*, *der Jugendliche*), Partizip I or II in front of a noun (*spielende Kinder*,
   *die reparierte Heizung*), and *lassen* with a bare infinitive (*Wir lassen die Küche renovieren*).
+- **Fresh delayed checks after the B1 drills.** Six B1 points that did not survive the delay
+  (preposition with relative pronoun, adjectives as nouns, participles before a noun, *lassen*,
+  the unreal condition, the written Präteritum) get a new set of three delayed checks. Each one
+  starts its clock when you do that point's drill, so the checks two, seven and 21 days later
+  show whether the drill held.
 
 ### Changed
 

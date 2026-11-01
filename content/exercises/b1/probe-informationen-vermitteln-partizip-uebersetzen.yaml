@@ -1,0 +1,93 @@
+# Delayed probe family — ONE competence: forming an attributive participle cold, in a sentence
+# the learner builds. Two decisions, both inside the graded word: Partizip I (the noun does it,
+# -end-) or Partizip II (it was done to the noun), then the adjective ending. The topic's cloze
+# family prints the article; here the learner writes it, so the ending follows from their own
+# frame. The drill's misses were the dropped d (laufene, steigene) and a II where the noun acts.
+#
+# Armed by the remediation drill alone, so the 2/7/21 clock starts when the drill is first
+# practised and the curve reads what survived it.
+#
+# Each instruction names the verb and never the participle kind, which is the decision graded.
+# Pinned is the participle alone, once per defining rendering. Cells: Partizip I plural
+# nominative after die (streikenden), Partizip II neuter nominative after das (reservierte),
+# Partizip II neuter dative after dem (gemieteten). streiken, reservieren and mieten occur as
+# attributive participles in no practice item, no drill item and no item of the cloze family.
+topic: informationen-vermitteln
+role: probe
+title:
+  en: "Delayed check — the participle before a noun, the whole sentence"
+  ru: "Отложенная проверка — причастие перед существительным, всё предложение"
+  uk: "Відкладена перевірка — дієприкметник перед іменником, усе речення"
+  de: "Kontrolle mit Abstand — das Partizip vor dem Nomen im ganzen Satz"
+arming:
+  - b1/drill-partizip-adjektiv::cloze-schild-kinder
+  - b1/drill-partizip-adjektiv::cloze-heizung-text
+  - b1/drill-partizip-adjektiv::mc-baby-schlafen
+  - b1/drill-partizip-adjektiv::uebersetzen-firma-wachsen
+  - b1/drill-partizip-adjektiv::uebersetzen-brille-verlieren
+  - b1/drill-partizip-adjektiv::uebersetzen-wohnung-renovieren
+  - b1/drill-partizip-adjektiv::uebersetzen-verkehr-zunehmen
+items:
+  - id: variant-a
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate. Put a participle of streiken before 'employees' (die Mitarbeiter); for 'demand' take fordern."
+      ru: "Переведите. Поставьте причастие от streiken перед «сотрудниками» (die Mitarbeiter); для «требовать» возьмите fordern."
+      uk: "Перекладіть. Поставте дієприкметник від streiken перед «працівниками» (die Mitarbeiter); для «вимагати» візьміть fordern."
+      de: "Übersetze. Stell ein Partizip von streiken vor die Mitarbeiter; für die Forderung nimm fordern."
+    prompt_en: "The striking employees are demanding more money."
+    prompt_ru: "Бастующие сотрудники требуют больше денег."
+    prompt_uk: "Працівники, які страйкують, вимагають більше грошей."
+    answer: "Die streikenden Mitarbeiter fordern mehr Geld."
+    key_tokens: ["streikenden"]
+    explain:
+      en: "The employees are doing the striking, so it is Partizip I: infinitive plus d, streikend. After die in the plural the adjective ending is -en: die streikenden Mitarbeiter. Without the d (streikenen) there is no participle at all, and the Partizip II gestreikt would mean the strike had been done to them."
+      ru: "Бастуют сами сотрудники, поэтому нужно Partizip I: инфинитив плюс d — streikend. После die во множественном числе окончание прилагательного -en: die streikenden Mitarbeiter. Без d (streikenen) причастия нет вовсе, а Partizip II gestreikt значило бы, что забастовку провели над ними. Русское «бастующие» с -ущ- — тот же Partizip I."
+      uk: "Страйкують самі працівники, тому потрібен Partizip I: інфінітив плюс d — streikend. Після die в множині закінчення прикметника -en: die streikenden Mitarbeiter. Без d (streikenen) дієприкметника немає взагалі, а Partizip II gestreikt означав би, що страйк зробили з ними."
+      de: "Die Mitarbeiter streiken selbst, also Partizip I: Infinitiv plus d, streikend. Nach die im Plural ist die Adjektivendung -en: die streikenden Mitarbeiter. Ohne d (streikenen) gibt es gar kein Partizip, und das Partizip II gestreikt hieße, dass mit ihnen etwas gemacht wurde."
+
+  - id: variant-b
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate. Put a participle of reservieren before 'room' (das Zimmer)."
+      ru: "Переведите. Поставьте причастие от reservieren перед «номером» (das Zimmer)."
+      uk: "Перекладіть. Поставте дієприкметник від reservieren перед «номером» (das Zimmer)."
+      de: "Übersetze. Stell ein Partizip von reservieren vor das Zimmer."
+    prompt_en: "Unfortunately the reserved room is not ready yet."
+    prompt_ru: "К сожалению, забронированный номер ещё не готов."
+    prompt_uk: "На жаль, заброньований номер ще не готовий."
+    answer: "Leider ist das reservierte Zimmer noch nicht fertig."
+    accept:
+      - "Das reservierte Zimmer ist leider noch nicht fertig."
+    key_tokens: ["reservierte"]
+    explain:
+      en: "Somebody reserved the room; the room did nothing. That makes it Partizip II, reserviert, with no ge- because the verb ends in -ieren. After das in the nominative the ending is -e: das reservierte Zimmer. reservierende Zimmer would make the room do the reserving."
+      ru: "Номер кто-то забронировал, сам он ничего не делал. Значит, Partizip II — reserviert, без ge-, потому что глагол оканчивается на -ieren. После das в именительном падеже окончание -e: das reservierte Zimmer. reservierende Zimmer означало бы, что бронирует сам номер."
+      uk: "Номер хтось забронював, сам він нічого не робив. Отже, Partizip II — reserviert, без ge-, бо дієслово закінчується на -ieren. Після das у називному відмінку закінчення -e: das reservierte Zimmer. reservierende Zimmer означало б, що бронює сам номер."
+      de: "Jemand hat das Zimmer reserviert; das Zimmer selbst hat nichts getan. Also Partizip II, reserviert, ohne ge-, weil das Verb auf -ieren endet. Nach das im Nominativ ist die Endung -e: das reservierte Zimmer. Ein reservierendes Zimmer würde selbst reservieren."
+
+  - id: variant-c
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate. Put a participle of mieten before 'car' (das Auto); for 'to the sea' take ans Meer."
+      ru: "Переведите. Поставьте причастие от mieten перед «машиной» (das Auto); для «к морю» возьмите ans Meer."
+      uk: "Перекладіть. Поставте дієприкметник від mieten перед «машиною» (das Auto); для «до моря» візьміть ans Meer."
+      de: "Übersetze. Stell ein Partizip von mieten vor das Auto; für das Ziel nimm ans Meer."
+    prompt_en: "We are driving to the sea in the rented car."
+    prompt_ru: "Мы едем к морю на арендованной машине."
+    prompt_uk: "Ми їдемо до моря на орендованій машині."
+    answer: "Wir fahren mit dem gemieteten Auto ans Meer."
+    accept:
+      - "Mit dem gemieteten Auto fahren wir ans Meer."
+    key_tokens: ["gemieteten"]
+    explain:
+      en: "The car was rented; it rents nothing. So Partizip II, gemietet, with the ending of the dative after mit dem: -en, mit dem gemieteten Auto. The ending is the one any adjective takes in that slot (mit dem neuen Auto); the participle adds nothing of its own."
+      ru: "Машину арендовали, сама она ничего не арендует. Значит, Partizip II — gemietet, с окончанием датива после mit dem: -en, mit dem gemieteten Auto. Окончание такое же, как у любого прилагательного на этом месте (mit dem neuen Auto): своего причастие не добавляет."
+      uk: "Машину орендували, сама вона нічого не орендує. Отже, Partizip II — gemietet, із закінченням датива після mit dem: -en, mit dem gemieteten Auto. Закінчення таке саме, як у будь-якого прикметника на цьому місці (mit dem neuen Auto): свого дієприкметник не додає."
+      de: "Das Auto wurde gemietet; es mietet nichts. Also Partizip II, gemietet, mit der Dativendung nach mit dem: -en, mit dem gemieteten Auto. Die Endung ist dieselbe wie bei jedem Adjektiv an dieser Stelle (mit dem neuen Auto); das Partizip bringt keine eigene mit."
