@@ -25,6 +25,8 @@ GitHub Release notes.
 
 ### Changed
 
+- **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page
+  reports the level's Wortliste, grammar and checkpoint figures from the content itself.
 - **After you answer a listening question, the recording becomes something to study.** Tap any
   line of the transcript to hear just that line, play the whole conversation as often as you like,
   and switch on *Slower* to hear it at three-quarter speed in the same voice. Before you answer,
