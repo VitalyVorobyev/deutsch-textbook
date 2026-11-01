@@ -41,11 +41,12 @@ reads German-first. Shipping the catalogue was never a claim that a competence w
 Each goes **proposal → ADR → backlog** and starts only when its ADR is accepted. The owner sets
 the order. The suggested order follows the dependencies:
 
-1. **The tools on lab-ui** ([proposal](proposals/ui-on-lab-ui.md)). Redaktion first, then Tonwerk.
-   The authoring work below will be done in these tools, so they come first. The owner has started
-   the **Tonwerk studio** ahead of the rest
-   ([ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md), [queue](backlog/tonwerk.md)).
-   Its editor is the first Tonwerk surface built on lab-ui.
+1. **The tools on lab-ui** ([proposal](proposals/ui-on-lab-ui.md)). Tonwerk and Redaktion are on
+   it: both frames are `@vitavision/workbench`, and each app's look is a theme of `@vitavision/ui`
+   ([ADR 0011](adrs/0011-shared-ui-from-vitavision-packages.md)). The learner app comes last. The
+   **Tonwerk studio** ([ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md),
+   [queue](backlog/tonwerk.md)) and Redaktion's governance work ([queue](backlog/redaktion.md))
+   continue on that base.
 2. **The lesson task system** ([proposal](proposals/lesson-task-system.md)) and **characters and
    stories** ([proposal](proposals/characters-and-stories.md)), decided together. A story is a
    kind of input inside a lesson, so neither design is complete without the other. Tonwerk's cast

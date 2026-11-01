@@ -17,7 +17,7 @@
  * 7/7 says nothing worth a label and gets none; `nominalgruppe` at A1 reads 3/6 in warn ink and is
  * the finding. Labelling all forty cells equally would rebuild the table this replaces.
  *
- * WHY THE FILLED SQUARE HAS NO HUE. It was `bg-brand`, and since roughly nine in ten structures are
+ * WHY THE FILLED SQUARE HAS NO HUE. It was `bg-signal`, and since roughly nine in ten structures are
  * taught, that put ~90 saturated amber squares on the app's front door: the *ordinary* state was the
  * loudest thing on the screen, and the rose outlines that are the actual finding had to compete with
  * it. Filled is now neutral ink and the only hue on the map is the exception. The rule this follows
@@ -53,7 +53,7 @@ export function Dichte({
   title?: string;
 }) {
   const off = items.filter((i) => !i.on).length;
-  if (!items.length) return <span className="text-ink-muted/40">·</span>;
+  if (!items.length) return <span className="text-fg-muted/40">·</span>;
   return (
     <span className="inline-flex flex-col gap-1" title={title}>
       <span className="flex gap-[3px]" aria-hidden="true">
@@ -67,7 +67,7 @@ export function Dichte({
                 <>
                   {item.label}
                   {item.on ? null : (
-                    <span className="text-warn-ink">
+                    <span className="text-defect">
                       {' '}
                       — kein Element trägt einen ihrer Fokus-Tags
                     </span>
@@ -77,7 +77,7 @@ export function Dichte({
             >
               <span
                 className={`h-2.5 w-2.5 rounded-[2px] ${
-                  item.on ? 'bg-ink-muted' : 'border border-warn bg-transparent'
+                  item.on ? 'bg-fg-muted' : 'border border-defect bg-transparent'
                 }`}
               />
             </Hinweis>
@@ -85,7 +85,7 @@ export function Dichte({
         })}
       </span>
       {off > 0 ? (
-        <span className="tabular text-[0.65rem] leading-none text-warn-ink">
+        <span className="tabular text-[0.65rem] leading-none text-defect">
           {items.length - off}/{items.length}
         </span>
       ) : null}
@@ -99,17 +99,17 @@ export function Dichte({
 
 export function DichteLegende() {
   return (
-    <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-ink-muted">
+    <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-fg-muted">
       <li className="flex items-center gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-[2px] bg-ink-muted" />
+        <span className="h-2.5 w-2.5 rounded-[2px] bg-fg-muted" />
         <span>ein Thema unterrichtet die Struktur</span>
       </li>
       <li className="flex items-center gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-[2px] border border-warn" />
+        <span className="h-2.5 w-2.5 rounded-[2px] border border-defect" />
         <span>im Inventar, kein Element trägt einen ihrer Fokus-Tags</span>
       </li>
       <li className="flex items-center gap-1.5">
-        <span className="text-ink-muted/40">·</span>
+        <span className="text-fg-muted/40">·</span>
         <span>der Standard führt hier nichts</span>
       </li>
     </ul>
@@ -139,7 +139,7 @@ export function Matrix<Row extends { id: string; label: ReactNode }>({
       <table className="border-collapse text-sm">
         <thead>
           <tr>
-            <th className="sticky left-0 z-10 bg-surface px-0 pb-2 text-left" />
+            <th className="sticky left-0 z-10 bg-ground px-0 pb-2 text-left" />
             {columns.map((column) => (
               <th key={column} className="px-3 pb-2 text-left align-bottom">
                 <Label>{column}</Label>
@@ -150,10 +150,10 @@ export function Matrix<Row extends { id: string; label: ReactNode }>({
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id} className="border-t border-border-subtle/60">
+            <tr key={row.id} className="border-t border-line/60">
               <th
                 scope="row"
-                className="sticky left-0 z-10 whitespace-nowrap bg-surface py-2 pr-4 text-left text-xs font-medium text-ink"
+                className="sticky left-0 z-10 whitespace-nowrap bg-ground py-2 pr-4 text-left text-xs font-medium text-fg"
               >
                 {row.label}
               </th>
@@ -165,7 +165,7 @@ export function Matrix<Row extends { id: string; label: ReactNode }>({
                     {value.href && value.items.length ? (
                       <a
                         href={value.href}
-                        className="inline-block rounded focus-visible:outline-2 focus-visible:outline-brand"
+                        className="inline-block rounded focus-visible:outline-2 focus-visible:outline-signal"
                       >
                         {body}
                       </a>

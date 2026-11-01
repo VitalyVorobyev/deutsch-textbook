@@ -48,7 +48,7 @@ export function Befundleiste({
     return (
       <div className="mb-6">
         <Label>Befunde</Label>
-        <p className="mt-1.5 text-sm text-ok-ink">{leer}</p>
+        <p className="mt-1.5 text-sm text-normal">{leer}</p>
       </div>
     );
   }
@@ -69,15 +69,13 @@ export function Befundleiste({
                 type="button"
                 aria-pressed={on}
                 onClick={() => onWaehlen(on ? undefined : kind)}
-                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs ring-1 ring-inset transition-colors focus-visible:outline-2 focus-visible:outline-brand ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs ring-1 ring-inset transition-colors focus-visible:outline-2 focus-visible:outline-signal ${
                   on
-                    ? 'bg-warn text-white ring-warn'
-                    : 'bg-surface-raised text-ink-muted ring-border-subtle hover:text-ink hover:ring-warn/50'
+                    ? 'bg-defect text-white ring-defect'
+                    : 'bg-surface text-fg-muted ring-line hover:text-fg hover:ring-defect/50'
                 }`}
               >
-                <span className={`tabular font-semibold ${on ? '' : 'text-warn-ink'}`}>
-                  {count}
-                </span>
+                <span className={`tabular font-semibold ${on ? '' : 'text-defect'}`}>{count}</span>
                 <span>{label?.de ?? kind}</span>
               </button>
             </Hinweis>
@@ -87,7 +85,7 @@ export function Befundleiste({
           <button
             type="button"
             onClick={() => onWaehlen(undefined)}
-            className="ml-1 text-xs text-ink-muted hover:text-ink"
+            className="ml-1 text-xs text-fg-muted hover:text-fg"
           >
             Filter aufheben
           </button>

@@ -1,69 +1,67 @@
 /**
- * The primitives both apps can use.
+ * Deutsch-Atlas's domain primitives, on `@vitavision/ui` (ADR 0011).
  *
- * Seeded from what already existed and was genuinely generic — the `Filter<T>` select at the foot
- * of `atlas/TopicDetail.tsx`, the four-state pill in `topic/TierBadge.tsx`, the chip row in
- * `topic/EvidenceChips.tsx`, and the `CARD` / `PRIMARY_BUTTON` / `QUIET_BUTTON` class-string
- * constants in `pruefung/shared.tsx`, which are what a design system looks like just before someone
- * writes one. Nothing here knows about learners, attempts or IndexedDB: a component that reads
+ * Generic controls are the system's: `Chip` is its `Badge`, `Button` its `Button`/`ButtonLink`,
+ * `SearchBox` its `Input`, `Empty` its empty state, and `Filter` a native select in its control
+ * style. What stays local is the vocabulary no generic library owns: a panel that carries its state
+ * in a left rule, the callout that marks *the one thing to do* on a page, the stat with its hint,
+ * the eyebrow label and the section heading with its count. All of them are written against the
+ * system's tokens, so a theme retune reaches them too.
+ *
+ * Nothing here knows about learners, attempts or IndexedDB: a component that reads
  * `src/lib/store.ts` on mount is a learner-flow component and stays in the app that owns it.
- *
- * WHAT THE FIRST VERSION GOT WRONG, AND WHY IT MATTERED. It shipped `Table`, `Card`, `Chip`,
- * `Heading`, `Bar`, `SearchBox`, `Filter` and `Empty` — and the editorial app was then assembled
- * from the only three shapes available, nine times over, until its author called it "a useless set
- * of tables, not a modern working tool". He was right, and the cause was here rather than there:
- * a package that holds one container and one heading level can only produce pages that are one
- * container and one heading level. Blame the instrument first.
- *
- * So the second version lifts the learner app's **actual** vocabulary, which was never colour. It
- * is the amber left rule that means *this is the thing*; sections that carry their state in their
- * border; a segmented control for switching a view in place; and a type scale with more than one
- * step in it. Every entry below cites where it already exists, because a "shared primitive" nobody
- * shares is just a second implementation with better manners.
  */
 import type { ReactNode } from 'react';
+import {
+  Badge,
+  Button as SystemButton,
+  ButtonLink,
+  Empty as SystemEmpty,
+  Input,
+  controlClasses,
+  type Tone as BadgeTone,
+} from '@vitavision/ui';
 
 export type Tone = 'neutral' | 'brand' | 'ok' | 'info' | 'warn';
 
 /** `leer` is a container for an absence: dashed, unfilled, and never coloured. */
 export type PanelTone = Tone | 'leer';
 
-/*
- * A chip is a LABEL, and a label is read, not obeyed.
- *
- * The first version filled every tone at full strength and coloured the text with the fill colour
- * — `bg-warn-soft text-warn-ink` — putting rose-600 on a rose tint at 12 px. Measured: 3.72:1 on the
- * dark page, under the 4.5 floor. And because every one of the forty-nine topics carries at least
- * one finding, that treatment was on for the whole page: a screen where everything is an alarm has
- * no alarms.
- *
- * So the ground is a whisper, the ring does the identifying, and the text uses the `-ink` half of
- * the role — the half measured against the surface it actually sits on.
+/**
+ * A chip is a LABEL, and a label is read, not obeyed: the system's `Badge`, whose ground is a
+ * whisper and whose ring does the identifying. Deutsch-Atlas's tones map onto the system's verdict
+ * vocabulary: brand and info are the one accent (the system's `info` tone), ok is `normal`, warn is
+ * `defect`.
  */
-const TONE_CHIP: Record<Tone, string> = {
-  neutral: 'bg-surface-sunken text-ink-muted ring-border-subtle',
-  brand: 'bg-brand-soft text-brand-ink ring-brand/25',
-  ok: 'bg-ok-soft text-ok-ink ring-ok/25',
-  info: 'bg-info-soft text-info-ink ring-info/25',
-  warn: 'bg-warn-soft text-warn-ink ring-warn/25',
+const BADGE_TONE: Record<Tone, BadgeTone> = {
+  neutral: 'neutral',
+  brand: 'info',
+  ok: 'normal',
+  info: 'info',
+  warn: 'defect',
 };
 
 export function Chip({
   tone = 'neutral',
   children,
   title,
+  kurz = false,
 }: {
   tone?: Tone;
   children: ReactNode;
   title?: string;
+  /** At most two lines, cut with an ellipsis at the width its container allows: for a chip in a
+      table cell, where a label wrapping freely inside its ring turns the row into a paragraph. */
+  kurz?: boolean;
 }) {
   return (
-    <span
-      title={title}
-      className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-inset ${TONE_CHIP[tone]}`}
+    <Badge
+      tone={BADGE_TONE[tone]}
+      className={kurz ? 'min-w-0 max-w-full' : undefined}
+      {...(title ? { title } : {})}
     >
-      {children}
-    </span>
+      {kurz ? <span className="line-clamp-2 break-words">{children}</span> : children}
+    </Badge>
   );
 }
 
@@ -72,15 +70,15 @@ export function Chip({
 /**
  * Three steps, because two headings that look identical are one heading.
  *
- * Every section title in the first editorial app was `text-sm font-medium text-ink` — the card
+ * Every section title in the first editorial app was `text-sm font-medium text-fg` — the card
  * titles, the page's own `Elemente (7)`, and the group labels inside it. A reader scanning that
  * page has no way to tell which of them contains the others, and the fix is not more whitespace.
  */
 export function Heading({ children, sub }: { children: ReactNode; sub?: ReactNode }) {
   return (
     <header className="mb-5">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{children}</h1>
-      {sub ? <p className="mt-1 text-sm text-ink-muted">{sub}</p> : null}
+      <h1 className="text-2xl font-bold tracking-tight text-fg">{children}</h1>
+      {sub ? <p className="mt-1 text-sm text-fg-muted">{sub}</p> : null}
     </header>
   );
 }
@@ -97,10 +95,10 @@ export function Section({
 }) {
   return (
     <div className="mb-3 mt-10 flex items-baseline justify-between gap-3">
-      <h2 className="text-base font-semibold text-ink">
+      <h2 className="text-base font-semibold text-fg">
         {children}
         {count === undefined ? null : (
-          <span className="ml-1.5 tabular text-sm font-normal text-ink-muted">{count}</span>
+          <span className="ml-1.5 tabular text-sm font-normal text-fg-muted">{count}</span>
         )}
       </h2>
       {action}
@@ -114,7 +112,7 @@ export function Section({
  */
 export function Label({ children }: { children: ReactNode }) {
   return (
-    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink-muted">
+    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-fg-muted">
       {children}
     </p>
   );
@@ -132,15 +130,15 @@ export function Label({ children }: { children: ReactNode }) {
  * CONTENT is what differs.
  */
 const PANEL_TONE: Record<PanelTone, string> = {
-  neutral: 'border-border-subtle bg-surface-raised',
-  // An INSET SHADOW, not `border-l-<colour>`: that competes with `border-border-subtle` for
+  neutral: 'border-line bg-surface',
+  // An INSET SHADOW, not `border-l-<colour>`: that competes with `border-line` for
   // border-left-color at equal specificity, so which one won depended on Tailwind's utility order
   // — and it lost, silently, which is how the tone shipped invisible.
-  brand: 'border-border-subtle bg-surface-raised shadow-[inset_3px_0_0_var(--color-brand)]',
-  ok: 'border-border-subtle bg-surface-raised shadow-[inset_3px_0_0_var(--color-ok)]',
-  info: 'border-border-subtle bg-surface-raised shadow-[inset_3px_0_0_var(--color-info)]',
-  warn: 'border-border-subtle bg-surface-raised shadow-[inset_3px_0_0_var(--color-warn)]',
-  leer: 'border-dashed border-border-subtle',
+  brand: 'border-line bg-surface shadow-[inset_3px_0_0_var(--color-signal)]',
+  ok: 'border-line bg-surface shadow-[inset_3px_0_0_var(--color-normal)]',
+  info: 'border-line bg-surface shadow-[inset_3px_0_0_var(--color-signal)]',
+  warn: 'border-line bg-surface shadow-[inset_3px_0_0_var(--color-defect)]',
+  leer: 'border-dashed border-line',
 };
 
 /**
@@ -168,7 +166,7 @@ export function Panel({
     <section className={`rounded-lg border p-5 ${PANEL_TONE[tone]} ${className}`}>
       {title ? (
         <div className="mb-3 flex items-baseline justify-between gap-3">
-          <h3 className="text-sm font-semibold text-ink">{title}</h3>
+          <h3 className="text-sm font-semibold text-fg">{title}</h3>
           {action}
         </div>
       ) : null}
@@ -211,20 +209,20 @@ export function Callout({
   // Inset shadow rather than `border-l-<colour>`, for the reason PANEL_TONE records: the two
   // border-colour utilities collide at equal specificity and the winner depends on utility order.
   const rule: Record<Tone, string> = {
-    neutral: 'shadow-[inset_4px_0_0_var(--color-border-subtle)]',
-    brand: 'shadow-[inset_4px_0_0_var(--color-brand)]',
-    ok: 'shadow-[inset_4px_0_0_var(--color-ok)]',
-    info: 'shadow-[inset_4px_0_0_var(--color-info)]',
-    warn: 'shadow-[inset_4px_0_0_var(--color-warn)]',
+    neutral: 'shadow-[inset_4px_0_0_var(--color-line)]',
+    brand: 'shadow-[inset_4px_0_0_var(--color-signal)]',
+    ok: 'shadow-[inset_4px_0_0_var(--color-normal)]',
+    info: 'shadow-[inset_4px_0_0_var(--color-signal)]',
+    warn: 'shadow-[inset_4px_0_0_var(--color-defect)]',
   };
   return (
     <section
-      className={`mb-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border-subtle bg-surface-raised p-5 pl-6 ${rule[tone]}`}
+      className={`mb-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-line bg-surface p-5 pl-6 ${rule[tone]}`}
     >
       <div className="min-w-0 max-w-2xl">
         {eyebrow ? <Label>{eyebrow}</Label> : null}
-        {title ? <h2 className="mt-1 text-lg font-semibold text-ink">{title}</h2> : null}
-        {children ? <div className="mt-1 text-sm text-ink-muted">{children}</div> : null}
+        {title ? <h2 className="mt-1 text-lg font-semibold text-fg">{title}</h2> : null}
+        {children ? <div className="mt-1 text-sm text-fg-muted">{children}</div> : null}
       </div>
       {action}
     </section>
@@ -249,17 +247,17 @@ export function Stat({
   tone?: Tone;
 }) {
   const ink: Record<Tone, string> = {
-    neutral: 'text-ink',
-    brand: 'text-brand-ink',
-    ok: 'text-ok-ink',
-    info: 'text-info-ink',
-    warn: 'text-warn-ink',
+    neutral: 'text-fg',
+    brand: 'text-signal',
+    ok: 'text-normal',
+    info: 'text-signal',
+    warn: 'text-defect',
   };
   return (
     <div className="min-w-0">
-      <dt className="text-xs text-ink-muted">{label}</dt>
+      <dt className="text-xs text-fg-muted">{label}</dt>
       <dd className={`tabular mt-0.5 text-2xl font-semibold leading-none ${ink[tone]}`}>{value}</dd>
-      {hint ? <p className="mt-1 text-xs text-ink-muted">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-fg-muted">{hint}</p> : null}
     </div>
   );
 }
@@ -288,18 +286,18 @@ export function Bar({
 }) {
   const percent = max > 0 ? Math.min(100, (value / max) * 100) : 0;
   const fill: Record<Tone, string> = {
-    neutral: 'bg-stone-400',
-    brand: 'bg-brand',
-    ok: 'bg-ok',
-    info: 'bg-info',
-    warn: 'bg-warn',
+    neutral: 'bg-fg-subtle',
+    brand: 'bg-signal',
+    ok: 'bg-normal',
+    info: 'bg-signal',
+    warn: 'bg-defect',
   };
   return (
     <div className="flex items-center gap-2">
-      <div className="h-1.5 w-24 shrink-0 overflow-hidden rounded-full bg-border-subtle">
+      <div className="h-1.5 w-24 shrink-0 overflow-hidden rounded-full bg-line">
         <div className={`h-full ${fill[tone]}`} style={{ width: `${percent}%` }} />
       </div>
-      {label ? <span className="tabular text-xs text-ink-muted">{label}</span> : null}
+      {label ? <span className="tabular text-xs text-fg-muted">{label}</span> : null}
     </div>
   );
 }
@@ -316,12 +314,11 @@ export function SearchBox({
   placeholder?: string;
 }) {
   return (
-    <input
+    <Input
       type="search"
       value={value}
       placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full rounded-md border border-border-subtle bg-surface-raised px-3 py-1.5 text-sm text-ink placeholder:text-ink-muted focus:border-brand focus:outline-none"
     />
   );
 }
@@ -340,12 +337,12 @@ export function Filter<T extends string>({
   labels?: Record<string, string>;
 }) {
   return (
-    <label className="flex items-center gap-1.5 text-xs text-ink-muted">
+    <label className="flex items-center gap-1.5 text-xs text-fg-muted">
       {label}
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as T | 'alle')}
-        className="rounded-md border border-border-subtle bg-surface-raised px-2 py-1 text-xs text-ink focus:border-brand focus:outline-none"
+        className={`${controlClasses} h-7 w-auto pr-7 text-xs`}
       >
         <option value="alle">alle</option>
         {options.map((option) => (
@@ -359,7 +356,8 @@ export function Filter<T extends string>({
 }
 
 /**
- * An action. Quiet by default, inverted when it is the one thing to do.
+ * An action. Quiet by default (`secondary`); the system's `primary`, the one accent, when it is the
+ * one thing to do.
  *
  * IT IS NEVER TONED BY THE THING IT ACTS ON, which is the mistake it exists to stop: the
  * Sprachkarte's "open in the findings inbox" button sat inside a warn `Callout`, on a warn ground,
@@ -367,8 +365,8 @@ export function Filter<T extends string>({
  * control, where the reader has to decide whether red means *danger* or means *press me*. A callout
  * has already said what is wrong; its button only has to say what to do.
  *
- * `stark` inverts to the ink colour: unmissable, and no role hue at all, so it works inside a
- * callout of any tone.
+ * `stark` is the accent, which means "you can act here" and is never a verdict colour, so it works
+ * inside a callout of any tone.
  */
 export function Button({
   href,
@@ -385,32 +383,30 @@ export function Button({
   disabled?: boolean;
   children: ReactNode;
 }) {
-  const className = `inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45 ${
-    stark || pressed
-      ? 'bg-ink text-surface hover:opacity-90'
-      : 'border border-border-subtle bg-surface-raised text-ink hover:border-ink-muted'
-  }`;
+  const variant = stark || pressed ? 'primary' : 'secondary';
   return href ? (
-    <a href={href} className={className}>
+    <ButtonLink href={href} variant={variant}>
       {children}
-    </a>
+    </ButtonLink>
   ) : (
-    <button
+    <SystemButton
       type="button"
+      variant={variant}
       onClick={onClick}
       aria-pressed={pressed}
       disabled={disabled}
-      className={className}
     >
       {children}
-    </button>
+    </SystemButton>
   );
 }
 
+/** An absence, said in a sentence: the system's empty state, in a dashed frame so it reads as a
+    place where something would be rather than as a gap in the layout. */
 export function Empty({ children }: { children: ReactNode }) {
   return (
-    <p className="rounded-md border border-dashed border-border-subtle px-3 py-6 text-center text-sm text-ink-muted">
+    <SystemEmpty className="rounded-panel border border-dashed border-line py-6">
       {children}
-    </p>
+    </SystemEmpty>
   );
 }

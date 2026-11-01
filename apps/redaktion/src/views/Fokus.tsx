@@ -102,7 +102,7 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
           <Quer href={href('thema', t.introducedBy)}>{topicTitle(t.introducedBy)}</Quer>
         ) : (
           <span
-            className="text-warn-ink"
+            className="text-defect"
             title="Nicht in focusIntroducedBy — kein Thema führt ihn ein"
           >
             nicht registriert
@@ -124,7 +124,7 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
       sort: (t) => t.probes,
       cell: (t) => (
         <span
-          className={`tabular ${t.probes ? 'text-ink' : 'text-warn-ink'}`}
+          className={`tabular ${t.probes ? 'text-fg' : 'text-defect'}`}
           title={t.probes ? undefined : PROBLEM_LABELS['tag-ohne-probe']?.why}
         >
           {t.probes}
@@ -150,8 +150,8 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Fokus-Tags</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="text-2xl font-bold tracking-tight text-fg">Fokus-Tags</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {filtered.length} von {graph.tags.length} benannten Verwechslungen
         </p>
       </header>
@@ -197,18 +197,18 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     return {
       id: key,
       label: tid ? (
-        <a href={href('thema', tid)} className="text-ink hover:text-brand-ink hover:underline">
+        <a href={href('thema', tid)} className="text-fg hover:text-signal hover:underline">
           {topicTitle(tid)}
         </a>
       ) : (
-        <span className="text-ink-muted">Niveau {rows[0]!.level}</span>
+        <span className="text-fg-muted">Niveau {rows[0]!.level}</span>
       ),
       rows,
     };
   });
 
   const columns: Spalte<Element>[] = [
-    { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
+    { key: 'kind', head: 'Art', cell: (e) => <span className="text-fg-muted">{e.kind}</span> },
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
@@ -230,7 +230,7 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
           {tag.level ?? 'kein Niveau ermittelt'} · eingeführt von{' '}
           {tag.introducedBy ? topicTitle(tag.introducedBy) : 'niemandem'}
         </Label>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">{tag.tag}</h1>
+        <h1 className="mt-1 text-2xl font-bold tracking-tight text-fg">{tag.tag}</h1>
       </header>
 
       {tag.teaching > 0 && tag.probes === 0 ? (
@@ -269,16 +269,16 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
                 <li key={p.id}>
                   <a
                     href={href('struktur', p.id)}
-                    className="text-ink hover:text-brand-ink hover:underline"
+                    className="text-fg hover:text-signal hover:underline"
                   >
                     {p.de}
                   </a>
-                  <span className="text-xs text-ink-muted"> · {p.id}</span>
+                  <span className="text-xs text-fg-muted"> · {p.id}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-ink-muted">
+            <p className="text-xs text-fg-muted">
               Gehört zu keiner Inventarzeile — die Verwechslung wird geübt, aber keine Struktur
               nennt sie.
             </p>
@@ -293,8 +293,8 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
         rowKey={(e) => e.id}
         empty={
           <Panel tone="leer">
-            <p className="text-sm font-medium text-ink">Kein Material trägt diesen Fokus-Tag.</p>
-            <p className="mt-1 max-w-2xl text-sm text-ink-muted">
+            <p className="text-sm font-medium text-fg">Kein Material trägt diesen Fokus-Tag.</p>
+            <p className="mt-1 max-w-2xl text-sm text-fg-muted">
               Das ist ein Befund, kein Navigationsende. Öffne die registrierte Einführung oder kehre
               zur Liste aller Fokus-Tags zurück.
             </p>

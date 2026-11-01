@@ -84,8 +84,8 @@ export function Themen({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Themen</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-fg">Themen</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {graph.topics.length} Themen auf dem empfohlenen Weg · {withFindings} mit Befunden
         </p>
       </header>
@@ -101,12 +101,12 @@ export function Themen({ graph }: { graph: GraphPayload }) {
           options={graph.grammarTracks.map((item) => item.id)}
           onChange={setTrack}
         />
-        <label className="flex items-center gap-1.5 text-xs text-ink-muted">
+        <label className="flex items-center gap-1.5 text-xs text-fg-muted">
           <input
             type="checkbox"
             checked={nurBefunde}
             onChange={(e) => setNurBefunde(e.target.checked)}
-            className="accent-[var(--color-brand)]"
+            className="accent-[var(--color-signal)]"
           />
           nur mit Befunden
         </label>
@@ -116,9 +116,9 @@ export function Themen({ graph }: { graph: GraphPayload }) {
 
       {levels.map((group) => (
         <section key={group.level} className="mb-8">
-          <div className="mb-3 flex items-baseline gap-2 border-b border-border-subtle pb-2">
-            <h2 className="text-base font-semibold text-ink">{group.level}</h2>
-            <span className="tabular text-xs text-ink-muted">
+          <div className="mb-3 flex items-baseline gap-2 border-b border-line pb-2">
+            <h2 className="text-base font-semibold text-fg">{group.level}</h2>
+            <span className="tabular text-xs text-fg-muted">
               {group.topics.length} Themen
               {(() => {
                 const par = graph.reports.find((r) => r.level === group.level)?.medians?.met;
@@ -171,11 +171,11 @@ function ThemaKarte({
       <div className="flex items-start justify-between gap-2">
         <a
           href={href('thema', topic.id)}
-          className="min-w-0 flex-1 font-semibold text-ink underline-offset-2 hover:text-brand-ink hover:underline"
+          className="min-w-0 flex-1 font-semibold text-fg underline-offset-2 hover:text-signal hover:underline"
         >
           {topic.title}
         </a>
-        <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-ink-muted">
+        <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-fg-muted">
           {STATUS_LABEL[topic.status] ?? topic.status}
         </span>
       </div>
@@ -184,7 +184,7 @@ function ThemaKarte({
           "Präsens & Wortstellung" on nine of the forty-nine cards — a difference of one conjunction,
           rendered as if it were information. */}
       {topic.unitTitle && !gleicherName(topic.unitTitle, topic.title) ? (
-        <p className="-mt-1.5 truncate text-xs text-ink-muted">{topic.unitTitle}</p>
+        <p className="-mt-1.5 truncate text-xs text-fg-muted">{topic.unitTitle}</p>
       ) : null}
 
       <div>
@@ -196,18 +196,18 @@ function ThemaKarte({
               <span
                 key={activity}
                 title={`${ACTIVITY_LABEL[activity]}: ${n || 'keine'}`}
-                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-ink-muted' : optional ? 'border border-border-strong' : 'border border-warn'}`}
+                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-fg-muted' : optional ? 'border border-line-strong' : 'border border-defect'}`}
               />
             );
           })}
-          <span className="ml-1 text-[0.65rem] text-ink-muted">Aktivitäten</span>
+          <span className="ml-1 text-[0.65rem] text-fg-muted">Aktivitäten</span>
         </div>
       </div>
 
       {/* The median is the LEVEL's, so it is printed once in the level heading rather than on all
           forty-nine cards. A constant repeated per row is noise that reads as data. */}
-      <p className="tabular text-xs text-ink-muted">
-        <span className={par !== undefined && met < par ? 'text-warn-ink' : 'text-ink'}>
+      <p className="tabular text-xs text-fg-muted">
+        <span className={par !== undefined && met < par ? 'text-defect' : 'text-fg'}>
           {met}/{total}
         </span>{' '}
         Anforderungen · {profile?.depth.items ?? 0} Aufgaben, {profile?.depth.production ?? 0}{' '}
@@ -219,7 +219,7 @@ function ThemaKarte({
           <span
             key={entry.language}
             title={`${entry.authored}/${entry.required} Sprachblöcke`}
-            className={`rounded border px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase ${entry.status === 'complete' ? 'border-border-subtle text-ink' : entry.status === 'partial' ? 'border-brand text-brand-ink' : 'border-border-subtle text-ink-muted opacity-50'}`}
+            className={`rounded border px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase ${entry.status === 'complete' ? 'border-line text-fg' : entry.status === 'partial' ? 'border-signal text-signal' : 'border-line text-fg-muted opacity-50'}`}
           >
             {entry.language}
           </span>
@@ -240,14 +240,14 @@ function ThemaKarte({
             </ul>
           }
         >
-          <p className="w-fit text-xs text-ink-muted underline decoration-dotted underline-offset-2">
-            <span className="tabular text-warn-ink">{problems.length}</span> Befunde in{' '}
-            {kinds.length} Klasse
+          <p className="w-fit text-xs text-fg-muted underline decoration-dotted underline-offset-2">
+            <span className="tabular text-defect">{problems.length}</span> Befunde in {kinds.length}{' '}
+            Klasse
             {kinds.length === 1 ? '' : 'n'}
           </p>
         </Hinweis>
       ) : (
-        <p className="text-xs text-ok-ink">keine Befunde</p>
+        <p className="text-xs text-normal">keine Befunde</p>
       )}
     </Panel>
   );

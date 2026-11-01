@@ -7,9 +7,12 @@
     "./primitives": "./src/primitives.tsx",
     "./tokens.css": "./src/tokens.css"
   },
+  "dependencies": {
+    "@vitavision/ui": "0.14.0"
+  },
   "peerDependencies": {
     "react": "^19.3.0",
     "tailwindcss": "^4.3.3"
   },
-  "//": "Shared UI: the design tokens and the primitives. The learner app has no design system — no config file, no @theme block, and 'tokens' that are stock Tailwind palette names retyped by hand. This names them, and the editorial app is the first consumer. Nothing here may read learner state; a component that touches IndexedDB belongs to the app that owns the flow."
+  "//": "Deutsch-Atlas's theme layer on @vitavision/ui (ADR 0011): the Tailwind source globs for this package and @da/renderers, the article and exercise preview styles, and the domain primitives no generic library owns. Generic controls come from @vitavision/ui. Nothing here may read learner state; a component that touches IndexedDB belongs to the app that owns the flow."
 }

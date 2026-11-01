@@ -149,7 +149,7 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   const ctx = await browser.newContext({ viewport: { width, height: 1000 } });
   await ctx.addInitScript(() => {
     try {
-      localStorage.setItem('da:redaktion-theme', 'dark');
+      localStorage.setItem('redaktion-theme', 'dark');
     } catch {
       /* private mode */
     }
@@ -229,6 +229,32 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
     before === after && before > 0,
     'permalink survives reload',
     `${before} rows before, ${after} after`,
+  );
+
+  // The page scrolls inside the shell's main pane, not the window, so the table header must stick
+  // to the pane's top. A header stuck to the window, or to an unscrolled wrapper, scrolls away.
+  const sticky = await page.evaluate(
+    () =>
+      new Promise<{ pane: number; head: number; scrolled: number }>((done) => {
+        const pane = document.getElementById('redaktion-buehne');
+        const head = document.querySelector('thead tr');
+        if (!pane || !head) return done({ pane: -1, head: -2, scrolled: 0 });
+        pane.scrollTo(0, 1200);
+        setTimeout(
+          () =>
+            done({
+              pane: Math.round(pane.getBoundingClientRect().top),
+              head: Math.round(head.getBoundingClientRect().top),
+              scrolled: pane.scrollTop,
+            }),
+          300,
+        );
+      }),
+  );
+  check(
+    sticky.scrolled > 0 && Math.abs(sticky.head - sticky.pane) <= 1,
+    'table header sticks to the pane after scrolling',
+    `pane top ${sticky.pane}px, header top ${sticky.head}px, scrolled ${sticky.scrolled}px`,
   );
 
   // A source link is internal navigation, not an external provenance action. The first desktop

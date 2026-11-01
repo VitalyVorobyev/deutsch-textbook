@@ -64,7 +64,7 @@ export function Primaer({ href, children }: { href: string; children: ReactNode 
     <a
       href={href}
       data-primary="true"
-      className="font-medium text-ink underline-offset-2 hover:text-brand-ink hover:underline focus-visible:outline-2 focus-visible:outline-brand"
+      className="font-medium text-fg underline-offset-2 hover:text-signal hover:underline focus-visible:outline-2 focus-visible:outline-signal"
     >
       {children}
     </a>
@@ -78,7 +78,7 @@ export function Extern({ href, children }: { href: string; children: ReactNode }
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="text-ink-muted underline-offset-2 hover:text-ink hover:underline"
+      className="text-fg-muted underline-offset-2 hover:text-fg hover:underline"
     >
       {children}
       <span aria-hidden="true"> ↗</span>
@@ -91,7 +91,7 @@ export function Quelllink({ href, children }: { href: string; children: ReactNod
   return (
     <a
       href={href}
-      className="text-info-ink underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-brand"
+      className="text-signal underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-signal"
     >
       {children}
       <span aria-hidden="true"> →</span>
@@ -124,7 +124,7 @@ export function Kurz({ children, text }: { children: ReactNode; text: string }) 
 export function Mehrere({ children, zeige = 2 }: { children: ReactNode[]; zeige?: number }) {
   const [offen, setOffen] = useState(false);
   const all = children.filter(Boolean);
-  if (!all.length) return <span className="text-ink-muted">—</span>;
+  if (!all.length) return <span className="text-fg-muted">—</span>;
   const shown = offen ? all : all.slice(0, zeige);
   const rest = all.length - shown.length;
   return (
@@ -134,7 +134,7 @@ export function Mehrere({ children, zeige = 2 }: { children: ReactNode[]; zeige?
         <button
           type="button"
           onClick={() => setOffen(true)}
-          className="tabular rounded-full px-1.5 py-0.5 text-xs text-ink-muted ring-1 ring-inset ring-border-subtle hover:text-ink"
+          className="tabular rounded-full px-1.5 py-0.5 text-xs text-fg-muted ring-1 ring-inset ring-line hover:text-fg"
           aria-label={`${rest} weitere anzeigen`}
         >
           +{rest}
@@ -144,7 +144,7 @@ export function Mehrere({ children, zeige = 2 }: { children: ReactNode[]; zeige?
         <button
           type="button"
           onClick={() => setOffen(false)}
-          className="text-xs text-ink-muted hover:text-ink"
+          className="text-xs text-fg-muted hover:text-fg"
         >
           weniger
         </button>
@@ -161,15 +161,15 @@ export function Zahl({ value, max, warnBei }: { value: number; max: number; warn
     <span className="flex items-center justify-end gap-2 leading-none">
       {/* Inline rather than the shared `Bar`: that one wraps a 24-unit track in its own flex row and
           set the row height for the whole table. Here the track is the same height as the digits. */}
-      <span className="hidden h-1 w-16 overflow-hidden rounded-full bg-surface-sunken sm:block">
+      <span className="hidden h-1 w-16 overflow-hidden rounded-full bg-raised sm:block">
         <span
           // Ink, not brand: a hundred and two amber tracks down one column is a texture, not a
           // reading. Hue is kept for the rows that are short.
-          className={`block h-full ${tone === 'warn' ? 'bg-warn' : 'bg-ink-muted'}`}
+          className={`block h-full ${tone === 'warn' ? 'bg-defect' : 'bg-fg-muted'}`}
           style={{ width: `${percent}%` }}
         />
       </span>
-      <span className={`tabular w-8 text-right ${tone === 'warn' ? 'text-warn-ink' : 'text-ink'}`}>
+      <span className={`tabular w-8 text-right ${tone === 'warn' ? 'text-defect' : 'text-fg'}`}>
         {value}
       </span>
     </span>
@@ -217,9 +217,10 @@ export function Zeilentabelle<Row>({
      * NO `overflow-x-auto` HERE, and that is the sticky header's price.
      *
      * `overflow-x: auto` makes `overflow-y` compute to `auto` too, which turns the wrapper into a
-     * scroll container — and a `sticky top-14` header inside an unscrolled one is pushed DOWN to
-     * 56 px below the container instead of staying put. Measured: table top 280, first row 312,
-     * header 336. The header rendered underneath row one, on a page nobody had scrolled.
+     * scroll container of its own — and a sticky header then sticks to that unscrolled box instead
+     * of to the page's scroll container (`#redaktion-buehne`), so it never stays in view. Measured
+     * when this was first built: the header rendered underneath row one, on a page nobody had
+     * scrolled.
      *
      * The two cannot both be had in CSS, so the choice is which the reader needs at 98 and 102 rows:
      * a header that survives scrolling. These tables no longer need the horizontal escape hatch
@@ -230,19 +231,16 @@ export function Zeilentabelle<Row>({
     <div>
       <ul className="space-y-2 min-[900px]:hidden" aria-label="Ergebnisliste">
         {sorted.map((row) => (
-          <li
-            key={rowKey(row)}
-            className="rounded-lg border border-border-subtle bg-surface-raised p-3"
-          >
+          <li key={rowKey(row)} className="rounded-lg border border-line bg-surface p-3">
             <dl className="grid grid-cols-[minmax(6.5rem,0.35fr)_minmax(0,1fr)] gap-x-3 gap-y-2 text-sm">
               {columns
                 .filter((column) => !column.nurBreit)
                 .map((column) => (
                   <div key={column.key} className="contents">
-                    <dt className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
+                    <dt className="text-xs font-semibold uppercase tracking-wide text-fg-muted">
                       {column.head}
                     </dt>
-                    <dd className={`${column.numeric ? 'tabular' : ''} min-w-0 text-ink`}>
+                    <dd className={`${column.numeric ? 'tabular' : ''} min-w-0 text-fg`}>
                       {column.cell(row)}
                     </dd>
                   </div>
@@ -254,7 +252,7 @@ export function Zeilentabelle<Row>({
       <table className="hidden w-full border-collapse text-sm min-[900px]:table">
         <thead>
           {/* Sticky under the page header, which is `top-0 h-14` in the shell. */}
-          <tr className="sticky top-14 z-10 bg-surface text-left text-xs text-ink-muted shadow-[0_1px_0_var(--color-border-subtle)]">
+          <tr className="sticky top-0 z-10 bg-ground text-left text-xs text-fg-muted shadow-[0_1px_0_var(--color-line)]">
             {columns.map((column) => {
               const active = sort?.key === column.key;
               return (
@@ -271,8 +269,8 @@ export function Zeilentabelle<Row>({
                     <button
                       type="button"
                       onClick={() => toggle(column.key)}
-                      className={`inline-flex items-center gap-1 uppercase tracking-wide hover:text-ink ${
-                        active ? 'text-ink' : ''
+                      className={`inline-flex items-center gap-1 uppercase tracking-wide hover:text-fg ${
+                        active ? 'text-fg' : ''
                       }`}
                     >
                       {column.head}
@@ -293,14 +291,11 @@ export function Zeilentabelle<Row>({
         </thead>
         <tbody>
           {sorted.map((row) => (
-            <tr
-              key={rowKey(row)}
-              className="border-b border-border-subtle/50 last:border-0 hover:bg-surface-sunken"
-            >
+            <tr key={rowKey(row)} className="border-b border-line/50 last:border-0 hover:bg-raised">
               {columns.map((column) => (
                 <td
                   key={column.key}
-                  className={`px-2 py-1.5 align-middle text-ink first:pl-0 last:pr-0 ${
+                  className={`px-2 py-1.5 align-middle text-fg first:pl-0 last:pr-0 ${
                     column.numeric ? 'tabular text-right' : ''
                   } ${column.nurBreit ? 'hidden xl:table-cell' : ''}`}
                 >
@@ -336,7 +331,7 @@ export function Gruppentabelle<Row>({
     <div className="overflow-x-auto">
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="text-left text-xs uppercase tracking-wide text-ink-muted">
+          <tr className="text-left text-xs uppercase tracking-wide text-fg-muted">
             {columns.map((column) => (
               <th
                 key={column.key}
@@ -355,17 +350,17 @@ export function Gruppentabelle<Row>({
               <th
                 colSpan={columns.length}
                 scope="colgroup"
-                className="border-t border-border-subtle pb-1 pt-4 text-left text-xs font-semibold text-ink"
+                className="border-t border-line pb-1 pt-4 text-left text-xs font-semibold text-fg"
               >
                 {gruppe.label}
               </th>
             </tr>
             {gruppe.rows.map((row) => (
-              <tr key={rowKey(row)} className="hover:bg-surface-sunken">
+              <tr key={rowKey(row)} className="hover:bg-raised">
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className={`px-2 py-1.5 align-middle text-ink first:pl-0 last:pr-0 ${
+                    className={`px-2 py-1.5 align-middle text-fg first:pl-0 last:pr-0 ${
                       column.numeric ? 'tabular text-right' : ''
                     }`}
                   >
@@ -383,9 +378,15 @@ export function Gruppentabelle<Row>({
 
 /** A cross-reference inside a row: present, findable, and never competing with the primary link. */
 export function Quer({ href, children }: { href: string; children: ReactNode }) {
+  // Capped and cut at two lines: a long topic title wrapping freely inside its chip set the height
+  // of its row. The full title is the link's tooltip.
   return (
-    <a href={href} className="focus-visible:outline-2 focus-visible:outline-brand">
-      <Chip>{children}</Chip>
+    <a
+      href={href}
+      className="inline-flex max-w-44 focus-visible:outline-2 focus-visible:outline-signal"
+      {...(typeof children === 'string' ? { title: children } : {})}
+    >
+      <Chip kurz>{children}</Chip>
     </a>
   );
 }

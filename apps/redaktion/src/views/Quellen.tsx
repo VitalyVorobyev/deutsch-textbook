@@ -69,7 +69,7 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
       // the CELL is bounded instead, with the whole label one hover away.
       cell: (e) => (
         <Kurz text={e.de}>
-          <span className="text-ink">{e.de}</span>
+          <span className="text-fg">{e.de}</span>
         </Kurz>
       ),
     },
@@ -77,7 +77,7 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
       key: 'section',
       head: 'Abschnitt',
       sort: (e) => e.section,
-      cell: (e) => <span className="text-ink-muted">{e.section}</span>,
+      cell: (e) => <span className="text-fg-muted">{e.section}</span>,
     },
     {
       key: 'key',
@@ -86,7 +86,7 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
       // width below 1280 — see `nurBreit`.
       nurBreit: true,
       sort: (e) => e.key,
-      cell: (e) => <span className="text-xs text-ink-muted">{e.key}</span>,
+      cell: (e) => <span className="text-xs text-fg-muted">{e.key}</span>,
     },
     { key: 'level', head: 'Niveau', sort: (e) => e.level ?? '', cell: (e) => e.level ?? '—' },
     {
@@ -107,7 +107,7 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
       {uncovered.length ? (
         <Panel tone="warn" className="mb-5">
           <Label>ohne externen Anker</Label>
-          <p className="mt-1 text-sm text-ink">
+          <p className="mt-1 text-sm text-fg">
             {uncovered.join(', ')} — für diese Niveaus existiert keine Quelle, also gibt es auch
             keine Zahl.
           </p>
@@ -141,26 +141,26 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
           />
         </StatGroup>
 
-        <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 border-t border-border-subtle pt-3 text-xs">
+        <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 border-t border-line pt-3 text-xs">
           {/* Load-bearing, not documentation — see the header comment. */}
-          <dt className="text-ink-muted">Publikum</dt>
-          <dd className={meta.audience ? 'font-medium text-ink' : 'text-warn-ink'}>
+          <dt className="text-fg-muted">Publikum</dt>
+          <dd className={meta.audience ? 'font-medium text-fg' : 'text-defect'}>
             {meta.audience ?? 'nicht angegeben — wessen Prüfung ist das?'}
           </dd>
-          <dt className="text-ink-muted">Verlag</dt>
-          <dd className="text-ink">{meta.publisher ?? '—'}</dd>
-          <dt className="text-ink-muted">Ausgabe</dt>
-          <dd className="text-ink">
+          <dt className="text-fg-muted">Verlag</dt>
+          <dd className="text-fg">{meta.publisher ?? '—'}</dd>
+          <dt className="text-fg-muted">Ausgabe</dt>
+          <dd className="text-fg">
             {meta.edition ?? '—'}
             {meta.status === 'retired' ? <Chip tone="warn"> abgelöst</Chip> : null}
           </dd>
-          <dt className="text-ink-muted">Seiten</dt>
-          <dd className="text-ink">{meta.pages ?? '—'}</dd>
-          <dt className="text-ink-muted">Modus</dt>
-          <dd className="text-ink">{meta.mode ?? 'unstated'}</dd>
+          <dt className="text-fg-muted">Seiten</dt>
+          <dd className="text-fg">{meta.pages ?? '—'}</dd>
+          <dt className="text-fg-muted">Modus</dt>
+          <dd className="text-fg">{meta.mode ?? 'unstated'}</dd>
           {meta.url ? (
             <>
-              <dt className="text-ink-muted">Quelle</dt>
+              <dt className="text-fg-muted">Quelle</dt>
               <dd>
                 <Extern href={meta.url}>{meta.url}</Extern>
               </dd>
@@ -170,7 +170,7 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
       </Panel>
 
       <div className="mb-3 flex items-center justify-between gap-3">
-        <p className="text-sm text-ink-muted">
+        <p className="text-sm text-fg-muted">
           {shown.length} von {entries.length} Einträgen
         </p>
         {/* Offered only when it would do something. A filter that promises `(0)` and empties the
@@ -204,8 +204,8 @@ function QuellenKopf({
   return (
     <>
       <header className="mb-5">
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Referenzen</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-fg">Referenzen</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {graph.anchorSources.length} veröffentlichte Listen · Strukturen, Sprachhandlungen und
           Themen bleiben getrennte Aussagen
         </p>
@@ -260,7 +260,7 @@ function AnkerDimension({
                 />
                 <Stat label="beyond" value={coverage.beyond.length} />
               </StatGroup>
-              <p className="mt-4 text-xs leading-5 text-ink-muted">
+              <p className="mt-4 text-xs leading-5 text-fg-muted">
                 {coverage.sources
                   .map(
                     (source) => `${source.title}${source.audience ? ` · ${source.audience}` : ''}`,
@@ -277,30 +277,30 @@ function AnkerDimension({
         tone={open.length ? 'warn' : 'ok'}
       >
         {open.length ? (
-          <ul className="divide-y divide-border-subtle">
+          <ul className="divide-y divide-line">
             {open.map((item) => (
               <li
                 key={`${item.sourceId}:${item.entry.key}:${item.level}`}
                 className="grid gap-1 py-2 text-sm md:grid-cols-[4rem_1fr_1fr]"
               >
-                <span className="text-ink-muted">{item.level}</span>
-                <span className="text-ink">{item.entry.de}</span>
-                <span className="text-xs text-ink-muted">
+                <span className="text-fg-muted">{item.level}</span>
+                <span className="text-fg">{item.entry.de}</span>
+                <span className="text-xs text-fg-muted">
                   {item.section.de} · {item.sourceId}
                 </span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-ok-ink">Jeder veröffentlichte Eintrag wird beansprucht.</p>
+          <p className="text-sm text-normal">Jeder veröffentlichte Eintrag wird beansprucht.</p>
         )}
       </Panel>
       <Panel className="mt-5" title="Quellenmetadaten">
         <ul className="space-y-3">
           {sources.map((source) => (
-            <li key={source.id} className="border-b border-border-subtle pb-3 last:border-0">
-              <p className="text-sm font-medium text-ink">{source.title}</p>
-              <p className="mt-1 text-xs text-ink-muted">
+            <li key={source.id} className="border-b border-line pb-3 last:border-0">
+              <p className="text-sm font-medium text-fg">{source.title}</p>
+              <p className="mt-1 text-xs text-fg-muted">
                 {source.publisher ?? '—'} · {source.edition ?? 'Ausgabe nicht angegeben'} ·{' '}
                 {source.audience ?? 'Publikum nicht angegeben'} ·{' '}
                 {source.mode ?? 'Modus nicht angegeben'}

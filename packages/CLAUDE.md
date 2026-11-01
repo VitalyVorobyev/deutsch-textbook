@@ -12,7 +12,7 @@ Four packages, divided by what may be imported where:
 | `@da/schema` | content shapes (Zod), gloss markup, letter-set checks, item-type classification | **no** — imported by React islands |
 | `@da/grading` | does this answer count: `cloze`, `production`, `worddiff` | **no** |
 | `@da/content` | reads the corpus: the graph, elements, all measurements, the payload | yes |
-| `@da/ui` | Tailwind tokens + shared React primitives | **no** |
+| `@da/ui` | the theme layer on `@vitavision/ui` (ADR 0011): source globs, preview styles, domain primitives | **no** |
 
 `@da/content` exports **per module, never a barrel** — `@da/content/focus-tags` must cost a browser
 importer nothing. A pure value in an fs-opening module leaks the filesystem into the client bundle

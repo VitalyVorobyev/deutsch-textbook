@@ -11,15 +11,19 @@ scheduled.
    person/machine/alarm thesis with three values retuned (`apps/tonwerk/ui/DESIGN.md`). The theme
    lives in the app, not in `@da/ui`, because nothing else renders with it. What is left is its
    domain components (Platte, Marke, the tables), which still use its own CSS on the system tokens.
-2. **Redaktion next.** It is a professional tool, closest to lab-ui's *instrument* direction, and
-   already uses `@da/ui` plus Radix. `@vitavision/workbench` provides the app shell, split panes and
-   tree view it hand-builds today.
+2. **Redaktion is on it.** Its frame is `AppShell` with a `NavRail` and a `StatusBar`, its tabs,
+   tooltips, badges, buttons and inputs are `@vitavision/ui`, and it uses the system's colours
+   unchanged. `@da/ui` is the theme layer ADR 0011 describes: the source globs, the article and
+   exercise preview styles, and the domain primitives (the toned panel, the callout, the stat). Its
+   classes are written in the system's vocabulary, because the old names collided with it
+   (`surface`, `warn`). A Deutsch-Atlas colour retune would be an override of the system's
+   variables, with a contrast test, as Tonwerk's is.
 3. **The learner app last.** It is Astro with React islands, and its look is the one to keep.
 
 ## Open decisions
 
-- What stays in `@da/ui`: theme tokens only, or also domain components (TierBadge, EvidenceChips,
-  the exercise widgets)?
+- Whether the learner app's domain components (TierBadge, EvidenceChips, the exercise widgets) join
+  `@da/ui` when it moves. Today `@da/ui` serves Redaktion alone.
 - Learner exercise components live in `src/components/`, so nothing outside the app can render
   them. Redaktion owes "renderer parity" and design-sync needs a hand-written entry for the same
   reason. Should they move into a package first?

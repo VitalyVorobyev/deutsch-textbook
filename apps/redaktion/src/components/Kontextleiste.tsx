@@ -36,7 +36,7 @@ function Spalte({ label, items, leer }: { label: string; items: Nachbar[]; leer:
             <li key={n.id} className="truncate text-sm">
               <a
                 href={n.href}
-                className="text-ink underline-offset-2 hover:text-brand-ink hover:underline"
+                className="text-fg underline-offset-2 hover:text-signal hover:underline"
               >
                 {n.title}
               </a>
@@ -44,7 +44,7 @@ function Spalte({ label, items, leer }: { label: string; items: Nachbar[]; leer:
           ))}
         </ul>
       ) : (
-        <p className="mt-1.5 text-sm text-ink-muted">{leer}</p>
+        <p className="mt-1.5 text-sm text-fg-muted">{leer}</p>
       )}
     </div>
   );
@@ -67,30 +67,30 @@ export function Kontextleiste({
 }) {
   const deepening = [...vertieft, ...vertieftVon];
   return (
-    <section className="mb-6 rounded-lg border border-border-subtle bg-surface-sunken/50 p-4">
+    <section className="mb-6 rounded-lg border border-line bg-raised/50 p-4">
       <div className="flex flex-col gap-4 md:flex-row md:items-start">
         <Spalte label="Voraussetzung" items={voraussetzungen} leer="steht am Anfang" />
-        <div aria-hidden="true" className="hidden shrink-0 pt-6 text-ink-muted md:block">
+        <div aria-hidden="true" className="hidden shrink-0 pt-6 text-fg-muted md:block">
           →
         </div>
-        <div className="min-w-0 shrink-0 rounded-md bg-surface-raised px-3 py-2 text-center md:w-52">
-          <p className="text-sm font-semibold text-ink">{titel}</p>
-          <p className="text-xs text-ink-muted">{level}</p>
+        <div className="min-w-0 shrink-0 rounded-md bg-surface px-3 py-2 text-center md:w-52">
+          <p className="text-sm font-semibold text-fg">{titel}</p>
+          <p className="text-xs text-fg-muted">{level}</p>
         </div>
-        <div aria-hidden="true" className="hidden shrink-0 pt-6 text-ink-muted md:block">
+        <div aria-hidden="true" className="hidden shrink-0 pt-6 text-fg-muted md:block">
           →
         </div>
         <Spalte label="gebraucht von" items={gebrauchtVon} leer="nichts baut darauf auf" />
       </div>
 
       {deepening.length ? (
-        <div className="mt-4 border-t border-border-subtle pt-3">
+        <div className="mt-4 border-t border-line pt-3">
           <Label>Vertiefung</Label>
           <ul className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
             {vertieft.map((n) => (
               <li key={`v-${n.id}`} className="flex items-center gap-1.5">
-                <span className="text-xs text-ink-muted">vertieft</span>
-                <a href={n.href} className="text-ink hover:text-brand-ink hover:underline">
+                <span className="text-xs text-fg-muted">vertieft</span>
+                <a href={n.href} className="text-fg hover:text-signal hover:underline">
                   {n.title}
                 </a>
                 <SharedTags tags={n.sharedTags} />
@@ -98,8 +98,8 @@ export function Kontextleiste({
             ))}
             {vertieftVon.map((n) => (
               <li key={`vv-${n.id}`} className="flex items-center gap-1.5">
-                <span className="text-xs text-ink-muted">vertieft von</span>
-                <a href={n.href} className="text-ink hover:text-brand-ink hover:underline">
+                <span className="text-xs text-fg-muted">vertieft von</span>
+                <a href={n.href} className="text-fg hover:text-signal hover:underline">
                   {n.title}
                 </a>
                 <SharedTags tags={n.sharedTags} />

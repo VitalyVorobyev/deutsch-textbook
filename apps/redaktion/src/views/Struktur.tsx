@@ -97,11 +97,17 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
         <span className="flex items-center gap-2">
           {!isTaught(p) ? (
             <span
-              className="h-2 w-2 shrink-0 rounded-[2px] border border-warn/70"
+              className="h-2 w-2 shrink-0 rounded-[2px] border border-defect/70"
               title="ungelehrt"
             />
           ) : null}
-          <Primaer href={href('struktur', p.id)}>{p.de}</Primaer>
+          {/* Two lines: the longest names ran to five at 1024 px and set their row's height. The
+              row opens the structure, where the full name is the heading. */}
+          <Primaer href={href('struktur', p.id)}>
+            <span className="line-clamp-2" title={p.de}>
+              {p.de}
+            </span>
+          </Primaer>
         </span>
       ),
     },
@@ -109,14 +115,14 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
       key: 'id',
       head: 'Kennung',
       sort: (p) => p.id,
-      cell: (p) => <span className="text-xs text-ink-muted">{p.id}</span>,
+      cell: (p) => <span className="text-xs text-fg-muted">{p.id}</span>,
     },
     {
       key: 'track',
       head: 'Linie',
       sort: (p) => p.track ?? '',
       cell: (p) => (
-        <span className="text-ink-muted">
+        <span className="text-fg-muted">
           {graph.grammarTracks.find((track) => track.id === p.track)?.de ?? p.track ?? '—'}
         </span>
       ),
@@ -130,7 +136,7 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
         const rec = reception(p);
         return (
           <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="text-ink">{prod ?? '—'}</span>
+            <span className="text-fg">{prod ?? '—'}</span>
             {rec && rec !== prod ? (
               <Chip
                 tone="info"
@@ -177,8 +183,8 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Strukturen</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="text-2xl font-bold tracking-tight text-fg">Strukturen</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {filtered.length} von {graph.inventory.length} Zeilen des Grammatikinventars
         </p>
       </header>
@@ -226,7 +232,7 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
   const topicTitle = (tid: string) => graph.topics.find((t) => t.id === tid)?.title ?? tid;
 
   const columns: Spalte<Element>[] = [
-    { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
+    { key: 'kind', head: 'Art', cell: (e) => <span className="text-fg-muted">{e.kind}</span> },
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     {
@@ -249,8 +255,8 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
             'keine Linie'}{' '}
           · {point.id}
         </Label>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">{point.de}</h1>
-        <p className="mt-1 text-sm text-ink-muted">{point.en}</p>
+        <h1 className="mt-1 text-2xl font-bold tracking-tight text-fg">{point.de}</h1>
+        <p className="mt-1 text-sm text-fg-muted">{point.en}</p>
       </header>
 
       {!topics.length ? (
@@ -262,15 +268,13 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <Panel title="Niveau">
           <dl className="grid grid-cols-2 gap-y-1 text-sm">
-            <dt className="text-ink-muted">Produktion</dt>
-            <dd className="text-ink">{prod ?? '—'}</dd>
-            <dt className="text-ink-muted">Rezeption</dt>
-            <dd className={rec && rec !== prod ? 'text-info-ink' : 'text-ink'}>{rec ?? '—'}</dd>
+            <dt className="text-fg-muted">Produktion</dt>
+            <dd className="text-fg">{prod ?? '—'}</dd>
+            <dt className="text-fg-muted">Rezeption</dt>
+            <dd className={rec && rec !== prod ? 'text-signal' : 'text-fg'}>{rec ?? '—'}</dd>
           </dl>
           {point.note ? (
-            <p className="mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
-              {point.note}
-            </p>
+            <p className="mt-3 border-t border-line pt-2 text-xs text-fg-muted">{point.note}</p>
           ) : null}
         </Panel>
 
@@ -284,21 +288,19 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
               ))}
             </span>
           ) : (
-            <p className="text-xs text-warn-ink">
+            <p className="text-xs text-defect">
               Keine — nichts kann diese Struktur einer Übung zuordnen.
             </p>
           )}
           {point.deepens?.length ? (
             <>
-              <p className="mb-1 mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
-                vertieft
-              </p>
+              <p className="mb-1 mt-3 border-t border-line pt-2 text-xs text-fg-muted">vertieft</p>
               <ul className="space-y-0.5 text-xs">
                 {point.deepens.map((d) => (
                   <li key={d}>
                     <a
                       href={href('struktur', d)}
-                      className="text-ink hover:text-brand-ink hover:underline"
+                      className="text-fg hover:text-signal hover:underline"
                     >
                       {d}
                     </a>
@@ -313,7 +315,7 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
           {claims.length === 0 ? (
             // Legitimate — this course aims at B1 and the standards stop where they stop — but
             // visible rather than assumed, which is the whole argument of `structures.ts`.
-            <p className="text-xs text-ink-muted">Keine externe Quelle zitiert (‚beyond‘).</p>
+            <p className="text-xs text-fg-muted">Keine externe Quelle zitiert (‚beyond‘).</p>
           ) : (
             <ul className="space-y-1.5 text-xs">
               {claims.map((ref) => {
@@ -328,15 +330,15 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
                   <li key={ref}>
                     {entry && source ? (
                       <>
-                        <span className="text-ink">{entry.de}</span>
-                        <span className="text-ink-muted">
+                        <span className="text-fg">{entry.de}</span>
+                        <span className="text-fg-muted">
                           {' '}
                           — {source.source.title}
                           {section?.page ? ` (S. ${section.page})` : ''}
                         </span>
                       </>
                     ) : (
-                      <span className="text-warn-ink">{ref} — nicht auflösbar</span>
+                      <span className="text-defect">{ref} — nicht auflösbar</span>
                     )}
                   </li>
                 );
@@ -351,7 +353,7 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
         gruppen={topics.map((tid) => ({
           id: tid,
           label: (
-            <a href={href('thema', tid)} className="text-ink hover:text-brand-ink hover:underline">
+            <a href={href('thema', tid)} className="text-fg hover:text-signal hover:underline">
               {topicTitle(tid)}
             </a>
           ),
