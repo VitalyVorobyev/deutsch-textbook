@@ -70,6 +70,23 @@ def _project_status(stage: str, qa_passed: bool | None) -> Status:
     return "drafted"
 
 
+def _cleared(manifest: dict[str, Any] | None) -> bool:
+    """A person approved it, or its automatic QA passed and the publisher recorded that as what
+    let it out (ADR 0013). A failed report clears nothing, whatever `cleared_by` says."""
+
+    if not isinstance(manifest, dict):
+        return False
+    approval = manifest.get("approval")
+    if isinstance(approval, dict) and approval.get("status") == "complete":
+        return True
+    qa = manifest.get("qa")
+    return (
+        manifest.get("cleared_by") == "automatic-qa"
+        and isinstance(qa, dict)
+        and qa.get("passed") is True
+    )
+
+
 def _manifest_status(manifest: dict[str, Any] | None, brief: bool) -> Status:
     """`deriveStatus()` for a row with no studio project: files only.
 
@@ -77,8 +94,7 @@ def _manifest_status(manifest: dict[str, Any] | None, brief: bool) -> Status:
     the two can be read side by side.
     """
 
-    approval = manifest.get("approval") if manifest else None
-    if isinstance(approval, dict) and approval.get("status") == "complete":
+    if _cleared(manifest):
         return "approved"
     qa = manifest.get("qa") if manifest else None
     passed = qa.get("passed") if isinstance(qa, dict) else None
@@ -258,9 +274,7 @@ def listening_rows(
         )
         record = (repo / "content" / "listening" / level.lower() / f"{slug}.yaml").exists()
         audio = (repo / "content" / "listening" / level.lower() / f"{slug}.mp3").exists()
-        approved_manifest = isinstance(manifest, dict) and isinstance(
-            manifest.get("approval"), dict
-        ) and manifest["approval"].get("status") == "complete"
+        approved_manifest = _cleared(manifest)
 
         project = _scene_project(*scenes[slug], verdicts) if slug in scenes else None
         published_record = (
@@ -342,9 +356,7 @@ def reading_rows(
         )
         record = (repo / "content" / "reading-audio" / level / f"{name}.yaml").exists()
         audio = (repo / "content" / "reading-audio" / level / f"{name}.mp3").exists()
-        approved_manifest = isinstance(manifest, dict) and isinstance(
-            manifest.get("approval"), dict
-        ) and manifest["approval"].get("status") == "complete"
+        approved_manifest = _cleared(manifest)
 
         # The narration scene for this Lesetext is `reading_slug(source.id)` — the id with the
         # slash flattened, level and all — and **not** `Path(id).name`, which is what the

@@ -255,10 +255,13 @@ recording belongs to a unit (`unit`) or to an exercise set (`collection`, with t
 `serves`); a collection recording is never reported as unused, since its items name it only once it
 is published. Rows also carry the plan's duration `window`, the published `duration_seconds` and a
 `text` to search. Scene projects no plan entry or Lesetext owns, such as forks, are rows of kind
-`scene`. Against the real corpus and an empty store, `registry()` reports 93 planned recordings, 17
-of them without an exercise item, and 115 `audio-comprehension` items without a recording
-(measured with `api.registry.registry(Store(<tmp>), <repo>)`); `bun run listening:inventory` prints
-`93 planned · 40 published · 52 planned · 1 drafted`.
+`scene`. A recording is published when its record, audio and provenance are all there and a person
+approved it or its automatic QA cleared it (`cleared_by: automatic-qa` with a passing report), the
+rule `listening-inventory.ts` keeps. Against the real corpus and an empty store, `registry()`
+reports 145 planned recordings, 128 of them published and 17 without an exercise item, and 2
+`audio-comprehension` items without a recording (measured with
+`api.registry.registry(Store(<tmp>/studio.sqlite3), <repo>)`); `bun run listening:inventory`
+prints `145 planned · 128 published · 16 planned · 1 drafted`.
 
 ## The render graph
 

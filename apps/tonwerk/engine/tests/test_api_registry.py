@@ -372,3 +372,26 @@ def test_a_collection_recording_is_owned_by_its_set_and_planned_for_its_items(
     assert row["status"] == "planned"
     assert "ls-pruefung-fixture-hoeren-01" not in document["recordings_without_exercises"]
     assert by_id(document)["ls-planned-01"]["collection"] is None
+
+
+def test_a_recording_its_automatic_qa_cleared_is_published_without_a_studio_project(
+    tmp_path: Path,
+) -> None:
+    """ADR 0013: a passing automatic QA is what lets a scene out, and the manifest says so.
+
+    Read on a machine whose studio holds no project for it — the case where only the files can
+    answer — such a recording is published, as `listening-inventory.ts` counts it. A failed report
+    clears nothing, whatever `cleared_by` says.
+    """
+
+    repo = course_repo(tmp_path)
+    cleared = {"version": 2, "id": "ls-planned-01", "scene_sha256": "a" * 64,
+               "cleared_by": "automatic-qa", "qa": {"passed": True}}
+    publish(repo, "ls-planned-01", "A1", cleared)
+    publish(repo, "ls-working-01", "A1", {**cleared, "id": "ls-working-01", "qa": {"passed": False}})
+
+    http = TestClient(app(Store(tmp_path / "empty.sqlite3"), repo, token="test"))
+    rows = by_id(http.get("/api/registry", headers=AUTH).json())
+
+    assert rows["ls-planned-01"]["status"] == "published"
+    assert rows["ls-working-01"]["status"] == "qa_failed"

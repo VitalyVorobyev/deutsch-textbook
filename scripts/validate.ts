@@ -2437,11 +2437,17 @@ function checkListeningCollections(plan: ListeningPlan, artifactIds: Set<string>
       ),
     );
     const served = new Set<string>();
+    // A set named after its unit shares the unit's prefix, so its numbers continue after the
+    // unit's own recordings rather than colliding with them.
+    const prefix = `ls-${collection.collection}-`;
+    const unitOwned = plan.units
+      .flatMap((unit) => unit.artifacts)
+      .filter((artifact) => artifact.id.startsWith(prefix)).length;
     collection.artifacts.forEach((artifact, index) => {
       const at = `${where} → artifact "${artifact.id}"`;
       if (artifactIds.has(artifact.id)) fail(at, 'duplicate artifact id');
       artifactIds.add(artifact.id);
-      const expected = `ls-${collection.collection}-${String(index + 1).padStart(2, '0')}`;
+      const expected = `${prefix}${String(unitOwned + index + 1).padStart(2, '0')}`;
       if (artifact.id !== expected) fail(at, `must be ${expected}, in the order the set plays it`);
       if (artifact.purpose === 'exam-practice' && set.data.role !== 'exam-practice')
         fail(at, `exam-practice needs a set whose role is exam-practice, not ${set.data.role}`);

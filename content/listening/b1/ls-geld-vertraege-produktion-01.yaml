@@ -1,0 +1,40 @@
+id: ls-geld-vertraege-produktion-01
+level: B1
+title:
+  en: A question about an invoice
+  ru: Вопрос по счёту
+  uk: Питання щодо рахунку
+scenario: 'Anruf beim Kundendienst: ein Posten auf der Rechnung'
+duration_seconds: 44
+speakers:
+- Kundendienst
+- Anrufer
+transcript:
+- speaker: Kundendienst
+  text: Kundendienst der Firma Lindner, guten Tag.
+- speaker: Anrufer
+  text: Guten Tag, ich habe eine Frage zu meiner Rechnung. Der Gesamtbetrag ist hundertvierzig
+    Euro, aber in Zeile drei steht eine Anfahrt für dreißig Euro. Im Kostenvoranschlag
+    stand davon nichts.
+- speaker: Kundendienst
+  text: Einen Moment, ich sehe nach. Sie haben recht, die Anfahrt ist dort nicht angegeben.
+    Wir streichen die Zeile und schicken Ihnen morgen eine neue Rechnung über hundertzehn
+    Euro.
+- speaker: Anrufer
+  text: Und bis wann muss ich dann zahlen?
+- speaker: Kundendienst
+  text: 'Das Datum bleibt, wie es ist: fällig am siebzehnten Mai. Bitte überweisen
+    Sie erst, wenn die neue Rechnung da ist.'
+provenance: data/audio-provenance/b1/ls-geld-vertraege-produktion-01.json
+cue_source: render
+cues:
+- start_ms: 0
+  end_ms: 3427
+- start_ms: 3877
+  end_ms: 19015
+- start_ms: 19465
+  end_ms: 32467
+- start_ms: 32917
+  end_ms: 35380
+- start_ms: 35830
+  end_ms: 43808

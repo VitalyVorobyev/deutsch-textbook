@@ -1,0 +1,905 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.463403+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-freizeit-koennen-diktat-01-listening.md",
+    "sha256": "f45707f6844230171ffcf1b05fd535b49876646ea6fb31db87aa05f178fd3127"
+  },
+  "id": "ls-freizeit-koennen-diktat-01",
+  "kind": "dialogue",
+  "level": "A1",
+  "master_audio_sha256": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "087ec85c639a4db13c01ad136e9e77d27f54a620bad6616775c660280ffe53e3",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "dff7056b9f131a939e8e351d9d5d5a232f68e7aed592b810f0e69a81130da043",
+    "soundscape": {
+      "bed_count": 0,
+      "beds": [],
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 2,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 2,
+          "measured_lines": 2,
+          "minimum_similarity": 0.9140693393709938,
+          "pitch_max_hz": 178.7765293383271,
+          "pitch_min_hz": 174.86860965121835,
+          "pitch_spread_hz": 3.9079196871087447,
+          "speaker": "Anna"
+        },
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 125.98425196850394,
+          "pitch_min_hz": 125.98425196850394,
+          "pitch_spread_hz": null,
+          "speaker": "Paul"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.35038009459421676,
+          "speakers": [
+            "Anna",
+            "Paul"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.914069339370994,
+          "speaker": "Anna"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Paul"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9140693393709938,
+          "speaker": "Anna"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": [
+        "Paul: fewer than two measurable lines; identity is manual-only"
+      ]
+    },
+    "timing": [
+      {
+        "end_ms": 4919,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 12650,
+        "start_ms": 5369,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 15920,
+        "start_ms": 13100,
+        "utterance_id": "line-3"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T20:28:58.673105+00:00",
+      "failures": [],
+      "full_transcript": "Hallo, Paul. Wir spielen am Samstag im Park Fußball. Kommst du? Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich. Super. Dann bis Sonntag.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Hallo Paul! Wir spielen am Samstag im Park Fußball. Kommst du?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Hallo Paul! Wir spielen am Samstag im Park Fußball. Kommst du?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Super, dann bis Sonntag!",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Super, dann bis Sonntag.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {},
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": null,
+      "room": null,
+      "room_version": null,
+      "variant": "natural",
+      "wet": 0.0
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "7bba5e5c0c3ca7e82c328cc1e7f2832c3f05da0076e4859d6b770b15dea32890"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "47e3afebbbb9889364fba774098d73f6daeda4850b3514ab6129dbafd857d87a"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "7345e0c919cc5eedb408e5fb2e60fc21d23ce5c01c4bbbea6e6e5069aa6804e0"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "5213a7426faf82f4258001eec5fcc076fff1b9f4a85e449228569bdc76d68a72"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "087ec85c639a4db13c01ad136e9e77d27f54a620bad6616775c660280ffe53e3"
+      }
+    ],
+    "assets": {
+      "087ec85c639a4db13c01ad136e9e77d27f54a620bad6616775c660280ffe53e3": {
+        "encoding": "publish",
+        "file": "087ec85c639a4db13c01ad136e9e77d27f54a620bad6616775c660280ffe53e3.mp3",
+        "kind": "encode",
+        "source": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445"
+      },
+      "2a1c29adc32053c02dd605e63fde59abef68702de9faa20a6ba60d94216c9ef9": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "2a1c29adc32053c02dd605e63fde59abef68702de9faa20a6ba60d94216c9ef9.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "0193f587c811f05d829d0ef953a690c0d34dd6087b0ea73a3f20e9d4486c74c6",
+        "seed": 100
+      },
+      "30842138b87747dfb952a9a824a97775ff01a7b15fdc39d014f821e285b981e8": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "30842138b87747dfb952a9a824a97775ff01a7b15fdc39d014f821e285b981e8.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "f3202f79ec6f5b9cd61dddca6d8db81ca567cc3413d00cd97b194919ddb9e9c3",
+        "seed": 100
+      },
+      "46b8db607e9e8ebc9d93ab697d7739dff2a98b8b68dae8c4a10b615ec0db24ca": {
+        "file": "46b8db607e9e8ebc9d93ab697d7739dff2a98b8b68dae8c4a10b615ec0db24ca.wav",
+        "impl_version": 2,
+        "inputs": [
+          "7bba5e5c0c3ca7e82c328cc1e7f2832c3f05da0076e4859d6b770b15dea32890",
+          "47e3afebbbb9889364fba774098d73f6daeda4850b3514ab6129dbafd857d87a",
+          "7345e0c919cc5eedb408e5fb2e60fc21d23ce5c01c4bbbea6e6e5069aa6804e0"
+        ],
+        "kind": "mix",
+        "node_hash": "579639e5450a8d3c134eccbeb1a95d37e1b3c9a5c0bfc9d19b6afb3765824764",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000
+        }
+      },
+      "47e3afebbbb9889364fba774098d73f6daeda4850b3514ab6129dbafd857d87a": {
+        "file": "47e3afebbbb9889364fba774098d73f6daeda4850b3514ab6129dbafd857d87a.wav",
+        "impl_version": 1,
+        "inputs": [
+          "648fd1edcde99fb05c0b1639b6c68fb1427c9b7b1fc10b410c8ddc114177e5e7"
+        ],
+        "kind": "track",
+        "node_hash": "ea9f520f76a24bb07162c2c8d0a457349179f5c7a36f6ebd160fc072fa37305c",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5369,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "5213a7426faf82f4258001eec5fcc076fff1b9f4a85e449228569bdc76d68a72": {
+        "encoding": "qa",
+        "file": "5213a7426faf82f4258001eec5fcc076fff1b9f4a85e449228569bdc76d68a72.wav",
+        "kind": "encode",
+        "source": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445"
+      },
+      "648fd1edcde99fb05c0b1639b6c68fb1427c9b7b1fc10b410c8ddc114177e5e7": {
+        "file": "648fd1edcde99fb05c0b1639b6c68fb1427c9b7b1fc10b410c8ddc114177e5e7.wav",
+        "impl_version": 1,
+        "inputs": [
+          "86ce2f88bdfeadafc02db8eb756bdc5edfb81a462058a7201d6a833082d504ad"
+        ],
+        "kind": "pace",
+        "node_hash": "51c261e89802133bd6952f0b3ffc3e4f7b9ff52e15bd51db6fe089edba51503a",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "7345e0c919cc5eedb408e5fb2e60fc21d23ce5c01c4bbbea6e6e5069aa6804e0": {
+        "file": "7345e0c919cc5eedb408e5fb2e60fc21d23ce5c01c4bbbea6e6e5069aa6804e0.wav",
+        "impl_version": 1,
+        "inputs": [
+          "9467c2b151180e422d9ee704728f938f2578d9ea605c2aab5db9fcfd001ae9bc"
+        ],
+        "kind": "track",
+        "node_hash": "408626bf34313f607e60eb57cdc4e15d0e93749e48a4292efa4ffce36abb9ac1",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 13100,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "7bba5e5c0c3ca7e82c328cc1e7f2832c3f05da0076e4859d6b770b15dea32890": {
+        "file": "7bba5e5c0c3ca7e82c328cc1e7f2832c3f05da0076e4859d6b770b15dea32890.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b3ca8624e9144ec1f810fd86ecf9da9bc14b4bca5706e7ffe0652ef9b457e5da"
+        ],
+        "kind": "track",
+        "node_hash": "eaae2c76b9c252d20b80529cf04b3e3ba1fc3b3277b6e5d30353fb7fa2c45807",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445": {
+        "file": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445.wav",
+        "impl_version": 1,
+        "inputs": [
+          "46b8db607e9e8ebc9d93ab697d7739dff2a98b8b68dae8c4a10b615ec0db24ca"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "3b7dca278ffa700e7659e945f34faa61dcc7afef0aa33f9a2d395717a1b3192c",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "86ce2f88bdfeadafc02db8eb756bdc5edfb81a462058a7201d6a833082d504ad": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "86ce2f88bdfeadafc02db8eb756bdc5edfb81a462058a7201d6a833082d504ad.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "88d9411c4c053b8cef63d6d045a34c584256b7516cc71f24911242fbdcacded3",
+        "seed": 135
+      },
+      "9467c2b151180e422d9ee704728f938f2578d9ea605c2aab5db9fcfd001ae9bc": {
+        "file": "9467c2b151180e422d9ee704728f938f2578d9ea605c2aab5db9fcfd001ae9bc.wav",
+        "impl_version": 1,
+        "inputs": [
+          "30842138b87747dfb952a9a824a97775ff01a7b15fdc39d014f821e285b981e8"
+        ],
+        "kind": "pace",
+        "node_hash": "ea8e9b26bfb7ee3ba2e5d02ff7ea3a280b95674863e2360eabd2d5d3d6d40de6",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "b3ca8624e9144ec1f810fd86ecf9da9bc14b4bca5706e7ffe0652ef9b457e5da": {
+        "file": "b3ca8624e9144ec1f810fd86ecf9da9bc14b4bca5706e7ffe0652ef9b457e5da.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2a1c29adc32053c02dd605e63fde59abef68702de9faa20a6ba60d94216c9ef9"
+        ],
+        "kind": "pace",
+        "node_hash": "b2088230414d273b50222fc7e923338692eb61ff33ba93d63dc79449f5c6566c",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      }
+    },
+    "created_at": "2026-11-01T20:28:54.210508+00:00",
+    "duration_ms": 15920,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "2a1c29adc32053c02dd605e63fde59abef68702de9faa20a6ba60d94216c9ef9",
+        "cached": false,
+        "hash": "d734ab5acc0adcef8abf725d171405dd440fe005d40a44d6b87617cf58680a01",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 100,
+            "style": null,
+            "text": "Hallo Paul! Wir spielen am Samstag im Park Fußball. Kommst du?",
+            "voice": "a5dc08f8bc84b9ddb9b98a5e41f3058c3b1d097caebe7b68c9105f071b145e52"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "b3ca8624e9144ec1f810fd86ecf9da9bc14b4bca5706e7ffe0652ef9b457e5da",
+        "cached": false,
+        "hash": "b2088230414d273b50222fc7e923338692eb61ff33ba93d63dc79449f5c6566c",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "86ce2f88bdfeadafc02db8eb756bdc5edfb81a462058a7201d6a833082d504ad",
+        "cached": false,
+        "hash": "389d64db058d02afe2e5eca0d34edb8952a771138ea1893c3f5327e82fc5940e",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 135,
+            "style": null,
+            "text": "Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich.",
+            "voice": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "648fd1edcde99fb05c0b1639b6c68fb1427c9b7b1fc10b410c8ddc114177e5e7",
+        "cached": false,
+        "hash": "51c261e89802133bd6952f0b3ffc3e4f7b9ff52e15bd51db6fe089edba51503a",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "30842138b87747dfb952a9a824a97775ff01a7b15fdc39d014f821e285b981e8",
+        "cached": false,
+        "hash": "d636687f087a8d60a4e73815baa61cfa3a3d96912226e26d074706ec46e3ff7a",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 100,
+            "style": null,
+            "text": "Super, dann bis Sonntag!",
+            "voice": "a5dc08f8bc84b9ddb9b98a5e41f3058c3b1d097caebe7b68c9105f071b145e52"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "9467c2b151180e422d9ee704728f938f2578d9ea605c2aab5db9fcfd001ae9bc",
+        "cached": false,
+        "hash": "ea8e9b26bfb7ee3ba2e5d02ff7ea3a280b95674863e2360eabd2d5d3d6d40de6",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "7bba5e5c0c3ca7e82c328cc1e7f2832c3f05da0076e4859d6b770b15dea32890",
+        "cached": false,
+        "hash": "eaae2c76b9c252d20b80529cf04b3e3ba1fc3b3277b6e5d30353fb7fa2c45807",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "47e3afebbbb9889364fba774098d73f6daeda4850b3514ab6129dbafd857d87a",
+        "cached": false,
+        "hash": "ea9f520f76a24bb07162c2c8d0a457349179f5c7a36f6ebd160fc072fa37305c",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5369,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "7345e0c919cc5eedb408e5fb2e60fc21d23ce5c01c4bbbea6e6e5069aa6804e0",
+        "cached": false,
+        "hash": "408626bf34313f607e60eb57cdc4e15d0e93749e48a4292efa4ffce36abb9ac1",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 13100,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "46b8db607e9e8ebc9d93ab697d7739dff2a98b8b68dae8c4a10b615ec0db24ca",
+        "cached": false,
+        "hash": "579639e5450a8d3c134eccbeb1a95d37e1b3c9a5c0bfc9d19b6afb3765824764",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "859b30dc487cc074e144087665140a3f9a675f69026e48fcba5a1e07ebe38445",
+        "cached": false,
+        "hash": "3b7dca278ffa700e7659e945f34faa61dcc7afef0aa33f9a2d395717a1b3192c",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "5213a7426faf82f4258001eec5fcc076fff1b9f4a85e449228569bdc76d68a72",
+        "cached": false,
+        "hash": "2ccd25da0d34fd3b2b3663d725de29e4253765cb470064ab962502f34403d1b8",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "087ec85c639a4db13c01ad136e9e77d27f54a620bad6616775c660280ffe53e3",
+        "cached": false,
+        "hash": "8004c30c572895da9cb0a3e98444ed3d834b7da8bcf37c9f3ef2874841b83a1c",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 0,
+    "nodes_evaluated": 13,
+    "timeline": [
+      {
+        "end_ms": 4919,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 12650,
+        "entry_id": "line-2",
+        "start_ms": 5369,
+        "type": "speech"
+      },
+      {
+        "end_ms": 15920,
+        "entry_id": "line-3",
+        "start_ms": 13100,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 4919,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 12650,
+        "start_ms": 5369,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 15920,
+        "start_ms": 13100,
+        "utterance_id": "line-3"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": null,
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        13,
+        20
+      ],
+      "grammar_target": null,
+      "level": "A1",
+      "outcomes": [
+        "freizeit-gespraech-verstehen",
+        "freizeit-verabredung"
+      ],
+      "scenario": "Zwei Freunde: Fußball im Park am Samstag, Paul kann erst Sonntag",
+      "topic": "freizeit-koennen",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "lena",
+          "version": 2
+        },
+        "role": "Anna",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 100,
+          "style": null,
+          "voice": "a5dc08f8bc84b9ddb9b98a5e41f3058c3b1d097caebe7b68c9105f071b145e52",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "amir",
+          "version": 2
+        },
+        "role": "Paul",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 135,
+          "style": null,
+          "voice": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Hallo Paul! Wir spielen am Samstag im Park Fußball. Kommst du?",
+        "id": "line-1",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Anna",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Leider kann ich am Samstag nicht. Ich habe keine Zeit. Aber am Sonntag kann ich.",
+        "id": "line-2",
+        "pace": 0.7,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Paul",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Super, dann bis Sonntag!",
+        "id": "line-3",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Anna",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-freizeit-koennen-diktat-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-3"
+      }
+    ],
+    "title": {
+      "en": "Football in the park",
+      "ru": "Футбол в парке",
+      "uk": "Футбол у парку"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "dff7056b9f131a939e8e351d9d5d5a232f68e7aed592b810f0e69a81130da043",
+  "script_sha256": "8df0593bce2fbdf1516e0752e5b4d5df610bbedc358bbe9bb87c818ebd8d8ac9",
+  "version": 2,
+  "voices": [
+    {
+      "character": "lena",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her mid-twenties speaking clear standard German. Warm, medium-pitched voice with a soft, friendly timbre; relaxed conversational pace; attentive and direct, never theatrical.",
+      "reference_sha256": "a5dc08f8bc84b9ddb9b98a5e41f3058c3b1d097caebe7b68c9105f071b145e52",
+      "role": "Anna",
+      "seed": 100,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "amir",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his early twenties speaking clear standard German. Curious, energetic, medium voice with natural enthusiasm; lively but never rushed.",
+      "reference_sha256": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b",
+      "role": "Paul",
+      "seed": 135,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

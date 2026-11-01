@@ -1290,3 +1290,736 @@ collections:
         item_types: [audio-comprehension]
         questions: 5
         context_sound: null
+  # The sets whose audio items were written for the browser voice: practice, checkpoint and
+  # placement sets that belong to no unit's recording. One recording per script, played by every
+  # item written with it; the script is the items' own turns, so a recording changes no question.
+  # The duration window is the script's word count at 2.4 to 1.5 words per second, as above.
+  - collection: checkpoint-a1
+    level: A1
+    artifacts:
+      - id: ls-checkpoint-a1-01
+        serves: [hoeren-ansage-supermarkt]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Supermarkt-Durchsage: Öffnungszeiten heute und morgen"
+        outcomes: [zeit-uhrzeit-verstehen, erste-zahlen-verstehen]
+        duration_seconds: { min: 10, max: 15 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, freundlich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Supermarkt-Hintergrund und Durchsage-Gong"
+      - id: ls-checkpoint-a1-02
+        serves: [hoeren-weg-bibliothek]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Ein Tourist fragt auf der Straße nach dem Weg zur Bibliothek"
+        outcomes: [stadt-wegbeschreibung-verstehen, stadt-weg-erfragen]
+        duration_seconds: { min: 10, max: 17 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Straßenverkehr"
+      - id: ls-checkpoint-a1-03
+        serves: [hoeren-verabredung-schwimmen]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde verabreden sich zum Schwimmen"
+        outcomes: [freizeit-gespraech-verstehen, freizeit-verabredung]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: erste-schritte
+    level: A1
+    artifacts:
+      - id: ls-erste-schritte-02
+        serves: [audio-phone]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Am Schalter: eine Frau nennt ihre Telefonnummer"
+        outcomes: [erste-zahlen-verstehen]
+        duration_seconds: { min: 5, max: 8 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-formell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+  - collection: essen-trinken-produktion
+    level: A1
+    artifacts:
+      - id: ls-essen-trinken-produktion-01
+        serves: [audio-zahlen-was, audio-zahlen-preis]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Café: ein Gast bezahlt Kaffee und Kuchen"
+        outcomes: [essen-service-bezahlen]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, klar"
+        item_types: [audio-comprehension]
+        questions: 2
+        context_sound: "leiser Café-Hintergrund"
+  - collection: essen-trinken
+    level: A1
+    artifacts:
+      - id: ls-essen-trinken-01
+        serves: [audio-im-cafe]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Café: ein Gast bestellt Suppe und Wasser"
+        outcomes: [essen-bestellen]
+        duration_seconds: { min: 8, max: 13 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Café-Hintergrund"
+  - collection: freizeit-koennen-diktat
+    level: A1
+    artifacts:
+      - id: ls-freizeit-koennen-diktat-01
+        serves: [hoeren-park-absage]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde: Fußball im Park am Samstag, Paul kann erst Sonntag"
+        outcomes: [freizeit-gespraech-verstehen, freizeit-verabredung]
+        duration_seconds: { min: 13, max: 20 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: menschen-familie
+    level: A1
+    artifacts:
+      - id: ls-menschen-familie-02
+        serves: [audio-family]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde sehen Familienfotos an"
+        outcomes: [familie-verstehen]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: placement-a1
+    level: A1
+    artifacts:
+      - id: ls-placement-a1-01
+        serves: [erste-telefonnummer]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Ansage der Sprachschule: Telefonnummer und Öffnungszeiten"
+        outcomes: [erste-zahlen-verstehen]
+        duration_seconds: { min: 10, max: 17 }
+        speakers: { min: 1, max: 1 }
+        register: "Ansage, formell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-placement-a1-02
+        serves: [familie-hoeren-geschwister]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Bekannte sprechen über Geschwister"
+        outcomes: [familie-verstehen]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-placement-a1-03
+        serves: [stadt-wegbeschreibung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Ein Mann fragt auf der Straße nach der Apotheke"
+        outcomes: [stadt-wegbeschreibung-verstehen]
+        duration_seconds: { min: 10, max: 17 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Straßenverkehr"
+      - id: ls-placement-a1-04
+        serves: [freizeit-verabredung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde verabreden sich fürs Kino"
+        outcomes: [freizeit-gespraech-verstehen]
+        duration_seconds: { min: 15, max: 24 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, sehr klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: adjektive-deklination-produktion
+    level: A2
+    artifacts:
+      - id: ls-adjektive-deklination-produktion-01
+        serves: [audio-anzeige-wohnung]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Telefonat mit der Vermieterin über eine kleine Wohnung"
+        outcomes: [adjektiv-anzeige-verstehen]
+        duration_seconds: { min: 27, max: 43 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, neutral-höflich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: alltag-tagesablauf-produktion
+    level: A2
+    artifacts:
+      - id: ls-alltag-tagesablauf-produktion-01
+        serves: [audio-wg-rhythmus]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Mitbewohner klären, wann wer das Bad braucht"
+        outcomes: [alltag-zeit-haeufigkeit]
+        duration_seconds: { min: 23, max: 37 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: biografie-erfahrungen-produktion
+    level: A2
+    artifacts:
+      - id: ls-biografie-erfahrungen-produktion-01
+        serves: [hoeren-interview-nowak]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Interview: ein Koch aus Polen erzählt seinen Lebensweg"
+        outcomes: [erfahrungen-fragen, lebensstationen-ordnen]
+        duration_seconds: { min: 33, max: 53 }
+        speakers: { min: 2, max: 2 }
+        register: "Interview, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: checkpoint-a2
+    level: A2
+    artifacts:
+      - id: ls-checkpoint-a2-01
+        serves: [hoeren-durchsage-bahnhof]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Bahnhofsdurchsage: ein ICE fällt aus, Ersatz mit dem Regionalzug"
+        outcomes: [durchsage-verstehen, verbindung-waehlen]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Bahnsteig-Hintergrund und Durchsage-Gong"
+      - id: ls-checkpoint-a2-02
+        serves: [hoeren-arztpraxis]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Anruf in der Arztpraxis: Termin wegen Halsschmerzen"
+        outcomes: [praxis-anweisungen-verstehen]
+        duration_seconds: { min: 20, max: 31 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-checkpoint-a2-03
+        serves: [hoeren-buergeramt]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Bürgeramt: Anmeldung, der Mietvertrag fehlt"
+        outcomes: [unterlagen-erfragen, formular-verstehen]
+        duration_seconds: { min: 20, max: 33 }
+        speakers: { min: 2, max: 2 }
+        register: "formell, Amt"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Wartebereich"
+  - collection: dativ-produktion
+    level: A2
+    artifacts:
+      - id: ls-dativ-produktion-01
+        serves: [hoeren-kiste-lampe]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Nach dem Umzug: wem gehören Kiste, Bücher und Lampe?"
+        outcomes: [dativ-verben, dativ-pronomen]
+        duration_seconds: { min: 19, max: 31 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: freunde-feste-produktion
+    level: A2
+    artifacts:
+      - id: ls-freunde-feste-produktion-01
+        serves: [hoeren-absage-sprachnachricht]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Sprachnachricht: Absage zur Geburtstagsfeier"
+        outcomes: [einladen-zusagen-absagen]
+        duration_seconds: { min: 27, max: 43 }
+        speakers: { min: 1, max: 1 }
+        register: "Sprachnachricht, informell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Mailbox-Signalton"
+  - collection: infinitiv-mit-zu-produktion
+    level: A2
+    artifacts:
+      - id: ls-infinitiv-mit-zu-produktion-01
+        serves: [audio-wochenendplaene]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde planen einen Radausflug an den See"
+        outcomes: [plan-zu-infinitiv]
+        duration_seconds: { min: 27, max: 43 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: man-und-besitz-passiv
+    level: A2
+    artifacts:
+      - id: ls-man-und-besitz-passiv-01
+        serves: [audio-durchsage-passiv]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Durchsage im Geschäft: Kasse schließt, Parkplatz wird renoviert"
+        outcomes: [passiv-verstehen]
+        duration_seconds: { min: 23, max: 37 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Supermarkt-Hintergrund und Durchsage-Gong"
+  - collection: man-und-besitz-produktion
+    level: A2
+    artifacts:
+      - id: ls-man-und-besitz-produktion-01
+        serves: [audio-hausordnung]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Der Hausmeister erklärt einer neuen Mieterin die Hausordnung"
+        outcomes: [regeln-mit-man]
+        duration_seconds: { min: 30, max: 49 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-freundlich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Treppenhaus"
+  - collection: nebensaetze-plaene-produktion
+    level: A2
+    artifacts:
+      - id: ls-nebensaetze-plaene-produktion-01
+        serves: [hoeren-ausflug-planen]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Drei Freunde planen einen Ausflug, je nach Wetter"
+        outcomes: [wenn-bedingung]
+        duration_seconds: { min: 31, max: 49 }
+        speakers: { min: 3, max: 3 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: perfekt-haben-sein-produktion
+    level: A2
+    artifacts:
+      - id: ls-perfekt-haben-sein-produktion-01
+        serves: [hoeren-markus-wochenende]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Montagmorgen bei der Arbeit: wie war das Wochenende?"
+        outcomes: [perfekt-vergangenheit-erzaehlen, perfekt-hilfsverb]
+        duration_seconds: { min: 21, max: 33 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, kollegial"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+  - collection: placement-a2
+    level: A2
+    artifacts:
+      - id: ls-placement-a2-01
+        serves: [termine-zeit-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Anruf in der Arztpraxis: ein Termin wird vereinbart"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 16, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-placement-a2-02
+        serves: [reisen-durchsage-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Bahnhofsdurchsage: Gleiswechsel für den Zug nach Nürnberg"
+        outcomes: [durchsage-verstehen]
+        duration_seconds: { min: 9, max: 15 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Bahnsteig-Hintergrund und Durchsage-Gong"
+      - id: ls-placement-a2-03
+        serves: [gesundheit-anweisung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "In der Apotheke: wie man die Tabletten nimmt"
+        outcomes: [praxis-anweisungen-verstehen]
+        duration_seconds: { min: 12, max: 19 }
+        speakers: { min: 1, max: 1 }
+        register: "neutral-freundlich, klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leise Apotheke"
+      - id: ls-placement-a2-04
+        serves: [arbeit-anweisung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Die Chefin verschiebt die Besprechung"
+        outcomes: [arbeitsanweisung-verstehen]
+        duration_seconds: { min: 10, max: 15 }
+        speakers: { min: 1, max: 1 }
+        register: "beruflich, freundlich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+      - id: ls-placement-a2-05
+        serves: [freunde-absprachen-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Freunde verteilen, wer was zum Picknick mitbringt"
+        outcomes: [absprachen-aushandeln]
+        duration_seconds: { min: 13, max: 20 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-placement-a2-06
+        serves: [lernen-kursanweisung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Die Kursleiterin gibt eine Arbeitsanweisung"
+        outcomes: [kursanweisungen-verstehen]
+        duration_seconds: { min: 11, max: 17 }
+        speakers: { min: 1, max: 1 }
+        register: "Unterricht, freundlich, klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Kursraum"
+  - collection: relativsaetze-produktion
+    level: A2
+    artifacts:
+      - id: ls-relativsaetze-produktion-01
+        serves: [audio-wohnungssuche]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Beim Makler: eine Wohnung mit Aufzug gesucht"
+        outcomes: [person-beschreiben-relativ]
+        duration_seconds: { min: 31, max: 49 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+  - collection: trennbare-verben-produktion
+    level: A2
+    artifacts:
+      - id: ls-trennbare-verben-produktion-01
+        serves: [hoeren-anruf-bahnhof]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Telefonat: Ankunft mit dem Zug in München"
+        outcomes: [trennbar-erkennen]
+        duration_seconds: { min: 23, max: 36 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, informell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: verben-mit-praepositionen
+    level: A2
+    artifacts:
+      - id: ls-verben-mit-praepositionen-02
+        serves: [hoeren-worauf]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde warten auf eine Nachricht, bevor sie Tickets kaufen"
+        outcomes: [wo-wort-fragen, da-wort-sache]
+        duration_seconds: { min: 5, max: 8 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, kurz"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: verbindungen-folgen-produktion
+    level: A2
+    artifacts:
+      - id: ls-verbindungen-folgen-produktion-01
+        serves: [audio-umzug-geschichte]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Bekannte: warum Tarek von Leipzig nach Bremen gezogen ist"
+        outcomes: [vergangenheit-erzaehlen]
+        duration_seconds: { min: 28, max: 45 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, erzählend"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Café-Hintergrund"
+  - collection: wohnen-umzug-produktion
+    level: A2
+    artifacts:
+      - id: ls-wohnen-umzug-produktion-01
+        serves: [hoeren-wohin-kommt-das-regal]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Beim Einräumen: wohin kommen Regal und Teppich?"
+        outcomes: [wo-wohin-position]
+        duration_seconds: { min: 17, max: 27 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: arbeit-bewerbung-produktion
+    level: B1
+    artifacts:
+      - id: ls-arbeit-bewerbung-produktion-01
+        serves: [hoeren-interview-verstehen]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Vorstellungsgespräch: eine Verkäuferin möchte ein Team führen"
+        outcomes: [interview-fragen-beantworten]
+        duration_seconds: { min: 25, max: 40 }
+        speakers: { min: 2, max: 2 }
+        register: "Vorstellungsgespräch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Besprechungsraum"
+  - collection: checkpoint-b1
+    level: B1
+    artifacts:
+      - id: ls-checkpoint-b1-01
+        serves: [hoeren-interview-neuanfang]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Radiointerview: Neuanfang in Leipzig"
+        outcomes: [interview-verstehen]
+        duration_seconds: { min: 22, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "Radiointerview, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-checkpoint-b1-02
+        serves: [hoeren-beratung-kurs]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Kursberatung an der Sprachschule: Einstufungstest vor B2"
+        outcomes: [beratung-verstehen]
+        duration_seconds: { min: 19, max: 31 }
+        speakers: { min: 2, max: 2 }
+        register: "Beratung, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+      - id: ls-checkpoint-b1-03
+        serves: [hoeren-diskussion-hof]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Nachbarn diskutieren Fahrradständer im Hof"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 19, max: 30 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Diskussion"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Innenhof"
+  - collection: digitales-leben-produktion
+    level: B1
+    artifacts:
+      - id: ls-digitales-leben-produktion-01
+        serves: [hoeren-hilfe-anruf]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Telefonhilfe der Stadtbibliothek: Anmeldung in der App"
+        outcomes: [anleitung-verstehen]
+        duration_seconds: { min: 30, max: 47 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, neutral-hilfsbereit"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: geld-vertraege-produktion
+    level: B1
+    artifacts:
+      - id: ls-geld-vertraege-produktion-01
+        serves: [hoeren-anbieter-rechnung]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Anruf beim Kundendienst: ein Posten auf der Rechnung"
+        outcomes: [rechnung-pruefen]
+        duration_seconds: { min: 38, max: 60 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: gesellschaft-zusammenleben-produktion
+    level: B1
+    artifacts:
+      - id: ls-gesellschaft-zusammenleben-produktion-01
+        serves: [hoeren-abstimmung]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Mieterversammlung: Abstimmung über Spielplatz oder Garten"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 17, max: 27 }
+        speakers: { min: 3, max: 3 }
+        register: "formell, Versammlung"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Gemeinschaftsraum"
+  - collection: gespraech-steuern-produktion
+    level: B1
+    artifacts:
+      - id: ls-gespraech-steuern-produktion-01
+        serves: [hoeren-besprechung]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Teambesprechung über Pausenzeiten"
+        outcomes: [inhalt-steuern, zuhoeren-anknuepfen]
+        duration_seconds: { min: 22, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "beruflich, Besprechung"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Besprechungsraum"
+  - collection: informationen-vermitteln-produktion
+    level: B1
+    artifacts:
+      - id: ls-informationen-vermitteln-produktion-01
+        serves: [hoeren-nachricht-aufnehmen]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Eine Nachbarin bittet, Herrn Klein etwas auszurichten"
+        outcomes: [mitteilung-weitergeben]
+        duration_seconds: { min: 30, max: 48 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, neutral-höflich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: konsum-umwelt-produktion
+    level: B1
+    artifacts:
+      - id: ls-konsum-umwelt-produktion-01
+        serves: [hoeren-durchsage]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Ansage der Hausverwaltung zu Hof und Mülltonnen"
+        outcomes: [hinweise-verstehen]
+        duration_seconds: { min: 16, max: 25 }
+        speakers: { min: 1, max: 1 }
+        register: "Ansage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+  - collection: kultur-freizeit-produktion
+    level: B1
+    artifacts:
+      - id: ls-kultur-freizeit-produktion-01
+        serves: [hoeren-kulturbuero]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Anruf im Kulturbüro: Kinderprogramm und Führung"
+        outcomes: [programm-verstehen]
+        duration_seconds: { min: 27, max: 43 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: meinung-medien-produktion
+    level: B1
+    artifacts:
+      - id: ls-meinung-medien-produktion-01
+        serves: [hoeren-radio-umfrage]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Radiosendung über eine Umfrage zum Nachrichtenkonsum"
+        outcomes: [bericht-verstehen]
+        duration_seconds: { min: 25, max: 39 }
+        speakers: { min: 2, max: 2 }
+        register: "Radio, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+  - collection: placement-b1
+    level: B1
+    artifacts:
+      - id: ls-placement-b1-01
+        serves: [erfahrungen-interview-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Interview: ein Jahr Arbeit im Ausland"
+        outcomes: [interview-verstehen]
+        duration_seconds: { min: 18, max: 29 }
+        speakers: { min: 2, max: 2 }
+        register: "Interview, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-placement-b1-02
+        serves: [lernen-beratung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Kursberatung: Anmeldung zum Abendkurs"
+        outcomes: [beratung-verstehen]
+        duration_seconds: { min: 16, max: 26 }
+        speakers: { min: 2, max: 2 }
+        register: "Beratung, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Büro"
+      - id: ls-placement-b1-03
+        serves: [gesellschaft-diskussion-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Nachbarn einigen sich auf die Gartenpflege"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 13, max: 21 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Diskussion"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Innenhof"
+      - id: ls-placement-b1-04
+        serves: [kultur-verabredung-hoeren]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Zwei Freunde verabreden einen Museumsbesuch"
+        outcomes: [veranstaltung-empfehlen]
+        duration_seconds: { min: 16, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null

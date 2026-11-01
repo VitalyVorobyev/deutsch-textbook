@@ -1,0 +1,1228 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.407507+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "5a23b9efb281db3b216ba7ee72d855e18d02dae89b521b088291490fa34f1a9d",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-checkpoint-b1-03-listening.md",
+    "sha256": "cc3316e4c9f375c952f9698e435797337524f8674557df9edceebf46007859dc"
+  },
+  "id": "ls-checkpoint-b1-03",
+  "kind": "dialogue",
+  "level": "B1",
+  "master_audio_sha256": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "300e129f5455ff3b36d83d1b8876b55da68a913e4ef7c63b5f828a1f43207b4d",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "45d158b50a81d56957f14857bf9083a2cc575ca679257e588990ee17571d1c5a",
+    "soundscape": {
+      "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -44.5,
+          "measured_rms_dbfs": -45.3,
+          "missing": false
+        }
+      ],
+      "configured_coverage_ratio": 1.0,
+      "configured_gain_max_db": -25.0,
+      "configured_gain_min_db": -25.0,
+      "continuous_ambience": true,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": -44.6387607686855,
+      "version": 2,
+      "warnings": []
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 2,
+          "measured_lines": 2,
+          "minimum_similarity": 0.9520946225379112,
+          "pitch_max_hz": 111.8881118881119,
+          "pitch_min_hz": 100.62893081761007,
+          "pitch_spread_hz": 11.259181070501825,
+          "speaker": "Herr Baum"
+        },
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 175.82417582417582,
+          "pitch_min_hz": 175.82417582417582,
+          "pitch_spread_hz": null,
+          "speaker": "Frau Ricci"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.3377318311067882,
+          "speakers": [
+            "Herr Baum",
+            "Frau Ricci"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9520946225379112,
+          "speaker": "Herr Baum"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Frau Ricci"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9520946225379113,
+          "speaker": "Herr Baum"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": [
+        "Frau Ricci: fewer than two measurable lines; identity is manual-only"
+      ]
+    },
+    "timing": [
+      {
+        "end_ms": 6948,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 15179,
+        "start_ms": 7398,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 19595,
+        "start_ms": 15629,
+        "utterance_id": "line-3"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T21:03:12.229515+00:00",
+      "failures": [],
+      "full_transcript": "Ich bin dafür, dass wir im Hof Fahrradstände aufstellen. Es stehen ständig Räder im Weg. Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer? Damit könnte ich leben. Dann stellen wir sie an die Mauer.",
+      "full_wer": 0.022222222222222223,
+      "lines": [
+        {
+          "expected": "Ich bin dafür, dass wir im Hof Fahrradständer aufstellen. Es stehen ständig Räder im Weg.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich bin dafür, dass wir im Hof Fahrradstände aufstellen. Es stehen ständig Räder im Weg.",
+          "wer": 0.06666666666666667
+        },
+        {
+          "expected": "Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer?",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Damit könnte ich leben. Dann stellen wir sie an die Mauer.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Damit könnte ich leben. Dann stellen wir sie an die Mauer.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "street": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "street",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.08
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/ambience-1.wav",
+        "sha256": "57e1bb5a869e8fdff134b75fc81c140818656249498643969a2a9646c30925cd"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "5a23b9efb281db3b216ba7ee72d855e18d02dae89b521b088291490fa34f1a9d"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "8813d69a57bff984ed9ca16a8306e77fa788cc9178b0a3929e258738b7ef824d"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "300e129f5455ff3b36d83d1b8876b55da68a913e4ef7c63b5f828a1f43207b4d"
+      }
+    ],
+    "assets": {
+      "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0": {
+        "file": "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0.wav",
+        "impl_version": 1,
+        "inputs": [
+          "64877becfbe63e15314b3ef8baeb48a969d0a7baea351acaca8565ba3370c81f"
+        ],
+        "kind": "track",
+        "node_hash": "010fa885290916a4fc0bdad984738f90dc0eb9ef5c585fa24c3d384f44a9d3c0",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 15629,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "1b9332ea4e40d665459419c40b0289d2a13875cbfd22c8f3f5acdad84e9ccdee": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "1b9332ea4e40d665459419c40b0289d2a13875cbfd22c8f3f5acdad84e9ccdee.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "3dc474523e9bd6d9436463e49d63d92aa281f304aec8b3c2d58144181c64ffab",
+        "seed": 140
+      },
+      "300e129f5455ff3b36d83d1b8876b55da68a913e4ef7c63b5f828a1f43207b4d": {
+        "encoding": "publish",
+        "file": "300e129f5455ff3b36d83d1b8876b55da68a913e4ef7c63b5f828a1f43207b4d.mp3",
+        "kind": "encode",
+        "source": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2"
+      },
+      "35ceba94bc65961c4ee52c6ce57aa6eac3763ee2ce683323ccbad600a398fd0b": {
+        "file": "35ceba94bc65961c4ee52c6ce57aa6eac3763ee2ce683323ccbad600a398fd0b.wav",
+        "impl_version": 2,
+        "inputs": [
+          "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6",
+          "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915",
+          "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0",
+          "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b"
+        ],
+        "kind": "mix",
+        "node_hash": "fea32c3c60000e50fa0430315c7ddc5c0f7bf02b89674b39009e31d5659ba304",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "street",
+            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+            "tail_ms": 368,
+            "version": 1,
+            "wet": 0.08
+          }
+        }
+      },
+      "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.35,
+          "early_reflections": 4,
+          "lowpass_hz": 7000.0,
+          "pre_delay_ms": 18,
+          "seed": 1106
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "57e1bb5a869e8fdff134b75fc81c140818656249498643969a2a9646c30925cd": {
+        "file": "57e1bb5a869e8fdff134b75fc81c140818656249498643969a2a9646c30925cd.wav",
+        "impl_version": 1,
+        "inputs": [
+          "81f75620ed62eec48edb3927e3774342408ef1536570aff513180bf56f22004a",
+          "35ceba94bc65961c4ee52c6ce57aa6eac3763ee2ce683323ccbad600a398fd0b"
+        ],
+        "kind": "track",
+        "node_hash": "783eead85301b14f07a1210a0ddf2f6709821e43d8c43e916b1881737eb6109b",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -25.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 19595
+        }
+      },
+      "5a23b9efb281db3b216ba7ee72d855e18d02dae89b521b088291490fa34f1a9d": {
+        "file": "5a23b9efb281db3b216ba7ee72d855e18d02dae89b521b088291490fa34f1a9d.wav",
+        "impl_version": 1,
+        "inputs": [
+          "35ceba94bc65961c4ee52c6ce57aa6eac3763ee2ce683323ccbad600a398fd0b"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "262debfc0a425d686611b8300509e188a2fa0f934eb13e48123c331e077b2b6d",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "64877becfbe63e15314b3ef8baeb48a969d0a7baea351acaca8565ba3370c81f": {
+        "file": "64877becfbe63e15314b3ef8baeb48a969d0a7baea351acaca8565ba3370c81f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "1b9332ea4e40d665459419c40b0289d2a13875cbfd22c8f3f5acdad84e9ccdee"
+        ],
+        "kind": "pace",
+        "node_hash": "003bc583b55cc1a4cc95df343d511a58800233c36266ec4068b02d2ee75c8556",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "72dbb8ec20696f2704a9671cc4db75c78d4274b8c024fc8f50ab8dcbdb7c6de4": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "72dbb8ec20696f2704a9671cc4db75c78d4274b8c024fc8f50ab8dcbdb7c6de4.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "9ff22b293f7559d96c6e38ea493aef2c0f7d2a05e2d78bbe55b04d16ada12d24",
+        "seed": 140
+      },
+      "7b9c3b35bc74b4adf8e06fdab48638e0ed14819fc3e029660484f2475fce3b37": {
+        "file": "7b9c3b35bc74b4adf8e06fdab48638e0ed14819fc3e029660484f2475fce3b37.wav",
+        "impl_version": 2,
+        "inputs": [
+          "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6",
+          "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915",
+          "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0",
+          "57e1bb5a869e8fdff134b75fc81c140818656249498643969a2a9646c30925cd",
+          "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b"
+        ],
+        "kind": "mix",
+        "node_hash": "e95dbcfaf08768229fdc783abecef7633b8f699c71f726d807d933e30f5c1437",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 18695,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "street",
+            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+            "tail_ms": 368,
+            "version": 1,
+            "wet": 0.08
+          }
+        }
+      },
+      "81f75620ed62eec48edb3927e3774342408ef1536570aff513180bf56f22004a": {
+        "adapter_code_revision": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+        "engine": "stable_audio_sfx",
+        "file": "81f75620ed62eec48edb3927e3774342408ef1536570aff513180bf56f22004a.wav",
+        "kind": "generated-sound",
+        "license": "Stability AI Community License",
+        "model_id": "stabilityai/stable-audio-3-optimized",
+        "model_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+        "params": {
+          "apg": 1.0,
+          "cfg": 1.0,
+          "dit_dtype": "fp16",
+          "init_noise_level": 1.0,
+          "steps": 8
+        },
+        "request": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet residential inner courtyard, a few birds, distant city traffic behind buildings, a bicycle bell far away, no music",
+          "seed": 5207
+        },
+        "request_sha256": "2658f4a772b373ae5ba34299d1f7a024e0e0dc98180f6f11183e9954fa5c60c2",
+        "seed": 5207
+      },
+      "8813d69a57bff984ed9ca16a8306e77fa788cc9178b0a3929e258738b7ef824d": {
+        "encoding": "qa",
+        "file": "8813d69a57bff984ed9ca16a8306e77fa788cc9178b0a3929e258738b7ef824d.wav",
+        "kind": "encode",
+        "source": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2"
+      },
+      "8af17469ed3dee391fb301ad34e10334ab7666dddbe7dbeccfda53f6ace5acfd": {
+        "file": "8af17469ed3dee391fb301ad34e10334ab7666dddbe7dbeccfda53f6ace5acfd.wav",
+        "impl_version": 1,
+        "inputs": [
+          "72dbb8ec20696f2704a9671cc4db75c78d4274b8c024fc8f50ab8dcbdb7c6de4"
+        ],
+        "kind": "pace",
+        "node_hash": "184a1af941bf2e9d21e5516fd6539d91524874dbd1f40f06b02f6d6814909aed",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915": {
+        "file": "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f926f74f9ef636827a8bfb3d7e4c8b257b498e5bc4f6c99e08e075e46e1d984b"
+        ],
+        "kind": "track",
+        "node_hash": "a0f649aec8d5cda3d6b9b0880e391ac4ebffd4f06e4605ed5f4d9587ad5a995a",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 7398,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "b40531d6b64ed46fde6448996d837dd3cb1ebb7b299ee56dd01261550ea9b3f2": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "b40531d6b64ed46fde6448996d837dd3cb1ebb7b299ee56dd01261550ea9b3f2.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "d9ebca1af67a99c0c870e191d394e91bc5008cd08229fee410bbe3dfebf4ede0",
+        "seed": 200
+      },
+      "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2": {
+        "file": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2.wav",
+        "impl_version": 1,
+        "inputs": [
+          "7b9c3b35bc74b4adf8e06fdab48638e0ed14819fc3e029660484f2475fce3b37"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "2785ca1720232e2a8842d08746cb5fabe82ae370455931a0ffb40b0c652af6a1",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "f926f74f9ef636827a8bfb3d7e4c8b257b498e5bc4f6c99e08e075e46e1d984b": {
+        "file": "f926f74f9ef636827a8bfb3d7e4c8b257b498e5bc4f6c99e08e075e46e1d984b.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b40531d6b64ed46fde6448996d837dd3cb1ebb7b299ee56dd01261550ea9b3f2"
+        ],
+        "kind": "pace",
+        "node_hash": "9d4f982573a63ba9331a7b5b818488180caa217285734ab31dd4c6650fc51ac5",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6": {
+        "file": "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6.wav",
+        "impl_version": 1,
+        "inputs": [
+          "8af17469ed3dee391fb301ad34e10334ab7666dddbe7dbeccfda53f6ace5acfd"
+        ],
+        "kind": "track",
+        "node_hash": "8b23509ea738164f0d47ae2f2cd56d532e6aed371cdd4fafd50915934b69d469",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      }
+    },
+    "created_at": "2026-11-01T21:03:08.198322+00:00",
+    "duration_ms": 19595,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "72dbb8ec20696f2704a9671cc4db75c78d4274b8c024fc8f50ab8dcbdb7c6de4",
+        "cached": true,
+        "hash": "aab41148debfa0d046a5ea7f9e7d21336d878246b9ae2ca92140329f45033040",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 140,
+            "style": null,
+            "text": "Ich bin dafür, dass wir im Hof Fahrradständer aufstellen. Es stehen ständig Räder im Weg.",
+            "voice": "3ecc00e3c928c807f4c88b436ddcaf251a3b96946b2355555b637631fec17066"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "8af17469ed3dee391fb301ad34e10334ab7666dddbe7dbeccfda53f6ace5acfd",
+        "cached": false,
+        "hash": "184a1af941bf2e9d21e5516fd6539d91524874dbd1f40f06b02f6d6814909aed",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "b40531d6b64ed46fde6448996d837dd3cb1ebb7b299ee56dd01261550ea9b3f2",
+        "cached": true,
+        "hash": "8bf90fbbbacdb66efa53e624dc373fed82a23bef7c58e0035ab6b6c9c9f9d12d",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 200,
+            "style": null,
+            "text": "Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer?",
+            "voice": "6b8c22132a5e8e7c32ce1ebe37ed945982c6d378431442aaf1f78e0f788fbca7"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "f926f74f9ef636827a8bfb3d7e4c8b257b498e5bc4f6c99e08e075e46e1d984b",
+        "cached": false,
+        "hash": "9d4f982573a63ba9331a7b5b818488180caa217285734ab31dd4c6650fc51ac5",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "1b9332ea4e40d665459419c40b0289d2a13875cbfd22c8f3f5acdad84e9ccdee",
+        "cached": true,
+        "hash": "15fff9c176a7fe09804cc7996414bfe53099f8889fc2fa7e6aef8624256e4ea9",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 140,
+            "style": null,
+            "text": "Damit könnte ich leben. Dann stellen wir sie an die Mauer.",
+            "voice": "3ecc00e3c928c807f4c88b436ddcaf251a3b96946b2355555b637631fec17066"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "64877becfbe63e15314b3ef8baeb48a969d0a7baea351acaca8565ba3370c81f",
+        "cached": false,
+        "hash": "003bc583b55cc1a4cc95df343d511a58800233c36266ec4068b02d2ee75c8556",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.7,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "81f75620ed62eec48edb3927e3774342408ef1536570aff513180bf56f22004a",
+        "cached": true,
+        "hash": "fef74022824e68c70b93c6485c88d6f0e3c344d13443da676927b412381a9681",
+        "impl_version": 1,
+        "params": {
+          "engine": "stable_audio_sfx",
+          "engine_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+          "request": {
+            "duration_seconds": 40.0,
+            "negative_prompt": null,
+            "params": {},
+            "prompt": "Quiet residential inner courtyard, a few birds, distant city traffic behind buildings, a bicycle bell far away, no music",
+            "seed": 5207
+          }
+        },
+        "type": "sound-gen"
+      },
+      {
+        "asset": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+        "cached": true,
+        "hash": "ca3c46169904ab831d641318c0f2a826c4f44235658880f6f0a48b75f45c5946",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.35,
+            "early_reflections": 4,
+            "lowpass_hz": 7000.0,
+            "pre_delay_ms": 18,
+            "seed": 1106
+          },
+          "rate": 48000,
+          "room": "street",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "ff095f62cbca81abe03510ce021f1156c341cc70606709a4ff3060eb9695c8d6",
+        "cached": false,
+        "hash": "8b23509ea738164f0d47ae2f2cd56d532e6aed371cdd4fafd50915934b69d469",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "a367c7f6717c3a94b724d8a8b3b7c6b628d2aabeea7c6f567e72301775cb2915",
+        "cached": false,
+        "hash": "a0f649aec8d5cda3d6b9b0880e391ac4ebffd4f06e4605ed5f4d9587ad5a995a",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 7398,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "1aa36eb0e4463a84612352b30e23052687a6954ad37ec802c57f1a99239948e0",
+        "cached": false,
+        "hash": "010fa885290916a4fc0bdad984738f90dc0eb9ef5c585fa24c3d384f44a9d3c0",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 15629,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "35ceba94bc65961c4ee52c6ce57aa6eac3763ee2ce683323ccbad600a398fd0b",
+        "cached": false,
+        "hash": "fea32c3c60000e50fa0430315c7ddc5c0f7bf02b89674b39009e31d5659ba304",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "street",
+            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+            "tail_ms": 368,
+            "version": 1,
+            "wet": 0.08
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "57e1bb5a869e8fdff134b75fc81c140818656249498643969a2a9646c30925cd",
+        "cached": false,
+        "hash": "783eead85301b14f07a1210a0ddf2f6709821e43d8c43e916b1881737eb6109b",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -25.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 19595
+        },
+        "type": "track"
+      },
+      {
+        "asset": "7b9c3b35bc74b4adf8e06fdab48638e0ed14819fc3e029660484f2475fce3b37",
+        "cached": false,
+        "hash": "e95dbcfaf08768229fdc783abecef7633b8f699c71f726d807d933e30f5c1437",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 18695,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "street",
+            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+            "tail_ms": 368,
+            "version": 1,
+            "wet": 0.08
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "dd96906c3d4cb54e707bb09dae9dc128fd73851b9c1ed54e4fb9520b2fb19cd2",
+        "cached": false,
+        "hash": "2785ca1720232e2a8842d08746cb5fabe82ae370455931a0ffb40b0c652af6a1",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "5a23b9efb281db3b216ba7ee72d855e18d02dae89b521b088291490fa34f1a9d",
+        "cached": false,
+        "hash": "262debfc0a425d686611b8300509e188a2fa0f934eb13e48123c331e077b2b6d",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "8813d69a57bff984ed9ca16a8306e77fa788cc9178b0a3929e258738b7ef824d",
+        "cached": false,
+        "hash": "c44d9b1df83497f1d3559f6f2c9d234ee371d32591aa99044c1ea85830202ad1",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "300e129f5455ff3b36d83d1b8876b55da68a913e4ef7c63b5f828a1f43207b4d",
+        "cached": false,
+        "hash": "6fb2acc38f34bbfd07c4d072893ea586f656f57de9acd4638d3996bc41fb3ee9",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 5,
+    "nodes_evaluated": 13,
+    "timeline": [
+      {
+        "end_ms": 6948,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 15179,
+        "entry_id": "line-2",
+        "start_ms": 7398,
+        "type": "speech"
+      },
+      {
+        "end_ms": 19595,
+        "entry_id": "line-3",
+        "start_ms": 15629,
+        "type": "speech"
+      },
+      {
+        "end_ms": 19595,
+        "entry_id": "ambience-1",
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 6948,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 15179,
+        "start_ms": 7398,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 19595,
+        "start_ms": 15629,
+        "utterance_id": "line-3"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "street",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        19,
+        30
+      ],
+      "grammar_target": null,
+      "level": "B1",
+      "outcomes": [
+        "diskussion-folgen"
+      ],
+      "scenario": "Zwei Nachbarn diskutieren Fahrradständer im Hof",
+      "topic": null,
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "herr-wu",
+          "version": 2
+        },
+        "role": "Herr Baum",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 140,
+          "style": null,
+          "voice": "3ecc00e3c928c807f4c88b436ddcaf251a3b96946b2355555b637631fec17066",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "klara",
+          "version": 2
+        },
+        "role": "Frau Ricci",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 200,
+          "style": null,
+          "voice": "6b8c22132a5e8e7c32ce1ebe37ed945982c6d378431442aaf1f78e0f788fbca7",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Ich bin dafür, dass wir im Hof Fahrradständer aufstellen. Es stehen ständig Räder im Weg.",
+        "id": "line-1",
+        "pace": 0.7,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Baum",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer?",
+        "id": "line-2",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Ricci",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Damit könnte ich leben. Dann stellen wir sie an die Mauer.",
+        "id": "line-3",
+        "pace": 0.7,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Baum",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-checkpoint-b1-03",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "duck_db": 0.0,
+        "end_ms": null,
+        "fade_in_ms": 600,
+        "fade_out_ms": 900,
+        "gain_db": -25.0,
+        "sound": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet residential inner courtyard, a few birds, distant city traffic behind buildings, a bicycle bell far away, no music",
+          "seed": 5207
+        },
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "title": {
+      "en": "Bike racks in the courtyard",
+      "ru": "Велопарковка во дворе",
+      "uk": "Велопарковка у дворі"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 2,
+  "scene_sha256": "45d158b50a81d56957f14857bf9083a2cc575ca679257e588990ee17571d1c5a",
+  "script_sha256": "7cff947095da366bb26752bdc199f5fdba209d293f7dc30b2016ddfa0cea00bc",
+  "version": 2,
+  "voices": [
+    {
+      "character": "klara",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her mid-forties speaking clear standard German. Focused, firm, medium-low voice; polite and efficient, brisk steady pace, businesslike without coldness.",
+      "reference_sha256": "6b8c22132a5e8e7c32ce1ebe37ed945982c6d378431442aaf1f78e0f788fbca7",
+      "role": "Frau Ricci",
+      "seed": 200,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "herr-wu",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his late sixties speaking clear standard German. Calm, slightly gravelly low voice; patient and reliable with a dry, understated friendliness; unhurried.",
+      "reference_sha256": "3ecc00e3c928c807f4c88b436ddcaf251a3b96946b2355555b637631fec17066",
+      "role": "Herr Baum",
+      "seed": 140,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

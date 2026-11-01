@@ -1,0 +1,739 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.779222+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-verben-mit-praepositionen-02-listening.md",
+    "sha256": "42c1140f82d81191469c3dc3c6fe9586a1158eb97764ebf696044fb982213f0e"
+  },
+  "id": "ls-verben-mit-praepositionen-02",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "f463b9a73a58d54d52e89dd6c62ade9dc1ef71b58b95c987ca1bf0250b64202a",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "7fe94ec659adba65111c9195a1edcd415505b92879a6a70ce017efebdf6c5a6e",
+    "soundscape": {
+      "bed_count": 0,
+      "beds": [],
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 2,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 195.15097426744012,
+          "pitch_min_hz": 195.15097426744012,
+          "pitch_spread_hz": null,
+          "speaker": "Lea"
+        },
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 128.0,
+          "pitch_min_hz": 128.0,
+          "pitch_spread_hz": null,
+          "speaker": "Amir"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.36039860977948757,
+          "speakers": [
+            "Lea",
+            "Amir"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Lea"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Amir"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": [
+        "Lea: fewer than two measurable lines; identity is manual-only",
+        "Amir: fewer than two measurable lines; identity is manual-only"
+      ]
+    },
+    "timing": [
+      {
+        "end_ms": 1787,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 5999,
+        "start_ms": 2237,
+        "utterance_id": "line-2"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T20:59:16.165984+00:00",
+      "failures": [],
+      "full_transcript": "Worauf warten wir noch? Auf Mias Nachricht. Danach kaufen wir die Tickets.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Worauf warten wir noch?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Worauf warten wir noch?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Auf Mias Nachricht. Danach kaufen wir die Tickets.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Auf Mias Nachricht. Danach kaufen wir die Tickets.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {},
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": null,
+      "room": null,
+      "room_version": null,
+      "variant": "natural",
+      "wet": 0.0
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "43d361de3196f72a37be569758082d8161b4d5831c4753a9e9365d74ac80eea4"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "848c96e7fb19b5f8bab415df5be3543425b9a0764e0ad73b71c6adf974eaf398"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "0c4667232ec54d41da1c769d4ba02a6e9378f0c620907c8b19c26524019ee96f"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "f463b9a73a58d54d52e89dd6c62ade9dc1ef71b58b95c987ca1bf0250b64202a"
+      }
+    ],
+    "assets": {
+      "0455449a4c50ce07331d1b4b6cd6d2ab38c4b0eb7d651ceab1db3f7a24960842": {
+        "file": "0455449a4c50ce07331d1b4b6cd6d2ab38c4b0eb7d651ceab1db3f7a24960842.wav",
+        "impl_version": 1,
+        "inputs": [
+          "cb55c223f7aea4f04f72dccc7103e98854c60a466cf84a273ce8d2e46ad6a1ad"
+        ],
+        "kind": "pace",
+        "node_hash": "0af3690e24ca823b30dc1f3f124a28648e72850e5976d10d3661cf7c76e88b7d",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "0c4667232ec54d41da1c769d4ba02a6e9378f0c620907c8b19c26524019ee96f": {
+        "encoding": "qa",
+        "file": "0c4667232ec54d41da1c769d4ba02a6e9378f0c620907c8b19c26524019ee96f.wav",
+        "kind": "encode",
+        "source": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2"
+      },
+      "43d361de3196f72a37be569758082d8161b4d5831c4753a9e9365d74ac80eea4": {
+        "file": "43d361de3196f72a37be569758082d8161b4d5831c4753a9e9365d74ac80eea4.wav",
+        "impl_version": 1,
+        "inputs": [
+          "0455449a4c50ce07331d1b4b6cd6d2ab38c4b0eb7d651ceab1db3f7a24960842"
+        ],
+        "kind": "track",
+        "node_hash": "4c30a5c165672850d2050f220c6a83084fd9dcc2853196025fd852f778a83459",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "5dea53ba0a06e69bb4ad3d5352d77ef97d5902323f59f3d117ce2590d1b1d748": {
+        "file": "5dea53ba0a06e69bb4ad3d5352d77ef97d5902323f59f3d117ce2590d1b1d748.wav",
+        "impl_version": 2,
+        "inputs": [
+          "43d361de3196f72a37be569758082d8161b4d5831c4753a9e9365d74ac80eea4",
+          "848c96e7fb19b5f8bab415df5be3543425b9a0764e0ad73b71c6adf974eaf398"
+        ],
+        "kind": "mix",
+        "node_hash": "5124caf076e965cc1000fc8e51f3c7779c66e8557e3abb0bf281e072d23566a3",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            }
+          ],
+          "rate": 48000
+        }
+      },
+      "7781322de1fcacb8d7b608303c42b9b8de637ce791464869da6176db9c5ebc30": {
+        "file": "7781322de1fcacb8d7b608303c42b9b8de637ce791464869da6176db9c5ebc30.wav",
+        "impl_version": 1,
+        "inputs": [
+          "d3350440be4f49ece83c5f975601f04bcb16188eb2ec8e60d994a6bd7e3ffc6b"
+        ],
+        "kind": "pace",
+        "node_hash": "1a599ffa185b7b92b036d0440a1f5d2f30424dc004d274b4f2d1142c1d03061b",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.74,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2": {
+        "file": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2.wav",
+        "impl_version": 1,
+        "inputs": [
+          "5dea53ba0a06e69bb4ad3d5352d77ef97d5902323f59f3d117ce2590d1b1d748"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "44a6063c8813fb7f0464c9f50bae70decfb993d619f7169508f874ca75094181",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "848c96e7fb19b5f8bab415df5be3543425b9a0764e0ad73b71c6adf974eaf398": {
+        "file": "848c96e7fb19b5f8bab415df5be3543425b9a0764e0ad73b71c6adf974eaf398.wav",
+        "impl_version": 1,
+        "inputs": [
+          "7781322de1fcacb8d7b608303c42b9b8de637ce791464869da6176db9c5ebc30"
+        ],
+        "kind": "track",
+        "node_hash": "6f1faba326cc01c73482ed296836ce788c83e31d0aac8a998e880ed5b2b6c698",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 2237,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "cb55c223f7aea4f04f72dccc7103e98854c60a466cf84a273ce8d2e46ad6a1ad": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "cb55c223f7aea4f04f72dccc7103e98854c60a466cf84a273ce8d2e46ad6a1ad.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "97e5d5eded6c79ddbc0288bd5e544e42d49f76490adb66a45e1e4fc0a50ce83a",
+        "seed": 105
+      },
+      "d3350440be4f49ece83c5f975601f04bcb16188eb2ec8e60d994a6bd7e3ffc6b": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "d3350440be4f49ece83c5f975601f04bcb16188eb2ec8e60d994a6bd7e3ffc6b.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "fb930555304d7d5fcd5ca5b1d66eaef59fbb3a3e4a962ed4d66979b87b02d930",
+        "seed": 135
+      },
+      "f463b9a73a58d54d52e89dd6c62ade9dc1ef71b58b95c987ca1bf0250b64202a": {
+        "encoding": "publish",
+        "file": "f463b9a73a58d54d52e89dd6c62ade9dc1ef71b58b95c987ca1bf0250b64202a.mp3",
+        "kind": "encode",
+        "source": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2"
+      }
+    },
+    "created_at": "2026-11-01T20:59:10.338646+00:00",
+    "duration_ms": 5999,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "cb55c223f7aea4f04f72dccc7103e98854c60a466cf84a273ce8d2e46ad6a1ad",
+        "cached": false,
+        "hash": "46a8e2ab6d9940edca5ae1be144a65394f139595dc24c7b26ab6d3d49ed70974",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Worauf warten wir noch?",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "0455449a4c50ce07331d1b4b6cd6d2ab38c4b0eb7d651ceab1db3f7a24960842",
+        "cached": false,
+        "hash": "0af3690e24ca823b30dc1f3f124a28648e72850e5976d10d3661cf7c76e88b7d",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d3350440be4f49ece83c5f975601f04bcb16188eb2ec8e60d994a6bd7e3ffc6b",
+        "cached": false,
+        "hash": "54490cd1604e8090fc04cbe53eb5b6572f1beb2521c03736d394f54d12b6bc63",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 135,
+            "style": null,
+            "text": "Auf Mias Nachricht. Danach kaufen wir die Tickets.",
+            "voice": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "7781322de1fcacb8d7b608303c42b9b8de637ce791464869da6176db9c5ebc30",
+        "cached": false,
+        "hash": "1a599ffa185b7b92b036d0440a1f5d2f30424dc004d274b4f2d1142c1d03061b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.74,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "43d361de3196f72a37be569758082d8161b4d5831c4753a9e9365d74ac80eea4",
+        "cached": false,
+        "hash": "4c30a5c165672850d2050f220c6a83084fd9dcc2853196025fd852f778a83459",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "848c96e7fb19b5f8bab415df5be3543425b9a0764e0ad73b71c6adf974eaf398",
+        "cached": false,
+        "hash": "6f1faba326cc01c73482ed296836ce788c83e31d0aac8a998e880ed5b2b6c698",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 2237,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "5dea53ba0a06e69bb4ad3d5352d77ef97d5902323f59f3d117ce2590d1b1d748",
+        "cached": false,
+        "hash": "5124caf076e965cc1000fc8e51f3c7779c66e8557e3abb0bf281e072d23566a3",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            }
+          ],
+          "rate": 48000
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "831e0e5e37834ca397f9caf46012d0c47f055504ba303e19023b875d7f8474e2",
+        "cached": false,
+        "hash": "44a6063c8813fb7f0464c9f50bae70decfb993d619f7169508f874ca75094181",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "0c4667232ec54d41da1c769d4ba02a6e9378f0c620907c8b19c26524019ee96f",
+        "cached": false,
+        "hash": "064a26e4d14da34af28d3eabb1b5f1794d31fade0e781aaddad0802d245d9fe7",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "f463b9a73a58d54d52e89dd6c62ade9dc1ef71b58b95c987ca1bf0250b64202a",
+        "cached": false,
+        "hash": "78aab396328441854d0cd135f1f89f99e9bc3da733f9c8b487c65aecdeda9347",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 0,
+    "nodes_evaluated": 10,
+    "timeline": [
+      {
+        "end_ms": 1787,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 5999,
+        "entry_id": "line-2",
+        "start_ms": 2237,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 1787,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 5999,
+        "start_ms": 2237,
+        "utterance_id": "line-2"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": null,
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        5,
+        8
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "wo-wort-fragen",
+        "da-wort-sache"
+      ],
+      "scenario": "Zwei Freunde warten auf eine Nachricht, bevor sie Tickets kaufen",
+      "topic": "verben-mit-praepositionen",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "mira",
+          "version": 2
+        },
+        "role": "Lea",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 105,
+          "style": null,
+          "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "amir",
+          "version": 2
+        },
+        "role": "Amir",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 135,
+          "style": null,
+          "voice": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Worauf warten wir noch?",
+        "id": "line-1",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Lea",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Auf Mias Nachricht. Danach kaufen wir die Tickets.",
+        "id": "line-2",
+        "pace": 0.74,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Amir",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-verben-mit-praepositionen-02",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      }
+    ],
+    "title": {
+      "en": "What are we waiting for?",
+      "ru": "Чего мы ждём?",
+      "uk": "На що ми чекаємо?"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "7fe94ec659adba65111c9195a1edcd415505b92879a6a70ce017efebdf6c5a6e",
+  "script_sha256": "6be4dce598cecd9302397be970b562ba558b2348a44f5b856897e4a72c7e3ddc",
+  "version": 2,
+  "voices": [
+    {
+      "character": "amir",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his early twenties speaking clear standard German. Curious, energetic, medium voice with natural enthusiasm; lively but never rushed.",
+      "reference_sha256": "5b960d62fd41252688b9e5ac87c5e620ac31b7adc523126a7f207fbbf2d5510b",
+      "role": "Amir",
+      "seed": 135,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "mira",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her early twenties speaking clear standard German. Bright, slightly higher voice with lively but calm energy; quick, friendly and practical, with clear sentence endings.",
+      "reference_sha256": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+      "role": "Lea",
+      "seed": 105,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

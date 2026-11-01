@@ -1,0 +1,1302 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.590765+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-meinung-medien-produktion-01-listening.md",
+    "sha256": "85a929a31c88cf05d7db7585a742d1f9c2fd935e6c3a754283b764a74e50c053"
+  },
+  "id": "ls-meinung-medien-produktion-01",
+  "kind": "dialogue",
+  "level": "B1",
+  "master_audio_sha256": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "9c60723bc40db6e0d548ee5e0a6f690291b081c061b2065254304afa132ad682",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "1b4f7a990ac20a60b0e2b2e75c926ad719aa6e34a5016a87f7e04e385f60c5a7",
+    "soundscape": {
+      "bed_count": 0,
+      "beds": [],
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 2,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 3,
+          "measured_lines": 3,
+          "minimum_similarity": 0.9501806924624616,
+          "pitch_max_hz": 149.53271028037383,
+          "pitch_min_hz": 118.08278867102396,
+          "pitch_spread_hz": 31.44992160934987,
+          "speaker": "Moderator"
+        },
+        {
+          "line_count": 2,
+          "measured_lines": 2,
+          "minimum_similarity": 0.9773295347305833,
+          "pitch_max_hz": 140.35087719298247,
+          "pitch_min_hz": 137.46312684365782,
+          "pitch_spread_hz": 2.887750349324648,
+          "speaker": "Frau Berg"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.3676162969211604,
+          "speakers": [
+            "Moderator",
+            "Frau Berg"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9772330934170791,
+          "speaker": "Moderator"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9773295347305833,
+          "speaker": "Frau Berg"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9501806924624616,
+          "speaker": "Moderator"
+        },
+        {
+          "line_id": "line-4",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9773295347305833,
+          "speaker": "Frau Berg"
+        },
+        {
+          "line_id": "line-5",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9783531808821866,
+          "speaker": "Moderator"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 7033,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 12019,
+        "start_ms": 7483,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 16646,
+        "start_ms": 12469,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 22349,
+        "start_ms": 17096,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 27094,
+        "start_ms": 22799,
+        "utterance_id": "line-5"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T20:40:30.746171+00:00",
+      "failures": [],
+      "full_transcript": "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau? Wir haben 200 Menschen gefragt, woher sie ihre Nachrichten bekommen. Und wovon hängt es ab, ob jemand noch eine Zeitung kauft? Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy. Zu den genauen Zahlen möchte sich die Redaktion morgen äußern.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wir haben zweihundert Menschen gefragt, woher sie ihre Nachrichten bekommen.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wir haben 200 Menschen gefragt, woher sie ihre Nachrichten bekommen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und wovon hängt es ab, ob jemand noch eine Zeitung kauft?",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und wovon hängt es ab, ob jemand noch eine Zeitung kauft?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Zu den genauen Zahlen möchte sich die Redaktion morgen äußern.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Zu den genauen Zahlen möchte sich die Redaktion morgen äußern.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "studio": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "studio",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.04
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "7f0d8ab132eb66e8b78d9ec030113aa7d8bf2a5769a5d4b4d792a70f83476cd6"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "60585bb19ea6df90de6212663f37355a5879d08dbf1da4d23f5efb2cc10e028c"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "b2081474e7d7ee52c6f696388e19bc36f411d62fb5fd32fe10f29c58edc34d4f"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-4.wav",
+        "sha256": "926a37507e503b2fa47a8a3dc4dd4b36037834065e73333fbc3081a3c50883c7"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-5.wav",
+        "sha256": "ae0946e9ce58294accea84f0e70e3936cdd644c907577190eb51b5ab4d6c1924"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "9982af7b96f8a557471bc8de0f3027477d605a3382ae082420ddcee5bbf4beff"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "9c60723bc40db6e0d548ee5e0a6f690291b081c061b2065254304afa132ad682"
+      }
+    ],
+    "assets": {
+      "13d97c6b7fd4b0f583bddbbc37fa9dc6fea59950d1f3440a4580e8efa8216d74": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "13d97c6b7fd4b0f583bddbbc37fa9dc6fea59950d1f3440a4580e8efa8216d74.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "e1c3b8644d89656ff3e18c120914da6056f2398a47b1b4121151613059eb8956",
+        "seed": 110
+      },
+      "27a6f72a789aefdec5e65713a4f061f713e95f8e9f2add9c72b8f7d5f6ec2dea": {
+        "file": "27a6f72a789aefdec5e65713a4f061f713e95f8e9f2add9c72b8f7d5f6ec2dea.wav",
+        "impl_version": 1,
+        "inputs": [
+          "322a2d6cc09371bd5a2d9eb8e87780d2996c1d0ec0b38562de9824cd1ef0b473"
+        ],
+        "kind": "pace",
+        "node_hash": "0039f2298daf9374185417b318ccb107c6af77f43f4cbede6a1575185a2f4f80",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-5"
+      },
+      "322a2d6cc09371bd5a2d9eb8e87780d2996c1d0ec0b38562de9824cd1ef0b473": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "322a2d6cc09371bd5a2d9eb8e87780d2996c1d0ec0b38562de9824cd1ef0b473.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "f894ffbf026e826b9fd7fc94fe9055b29cd385c2f73d2d35c13a00ff3bec8fe2",
+        "seed": 120
+      },
+      "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9": {
+        "file": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e2eeca9d73f82f0f09895f411c5ab5bc7658962c2e3593fd55eff2cf06947093"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "f19d46e29ce7c466191dbe49eaf6bb88f9fb044b04483d8703b21436dc751877",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "5bc4b8da6908a38391a0f7eab4ce92b5ec592e55ead90ca9a6529c7cfd1e7155": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "5bc4b8da6908a38391a0f7eab4ce92b5ec592e55ead90ca9a6529c7cfd1e7155.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "69a1eeb7a00d1521e7e211a91199b9f6d9c0c8df515dcc13df732619c6deaa0e",
+        "seed": 120
+      },
+      "60585bb19ea6df90de6212663f37355a5879d08dbf1da4d23f5efb2cc10e028c": {
+        "file": "60585bb19ea6df90de6212663f37355a5879d08dbf1da4d23f5efb2cc10e028c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "964313e710ddc9de8624d8cb706e18a9c96c7b5369eeaf90aea63e390276be10"
+        ],
+        "kind": "track",
+        "node_hash": "9cfd225ea7bd5f41526ae6088d7254a7f7baf9e18b7283f9251d6c3ad9a84a45",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 7483,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "7f0d8ab132eb66e8b78d9ec030113aa7d8bf2a5769a5d4b4d792a70f83476cd6": {
+        "file": "7f0d8ab132eb66e8b78d9ec030113aa7d8bf2a5769a5d4b4d792a70f83476cd6.wav",
+        "impl_version": 1,
+        "inputs": [
+          "dd97ae29b4c0acd733fc465b29ce00b8a0bf660c7a7c1995280200da4be600d9"
+        ],
+        "kind": "track",
+        "node_hash": "5c65b20f6de3143253e4df5e52cd30786010e1111b397f9f5ae7ec85246065f2",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "9124b9d76979f804f4fbf8e2b63619c2c3a929c360b8f14956bbf4bc21758ce7": {
+        "file": "9124b9d76979f804f4fbf8e2b63619c2c3a929c360b8f14956bbf4bc21758ce7.wav",
+        "impl_version": 1,
+        "inputs": [
+          "13d97c6b7fd4b0f583bddbbc37fa9dc6fea59950d1f3440a4580e8efa8216d74"
+        ],
+        "kind": "pace",
+        "node_hash": "0f2a11daea94f9a65b0d89564788bcb64d4d3f25ab44ebe9ea58798bbd078072",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-4"
+      },
+      "926a37507e503b2fa47a8a3dc4dd4b36037834065e73333fbc3081a3c50883c7": {
+        "file": "926a37507e503b2fa47a8a3dc4dd4b36037834065e73333fbc3081a3c50883c7.wav",
+        "impl_version": 1,
+        "inputs": [
+          "9124b9d76979f804f4fbf8e2b63619c2c3a929c360b8f14956bbf4bc21758ce7"
+        ],
+        "kind": "track",
+        "node_hash": "7280d442d848e5918a07046dbe67d3938d1c22df246327f88105cd7072aaffed",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 17096,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "964313e710ddc9de8624d8cb706e18a9c96c7b5369eeaf90aea63e390276be10": {
+        "file": "964313e710ddc9de8624d8cb706e18a9c96c7b5369eeaf90aea63e390276be10.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e140d022f5508c378a7465183ccb99f54a32936d9338787afd9f5841d2ed1c1e"
+        ],
+        "kind": "pace",
+        "node_hash": "32ec7d5e8dd6b7f688787494170113a53f5352aa51bbacc8b1e3ec879a25d0e4",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "9982af7b96f8a557471bc8de0f3027477d605a3382ae082420ddcee5bbf4beff": {
+        "encoding": "qa",
+        "file": "9982af7b96f8a557471bc8de0f3027477d605a3382ae082420ddcee5bbf4beff.wav",
+        "kind": "encode",
+        "source": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9"
+      },
+      "9c60723bc40db6e0d548ee5e0a6f690291b081c061b2065254304afa132ad682": {
+        "encoding": "publish",
+        "file": "9c60723bc40db6e0d548ee5e0a6f690291b081c061b2065254304afa132ad682.mp3",
+        "kind": "encode",
+        "source": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9"
+      },
+      "ae0946e9ce58294accea84f0e70e3936cdd644c907577190eb51b5ab4d6c1924": {
+        "file": "ae0946e9ce58294accea84f0e70e3936cdd644c907577190eb51b5ab4d6c1924.wav",
+        "impl_version": 1,
+        "inputs": [
+          "27a6f72a789aefdec5e65713a4f061f713e95f8e9f2add9c72b8f7d5f6ec2dea"
+        ],
+        "kind": "track",
+        "node_hash": "cf15e61b65b9f0f953e0bea26ffce01a27152bf76f581daf5021bec25d5351d3",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 22799,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "b2081474e7d7ee52c6f696388e19bc36f411d62fb5fd32fe10f29c58edc34d4f": {
+        "file": "b2081474e7d7ee52c6f696388e19bc36f411d62fb5fd32fe10f29c58edc34d4f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b47f676d35c0c2b80a21d61a3e766cc29e5cb8038d5fc5dbc954432fd0b789fa"
+        ],
+        "kind": "track",
+        "node_hash": "08bc3db0ebd2349c074f49e11282b6d3474420b15934875d280055a276731e33",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 12469,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "b47f676d35c0c2b80a21d61a3e766cc29e5cb8038d5fc5dbc954432fd0b789fa": {
+        "file": "b47f676d35c0c2b80a21d61a3e766cc29e5cb8038d5fc5dbc954432fd0b789fa.wav",
+        "impl_version": 1,
+        "inputs": [
+          "5bc4b8da6908a38391a0f7eab4ce92b5ec592e55ead90ca9a6529c7cfd1e7155"
+        ],
+        "kind": "pace",
+        "node_hash": "f518db39db2c6cc121bacbe87b438139e15e8897d57c0769177819ecb00f3a1c",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "c67c38b7c28c2f99104ef9e9a6aa428ea8361ed6d8e7566739b102b25749b1f8": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "c67c38b7c28c2f99104ef9e9a6aa428ea8361ed6d8e7566739b102b25749b1f8.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "5de79bda96c80690530d21f3284fc12860f63f8759c82db41316008f40aec329",
+        "seed": 120
+      },
+      "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.25,
+          "early_reflections": 3,
+          "lowpass_hz": 9000.0,
+          "pre_delay_ms": 4,
+          "seed": 1101
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "dd97ae29b4c0acd733fc465b29ce00b8a0bf660c7a7c1995280200da4be600d9": {
+        "file": "dd97ae29b4c0acd733fc465b29ce00b8a0bf660c7a7c1995280200da4be600d9.wav",
+        "impl_version": 1,
+        "inputs": [
+          "c67c38b7c28c2f99104ef9e9a6aa428ea8361ed6d8e7566739b102b25749b1f8"
+        ],
+        "kind": "pace",
+        "node_hash": "fd9c4bffddff652a3cd8a90e0ed575b1070e2989266635c50ecc22300f079d77",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "e140d022f5508c378a7465183ccb99f54a32936d9338787afd9f5841d2ed1c1e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "e140d022f5508c378a7465183ccb99f54a32936d9338787afd9f5841d2ed1c1e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "fd09445f6a362dd6e638eaa532ab53180579d8724a6e51544964bdda0553add0",
+        "seed": 110
+      },
+      "e2eeca9d73f82f0f09895f411c5ab5bc7658962c2e3593fd55eff2cf06947093": {
+        "file": "e2eeca9d73f82f0f09895f411c5ab5bc7658962c2e3593fd55eff2cf06947093.wav",
+        "impl_version": 2,
+        "inputs": [
+          "7f0d8ab132eb66e8b78d9ec030113aa7d8bf2a5769a5d4b4d792a70f83476cd6",
+          "60585bb19ea6df90de6212663f37355a5879d08dbf1da4d23f5efb2cc10e028c",
+          "b2081474e7d7ee52c6f696388e19bc36f411d62fb5fd32fe10f29c58edc34d4f",
+          "926a37507e503b2fa47a8a3dc4dd4b36037834065e73333fbc3081a3c50883c7",
+          "ae0946e9ce58294accea84f0e70e3936cdd644c907577190eb51b5ab4d6c1924",
+          "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+        ],
+        "kind": "mix",
+        "node_hash": "c10625689bd30ae6d74e94628844cef4ae334c33cd7e4467d82e3078e234e646",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        }
+      }
+    },
+    "created_at": "2026-11-01T20:40:23.365725+00:00",
+    "duration_ms": 27094,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "c67c38b7c28c2f99104ef9e9a6aa428ea8361ed6d8e7566739b102b25749b1f8",
+        "cached": false,
+        "hash": "baba4c9ed3682c9e65d8330bb56c5fc79ea5c64a969571bc2aeac66e128cc6df",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau?",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "dd97ae29b4c0acd733fc465b29ce00b8a0bf660c7a7c1995280200da4be600d9",
+        "cached": false,
+        "hash": "fd9c4bffddff652a3cd8a90e0ed575b1070e2989266635c50ecc22300f079d77",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "e140d022f5508c378a7465183ccb99f54a32936d9338787afd9f5841d2ed1c1e",
+        "cached": false,
+        "hash": "801fe0289ca53a8f7878763856f2857f7951e8105088eadbe36d81e7bfc2ccb4",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Wir haben zweihundert Menschen gefragt, woher sie ihre Nachrichten bekommen.",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "964313e710ddc9de8624d8cb706e18a9c96c7b5369eeaf90aea63e390276be10",
+        "cached": false,
+        "hash": "32ec7d5e8dd6b7f688787494170113a53f5352aa51bbacc8b1e3ec879a25d0e4",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "5bc4b8da6908a38391a0f7eab4ce92b5ec592e55ead90ca9a6529c7cfd1e7155",
+        "cached": false,
+        "hash": "3c48187a8c6c281a267d0b5072bdaa6f806ac8ebb2c8ba4cf9f16474d5cdcfdf",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Und wovon hängt es ab, ob jemand noch eine Zeitung kauft?",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "b47f676d35c0c2b80a21d61a3e766cc29e5cb8038d5fc5dbc954432fd0b789fa",
+        "cached": false,
+        "hash": "f518db39db2c6cc121bacbe87b438139e15e8897d57c0769177819ecb00f3a1c",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "13d97c6b7fd4b0f583bddbbc37fa9dc6fea59950d1f3440a4580e8efa8216d74",
+        "cached": false,
+        "hash": "663cf25df782d479b1153d6543f82efcb8398d093cd795f263232a54e5dee27c",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy.",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "9124b9d76979f804f4fbf8e2b63619c2c3a929c360b8f14956bbf4bc21758ce7",
+        "cached": false,
+        "hash": "0f2a11daea94f9a65b0d89564788bcb64d4d3f25ab44ebe9ea58798bbd078072",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "322a2d6cc09371bd5a2d9eb8e87780d2996c1d0ec0b38562de9824cd1ef0b473",
+        "cached": false,
+        "hash": "68898971beb4d653620bc9c01de0fe8932fe73b51b3af487d0ac72da8f23ed88",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Zu den genauen Zahlen möchte sich die Redaktion morgen äußern.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "27a6f72a789aefdec5e65713a4f061f713e95f8e9f2add9c72b8f7d5f6ec2dea",
+        "cached": false,
+        "hash": "0039f2298daf9374185417b318ccb107c6af77f43f4cbede6a1575185a2f4f80",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+        "cached": true,
+        "hash": "e0bf0366e9dbfced2e725932d588bb35635585193efcd4e6c1e2f22378c9172b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.25,
+            "early_reflections": 3,
+            "lowpass_hz": 9000.0,
+            "pre_delay_ms": 4,
+            "seed": 1101
+          },
+          "rate": 48000,
+          "room": "studio",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "7f0d8ab132eb66e8b78d9ec030113aa7d8bf2a5769a5d4b4d792a70f83476cd6",
+        "cached": false,
+        "hash": "5c65b20f6de3143253e4df5e52cd30786010e1111b397f9f5ae7ec85246065f2",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "60585bb19ea6df90de6212663f37355a5879d08dbf1da4d23f5efb2cc10e028c",
+        "cached": false,
+        "hash": "9cfd225ea7bd5f41526ae6088d7254a7f7baf9e18b7283f9251d6c3ad9a84a45",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 7483,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "b2081474e7d7ee52c6f696388e19bc36f411d62fb5fd32fe10f29c58edc34d4f",
+        "cached": false,
+        "hash": "08bc3db0ebd2349c074f49e11282b6d3474420b15934875d280055a276731e33",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 12469,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "926a37507e503b2fa47a8a3dc4dd4b36037834065e73333fbc3081a3c50883c7",
+        "cached": false,
+        "hash": "7280d442d848e5918a07046dbe67d3938d1c22df246327f88105cd7072aaffed",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 17096,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "ae0946e9ce58294accea84f0e70e3936cdd644c907577190eb51b5ab4d6c1924",
+        "cached": false,
+        "hash": "cf15e61b65b9f0f953e0bea26ffce01a27152bf76f581daf5021bec25d5351d3",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 22799,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "e2eeca9d73f82f0f09895f411c5ab5bc7658962c2e3593fd55eff2cf06947093",
+        "cached": false,
+        "hash": "c10625689bd30ae6d74e94628844cef4ae334c33cd7e4467d82e3078e234e646",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "574a7413d4431878174048ef16804f4451471ef3fb14bbdc63c316fc1e2510f9",
+        "cached": false,
+        "hash": "f19d46e29ce7c466191dbe49eaf6bb88f9fb044b04483d8703b21436dc751877",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "9982af7b96f8a557471bc8de0f3027477d605a3382ae082420ddcee5bbf4beff",
+        "cached": false,
+        "hash": "7ff5405f9d572582dc4a467a4250ce095b67c36b8b7977979e775558a634b95d",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "9c60723bc40db6e0d548ee5e0a6f690291b081c061b2065254304afa132ad682",
+        "cached": false,
+        "hash": "8e2bf9c2b6645f1d9598ddab83b865732631ab608687c4530d9706eb0a3028f6",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 1,
+    "nodes_evaluated": 19,
+    "timeline": [
+      {
+        "end_ms": 7033,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 12019,
+        "entry_id": "line-2",
+        "start_ms": 7483,
+        "type": "speech"
+      },
+      {
+        "end_ms": 16646,
+        "entry_id": "line-3",
+        "start_ms": 12469,
+        "type": "speech"
+      },
+      {
+        "end_ms": 22349,
+        "entry_id": "line-4",
+        "start_ms": 17096,
+        "type": "speech"
+      },
+      {
+        "end_ms": 27094,
+        "entry_id": "line-5",
+        "start_ms": 22799,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 7033,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 12019,
+        "start_ms": 7483,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 16646,
+        "start_ms": 12469,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 22349,
+        "start_ms": 17096,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 27094,
+        "start_ms": 22799,
+        "utterance_id": "line-5"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "studio",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        25,
+        39
+      ],
+      "grammar_target": null,
+      "level": "B1",
+      "outcomes": [
+        "bericht-verstehen"
+      ],
+      "scenario": "Radiosendung über eine Umfrage zum Nachrichtenkonsum",
+      "topic": "meinung-medien",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "jonas",
+          "version": 2
+        },
+        "role": "Moderator",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 120,
+          "style": null,
+          "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "anna-keller",
+          "version": 2
+        },
+        "role": "Frau Berg",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 110,
+          "style": null,
+          "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "In unserer Sendung geht es heute um eine neue Umfrage. Frau Berg, worum ging es genau?",
+        "id": "line-1",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderator",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Wir haben zweihundert Menschen gefragt, woher sie ihre Nachrichten bekommen.",
+        "id": "line-2",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Berg",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Und wovon hängt es ab, ob jemand noch eine Zeitung kauft?",
+        "id": "line-3",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderator",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Vor allem vom Alter. Junge Leser lesen fast nur auf dem Handy.",
+        "id": "line-4",
+        "pace": 0.79,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Berg",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Zu den genauen Zahlen möchte sich die Redaktion morgen äußern.",
+        "id": "line-5",
+        "pace": 0.76,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Moderator",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-meinung-medien-produktion-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-4"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-5"
+      }
+    ],
+    "title": {
+      "en": "A survey on the news",
+      "ru": "Опрос о новостях",
+      "uk": "Опитування про новини"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "1b4f7a990ac20a60b0e2b2e75c926ad719aa6e34a5016a87f7e04e385f60c5a7",
+  "script_sha256": "66374ad3be5318bb828bcb12a2cc0b5a9bb6859f76ebf2ef6c3b89b5af50e1d1",
+  "version": 2,
+  "voices": [
+    {
+      "character": "anna-keller",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman around forty speaking clear standard German. Calm, precise, medium-low voice with a polished, unhurried delivery, like a good radio magazine presenter; neutral and approachable.",
+      "reference_sha256": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+      "role": "Frau Berg",
+      "seed": 110,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "jonas",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his mid-twenties speaking clear standard German. Relaxed, medium-low voice with an easy, thoughtful conversational rhythm; casual but clear.",
+      "reference_sha256": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+      "role": "Moderator",
+      "seed": 120,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

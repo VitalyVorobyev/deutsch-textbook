@@ -1,0 +1,964 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.056318+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "b6baa02954dbe75fd03c4d1b345441835c6daf1c839387ca8f1fb9daf4aca78e",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-checkpoint-a2-01-listening.md",
+    "sha256": "5a8e7726a4cea28d851677e2c42423e4e9c9eabfb5efd498e1554afce6d3da61"
+  },
+  "id": "ls-checkpoint-a2-01",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "ff48194ef577f9f9490b5f5c6faedfcb5ca193d5661e21f37d8168c64f5adb57",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "8ff1e1b93e823f8d7dabdc06c599f16cd72b1ec5660403a1414c7607fb4ff785",
+    "soundscape": {
+      "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -41.3,
+          "measured_rms_dbfs": null,
+          "missing": false
+        }
+      ],
+      "configured_coverage_ratio": 1.0,
+      "configured_gain_max_db": -12.0,
+      "configured_gain_min_db": -22.0,
+      "continuous_ambience": true,
+      "event_count": 1,
+      "measured_ambience_rms_dbfs": -27.374092521456085,
+      "version": 2,
+      "warnings": [
+        "ambience-1 never plays alone long enough to measure"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 183.90804597701148,
+          "pitch_min_hz": 183.90804597701148,
+          "pitch_spread_hz": null,
+          "speaker": "Durchsage"
+        }
+      ],
+      "different_characters": [],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Durchsage"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": [
+        "Durchsage: fewer than two measurable lines; identity is manual-only"
+      ]
+    },
+    "timing": [
+      {
+        "end_ms": 15458,
+        "start_ms": 2600,
+        "utterance_id": "line-1"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T20:13:26.492211+00:00",
+      "failures": [],
+      "full_transcript": "Achtung am Gleis 5! Der ICE nach Hamburg um 10.20 Uhr fällt heute leider aus. Nehmen Sie bitte den Regionalzug um 10.50 Uhr. Der Regionalzug fährt ab Gleis 3.",
+      "full_wer": 0.02702702702702703,
+      "lines": [
+        {
+          "expected": "Achtung an Gleis fünf: Der ICE nach Hamburg um zehn Uhr zwanzig fällt heute leider aus. Nehmen Sie bitte den Regionalzug um zehn Uhr fünfzig. Der Regionalzug fährt ab Gleis drei.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Achtung an Gleis 5. Der ICE nach Hamburg um 10.20 Uhr fällt heute leider aus. Nehmen Sie bitte den Regionalzug um 10.50 Uhr. Der Regionalzug fährt ab Gleis 3.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "station-hall": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "station-hall",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.34
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/sfx-1.wav",
+        "sha256": "3136e528f76ec0bcf28ec91d7719c9af3f3da580afc8322a66ef4672b6abcd29"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/ambience-1.wav",
+        "sha256": "b57103e14b556a727b8883f0d3eda5f8767c2a570d4781a8eaebbc3aa8d1e94c"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "b6baa02954dbe75fd03c4d1b345441835c6daf1c839387ca8f1fb9daf4aca78e"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "e31db2956ab57e8fde57cba7701b94411499929d8dcf6299d80d84c03809223f"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "ff48194ef577f9f9490b5f5c6faedfcb5ca193d5661e21f37d8168c64f5adb57"
+      }
+    ],
+    "assets": {
+      "09dec5cc4ad66f313c16c8a1d155b848ae0e07a3044790c97a6d1186f1efae8e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "09dec5cc4ad66f313c16c8a1d155b848ae0e07a3044790c97a6d1186f1efae8e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "e0d774591ecf71abfdf3072ef8e7a69f35c3e37601b5e51b10f934ede35c810f",
+        "seed": 110
+      },
+      "3136e528f76ec0bcf28ec91d7719c9af3f3da580afc8322a66ef4672b6abcd29": {
+        "file": "3136e528f76ec0bcf28ec91d7719c9af3f3da580afc8322a66ef4672b6abcd29.wav",
+        "impl_version": 1,
+        "inputs": [
+          "a6e3742add5d172626771cee02ad05a18c0ae1f477a9e1e44af188e0ed7e36e1"
+        ],
+        "kind": "track",
+        "node_hash": "2a720197295b95ea4797f7f94ab89fb9cb484ac6a584fd8ebb0f273e43c45470",
+        "params": {
+          "acoustics": {
+            "device": "pa",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 200,
+          "fx": "highpass=f=180:p=2,highpass=f=180:p=2,lowpass=f=5600:p=2,lowpass=f=5600:p=2,acompressor=threshold=0.079433:ratio=3.5:attack=8:release=200:makeup=1.412538,volume=-1dB",
+          "gain_db": -12.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "402a460501698dcb3b6234afc2ddf3fbb91dfe29c082cfa7aa276b818ed1a338": {
+        "file": "402a460501698dcb3b6234afc2ddf3fbb91dfe29c082cfa7aa276b818ed1a338.wav",
+        "impl_version": 2,
+        "inputs": [
+          "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e",
+          "3136e528f76ec0bcf28ec91d7719c9af3f3da580afc8322a66ef4672b6abcd29",
+          "b57103e14b556a727b8883f0d3eda5f8767c2a570d4781a8eaebbc3aa8d1e94c",
+          "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d"
+        ],
+        "kind": "mix",
+        "node_hash": "e077b7cac9de0313fbe69eb6931a8c512f1ea15c265a097b9df94b4f5cf23226",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "sfx",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "sfx-1"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 14558,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        }
+      },
+      "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e": {
+        "file": "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e.wav",
+        "impl_version": 1,
+        "inputs": [
+          "857cea711f4ccc1b4dac50109a62431057fa21542e0fa53b0587afc926c5cf28"
+        ],
+        "kind": "track",
+        "node_hash": "336a5073ed721518228dccf039b3a84390651714e729f46fb74c35b7d5dd0ead",
+        "params": {
+          "acoustics": {
+            "device": "pa",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 2600,
+          "fx": "highpass=f=180:p=2,highpass=f=180:p=2,lowpass=f=5600:p=2,lowpass=f=5600:p=2,acompressor=threshold=0.079433:ratio=3.5:attack=8:release=200:makeup=1.412538,volume=-1dB",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "857cea711f4ccc1b4dac50109a62431057fa21542e0fa53b0587afc926c5cf28": {
+        "file": "857cea711f4ccc1b4dac50109a62431057fa21542e0fa53b0587afc926c5cf28.wav",
+        "impl_version": 1,
+        "inputs": [
+          "09dec5cc4ad66f313c16c8a1d155b848ae0e07a3044790c97a6d1186f1efae8e"
+        ],
+        "kind": "pace",
+        "node_hash": "b9496d380c6e2611481c547d5945e29b120099870fdfef00e80547c9e5c9a9e5",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 2.6,
+          "early_reflections": 14,
+          "lowpass_hz": 4200.0,
+          "pre_delay_ms": 28,
+          "seed": 1105
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "a6e3742add5d172626771cee02ad05a18c0ae1f477a9e1e44af188e0ed7e36e1": {
+        "adapter_code_revision": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+        "engine": "stable_audio_sfx",
+        "file": "a6e3742add5d172626771cee02ad05a18c0ae1f477a9e1e44af188e0ed7e36e1.wav",
+        "kind": "generated-sound",
+        "license": "Stability AI Community License",
+        "model_id": "stabilityai/stable-audio-3-optimized",
+        "model_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+        "params": {
+          "apg": 1.0,
+          "cfg": 1.0,
+          "dit_dtype": "fp16",
+          "init_noise_level": 1.0,
+          "steps": 8
+        },
+        "request": {
+          "duration_seconds": 2.5,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Three-tone electronic chime of a railway station public address system before an announcement",
+          "seed": 5105
+        },
+        "request_sha256": "1745def9bdda3650bed2ea68477d0e3461fd4683114ecf4996d3d3f64b15814e",
+        "seed": 5105
+      },
+      "b57103e14b556a727b8883f0d3eda5f8767c2a570d4781a8eaebbc3aa8d1e94c": {
+        "file": "b57103e14b556a727b8883f0d3eda5f8767c2a570d4781a8eaebbc3aa8d1e94c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "de8988542edb0b247b0bc98e8f3a656491ca3b66e1304f538642c07aeb101f17",
+          "f5cd42921b1ab9ba140290f1e765cc53031956f6ba74ae896a90688832470f43"
+        ],
+        "kind": "track",
+        "node_hash": "f5115752675ade72cd6b158526905c931544e2f48fa83ed978e9e28f088ee635",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -22.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 15458
+        }
+      },
+      "b6baa02954dbe75fd03c4d1b345441835c6daf1c839387ca8f1fb9daf4aca78e": {
+        "file": "b6baa02954dbe75fd03c4d1b345441835c6daf1c839387ca8f1fb9daf4aca78e.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f5cd42921b1ab9ba140290f1e765cc53031956f6ba74ae896a90688832470f43"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "7405966c1f86bcc87ba4f8814f5766cbf8e9046b6a403dc12681fbf7b33cc046",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453": {
+        "file": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453.wav",
+        "impl_version": 1,
+        "inputs": [
+          "402a460501698dcb3b6234afc2ddf3fbb91dfe29c082cfa7aa276b818ed1a338"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "ed01d49b9f48a5cd3cc74f92650c73962c68c3e9d0b6a0840f90a47479fe74bd",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "de8988542edb0b247b0bc98e8f3a656491ca3b66e1304f538642c07aeb101f17": {
+        "adapter_code_revision": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+        "engine": "stable_audio_sfx",
+        "file": "de8988542edb0b247b0bc98e8f3a656491ca3b66e1304f538642c07aeb101f17.wav",
+        "kind": "generated-sound",
+        "license": "Stability AI Community License",
+        "model_id": "stabilityai/stable-audio-3-optimized",
+        "model_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+        "params": {
+          "apg": 1.0,
+          "cfg": 1.0,
+          "dit_dtype": "fp16",
+          "init_noise_level": 1.0,
+          "steps": 8
+        },
+        "request": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Train station platform ambience, distant footsteps, rolling suitcases, faint indistinct crowd murmur, a train idling far away, no music",
+          "seed": 5104
+        },
+        "request_sha256": "c94394b0af87dfd98f5ade60a6916ad436bc1365bad558e9ce170f529b3a7bbd",
+        "seed": 5104
+      },
+      "e31db2956ab57e8fde57cba7701b94411499929d8dcf6299d80d84c03809223f": {
+        "encoding": "qa",
+        "file": "e31db2956ab57e8fde57cba7701b94411499929d8dcf6299d80d84c03809223f.wav",
+        "kind": "encode",
+        "source": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453"
+      },
+      "f5cd42921b1ab9ba140290f1e765cc53031956f6ba74ae896a90688832470f43": {
+        "file": "f5cd42921b1ab9ba140290f1e765cc53031956f6ba74ae896a90688832470f43.wav",
+        "impl_version": 2,
+        "inputs": [
+          "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e",
+          "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d"
+        ],
+        "kind": "mix",
+        "node_hash": "a5ab808d027ce80a03b53fd4e5d3aa69d874bbaa492cec63aa30f076041b9769",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "line-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        }
+      },
+      "ff48194ef577f9f9490b5f5c6faedfcb5ca193d5661e21f37d8168c64f5adb57": {
+        "encoding": "publish",
+        "file": "ff48194ef577f9f9490b5f5c6faedfcb5ca193d5661e21f37d8168c64f5adb57.mp3",
+        "kind": "encode",
+        "source": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453"
+      }
+    },
+    "created_at": "2026-11-01T20:13:21.975613+00:00",
+    "duration_ms": 15458,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "09dec5cc4ad66f313c16c8a1d155b848ae0e07a3044790c97a6d1186f1efae8e",
+        "cached": false,
+        "hash": "6b6aff9d497c9183df7643f58dc48939929c66c62e40920d697e9a47afe988c0",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 110,
+            "style": null,
+            "text": "Achtung an Gleis fünf: Der ICE nach Hamburg um zehn Uhr zwanzig fällt heute leider aus. Nehmen Sie bitte den Regionalzug um zehn Uhr fünfzig. Der Regionalzug fährt ab Gleis drei.",
+            "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "857cea711f4ccc1b4dac50109a62431057fa21542e0fa53b0587afc926c5cf28",
+        "cached": false,
+        "hash": "b9496d380c6e2611481c547d5945e29b120099870fdfef00e80547c9e5c9a9e5",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.79,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "a6e3742add5d172626771cee02ad05a18c0ae1f477a9e1e44af188e0ed7e36e1",
+        "cached": true,
+        "hash": "404ec95f732b200ea4eebe9182bbf5a1aec0077a87af9270163b55e5190cc612",
+        "impl_version": 1,
+        "params": {
+          "engine": "stable_audio_sfx",
+          "engine_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+          "request": {
+            "duration_seconds": 2.5,
+            "negative_prompt": null,
+            "params": {},
+            "prompt": "Three-tone electronic chime of a railway station public address system before an announcement",
+            "seed": 5105
+          }
+        },
+        "type": "sound-gen"
+      },
+      {
+        "asset": "de8988542edb0b247b0bc98e8f3a656491ca3b66e1304f538642c07aeb101f17",
+        "cached": true,
+        "hash": "ff36f28ffe55bb4816d04450e99b6bfc05bad03cafc714ecfe0655c397fe6353",
+        "impl_version": 1,
+        "params": {
+          "engine": "stable_audio_sfx",
+          "engine_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+          "request": {
+            "duration_seconds": 40.0,
+            "negative_prompt": null,
+            "params": {},
+            "prompt": "Train station platform ambience, distant footsteps, rolling suitcases, faint indistinct crowd murmur, a train idling far away, no music",
+            "seed": 5104
+          }
+        },
+        "type": "sound-gen"
+      },
+      {
+        "asset": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+        "cached": true,
+        "hash": "d2e3608dcc5ad0e7854faf3957ea827b0881cc821f2d61cc841e1d1f13ceed9f",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 2.6,
+            "early_reflections": 14,
+            "lowpass_hz": 4200.0,
+            "pre_delay_ms": 28,
+            "seed": 1105
+          },
+          "rate": 48000,
+          "room": "station-hall",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "483ef1f01da0035363d4d32a27470d014cc9cbff26902f8acd9f67c8b8ecfe6e",
+        "cached": false,
+        "hash": "336a5073ed721518228dccf039b3a84390651714e729f46fb74c35b7d5dd0ead",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "pa",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 2600,
+          "fx": "highpass=f=180:p=2,highpass=f=180:p=2,lowpass=f=5600:p=2,lowpass=f=5600:p=2,acompressor=threshold=0.079433:ratio=3.5:attack=8:release=200:makeup=1.412538,volume=-1dB",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "3136e528f76ec0bcf28ec91d7719c9af3f3da580afc8322a66ef4672b6abcd29",
+        "cached": true,
+        "hash": "2a720197295b95ea4797f7f94ab89fb9cb484ac6a584fd8ebb0f273e43c45470",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "pa",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 200,
+          "fx": "highpass=f=180:p=2,highpass=f=180:p=2,lowpass=f=5600:p=2,lowpass=f=5600:p=2,acompressor=threshold=0.079433:ratio=3.5:attack=8:release=200:makeup=1.412538,volume=-1dB",
+          "gain_db": -12.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "f5cd42921b1ab9ba140290f1e765cc53031956f6ba74ae896a90688832470f43",
+        "cached": false,
+        "hash": "a5ab808d027ce80a03b53fd4e5d3aa69d874bbaa492cec63aa30f076041b9769",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "line-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "b57103e14b556a727b8883f0d3eda5f8767c2a570d4781a8eaebbc3aa8d1e94c",
+        "cached": false,
+        "hash": "f5115752675ade72cd6b158526905c931544e2f48fa83ed978e9e28f088ee635",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -22.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 15458
+        },
+        "type": "track"
+      },
+      {
+        "asset": "402a460501698dcb3b6234afc2ddf3fbb91dfe29c082cfa7aa276b818ed1a338",
+        "cached": false,
+        "hash": "e077b7cac9de0313fbe69eb6931a8c512f1ea15c265a097b9df94b4f5cf23226",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "sfx",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 5.0,
+              "stem_id": "sfx-1"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 14558,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "d4a2212cd8f9ffbca3efde1190f42f6eeda1648a7fec471c3dd9d41f31f2f453",
+        "cached": false,
+        "hash": "ed01d49b9f48a5cd3cc74f92650c73962c68c3e9d0b6a0840f90a47479fe74bd",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "b6baa02954dbe75fd03c4d1b345441835c6daf1c839387ca8f1fb9daf4aca78e",
+        "cached": false,
+        "hash": "7405966c1f86bcc87ba4f8814f5766cbf8e9046b6a403dc12681fbf7b33cc046",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "e31db2956ab57e8fde57cba7701b94411499929d8dcf6299d80d84c03809223f",
+        "cached": false,
+        "hash": "e0bab26c3a4cba8b943aaab3b2fab5753ecf5bedecfb7379d301441e236f12e7",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "ff48194ef577f9f9490b5f5c6faedfcb5ca193d5661e21f37d8168c64f5adb57",
+        "cached": false,
+        "hash": "f4a2fc4d5584074a35094c80885f84c11499dfeefa6d28d6c53de7edf84f934a",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 4,
+    "nodes_evaluated": 10,
+    "timeline": [
+      {
+        "end_ms": 15458,
+        "entry_id": "line-1",
+        "start_ms": 2600,
+        "type": "speech"
+      },
+      {
+        "end_ms": 2700,
+        "entry_id": "sfx-1",
+        "start_ms": 200,
+        "type": "sfx"
+      },
+      {
+        "end_ms": 15458,
+        "entry_id": "ambience-1",
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 15458,
+        "start_ms": 2600,
+        "utterance_id": "line-1"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 2600,
+      "room": "station-hall",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        13,
+        21
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "durchsage-verstehen",
+        "verbindung-waehlen"
+      ],
+      "scenario": "Bahnhofsdurchsage: ein ICE fällt aus, Ersatz mit dem Regionalzug",
+      "topic": null,
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "anna-keller",
+          "version": 2
+        },
+        "role": "Durchsage",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 110,
+          "style": null,
+          "voice": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Achtung an Gleis fünf: Der ICE nach Hamburg um zehn Uhr zwanzig fällt heute leider aus. Nehmen Sie bitte den Regionalzug um zehn Uhr fünfzig. Der Regionalzug fährt ab Gleis drei.",
+        "id": "line-1",
+        "pace": 0.79,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Durchsage",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-checkpoint-a2-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "pa",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": 200,
+        "effects": null,
+        "gain_db": -12.0,
+        "placement": {
+          "device": "pa",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "sound": {
+          "duration_seconds": 2.5,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Three-tone electronic chime of a railway station public address system before an announcement",
+          "seed": 5105
+        },
+        "type": "sfx"
+      },
+      {
+        "duck_db": 0.0,
+        "end_ms": null,
+        "fade_in_ms": 600,
+        "fade_out_ms": 900,
+        "gain_db": -22.0,
+        "sound": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Train station platform ambience, distant footsteps, rolling suitcases, faint indistinct crowd murmur, a train idling far away, no music",
+          "seed": 5104
+        },
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "title": {
+      "en": "A cancelled train",
+      "ru": "Отменённый поезд",
+      "uk": "Скасований потяг"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "8ff1e1b93e823f8d7dabdc06c599f16cd72b1ec5660403a1414c7607fb4ff785",
+  "script_sha256": "f51a0864b1a791f8d747d0b5ef4e313f48606da429afee6600c2abdd0dce4837",
+  "version": 2,
+  "voices": [
+    {
+      "character": "anna-keller",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman around forty speaking clear standard German. Calm, precise, medium-low voice with a polished, unhurried delivery, like a good radio magazine presenter; neutral and approachable.",
+      "reference_sha256": "7b9dfc5523f81b6c25585154f1c6fe707665e0bdb7861da136165dfc8dc39c6d",
+      "role": "Durchsage",
+      "seed": 110,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

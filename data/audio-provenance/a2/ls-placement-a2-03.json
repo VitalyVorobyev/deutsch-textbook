@@ -1,0 +1,804 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:05:22.686489+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "052cb83d22b66726f5a8189a618c6d024d42b0063887c554039cb89193b8e943",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-placement-a2-03-listening.md",
+    "sha256": "e56d0867e4f19332014da8d86664fc6615f074fb1e0b51319976244742b3f0e5"
+  },
+  "id": "ls-placement-a2-03",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "d617cf3d040978cf01e31f08bac60df20fa7b35e5ed55727db33ee55fb876b34",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "7ceb98564bb263671b2b106c0e2e86feb1d2172c1267f80a5b9b929edcdd74de",
+    "soundscape": {
+      "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -45.6,
+          "measured_rms_dbfs": -45.0,
+          "missing": false
+        }
+      ],
+      "configured_coverage_ratio": 1.0,
+      "configured_gain_max_db": -26.0,
+      "configured_gain_min_db": -26.0,
+      "continuous_ambience": true,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": -46.212012579339294,
+      "version": 2,
+      "warnings": []
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 1,
+          "measured_lines": 1,
+          "minimum_similarity": null,
+          "pitch_max_hz": 147.4685694869181,
+          "pitch_min_hz": 147.4685694869181,
+          "pitch_spread_hz": null,
+          "speaker": "Apothekerin"
+        }
+      ],
+      "different_characters": [],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": true,
+          "reason": "only one measurable line for this character",
+          "similarity_to_character": null,
+          "speaker": "Apothekerin"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": [
+        "Apothekerin: fewer than two measurable lines; identity is manual-only"
+      ]
+    },
+    "timing": [
+      {
+        "end_ms": 12955,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T21:03:56.620386+00:00",
+      "failures": [],
+      "full_transcript": "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "small-room": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "small-room",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.12
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/ambience-1.wav",
+        "sha256": "a32bc73c8252f38e2bd88b02069bffe899f047fddb59b6a2b6cd1314ade89be6"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "052cb83d22b66726f5a8189a618c6d024d42b0063887c554039cb89193b8e943"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "5b56ea2f1a633448032c20eb518ce68662d3cc4987ce514f410366ce0c09bcf4"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "d617cf3d040978cf01e31f08bac60df20fa7b35e5ed55727db33ee55fb876b34"
+      }
+    ],
+    "assets": {
+      "052cb83d22b66726f5a8189a618c6d024d42b0063887c554039cb89193b8e943": {
+        "file": "052cb83d22b66726f5a8189a618c6d024d42b0063887c554039cb89193b8e943.wav",
+        "impl_version": 1,
+        "inputs": [
+          "680d4f47c066120fbb64b9bd0fc0ef1ecbb0d16202f75ab20df684921ae7ed57"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "aaf4950196641c49ea7b4f3b49464c984ef427658ba966fd7673558f0bbef050",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "0bb3b8cd65636d565d8ff64ee9312978ac290e9cb53842fda33ea1fc39a31393": {
+        "adapter_code_revision": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+        "engine": "stable_audio_sfx",
+        "file": "0bb3b8cd65636d565d8ff64ee9312978ac290e9cb53842fda33ea1fc39a31393.wav",
+        "kind": "generated-sound",
+        "license": "Stability AI Community License",
+        "model_id": "stabilityai/stable-audio-3-optimized",
+        "model_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+        "params": {
+          "apg": 1.0,
+          "cfg": 1.0,
+          "dit_dtype": "fp16",
+          "init_noise_level": 1.0,
+          "steps": 8
+        },
+        "request": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet pharmacy shop interior, a drawer sliding shut, a paper bag rustling, soft footsteps on tiles, a shop door bell far away, no music",
+          "seed": 5205
+        },
+        "request_sha256": "5618a762c16ee9a91f7190ee37f68f1670641980d950459bf64e96e2d0c6ec30",
+        "seed": 5205
+      },
+      "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8": {
+        "file": "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8.wav",
+        "impl_version": 1,
+        "inputs": [
+          "94b3956bb193243d35609c3ae5d865d2e4539b4cca82a874dbbbe3f2b84e34b9"
+        ],
+        "kind": "track",
+        "node_hash": "072171c166e3bb9546d723adc49bd074ae657cb4492f52b2fbc4835c31a874fe",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "1b0db9590d454309c7efec9c4ab16c2a023d09262d881a9d262321a3e01836ea": {
+        "file": "1b0db9590d454309c7efec9c4ab16c2a023d09262d881a9d262321a3e01836ea.wav",
+        "impl_version": 2,
+        "inputs": [
+          "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8",
+          "a32bc73c8252f38e2bd88b02069bffe899f047fddb59b6a2b6cd1314ade89be6",
+          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+        ],
+        "kind": "mix",
+        "node_hash": "b3807598558313719e4fec69f5259d2acdbde4dd16029cca88a9cab77a2db6b6",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 12055,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        }
+      },
+      "5b56ea2f1a633448032c20eb518ce68662d3cc4987ce514f410366ce0c09bcf4": {
+        "encoding": "qa",
+        "file": "5b56ea2f1a633448032c20eb518ce68662d3cc4987ce514f410366ce0c09bcf4.wav",
+        "kind": "encode",
+        "source": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75"
+      },
+      "680d4f47c066120fbb64b9bd0fc0ef1ecbb0d16202f75ab20df684921ae7ed57": {
+        "file": "680d4f47c066120fbb64b9bd0fc0ef1ecbb0d16202f75ab20df684921ae7ed57.wav",
+        "impl_version": 2,
+        "inputs": [
+          "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8",
+          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+        ],
+        "kind": "mix",
+        "node_hash": "edf3a8c2c6be842cb47b6740788cd2418b28c6066c909378b42f0f46ba2e0b1d",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        }
+      },
+      "94b3956bb193243d35609c3ae5d865d2e4539b4cca82a874dbbbe3f2b84e34b9": {
+        "file": "94b3956bb193243d35609c3ae5d865d2e4539b4cca82a874dbbbe3f2b84e34b9.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f04d29414e6cf6c465be8809bc1f2f5ca01b7fcd7258d4656dd2b51f162d9037"
+        ],
+        "kind": "pace",
+        "node_hash": "91cbfeb554e863cb688b23138b99f942344507933f89c92726e5c38eb26c8416",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.82,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "a32bc73c8252f38e2bd88b02069bffe899f047fddb59b6a2b6cd1314ade89be6": {
+        "file": "a32bc73c8252f38e2bd88b02069bffe899f047fddb59b6a2b6cd1314ade89be6.wav",
+        "impl_version": 1,
+        "inputs": [
+          "0bb3b8cd65636d565d8ff64ee9312978ac290e9cb53842fda33ea1fc39a31393",
+          "680d4f47c066120fbb64b9bd0fc0ef1ecbb0d16202f75ab20df684921ae7ed57"
+        ],
+        "kind": "track",
+        "node_hash": "d7be370c844a977a5ad575ae0e03e5eb3bb248cb54000c45838cb87fdd440b79",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -26.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 12955
+        }
+      },
+      "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.45,
+          "early_reflections": 6,
+          "lowpass_hz": 6500.0,
+          "pre_delay_ms": 8,
+          "seed": 1102
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "d617cf3d040978cf01e31f08bac60df20fa7b35e5ed55727db33ee55fb876b34": {
+        "encoding": "publish",
+        "file": "d617cf3d040978cf01e31f08bac60df20fa7b35e5ed55727db33ee55fb876b34.mp3",
+        "kind": "encode",
+        "source": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75"
+      },
+      "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75": {
+        "file": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75.wav",
+        "impl_version": 1,
+        "inputs": [
+          "1b0db9590d454309c7efec9c4ab16c2a023d09262d881a9d262321a3e01836ea"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "7fcd62d4b349bc2e75b30ffb315c316a1e7186233a6018a66ad1ba5f1a808a21",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "f04d29414e6cf6c465be8809bc1f2f5ca01b7fcd7258d4656dd2b51f162d9037": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "f04d29414e6cf6c465be8809bc1f2f5ca01b7fcd7258d4656dd2b51f162d9037.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "8974b3d66272981925893883d3a300b786f96854960f39cf1977e2198ad7d203",
+        "seed": 115
+      }
+    },
+    "created_at": "2026-11-01T21:03:50.588522+00:00",
+    "duration_ms": 12955,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "f04d29414e6cf6c465be8809bc1f2f5ca01b7fcd7258d4656dd2b51f162d9037",
+        "cached": true,
+        "hash": "677451aabb2afd2f596214313c50e379a76603a1cab6220cfd096f7cc234f73e",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt.",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "94b3956bb193243d35609c3ae5d865d2e4539b4cca82a874dbbbe3f2b84e34b9",
+        "cached": false,
+        "hash": "91cbfeb554e863cb688b23138b99f942344507933f89c92726e5c38eb26c8416",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.82,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "0bb3b8cd65636d565d8ff64ee9312978ac290e9cb53842fda33ea1fc39a31393",
+        "cached": true,
+        "hash": "1ed97fb4ebdc7ebf67c2dfbe51486fb3710d2a7ed4695450b3a118a43fadb1e9",
+        "impl_version": 1,
+        "params": {
+          "engine": "stable_audio_sfx",
+          "engine_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+          "request": {
+            "duration_seconds": 40.0,
+            "negative_prompt": null,
+            "params": {},
+            "prompt": "Quiet pharmacy shop interior, a drawer sliding shut, a paper bag rustling, soft footsteps on tiles, a shop door bell far away, no music",
+            "seed": 5205
+          }
+        },
+        "type": "sound-gen"
+      },
+      {
+        "asset": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+        "cached": true,
+        "hash": "ffd102902ac4774587da4918177de2cc79ba5d39cbb1a5ac5e310654eea67472",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.45,
+            "early_reflections": 6,
+            "lowpass_hz": 6500.0,
+            "pre_delay_ms": 8,
+            "seed": 1102
+          },
+          "rate": 48000,
+          "room": "small-room",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "18f09fb513d3ed0a34cc7d19fceac578327d6744eb66f885e6fb2065691fe0a8",
+        "cached": false,
+        "hash": "072171c166e3bb9546d723adc49bd074ae657cb4492f52b2fbc4835c31a874fe",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "680d4f47c066120fbb64b9bd0fc0ef1ecbb0d16202f75ab20df684921ae7ed57",
+        "cached": false,
+        "hash": "edf3a8c2c6be842cb47b6740788cd2418b28c6066c909378b42f0f46ba2e0b1d",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "a32bc73c8252f38e2bd88b02069bffe899f047fddb59b6a2b6cd1314ade89be6",
+        "cached": false,
+        "hash": "d7be370c844a977a5ad575ae0e03e5eb3bb248cb54000c45838cb87fdd440b79",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -26.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 12955
+        },
+        "type": "track"
+      },
+      {
+        "asset": "1b0db9590d454309c7efec9c4ab16c2a023d09262d881a9d262321a3e01836ea",
+        "cached": false,
+        "hash": "b3807598558313719e4fec69f5259d2acdbde4dd16029cca88a9cab77a2db6b6",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 12055,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "db08318823cb948d63bc1639e5863a5fe5535a9d26934c6bc20594789ce12b75",
+        "cached": false,
+        "hash": "7fcd62d4b349bc2e75b30ffb315c316a1e7186233a6018a66ad1ba5f1a808a21",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "052cb83d22b66726f5a8189a618c6d024d42b0063887c554039cb89193b8e943",
+        "cached": false,
+        "hash": "aaf4950196641c49ea7b4f3b49464c984ef427658ba966fd7673558f0bbef050",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "5b56ea2f1a633448032c20eb518ce68662d3cc4987ce514f410366ce0c09bcf4",
+        "cached": false,
+        "hash": "f4c8061f970f194b92280573171bf8755e60a76c9837306dd5c6451675625bf6",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "d617cf3d040978cf01e31f08bac60df20fa7b35e5ed55727db33ee55fb876b34",
+        "cached": false,
+        "hash": "48a60e72502d7448d266d0dbf350d99ab19ba44561247aaad697d91f525e108e",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 3,
+    "nodes_evaluated": 9,
+    "timeline": [
+      {
+        "end_ms": 12955,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 12955,
+        "entry_id": "ambience-1",
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 12955,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "small-room",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        12,
+        19
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "praxis-anweisungen-verstehen"
+      ],
+      "scenario": "In der Apotheke: wie man die Tabletten nimmt",
+      "topic": null,
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "so-yeon-park",
+          "version": 2
+        },
+        "role": "Apothekerin",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 115,
+          "style": null,
+          "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen. Trinken Sie viel Wasser. Wenn es nach drei Tagen nicht besser ist, gehen Sie bitte wieder zum Arzt.",
+        "id": "line-1",
+        "pace": 0.82,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Apothekerin",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-placement-a2-03",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "duck_db": 0.0,
+        "end_ms": null,
+        "fade_in_ms": 600,
+        "fade_out_ms": 900,
+        "gain_db": -26.0,
+        "sound": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet pharmacy shop interior, a drawer sliding shut, a paper bag rustling, soft footsteps on tiles, a shop door bell far away, no music",
+          "seed": 5205
+        },
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "title": {
+      "en": "How to take the tablets",
+      "ru": "Как принимать таблетки",
+      "uk": "Як приймати таблетки"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 2,
+  "scene_sha256": "7ceb98564bb263671b2b106c0e2e86feb1d2172c1267f80a5b9b929edcdd74de",
+  "script_sha256": "7385ab0f2e7b4c511bb0843e632dd7345e49c1f52963c91a53d1d10f71fbf337",
+  "version": 2,
+  "voices": [
+    {
+      "character": "so-yeon-park",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her late thirties speaking clear standard German. Patient, encouraging, medium voice; articulates every phrase cleanly at a moderate pace, warm without sounding slow.",
+      "reference_sha256": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334",
+      "role": "Apothekerin",
+      "seed": 115,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}
