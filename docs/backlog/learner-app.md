@@ -65,7 +65,7 @@ Triaged from `feedback.md`, which holds only raw capture.
   *to settle*, not *to make up one's mind*.
 - **F-14 · A `table` cell has no `accept`**, so a correct alternative form is wrong: the
   du-imperative *gehe*, *trinke*, *bleibe* beside *geh*, *trink*, *bleib*
-  (`a1/stadt-wege-a1-grammatik:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
+  (`a1/stadt-wege-produktion:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
   First step: an optional `accept` on a cell, read by `acceptedCellAnswers` (`src/lib/table.ts`) so
   `validate.ts` and `TableFill` cannot disagree.
 - **F-15 · A `table` cell has no slip allowance**, so a retyped word charges the row's focus: four

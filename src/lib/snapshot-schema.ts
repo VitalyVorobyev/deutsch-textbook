@@ -3,6 +3,7 @@ import { lidOptionKeySchema } from '@da/schema/lid';
 import type { ProgressSnapshot } from './store';
 import type { LidState } from './lid';
 import { migrateCardIds } from './a1-card-id-migration';
+import { migrateAttemptSetIds } from './set-id-migration';
 import { mergeCards } from './snapshot-merge';
 
 const criterionSchema = z.enum(['met', 'needs-work']);
@@ -168,7 +169,8 @@ type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshot
 function asV8(snapshot: NormalizedSnapshot, lid: LidState): ProgressSnapshot {
   // The same map the live store applies on open — one implementation, two entry points.
   const cards = migrateCardIds(snapshot.cards, mergeCards);
-  return { ...snapshot, cards, lid, version: 8 } as ProgressSnapshot;
+  const attempts = migrateAttemptSetIds(snapshot.attempts);
+  return { ...snapshot, attempts, cards, lid, version: 8 } as ProgressSnapshot;
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */

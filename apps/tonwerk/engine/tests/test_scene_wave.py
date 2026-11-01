@@ -34,7 +34,12 @@ AUTH = {"Authorization": "Bearer test"}
 #: one would either read the developer's own machine or ship a copy of somebody else's recording
 #: into this repository. The conversion of a scene *with* both sound entry types is covered by
 #: `test_scene_convert.py` over the whole corpus; what this file is about is the wave around it.
-FIXTURE_ARTIFACTS = ("a1/ls-alltag-zeit-01", "a1/ls-praesens-wortstellung-01")
+# Each published artifact with the exercise set that plays it. The set is named after its topic,
+# not after the scene, so the pairing is written down rather than derived from the scene id.
+FIXTURE_ARTIFACTS = {
+    "a1/ls-alltag-zeit-01": "alltag-zeit-hoeren",
+    "a1/ls-praesens-wortstellung-01": "praesens-wortstellung-hoeren",
+}
 
 
 def wave_repo(tmp_path: Path) -> Path:
@@ -44,7 +49,7 @@ def wave_repo(tmp_path: Path) -> Path:
     (repo / "data").mkdir(parents=True)
     for name in ("acoustic-profiles.yaml", "acoustic-difficulty.yaml", "listening-plan.yaml"):
         (repo / "data" / name).write_bytes((REPO / "data" / name).read_bytes())
-    for artifact_id in FIXTURE_ARTIFACTS:
+    for artifact_id, exercise_set in FIXTURE_ARTIFACTS.items():
         level, slug = artifact_id.split("/")
         for source, target in (
             (
@@ -56,8 +61,8 @@ def wave_repo(tmp_path: Path) -> Path:
                 repo / "data" / "audio-provenance" / level / f"{slug}.json",
             ),
             (
-                REPO / "content" / "exercises" / level / f"{slug}-hoeren.yaml",
-                repo / "content" / "exercises" / level / f"{slug}-hoeren.yaml",
+                REPO / "content" / "exercises" / level / f"{exercise_set}.yaml",
+                repo / "content" / "exercises" / level / f"{exercise_set}.yaml",
             ),
         ):
             target.parent.mkdir(parents=True, exist_ok=True)

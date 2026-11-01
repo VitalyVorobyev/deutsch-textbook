@@ -39,6 +39,12 @@ is an error. **`primary_practice`** decides what completing a Lernpfad step mean
 is the delayed check; `elements.exercises` is **one ordered list on purpose**, the scaffold→fade arc
 written down.
 
+**A teaching set's name is its topic plus its job**: `<topic>`, `<topic>-produktion`,
+`<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
+`-ausblenden`/`-remediation`, or `drill-<focus>` (validator-enforced). A set id is half of every
+attempt key, so a rename needs an entry in `src/lib/set-id-migration.ts`, and a retired id is never
+reused. → [ADR 0014](../docs/adrs/0014-material-governance.md)
+
 ## Authoring rules (content quality is the product)
 
 ### Bilingual voice

@@ -193,7 +193,12 @@ original bytes go back and the write is refused.
 contains no endpoint at all — verified: `GET /__write` on the built bundle is a 404 and the view
 renders zero controls, falling back to the read-only chips. Not a flag, not an environment check.
 
-The costs are stated rather than hidden: a write is followed by a full graph rebuild (~6.6 s) and a
-full validator run (~6 s), and the control shows the value it wrote rather than snapping back to the
-stale one while that happens. Backlog **P26-16** holds the per-file invalidation that makes this
-cheap enough to widen.
+The costs are stated rather than hidden: a write is followed by a full graph rebuild and a full
+validator run, and the control shows the value it wrote rather than snapping back to the stale one
+while that happens. Measured on the shipping corpus: the graph about 0.5 s, the payload about 1.6 s,
+and `bun scripts/validate.ts` about 1.8 s (time `contentGraph()` and `graphPayload()` after
+`invalidateContentGraph()`). Most of the payload is three level reports (Goethe Wortliste, grammar
+coverage, grammar depth) that each read the corpus themselves, so per-file invalidation would have
+to track which files each report reads. That is not worth building for a ~2 s content save. The
+writes that must be cheap are the review-ledger and queue writes ([ADR 0014](../adrs/0014-material-governance.md)),
+and those touch no content and must never invalidate the graph.

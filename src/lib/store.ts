@@ -10,6 +10,7 @@ import {
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
+import { migrateAttemptSetIds } from './set-id-migration';
 import { recordRecovery, recordStall } from './stall-log';
 import { createManagedStore } from './managed-store';
 import { localDateString } from './local-date';
@@ -694,9 +695,11 @@ export async function logAttempt(attempt: NewAttempt): Promise<void> {
   scheduleAutoSync();
 }
 
+/** Every logged attempt, with set ids current: a blob written before a set was renamed keeps
+    its old ids on disk until the next merge rewrites it, and no reader should have to know. */
 export async function getAttempts(): Promise<Attempt[]> {
-  return withVisibilityRetry(
-    async () => (await get<Attempt[]>('attempts', await getStore())) ?? [],
+  return withVisibilityRetry(async () =>
+    migrateAttemptSetIds((await get<Attempt[]>('attempts', await getStore())) ?? []),
   );
 }
 
