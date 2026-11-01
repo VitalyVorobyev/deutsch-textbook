@@ -5,8 +5,10 @@ import type { ChunkName, GraphPayload } from '@da/content/payload';
 import type { WritePatch, WriteResult } from '@da/content/write';
 import type { RenderSourceInput, PreviewPayload } from '@da/content/preview';
 import type { FileReview } from '@da/content/review-ledger';
-import type { ReviewLedgerEntry } from '@da/schema';
+import type { QueueEntry, ReviewLedgerEntry } from '@da/schema';
+import type { OwnerQueueAction, QueueResult } from '@da/content/queue';
 
+export type { OwnerQueueAction, QueueEntry, QueueResult };
 export type { Diagnostic, FileReview, FileSnapshot, GraphPayload, SaveFileInput, SaveFileResult };
 
 export type MarkResult = { ok: true; entry: ReviewLedgerEntry } | { ok: false; error: string };
@@ -54,6 +56,10 @@ export interface CorpusClient {
   reviewedText(revision: string): Promise<string | null>;
   /** The owner's mark: `owner-reviewed` at the revision the owner read. */
   markReviewed(file: string, expectedRevision: string): Promise<MarkResult>;
+  /** The shared queue's entries (ADR 0014). */
+  queue(): Promise<QueueEntry[]>;
+  /** File, reply to or close a queue entry, as the owner. */
+  queueAction(input: OwnerQueueAction): Promise<QueueResult>;
   subscribe(listener: (event: CorpusEvent) => void): () => void;
 }
 
@@ -124,6 +130,18 @@ class HttpCorpusClient implements CorpusClient {
     const result = await fetch(`/__reviewed?revision=${encodeURIComponent(revision)}`);
     return ((await result.json()) as { text: string | null }).text;
   }
+  queue() {
+    return response<QueueEntry[]>(fetch('/__queue'));
+  }
+  queueAction(input: OwnerQueueAction) {
+    return response<QueueResult>(
+      fetch('/__queue', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(input),
+      }),
+    );
+  }
   markReviewed(file: string, expectedRevision: string) {
     return response<MarkResult>(
       fetch('/__review-mark', {
@@ -187,6 +205,12 @@ class TauriCorpusClient implements CorpusClient {
   }
   markReviewed(file: string, expectedRevision: string) {
     return this.rpc<MarkResult>('markReviewed', { file, expectedRevision });
+  }
+  queue() {
+    return this.rpc<QueueEntry[]>('queue');
+  }
+  queueAction(input: OwnerQueueAction) {
+    return this.rpc<QueueResult>('queueAction', input as unknown as Record<string, unknown>);
   }
   subscribe(listener: (event: CorpusEvent) => void): () => void {
     let stopped = false;

@@ -35,6 +35,7 @@ import {
   reviewedText,
   reviewStatuses,
 } from '@da/content/review-ledger';
+import { QUEUE_FILE, loadQueue, ownerQueueAction, type OwnerQueueAction } from '@da/content/queue';
 
 const CHUNKS: ChunkName[] = ['items', 'vocab', 'texts'];
 
@@ -131,7 +132,7 @@ export function corpus(): Plugin {
         if (!file.startsWith(`${root}/content`) && !file.startsWith(`${root}/data`)) return;
         // A review mark touches no content, so it never rebuilds the graph: a review pass is many
         // one-file writes, and the Prüfen view refetches the ledger itself.
-        if (file === `${root}/${REVIEW_LEDGER_FILE}`) return;
+        if (file === `${root}/${REVIEW_LEDGER_FILE}` || file === `${root}/${QUEUE_FILE}`) return;
         changed.push(file);
         if (pending) clearTimeout(pending);
         pending = setTimeout(() => {
@@ -254,6 +255,26 @@ export function corpus(): Plugin {
         }
         if (url === '/__reviews') {
           return json(res, reviewStatuses(root, reviewableFiles(contentGraph(root))));
+        }
+        if (url === '/__queue' && req.method === 'GET') return json(res, loadQueue(root).entries);
+        if (url === '/__queue') {
+          if (req.method !== 'POST') {
+            res.statusCode = 405;
+            return json(res, { error: 'GET or POST' });
+          }
+          void readBody(req, MAX_PATCH_BYTES)
+            .then((raw) =>
+              ownerQueueAction(root, contentGraph(root), JSON.parse(raw) as OwnerQueueAction),
+            )
+            .then((result) => {
+              if (!result.ok) res.statusCode = 422;
+              json(res, result);
+            })
+            .catch((error: unknown) => {
+              res.statusCode = error instanceof SyntaxError ? 400 : 413;
+              json(res, { error: error instanceof Error ? error.message : String(error) });
+            });
+          return;
         }
         if (url === '/__reviewed') {
           const text = reviewedText(root, parsedUrl.searchParams.get('revision') ?? '');

@@ -2026,7 +2026,7 @@ export const gradingDecisionsSchema = z.array(gradingDecisionSchema);
  * - `owner-reviewed` — the owner read it in Redaktion and accepts it as what the course should
  *   teach. Only Redaktion writes it.
  *
- * A file with no row is a draft. Nothing is backfilled.
+ * A file with no row is a draft.
  */
 export const REVIEW_STATES = ['claude-reviewed', 'owner-reviewed'] as const;
 export type ReviewState = (typeof REVIEW_STATES)[number];
@@ -2060,3 +2060,64 @@ export const reviewLedgerSchema = z
   })
   .strict();
 export type ReviewLedger = z.infer<typeof reviewLedgerSchema>;
+
+// ---------------------------------------------------------------------------
+// The shared queue (data/redaktion-queue.yaml, ADR 0014)
+// ---------------------------------------------------------------------------
+
+/**
+ * One exchange between the owner and Claude about the material: a finding, a request or a question,
+ * on a file (optionally one item in it), a topic or a whole kind of material.
+ *
+ * An entry is a thread, and `waiting` says whose turn it is. The owner files from Redaktion and the
+ * entry waits for Claude; Claude answers with `bun run queue` and it waits for the owner; a reply
+ * hands it back. A finding Claude files is Claude's own to fix and waits for Claude; a question or
+ * request Claude files waits for the owner. Resolving an entry deletes it, in the pull request that resolves it: `git log`
+ * keeps the conversation.
+ */
+export const QUEUE_TYPES = ['finding', 'request', 'question'] as const;
+export const QUEUE_PARTIES = ['owner', 'claude'] as const;
+
+export const queueTargetSchema = z
+  .object({
+    file: z.string().min(1).optional(),
+    item: z.string().min(1).optional(),
+    topic: slug.optional(),
+    kind: z.string().min(1).optional(),
+  })
+  .strict()
+  .superRefine((target, ctx) => {
+    const named = [target.file, target.topic, target.kind].filter(Boolean).length;
+    if (named !== 1)
+      ctx.addIssue({ code: 'custom', message: 'names exactly one of file, topic or kind' });
+    if (target.item && !target.file)
+      ctx.addIssue({ code: 'custom', path: ['item'], message: 'an item belongs to a file' });
+  });
+export type QueueTarget = z.infer<typeof queueTargetSchema>;
+
+export const queueNoteSchema = z
+  .object({
+    from: z.enum(QUEUE_PARTIES),
+    at: z.iso.date(),
+    text: z.string().min(1),
+  })
+  .strict();
+
+export const queueEntrySchema = z
+  .object({
+    id: z.string().regex(/^q-\d{4,}$/, 'is q- and a number, e.g. q-0007'),
+    type: z.enum(QUEUE_TYPES),
+    target: queueTargetSchema,
+    waiting: z.enum(QUEUE_PARTIES),
+    thread: z.array(queueNoteSchema).min(1),
+  })
+  .strict();
+export type QueueEntry = z.infer<typeof queueEntrySchema>;
+
+export const queueSchema = z
+  .object({
+    version: z.literal(1),
+    entries: z.array(queueEntrySchema),
+  })
+  .strict();
+export type Queue = z.infer<typeof queueSchema>;

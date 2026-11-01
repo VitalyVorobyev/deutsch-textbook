@@ -137,14 +137,15 @@ are engagement signals and never stand in for learning.
 ## Closing a topic pass
 
 1. Record every artifact class checked, every correction and every deliberate no-change decision
-   in the commit message, which is the archive. A finding below the material bar becomes a line in
-   [`backlog/content.md`](../backlog/content.md).
+   in the commit message, which is the archive. A finding below the material bar becomes a queue
+   entry on its file or topic (`bun run queue --new --type finding`), and a fix closes the entries
+   it resolves.
 2. Run `bun run validate`, `bun run activity:audit`, grammar and Wortliste coverage, tests, checks,
    lint and both application builds.
 3. Confirm Redaction's derived queue has not grown and preview the touched article/exercises in each
    supported language.
-4. Leave a `draft` topic as `draft` until a human editor explicitly completes the review/provenance
-   transaction. Coverage delivery and editorial approval are separate facts.
+4. Hand the touched files over with `bun run review:claude`; a topic is reviewed only once the owner
+   has marked every file it owns. Coverage delivery and editorial approval are separate facts.
 
 ## Where the pass stands
 

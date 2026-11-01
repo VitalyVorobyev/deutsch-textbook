@@ -8,6 +8,7 @@ import type { ContentLanguage, PreviewPayload } from '@da/content/preview';
 import { corpusClient, type FileSnapshot, type GraphPayload, type ValidationRun } from '../data';
 import { blockNavigation, href } from '../router';
 import { FILE_STATUS, markFile, useReviews } from '../reviews';
+import { AnliegenEintrag, AnliegenForm, entriesAbout } from '../components/Anliegen';
 
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 const LANGUAGE_LABEL: Record<ContentLanguage, string> = { de: 'DE', en: 'EN', ru: 'RU', uk: 'UK' };
@@ -43,6 +44,18 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
     }
   });
   const [preview, setPreview] = useState<PreviewPayload>();
+  const [anliegen, setAnliegen] = useState(false);
+  // The item ids an entry may name: exercise items and reading questions.
+  const itemIds = useMemo(() => {
+    try {
+      const doc = YAML.parse(text) as { items?: { id?: string }[]; questions?: { id?: string }[] };
+      return [...(doc?.items ?? []), ...(doc?.questions ?? [])].flatMap((i) =>
+        i?.id ? [i.id] : [],
+      );
+    } catch {
+      return [];
+    }
+  }, [text]);
 
   useEffect(() => {
     if (!path) return;
@@ -170,6 +183,9 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
             <Chip tone={FILE_STATUS[review.status].tone}>{FILE_STATUS[review.status].label}</Chip>
           ) : null}
           <Chip tone={dirty ? 'warn' : 'ok'}>{dirty ? 'ungespeichert' : 'gespeichert'}</Chip>
+          <Button onClick={() => setAnliegen(!anliegen)} pressed={anliegen}>
+            Anliegen an Claude
+          </Button>
           <Button onClick={() => void validate()}>Korpus prüfen</Button>
           {review && review.status !== 'owner-reviewed' ? (
             <Button onClick={() => void markReviewed()} disabled={dirty || saving}>
@@ -204,6 +220,16 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
         </details>
       ) : null}
 
+      {anliegen ? (
+        <AnliegenForm target={{ file: path }} items={itemIds} onDone={() => setAnliegen(false)} />
+      ) : null}
+      {entriesAbout(reviews.queue, { files: [path] }).length ? (
+        <div className="mb-4 space-y-3">
+          {entriesAbout(reviews.queue, { files: [path] }).map((entry) => (
+            <AnliegenEintrag key={entry.id} entry={entry} />
+          ))}
+        </div>
+      ) : null}
       {topic ? (
         <p className="mb-3 text-sm text-fg-muted">
           Das Manifest von{' '}

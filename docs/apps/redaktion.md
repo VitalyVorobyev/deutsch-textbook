@@ -144,6 +144,23 @@ draft until then.
 Marking a B1 topic writes nothing into its authorship-provenance record: that record describes
 decisions you made, not what you read ([ADR 0015](../adrs/0015-review-is-reading-provenance-is-decisions.md)).
 
+## Tell Claude something
+
+Anything you notice while reading — a wrong fact, an item that rejects good German, a wish, a
+question — goes to Claude as an **Anliegen**, on the exact place it concerns:
+
+1. On a source page or a topic page, click **Anliegen an Claude**.
+2. Choose **Befund**, **Wunsch** or **Frage**; on an exercise set or a reading you can also pick
+   the one item it is about. Write it in any language, and click **Ablegen**.
+3. Claude reads every new Anliegen at the start of its next session. It fixes the problem and closes
+   the entry in that pull request, or answers you.
+4. Answers wait in **Prüfen → Anliegen**, and the topic or source page shows the thread too. Reply,
+   which hands it back to Claude, or click **Erledigt**.
+
+Entries are written to `data/redaktion-queue.yaml`; commit that file like the review ledger. Prüfen
+also lists, folded away, the smaller findings Claude filed for itself; they are fixed the next time
+their files are edited.
+
 ## Before each session
 
 - start from a clean Git branch and confirm the checkout path in **Einstellungen**;

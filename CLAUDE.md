@@ -72,6 +72,7 @@ do not understand is a rule to go read**, not a rule to guess at. The full doc m
 - `bun run lint` — Oxlint (`.oxlintrc.json`), with `--deny-warnings`: a warning fails it too
 - `bun run fmt` / `bun run fmt:check` — Oxfmt (`.oxfmtrc.json`) over code and JSON only; `content/`, `data/`, MDX, Astro, Markdown and YAML stay hand-formatted, and the generated `packages/schema/schemas/` is byte-compared by the engine's tests
 - `bun run build` — production build (also type-checks content against schemas)
+- `bun run queue` — **run it at the start of every session.** The shared queue with the owner (`data/redaktion-queue.yaml`, [ADR 0014](docs/adrs/0014-material-governance.md)): it prints, in full, what the owner filed or replied in Redaktion, and that is the session's first work. Answer with `--answer <id> "…"`, close an entry in the PR that resolves it with `--close <id>`, and file a question or a finding below the material bar with `--new`.
 - `bun run review:gate` — read-only merge gate: non-draft PR, green CI, no unresolved actionable threads, no outstanding change request. **It waits for no reviewer** — merge when it passes; a later review is answered in its threads.
 - Content instruments, importers and app commands are in the `CLAUDE.md` of the directory they serve.
 - `bun tauri dev` / `bun tauri build` — desktop app (Tauri v2 shell in `src-tauri/`; needs Rust). Release: push a plain `vX.Y.Z` tag and `.github/workflows/release.yml` builds Windows, Linux and macOS installers. **One release per batch, never per PR**: a PR writes its CHANGELOG lines under `## [Unreleased]`, bumps no version and pushes no tag; the release PR folds them into one heading, bumps `package.json`, `tauri.conf.json` and `Cargo.toml`, and is tagged when the owner calls it. Keep the site base-path-agnostic, and call Tauri JS APIs only behind `isTauri()` (`src/lib/syncdir.ts`).
@@ -111,7 +112,7 @@ one.
 
 ### Review rounds end when a round finds nothing material
 
-- **Material means it changes what the learner sees, does, or is measured on** — a false fact taught, an item that rejects correct German, an outcome with no task in its mode, a mechanism that mis-measures. Everything else is a backlog line, not an edit.
+- **Material means it changes what the learner sees, does, or is measured on** — a false fact taught, an item that rejects correct German, an outcome with no task in its mode, a mechanism that mis-measures. Everything else is a queue entry on its file (`bun run queue --new --type finding`) or a backlog line, not an edit.
 - **Fix the finding, not the neighbourhood.** Grepping a false *claim* to its other instances is in scope; adding the item you wish existed is next round's findings, authored by you.
 - **Precedent settles marginal calls.** When shipped units at the same level do not do the thing, it is a backlog item and the PR merges.
 - **Push back when a finding is wrong.** Check the claim against the corpus and say no with the reason.

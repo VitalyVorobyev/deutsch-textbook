@@ -39,6 +39,8 @@ GitHub Release notes.
 - A topic counts as reviewed once its editor has read every file it owns, and turns back into a
   draft when one of them changes. Redaktion previews reading texts and vocabulary decks as the
   learner meets them, and shows other data files as plain source.
+- Redaktion can send Claude a finding, a wish or a question about any file, exercise or topic, and
+  shows Claude's answers in Prüfen.
 - **Exercise sets renamed to one convention**, so each file name starts with its topic. Your
   answer history moves to the new names automatically; update the desktop app to keep it in step.
 - **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page

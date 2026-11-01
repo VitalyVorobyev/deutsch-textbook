@@ -1,13 +1,7 @@
 # Backlog · Redaktion
 
-The editorial workbench. The format and the ID rule are in the [backlog README](README.md). The
-governance entries implement [ADR 0014](../adrs/0014-material-governance.md), in this order.
+The editorial workbench. The format and the ID rule are in the [backlog README](README.md).
 
-- **RED-4 · The shared queue.** Add `data/redaktion-queue.yaml` (id, target, type, from, text,
-  state, answer), filing from any element in Redaktion, a root `CLAUDE.md` line that reads it at
-  session start, and Qualität and topic profiles that show open entries. Move the per-file
-  findings of `docs/backlog/content.md` into it (`grep -cE '^- \`[ab][12]/' docs/backlog/content.md`).
-  Like the ledger, a queue write never invalidates the graph.
 - **P27 · Hardening and delivery.**
   - Renderer parity: nine image and reference figures still use named editor representations
     instead of the learner's React components.
