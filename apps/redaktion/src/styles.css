@@ -1,0 +1,11 @@
+/*
+ * The one stylesheet entry. `@vitavision/*` ship Tailwind v4 source, resolved by this build, and
+ * each declares its own `@source`. `@da/ui/tokens.css` is Deutsch-Atlas's theme layer on top
+ * (ADR 0011): it comes last so anything it retunes wins, and it adds the source globs for itself
+ * and `@da/renderers`.
+ */
+@import 'tailwindcss';
+@import '@vitavision/ui/fonts.css';
+@import '@vitavision/ui/styles.css';
+@import '@vitavision/workbench/styles.css';
+@import '@da/ui/tokens.css';

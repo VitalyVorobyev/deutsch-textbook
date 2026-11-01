@@ -2,14 +2,12 @@
   Redaktion's app icon — the master. Everything under src-tauri/icons/ and the favicon are
   generated from it; edit here and re-run the two commands in apps/redaktion/README-icon.md.
 
-  Same family as the learner app on purpose. packages/ui/src/tokens.css says it plainly:
-  "Redaktion is denser, but density is a layout decision rather than a second brand." So the
-  ground, the corner radius and the diagonal are the Atlas tile's, and only the glyph changes:
-  white DA for the course, white pilcrow for the workbench that edits it.
+  Same family as the learner app on purpose: the ground, the corner radius and the diagonal are
+  the Atlas tile's, and only the glyph changes: white DA for the course, white pilcrow for the
+  workbench that edits it.
 
-  The colours are the design tokens, not eyeballed: the brand token is amber-600 and the
-  brand-ink token is amber-700, both quoted here in the sRGB hex Tailwind's oklch values
-  resolve to, because an .icns file cannot hold a CSS variable.
+  The colours are the Atlas tile's amber-600 and amber-700, not eyeballed, quoted here in the
+  sRGB hex Tailwind's oklch values resolve to, because an .icns file cannot hold a CSS variable.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>

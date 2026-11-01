@@ -65,10 +65,10 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
     <>
       <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-fg">
             Grammatikatlas
           </h1>
-          <p className="mt-1 text-sm text-ink-muted">
+          <p className="mt-1 text-sm text-fg-muted">
             {graph.inventory.length} Strukturen in {tracks.length} Linien · {late} davon erwarten
             Rezeption ein Niveau vor der Produktion
           </p>
@@ -102,7 +102,7 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
         slots={slots}
         columnNote={(level) =>
           graph.inventory.every((p) => production(p) !== level) ? (
-            <p className="mt-0.5 max-w-24 text-[0.65rem] leading-tight text-ink-muted">
+            <p className="mt-0.5 max-w-24 text-[0.65rem] leading-tight text-fg-muted">
               nicht kartiert
             </p>
           ) : null
@@ -147,7 +147,7 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
   return (
     <Panel
       title={level}
-      action={<span className="text-xs text-ink-muted">{medians?.topics ?? 0} Themen</span>}
+      action={<span className="text-xs text-fg-muted">{medians?.topics ?? 0} Themen</span>}
     >
       <StatGroup columns={2}>
         <Stat
@@ -164,20 +164,20 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
         />
       </StatGroup>
 
-      <div className="mt-4 border-t border-border-subtle pt-3">
+      <div className="mt-4 border-t border-line pt-3">
         <Label>Strukturen gegen den Standard</Label>
         {structures?.anchored ? (
           <>
             <div className="mt-1.5">
               <Bar value={structures.claimed.length} max={structures.total} tone="info" />
             </div>
-            <p className="tabular mt-1 text-xs text-ink-muted">
+            <p className="tabular mt-1 text-xs text-fg-muted">
               {structures.claimed.length}/{structures.total} · {structures.percent}%
             </p>
             {/* Load-bearing, not decoration: A2 read 138/138 = 100% for a day against the exam for
                 teenagers, and nothing in the report said whose exam it was. */}
             {structures.sources.map((s) => s.audience).filter(Boolean).length ? (
-              <p className="mt-0.5 text-xs text-ink-muted">
+              <p className="mt-0.5 text-xs text-fg-muted">
                 {[...new Set(structures.sources.map((s) => s.audience).filter(Boolean))].join(
                   ' · ',
                 )}
@@ -185,17 +185,17 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
             ) : null}
           </>
         ) : (
-          <p className="mt-1.5 text-xs text-warn-ink">kein externer Anker — also keine Zahl</p>
+          <p className="mt-1.5 text-xs text-defect">kein externer Anker — also keine Zahl</p>
         )}
       </div>
 
-      <div className="mt-3 border-t border-border-subtle pt-3">
+      <div className="mt-3 border-t border-line pt-3">
         <Label>Median je Verwechslung</Label>
-        <p className="tabular mt-1 text-xs text-ink-muted">
+        <p className="tabular mt-1 text-xs text-fg-muted">
           {depth?.medianTeaching ?? '–'} Aufgaben · {depth?.medianProduction ?? '–'} produktiv ·{' '}
           {depth?.medianFiles ?? '–'} Dateien
           {depth?.pointsWithoutProbe ? (
-            <span className="text-warn-ink"> · {depth.pointsWithoutProbe} ohne Probe</span>
+            <span className="text-defect"> · {depth.pointsWithoutProbe} ohne Probe</span>
           ) : null}
         </p>
       </div>

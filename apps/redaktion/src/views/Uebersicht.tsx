@@ -39,10 +39,10 @@ export function Uebersicht({
     <>
       <header className="mb-7">
         <Label>Redaktioneller Arbeitsraum</Label>
-        <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">
+        <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-fg">
           Deutsch-Atlas im Überblick
         </h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-muted">
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-fg-muted">
           Katalog, Belege und Quellen bleiben getrennte Aussagen. Eine grüne Abdeckung ist kein
           Beweis für Tiefe oder Behalten.
         </p>
@@ -100,7 +100,7 @@ export function Uebersicht({
               tone={thin ? 'warn' : 'neutral'}
             />
           </StatGroup>
-          <div className="mt-6 border-t border-border-subtle pt-4">
+          <div className="mt-6 border-t border-line pt-4">
             <Label>Redaktioneller Status</Label>
             <div className="mt-2">
               <Bar value={reviewed} max={topics} tone="brand" label={`${reviewed}/${topics}`} />
@@ -108,7 +108,7 @@ export function Uebersicht({
           </div>
         </Panel>
         <Panel title="Arbeitsumgebung">
-          <p className="break-all text-sm text-ink">{workspace?.root ?? graph.root}</p>
+          <p className="break-all text-sm text-fg">{workspace?.root ?? graph.root}</p>
           <div className="mt-3 flex flex-wrap gap-2">
             <Chip tone={workspace?.writable ? 'ok' : 'warn'}>
               {workspace?.writable ? 'lokal schreibbar' : 'nur lesbar'}
@@ -116,7 +116,7 @@ export function Uebersicht({
             <Chip>{workspace?.transport ?? 'vite'}</Chip>
             <Chip>{workspace?.platform ?? 'browser'}</Chip>
           </div>
-          <p className="mt-4 text-xs leading-5 text-ink-muted">
+          <p className="mt-4 text-xs leading-5 text-fg-muted">
             Der Checkout ist die einzige Inhaltsquelle. Redaktion speichert keine zweite Fassung in
             einer Datenbank.
           </p>
@@ -171,9 +171,9 @@ function Queue({
     <Panel
       title={title}
       tone={tone}
-      action={<span className="tabular text-2xl font-semibold text-ink">{count}</span>}
+      action={<span className="tabular text-2xl font-semibold text-fg">{count}</span>}
     >
-      <p className="text-sm leading-5 text-ink-muted">{children}</p>
+      <p className="text-sm leading-5 text-fg-muted">{children}</p>
       <p className="mt-4">
         <Button href={target}>öffnen</Button>
       </p>

@@ -141,8 +141,8 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Materialien</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-fg">Materialien</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {graph.elements.length} Elemente in {ARTEN.length} Materialarten · jede Zahl kommt aus dem
           Korpus
         </p>
@@ -169,9 +169,9 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
               {graph.reports
                 .filter((r) => r.wortliste)
                 .map((r) => (
-                  <li key={r.level} className="tabular text-ink-muted">
-                    <span className="font-semibold text-ink">{r.level}</span> {r.wortliste!.percent}
-                    % · {r.wortliste!.cards} Karten · {r.wortliste!.grammar} als Grammatik
+                  <li key={r.level} className="tabular text-fg-muted">
+                    <span className="font-semibold text-fg">{r.level}</span> {r.wortliste!.percent}%
+                    · {r.wortliste!.cards} Karten · {r.wortliste!.grammar} als Grammatik
                   </li>
                 ))}
             </ul>
@@ -281,7 +281,7 @@ function Decks({ decks, topicTitle }: { decks: Deck[]; topicTitle: (id: string) 
       // understand and will never produce. A deck where that number is far below `entries` is a
       // deliberate choice at B1 and a mistake at A1 — which is why both are shown, not the ratio.
       cell: (d) => (
-        <span className={d.productive === 0 ? 'text-ink-muted' : ''}>{d.productive}</span>
+        <span className={d.productive === 0 ? 'text-fg-muted' : ''}>{d.productive}</span>
       ),
     },
     {
@@ -299,7 +299,7 @@ function Decks({ decks, topicTitle }: { decks: Deck[]; topicTitle: (id: string) 
             ))}
           </Mehrere>
         ) : (
-          <span className="text-ink-muted" title="Wortlisten-Deck: bewusst ohne Thema">
+          <span className="text-fg-muted" title="Wortlisten-Deck: bewusst ohne Thema">
             frei
           </span>
         ),
@@ -343,7 +343,7 @@ function Lesetexte({
         const out = band && (r.words < band[0] || r.words > band[1]);
         return (
           <span
-            className={out ? 'text-warn-ink' : ''}
+            className={out ? 'text-defect' : ''}
             title={band ? `Band ${band[0]}–${band[1]}` : undefined}
           >
             {r.words}
@@ -409,7 +409,7 @@ function Elemente({
       key: 'kind',
       head: 'Art',
       sort: (e) => e.kind,
-      cell: (e) => <span className="text-ink-muted">{e.kind}</span>,
+      cell: (e) => <span className="text-fg-muted">{e.kind}</span>,
     },
     ...(art === 'uebungen'
       ? ([
@@ -462,7 +462,7 @@ function Elemente({
         e.topic ? (
           <Quer href={href('thema', e.topic)}>{topicTitle(e.topic)}</Quer>
         ) : (
-          <span className="text-ink-muted">Niveau {e.level}</span>
+          <span className="text-fg-muted">Niveau {e.level}</span>
         ),
     },
     {

@@ -30,16 +30,16 @@ export function Einstellungen({ workspace }: { workspace?: WorkspaceInfo }) {
     <>
       <header className="mb-6">
         <Label>Lokale Arbeitsumgebung</Label>
-        <h1 className="mt-1 font-serif text-3xl font-semibold text-ink">Einstellungen</h1>
+        <h1 className="mt-1 font-serif text-3xl font-semibold text-fg">Einstellungen</h1>
       </header>
       <Panel title="Deutsch-Atlas Checkout" className="max-w-3xl">
-        <label className="block text-sm text-ink">
-          <span className="mb-1 block text-xs text-ink-muted">Absoluter Pfad</span>
+        <label className="block text-sm text-fg">
+          <span className="mb-1 block text-xs text-fg-muted">Absoluter Pfad</span>
           <input
             value={path}
             onChange={(event) => setPath(event.target.value)}
             disabled={!desktop}
-            className="w-full rounded-md border border-border-subtle bg-surface px-3 py-2 font-mono text-xs outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:opacity-60"
+            className="w-full rounded-md border border-line bg-ground px-3 py-2 font-mono text-xs outline-none focus-visible:ring-2 focus-visible:ring-signal disabled:opacity-60"
           />
         </label>
         <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -54,12 +54,12 @@ export function Einstellungen({ workspace }: { workspace?: WorkspaceInfo }) {
           </Chip>
         </div>
         {!desktop ? (
-          <p className="mt-4 text-xs text-ink-muted">
+          <p className="mt-4 text-xs text-fg-muted">
             Im Browser wird der Checkout vom laufenden Vite-Prozess festgelegt. Die Auswahl steht in
             der Desktop-App zur Verfügung.
           </p>
         ) : null}
-        {message ? <p className="mt-3 text-sm text-ink-muted">{message}</p> : null}
+        {message ? <p className="mt-3 text-sm text-fg-muted">{message}</p> : null}
       </Panel>
     </>
   );

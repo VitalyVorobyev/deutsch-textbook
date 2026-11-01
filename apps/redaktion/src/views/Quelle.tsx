@@ -159,10 +159,10 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
       <header className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <Label>{snapshot.kind}</Label>
-          <h1 className="mt-1 break-all font-serif text-2xl font-semibold text-ink">
+          <h1 className="mt-1 break-all font-serif text-2xl font-semibold text-fg">
             {path.split('/').at(-1)}
           </h1>
-          <p className="mt-1 break-all text-xs text-ink-muted">{path}</p>
+          <p className="mt-1 break-all text-xs text-fg-muted">{path}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Chip tone={dirty ? 'warn' : 'ok'}>{dirty ? 'ungespeichert' : 'gespeichert'}</Chip>
@@ -181,20 +181,20 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
       {error ? (
         <p
           role="alert"
-          className="mb-4 whitespace-pre-wrap border-l-4 border-warn bg-warn-soft p-3 text-sm text-warn-ink"
+          className="mb-4 whitespace-pre-wrap border-l-4 border-defect bg-defect/12 p-3 text-sm text-defect"
         >
           {error}
         </p>
       ) : null}
       {validation ? (
         <details
-          className={`mb-4 border-l-4 p-3 text-sm ${validation.ok ? 'border-ok bg-ok-soft' : 'border-warn bg-warn-soft'}`}
+          className={`mb-4 border-l-4 p-3 text-sm ${validation.ok ? 'border-normal bg-normal/12' : 'border-defect bg-defect/12'}`}
           open={!validation.ok}
         >
-          <summary className="cursor-pointer font-medium text-ink">
+          <summary className="cursor-pointer font-medium text-fg">
             {validation.ok ? 'Der Korpus ist gültig' : 'Die Korpusprüfung ist rot'}
           </summary>
-          <pre className="mt-2 max-h-56 overflow-auto whitespace-pre-wrap text-xs text-ink-muted">
+          <pre className="mt-2 max-h-56 overflow-auto whitespace-pre-wrap text-xs text-fg-muted">
             {validation.output || 'Keine Ausgabe.'}
           </pre>
         </details>
@@ -210,11 +210,11 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
             onLanguage={chooseLanguage}
           />
         </Panel>
-        <section className="flex min-h-[68vh] min-w-0 flex-col overflow-hidden rounded-lg border border-border-subtle bg-surface-raised">
-          <div className="flex items-center justify-between border-b border-border-subtle px-4 py-2">
+        <section className="flex min-h-[68vh] min-w-0 flex-col overflow-hidden rounded-lg border border-line bg-surface">
+          <div className="flex items-center justify-between border-b border-line px-4 py-2">
             <Label>Quelle</Label>
             <a
-              className="text-xs text-info-ink underline underline-offset-2"
+              className="text-xs text-signal underline underline-offset-2"
               href={`${GITHUB}/${path}`}
               target="_blank"
               rel="noreferrer"
@@ -227,7 +227,7 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
             value={text}
             onChange={(event) => setText(event.target.value)}
             spellCheck={snapshot.kind === 'topic-article' || snapshot.kind === 'discovery'}
-            className="min-h-[62vh] flex-1 resize-none bg-stone-950 p-4 font-mono text-[0.78rem] leading-5 text-stone-100 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand"
+            className="min-h-[62vh] flex-1 resize-none bg-ground p-4 font-mono text-[0.78rem] leading-5 text-fg outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-signal"
           />
         </section>
       </div>
@@ -290,7 +290,7 @@ function LanguageSwitch({
 }) {
   return (
     <div
-      className="mb-5 flex flex-wrap items-center gap-1.5 border-b border-border-subtle pb-3"
+      className="mb-5 flex flex-wrap items-center gap-1.5 border-b border-line pb-3"
       role="group"
       aria-label="Vorschausprache"
     >
@@ -304,7 +304,7 @@ function LanguageSwitch({
             onClick={() => onLanguage(entry)}
             aria-pressed={language === entry}
             title={coverage ? `${coverage.authored}/${coverage.required} Sprachblöcke` : undefined}
-            className={`rounded border px-2 py-1 text-[0.68rem] font-semibold ${language === entry ? 'border-brand bg-brand-soft text-brand-ink' : unsupported ? 'border-border-subtle text-ink-muted opacity-55' : 'border-border-subtle text-ink hover:bg-surface-sunken'}`}
+            className={`rounded border px-2 py-1 text-[0.68rem] font-semibold ${language === entry ? 'border-signal bg-signal/12 text-signal' : unsupported ? 'border-line text-fg-muted opacity-55' : 'border-line text-fg hover:bg-raised'}`}
           >
             {LANGUAGE_LABEL[entry]}
             {coverage
@@ -345,8 +345,8 @@ function StructuredPreview({
           .slice(0, 14)
           .map(([key, item]) => (
             <div key={key} className="contents">
-              <dt className="text-ink-muted">{key}</dt>
-              <dd className="break-words text-ink">{String(item)}</dd>
+              <dt className="text-fg-muted">{key}</dt>
+              <dd className="break-words text-fg">{String(item)}</dd>
             </div>
           ))}
       </dl>
@@ -359,9 +359,9 @@ function StructuredPreview({
             {rows.slice(0, 80).map((row, index) => (
               <li
                 key={String(row.id ?? row.de ?? index)}
-                className="rounded-md border border-border-subtle bg-surface p-3"
+                className="rounded-md border border-line bg-ground p-3"
               >
-                <p className="text-xs font-semibold text-ink">
+                <p className="text-xs font-semibold text-fg">
                   {String(row.id ?? row.de ?? `#${index + 1}`)}
                 </p>
                 <Field label="Prompt" value={row.prompt ?? row.de ?? row.text} />
@@ -377,7 +377,7 @@ function StructuredPreview({
           </ol>
         </section>
       ) : kind !== 'exercise-set' ? (
-        <pre className="overflow-auto whitespace-pre-wrap text-xs text-ink">
+        <pre className="overflow-auto whitespace-pre-wrap text-xs text-fg">
           {JSON.stringify(value, null, 2)}
         </pre>
       ) : null}
@@ -390,7 +390,7 @@ function Field({ label, value, tone }: { label: string; value: unknown; tone?: '
   const text = typeof value === 'string' ? value : JSON.stringify(value, null, 2);
   return (
     <p
-      className={`mt-2 whitespace-pre-wrap text-xs ${tone === 'ok' ? 'text-ok-ink' : tone === 'info' ? 'text-info-ink' : 'text-ink-muted'}`}
+      className={`mt-2 whitespace-pre-wrap text-xs ${tone === 'ok' ? 'text-normal' : tone === 'info' ? 'text-signal' : 'text-fg-muted'}`}
     >
       <span className="font-semibold">{label}:</span> {text}
     </p>

@@ -34,6 +34,7 @@ GitHub Release notes.
 
 ### Changed
 
+- **Redaktion**, the editorial workbench, now uses the shared vitavision design system.
 - **Exercise sets renamed to one convention**, so each file name starts with its topic. Your
   answer history moves to the new names automatically; update the desktop app to keep it in step.
 - **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page

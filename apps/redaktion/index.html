@@ -1,21 +1,38 @@
 <!doctype html>
-<html lang="de" data-theme="light">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>Redaktion · Deutsch-Atlas</title>
     <script>
-      // Pre-paint, like the learner app's Base.astro: a theme that flashes is worse than one
-      // that is wrong. Local-only tool, so localStorage is the whole persistence story.
-      try {
-        const saved = localStorage.getItem('da:redaktion-theme');
-        const dark = saved === 'dark';
-        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      } catch {}
+      // Pre-paint: the `dark` class must be on <html> before any module loads, in agreement with
+      // `initTheme('redaktion-theme')` in main.tsx (@vitavision/ui's theme controller). The old
+      // `da:redaktion-theme` value ('light' | 'dark') is carried over once, so a chosen theme
+      // survives the move.
+      (function () {
+        try {
+          var KEY = 'redaktion-theme';
+          var stored = localStorage.getItem(KEY);
+          if (stored === null) {
+            var legacy = localStorage.getItem('da:redaktion-theme');
+            if (legacy === 'light' || legacy === 'dark') {
+              stored = legacy;
+              localStorage.setItem(KEY, legacy);
+            }
+          }
+          var dark =
+            stored === 'dark' ||
+            ((stored === null || stored === 'system') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (_) {
+          // Storage unavailable: the light palette on :root.
+        }
+      })();
     </script>
   </head>
-  <body class="bg-surface text-ink">
+  <body>
     <div id="app"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

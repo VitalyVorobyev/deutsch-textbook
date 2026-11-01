@@ -26,7 +26,7 @@ const STATUS_LABEL: Record<string, string> = {
 
 /** One shape for every class, so the eye keeps its place moving down thirteen groups. */
 const COLUMNS = (topicTitle: (id: string) => string): Spalte<WorkItem>[] => [
-  { key: 'message', head: 'Befund', cell: (p) => <span className="text-ink">{p.message}</span> },
+  { key: 'message', head: 'Befund', cell: (p) => <span className="text-fg">{p.message}</span> },
   {
     key: 'topic',
     head: 'Thema',
@@ -34,13 +34,13 @@ const COLUMNS = (topicTitle: (id: string) => string): Spalte<WorkItem>[] => [
       p.topic ? (
         <Quer href={href('thema', p.topic)}>{topicTitle(p.topic)}</Quer>
       ) : (
-        <span className="text-ink-muted">—</span>
+        <span className="text-fg-muted">—</span>
       ),
   },
   {
     key: 'level',
     head: 'Niveau',
-    cell: (p) => <span className="text-ink-muted">{p.level ?? '—'}</span>,
+    cell: (p) => <span className="text-fg-muted">{p.level ?? '—'}</span>,
   },
   {
     key: 'status',
@@ -105,8 +105,8 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Qualität</h1>
-        <p className="mt-1 text-sm text-ink-muted">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-fg">Qualität</h1>
+        <p className="mt-1 text-sm text-fg-muted">
           {filtered.length} von {graph.problems.length} Befunden · redaktionelle Arbeitsliste, kein
           Validatorbericht
         </p>
@@ -176,7 +176,7 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
             >
               {/* The `why` is the half a class name cannot carry, and it is why these are labels
                   and not enum values. */}
-              {label ? <p className="-mt-2 mb-3 text-xs text-ink-muted">{label.why}</p> : null}
+              {label ? <p className="-mt-2 mb-3 text-xs text-fg-muted">{label.why}</p> : null}
               <Zeilentabelle
                 rows={rows}
                 rowKey={(p) => `${p.kind}-${p.topic ?? ''}-${p.file ?? ''}-${p.message}`}

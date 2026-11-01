@@ -104,7 +104,7 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           <Label>
             {topic.level} · {topic.unitTitle ?? 'ohne Einheit'}
           </Label>
-          <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">
+          <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-fg">
             {topic.title}
           </h1>
           <p className="mt-1 text-sm">
@@ -114,7 +114,7 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-ink-muted">Status</span>
+          <span className="text-fg-muted">Status</span>
           <StatusFeld graph={graph} topic={topic} />
         </div>
       </header>
@@ -177,7 +177,7 @@ function StatusFeld({
       </Chip>
       {topic.status !== 'reviewed' ? (
         <a
-          className="text-xs text-info-ink underline underline-offset-2"
+          className="text-xs text-signal underline underline-offset-2"
           href={href('quelle', undefined, { pfad: topic.file })}
         >
           Gate öffnen
@@ -234,7 +234,7 @@ function Ueberblick({
               value={
                 <>
                   {profile.met}
-                  <span className="text-base font-normal text-ink-muted">/{profile.total}</span>
+                  <span className="text-base font-normal text-fg-muted">/{profile.total}</span>
                 </>
               }
               tone={median?.met !== undefined && profile.met < median.met ? 'warn' : 'neutral'}
@@ -252,14 +252,14 @@ function Ueberblick({
                   <span
                     className={
                       n || activity === 'extension' || activity === 'remediation'
-                        ? 'text-ink'
-                        : 'text-warn-ink'
+                        ? 'text-fg'
+                        : 'text-defect'
                     }
                   >
                     {ACTIVITY_LABEL[activity]}
                   </span>
                   <span
-                    className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-ink-muted' : 'text-warn-ink'}`}
+                    className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-fg-muted' : 'text-defect'}`}
                   >
                     {n || '—'}
                   </span>
@@ -267,7 +267,7 @@ function Ueberblick({
               );
             })}
           </ul>
-          <p className="mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
+          <p className="mt-3 border-t border-line pt-2 text-xs text-fg-muted">
             Stufe beschreibt die Lernabsicht; Medium und Dateizahl sind eigene Dimensionen.
           </p>
         </Panel>
@@ -276,7 +276,7 @@ function Ueberblick({
           <ul className="space-y-2">
             {(['input', 'abruf', 'interaktion', 'produktion'] as const).map((touch) => (
               <li key={touch} className="flex items-center justify-between gap-2 text-xs">
-                <span className={profile.touches[touch] ? 'text-ink' : 'text-warn-ink'}>
+                <span className={profile.touches[touch] ? 'text-fg' : 'text-defect'}>
                   {TOUCH_LABEL[touch]}
                 </span>
                 <Bar
@@ -288,7 +288,7 @@ function Ueberblick({
               </li>
             ))}
           </ul>
-          <p className="tabular mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
+          <p className="tabular mt-3 border-t border-line pt-2 text-xs text-fg-muted">
             {profile.depth.items} Aufgaben, davon {profile.depth.production} produktiv · Median{' '}
             {median?.items ?? '–'} / {median?.production ?? '–'}
           </p>
@@ -303,7 +303,7 @@ function Ueberblick({
                 <Chip tone={profile.modesDelivered.includes(outcome.mode) ? 'neutral' : 'warn'}>
                   {outcome.mode}
                 </Chip>
-                <span className="text-ink">{outcome.de}</span>
+                <span className="text-fg">{outcome.de}</span>
               </li>
             ))}
           </ul>
@@ -311,17 +311,15 @@ function Ueberblick({
 
         <Panel title="Erklärung — Abschnitte" tone={topic.subsections.length ? 'neutral' : 'warn'}>
           {topic.subsections.length ? (
-            <ol className="list-inside list-decimal space-y-0.5 text-xs text-ink">
+            <ol className="list-inside list-decimal space-y-0.5 text-xs text-fg">
               {topic.subsections.map((s) => (
                 <li key={s}>{s}</li>
               ))}
             </ol>
           ) : (
-            <p className="text-xs text-warn-ink">
-              {PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}
-            </p>
+            <p className="text-xs text-defect">{PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}</p>
           )}
-          <p className="mt-3 border-t border-border-subtle pt-2 text-xs">
+          <p className="mt-3 border-t border-line pt-2 text-xs">
             <Quelllink
               href={href('quelle', undefined, {
                 pfad:
@@ -358,7 +356,7 @@ function Ueberblick({
               </Chip>
             ))}
           </div>
-          <p className="mt-2 text-xs text-ink-muted">
+          <p className="mt-2 text-xs text-fg-muted">
             Gezählt werden verfasste Erklärungshälften; deutsche Beispiele allein gelten nicht als
             DE-Fassung.
           </p>
@@ -385,25 +383,25 @@ function Ueberblick({
             ))}
           </div>
           {topic.tags.length ? (
-            <p className="mt-3 text-xs text-ink-muted">Themen-Tags: {topic.tags.join(' · ')}</p>
+            <p className="mt-3 text-xs text-fg-muted">Themen-Tags: {topic.tags.join(' · ')}</p>
           ) : null}
         </Panel>
         <Panel title="Referenzansprüche" tone={topic.claims.length ? 'neutral' : 'leer'}>
           {topic.claims.length ? (
-            <ul className="space-y-1 text-xs text-ink">
+            <ul className="space-y-1 text-xs text-fg">
               {topic.claims.map((claim) => (
                 <li key={claim}>{claim}</li>
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-ink-muted">
+            <p className="text-xs text-fg-muted">
               Keine Themenliste beansprucht; bei reinen Grammatikthemen ist das erwartbar.
             </p>
           )}
           <p className="mt-3">
             <a
               href={href('referenzen')}
-              className="text-xs text-info-ink underline underline-offset-2"
+              className="text-xs text-signal underline underline-offset-2"
             >
               in Referenzen prüfen
             </a>
@@ -422,9 +420,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
     {
       key: 'activity',
       head: 'Funktion',
-      cell: (e) => (
-        <span className="text-ink">{e.activity ? ACTIVITY_LABEL[e.activity] : '—'}</span>
-      ),
+      cell: (e) => <span className="text-fg">{e.activity ? ACTIVITY_LABEL[e.activity] : '—'}</span>,
     },
     {
       key: 'stage',
@@ -443,16 +439,14 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
             ariaLabel={`Stufe von ${e.id.split('#')[0]}`}
           />
         ) : (
-          <span className="text-ink-muted">{STAGE_LABEL[e.stage]}</span>
+          <span className="text-fg-muted">{STAGE_LABEL[e.stage]}</span>
         ),
     },
-    { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
+    { key: 'kind', head: 'Art', cell: (e) => <span className="text-fg-muted">{e.kind}</span> },
     {
       key: 'medium',
       head: 'Medium',
-      cell: (e) => (
-        <span className="text-ink-muted">{e.medium ? MEDIUM_LABEL[e.medium] : '—'}</span>
-      ),
+      cell: (e) => <span className="text-fg-muted">{e.medium ? MEDIUM_LABEL[e.medium] : '—'}</span>,
     },
     {
       key: 'id',
@@ -487,7 +481,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
       label: (
         <span className="flex items-center gap-2">
           {ACTIVITY_LABEL[activity]}
-          <span className="tabular text-xs font-normal text-ink-muted">
+          <span className="tabular text-xs font-normal text-fg-muted">
             {elements.filter((e) => e.activity === activity).length}
           </span>
         </span>
@@ -511,8 +505,8 @@ function Pruefungen({ profile }: { profile: GraphPayload['profiles'][number] }) 
         <li key={check.id} className="flex items-start gap-2.5 text-sm">
           <Chip tone={check.ok ? ('ok' as Tone) : ('warn' as Tone)}>{check.ok ? '✓' : '✗'}</Chip>
           <span className="min-w-0">
-            <span className="text-ink">{check.label}</span>
-            {check.detail ? <span className="text-ink-muted"> — {check.detail}</span> : null}
+            <span className="text-fg">{check.label}</span>
+            {check.detail ? <span className="text-fg-muted"> — {check.detail}</span> : null}
           </span>
         </li>
       ))}
@@ -526,11 +520,9 @@ function Befunde({ problems }: { problems: GraphPayload['problems'] }) {
     <ul className="space-y-3">
       {problems.map((p, i) => (
         <li key={`${p.kind}-${i}`}>
-          <p className="text-sm font-medium text-warn-ink">
-            {PROBLEM_LABELS[p.kind]?.de ?? p.kind}
-          </p>
-          <p className="text-sm text-ink">{p.message}</p>
-          <p className="mt-0.5 text-xs text-ink-muted">{PROBLEM_LABELS[p.kind]?.why}</p>
+          <p className="text-sm font-medium text-defect">{PROBLEM_LABELS[p.kind]?.de ?? p.kind}</p>
+          <p className="text-sm text-fg">{p.message}</p>
+          <p className="mt-0.5 text-xs text-fg-muted">{PROBLEM_LABELS[p.kind]?.why}</p>
           {p.file ? (
             <p className="mt-0.5 text-xs">
               <Quelllink href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Quelllink>

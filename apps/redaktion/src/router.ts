@@ -230,9 +230,12 @@ export function useQueryState(key: string, fallback: string): [string, (next: st
   return [route.query[key] ?? fallback, set];
 }
 
+/** The element the page scrolls in: `AppShell` fixes the frame, so it is not the window. */
+export const BUEHNE_ID = 'redaktion-buehne';
+
 /** Scroll to the top on every navigation — a long table left mid-scroll reads as a broken link. */
 export function useScrollReset(key: string): void {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    document.getElementById(BUEHNE_ID)?.scrollTo(0, 0);
   }, [key]);
 }

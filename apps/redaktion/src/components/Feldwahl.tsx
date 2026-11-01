@@ -82,9 +82,9 @@ export function Feldwahl({
           // same width so the table keeps a straight right edge whatever the option labels happen
           // to be. `abgeleitet: Nachprüfung` is twice the length of `Transfer`, and a ragged column
           // is the first thing that stops a table scanning.
-          `${width} rounded border border-border-subtle bg-surface-raised px-1.5 py-0.5 text-xs ` +
-          'focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand disabled:opacity-60 ' +
-          (shown === null ? 'text-ink-muted' : 'text-ink')
+          `${width} rounded border border-line bg-surface px-1.5 py-0.5 text-xs ` +
+          'focus:border-signal focus:outline-none focus:ring-1 focus:ring-signal disabled:opacity-60 ' +
+          (shown === null ? 'text-fg-muted' : 'text-fg')
         }
       >
         {derived !== undefined && (
@@ -97,12 +97,12 @@ export function Feldwahl({
         ))}
       </select>
       {waiting && !error && (
-        <span className="text-[0.65rem] leading-tight text-ink-muted">
+        <span className="text-[0.65rem] leading-tight text-fg-muted">
           geschrieben — Korpus wird neu gelesen…
         </span>
       )}
       {error && (
-        <span role="alert" className="max-w-64 text-[0.65rem] leading-tight text-warn-ink">
+        <span role="alert" className="max-w-64 text-[0.65rem] leading-tight text-defect">
           {error}
         </span>
       )}
