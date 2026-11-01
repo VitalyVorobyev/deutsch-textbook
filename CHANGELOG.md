@@ -117,6 +117,8 @@ GitHub Release notes.
 - Tonwerk's timeline is editable: drag a line, a sound or a background to retime it, see where the
   next render would put everything, hear the draft before rendering, and undo any edit since the
   last save.
+- Tonwerk's Pult switches a line's high-pass, low-pass, compressor and crusher on and off and sets
+  their values, and a mix moved back to neutral no longer reads as unsaved.
 - Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
   any one track on its own.
 - Tonwerk speaks every roster character in its own designed voice on one model, and publishes a

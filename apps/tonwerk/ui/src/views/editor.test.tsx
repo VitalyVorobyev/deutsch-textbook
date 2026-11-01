@@ -314,4 +314,40 @@ describe('das Pult', () => {
     expect(zeile && 'gain_db' in zeile ? zeile.gain_db : undefined).toBe(-4.5);
     expect(Object.keys(zeile ?? {})).not.toContain('effects');
   });
+
+  test('an insert opens beneath its line, switches on at its start values and edits in place', async () => {
+    window.location.hash = '#/szene/ls-wohnen-01?modus=mischung';
+    const reviseScene = vi.fn(async () => ({
+      project_id: 3,
+      slug: 'ls-wohnen-01',
+      revision: 5,
+      scene_sha256: 'neue-bytes',
+      has_exercise: true,
+      stage: 'draft',
+    }));
+    mount(<Szene slug="ls-wohnen-01" />, editor({ reviseScene: reviseScene as never }));
+
+    const aufklappen = await screen.findByRole('button', { name: /^line-1 · .*: Inserts$/ });
+    expect(screen.queryByRole('switch', { name: 'Hochpass' })).toBeNull();
+    fireEvent.click(aufklappen);
+    const hochpass = screen.getAllByRole('switch', { name: 'Hochpass' })[0]!;
+    fireEvent.click(hochpass);
+    const hz = await screen.findByRole('spinbutton', { name: /^line-1 · .*: Hochpass Hz$/ });
+    fireEvent.focus(hz);
+    fireEvent.change(hz, { target: { value: '250' } });
+    const speichern = screen.getByRole('button', { name: 'Als neue Revision speichern' });
+    await waitFor(() => expect(speichern.hasAttribute('disabled')).toBe(false));
+    fireEvent.click(speichern);
+    await waitFor(() => expect(reviseScene).toHaveBeenCalledTimes(1));
+    const gesendet = (reviseScene.mock.calls[0] as unknown as [string, Scene])[1];
+    const zeile = gesendet.timeline.find(
+      (entry) => entry.type === 'speech' && entry.utterance_id === 'line-1',
+    );
+    expect(zeile && 'effects' in zeile ? zeile.effects : undefined).toMatchObject({
+      highpass: { hz: 250, sections: 1 },
+      lowpass: null,
+      compression: null,
+      crush: null,
+    });
+  });
 });

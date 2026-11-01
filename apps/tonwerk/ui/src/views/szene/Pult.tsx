@@ -6,18 +6,28 @@
  * and a change is heard only after it is saved and rendered again. The panel says so, rather than
  * leaving a moved fader to look as if it had done nothing.
  *
- * **A strip carries what this desk can set, and nothing it cannot.** A line has a level against the
- * other lines, three fixed equalizer bands and a send into the scene's room; a bed has how far it
- * drops under speech. The band filters, compressor and crusher of an effects chain are kept when a
- * strip is moved — they are the scene's, not this panel's to drop.
+ * **A strip carries the whole insert chain, folded.** A line has a level against the other lines,
+ * three fixed equalizer bands and a send into the scene's room in its row; its inserts — high-pass,
+ * low-pass, compressor, crusher, in the order the renderer applies them — open in a row beneath it,
+ * because ten more columns would push the script off the screen. An insert is switched on at a
+ * gentle start (`INSERT_START`) and switched off by removing it, never by zeroing its numbers. A
+ * bed has how far it drops under speech.
  *
  * **Zero is not a value written down.** `mischungSetzen` removes a field that returns to neutral,
  * so moving a fader and moving it back leaves a scene that does not read as changed.
  */
-import { NumberInput } from '@vitavision/ui';
+import { Button, NumberInput, Switch } from '@vitavision/ui';
+import { useState } from 'react';
 import { Platte } from '../../components/Platte';
-import { mischungSetzen, type Mischwerte } from '../../scene-draft';
-import type { AmbienceEntry, Scene, SpeechEntry } from '@da/schema/audio-scene';
+import { INSERT_START, mischungSetzen, type Mischwerte } from '../../scene-draft';
+import type {
+  AmbienceEntry,
+  BandFilter,
+  Compression,
+  Crush,
+  Scene,
+  SpeechEntry,
+} from '@da/schema/audio-scene';
 
 const SPRACHE_PEGEL = { min: -24, max: 6 };
 const BAND = { min: -12, max: 12 };
@@ -47,7 +57,7 @@ export function Pult({
     <Platte
       titel="Pult"
       zaehler={`${zeilen.length} Zeilen · ${betten.length} Betten`}
-      erklaerung="Pegel, Klang und Raumanteil jeder Zeile, und wie weit ein Bett unter Sprache absinkt. Das Pult ändert den Entwurf: zu hören ist eine Änderung erst nach Speichern und neuem Rendern."
+      erklaerung="Pegel, Klang, Raumanteil und Inserts jeder Zeile, und wie weit ein Bett unter Sprache absinkt. Das Pult ändert den Entwurf: zu hören ist eine Änderung erst nach Speichern und neuem Rendern."
       randlos
     >
       <div className="tabelle-rahmen">
@@ -60,6 +70,7 @@ export function Pult({
               <th scope="col">Mitten dB</th>
               <th scope="col">Höhen dB</th>
               <th scope="col">Raum dB</th>
+              <th scope="col">Inserts</th>
             </tr>
           </thead>
           <tbody>
@@ -122,60 +133,355 @@ function Kanal({
   setzen(werte: Mischwerte): void;
 }): React.JSX.Element {
   const eq = entry.effects?.eq;
+  const [offen, setOffen] = useState(false);
+  const aktiv = (['highpass', 'lowpass', 'compression', 'crush'] as const).filter(
+    (name) => entry.effects?.[name] != null,
+  ).length;
   return (
-    <tr>
-      <th scope="row">
-        <div className="pult-zeile">
-          <span className="zahl">{name}</span>
-          {text ? <span className="skript pult-text">{text}</span> : null}
-        </div>
-      </th>
-      <td>
-        <Regler
-          label={`${name}: Pegel`}
-          wert={entry.gain_db ?? 0}
-          grenzen={SPRACHE_PEGEL}
-          bearbeitbar={bearbeitbar}
-          setzen={(gain_db) => setzen({ gain_db })}
-        />
-      </td>
-      <td>
-        <Regler
-          label={`${name}: Tiefen`}
-          wert={eq?.low_db ?? 0}
-          grenzen={BAND}
-          bearbeitbar={bearbeitbar}
-          setzen={(low_db) => setzen({ eq: { low_db } })}
-        />
-      </td>
-      <td>
-        <Regler
-          label={`${name}: Mitten`}
-          wert={eq?.mid_db ?? 0}
-          grenzen={BAND}
-          bearbeitbar={bearbeitbar}
-          setzen={(mid_db) => setzen({ eq: { mid_db } })}
-        />
-      </td>
-      <td>
-        <Regler
-          label={`${name}: Höhen`}
-          wert={eq?.high_db ?? 0}
-          grenzen={BAND}
-          bearbeitbar={bearbeitbar}
-          setzen={(high_db) => setzen({ eq: { high_db } })}
-        />
-      </td>
-      <td>
-        <Regler
-          label={`${name}: Raum`}
-          wert={entry.effects?.room_send_db ?? 0}
-          grenzen={BAND}
-          bearbeitbar={bearbeitbar}
-          setzen={(room_send_db) => setzen({ room_send_db })}
-        />
-      </td>
-    </tr>
+    <>
+      <tr>
+        <th scope="row">
+          <div className="pult-zeile">
+            <span className="zahl">{name}</span>
+            {text ? <span className="skript pult-text">{text}</span> : null}
+          </div>
+        </th>
+        <td>
+          <Regler
+            label={`${name}: Pegel`}
+            wert={entry.gain_db ?? 0}
+            grenzen={SPRACHE_PEGEL}
+            bearbeitbar={bearbeitbar}
+            setzen={(gain_db) => setzen({ gain_db })}
+          />
+        </td>
+        <td>
+          <Regler
+            label={`${name}: Tiefen`}
+            wert={eq?.low_db ?? 0}
+            grenzen={BAND}
+            bearbeitbar={bearbeitbar}
+            setzen={(low_db) => setzen({ eq: { low_db } })}
+          />
+        </td>
+        <td>
+          <Regler
+            label={`${name}: Mitten`}
+            wert={eq?.mid_db ?? 0}
+            grenzen={BAND}
+            bearbeitbar={bearbeitbar}
+            setzen={(mid_db) => setzen({ eq: { mid_db } })}
+          />
+        </td>
+        <td>
+          <Regler
+            label={`${name}: Höhen`}
+            wert={eq?.high_db ?? 0}
+            grenzen={BAND}
+            bearbeitbar={bearbeitbar}
+            setzen={(high_db) => setzen({ eq: { high_db } })}
+          />
+        </td>
+        <td>
+          <Regler
+            label={`${name}: Raum`}
+            wert={entry.effects?.room_send_db ?? 0}
+            grenzen={BAND}
+            bearbeitbar={bearbeitbar}
+            setzen={(room_send_db) => setzen({ room_send_db })}
+          />
+        </td>
+        <td>
+          <Button
+            variant="ghost"
+            size="sm"
+            aria-expanded={offen}
+            aria-label={`${name}: Inserts`}
+            onClick={() => setOffen(!offen)}
+          >
+            {aktiv > 0 ? `${aktiv} an` : 'keine'} {offen ? '▴' : '▾'}
+          </Button>
+        </td>
+      </tr>
+      {offen ? (
+        <tr className="pult-inserts">
+          <td colSpan={7}>
+            <Inserts name={name} entry={entry} bearbeitbar={bearbeitbar} setzen={setzen} />
+          </td>
+        </tr>
+      ) : null}
+    </>
+  );
+}
+
+const HZ = { min: 20, max: 20000 };
+const FLANKEN = { min: 1, max: 6 };
+
+/**
+ * The insert chain of one line, in signal order. Each insert is whole or absent: the switch writes
+ * its start values or removes it, and its numbers edit the object in place.
+ */
+function Inserts({
+  name,
+  entry,
+  bearbeitbar,
+  setzen,
+}: {
+  name: string;
+  entry: SpeechEntry;
+  bearbeitbar: boolean;
+  setzen(werte: Mischwerte): void;
+}): React.JSX.Element {
+  const effekte = entry.effects;
+  return (
+    <div className="pult-insertreihe">
+      <Band
+        titel="Hochpass"
+        name={name}
+        wert={effekte?.highpass ?? null}
+        start={INSERT_START.highpass}
+        bearbeitbar={bearbeitbar}
+        setzen={(highpass) => setzen({ highpass })}
+      />
+      <Band
+        titel="Tiefpass"
+        name={name}
+        wert={effekte?.lowpass ?? null}
+        start={INSERT_START.lowpass}
+        bearbeitbar={bearbeitbar}
+        setzen={(lowpass) => setzen({ lowpass })}
+      />
+      <Insert
+        titel="Kompressor"
+        name={name}
+        an={effekte?.compression != null}
+        bearbeitbar={bearbeitbar}
+        schalten={(an) => setzen({ compression: an ? { ...INSERT_START.compression } : null })}
+      >
+        {effekte?.compression ? (
+          <KompressorFelder
+            name={name}
+            wert={effekte.compression}
+            bearbeitbar={bearbeitbar}
+            setzen={(compression) => setzen({ compression })}
+          />
+        ) : null}
+      </Insert>
+      <Insert
+        titel="Crusher"
+        name={name}
+        an={effekte?.crush != null}
+        bearbeitbar={bearbeitbar}
+        schalten={(an) => setzen({ crush: an ? { ...INSERT_START.crush } : null })}
+      >
+        {effekte?.crush ? (
+          <CrusherFelder
+            name={name}
+            wert={effekte.crush}
+            bearbeitbar={bearbeitbar}
+            setzen={(crush) => setzen({ crush })}
+          />
+        ) : null}
+      </Insert>
+    </div>
+  );
+}
+
+function Insert({
+  titel,
+  name,
+  an,
+  bearbeitbar,
+  schalten,
+  children,
+}: {
+  titel: string;
+  name: string;
+  an: boolean;
+  bearbeitbar: boolean;
+  schalten(an: boolean): void;
+  children: React.ReactNode;
+}): React.JSX.Element {
+  return (
+    <fieldset className="pult-insert" aria-label={`${name}: ${titel}`}>
+      <Switch checked={an} onCheckedChange={schalten} label={titel} disabled={!bearbeitbar} />
+      {children}
+    </fieldset>
+  );
+}
+
+function Band({
+  titel,
+  name,
+  wert,
+  start,
+  bearbeitbar,
+  setzen,
+}: {
+  titel: string;
+  name: string;
+  wert: BandFilter | null;
+  start: BandFilter;
+  bearbeitbar: boolean;
+  setzen(next: BandFilter | null): void;
+}): React.JSX.Element {
+  return (
+    <Insert
+      titel={titel}
+      name={name}
+      an={wert !== null}
+      bearbeitbar={bearbeitbar}
+      schalten={(an) => setzen(an ? { ...start } : null)}
+    >
+      {wert ? (
+        <>
+          <Feld
+            label={`${name}: ${titel} Hz`}
+            text="Hz"
+            wert={wert.hz}
+            grenzen={HZ}
+            schritt={10}
+            stellen={0}
+            neutral={start.hz}
+            bearbeitbar={bearbeitbar}
+            setzen={(hz) => setzen({ ...wert, hz })}
+          />
+          <Feld
+            label={`${name}: ${titel} Flanken`}
+            text="× 12 dB/Okt."
+            wert={wert.sections}
+            grenzen={FLANKEN}
+            schritt={1}
+            stellen={0}
+            neutral={start.sections}
+            bearbeitbar={bearbeitbar}
+            setzen={(sections) => setzen({ ...wert, sections })}
+          />
+        </>
+      ) : null}
+    </Insert>
+  );
+}
+
+function KompressorFelder({
+  name,
+  wert,
+  bearbeitbar,
+  setzen,
+}: {
+  name: string;
+  wert: Compression;
+  bearbeitbar: boolean;
+  setzen(next: Compression): void;
+}): React.JSX.Element {
+  const start = INSERT_START.compression;
+  const feld = (
+    feldname: keyof Compression,
+    text: string,
+    grenzen: { min: number; max: number },
+    schritt: number,
+  ) => (
+    <Feld
+      key={feldname}
+      label={`${name}: Kompressor ${text}`}
+      text={text}
+      wert={wert[feldname]}
+      grenzen={grenzen}
+      schritt={schritt}
+      stellen={schritt < 1 ? 1 : 0}
+      neutral={start[feldname]}
+      bearbeitbar={bearbeitbar}
+      setzen={(zahl) => setzen({ ...wert, [feldname]: zahl })}
+    />
+  );
+  return (
+    <>
+      {feld('threshold_db', 'Schwelle dB', { min: -60, max: 0 }, 1)}
+      {feld('ratio', 'Verhältnis', { min: 1, max: 20 }, 0.5)}
+      {feld('attack_ms', 'Attack ms', { min: 0.1, max: 2000 }, 1)}
+      {feld('release_ms', 'Release ms', { min: 1, max: 9000 }, 10)}
+      {feld('makeup_db', 'Make-up dB', { min: 0, max: 36 }, 0.5)}
+    </>
+  );
+}
+
+function CrusherFelder({
+  name,
+  wert,
+  bearbeitbar,
+  setzen,
+}: {
+  name: string;
+  wert: Crush;
+  bearbeitbar: boolean;
+  setzen(next: Crush): void;
+}): React.JSX.Element {
+  return (
+    <>
+      <Feld
+        label={`${name}: Crusher Bits`}
+        text="Bits"
+        wert={wert.bits}
+        grenzen={{ min: 1, max: 64 }}
+        schritt={1}
+        stellen={0}
+        neutral={INSERT_START.crush.bits}
+        bearbeitbar={bearbeitbar}
+        setzen={(bits) => setzen({ ...wert, bits })}
+      />
+      <Feld
+        label={`${name}: Crusher Anteil`}
+        text="Anteil"
+        wert={wert.mix}
+        grenzen={{ min: 0, max: 1 }}
+        schritt={0.05}
+        stellen={2}
+        neutral={INSERT_START.crush.mix}
+        bearbeitbar={bearbeitbar}
+        setzen={(mix) => setzen({ ...wert, mix })}
+      />
+    </>
+  );
+}
+
+/** One number of an insert, labelled beside it; empty goes back to the insert's start value. */
+function Feld({
+  label,
+  text,
+  wert,
+  grenzen,
+  schritt,
+  stellen,
+  neutral,
+  bearbeitbar,
+  setzen,
+}: {
+  label: string;
+  text: string;
+  wert: number;
+  grenzen: { min: number; max: number };
+  schritt: number;
+  stellen: number;
+  neutral: number;
+  bearbeitbar: boolean;
+  setzen(next: number): void;
+}): React.JSX.Element {
+  return (
+    <span className="pult-feld">
+      <NumberInput
+        aria-label={label}
+        className="pult-zahl"
+        value={wert}
+        min={grenzen.min}
+        max={grenzen.max}
+        step={schritt}
+        precision={stellen}
+        disabled={!bearbeitbar}
+        onValueChange={setzen}
+        onClear={() => setzen(neutral)}
+      />
+      <span className="pult-einheit">{text}</span>
+    </span>
   );
 }
 

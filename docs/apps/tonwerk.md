@@ -141,8 +141,12 @@ instructions.
      rather than failing at render time.
    - **Mischung** — what the render actually produced, and the two buttons that produce it. Its
      **Pult** sets each line's level, its three equalizer bands (low, mid, high) and its share of
-     the room, and how far a background drops under speech. The Pult edits the draft like every
-     other field: a change is heard after saving and rendering again.
+     the room, and how far a background drops under speech. A line's **Inserts** button opens its
+     effects beneath it, in the order the render applies them: high-pass and low-pass (a cutoff,
+     and how steep: each step adds 12 dB per octave), compressor and crusher. Each switches on at
+     a gentle starting value and off by removing it; the low-pass always stays above the
+     high-pass. The Pult edits the draft like every other field: a change is heard after saving
+     and rendering again.
 
    Undo and redo work across all three modes, for everything since the last save: the arrow
    buttons beside **Verwerfen**, or `⌘/Strg + Z` and `⌘/Strg + Umschalt + Z`. A fader move or a

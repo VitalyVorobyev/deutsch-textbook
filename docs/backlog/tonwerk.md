@@ -12,11 +12,11 @@ only after this queue
 
 - **TON-4 · The rest of the timeline editor.** Mischung's timeline drags lines, events and beds,
   plans the draft through `POST …/plan`, previews it from the last render's stems and undoes inside
-  the draft; its Pult sets each line's level, equalizer and room send and each bed's ducking. What
-  the contract carries and no view edits yet: band filters, compressor and crusher on a line,
-  device overrides on a placement, and room overrides on the scene.
-  - **First step:** the line inserts (high-pass, low-pass, compressor, crusher) in the Pult, with
-    the neutral-value rule `mischungSetzen` already applies.
+  the draft; its Pult sets each line's level, equalizer, room send and inserts and each bed's
+  ducking. What the contract carries and no view edits yet: device overrides on a placement and
+  room overrides on the scene.
+  - **First step:** device overrides on a placement, in Szene beside the device picker, kept out
+    of the document while they are neutral the way the Pult's fields are (`kanonisch`).
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 55 of 195
   `audio-comprehension` items and all 85 `listen` items, and no Lesetext has narration
   (`grep -rh "^ *recording:" content/exercises | wc -l` gives 140).

@@ -11,6 +11,7 @@ import {
   istGeaendert,
   istSequentiell,
   katalogStimmeUebernehmen,
+  INSERT_START,
   mischungSetzen,
   rolleUmbenennen,
   stabilesJson,
@@ -216,6 +217,56 @@ describe('mischungSetzen', () => {
     expect(effekte?.room_send_db).toBe(4);
     expect(effekte?.eq).toBeNull();
     expect(effekte?.highpass).toEqual({ hz: 120, sections: 1 });
+  });
+
+  test('an insert is whole or absent, and the last one switched off removes the chain', () => {
+    const index = ersteZeile(szene);
+    const mitKompressor = mischungSetzen(szene, index, {
+      compression: { ...INSERT_START.compression },
+    });
+    const effekte = (mitKompressor.timeline[index] as SpeechEntry).effects;
+    expect(effekte?.compression).toEqual(INSERT_START.compression);
+    expect(effekte?.eq).toBeNull();
+    const mitCrusher = mischungSetzen(mitKompressor, index, { crush: { bits: 8, mix: 0.5 } });
+    expect((mitCrusher.timeline[index] as SpeechEntry).effects?.compression).toEqual(
+      INSERT_START.compression,
+    );
+    const ohne = mischungSetzen(mischungSetzen(mitCrusher, index, { compression: null }), index, {
+      crush: null,
+    });
+    expect(Object.keys(ohne.timeline[index]!)).not.toContain('effects');
+    expect(istGeaendert(szene, ohne)).toBe(false);
+  });
+
+  test('a band never passes nothing: the edge being moved stops short of the other', () => {
+    const index = ersteZeile(szene);
+    const band = mischungSetzen(szene, index, {
+      highpass: { hz: 300, sections: 3 },
+      lowpass: { hz: 3400, sections: 3 },
+    });
+    const hoch = mischungSetzen(band, index, { highpass: { hz: 5000, sections: 3 } });
+    expect((hoch.timeline[index] as SpeechEntry).effects?.highpass?.hz).toBe(3399);
+    const tief = mischungSetzen(band, index, { lowpass: { hz: 100, sections: 3 } });
+    expect((tief.timeline[index] as SpeechEntry).effects?.lowpass?.hz).toBe(301);
+  });
+
+  test('the engine spells neutral out, the pult leaves it out, and that is no edit', () => {
+    const index = ersteZeile(szene);
+    // What the engine returns for a line nobody has mixed.
+    const vomEngine = {
+      ...szene,
+      timeline: szene.timeline.map((entry, position) =>
+        position === index ? ({ ...entry, gain_db: 0, effects: null } as SpeechEntry) : entry,
+      ),
+    };
+    const hinUndZurueck = mischungSetzen(
+      mischungSetzen(vomEngine, index, { gain_db: -6, highpass: { hz: 200, sections: 1 } }),
+      index,
+      { gain_db: 0, highpass: null },
+    );
+    expect(Object.keys(hinUndZurueck.timeline[index]!)).not.toContain('effects');
+    expect(istGeaendert(vomEngine, hinUndZurueck)).toBe(false);
+    expect(istGeaendert(vomEngine, mischungSetzen(vomEngine, index, { gain_db: -6 }))).toBe(true);
   });
 
   test('a bed’s ducking is set and cleared the same way', () => {
