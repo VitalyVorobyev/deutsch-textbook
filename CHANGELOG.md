@@ -125,6 +125,8 @@ GitHub Release notes.
   their values, and a mix moved back to neutral no longer reads as unsaved.
 - Tonwerk's Pult also sets where a line sits and the device it is heard through, and a line or an
   event can change that device's band, level and room share for itself alone.
+- Tonwerk's Szene changes a room's share, reverb time, pre-delay and damping for one scene, each
+  field showing the room's own value.
 - Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
   any one track on its own.
 - Tonwerk speaks every roster character in its own designed voice on one model, and publishes a

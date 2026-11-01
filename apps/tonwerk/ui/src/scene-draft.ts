@@ -34,7 +34,9 @@ import type {
   Crush,
   DeviceOverrides,
   Placement,
+  RoomOverrides,
   Scene,
+  SceneAcoustics,
   SfxEntry,
   SpeechEntry,
   TimelineEntry,
@@ -474,6 +476,51 @@ export function abweichungSetzen(
   const neu: Placement = { ...placement };
   if (Object.values(werte).some((zahl) => zahl !== null)) neu.device_overrides = werte;
   else delete neu.device_overrides;
+  return neu;
+}
+
+/** A room's own values for the four numbers a scene may override. */
+export interface Raumwerte {
+  wet?: number;
+  decay_s?: number;
+  pre_delay_ms?: number;
+  lowpass_hz?: number;
+}
+
+export type RaumAbweichung = keyof RoomOverrides;
+
+/**
+ * Another room, or none. Its overrides go: a decay or a send level set against one room describes
+ * nothing about the next, and without a room the engine refuses them outright.
+ */
+export function raumWechseln(acoustics: SceneAcoustics, room: string | null): SceneAcoustics {
+  const neu: SceneAcoustics = { ...acoustics, room };
+  delete neu.room_overrides;
+  return neu;
+}
+
+/**
+ * One override on the scene's room, or none when `wert` is empty or the room's own value — the
+ * rule `abweichungSetzen` keeps for a device, so returning a field to the room's number leaves the
+ * scene as it was, and an empty set is removed.
+ */
+export function raumAbweichungSetzen(
+  acoustics: SceneAcoustics,
+  feld: RaumAbweichung,
+  wert: number | null,
+  raum: Raumwerte | undefined,
+): SceneAcoustics {
+  const werte: RoomOverrides = {
+    decay_s: null,
+    lowpass_hz: null,
+    pre_delay_ms: null,
+    wet: null,
+    ...acoustics.room_overrides,
+  };
+  werte[feld] = wert === null || wert === raum?.[feld] ? null : wert;
+  const neu: SceneAcoustics = { ...acoustics };
+  if (Object.values(werte).some((zahl) => zahl !== null)) neu.room_overrides = werte;
+  else delete neu.room_overrides;
   return neu;
 }
 

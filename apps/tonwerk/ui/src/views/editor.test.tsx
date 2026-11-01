@@ -389,4 +389,38 @@ describe('das Pult', () => {
       device_overrides: { gain_db: null, highpass_hz: null, lowpass_hz: 4200, room_send_db: null },
     });
   });
+
+  test("a room override shows the room's value and is kept only while it departs", async () => {
+    window.location.hash = '#/szene/ls-wohnen-01?modus=szene';
+    const reviseScene = vi.fn(async () => ({
+      project_id: 3,
+      slug: 'ls-wohnen-01',
+      revision: 5,
+      scene_sha256: 'neue-bytes',
+      has_exercise: true,
+      stage: 'draft',
+    }));
+    mount(<Szene slug="ls-wohnen-01" />, editor({ reviseScene: reviseScene as never }));
+
+    const nachhall = await screen.findByRole('spinbutton', { name: /^Nachhall s/ });
+    expect(nachhall.getAttribute('placeholder')).toBe('0.85');
+    const speichern = screen.getByRole('button', { name: 'Als neue Revision speichern' });
+
+    // The room's own number is no override: nothing to save.
+    fireEvent.focus(nachhall);
+    fireEvent.change(nachhall, { target: { value: '0.85' } });
+    expect(speichern.hasAttribute('disabled')).toBe(true);
+
+    fireEvent.change(nachhall, { target: { value: '1.4' } });
+    await waitFor(() => expect(speichern.hasAttribute('disabled')).toBe(false));
+    fireEvent.click(speichern);
+    await waitFor(() => expect(reviseScene).toHaveBeenCalledTimes(1));
+    const gesendet = (reviseScene.mock.calls[0] as unknown as [string, Scene])[1];
+    expect(gesendet.acoustics.room_overrides).toEqual({
+      decay_s: 1.4,
+      lowpass_hz: null,
+      pre_delay_ms: null,
+      wet: null,
+    });
+  });
 });

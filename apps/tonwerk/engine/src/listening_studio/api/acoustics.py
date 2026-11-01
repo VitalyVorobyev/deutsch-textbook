@@ -72,9 +72,13 @@ def router(store: Store, repo: Path) -> APIRouter:
                     "label": room.label,
                     "note": room.note,
                     "version": room.version,
-                    # The default send level into this room, which is the one number an author
+                    # The four numbers a scene's `room_overrides` may replace, so an editor shows
+                    # what an override departs from. `wet` is also the one number an author
                     # compares two rooms by without rendering either.
                     "wet": room.wet,
+                    "decay_s": room.ir.decay_s,
+                    "pre_delay_ms": room.ir.pre_delay_ms,
+                    "lowpass_hz": room.ir.lowpass_hz,
                 }
                 for room_id, room in sorted(profiles.rooms.items())
             ],

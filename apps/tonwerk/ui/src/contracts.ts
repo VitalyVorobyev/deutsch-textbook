@@ -570,7 +570,15 @@ const acousticEntrySchema = z.looseObject({
 export type AcousticEntry = z.infer<typeof acousticEntrySchema>;
 
 export const acousticsSchema = z.looseObject({
-  rooms: z.array(acousticEntrySchema.extend({ wet: z.number().optional() })),
+  /** With the four numbers a scene's `room_overrides` may replace. */
+  rooms: z.array(
+    acousticEntrySchema.extend({
+      wet: z.number().optional(),
+      decay_s: z.number().optional(),
+      pre_delay_ms: z.number().optional(),
+      lowpass_hz: z.number().optional(),
+    }),
+  ),
   /** With the four numbers a placement's `device_overrides` may replace; a missing band is null. */
   devices: z.array(
     acousticEntrySchema.extend({

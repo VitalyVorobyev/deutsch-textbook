@@ -4,6 +4,8 @@ import {
   ZeitleisteFestError,
   abweichungSetzen,
   geraetWechseln,
+  raumAbweichungSetzen,
+  raumWechseln,
   aeusserungAendern,
   aeusserungEntfernen,
   aeusserungHinzufuegen,
@@ -371,5 +373,28 @@ describe('device overrides on a placement', () => {
         ),
       }),
     ).toBe(true);
+  });
+});
+
+describe('room overrides on a scene', () => {
+  const halle = { wet: 0.34, decay_s: 2.6, pre_delay_ms: 28, lowpass_hz: 4200 };
+  const akustik = { lead_in_ms: 0, room: 'station-hall' };
+
+  test('an override is written whole, and one back at the room or emptied leaves nothing', () => {
+    const kuerzer = raumAbweichungSetzen(akustik, 'decay_s', 1.8, halle);
+    expect(kuerzer.room_overrides).toEqual({
+      decay_s: 1.8,
+      lowpass_hz: null,
+      pre_delay_ms: null,
+      wet: null,
+    });
+    expect(raumAbweichungSetzen(kuerzer, 'decay_s', 2.6, halle)).toEqual(akustik);
+    expect(raumAbweichungSetzen(kuerzer, 'decay_s', null, halle)).toEqual(akustik);
+  });
+
+  test('another room, or none, drops the overrides', () => {
+    const kuerzer = raumAbweichungSetzen(akustik, 'wet', 0.2, halle);
+    expect(raumWechseln(kuerzer, 'cafe')).toEqual({ ...akustik, room: 'cafe' });
+    expect(raumWechseln(kuerzer, null)).toEqual({ ...akustik, room: null });
   });
 });
