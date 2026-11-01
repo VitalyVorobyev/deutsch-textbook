@@ -1,0 +1,167 @@
+# Drill from progress: partizip-adjektiv failed all three delayed probe variants, and the logged
+# forms show two separate confusions. The first is the shape of Partizip I: laufene and steigene
+# drop the d that makes the form, which is the infinitive plus -d. The second is the choice and
+# the ending: bestellende for keys somebody ordered (Partizip I where the noun had it done to
+# it), kommenden for der kommende Montag, korrigierterer with a comparative stacked on. The
+# course's practice sets give Partizip II almost all the room, and Partizip I appears in one
+# cloze gap (wartenden).
+#
+# So Partizip I carries six of the ten graded forms (spielende, fehlenden, folgenden,
+# schlafendes, wachsende, zunehmende) and Partizip II the other four (reparierte, gefundenen,
+# verlorene, renovierte). Every gap and every translate item names its verb, so the decisions are
+# which participle, its d, and the adjective ending. Endings vary on purpose: nominative after
+# der and die, plural with and without an article, the neuter -es after ein, the dative -en
+# after im. Each translate item pins the one participle.
+#
+# Contexts are fresh. None re-skins the probe's form, Monday, keys, works, plan or costs, the
+# primary set's talk and waiting neighbours, or polizei-anzeige's bicycle, man and door.
+topic: informationen-vermitteln
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Partizip I oder II vor dem Nomen"
+title:
+  en: "Drill — Partizip I or II in front of a noun"
+  ru: "Тренажёр — Partizip I или II перед существительным"
+  uk: "Тренажер — Partizip I чи II перед іменником"
+  de: "Übung — Partizip I oder II vor dem Nomen"
+items:
+  - id: cloze-schild-kinder
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Two notices with Partizip I: the infinitive plus -d, then the adjective ending. Use the verbs in brackets."
+      ru: "Два объявления с Partizip I: инфинитив плюс -d, затем окончание прилагательного. Берите глаголы из скобок."
+      uk: "Два оголошення з Partizip I: інфінітив плюс -d, потім закінчення прикметника. Беріть дієслова з дужок."
+      de: "Zwei Aushänge mit Partizip I: Infinitiv plus -d, dann die Adjektivendung. Nimm die Verben in Klammern."
+    text: "Achtung, {{spielende}} Kinder! (spielen) Die {{fehlenden}} Unterlagen bringen Sie bitte bis Freitag ins Büro. (fehlen)"
+    translation:
+      en: "Caution, children playing! Please bring the missing documents to the office by Friday."
+      ru: "Внимание, играют дети! Недостающие документы, пожалуйста, принесите в офис до пятницы."
+      uk: "Увага, граються діти! Документи, яких бракує, будь ласка, принесіть в офіс до п'ятниці."
+    explain:
+      en: "Partizip I is the whole infinitive plus d: spielen becomes spielend, fehlen becomes fehlend. The d is the one sound that makes the form, and spielene or fehlene without it is not a word. In front of a noun the participle takes the ordinary adjective endings: plural with no article -e (spielende Kinder), plural after die -en (die fehlenden Unterlagen). Both mean the noun does it itself: the children play, the documents are missing."
+      ru: "Partizip I — это весь инфинитив плюс d: spielen даёт spielend, fehlen — fehlend. Именно d создаёт форму; spielene или fehlene без него — не слова. Перед существительным причастие получает обычные окончания прилагательного: множественное число без артикля — -e (spielende Kinder), после die — -en (die fehlenden Unterlagen). Оба значат, что существительное само совершает действие: дети играют, документов не хватает. Это русское действительное причастие на -ущ-/-ющ-: «играющие дети»."
+      uk: "Partizip I — це весь інфінітив плюс d: spielen дає spielend, fehlen — fehlend. Саме d творить форму; spielene чи fehlene без нього — не слова. Перед іменником дієприкметник отримує звичайні закінчення прикметника: множина без артикля — -e (spielende Kinder), після die — -en (die fehlenden Unterlagen). Обидва означають, що іменник сам виконує дію: діти граються, документів бракує. Українська тут зазвичай вживає підрядне чи описовий зворот, а німецька стискає все в одне слово."
+      de: "Partizip I ist der ganze Infinitiv plus d: aus spielen wird spielend, aus fehlen fehlend. Das d macht die Form; spielene oder fehlene ohne d sind keine Wörter. Vor einem Nomen bekommt das Partizip die normalen Adjektivendungen: Plural ohne Artikel -e (spielende Kinder), Plural nach die -en (die fehlenden Unterlagen). Beide heißen: Das Nomen tut es selbst — die Kinder spielen, die Unterlagen fehlen."
+
+  - id: cloze-heizung-text
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Partizip I or II? Ask whether the noun does it itself or has it done to it. Use the verbs in brackets, with the ending each gap needs."
+      ru: "Partizip I или II? Спросите себя: существительное само совершает действие или его совершают над ним? Берите глаголы из скобок с нужным окончанием."
+      uk: "Partizip I чи II? Запитайте себе: іменник сам виконує дію чи дію виконують над ним? Беріть дієслова з дужок із потрібним закінченням."
+      de: "Partizip I oder II? Frag, ob das Nomen es selbst tut oder ob es ihm getan wird. Nimm die Verben in Klammern, mit der Endung, die jede Lücke braucht."
+    text: "Die {{reparierte}} Heizung funktioniert wieder. (reparieren) Im {{folgenden}} Text finden Sie alle Termine. (folgen) Die {{gefundenen}} Sachen liegen beim Hausmeister. (finden)"
+    translation:
+      en: "The repaired heating works again. In the following text you will find all the dates. The things that were found are with the caretaker."
+      ru: "Отремонтированное отопление снова работает. В следующем тексте вы найдёте все сроки. Найденные вещи лежат у завхоза."
+      uk: "Відремонтоване опалення знову працює. У наступному тексті ви знайдете всі терміни. Знайдені речі лежать у завгоспа."
+    explain:
+      en: "Unpack each one into a relative clause and the choice is visible. die Heizung, die repariert wurde: somebody did it, so Partizip II, reparierte. der Text, der folgt: the text does it itself, so Partizip I, folgenden. die Sachen, die gefunden wurden: Partizip II, gefundenen. The endings are the familiar ones: -e after die in the nominative, -en after im (in dem) and in the plural after die."
+      ru: "Разверните каждое в относительное придаточное — и выбор станет виден. die Heizung, die repariert wurde: это сделал кто-то другой, значит, Partizip II — reparierte. der Text, der folgt: текст «действует» сам — Partizip I, folgenden. die Sachen, die gefunden wurden — Partizip II, gefundenen. Окончания знакомые: -e после die в номинативе, -en после im (in dem) и во множественном числе после die. Русское страдательное «отремонтированное» соответствует Partizip II, действительное «следующий» — Partizip I."
+      uk: "Розгорніть кожне у відносне підрядне — і вибір стане видно. die Heizung, die repariert wurde: це зробив хтось інший, отже, Partizip II — reparierte. der Text, der folgt: текст «діє» сам — Partizip I, folgenden. die Sachen, die gefunden wurden — Partizip II, gefundenen. Закінчення знайомі: -e після die в номінативі, -en після im (in dem) і в множині після die. Українське «відремонтоване» відповідає Partizip II, «наступний» — Partizip I."
+      de: "Lös jedes in einen Relativsatz auf, dann ist die Wahl sichtbar. die Heizung, die repariert wurde: Jemand hat es getan, also Partizip II, reparierte. der Text, der folgt: Der Text tut es selbst, also Partizip I, folgenden. die Sachen, die gefunden wurden: Partizip II, gefundenen. Die Endungen sind die bekannten: -e nach die im Nominativ, -en nach im (in dem) und im Plural nach die."
+
+  - id: mc-baby-schlafen
+    outcomes: [text-zusammenfassen]
+    type: mc
+    focus: partizip-adjektiv
+    prompt: "Bitte leise sein: Im Zimmer nebenan liegt ein ___ Baby. (schlafen)"
+    options:
+      - "schlafenes"
+      - "schlafendes"
+      - "geschlafenes"
+    correct: 1
+    translation:
+      en: "Please be quiet: there is a sleeping baby in the room next door."
+      ru: "Пожалуйста, потише: в соседней комнате спит ребёнок."
+      uk: "Будь ласка, тихіше: у сусідній кімнаті спить немовля."
+    explain:
+      en: "The baby is sleeping itself, so Partizip I: schlafend, and after ein in the neuter nominative the ending is -es, schlafendes. schlafenes has the ending but has lost the d, which is the sound that makes Partizip I. geschlafenes is a Partizip II that cannot stand in front of a noun at all: schlafen takes no object, so nothing can have been slept, and only verbs with an object or with sein make attributive Partizip II."
+      ru: "Ребёнок спит сам, значит, Partizip I: schlafend, а после ein в среднем роде, номинативе, окончание -es — schlafendes. В schlafenes окончание есть, но пропало d, которое и делает Partizip I. geschlafenes — Partizip II, который вообще не может стоять перед существительным: у schlafen нет дополнения, «проспанным» ничто быть не может, а определением становится только Partizip II глаголов с дополнением или с sein. Русское «спящий ребёнок» — то же действительное причастие."
+      uk: "Немовля спить саме, отже, Partizip I: schlafend, а після ein у середньому роді, номінативі, закінчення -es — schlafendes. У schlafenes закінчення є, але зникло d, яке й творить Partizip I. geschlafenes — Partizip II, що взагалі не може стояти перед іменником: у schlafen немає додатка, тож «проспаним» ніщо бути не може, а означенням стає тільки Partizip II дієслів із додатком або з sein."
+      de: "Das Baby schläft selbst, also Partizip I: schlafend, und nach ein im Neutrum Nominativ ist die Endung -es: schlafendes. schlafenes hat die Endung, aber nicht das d, das Partizip I ausmacht. geschlafenes ist ein Partizip II, das gar nicht vor einem Nomen stehen kann: schlafen hat kein Objekt, also kann nichts geschlafen worden sein, und nur Verben mit Objekt oder mit sein bilden ein attributives Partizip II."
+
+  - id: uebersetzen-firma-wachsen
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate with a participle in front of the noun. For 'growing' take wachsen, for 'company' die Firma."
+      ru: "Переведите с причастием перед существительным. Причастие образуйте от wachsen, для «фирмы» возьмите die Firma."
+      uk: "Перекладіть із дієприкметником перед іменником. Дієприкметник утворіть від wachsen, для «фірми» візьміть die Firma."
+      de: "Übersetze mit einem Partizip vor dem Nomen, mit wachsen und die Firma."
+    prompt_en: "Our growing company is looking for two new employees."
+    prompt_ru: "Наша растущая фирма ищет двух новых сотрудников."
+    prompt_uk: "Наша фірма, яка зростає, шукає двох нових працівників."
+    answer: "Unsere wachsende Firma sucht zwei neue Mitarbeiter."
+    key_tokens: ["wachsende"]
+    explain:
+      en: "The company grows by itself, so Partizip I: wachsen plus d, wachsend. After unsere in the feminine nominative the ending is -e, unsere wachsende Firma, as in unsere neue Firma. The participle brings no tense with it: the company is growing now because the sentence is in the present."
+      ru: "Фирма растёт сама, значит, Partizip I: wachsen плюс d — wachsend. После unsere в женском роде, номинативе, окончание -e: unsere wachsende Firma — как unsere neue Firma. Русское «растущая» — точный аналог: действительное причастие настоящего времени, и в немецком оно тоже обозначает то, что существительное делает само."
+      uk: "Фірма зростає сама, отже, Partizip I: wachsen плюс d — wachsend. Після unsere в жіночому роді, номінативі, закінчення -e: unsere wachsende Firma — як unsere neue Firma. Українська тут охочіше вживає підрядне «яка зростає», а німецька стискає його в одне слово перед іменником."
+      de: "Die Firma wächst von selbst, also Partizip I: wachsen plus d, wachsend. Nach unsere im Femininum Nominativ ist die Endung -e: unsere wachsende Firma, wie unsere neue Firma. Das Partizip bringt keine Zeit mit; die Firma wächst jetzt, weil der Satz im Präsens steht."
+
+  - id: uebersetzen-brille-verlieren
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate with a participle in front of the noun. For 'lost' take verlieren."
+      ru: "Переведите с причастием перед существительным. Причастие образуйте от verlieren."
+      uk: "Перекладіть із дієприкметником перед іменником. Дієприкметник утворіть від verlieren."
+      de: "Übersetze mit einem Partizip vor dem Nomen und mit verlieren."
+    prompt_en: "Has anyone found my lost glasses?"
+    prompt_ru: "Кто-нибудь нашёл мои потерянные очки?"
+    prompt_uk: "Хтось знайшов мої загублені окуляри?"
+    answer: "Hat jemand meine verlorene Brille gefunden?"
+    key_tokens: ["verlorene"]
+    explain:
+      en: "Somebody lost the glasses, so Partizip II: verloren. die Brille is feminine and singular in German, though glasses are plural in English, and after meine in the accusative the ending is -e, meine verlorene Brille. verlierende Brille would mean glasses that are doing the losing themselves."
+      ru: "Очки кто-то потерял, значит, Partizip II: verloren. die Brille в немецком — женского рода и единственного числа, хотя «очки» во множественном, и после meine в аккузативе окончание -e: meine verlorene Brille. verlierende Brille значило бы очки, которые сами что-то теряют. Русское страдательное «потерянные» здесь подсказывает правильно."
+      uk: "Окуляри хтось загубив, отже, Partizip II: verloren. die Brille в німецькій — жіночого роду й однини, хоча «окуляри» — у множині, і після meine в акузативі закінчення -e: meine verlorene Brille. verlierende Brille означало б окуляри, які самі щось гублять. Українське «загублені» тут підказує правильно."
+      de: "Jemand hat die Brille verloren, also Partizip II: verloren. die Brille ist feminin und Singular, und nach meine im Akkusativ ist die Endung -e: meine verlorene Brille. verlierende Brille wäre eine Brille, die selbst etwas verliert."
+
+  - id: uebersetzen-wohnung-renovieren
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate with a participle in front of the noun. For 'renovated' take renovieren."
+      ru: "Переведите с причастием перед существительным. Причастие образуйте от renovieren."
+      uk: "Перекладіть із дієприкметником перед іменником. Дієприкметник утворіть від renovieren."
+      de: "Übersetze mit einem Partizip vor dem Nomen und mit renovieren."
+    prompt_en: "The renovated flat on the third floor is free again from May."
+    prompt_ru: "Отремонтированная квартира на третьем этаже снова свободна с мая."
+    prompt_uk: "Відремонтована квартира на третьому поверсі знову вільна з травня."
+    answer: "Die renovierte Wohnung im dritten Stock ist ab Mai wieder frei."
+    key_tokens: ["renovierte"]
+    explain:
+      en: "Somebody renovated the flat, so Partizip II: renoviert, with no ge- because the verb ends in -ieren. After die in the feminine nominative the ending is -e, die renovierte Wohnung. The participle says nothing about when: the work is finished, and the flat is free from May."
+      ru: "Квартиру кто-то отремонтировал, значит, Partizip II: renoviert — без ge-, потому что глагол оканчивается на -ieren. После die в женском роде, номинативе, окончание -e: die renovierte Wohnung. О времени причастие ничего не говорит: работа закончена, а квартира свободна с мая."
+      uk: "Квартиру хтось відремонтував, отже, Partizip II: renoviert — без ge-, бо дієслово закінчується на -ieren. Після die в жіночому роді, номінативі, закінчення -e: die renovierte Wohnung. Про час дієприкметник нічого не каже: роботу закінчено, а квартира вільна з травня."
+      de: "Jemand hat die Wohnung renoviert, also Partizip II: renoviert, ohne ge-, weil das Verb auf -ieren endet. Nach die im Femininum Nominativ ist die Endung -e: die renovierte Wohnung. Über die Zeit sagt das Partizip nichts: Die Arbeit ist fertig, und frei ist die Wohnung ab Mai."
+
+  - id: uebersetzen-verkehr-zunehmen
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Translate with a participle in front of the noun. For 'increasing' take zunehmen, for 'disturb' stören."
+      ru: "Переведите с причастием перед существительным. Причастие образуйте от zunehmen, для «мешать» возьмите stören."
+      uk: "Перекладіть із дієприкметником перед іменником. Дієприкметник утворіть від zunehmen, для «заважати» візьміть stören."
+      de: "Übersetze mit einem Partizip vor dem Nomen, mit zunehmen und stören."
+    prompt_en: "The increasing traffic disturbs the neighbours."
+    prompt_ru: "Растущее движение мешает соседям."
+    prompt_uk: "Рух, який дедалі зростає, заважає сусідам."
+    answer: "Der zunehmende Verkehr stört die Nachbarn."
+    key_tokens: ["zunehmende"]
+    explain:
+      en: "The traffic increases by itself, so Partizip I. With a separable verb the whole infinitive stays together, prefix included: zunehmen becomes zunehmend, and after der in the nominative zunehmende. The prefix does not split off in front of a noun, and there is no ge- or zu- inside it."
+      ru: "Движение растёт само, значит, Partizip I. У глагола с отделяемой приставкой инфинитив остаётся целым вместе с приставкой: zunehmen даёт zunehmend, а после der в номинативе — zunehmende. Перед существительным приставка не отделяется, и никаких ge- или zu- внутри нет."
+      uk: "Рух зростає сам, отже, Partizip I. У дієслова з відокремлюваним префіксом інфінітив лишається цілим разом із префіксом: zunehmen дає zunehmend, а після der у номінативі — zunehmende. Перед іменником префікс не відокремлюється, і жодних ge- чи zu- всередині немає."
+      de: "Der Verkehr nimmt von selbst zu, also Partizip I. Bei einem trennbaren Verb bleibt der ganze Infinitiv mit Vorsilbe zusammen: aus zunehmen wird zunehmend, nach der im Nominativ zunehmende. Vor dem Nomen trennt sich die Vorsilbe nicht, und es steht kein ge- und kein zu- darin."

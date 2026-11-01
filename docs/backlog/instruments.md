@@ -103,3 +103,13 @@ Graders, validators, measurements and the progress audit. The format and the ID 
   `nicht-position` among them, and that is exactly the error the learner still makes. A passed
   placement never raises the tier, by design, but it also leaves retention unmeasurable. First
   step: a proposal on whether a passed placement arms the topic's probe families.
+- **INS-8 · A cloze probe charges a misspelling to the tag.** `b1/probe-arbeit-bewerbung-adjektiv-nomen:variant-a`
+  logged *Interresantes* as an `adjektiv-nomen` failure, with the capital and the *-es* both right.
+  `translate` forgives a one-edit slip outside `key_tokens`, and `listen` withholds attribution
+  (`dictationSlip`), but a cloze gap whose whole answer is the graded word has neither. First step:
+  decide whether a one-edit miss in a gap's stem, with the ending intact, is `unknown` rather than
+  `failed`, then count the probe attempts it would reclassify.
+- **INS-9 · `progress:audit --item` prints no prompt or answer for an island item.** Cloze, table and
+  order items show `Prompt: —` and `Answer: —`, so the item detail cannot be read without opening
+  the YAML (`bun run progress:audit --profile vitaly --item b1/probe-leben-veraendern-relativ-praeposition:variant-a`).
+  First step: print the cloze `text` with its keyed gaps.

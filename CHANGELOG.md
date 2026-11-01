@@ -22,6 +22,10 @@ GitHub Release notes.
   interview with Ja/Nein — as recorded audio: station and shop announcements over the room's
   sound, messages on a phone line, a radio report through a radio. Each part says how often the
   exam plays its text, and a question allows no more plays than that.
+- **Four B1 drills for what did not stick**, each on its own topic page and in training: a
+  preposition with its relative pronoun (*die Familie, bei der …*), adjectives used as nouns
+  (*ein Jugendlicher*, *der Jugendliche*), Partizip I or II in front of a noun (*spielende Kinder*,
+  *die reparierte Heizung*), and *lassen* with a bare infinitive (*Wir lassen die Küche renovieren*).
 
 ### Changed
 

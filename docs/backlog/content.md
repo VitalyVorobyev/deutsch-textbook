@@ -19,10 +19,10 @@ Course content: articles, items, probes, vocabulary, readings and their language
   (`a1/wortbildung-ausblenden:translate-fahrerin`,
   `a2/freunde-feste-produktion:uebersetzen-transfer-blumen-karte`). First step: list the translate
   items whose answer holds a name with more than one German spelling.
-- **P26-11 · B1 has four drill sets** against A2's thirteen (`grep -l '^role: drill'
-  content/exercises/b1/*.yaml`), so the remediation channel is thin there; P23-3 sees it from the
-  other end. B1 depth reads median 6 items per confusion, 2 tags at ≤3 items, 1 tag in a single
-  file (`bun scripts/grammar-depth.ts B1`). New drills also raise the floors in
+- **P26-11 · B1 has eight drill sets** against A2's thirteen (`grep -l '^role: drill'
+  content/exercises/b1/*.yaml`), so the remediation channel is still thinner there; P23-3 sees it
+  from the other end. B1 depth reads median 7 items per confusion, 2 tags at ≤3 items, 1 tag in a
+  single file (`bun scripts/grammar-depth.ts B1`). New drills also raise the floors in
   `tests/grammar-depth.test.ts`. Stable misconceptions in the 2026-10-17 audit, each a candidate:
   *zu* after a modal (`a2/infinitiv-mit-zu:mc-modal-ohne-zu`, 8/10 wrong), verb second after
   *während* (`b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen`, 11/12), a dropped copula in
@@ -63,12 +63,15 @@ Course content: articles, items, probes, vocabulary, readings and their language
 - **CON-2 · Three Sprachhandlungen have no outcome** — interkulturelle Begegnung, Wissensdivergenz, Gefühle
   ausdrücken (`bun scripts/handlungen.ts B1 --unclaimed-only`). Not turn management, so not
   `gespraech-steuern`'s; they want a topic of their own.
-- **CON-3 · B1 competences that do not survive the delay.** Seven B1 rows retain 0–17% at 21–30
+- **CON-3 · B1 competences that do not survive the delay.** Seven B1 rows retain 0–20% at 21–30
   days: adjektiv-nomen, irreale-bedingung, lassen-verwendung, partizip-adjektiv,
   relativ-praeposition, passiv-modal, praeteritum-vollverben (`bun run progress:audit --profile
-  vitaly`, *Retention by competence*). Each is carried by one probe family, so it caps at three
-  attempts. First step: `bun scripts/grammar-depth.ts B1 --thin` for these tags, then a drill set
-  per confusion that is thin.
+  vitaly`, *Retention by competence*). Every row except passiv-modal now has a remediation drill. Each
+  competence is carried by one probe family whose three attempts are spent, so **the drills cannot
+  show up in retention until a second family exists**. First step: a second three-variant family for
+  each, armed by the drill items, with `armedAt` measured before and after. passiv-modal's misses are
+  participle forms (*überwiesen*, *ausgeschaltet*, *unterschrieben*), so check `partizip2-form`
+  depth before giving it its own drill.
 - **CON-4 · A direction phrase stays beside its verb.** Four rulings in `data/grading-decisions.yaml`
   show the same slip — *heute zur Arbeit nicht kommen*, *zur Oma oft gefahren* — and no item
   grades it outside A1's `nicht-position`. First step: a drill under `nicht-position` with

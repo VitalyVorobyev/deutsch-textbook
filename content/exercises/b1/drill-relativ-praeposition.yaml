@@ -1,0 +1,210 @@
+# Drill from progress: relativ-praeposition failed all three delayed probe variants, and each
+# failure is a different face of one confusion. Once the preposition was dropped and the bare
+# pronoun stood alone (das for für das). Twice the pair was formed, but not with the preposition
+# the verb takes (in dem for teilnehmen an, auf die for bei). The depth table had the tag at five
+# teaching items in two files, below the B1 median.
+#
+# So every item names its verb together with the preposition: the graded decision is the
+# glued pair, meaning the preposition at the head of the clause, its case and the antecedent's
+# gender. Which preposition a verb takes is verb-praeposition-b1's question, not this tag's.
+# Accusative prepositions (für, über, auf with sich freuen), dative ones (mit, von, bei, vor)
+# and both genders alternate. Each translate item pins the preposition and the pronoun, and
+# every sentence is built so that each pinned word occurs once.
+#
+# Contexts are fresh. None re-skins the probe's doctor, offer or course, the primary set's
+# Viertel or long-awaited answer, or the production set's park and house.
+topic: leben-veraendern
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Präposition und Relativpronomen"
+title:
+  en: "Drill — preposition plus relative pronoun"
+  ru: "Тренажёр — предлог и относительное местоимение"
+  uk: "Тренажер — прийменник і відносний займенник"
+  de: "Übung — Präposition und Relativpronomen"
+items:
+  - id: cloze-nachbar-stadt
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Fill each gap with a preposition and a relative pronoun. The verb in brackets names the preposition."
+      ru: "Вставьте в каждый пропуск предлог и относительное местоимение. Глагол в скобках подсказывает предлог."
+      uk: "Вставте в кожен пропуск прийменник і відносний займенник. Дієслово в дужках підказує прийменник."
+      de: "Setz in jede Lücke eine Präposition und ein Relativpronomen ein. Das Verb in Klammern nennt die Präposition."
+    text: "Der Nachbar, {{mit dem}} ich mich jeden Morgen unterhalte, war früher Busfahrer. (sich unterhalten mit) Die Stadt, {{von der}} meine Eltern so oft erzählen, liegt im Süden. (erzählen von)"
+    translation:
+      en: "The neighbour I chat with every morning used to be a bus driver. The town my parents talk about so often is in the south."
+      ru: "Сосед, с которым я каждое утро болтаю, раньше был водителем автобуса. Город, о котором так часто рассказывают мои родители, находится на юге."
+      uk: "Сусід, з яким я щоранку розмовляю, раніше був водієм автобуса. Місто, про яке так часто розповідають мої батьки, лежить на півдні."
+    explain:
+      en: "Three things meet in each pair. The preposition comes from the verb: sich unterhalten mit, erzählen von. The case comes from the preposition, and mit and von always take the dative. The gender comes from the noun outside the clause: der Nachbar gives dem, die Stadt gives der. Together they open the clause as one block, mit dem and von der, and the verb goes to the end as in every relative clause."
+      ru: "В каждой паре сходятся три вещи. Предлог дан глаголом: sich unterhalten mit, erzählen von. Падеж задаёт предлог, а mit и von всегда требуют датива. Род берётся от существительного за пределами придаточного: der Nachbar даёт dem, die Stadt — der. Вместе они открывают придаточное одним блоком — mit dem, von der, — а глагол, как в любом относительном придаточном, уходит в конец. По-русски устроено так же: «с которым», «о котором» — предлог стоит перед «который»."
+      uk: "У кожній парі сходяться три речі. Прийменник дає дієслово: sich unterhalten mit, erzählen von. Відмінок задає прийменник, а mit і von завжди вимагають датива. Рід береться від іменника поза підрядним: der Nachbar дає dem, die Stadt — der. Разом вони відкривають підрядне одним блоком — mit dem, von der, — а дієслово, як у будь-якому відносному підрядному, іде в кінець. Українською так само: «з яким», «про яке» — прийменник стоїть перед «який»."
+      de: "In jedem Paar treffen sich drei Dinge. Die Präposition kommt vom Verb: sich unterhalten mit, erzählen von. Den Kasus bestimmt die Präposition, und mit und von stehen immer mit Dativ. Das Genus kommt vom Nomen draußen: der Nachbar ergibt dem, die Stadt ergibt der. Zusammen eröffnen sie den Nebensatz als ein Block — mit dem, von der —, und das Verb steht wie in jedem Relativsatz am Ende."
+
+  - id: cloze-katze-problem
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Fill each gap with a preposition and a relative pronoun. The verb in brackets names the preposition."
+      ru: "Вставьте в каждый пропуск предлог и относительное местоимение. Глагол в скобках подсказывает предлог."
+      uk: "Вставте в кожен пропуск прийменник і відносний займенник. Дієслово в дужках підказує прийменник."
+      de: "Setz in jede Lücke eine Präposition und ein Relativpronomen ein. Das Verb in Klammern nennt die Präposition."
+    text: "Die Katze, {{um die}} sich meine Nachbarin im Urlaub kümmert, heißt Mia. (sich kümmern um) Das Problem, {{über das}} wir gestern gesprochen haben, ist schon gelöst. (sprechen über)"
+    translation:
+      en: "The cat my neighbour looks after during the holidays is called Mia. The problem we talked about yesterday has already been solved."
+      ru: "Кошку, за которой соседка присматривает во время отпуска, зовут Мия. Проблема, о которой мы вчера говорили, уже решена."
+      uk: "Кішку, яку сусідка доглядає під час відпустки, звуть Мія. Проблему, про яку ми вчора говорили, уже розв'язано."
+    explain:
+      en: "um and über (with sprechen) take the accusative, so the pronoun is the accusative of the noun's gender: die Katze gives um die, das Problem gives über das. In the feminine and neuter the accusative pronoun looks just like the nominative, and the preposition is the only sign that the case has changed. That is exactly why it cannot be left out: die alone would make the cat the subject of kümmert."
+      ru: "um и über (при sprechen) требуют аккузатива, поэтому местоимение стоит в аккузативе рода существительного: die Katze даёт um die, das Problem — über das. В женском и среднем роде аккузатив местоимения выглядит так же, как номинатив, и только предлог показывает, что падеж другой. Поэтому его и нельзя опустить: одно die сделало бы кошку подлежащим при kümmert. Русское «за которой» и «о которой» здесь не помогут с падежом: немецкий падеж задаёт свой предлог, а не русский."
+      uk: "um і über (при sprechen) вимагають акузатива, тому займенник стоїть в акузативі роду іменника: die Katze дає um die, das Problem — über das. У жіночому й середньому роді акузатив займенника виглядає так само, як номінатив, і лише прийменник показує, що відмінок інший. Тому його й не можна пропустити: саме die зробило б кішку підметом при kümmert. Українське «про яку» з відмінком тут не підкаже: німецький відмінок задає свій прийменник, а не український."
+      de: "um und über (bei sprechen) stehen mit Akkusativ, also steht das Pronomen im Akkusativ des Genus: die Katze ergibt um die, das Problem ergibt über das. Im Femininum und Neutrum sieht das Akkusativpronomen genauso aus wie der Nominativ, und nur die Präposition zeigt, dass sich der Kasus geändert hat. Gerade deshalb darf sie nicht fehlen: die allein würde die Katze zum Subjekt von kümmert machen."
+
+  - id: mc-reise-freuen
+    outcomes: [relativsatz-praezisieren]
+    type: mc
+    focus: relativ-praeposition
+    prompt: "Die Reise, ___ ich mich so gefreut hatte, war leider viel zu kurz. (sich freuen auf)"
+    options:
+      - "die"
+      - "auf der"
+      - "auf die"
+    correct: 2
+    translation:
+      en: "The trip I had been looking forward to so much was unfortunately far too short."
+      ru: "Поездка, которую я так ждал, оказалась, к сожалению, слишком короткой."
+      uk: "Подорож, на яку я так чекав, була, на жаль, надто короткою."
+    explain:
+      en: "sich freuen auf takes the accusative, and die Reise is feminine, so the pair is auf die. die on its own drops the preposition, which English allows at the end of the clause (the trip I was looking forward to) and German allows nowhere. auf der has the preposition but not the case: auf answers wohin? with the accusative, and freuen auf always takes that one."
+      ru: "sich freuen auf требует аккузатива, а die Reise — женского рода, поэтому пара — auf die. Одно die теряет предлог: английский разрешает поставить его в конец придаточного (the trip I was looking forward to), немецкий не разрешает нигде. В auf der предлог есть, а падеж не тот: auf при freuen всегда стоит с аккузативом."
+      uk: "sich freuen auf вимагає акузатива, а die Reise — жіночого роду, тому пара — auf die. Саме die губить прийменник: англійська дозволяє поставити його в кінець підрядного (the trip I was looking forward to), німецька не дозволяє ніде. В auf der прийменник є, а відмінок не той: auf при freuen завжди стоїть з акузативом."
+      de: "sich freuen auf steht mit Akkusativ, und die Reise ist feminin, also heißt das Paar auf die. die allein lässt die Präposition weg; das Englische erlaubt sie am Satzende (the trip I was looking forward to), das Deutsche nirgends. auf der hat die Präposition, aber nicht den Kasus: Bei freuen auf steht immer der Akkusativ."
+
+  - id: uebersetzen-job-interessieren
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'job' take der Job, for 'be interested in' sich interessieren für."
+      ru: "Переведите с относительным придаточным. Для «работы» возьмите der Job, для «интересоваться» — sich interessieren für."
+      uk: "Перекладіть із відносним підрядним. Для «роботи» візьміть der Job, для «цікавитися» — sich interessieren für."
+      de: "Übersetze mit einem Relativsatz, mit der Job und sich interessieren für."
+    prompt_en: "That is the job I have been interested in for a long time."
+    prompt_ru: "Это та работа, которой я давно интересуюсь."
+    prompt_uk: "Це та робота, якою я давно цікавлюся."
+    answer: "Das ist der Job, für den ich mich schon lange interessiere."
+    accept:
+      # schon lange and seit Langem both carry 'for a long time'.
+      - "Das ist der Job, für den ich mich seit Langem interessiere."
+      - "Das ist der Job, für den ich mich seit langem interessiere."
+    key_tokens: ["für", "den"]
+    explain:
+      en: "für always takes the accusative, and der Job is masculine, so für den. The pair stands at the head of the clause, and the verb goes to the end: für den ich mich schon lange interessiere. English puts the preposition last (the job I am interested in), and the German version of that, den ich mich interessiere für, does not exist."
+      ru: "für всегда требует аккузатива, а der Job — мужского рода, поэтому für den. Пара стоит в начале придаточного, глагол — в конце: für den ich mich schon lange interessiere. Русское «которой интересуюсь» обходится без предлога, но немецкое sich interessieren без für не бывает — и предлог идёт в придаточное вместе с местоимением."
+      uk: "für завжди вимагає акузатива, а der Job — чоловічого роду, тому für den. Пара стоїть на початку підрядного, дієслово — у кінці: für den ich mich schon lange interessiere. Українське «якою цікавлюся» обходиться без прийменника, але німецьке sich interessieren без für не буває — і прийменник іде в підрядне разом із займенником."
+      de: "für steht immer mit Akkusativ, und der Job ist maskulin, also für den. Das Paar steht am Anfang des Nebensatzes, das Verb am Ende: für den ich mich schon lange interessiere. Englisch stellt die Präposition ans Ende (the job I am interested in); die deutsche Entsprechung den ich mich interessiere für gibt es nicht."
+
+  - id: uebersetzen-freund-warten
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'wait for' take warten auf."
+      ru: "Переведите с относительным придаточным. Для «ждать» возьмите warten auf."
+      uk: "Перекладіть із відносним підрядним. Для «чекати» візьміть warten auf."
+      de: "Übersetze mit einem Relativsatz und mit warten auf."
+    prompt_en: "My friend, who I am waiting for at the station, is coming on the train from Hamburg."
+    prompt_ru: "Мой друг, которого я жду на вокзале, приезжает поездом из Гамбурга."
+    prompt_uk: "Мій друг, якого я чекаю на вокзалі, приїжджає потягом із Гамбурга."
+    answer: "Mein Freund, auf den ich am Bahnhof warte, kommt mit dem Zug aus Hamburg."
+    accept:
+      - "Mein Freund, auf den ich am Bahnhof warte, kommt aus Hamburg mit dem Zug."
+    key_tokens: ["auf", "den"]
+    explain:
+      en: "warten auf takes the accusative, and der Freund is masculine, so auf den, at the head of the clause. The relative clause sits right after mein Freund, and the main verb kommt follows it as the second element of the sentence. In English 'who I am waiting for' carries its preposition to the end; in German it travels with the pronoun."
+      ru: "warten auf требует аккузатива, а der Freund — мужского рода, поэтому auf den в начале придаточного. Придаточное стоит сразу после mein Freund, а за ним идёт глагол главного предложения kommt — на втором месте. Русское «которого жду» — без предлога, немецкое warten auf — с ним, и в придаточном предлог встаёт перед местоимением."
+      uk: "warten auf вимагає акузатива, а der Freund — чоловічого роду, тому auf den на початку підрядного. Підрядне стоїть одразу після mein Freund, а за ним іде дієслово головного речення kommt — на другому місці. Українське «якого чекаю» — без прийменника, німецьке warten auf — з ним, і в підрядному прийменник стає перед займенником."
+      de: "warten auf steht mit Akkusativ, und der Freund ist maskulin, also auf den am Anfang des Nebensatzes. Der Relativsatz steht direkt nach mein Freund, und danach folgt das Verb des Hauptsatzes, kommt, als zweites Satzglied. Im Englischen wandert die Präposition ans Ende (who I am waiting for), im Deutschen bleibt sie beim Pronomen."
+
+  - id: uebersetzen-familie-wien
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'live with somebody' take bei jemandem wohnen."
+      ru: "Переведите с относительным придаточным. Для «жить у кого-то» возьмите bei jemandem wohnen."
+      uk: "Перекладіть із відносним підрядним. Для «жити в когось» візьміть bei jemandem wohnen."
+      de: "Übersetze mit einem Relativsatz und mit bei jemandem wohnen."
+    prompt_en: "The family I lived with in Vienna still writes to me at Christmas."
+    prompt_ru: "Семья, у которой я жил в Вене, до сих пор пишет мне на Рождество."
+    prompt_uk: "Родина, у якої я жив у Відні, досі пише мені на Різдво."
+    answer: "Die Familie, bei der ich in Wien gewohnt habe, schreibt mir immer noch zu Weihnachten."
+    accept:
+      # Perfekt or Präteritum in the relative clause; noch and immer noch both carry 'still',
+      # and the time phrase may come before or after it.
+      - "Die Familie, bei der ich in Wien wohnte, schreibt mir immer noch zu Weihnachten."
+      - "Die Familie, bei der ich in Wien gewohnt habe, schreibt mir zu Weihnachten immer noch."
+      - "Die Familie, bei der ich in Wien wohnte, schreibt mir zu Weihnachten immer noch."
+      - "Die Familie, bei der ich in Wien gewohnt habe, schreibt mir noch immer zu Weihnachten."
+      - "Die Familie, bei der ich in Wien wohnte, schreibt mir noch immer zu Weihnachten."
+    key_tokens: ["bei", "der"]
+    explain:
+      en: "bei takes the dative, and die Familie is feminine, so bei der. Here the pronoun's form changes visibly, die becoming der, because the feminine dative is the one form that is not die. Without bei, die Familie, der ich … would read as a dative object with no verb to take it."
+      ru: "bei требует датива, а die Familie — женского рода, поэтому bei der. Здесь форма местоимения меняется заметно — die превращается в der, потому что датив женского рода — единственная форма, которая не die. Это то же «у которой»: по-русски предлог тоже стоит перед местоимением, и немецкий требует того же."
+      uk: "bei вимагає датива, а die Familie — жіночого роду, тому bei der. Тут форма займенника змінюється помітно — die стає der, бо датив жіночого роду — єдина форма, яка не die. Це те саме «у якої»: українською прийменник теж стоїть перед займенником, і німецька вимагає того самого."
+      de: "bei steht mit Dativ, und die Familie ist feminin, also bei der. Hier ändert sich die Form sichtbar — aus die wird der —, weil der Dativ Femininum die einzige Form ist, die nicht die heißt. Ohne bei wäre die Familie, der ich … ein Dativobjekt ohne ein Verb, das ihn verlangt."
+
+  - id: uebersetzen-film-sprechen
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'talk about' take sprechen über."
+      ru: "Переведите с относительным придаточным. Для «говорить о» возьмите sprechen über."
+      uk: "Перекладіть із відносним підрядним. Для «говорити про» візьміть sprechen über."
+      de: "Übersetze mit einem Relativsatz und mit sprechen über."
+    prompt_en: "The film we talked about yesterday is on TV tonight."
+    prompt_ru: "Фильм, о котором мы вчера говорили, сегодня вечером показывают по телевизору."
+    prompt_uk: "Фільм, про який ми вчора говорили, сьогодні ввечері показують по телевізору."
+    answer: "Der Film, über den wir gestern gesprochen haben, läuft heute Abend im Fernsehen."
+    accept:
+      # kommen and laufen both say a programme is on; Perfekt or Präteritum in the clause.
+      - "Der Film, über den wir gestern gesprochen haben, kommt heute Abend im Fernsehen."
+      - "Der Film, über den wir gestern sprachen, läuft heute Abend im Fernsehen."
+      - "Der Film, über den wir gestern sprachen, kommt heute Abend im Fernsehen."
+    key_tokens: ["über", "den"]
+    explain:
+      en: "With sprechen, über takes the accusative, and der Film is masculine, so über den, the same pair as für den. The case is set by the preposition, not by what the film does in the main clause, where it is the subject in the nominative."
+      ru: "При sprechen предлог über требует аккузатива, а der Film — мужского рода, поэтому über den — та же пара, что für den. Падеж задаёт предлог, а не роль фильма в главном предложении: там он подлежащее в номинативе. Русское «о котором» стоит в предложном падеже, но немецкий падеж определяет немецкий предлог: über здесь с аккузативом."
+      uk: "При sprechen прийменник über вимагає акузатива, а der Film — чоловічого роду, тому über den — та сама пара, що й für den. Відмінок задає прийменник, а не роль фільму в головному реченні: там він підмет у номінативі. Українське «про який» теж має знахідний відмінок, але це збіг: німецький відмінок визначає німецький прийменник."
+      de: "Bei sprechen steht über mit Akkusativ, und der Film ist maskulin, also über den — dasselbe Paar wie für den. Den Kasus bestimmt die Präposition, nicht die Rolle des Films im Hauptsatz; dort ist er Subjekt im Nominativ."
+
+  - id: uebersetzen-haus-traeumen
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'dream of' take träumen von."
+      ru: "Переведите с относительным придаточным. Для «мечтать о» возьмите träumen von."
+      uk: "Перекладіть із відносним підрядним. Для «мріяти про» візьміть träumen von."
+      de: "Übersetze mit einem Relativsatz und mit träumen von."
+    prompt_en: "The house I have always dreamed of is too expensive for us."
+    prompt_ru: "Дом, о котором я всегда мечтал, для нас слишком дорогой."
+    prompt_uk: "Будинок, про який я завжди мріяв, для нас надто дорогий."
+    answer: "Das Haus, von dem ich immer geträumt habe, ist für uns zu teuer."
+    accept:
+      # schon immer is the everyday way to say 'always' about a lasting wish; für uns may follow
+      # zu teuer.
+      - "Das Haus, von dem ich schon immer geträumt habe, ist für uns zu teuer."
+      - "Das Haus, von dem ich immer geträumt habe, ist zu teuer für uns."
+      - "Das Haus, von dem ich schon immer geträumt habe, ist zu teuer für uns."
+    key_tokens: ["von", "dem"]
+    explain:
+      en: "von always takes the dative, and das Haus is neuter, so von dem. Neuter shows the case change more clearly than feminine: das becomes dem. A short form vom does not exist for the relative pronoun, because vom stands for von plus the article, and the pronoun is not an article."
+      ru: "von всегда требует датива, а das Haus — среднего рода, поэтому von dem. Средний род показывает смену падежа нагляднее женского: das превращается в dem. Слитной формы vom для относительного местоимения нет: vom — это von плюс артикль, а местоимение — не артикль."
+      uk: "von завжди вимагає датива, а das Haus — середнього роду, тому von dem. Середній рід показує зміну відмінка наочніше за жіночий: das стає dem. Злитої форми vom для відносного займенника немає: vom — це von плюс артикль, а займенник — не артикль."
+      de: "von steht immer mit Dativ, und das Haus ist neutral, also von dem. Das Neutrum zeigt den Kasuswechsel deutlicher als das Femininum: aus das wird dem. Die Kurzform vom gibt es beim Relativpronomen nicht, denn vom steht für von plus Artikel, und das Pronomen ist kein Artikel."
