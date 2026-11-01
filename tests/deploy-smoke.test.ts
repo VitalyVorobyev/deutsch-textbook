@@ -52,8 +52,8 @@ describe('the check list', () => {
   // test here looks a check up by name, so nothing could see the drift. Adding
   // or removing a check means changing the number in all three places at once.
   test('seven checks run by default, and --deep adds the eighth', () => {
-    expect(checks(false)).toHaveLength(7);
-    expect(checks(true)).toHaveLength(8);
+    expect(checks(false)).toHaveLength(8);
+    expect(checks(true)).toHaveLength(9);
   });
 });
 
@@ -103,6 +103,16 @@ describe('the checks that are not about auth', () => {
     expect(sync.verify(probe({ status: 200 }))).toContain('expected 401');
     // 404 means the asset server answered and the Worker is not in front of /api.
     expect(sync.verify(probe({ status: 404 }))).toContain('expected 401');
+  });
+
+  test('a build that withheld the audio fails, though the site still serves', () => {
+    const audio = check('the reviewed recordings shipped');
+    // The live site's manifest on the day this check was written.
+    const withheld = '{"bundled": false, "recordings": [], "readings": []}';
+    expect(audio.verify(probe({ body: withheld }))).toContain('withheld');
+    const shipped = '{"bundled": true, "recordings": [{"id": "ls-a"}], "readings": []}';
+    expect(audio.verify(probe({ body: shipped }))).toBeNull();
+    expect(audio.verify(probe({ status: 404, body: '<!doctype html>' }))).toContain('404');
   });
 
   test("Cloudflare's own error page does not count as the site's 404", () => {

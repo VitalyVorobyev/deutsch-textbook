@@ -149,6 +149,22 @@ export function checks(deep: boolean): Check[] {
       },
     },
     {
+      name: 'the reviewed recordings shipped',
+      method: 'GET',
+      path: '/audio/manifest.json',
+      verify: (probe) => {
+        if (probe.status !== 200) return `expected 200, got ${probe.status}`;
+        const body = parseJson(probe) as { bundled?: unknown; recordings?: unknown } | undefined;
+        // A build that withholds the audio still serves the site, and every listening item
+        // then speaks browser TTS over a reviewed recording: nothing else would show it.
+        if (body?.bundled !== true) return 'bundled is not true — the build withheld the audio';
+        if (!Array.isArray(body.recordings) || body.recordings.length === 0) {
+          return 'the manifest lists no recordings';
+        }
+        return null;
+      },
+    },
+    {
       name: "unknown paths get the site's own 404 page",
       method: 'GET',
       path: MISSING_PATH,

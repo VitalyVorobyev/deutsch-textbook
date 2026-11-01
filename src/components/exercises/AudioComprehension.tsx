@@ -71,9 +71,9 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
   const turns = item.source.turns;
   /**
-   * A reviewed recording plays only where the build shipped it. The desktop bundle sets
-   * PUBLIC_ATLAS_AUDIO_BUNDLE and carries the WAVs; the web demo does not, and speaks the
-   * same script through browser TTS instead. The item is identical either way — the
+   * A reviewed recording plays only where the build shipped it, which every build does unless
+   * PUBLIC_ATLAS_AUDIO_BUNDLE says 0; a lean build speaks the same script through browser TTS
+   * instead. The item is identical either way — the
    * validator holds `source.turns` equal to the recording's transcript — so this changes the
    * voice, never the question or the score.
    */

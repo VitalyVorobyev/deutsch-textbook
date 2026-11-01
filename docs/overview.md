@@ -122,8 +122,10 @@ daily new-card budget. `src/lib/probes.ts` derives delayed-probe state from atte
 not stored separately. Every probe family authors exact `setId::itemId` arming keys; outcome,
 topic, reading and pretest activity cannot arm it implicitly.
 
-`/pruefung/a1` is a separate exam-practice surface. Its attempts are retained, but the role is
-excluded from mixed training and does not grant mastery. Item-scoped `stimulus` references override
+`/pruefung/<level>` is a separate exam-practice surface. Its attempts are retained, but the role is
+excluded from mixed training and does not grant mastery. The page arranges its sets by Übungssatz,
+Modul and Teil, read off the set and item ids (`src/lib/exam-practice.ts`), with one module open at
+a time. Item-scoped `stimulus` references override
 set-scoped documents, and the `form` item keeps stable field ids plus per-field scoring.
 
 ## Evidence model
@@ -168,11 +170,12 @@ Opening or replaying a listening artifact likewise creates no evidence; only its
 identified exercise question can write a verified attempt. The published MP3 lives beside its record
 in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
 what QA ran on and what the editor approved, not what a learner downloads.
-`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it** —
-`bun run build:desktop` (in-process rather than as a shell prefix, so the Windows release build can
-run the same command) and the Cloudflare build. The flag therefore distinguishes a shipping build
-from a lean one with no binaries, not the desktop from the web. TTS remains the live fallback for a recording that is
-absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`).
+**Every build copies the MP3s in** — `bun run build` for the site and for the desktop app alike —
+unless `PUBLIC_ATLAS_AUDIO_BUNDLE=0` asks for a lean build with no binaries. The default is the
+shipping build because an opt-in flag set outside the repository can vanish without any gate
+noticing; `bun run deploy:smoke` checks that the live site's `audio/manifest.json` says it shipped.
+TTS remains the live fallback for a recording that is absent or fails to load
+(`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`).
 
 ## Listening authoring boundary
 

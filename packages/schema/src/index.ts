@@ -785,8 +785,9 @@ export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
  *
  * The audio path is derived from `level` and `id` rather than declared, so it cannot drift from
  * the file it names — and it deliberately does **not** live under `public/`, because the web
- * demo must not ship 40+ MB of WAV. `scripts/bundle-audio.ts` copies these into the build only
- * when ATLAS_AUDIO_BUNDLE is set; everywhere else the item falls back to browser TTS.
+ * a learner downloads the MP3, never the WAV master. `src/integrations/audio-bundle.ts` copies
+ * them into every build except a lean one (`PUBLIC_ATLAS_AUDIO_BUNDLE=0`), where the item falls
+ * back to browser TTS.
  */
 export const listeningArtifactSchema = z.object({
   id: slug,

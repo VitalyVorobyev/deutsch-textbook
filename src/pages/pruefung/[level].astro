@@ -3,8 +3,9 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import PruefungCrumbs from '../../components/PruefungCrumbs.astro';
-import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import GoetheExamSimulator from '../../components/pruefung/GoetheExamSimulator';
+import UebungsSaetze from '../../components/pruefung/UebungsSaetze';
+import { uebungssaetze } from '../../lib/exam-practice';
 import { GOETHE_EXAMS } from '../../lib/pruefung';
 
 export function getStaticPaths() {
@@ -18,8 +19,17 @@ const level = exam.level;
 const sets = (await getCollection('exercises', ({ data }) => data.role === 'exam-practice')).filter((set) =>
   set.id.startsWith(`${level}/`),
 );
+const saetze = uebungssaetze(sets);
 const allDocuments = await getCollection('documents');
 const documentsById = new Map(allDocuments.map((document) => [document.id, document.data]));
+// Only the documents these sets show, so the page does not carry the whole collection.
+const stimulusIds = new Set(sets.flatMap((set) => set.data.items.flatMap((item) => (item.stimulus ? [item.stimulus] : []))));
+const documents = Object.fromEntries(
+  [...stimulusIds].flatMap((id) => {
+    const document = documentsById.get(id);
+    return document ? [[id, document]] : [];
+  }),
+);
 ---
 
 <Base title={`Prüfung ${exam.title}`} description={`Prüfungsvorbereitung ${exam.title}: offizielle Übungssätze und eigene Übungen`}>
@@ -43,7 +53,7 @@ const documentsById = new Map(allDocuments.map((document) => [document.id, docum
   </section>
 
   {
-    sets.length > 0 && (
+    saetze.length > 0 && (
       <section aria-labelledby="practice" data-exam-aside class="mt-12">
         <h2 id="practice" lang="de" class="text-lg font-bold">
           Eigene Übungen im Prüfungsformat
@@ -55,18 +65,7 @@ const documentsById = new Map(allDocuments.map((document) => [document.id, docum
           <span class="lang-ru">Собственные задания в форматах экзамена, доступные всегда. Свободное письмо и говорение сохраняются как непроверенная практика: сравнивайте ответ с образцом; эти задания не повышают измеренное освоение.</span>
           <span class="lang-uk">Власні завдання у форматах іспиту, доступні завжди. Вільне письмо й говоріння зберігаються як неперевірена практика: порівнюйте відповідь зі зразком; ці завдання не підвищують виміряне опанування.</span>
         </p>
-        <div class="space-y-8">
-          {sets.map((entry) => {
-            const ids = [...new Set(entry.data.items.flatMap((item) => (item.stimulus ? [item.stimulus] : [])))];
-            const documents = Object.fromEntries(
-              ids.flatMap((id) => {
-                const document = documentsById.get(id);
-                return document ? [[id, document]] : [];
-              }),
-            );
-            return <ExerciseSetIsland client:only="react" setId={entry.id} set={entry.data} documents={documents} />;
-          })}
-        </div>
+        <UebungsSaetze client:only="react" saetze={saetze} documents={documents} />
       </section>
     )
   }

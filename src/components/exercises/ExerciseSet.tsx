@@ -20,12 +20,15 @@ import { AudioComprehension } from './AudioComprehension';
 import type { ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import DocumentStimulus from './DocumentStimulus';
+import type { Teil } from '../../lib/exam-practice';
 
 interface Props {
   setId: string;
   set: ExerciseSetData;
   document?: VisualDocument;
   documents?: Record<string, VisualDocument>;
+  /** The exam Teile the items fall into; the progress dots are then grouped by Teil. */
+  teile?: readonly Teil[] | null;
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -128,7 +131,7 @@ function ItemBody({
   }
 }
 
-export default function ExerciseSet({ setId, set, document, documents = {} }: Props) {
+export default function ExerciseSet({ setId, set, document, documents = {}, teile }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const items = set.items;
@@ -235,26 +238,40 @@ export default function ExerciseSet({ setId, set, document, documents = {} }: Pr
           </p>
         )}
         <div
-          className="ml-auto flex max-w-[45%] flex-wrap items-center justify-end gap-1"
+          className={`ml-auto flex max-w-[45%] flex-wrap items-center justify-end ${teile ? 'gap-x-3 gap-y-1' : 'gap-1'}`}
           aria-label="progress"
         >
-          {items.map((it, i) => {
-            const a = answered[i];
-            return (
-              <span
-                key={`${round}-${it.id}`}
-                className={`h-2 w-2 rounded-full ${
-                  a
-                    ? a.correct
-                      ? 'bg-green-500'
-                      : 'bg-red-400'
-                    : i === index
-                      ? 'bg-amber-500'
-                      : 'bg-stone-300 dark:bg-stone-600'
-                }`}
-              />
-            );
-          })}
+          {(teile ?? [{ teil: 0, von: 0, bis: items.length }]).map((gruppe) => (
+            <span
+              key={`${gruppe.teil}-${gruppe.von}`}
+              className="flex flex-wrap items-center gap-1"
+              title={teile ? `Teil ${gruppe.teil}` : undefined}
+            >
+              {teile && (
+                <span lang="de" className="text-[0.65rem] font-semibold text-stone-400">
+                  T{gruppe.teil}
+                </span>
+              )}
+              {items.slice(gruppe.von, gruppe.bis).map((it, offset) => {
+                const i = gruppe.von + offset;
+                const a = answered[i];
+                return (
+                  <span
+                    key={`${round}-${it.id}`}
+                    className={`h-2 w-2 rounded-full ${
+                      a
+                        ? a.correct
+                          ? 'bg-green-500'
+                          : 'bg-red-400'
+                        : i === index
+                          ? 'bg-amber-500'
+                          : 'bg-stone-300 dark:bg-stone-600'
+                    }`}
+                  />
+                );
+              })}
+            </span>
+          ))}
         </div>
       </div>
 

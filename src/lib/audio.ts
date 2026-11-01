@@ -16,26 +16,27 @@
 /**
  * Vite exposes only `PUBLIC_`-prefixed variables to client code, and the component needs it.
  *
- * **Both shipping builds set it.** It began as the desktop/web split — the desktop app carried the
- * recordings and the public demo spoke browser TTS — and that is no longer what it means: the
- * corpus is 14.2 MB against a 69 MB site, so withholding it from Pages bought nothing and cost the
- * demo the audio it was built to show. What the flag distinguishes now is a *shipping* build from
- * a lean one: unset, the site carries no binaries at all, which is what a quick preview or a
- * bandwidth-limited mirror wants. The TTS path is not dead either way — it remains the live
- * fallback whenever a recording is absent or fails to load (`onError` in `AudioComprehension`).
+ * **A build ships the recordings unless it is told not to.** The flag used to be opt-in, set by
+ * the desktop release and by an environment variable in the Cloudflare dashboard. The dashboard
+ * variable went missing, nothing in the repository could see that, and the public site served
+ * browser TTS over every reviewed recording while every gate stayed green. So the default is now
+ * the shipping build, and `0` or `false` asks for a lean one with no binaries, which is what a
+ * quick preview or a bandwidth-limited mirror wants. The TTS path is not dead either way: it
+ * remains the live fallback whenever a recording is absent or fails to load (`onError` in
+ * `AudioComprehension`).
  */
 export const AUDIO_BUNDLE_ENV = 'PUBLIC_ATLAS_AUDIO_BUNDLE';
 
 /**
- * Truthy for `1` and `true`; anything else — unset included — means this build ships no audio.
+ * False for `0` and `false`; anything else, unset included, means this build ships the audio.
  *
  * Read it at the call site as `import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE`, spelled out. Vite
  * substitutes that expression literally at build time and does **not** see through a computed
- * index, so `import.meta.env[AUDIO_BUNDLE_ENV]` would silently be `undefined` in the browser
- * bundle and every recording would fall back to TTS in a build that shipped the WAVs.
+ * index, so `import.meta.env[AUDIO_BUNDLE_ENV]` would be `undefined` in the browser bundle and
+ * the component and the copy step could disagree.
  */
 export const bundlesAudio = (value: string | undefined): boolean =>
-  value === '1' || value === 'true';
+  value !== '0' && value !== 'false';
 
 /** The URL a built site serves a reviewed recording at, before `withBase`. */
 export const listeningAudioUrl = (id: string): string => `/audio/${id}.mp3`;

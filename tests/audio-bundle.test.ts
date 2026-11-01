@@ -8,10 +8,9 @@ import { reviewedRecordings, sendAudio } from '../src/integrations/audio-bundle'
 import { listeningAudioPath } from '@da/schema';
 
 /**
- * The build split is the only reason the same content tree can serve a 40 MB desktop bundle
- * and a public demo that ships no audio at all. Both halves are asserted here, because the
- * failure mode of each is silent: a Pages build that quietly carries every recording, or a desktop
- * build whose items quietly fall back to TTS.
+ * Whether a build ships the reviewed recordings, and what it copies when it does. The failure is
+ * silent either way: a build whose items quietly fall back to TTS looks exactly like one that
+ * ships them until someone listens.
  */
 
 function artifact(root: string, id: string, level: string, withAudio: boolean, cues = '') {
@@ -37,13 +36,11 @@ function artifact(root: string, id: string, level: string, withAudio: boolean, c
 }
 
 describe('which build ships the reviewed recordings', () => {
-  test('the flag is opt-in and only 1/true turn it on', () => {
-    expect(bundlesAudio('1')).toBe(true);
-    expect(bundlesAudio('true')).toBe(true);
-    // Anything else is off — an unset variable must never accidentally ship 40 MB of audio,
-    // and a stray "0" or "false" must not read as truthy the way a bare presence check would.
-    for (const off of [undefined, '', '0', 'false', 'yes', 'no'])
-      expect(bundlesAudio(off)).toBe(false);
+  test('every build ships the recordings unless it says 0 or false', () => {
+    // An unset variable is the shipping build: the public site once lost its dashboard
+    // variable and spoke browser TTS over every reviewed recording with every gate green.
+    for (const on of [undefined, '', '1', 'true', 'yes']) expect(bundlesAudio(on)).toBe(true);
+    for (const off of ['0', 'false']) expect(bundlesAudio(off)).toBe(false);
   });
 
   test('a recording counts only when its audio is actually on disk beside the record', () => {
