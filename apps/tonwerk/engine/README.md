@@ -327,6 +327,7 @@ A scene can also mix **within** those profiles:
 | --- | --- |
 | `gain_db` on a speech entry (−24…+6) | moves one line against the others before loudness normalisation |
 | `effects` on a speech or sfx entry | inserts a chain after the distance and the device: band edges, a three-band equalizer (200 Hz shelf, 1.5 kHz bell, 5 kHz shelf), crush, a compressor, in that fixed order, and a `room_send_db` |
+| `gain_db` on a bed (−40…−6) | how far under the speech the bed sits. The source is first levelled to the dialogue mix's integrated loudness, so a generator's quiet or loud take does not move it; with no speech to measure, the corpus target stands in |
 | `duck_db` on a bed (−30…0) | lowers the bed by exactly that much while anyone speaks. The envelope comes from the resolved speech times, falls 150 ms before a turn, holds through gaps under 1 s, and recovers over 400 ms |
 | `device_overrides` on a placement | replaces the named device's band edges, gain or room send |
 | `room_overrides` on the acoustics | replaces the room's `wet`, RT60, pre-delay or damping. This produces a new impulse response and so a new IR node |
@@ -353,7 +354,11 @@ least 20 dB below the passband.
 `scene qa` transcribes `qa.wav` whole and per utterance — the slices are cut from the **mix** using
 the timing table, because a bed that buries a word is a defect of the scene — then measures speaker
 consistency against the same slices and reports the soundscape by comparing the master with
-`dry.wav`, the dialogue bus alone. The transcript thresholds are `qa.check_units`. When the pinned
+`dry.wav`, the dialogue bus alone. Each bed is measured where it plays alone (no speech, no
+reverb of speech, no event), and a bed 15 dB or more under the level its scene asks for fails the
+report: the scene would read as having a room nobody can hear. A render that makes other bytes
+from an unchanged scene (an engine change) sends a checked, approved or exported scene back to
+`audio_generated`, because its QA report and approval describe a master that is gone. The transcript thresholds are `qa.check_units`. When the pinned
 WavLM weights are absent the report says `"speaker_qa": "weights-missing"`; an omitted field would
 read exactly like a report that passed identity. Whisper is MLX and macOS-local, so in CI the verb
 fails fast with a readable message and the unit tests inject `transcribe_fn`.

@@ -361,7 +361,10 @@ def test_a_room_convolves_once_and_the_manifest_names_the_impulse_response(
     assert all(row.params["room"]["ir"] == irs[0].asset for row in mixes)
     # …and the bed is never sent into it.
     bed = next(
-        row for row in mixes[0].params["inputs"] if row["stem_id"] == "ambience-1"
+        row
+        for mix in mixes
+        for row in mix.params["inputs"]
+        if row["stem_id"] == "ambience-1"
     )
     assert bed["send_db"] is None
 
@@ -849,3 +852,67 @@ def test_a_preset_render_carries_no_voices_key_content(tmp_path: Path) -> None:
         sound_engine=FakeSound(),
     )
     assert json.loads(result.manifest_path.read_text())["voices"] == {}
+
+
+# -- bed level ----------------------------------------------------------------
+
+
+def _bed_in_store(store_dir: Path, amplitude: float, name: str) -> str:
+    """A steady 300 Hz bed at a chosen amplitude, the way a quiet or a loud generator returns one."""
+
+    raw = store_dir / f"{name}.wav"
+    seconds = np.arange(4 * 16_000) / 16_000
+    sf.write(str(raw), amplitude * np.sin(2 * np.pi * 300 * seconds), 16_000, subtype="PCM_16")
+    return AssetStore(store_dir).put(raw, {"kind": "test-fixture", "note": name})
+
+
+def _bed_under_speech_db(store_dir: Path, amplitude: float, name: str) -> float:
+    from listening_studio.graph.nodes import integrated_lufs
+
+    ref = _bed_in_store(store_dir, amplitude, name)
+    timeline = [row for row in cafe_scene(ref).timeline if row.type not in ("ambience", "sfx")]
+    timeline.append(AmbienceEntry(sound=AssetRef(ref=ref), gain_db=-22.0))
+    result = render_scene(
+        cafe_scene(ref, timeline=timeline), store_dir, speech_engines={"fake": ToneSpeech()}
+    )
+    bed = integrated_lufs(result.directory / "stems" / "ambience-1.wav")
+    speech = next(row for row in result.nodes if row.type == "mix" and len(row.params["inputs"]) == 3)
+    dialogue = integrated_lufs(AssetStore(store_dir).require(speech.asset))
+    assert bed is not None and dialogue is not None
+    return bed - dialogue
+
+
+def test_a_beds_gain_is_its_distance_under_the_speech_whatever_its_source_level(
+    tmp_path: Path,
+) -> None:
+    """Found in the published A2 announcements: a generator's quiet room came back at -47 LUFS, and
+    -22 dB on top of that put the bed near -70, inaudible, under a scene that read as having one."""
+
+    loud = _bed_under_speech_db(tmp_path, 0.3, "loud-bed")
+    quiet = _bed_under_speech_db(tmp_path, 0.003, "quiet-bed")
+    assert abs(loud - -22.0) < 1.0
+    assert abs(quiet - -22.0) < 1.0
+
+
+def test_a_bed_is_levelled_against_the_dialogue_so_a_retake_moves_it(tmp_path: Path) -> None:
+    ref = tone_in_store(tmp_path)
+    result = render(cafe_scene(ref), tmp_path)
+    bed = next(row for row in result.nodes if row.type == "track" and row.params["loop"])
+    speech = [row for row in result.nodes if row.type == "track" and not row.params["loop"]]
+    assert bed.params["level"] == "dialogue"
+    assert all("level" not in row.params for row in speech)
+
+
+def test_a_silent_bed_gets_no_gain_and_no_speech_means_the_corpus_target(tmp_path: Path) -> None:
+    from listening_studio.graph.nodes import LOUDNESS_TARGET_LUFS, bed_level_db, integrated_lufs
+
+    silent = tmp_path / "silent.wav"
+    sf.write(str(silent), np.zeros(16_000), 16_000, subtype="PCM_16")
+    assert integrated_lufs(silent) is None
+    assert bed_level_db(silent, None) == 0.0
+    tone = tmp_path / "tone.wav"
+    sf.write(str(tone), 0.1 * np.sin(2 * np.pi * 300 * np.arange(32_000) / 16_000), 16_000)
+    level = integrated_lufs(tone)
+    assert level is not None
+    assert bed_level_db(tone, None) == round(LOUDNESS_TARGET_LUFS - level, 2)
+    assert bed_level_db(tone, silent) == round(LOUDNESS_TARGET_LUFS - level, 2)

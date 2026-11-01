@@ -130,8 +130,9 @@ GERMAN_NUMBER_WORDS = {
 
 #: Spellings Whisper prefers for things German says as words. Grown from observed ASR output,
 #: never from guesswork: "Frau Doktor Weber" came back as "Frau Dr. Weber" and cost a clean take
-#: one substitution in the full-audio comparison.
-ASR_SPELLINGS = {"dr": "doktor"}
+#: one substitution in the full-audio comparison; a station announcement's "circa fünfzehn
+#: Minuten" came back as "ca. 15 Minuten".
+ASR_SPELLINGS = {"dr": "doktor", "ca": "circa"}
 
 #: `sechzehn Uhr zehn` is transcribed `16.10 Uhr` — same time, but the unit word moves, which
 #: reads as two edits and failed two otherwise flawless takes. Rewriting the ASR form back into
@@ -340,4 +341,29 @@ def word_error_rate(expected: str, actual: str) -> float:
     # two sequences are identical once the spaces are gone, nothing was misheard.
     if words and "".join(words) == "".join(heard):
         return 0.0
+    # The same guess inside a line that differs elsewhere: `Regionalexpress` came back as
+    # `Regional Express` beside a real difference, and the split cost a second error. Heard words
+    # that close up into one scripted word are that word, and the other way round.
+    heard = _closed_up(heard, set(words))
+    words = _closed_up(words, set(heard))
     return edit_distance(words, heard) / max(1, len(words))
+
+
+def _closed_up(sequence: list[str], vocabulary: set[str]) -> list[str]:
+    """`sequence` with each run of two or three adjacent words joined where the join is a word
+    of `vocabulary` that none of the run is on its own."""
+
+    out: list[str] = []
+    index = 0
+    while index < len(sequence):
+        for width in (3, 2):
+            run = sequence[index : index + width]
+            joined = "".join(run)
+            if len(run) == width and joined in vocabulary and not any(w in vocabulary for w in run):
+                out.append(joined)
+                index += width
+                break
+        else:
+            out.append(sequence[index])
+            index += 1
+    return out

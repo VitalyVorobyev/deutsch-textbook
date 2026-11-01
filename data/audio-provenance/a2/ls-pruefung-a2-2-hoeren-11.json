@@ -7,17 +7,17 @@
   },
   "cleared_by": "automatic-qa",
   "contextual_sources": [],
-  "created_at": "2026-10-31T14:00:20.925293+00:00",
+  "created_at": "2026-11-01T19:24:44.803562+00:00",
   "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
   "dry_audio_sha256": "89e2dcf383947b865df8f8ac6bd70ce9a4b49f6be40ea02e07125c92f62e9f22",
   "generation_brief": {
-    "path": "data/prompts/2026-10-31-ls-pruefung-a2-2-hoeren-11-listening.md",
+    "path": "data/prompts/2026-11-01-ls-pruefung-a2-2-hoeren-11-listening.md",
     "sha256": "b08a5dcee0f9c44260c6cf8133f0e10c494f2c171189d10534fe0117e9c5290e"
   },
   "id": "ls-pruefung-a2-2-hoeren-11",
   "kind": "dialogue",
   "level": "A2",
-  "master_audio_sha256": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95",
+  "master_audio_sha256": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd",
   "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
   "models": {
     "qwen_tts_designed": {
@@ -52,19 +52,27 @@
     }
   },
   "published_audio_bitrate": "128k",
-  "published_audio_sha256": "9fc4d05cdf1d758ffa39628cc90145336ba1fa5738c2555f60a8c7e376b7a0c0",
+  "published_audio_sha256": "28b879d66f3942bd8c8b686cc814d3a886c744fd5874da447e31a3b5202357a7",
   "qa": {
     "passed": true,
     "scene_sha256": "f45c6b8de8a6a10f5bc97eb5c1e1953ae01bdccf725fe9947e44f27341482389",
     "soundscape": {
       "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -44.4,
+          "measured_rms_dbfs": -52.9,
+          "missing": false
+        }
+      ],
       "configured_coverage_ratio": 1.0,
       "configured_gain_max_db": -25.0,
       "configured_gain_min_db": -25.0,
       "continuous_ambience": true,
       "event_count": 0,
-      "measured_ambience_rms_dbfs": -63.38293118288168,
-      "version": 1,
+      "measured_ambience_rms_dbfs": -51.11341520763687,
+      "version": 2,
       "warnings": []
     },
     "speaker_qa": {
@@ -72,25 +80,25 @@
         {
           "line_count": 2,
           "measured_lines": 2,
-          "minimum_similarity": 0.9580471868967572,
-          "pitch_max_hz": 110.34482758620689,
-          "pitch_min_hz": 103.56963298139769,
-          "pitch_spread_hz": 6.775194604809201,
+          "minimum_similarity": 0.9611489216485911,
+          "pitch_max_hz": 109.58904109589041,
+          "pitch_min_hz": 100.31446540880503,
+          "pitch_spread_hz": 9.274575687085374,
           "speaker": "Mann"
         },
         {
           "line_count": 1,
           "measured_lines": 1,
           "minimum_similarity": null,
-          "pitch_max_hz": 250.0,
-          "pitch_min_hz": 250.0,
+          "pitch_max_hz": 246.15384615384616,
+          "pitch_min_hz": 246.15384615384616,
           "pitch_spread_hz": null,
           "speaker": "Frau"
         }
       ],
       "different_characters": [
         {
-          "similarity": 0.22923478720781623,
+          "similarity": 0.24643078724974649,
           "speakers": [
             "Mann",
             "Frau"
@@ -102,7 +110,7 @@
           "line_id": "line-1",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.9580471868967572,
+          "similarity_to_character": 0.9611489216485911,
           "speaker": "Mann"
         },
         {
@@ -116,7 +124,7 @@
           "line_id": "line-3",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.9580471868967574,
+          "similarity_to_character": 0.9611489216485911,
           "speaker": "Mann"
         }
       ],
@@ -146,9 +154,9 @@
       }
     ],
     "transcripts": {
-      "created_at": "2026-10-31T13:36:54.308684+00:00",
+      "created_at": "2026-11-01T19:21:38.875846+00:00",
       "failures": [],
-      "full_transcript": "Eine Fahrkarte nach Köln bitte. Hin und zurück. Gern. Wann möchten Sie zurückfahren? Am Sonntag. Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin.",
+      "full_transcript": "Eine Fahrkarte nach Köln, bitte. Hin und zurück. Gern. Wann möchten Sie zurückfahren? Am Sonntag. Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin.",
       "full_wer": 0.0,
       "lines": [
         {
@@ -220,12 +228,12 @@
       {
         "kind": "stem",
         "path": "stems/ambience-1.wav",
-        "sha256": "d23e45a46af219c6d868e6f0ac5abceca6cb70ba38dd665adc53c982ec5b9e87"
+        "sha256": "1fe1e117bf638d2e04d9741ef5c0b8eff60a45378c1692ba4ead008b3195fdbb"
       },
       {
         "kind": "master",
         "path": "master.wav",
-        "sha256": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95"
+        "sha256": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd"
       },
       {
         "kind": "dry",
@@ -235,12 +243,12 @@
       {
         "kind": "qa",
         "path": "qa.wav",
-        "sha256": "f812af174c964435b3fa9cbaecc3ff81236ac833b7b2c94029edc55d7bc3307f"
+        "sha256": "5313f88d73f5f80cc6c62d025dd44ec5cd664834a9be71ddd2ef72548aa640ad"
       },
       {
         "kind": "publish",
         "path": "publish.mp3",
-        "sha256": "9fc4d05cdf1d758ffa39628cc90145336ba1fa5738c2555f60a8c7e376b7a0c0"
+        "sha256": "28b879d66f3942bd8c8b686cc814d3a886c744fd5874da447e31a3b5202357a7"
       }
     ],
     "assets": {
@@ -262,6 +270,33 @@
           "rate": 48000,
           "window_ms": null
         }
+      },
+      "1fe1e117bf638d2e04d9741ef5c0b8eff60a45378c1692ba4ead008b3195fdbb": {
+        "file": "1fe1e117bf638d2e04d9741ef5c0b8eff60a45378c1692ba4ead008b3195fdbb.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2d6c5f6c8eaa09370b9b53c288d98dbe7e8cd29c62d655c373e45c3cdbb21d05",
+          "50a2697fc1c5875a7ee1ce4d076f49b19d156108de74ece374fb2a489f52a7c5"
+        ],
+        "kind": "track",
+        "node_hash": "06627e00d10a12e83db696c03c57adc34986e4fb016f824da86d9d9ee0519138",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -25.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 13125
+        }
+      },
+      "28b879d66f3942bd8c8b686cc814d3a886c744fd5874da447e31a3b5202357a7": {
+        "encoding": "publish",
+        "file": "28b879d66f3942bd8c8b686cc814d3a886c744fd5874da447e31a3b5202357a7.mp3",
+        "kind": "encode",
+        "source": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd"
       },
       "2a27a2232e1037980e80e4bb516da3a144a4f2340b40f1fbbe173eb46bd867e9": {
         "file": "2a27a2232e1037980e80e4bb516da3a144a4f2340b40f1fbbe173eb46bd867e9.wav",
@@ -303,69 +338,6 @@
         },
         "request_sha256": "59aa360e36535d86b21a85aec1a885bfc4fe8a99cce19edef685cd5e11b6418f",
         "seed": 5115
-      },
-      "3b27bbc5eaee1d4aff96d4d87d61d1e17421c10249b6c6c3ad2ff0161cdcd3f6": {
-        "file": "3b27bbc5eaee1d4aff96d4d87d61d1e17421c10249b6c6c3ad2ff0161cdcd3f6.wav",
-        "impl_version": 2,
-        "inputs": [
-          "73fe345d0bee4aa605ace00d52f04075c0f85da99fee32bf325512be86d0c07e",
-          "05e2937837d7a4e0475fa458c3676bb80f6dc774e1335363173e12ea15c1efb6",
-          "435fe5a313fdfeb35895c0c9e1363b70128d02e19c2332f56b9c6287fc2f5f34",
-          "d23e45a46af219c6d868e6f0ac5abceca6cb70ba38dd665adc53c982ec5b9e87",
-          "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d"
-        ],
-        "kind": "mix",
-        "node_hash": "7ed7f3957afbf592cbbaf52e3d528e50111c4f5018c722eb59da987227fa32f1",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "inputs": [
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-1"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-2"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-3"
-            },
-            {
-              "bus": "ambience",
-              "fade_in_ms": 600,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 900,
-              "fade_out_start_ms": 12225,
-              "send_db": null,
-              "stem_id": "ambience-1"
-            }
-          ],
-          "rate": 48000,
-          "room": {
-            "id": "station-hall",
-            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
-            "tail_ms": 2628,
-            "version": 1,
-            "wet": 0.34
-          }
-        }
       },
       "435fe5a313fdfeb35895c0c9e1363b70128d02e19c2332f56b9c6287fc2f5f34": {
         "file": "435fe5a313fdfeb35895c0c9e1363b70128d02e19c2332f56b9c6287fc2f5f34.wav",
@@ -439,20 +411,11 @@
           }
         }
       },
-      "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95": {
-        "file": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95.wav",
-        "impl_version": 1,
-        "inputs": [
-          "3b27bbc5eaee1d4aff96d4d87d61d1e17421c10249b6c6c3ad2ff0161cdcd3f6"
-        ],
-        "kind": "loudnorm",
-        "node_hash": "49ce4e6cf98a702492a576d56197840a2b6fc354026a16a458ecb369d83d8951",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
-          "rate": 48000
-        }
+      "5313f88d73f5f80cc6c62d025dd44ec5cd664834a9be71ddd2ef72548aa640ad": {
+        "encoding": "qa",
+        "file": "5313f88d73f5f80cc6c62d025dd44ec5cd664834a9be71ddd2ef72548aa640ad.wav",
+        "kind": "encode",
+        "source": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd"
       },
       "5d3f0af01bf43291e44f3f71cddf7041e6b877b8fa15230135d8b1ff304570db": {
         "file": "5d3f0af01bf43291e44f3f71cddf7041e6b877b8fa15230135d8b1ff304570db.wav",
@@ -522,12 +485,6 @@
         "rate": 48000,
         "subtype": "PCM_24"
       },
-      "9fc4d05cdf1d758ffa39628cc90145336ba1fa5738c2555f60a8c7e376b7a0c0": {
-        "encoding": "publish",
-        "file": "9fc4d05cdf1d758ffa39628cc90145336ba1fa5738c2555f60a8c7e376b7a0c0.mp3",
-        "kind": "encode",
-        "source": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95"
-      },
       "a71dff80df9962553f3d40b1b22ff0269c2de3ace005b071ff9e3432e41a555c": {
         "file": "a71dff80df9962553f3d40b1b22ff0269c2de3ace005b071ff9e3432e41a555c.wav",
         "impl_version": 1,
@@ -544,23 +501,82 @@
         },
         "utterance_id": "line-1"
       },
-      "d23e45a46af219c6d868e6f0ac5abceca6cb70ba38dd665adc53c982ec5b9e87": {
-        "file": "d23e45a46af219c6d868e6f0ac5abceca6cb70ba38dd665adc53c982ec5b9e87.wav",
-        "impl_version": 1,
+      "bce744c6a8ba72e613e60bb8673f2d5d83d2475a8aab8bae1336a3a41a110588": {
+        "file": "bce744c6a8ba72e613e60bb8673f2d5d83d2475a8aab8bae1336a3a41a110588.wav",
+        "impl_version": 2,
         "inputs": [
-          "2d6c5f6c8eaa09370b9b53c288d98dbe7e8cd29c62d655c373e45c3cdbb21d05"
+          "73fe345d0bee4aa605ace00d52f04075c0f85da99fee32bf325512be86d0c07e",
+          "05e2937837d7a4e0475fa458c3676bb80f6dc774e1335363173e12ea15c1efb6",
+          "435fe5a313fdfeb35895c0c9e1363b70128d02e19c2332f56b9c6287fc2f5f34",
+          "1fe1e117bf638d2e04d9741ef5c0b8eff60a45378c1692ba4ead008b3195fdbb",
+          "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d"
         ],
-        "kind": "track",
-        "node_hash": "58ac81401cdae952c5bc8724adbd864c87ebda1a3b41e03369e531d35cbadb00",
+        "kind": "mix",
+        "node_hash": "391a14f86169e0d085e5f0119ebe1570018547862018d7e7df294f434099007e",
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
-          "delay_ms": 0,
-          "gain_db": -25.0,
-          "loop": true,
-          "pan": 0.0,
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 12225,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
           "rate": 48000,
-          "window_ms": 13125
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        }
+      },
+      "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd": {
+        "file": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd.wav",
+        "impl_version": 1,
+        "inputs": [
+          "bce744c6a8ba72e613e60bb8673f2d5d83d2475a8aab8bae1336a3a41a110588"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "7a703da177c98d653833a6a831d07fe6a7a5916018fc6fcc668274ea93808155",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
         }
       },
       "dba9e52e61dc95a9a71f746e273622b00e3b55932942ea72455cb9a611f487e7": {
@@ -598,15 +614,9 @@
         "params": {},
         "request_sha256": "37bf974e4dc7bddbe9dc759e3c58c3d478988531bbea3073c6b9b00972882876",
         "seed": 200
-      },
-      "f812af174c964435b3fa9cbaecc3ff81236ac833b7b2c94029edc55d7bc3307f": {
-        "encoding": "qa",
-        "file": "f812af174c964435b3fa9cbaecc3ff81236ac833b7b2c94029edc55d7bc3307f.wav",
-        "kind": "encode",
-        "source": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95"
       }
     },
-    "created_at": "2026-10-31T13:36:47.430260+00:00",
+    "created_at": "2026-11-01T19:20:06.436794+00:00",
     "duration_ms": 13125,
     "engines": {
       "qwen_tts_designed": {
@@ -622,7 +632,7 @@
     "nodes": [
       {
         "asset": "f6bccfa8c23c47e787956d63e6925ae900e77915e160eb8e538672b78afaae0b",
-        "cached": false,
+        "cached": true,
         "hash": "fb64f40a0abcd7fa28d3077acc1375eee09b074b0cd0df8e3469bba0664c6b66",
         "impl_version": 1,
         "params": {
@@ -641,7 +651,7 @@
       },
       {
         "asset": "a71dff80df9962553f3d40b1b22ff0269c2de3ace005b071ff9e3432e41a555c",
-        "cached": false,
+        "cached": true,
         "hash": "9c02c870136bdd68f35acef6bc20ab3adba53c772d5c484810365b67b1a1f9f2",
         "impl_version": 1,
         "params": {
@@ -654,7 +664,7 @@
       },
       {
         "asset": "f6f4cf6627a1c120cf9fa0ed969039ca87ea44cc7feb22628155239e145c8c3b",
-        "cached": false,
+        "cached": true,
         "hash": "1bf0c1853f8c0c8cc6a3ec31ee144715847262ee2a08f35342f5a3a142568bd0",
         "impl_version": 1,
         "params": {
@@ -673,7 +683,7 @@
       },
       {
         "asset": "5d3f0af01bf43291e44f3f71cddf7041e6b877b8fa15230135d8b1ff304570db",
-        "cached": false,
+        "cached": true,
         "hash": "89d65429be71c63a267f51fc1cb946346465d952ebb4aaed7b27591fb0b8c267",
         "impl_version": 1,
         "params": {
@@ -686,7 +696,7 @@
       },
       {
         "asset": "dba9e52e61dc95a9a71f746e273622b00e3b55932942ea72455cb9a611f487e7",
-        "cached": false,
+        "cached": true,
         "hash": "cab78be8fef27b4f7db373f2085c01011327506904e8bcca77e9cc2036bdca04",
         "impl_version": 1,
         "params": {
@@ -705,7 +715,7 @@
       },
       {
         "asset": "2a27a2232e1037980e80e4bb516da3a144a4f2340b40f1fbbe173eb46bd867e9",
-        "cached": false,
+        "cached": true,
         "hash": "bede7f4ce64eb6d4960f4a6207749f121cf9229d3805c69232114a7949f6ebf7",
         "impl_version": 1,
         "params": {
@@ -718,7 +728,7 @@
       },
       {
         "asset": "2d6c5f6c8eaa09370b9b53c288d98dbe7e8cd29c62d655c373e45c3cdbb21d05",
-        "cached": false,
+        "cached": true,
         "hash": "cabd83141cae266f96d2d10f36dbb7d1be2757725056f4d1de6467c8ead67e35",
         "impl_version": 1,
         "params": {
@@ -757,7 +767,7 @@
       },
       {
         "asset": "73fe345d0bee4aa605ace00d52f04075c0f85da99fee32bf325512be86d0c07e",
-        "cached": false,
+        "cached": true,
         "hash": "1996cb9c874c2b9ebbc0ad96c2ed8fdeb37c463388afe3de4b0ad5b3c6ae2950",
         "impl_version": 1,
         "params": {
@@ -774,7 +784,7 @@
       },
       {
         "asset": "05e2937837d7a4e0475fa458c3676bb80f6dc774e1335363173e12ea15c1efb6",
-        "cached": false,
+        "cached": true,
         "hash": "6758a1d3174b2e8328d1eab832d895993829f6a94744c1c7e5759e0fb313f46e",
         "impl_version": 1,
         "params": {
@@ -791,7 +801,7 @@
       },
       {
         "asset": "435fe5a313fdfeb35895c0c9e1363b70128d02e19c2332f56b9c6287fc2f5f34",
-        "cached": false,
+        "cached": true,
         "hash": "870f62a9c44ea22a8a9dfe95a9004f4ac5672c9bd2ddd7c3def53fc225cf9b4f",
         "impl_version": 1,
         "params": {
@@ -807,15 +817,64 @@
         "type": "track"
       },
       {
-        "asset": "d23e45a46af219c6d868e6f0ac5abceca6cb70ba38dd665adc53c982ec5b9e87",
-        "cached": false,
-        "hash": "58ac81401cdae952c5bc8724adbd864c87ebda1a3b41e03369e531d35cbadb00",
+        "asset": "50a2697fc1c5875a7ee1ce4d076f49b19d156108de74ece374fb2a489f52a7c5",
+        "cached": true,
+        "hash": "cf71633f68367ce634494520c349457b6b75bc9151232cccc1afd69a7eeaca1c",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "station-hall",
+            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
+            "tail_ms": 2628,
+            "version": 1,
+            "wet": 0.34
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "1fe1e117bf638d2e04d9741ef5c0b8eff60a45378c1692ba4ead008b3195fdbb",
+        "cached": true,
+        "hash": "06627e00d10a12e83db696c03c57adc34986e4fb016f824da86d9d9ee0519138",
         "impl_version": 1,
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
           "delay_ms": 0,
           "gain_db": -25.0,
+          "level": "dialogue",
           "loop": true,
           "pan": 0.0,
           "rate": 48000,
@@ -824,9 +883,9 @@
         "type": "track"
       },
       {
-        "asset": "3b27bbc5eaee1d4aff96d4d87d61d1e17421c10249b6c6c3ad2ff0161cdcd3f6",
-        "cached": false,
-        "hash": "7ed7f3957afbf592cbbaf52e3d528e50111c4f5018c722eb59da987227fa32f1",
+        "asset": "bce744c6a8ba72e613e60bb8673f2d5d83d2475a8aab8bae1336a3a41a110588",
+        "cached": true,
+        "hash": "391a14f86169e0d085e5f0119ebe1570018547862018d7e7df294f434099007e",
         "impl_version": 2,
         "params": {
           "channels": 2,
@@ -881,9 +940,9 @@
         "type": "mix"
       },
       {
-        "asset": "539a5c2c51ae964583698a72678178307fb3fd33b7f69f1b84a747b324983a95",
-        "cached": false,
-        "hash": "49ce4e6cf98a702492a576d56197840a2b6fc354026a16a458ecb369d83d8951",
+        "asset": "bfe5e142ec6fc224cdf27010ce64b39d80efcdc8d99a41a2e3a0b69ce92f8bfd",
+        "cached": true,
+        "hash": "7a703da177c98d653833a6a831d07fe6a7a5916018fc6fcc668274ea93808155",
         "impl_version": 1,
         "params": {
           "channels": 2,
@@ -894,56 +953,8 @@
         "type": "loudnorm"
       },
       {
-        "asset": "50a2697fc1c5875a7ee1ce4d076f49b19d156108de74ece374fb2a489f52a7c5",
-        "cached": false,
-        "hash": "cf71633f68367ce634494520c349457b6b75bc9151232cccc1afd69a7eeaca1c",
-        "impl_version": 2,
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "inputs": [
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-1"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-2"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-3"
-            }
-          ],
-          "rate": 48000,
-          "room": {
-            "id": "station-hall",
-            "ir": "9f69ef83bfbcf7400a3da59afd4571d944e19013caa43ea9a28926c6e7ef209d",
-            "tail_ms": 2628,
-            "version": 1,
-            "wet": 0.34
-          }
-        },
-        "type": "mix"
-      },
-      {
         "asset": "89e2dcf383947b865df8f8ac6bd70ce9a4b49f6be40ea02e07125c92f62e9f22",
-        "cached": false,
+        "cached": true,
         "hash": "50efa20575438246eaba555a26d35d96f8941fa49522b6c3dc072baa21a0e54b",
         "impl_version": 1,
         "params": {
@@ -955,9 +966,9 @@
         "type": "loudnorm"
       },
       {
-        "asset": "f812af174c964435b3fa9cbaecc3ff81236ac833b7b2c94029edc55d7bc3307f",
-        "cached": false,
-        "hash": "ce568a470a2b209967a226307e5421a9cdd3cf3c2aaf624e30d8b08fed4df723",
+        "asset": "5313f88d73f5f80cc6c62d025dd44ec5cd664834a9be71ddd2ef72548aa640ad",
+        "cached": true,
+        "hash": "0a8b05daa87258ca5bf106fab01cfe75f58753a622cb537563b0b17c53e87a6e",
         "impl_version": 1,
         "params": {
           "channels": 1,
@@ -969,9 +980,9 @@
         "type": "encode"
       },
       {
-        "asset": "9fc4d05cdf1d758ffa39628cc90145336ba1fa5738c2555f60a8c7e376b7a0c0",
-        "cached": false,
-        "hash": "95b5614273a5589c679dcb3a0c6a09ad5a86f3a57653adb9da429389da93b24d",
+        "asset": "28b879d66f3942bd8c8b686cc814d3a886c744fd5874da447e31a3b5202357a7",
+        "cached": true,
+        "hash": "7d5946bdd2548d7b287f8f9408d66e9418c608109253312699243b355bef604e",
         "impl_version": 1,
         "params": {
           "bitrate": "128k",
@@ -984,8 +995,8 @@
         "type": "encode"
       }
     ],
-    "nodes_cached": 1,
-    "nodes_evaluated": 17,
+    "nodes_cached": 18,
+    "nodes_evaluated": 0,
     "timeline": [
       {
         "end_ms": 3818,

@@ -581,6 +581,34 @@ class Store:
             project.stage = target
             session.commit()
 
+    def stage_after_render(self, project_id: int, *, master_changed: bool, variant: str) -> Stage:
+        """Step a freshly rendered scene to `audio_generated`, and back to it when its audio moved.
+
+        A re-render of unchanged bytes is a cache walk, and dropping a QA report or an approval
+        because someone re-ran it would be a regression. A *changed* scene is a new revision and
+        starts at draft anyway. What is left is the engine making other bytes from the same
+        scene, and then every later stage describes a master that is gone: the scene goes back to
+        `audio_generated` for its QA, and publishing waits for it. Only the `natural` variant
+        moves the stage, because that is the variant QA clears for publishing.
+        """
+
+        project, _, _, _ = self.get_scene(project_id)
+        stage = Stage(project.stage)
+        if stage == Stage.DRAFT:
+            self.transition_scene(project_id, Stage.DRAFT, Stage.VALIDATED)
+            stage = Stage.VALIDATED
+        if stage == Stage.VALIDATED:
+            self.transition_scene(project_id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+            return Stage.AUDIO_GENERATED
+        if master_changed and variant == "natural" and stage != Stage.AUDIO_GENERATED:
+            with Session(self.engine) as session:
+                stored = session.get(SceneProject, project_id)
+                assert stored
+                stored.stage = Stage.AUDIO_GENERATED
+                session.commit()
+            return Stage.AUDIO_GENERATED
+        return stage
+
     def record_scene_qa(self, project_id: int, variant: str, report: dict[str, object]) -> Stage:
         """Store one variant's QA report on the head revision; return the stage it leaves.
 

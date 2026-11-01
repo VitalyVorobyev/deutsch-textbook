@@ -376,17 +376,9 @@ def router(
                 409, f"{names} failed and the failure was recorded: {error}"
             ) from error
 
-        stage = Stage(project.stage)
-        if stage == Stage.DRAFT:
-            store.transition_scene(project.id, Stage.DRAFT, Stage.VALIDATED)
-            stage = Stage.VALIDATED
-        if stage == Stage.VALIDATED:
-            store.transition_scene(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
-            stage = Stage.AUDIO_GENERATED
-        # Anything later is left alone. A re-render of unchanged bytes is a cache walk, and
-        # dropping a QA report or an approval because someone re-ran it would be a workflow
-        # regression, not a safety measure — the scene sha is in the render path, so a *changed*
-        # scene is a new render.
+        stage = store.stage_after_render(
+            project.id, master_changed=result.master_changed, variant=result.variant
+        )
 
         return {
             "slug": scene.slug,
