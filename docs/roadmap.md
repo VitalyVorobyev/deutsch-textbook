@@ -68,8 +68,9 @@ needs:
 ## Tools at full power
 
 **Redaktion** is done when an editor can locate a grammar line, follow its course evidence, edit
-YAML and MDX with conflict protection, read local and corpus diagnostics, and mark a topic
-`reviewed` only through the green gate, in the packaged macOS app. The open milestones are in
+YAML and MDX with conflict protection, read local and corpus diagnostics, see every kind of
+material with its owner and its review state, review what Claude changed and file findings into
+the shared queue ([ADR 0014](adrs/0014-material-governance.md)), in the packaged macOS app. The open milestones are in
 [`backlog/redaktion.md`](backlog/redaktion.md).
 
 **Tonwerk** is done when it starts as one app and a scene goes from script to published audio

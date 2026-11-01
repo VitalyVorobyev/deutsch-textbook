@@ -9,5 +9,4 @@ same change; or the direction is dropped, and the proposal is deleted.
 | --- | --- |
 | [`lesson-task-system.md`](lesson-task-system.md) | What does a lesson ask the learner to do, and in what order? |
 | [`characters-and-stories.md`](characters-and-stories.md) | Should a recurring cast, with voices and stories, carry the course? |
-| [`material-governance.md`](material-governance.md) | How does Redaktion show, review and queue every kind of material? |
 | [`ui-on-lab-ui.md`](ui-on-lab-ui.md) | In what order, and how, do the apps move onto `@vitavision/*`? |
