@@ -113,9 +113,19 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
             </Quelllink>
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-fg-muted">Status</span>
           <StatusFeld graph={graph} topic={topic} />
+          {topic.provenance ? (
+            <>
+              <span className="ml-2 text-fg-muted">Herkunft</span>
+              <Chip tone={topic.provenance === 'complete' ? 'ok' : 'warn'}>
+                {topic.provenance === 'complete' ? 'geprüft' : 'Prüfung offen'}
+              </Chip>
+            </>
+          ) : null}
+          <span className="ml-2 text-fg-muted">Bewertungsentscheidungen</span>
+          <span className="tabular text-fg">{topic.rulings}</span>
         </div>
       </header>
 

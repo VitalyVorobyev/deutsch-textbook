@@ -54,15 +54,20 @@ describe('content graph', () => {
     );
     expect(orphans.map((e) => e.id)).toEqual([]);
 
-    // Level-owned (ADR 0014): exactly the level-wide sets, and the recordings and documents only
-    // they use. Anything else without a topic is material the census lost.
+    // Level-owned (ADR 0014): the level-wide sets and the recordings and documents only they use,
+    // plus what spans a level by nature — Wortnetze, Referenz pages, LiD lessons and the Wortliste
+    // decks no topic owns. Any other kind without a topic is material the census lost.
     const levelOwned = graph.elements.filter((e) => e.topic === undefined);
     expect([...new Set(levelOwned.map((e) => e.kind))].sort()).toEqual([
       'checkpoint',
       'dokument',
       'einstufung',
       'hoertext',
+      'lid-lektion',
       'pruefungspraxis',
+      'referenz',
+      'wortnetz',
+      'wortschatz',
     ]);
 
     const rank = (level: string) => LEVELS.indexOf(level as (typeof LEVELS)[number]);
@@ -113,17 +118,22 @@ describe('content graph', () => {
       drill: 26,
       einstufung: 3,
       entdecken: 19,
-      hoertext: 76,
+      hoertext: 93,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 68,
+      'lid-lektion': 12,
       praxis: 201,
       pretest: 57,
       probe: 158,
       pruefungspraxis: 12,
+      referenz: 7,
       wortfeld: 2,
-      wortschatz: 47,
+      wortnetz: 10,
+      wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(763);
+    expect(graph.elements.length).toBe(891);
+    // 17 of the Hörtexte are planned scenes: named by the plan, not yet published.
+    expect(graph.elements.filter((e) => e.planned).length).toBe(17);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {

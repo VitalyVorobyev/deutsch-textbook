@@ -56,8 +56,10 @@ import {
 import { handlungCoverage } from './handlungen';
 import { themaCoverage } from './themen';
 import { languageCoverage, type TopicLanguageCoverage } from './preview';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import YAML from 'yaml';
+import { loadGradingDecisions } from './grading-decisions';
 
 export interface TopicSummary {
   id: string;
@@ -81,6 +83,10 @@ export interface TopicSummary {
   claims: string[];
   /** Authored explanation halves in the article; German examples do not count as a DE half. */
   languageCoverage: TopicLanguageCoverage['languages'];
+  /** Grading rulings (`data/grading-decisions.yaml`) on items of this topic's sets. */
+  rulings: number;
+  /** The human-review status of its authorship-provenance record, where it has one. */
+  provenance?: string;
 }
 
 export interface TagSummary {
@@ -189,7 +195,45 @@ export function graphPayload(graph: ContentGraph): GraphPayload {
   return built;
 }
 
+/** Rulings per topic: an item ref is `<set-id>:<item-id>`, and the set names its topic. */
+function rulingsByTopic(graph: ContentGraph): Map<string, number> {
+  const counts = new Map<string, number>();
+  let decisions: { item: string }[] = [];
+  try {
+    decisions = loadGradingDecisions(graph.root);
+  } catch {
+    // A malformed rulings file is the validator's finding; the overview shows none.
+  }
+  for (const { item } of decisions) {
+    const topic = graph.sets.get(item.slice(0, item.lastIndexOf(':')))?.data?.topic;
+    if (topic) counts.set(topic, (counts.get(topic) ?? 0) + 1);
+  }
+  return counts;
+}
+
+/** Each provenance record's human-review status, by topic. */
+function provenanceByTopic(graph: ContentGraph): Map<string, string> {
+  const path = resolve(graph.root, 'data/authorship-provenance.yaml');
+  if (!existsSync(path)) return new Map();
+  try {
+    const manifest = YAML.parse(readFileSync(path, 'utf8')) as {
+      topics?: { topic?: string; humanReview?: { status?: string } }[];
+    };
+    return new Map(
+      (manifest.topics ?? []).flatMap((record) =>
+        record.topic && record.humanReview?.status
+          ? [[record.topic, record.humanReview.status] as const]
+          : [],
+      ),
+    );
+  } catch {
+    return new Map();
+  }
+}
+
 function buildPayload(graph: ContentGraph): GraphPayload {
+  const rulings = rulingsByTopic(graph);
+  const provenance = provenanceByTopic(graph);
   const topics: TopicSummary[] = [...graph.topics.values()].map((topic) => {
     const unit = graph.unitOfTopic.get(topic.id);
     return {
@@ -215,6 +259,8 @@ function buildPayload(graph: ContentGraph): GraphPayload {
         topic.article,
         readFileSync(resolve(graph.root, topic.article), 'utf8'),
       ).languages,
+      rulings: rulings.get(topic.id) ?? 0,
+      ...(provenance.has(topic.id) ? { provenance: provenance.get(topic.id)! } : {}),
     };
   });
   topics.sort((a, b) => a.spine - b.spine);

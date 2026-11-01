@@ -20,7 +20,17 @@
  * `graph.elements` are what the corpus measured.
  */
 import { useEffect, useState } from 'react';
-import { Button, Empty, Filter, Label, Panel, SearchBox, Stat, StatGroup } from '@da/ui/primitives';
+import {
+  Button,
+  Chip,
+  Empty,
+  Filter,
+  Label,
+  Panel,
+  SearchBox,
+  Stat,
+  StatGroup,
+} from '@da/ui/primitives';
 import { Reiter } from '../components/Hinweis';
 import { corpusClient, loadChunk, type GraphPayload } from '../data';
 import { Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
@@ -53,23 +63,56 @@ type Art =
   | 'artikel'
   | 'dokumente'
   | 'entdecken'
-  | 'wortnetze';
+  | 'referenz'
+  | 'wortnetze'
+  | 'lid';
 
-/** Which `ElementKind`s each tab collects, and what to call it. */
-const ARTEN: { id: Art; label: string; kinds: string[] }[] = [
-  { id: 'wortschatz', label: 'Wortschatz', kinds: ['wortschatz'] },
-  {
-    id: 'uebungen',
-    label: 'Übungen',
-    kinds: ['pretest', 'praxis', 'drill', 'probe', 'checkpoint', 'einstufung'],
-  },
-  { id: 'lesetexte', label: 'Lesetexte', kinds: ['lesetext-intensiv', 'lesetext-extensiv'] },
-  { id: 'hoertexte', label: 'Hörtexte', kinds: ['hoertext'] },
-  { id: 'artikel', label: 'Artikel', kinds: ['artikel'] },
-  { id: 'dokumente', label: 'Dokumente', kinds: ['dokument'] },
-  { id: 'entdecken', label: 'Entdecken', kinds: ['entdecken', 'referenz'] },
-  { id: 'wortnetze', label: 'Wortnetze', kinds: ['wortnetz', 'wortfeld'] },
+type Kind = GraphPayload['elements'][number]['kind'];
+
+/**
+ * The tab every element kind lives in. Exhaustive on purpose: a kind added to the graph without a
+ * tab is a type error here, so no material can be in the census and missing from the index — the
+ * gap that once hid the exam sets, the Wortnetze and the Referenz pages.
+ */
+const TAB_OF_KIND: Record<Kind, Art> = {
+  wortschatz: 'wortschatz',
+  pretest: 'uebungen',
+  praxis: 'uebungen',
+  drill: 'uebungen',
+  probe: 'uebungen',
+  checkpoint: 'uebungen',
+  einstufung: 'uebungen',
+  pruefungspraxis: 'uebungen',
+  'lesetext-intensiv': 'lesetexte',
+  'lesetext-extensiv': 'lesetexte',
+  hoertext: 'hoertexte',
+  artikel: 'artikel',
+  dokument: 'dokumente',
+  entdecken: 'entdecken',
+  referenz: 'referenz',
+  wortfeld: 'wortnetze',
+  wortnetz: 'wortnetze',
+  'lid-lektion': 'lid',
+};
+
+const TABS: { id: Art; label: string }[] = [
+  { id: 'wortschatz', label: 'Wortschatz' },
+  { id: 'uebungen', label: 'Übungen' },
+  { id: 'lesetexte', label: 'Lesetexte' },
+  { id: 'hoertexte', label: 'Hörtexte' },
+  { id: 'artikel', label: 'Artikel' },
+  { id: 'dokumente', label: 'Dokumente' },
+  { id: 'entdecken', label: 'Entdecken' },
+  { id: 'referenz', label: 'Referenz' },
+  { id: 'wortnetze', label: 'Wortnetze' },
+  { id: 'lid', label: 'LiD' },
 ];
+
+/** Which `ElementKind`s each tab collects, derived from the one map above. */
+const ARTEN: { id: Art; label: string; kinds: string[] }[] = TABS.map((tab) => ({
+  ...tab,
+  kinds: (Object.keys(TAB_OF_KIND) as Kind[]).filter((kind) => TAB_OF_KIND[kind] === tab.id),
+}));
 
 export function Bestand({ graph }: { graph: GraphPayload }) {
   const [artValue, setArtValue] = useQueryState('art', 'wortschatz');
@@ -158,7 +201,12 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
             />
             <Stat
               label="Aufgaben"
-              value={graph.elements.reduce((n, e) => n + (e.depth.items || 0), 0)}
+              // Exercise items only: summing every element's depth also counted deck entries and
+              // one per article, which is not what the label says.
+              value={graph.elements
+                .filter((e) => TAB_OF_KIND[e.kind] === 'uebungen')
+                .reduce((n, e) => n + (e.depth.items || 0), 0)}
+              hint="in Übungssätzen"
             />
           </StatGroup>
         </Panel>
@@ -399,9 +447,16 @@ function Elemente({
       head: 'Element',
       sort: (e) => e.id,
       cell: (e) => (
-        <Primaer href={href('quelle', undefined, { pfad: e.file })}>
-          {e.title ?? e.id.split('#')[0]}
-        </Primaer>
+        <span className="flex flex-wrap items-center gap-2">
+          <Primaer href={href('quelle', undefined, { pfad: e.file })}>
+            {e.title ?? e.id.split('#')[0]}
+          </Primaer>
+          {e.planned ? (
+            <Chip title="Im Plan, noch nicht veröffentlicht — die Zeile öffnet den Plan">
+              geplant
+            </Chip>
+          ) : null}
+        </span>
       ),
     },
     { key: 'level', head: 'Niveau', sort: (e) => e.level, cell: (e) => e.level },
