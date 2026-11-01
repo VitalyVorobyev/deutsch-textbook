@@ -204,6 +204,22 @@ class RenderResult:
     #: Cast role → the designed synthetic reference it was cloned from: its digest and the record
     #: stored beside it. Empty for a scene with no designed voice.
     designed_voices: dict[str, dict[str, Any]] = field(default_factory=dict)
+    #: The master the directory held before this render, or None when it held none.
+    previous_master_sha256: str | None = None
+
+    @property
+    def master_sha256(self) -> str | None:
+        return next((row.sha256 for row in self.artifacts if row.kind == "master"), None)
+
+    @property
+    def master_changed(self) -> bool:
+        """Whether this render replaced a master with other bytes under the same scene sha.
+
+        The scene is unchanged, so the engine is what moved: whatever a QA report or an approval
+        said about the previous master is about audio that is no longer there.
+        """
+
+        return self.previous_master_sha256 not in (None, self.master_sha256)
 
     @property
     def nodes_evaluated(self) -> int:
@@ -814,20 +830,29 @@ def render_scene(
     cache = NodeCache(store_dir)
     directory = store_dir / "renders" / scene_sha / variant
     directory.mkdir(parents=True, exist_ok=True)
+    previous_master = _manifest_master(directory / "render.json")
     runs: list[NodeRun] = []
 
     with tempfile.TemporaryDirectory(prefix="scene-render-", dir=store_dir) as raw:
         work = Path(raw)
 
-        def run(node: Node, produce: Produce, suffix: str = ".wav") -> str:
-            """One node through `evaluate_or_reuse`, recorded so the manifest can count it."""
+        done: dict[str, str] = {}
 
+        def run(node: Node, produce: Produce, suffix: str = ".wav") -> str:
+            """One node through `evaluate_or_reuse`, recorded so the manifest can count it.
+
+            A node asked for twice in one render (the dialogue mix: the beds' level reference,
+            then the source of `dry.wav`) is one computation, recorded once.
+            """
+
+            key = node.node_hash()
+            if key in done:
+                return done[key]
             asset, cached = evaluate_or_reuse(
                 node, produce, assets=assets, cache=cache, work=work, suffix=suffix
             )
-            runs.append(
-                NodeRun(node.node_hash(), node.type, node.impl_version, asset, cached, node.params)
-            )
+            runs.append(NodeRun(key, node.type, node.impl_version, asset, cached, node.params))
+            done[key] = asset
             return asset
 
         # -- pass 1: every take exists before anything is placed ---------------
@@ -857,9 +882,11 @@ def render_scene(
 
         # -- pass 3: placement, mix, master, derivatives -----------------------
 
-        stems: list[tuple[str, str, str]] = []  # (stem id, asset sha, bus)
-        mix_inputs: list[MixInput] = []
-        for index, entry in enumerate(scene.timeline):
+        room = acoustics.room_mix(ir_asset) if ir_asset else None
+        placed_stems: dict[int, tuple[tuple[str, str, str], MixInput]] = {}
+
+        def place(index: int, level_reference: str | None = None) -> None:
+            entry = scene.timeline[index]
             stem_id = ids[index]
             span = spans[stem_id]
             source = paced[entry.utterance_id] if isinstance(entry, SpeechEntry) else sounds[index]
@@ -873,12 +900,29 @@ def render_scene(
                 source_hash=source,
                 fx=placed.fx,
                 acoustics=placed.acoustics,
+                level_reference=level_reference,
             )
             stem = run(node, partial(_track, assets, source, node))
-            stems.append((stem_id, stem, placed.bus))
-            mix_inputs.append(placed.mix_input(stem_id))
+            placed_stems[index] = ((stem_id, stem, placed.bus), placed.mix_input(stem_id))
 
-        room = acoustics.room_mix(ir_asset) if ir_asset else None
+        # Beds last: each is levelled against the dialogue mix, which needs every line placed.
+        # That mix is the node `dry.wav` normalises below, so it is computed once.
+        beds = [i for i, entry in enumerate(scene.timeline) if isinstance(entry, AmbienceEntry)]
+        for index in range(len(scene.timeline)):
+            if index not in beds:
+                place(index)
+        dialogue = [placed_stems[i] for i in sorted(placed_stems) if placed_stems[i][1].bus == "dialogue"]
+        reference: str | None = None
+        if beds and dialogue:
+            rows = [row for _, row in dialogue]
+            hashes = [stem[1] for stem, _ in dialogue]
+            node_dialogue = mix_node(rows, hashes, room)
+            reference = run(node_dialogue, partial(_mix, assets, hashes, rows, node_dialogue, room))
+        for index in beds:
+            place(index, reference)
+        stems = [placed_stems[i][0] for i in range(len(scene.timeline))]
+        mix_inputs = [placed_stems[i][1] for i in range(len(scene.timeline))]
+
         master = _mix_and_normalize(assets, run, mix_inputs, stems, buses=set(BUS_ALL), room=room)
         # `dry.wav` is the dialogue bus **in the same room**. The soundscape diagnostic measures
         # the master against it to ask how loud the non-speech material is, and the speech's own
@@ -910,9 +954,23 @@ def render_scene(
         ir_assets={acoustics.room_id: ir_asset} if ir_asset and acoustics.room_id else {},
         voices=cast_voices,
         designed_voices=cast_designed,
+        previous_master_sha256=previous_master,
     )
     _write_manifest(result, scene, assets, engines, sound_engine)
     return result
+
+
+def _manifest_master(path: Path) -> str | None:
+    """The master sha a render manifest names, or None when there is no readable one."""
+
+    try:
+        manifest = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+    for row in manifest.get("artifacts") or []:
+        if isinstance(row, dict) and row.get("kind") == "master":
+            return str(row.get("sha256"))
+    return None
 
 
 def _resolve_cast_voices(
@@ -1095,6 +1153,7 @@ def _track(assets: AssetStore, source: str, node: Node, target: Path) -> dict[st
         # `.get`, because the key is absent on a stem with no acoustic treatment — which is what
         # keeps such a stem on the node hash it had before this layer existed.
         fx=str(node.params.get("fx", "")),
+        level_reference=assets.require(node.inputs[1]) if len(node.inputs) > 1 else None,
     )
     return derived_provenance(node)
 

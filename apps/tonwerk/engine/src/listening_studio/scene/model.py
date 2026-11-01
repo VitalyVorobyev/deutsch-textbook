@@ -378,8 +378,11 @@ class AmbienceEntry(Strict):
     `afade=t=in:d=0.35` and `afade=t=out:d=0.45`), so a converted scene renders as it always
     did rather than as someone's idea of a good fade.
 
-    The gain ceiling is -6 dB rather than 0: a bed at speech level is not a bed. Events may go
-    to 0 because a door slam is allowed to be the loudest thing in the room.
+    `gain_db` is the bed's distance under the speech: the renderer levels the source to the
+    dialogue first (`graph.nodes.bed_level_db`), so the number means the same thing for a quiet
+    generated room and a loud recorded one. The ceiling is -6 dB rather than 0: a bed at speech
+    level is not a bed. Events may go to 0 because a door slam is allowed to be the loudest thing
+    in the room.
 
     `duck_db` lowers the bed by that much while anyone speaks, and lets it back up in the gaps
     between turns that are long enough to hear it (`dsp.chains.duck_chain`). The envelope is

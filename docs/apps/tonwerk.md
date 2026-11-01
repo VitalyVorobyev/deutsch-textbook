@@ -157,7 +157,8 @@ instructions.
 5. In **Mischung**, press ***<Variante>* rendern**. A cold render synthesises every line through the
    local model and takes about 30 seconds; a warm one is a cache walk and takes under three. The
    button carries its elapsed second, and the answer says how many nodes came out of the cache.
-6. Press **Automatisch prüfen**. It transcribes the master and holds it against the script. The
+6. Press **Automatisch prüfen**. It transcribes the master and holds it against the script, and
+   fails a scene whose background is missing from the mix. The
    timeline that appears is *measured* — where each turn, bed and event actually landed after pace,
    overlap and the difficulty deltas — not what the document asked for. Each piece shows its own
    track's waveform. A click on the time scale plays the master from that moment, and a click on a

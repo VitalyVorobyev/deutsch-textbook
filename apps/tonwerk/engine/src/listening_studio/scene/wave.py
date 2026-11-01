@@ -212,14 +212,9 @@ def run_wave(
                 voices=resolved.refs,
                 designed=designed,
             )
-            # `scene render`'s ladder, verbatim: a re-render of unchanged bytes is a cache walk,
-            # and anything past `audio_generated` was left alone above.
-            if stage == Stage.DRAFT:
-                store.transition_scene(project.id, Stage.DRAFT, Stage.VALIDATED)
-                stage = Stage.VALIDATED
-            if stage == Stage.VALIDATED:
-                store.transition_scene(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
-                stage = Stage.AUDIO_GENERATED
+            stage = store.stage_after_render(
+                project.id, master_changed=result.master_changed, variant=variant
+            )
             report = scene_qa(
                 scene, result.directory, transcribe_fn=transcriber, speaker_qa=speaker_qa
             )

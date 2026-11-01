@@ -248,3 +248,12 @@ def test_minutes_past_the_hour_are_said_without_their_leading_zero() -> None:
     assert word_error_rate("Abfahrt elf Uhr", "Abfahrt 11.00 Uhr") == 0
     assert word_error_rate("Abfahrt elf Uhr fünfzehn", "Abfahrt 11.15 Uhr") == 0
     assert word_error_rate("Abfahrt elf Uhr fünf", "Abfahrt 11.50 Uhr") > 0
+
+
+def test_a_compound_the_asr_split_is_one_word_even_beside_a_real_difference() -> None:
+    """Found on a re-rendered station announcement: `Regional Express` and `ca. 15` failed a line
+    whose every word Whisper had heard."""
+
+    want = "Der Regionalexpress nach Würzburg hat heute circa fünfzehn Minuten Verspätung."
+    assert word_error_rate(want, "Der Regional Express nach Würzburg hat heute ca. 15 Minuten Verspätung.") == 0
+    assert word_error_rate(want, "Der Regional Express nach Bamberg hat heute ca. 15 Minuten Verspätung.") == 1 / 11

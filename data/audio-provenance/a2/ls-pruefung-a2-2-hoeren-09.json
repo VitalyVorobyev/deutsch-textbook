@@ -7,17 +7,17 @@
   },
   "cleared_by": "automatic-qa",
   "contextual_sources": [],
-  "created_at": "2026-10-31T14:00:20.881908+00:00",
+  "created_at": "2026-11-01T19:24:44.792204+00:00",
   "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
   "dry_audio_sha256": "4c98a76853c035884409f23a24d3e88f0c29b761632910d20cc8396dbe3005d9",
   "generation_brief": {
-    "path": "data/prompts/2026-10-31-ls-pruefung-a2-2-hoeren-09-listening.md",
+    "path": "data/prompts/2026-11-01-ls-pruefung-a2-2-hoeren-09-listening.md",
     "sha256": "7d6c57259225c4c5adc95e2c69fd09bc97eb72e0caa722818510e73c0de388a1"
   },
   "id": "ls-pruefung-a2-2-hoeren-09",
   "kind": "dialogue",
   "level": "A2",
-  "master_audio_sha256": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8",
+  "master_audio_sha256": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b",
   "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
   "models": {
     "qwen_tts_designed": {
@@ -52,19 +52,27 @@
     }
   },
   "published_audio_bitrate": "128k",
-  "published_audio_sha256": "fea1b5ecdc012179a9e8a2259d867de70c9e740236167d7ad8f9b923ecf575dc",
+  "published_audio_sha256": "b625810a2bbb5d4533c92eb50a8789b08ae3ce9b61b3f8a69cae55ac89e57d7b",
   "qa": {
     "passed": true,
     "scene_sha256": "588c7cc0e7d2b524ec0da297d80fac175e007ec48505f3d5919123910d5870ee",
     "soundscape": {
       "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -46.4,
+          "measured_rms_dbfs": -47.2,
+          "missing": false
+        }
+      ],
       "configured_coverage_ratio": 1.0,
       "configured_gain_max_db": -27.0,
       "configured_gain_min_db": -27.0,
       "continuous_ambience": true,
       "event_count": 0,
-      "measured_ambience_rms_dbfs": -67.26491470797592,
-      "version": 1,
+      "measured_ambience_rms_dbfs": -48.236352662439444,
+      "version": 2,
       "warnings": []
     },
     "speaker_qa": {
@@ -72,7 +80,7 @@
         {
           "line_count": 2,
           "measured_lines": 2,
-          "minimum_similarity": 0.8750278640691929,
+          "minimum_similarity": 0.8767899533557124,
           "pitch_max_hz": 139.1304347826087,
           "pitch_min_hz": 128.0,
           "pitch_spread_hz": 11.130434782608688,
@@ -81,7 +89,7 @@
         {
           "line_count": 2,
           "measured_lines": 2,
-          "minimum_similarity": 0.9867185975030209,
+          "minimum_similarity": 0.9844037149114256,
           "pitch_max_hz": 149.53271028037383,
           "pitch_min_hz": 144.7993447993448,
           "pitch_spread_hz": 4.73336548102904,
@@ -90,7 +98,7 @@
       ],
       "different_characters": [
         {
-          "similarity": 0.5868386542527518,
+          "similarity": 0.58201703380299,
           "speakers": [
             "Verkäufer",
             "Kundin"
@@ -102,28 +110,28 @@
           "line_id": "line-1",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.8750278640691929,
+          "similarity_to_character": 0.8767899533557124,
           "speaker": "Verkäufer"
         },
         {
           "line_id": "line-2",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.9867185975030209,
+          "similarity_to_character": 0.9844037149114256,
           "speaker": "Kundin"
         },
         {
           "line_id": "line-3",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.8750278640691931,
+          "similarity_to_character": 0.8767899533557124,
           "speaker": "Verkäufer"
         },
         {
           "line_id": "line-4",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.9867185975030212,
+          "similarity_to_character": 0.9844037149114256,
           "speaker": "Kundin"
         }
       ],
@@ -156,7 +164,7 @@
       }
     ],
     "transcripts": {
-      "created_at": "2026-10-31T13:35:09.003284+00:00",
+      "created_at": "2026-11-01T19:21:29.177404+00:00",
       "failures": [],
       "full_transcript": "Und? Passt der Pullover? Die Größe ist gut und das Blau gefällt mir auch. Aber 89 Euro, das ist mir zu teuer. Wir haben ihn auch in Grau für 59 Euro. Grau steht mir nicht. Danke, ich schaue noch in einem anderen Geschäft.",
       "full_wer": 0.0,
@@ -243,12 +251,12 @@
       {
         "kind": "stem",
         "path": "stems/ambience-1.wav",
-        "sha256": "7ec4374a5bad93729595aac96cd6d87595a476bd5b312d1306cffcf78147fdd6"
+        "sha256": "0003d9fce6ef97f873a19f709166224fca1406972c7635e359023c24ad53fdda"
       },
       {
         "kind": "master",
         "path": "master.wav",
-        "sha256": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8"
+        "sha256": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b"
       },
       {
         "kind": "dry",
@@ -258,15 +266,36 @@
       {
         "kind": "qa",
         "path": "qa.wav",
-        "sha256": "1c87e58f2a0faadbe9b488e6c1bfcb507d24b99bcde3268d70feb7af0407b837"
+        "sha256": "ea7aa7153a6f67d06d871cfca14d62d4eea70fb1705fdcff327bdd6c5d955ab9"
       },
       {
         "kind": "publish",
         "path": "publish.mp3",
-        "sha256": "fea1b5ecdc012179a9e8a2259d867de70c9e740236167d7ad8f9b923ecf575dc"
+        "sha256": "b625810a2bbb5d4533c92eb50a8789b08ae3ce9b61b3f8a69cae55ac89e57d7b"
       }
     ],
     "assets": {
+      "0003d9fce6ef97f873a19f709166224fca1406972c7635e359023c24ad53fdda": {
+        "file": "0003d9fce6ef97f873a19f709166224fca1406972c7635e359023c24ad53fdda.wav",
+        "impl_version": 1,
+        "inputs": [
+          "143cf923a292d2d384c736e1df17427973a294f9877ba6c8fed252c02de34396",
+          "9521f9e336f61a22bf7e5d14e83f84143b8ce5b61bc7651424a0d1338b7d94e8"
+        ],
+        "kind": "track",
+        "node_hash": "f63b948fad16e6bb4d0d4cb6fb344892f463a77d3c8b78a5c0b2bcfc27ba05c0",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -27.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 20686
+        }
+      },
       "00f4186a78d8f7d645c8d81053d88df8118e91c5e68db6228b59a04b8d82e3cb": {
         "file": "00f4186a78d8f7d645c8d81053d88df8118e91c5e68db6228b59a04b8d82e3cb.wav",
         "impl_version": 1,
@@ -284,6 +313,79 @@
           "pan": 0.0,
           "rate": 48000,
           "window_ms": null
+        }
+      },
+      "04f7360e4cca3c038593331997f77233dfad6b4345e3d25f1c9e289677022fe1": {
+        "file": "04f7360e4cca3c038593331997f77233dfad6b4345e3d25f1c9e289677022fe1.wav",
+        "impl_version": 2,
+        "inputs": [
+          "2c69b53db2c911da0b9139852007006d57703e6bfd34032e983897f71f27c28d",
+          "4e22a8e3bf5a472a437b8a6e8d2c7044efc1b0716d5130577a14dc91bbc19736",
+          "6c090b460321e3de175fbca9e4085f39cab30a11fda1559f2b5b2fa27caddcc7",
+          "00f4186a78d8f7d645c8d81053d88df8118e91c5e68db6228b59a04b8d82e3cb",
+          "0003d9fce6ef97f873a19f709166224fca1406972c7635e359023c24ad53fdda",
+          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+        ],
+        "kind": "mix",
+        "node_hash": "2a677c8e0c2d902b079743f3b32ec0aa0a375e03239b18fad5dc4c23a870e204",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 19786,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
         }
       },
       "143cf923a292d2d384c736e1df17427973a294f9877ba6c8fed252c02de34396": {
@@ -322,27 +424,6 @@
         "params": {},
         "request_sha256": "777790109d14e10617add9ddc1df5d0cec2a75bbae22be5c4c0ef61670b2b264",
         "seed": 125
-      },
-      "1c87e58f2a0faadbe9b488e6c1bfcb507d24b99bcde3268d70feb7af0407b837": {
-        "encoding": "qa",
-        "file": "1c87e58f2a0faadbe9b488e6c1bfcb507d24b99bcde3268d70feb7af0407b837.wav",
-        "kind": "encode",
-        "source": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8"
-      },
-      "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8": {
-        "file": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8.wav",
-        "impl_version": 1,
-        "inputs": [
-          "fcd8f7a97127ac6400be2a68270d789b9a59ee04c991e328f35b31638bd083c8"
-        ],
-        "kind": "loudnorm",
-        "node_hash": "901da6d5c2653f934c799f0886c557361153344492b767163c4881f2eabe980d",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
-          "rate": 48000
-        }
       },
       "2528c37b2388e440d937e0a1383e43ecad3c19781ece3e9ac57d69e6f9338056": {
         "file": "2528c37b2388e440d937e0a1383e43ecad3c19781ece3e9ac57d69e6f9338056.wav",
@@ -472,25 +553,6 @@
         "request_sha256": "243c1e696bb8e69f862da366db14007523adc2532bd507c8b58f91cf0b12e9ec",
         "seed": 110
       },
-      "7ec4374a5bad93729595aac96cd6d87595a476bd5b312d1306cffcf78147fdd6": {
-        "file": "7ec4374a5bad93729595aac96cd6d87595a476bd5b312d1306cffcf78147fdd6.wav",
-        "impl_version": 1,
-        "inputs": [
-          "143cf923a292d2d384c736e1df17427973a294f9877ba6c8fed252c02de34396"
-        ],
-        "kind": "track",
-        "node_hash": "dcfb870ad1d1b94e6ee788a55c733817a7b7cab18de7ee88efd232da6a5e95a3",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "delay_ms": 0,
-          "gain_db": -27.0,
-          "loop": true,
-          "pan": 0.0,
-          "rate": 48000,
-          "window_ms": 20686
-        }
-      },
       "9521f9e336f61a22bf7e5d14e83f84143b8ce5b61bc7651424a0d1338b7d94e8": {
         "file": "9521f9e336f61a22bf7e5d14e83f84143b8ce5b61bc7651424a0d1338b7d94e8.wav",
         "impl_version": 2,
@@ -586,6 +648,12 @@
         },
         "utterance_id": "line-4"
       },
+      "b625810a2bbb5d4533c92eb50a8789b08ae3ce9b61b3f8a69cae55ac89e57d7b": {
+        "encoding": "publish",
+        "file": "b625810a2bbb5d4533c92eb50a8789b08ae3ce9b61b3f8a69cae55ac89e57d7b.mp3",
+        "kind": "encode",
+        "source": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b"
+      },
       "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed": {
         "channels": 1,
         "energy": 1.0,
@@ -616,87 +684,29 @@
         "request_sha256": "d13487fe67d35c1302a6d710c747acededc51148566d75b8bd9d3651a968a913",
         "seed": 110
       },
-      "fcd8f7a97127ac6400be2a68270d789b9a59ee04c991e328f35b31638bd083c8": {
-        "file": "fcd8f7a97127ac6400be2a68270d789b9a59ee04c991e328f35b31638bd083c8.wav",
-        "impl_version": 2,
+      "ea7aa7153a6f67d06d871cfca14d62d4eea70fb1705fdcff327bdd6c5d955ab9": {
+        "encoding": "qa",
+        "file": "ea7aa7153a6f67d06d871cfca14d62d4eea70fb1705fdcff327bdd6c5d955ab9.wav",
+        "kind": "encode",
+        "source": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b"
+      },
+      "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b": {
+        "file": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b.wav",
+        "impl_version": 1,
         "inputs": [
-          "2c69b53db2c911da0b9139852007006d57703e6bfd34032e983897f71f27c28d",
-          "4e22a8e3bf5a472a437b8a6e8d2c7044efc1b0716d5130577a14dc91bbc19736",
-          "6c090b460321e3de175fbca9e4085f39cab30a11fda1559f2b5b2fa27caddcc7",
-          "00f4186a78d8f7d645c8d81053d88df8118e91c5e68db6228b59a04b8d82e3cb",
-          "7ec4374a5bad93729595aac96cd6d87595a476bd5b312d1306cffcf78147fdd6",
-          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+          "04f7360e4cca3c038593331997f77233dfad6b4345e3d25f1c9e289677022fe1"
         ],
-        "kind": "mix",
-        "node_hash": "773b47c2937236895cfce457a636747fc1450612df947bd33376e0ab474d085e",
+        "kind": "loudnorm",
+        "node_hash": "6634160d13f5c8117075879c7c8560d3aeed626cacd5577dd8aa9e431cad9ee9",
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
-          "inputs": [
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-1"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-2"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-3"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-4"
-            },
-            {
-              "bus": "ambience",
-              "fade_in_ms": 600,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 900,
-              "fade_out_start_ms": 19786,
-              "send_db": null,
-              "stem_id": "ambience-1"
-            }
-          ],
-          "rate": 48000,
-          "room": {
-            "id": "small-room",
-            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
-            "tail_ms": 458,
-            "version": 1,
-            "wet": 0.12
-          }
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
         }
-      },
-      "fea1b5ecdc012179a9e8a2259d867de70c9e740236167d7ad8f9b923ecf575dc": {
-        "encoding": "publish",
-        "file": "fea1b5ecdc012179a9e8a2259d867de70c9e740236167d7ad8f9b923ecf575dc.mp3",
-        "kind": "encode",
-        "source": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8"
       }
     },
-    "created_at": "2026-10-31T13:35:00.997201+00:00",
+    "created_at": "2026-11-01T19:20:05.855114+00:00",
     "duration_ms": 20686,
     "engines": {
       "qwen_tts_designed": {
@@ -712,7 +722,7 @@
     "nodes": [
       {
         "asset": "295c99496efa99f0d691e8e7d32130739c785371321c1b3645a3e80870c690bc",
-        "cached": false,
+        "cached": true,
         "hash": "176336bd9c20e012dda968682cb0a58f07400de3e161b34794fcbc002a494fe4",
         "impl_version": 1,
         "params": {
@@ -731,7 +741,7 @@
       },
       {
         "asset": "61c0efa46072b3fbf28ec0e7045cf3e6355eca9380f26d5e3cf56d4a1a52eff1",
-        "cached": false,
+        "cached": true,
         "hash": "62ecf5e102f105d53dc9ab89392ee79bab42077861f9c8513212eebc491a12d8",
         "impl_version": 1,
         "params": {
@@ -744,7 +754,7 @@
       },
       {
         "asset": "736de4243a1fb6ffc14a66c0a39ea267111b3f9f12545183d0a332d0797d13de",
-        "cached": false,
+        "cached": true,
         "hash": "da15708c3b81237250cbc76bf4c8dd1b5abe9d83bb2edac13a70ed044cd8f0be",
         "impl_version": 1,
         "params": {
@@ -763,7 +773,7 @@
       },
       {
         "asset": "2528c37b2388e440d937e0a1383e43ecad3c19781ece3e9ac57d69e6f9338056",
-        "cached": false,
+        "cached": true,
         "hash": "8b1588fa69f5b90841c9e7bd0b94f6039ffa1b8b2ff5031ca92b7a559d04d17a",
         "impl_version": 1,
         "params": {
@@ -776,7 +786,7 @@
       },
       {
         "asset": "1c2cf63c7010f486b84ebc3221ff01b3a9cc79b7206c8a3a15e939f7844b445e",
-        "cached": false,
+        "cached": true,
         "hash": "452ccc155bb66bc0c72cada55e155c31aab803418dbf2d55f9815065b499b28e",
         "impl_version": 1,
         "params": {
@@ -795,7 +805,7 @@
       },
       {
         "asset": "a446c8736920309a9a21ca7131834c6b038680017c7e787225aeb6bac81b931c",
-        "cached": false,
+        "cached": true,
         "hash": "c368ed4926c851493d5c3e87f1de47548a95ffa53bad6d5a80f889847724edc4",
         "impl_version": 1,
         "params": {
@@ -808,7 +818,7 @@
       },
       {
         "asset": "e3a8dc3b248766f61c0d68c6bb02c5e292cc70e25fe663d7fe7c2ab4e4c34b25",
-        "cached": false,
+        "cached": true,
         "hash": "16c571789c8579e2e6bc0e793f47dac412114aad9537b665d79172c44c40efb7",
         "impl_version": 1,
         "params": {
@@ -827,7 +837,7 @@
       },
       {
         "asset": "aff1dce0ca24d4f94bf7b19e1de7f93d9ce90e4e7ae9d86c69c68b0455a79acf",
-        "cached": false,
+        "cached": true,
         "hash": "b20a5e67e423597fbc0d19c5deba7073a5e59b42b9803f0343cbff65cbeb9949",
         "impl_version": 1,
         "params": {
@@ -840,7 +850,7 @@
       },
       {
         "asset": "143cf923a292d2d384c736e1df17427973a294f9877ba6c8fed252c02de34396",
-        "cached": false,
+        "cached": true,
         "hash": "b0f014692533565389eae271c909290152cd535505038e0a53f378cd2ba75390",
         "impl_version": 1,
         "params": {
@@ -879,7 +889,7 @@
       },
       {
         "asset": "2c69b53db2c911da0b9139852007006d57703e6bfd34032e983897f71f27c28d",
-        "cached": false,
+        "cached": true,
         "hash": "cd0c4a2ef98f87550327e8c98c522ffe70ea13490766859f2ae36c5e72dcaade",
         "impl_version": 1,
         "params": {
@@ -896,7 +906,7 @@
       },
       {
         "asset": "4e22a8e3bf5a472a437b8a6e8d2c7044efc1b0716d5130577a14dc91bbc19736",
-        "cached": false,
+        "cached": true,
         "hash": "c2413a037d7e7ccd9cb9a0b46b32cf4ae9a805cf04730885f41a53f17ed81e16",
         "impl_version": 1,
         "params": {
@@ -913,7 +923,7 @@
       },
       {
         "asset": "6c090b460321e3de175fbca9e4085f39cab30a11fda1559f2b5b2fa27caddcc7",
-        "cached": false,
+        "cached": true,
         "hash": "022f772d781672d5915fb84678b29220e31600d49b9128166b89e190f02cbbf1",
         "impl_version": 1,
         "params": {
@@ -930,7 +940,7 @@
       },
       {
         "asset": "00f4186a78d8f7d645c8d81053d88df8118e91c5e68db6228b59a04b8d82e3cb",
-        "cached": false,
+        "cached": true,
         "hash": "ed6557826686d9cf13558181734f1e3cd2182c7bcc98f8f4f5683c4c1d48eef4",
         "impl_version": 1,
         "params": {
@@ -946,104 +956,8 @@
         "type": "track"
       },
       {
-        "asset": "7ec4374a5bad93729595aac96cd6d87595a476bd5b312d1306cffcf78147fdd6",
-        "cached": false,
-        "hash": "dcfb870ad1d1b94e6ee788a55c733817a7b7cab18de7ee88efd232da6a5e95a3",
-        "impl_version": 1,
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "delay_ms": 0,
-          "gain_db": -27.0,
-          "loop": true,
-          "pan": 0.0,
-          "rate": 48000,
-          "window_ms": 20686
-        },
-        "type": "track"
-      },
-      {
-        "asset": "fcd8f7a97127ac6400be2a68270d789b9a59ee04c991e328f35b31638bd083c8",
-        "cached": false,
-        "hash": "773b47c2937236895cfce457a636747fc1450612df947bd33376e0ab474d085e",
-        "impl_version": 2,
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "inputs": [
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-1"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-2"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-3"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-4"
-            },
-            {
-              "bus": "ambience",
-              "fade_in_ms": 600,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 900,
-              "fade_out_start_ms": 19786,
-              "send_db": null,
-              "stem_id": "ambience-1"
-            }
-          ],
-          "rate": 48000,
-          "room": {
-            "id": "small-room",
-            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
-            "tail_ms": 458,
-            "version": 1,
-            "wet": 0.12
-          }
-        },
-        "type": "mix"
-      },
-      {
-        "asset": "1d9ffd0c7c134511a4659e766b851250f592b0da1a343b0d7d33324b8ae4caf8",
-        "cached": false,
-        "hash": "901da6d5c2653f934c799f0886c557361153344492b767163c4881f2eabe980d",
-        "impl_version": 1,
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
-          "rate": 48000
-        },
-        "type": "loudnorm"
-      },
-      {
         "asset": "9521f9e336f61a22bf7e5d14e83f84143b8ce5b61bc7651424a0d1338b7d94e8",
-        "cached": false,
+        "cached": true,
         "hash": "0e89bcbe3daa9bda2c5d6e12b133ec6bf85b2fe155097cf09e2da903acdb1674",
         "impl_version": 2,
         "params": {
@@ -1099,8 +1013,105 @@
         "type": "mix"
       },
       {
+        "asset": "0003d9fce6ef97f873a19f709166224fca1406972c7635e359023c24ad53fdda",
+        "cached": true,
+        "hash": "f63b948fad16e6bb4d0d4cb6fb344892f463a77d3c8b78a5c0b2bcfc27ba05c0",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -27.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 20686
+        },
+        "type": "track"
+      },
+      {
+        "asset": "04f7360e4cca3c038593331997f77233dfad6b4345e3d25f1c9e289677022fe1",
+        "cached": true,
+        "hash": "2a677c8e0c2d902b079743f3b32ec0aa0a375e03239b18fad5dc4c23a870e204",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 19786,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "ec5d845b014a42bc85a66dbcbcaab124c2fb48f409e618fabdd1c1f3bc2b403b",
+        "cached": true,
+        "hash": "6634160d13f5c8117075879c7c8560d3aeed626cacd5577dd8aa9e431cad9ee9",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
         "asset": "4c98a76853c035884409f23a24d3e88f0c29b761632910d20cc8396dbe3005d9",
-        "cached": false,
+        "cached": true,
         "hash": "b542e8c8283901c844f6740e09961d9a7dcba6f7723a641fcaa38661e40e8a57",
         "impl_version": 1,
         "params": {
@@ -1112,9 +1123,9 @@
         "type": "loudnorm"
       },
       {
-        "asset": "1c87e58f2a0faadbe9b488e6c1bfcb507d24b99bcde3268d70feb7af0407b837",
-        "cached": false,
-        "hash": "6a190d288e9ed38d469b955c0878b1cab35f042bdc941666aae2e05fab9cc841",
+        "asset": "ea7aa7153a6f67d06d871cfca14d62d4eea70fb1705fdcff327bdd6c5d955ab9",
+        "cached": true,
+        "hash": "718e51cd5c4fc94e285db6f6f0683161138a1e9a3a3531be131672238d1c79b7",
         "impl_version": 1,
         "params": {
           "channels": 1,
@@ -1126,9 +1137,9 @@
         "type": "encode"
       },
       {
-        "asset": "fea1b5ecdc012179a9e8a2259d867de70c9e740236167d7ad8f9b923ecf575dc",
-        "cached": false,
-        "hash": "abc868421315c5bc4118fa6eda97345d77e321d65bfab9ef5e1704c94b2ec421",
+        "asset": "b625810a2bbb5d4533c92eb50a8789b08ae3ce9b61b3f8a69cae55ac89e57d7b",
+        "cached": true,
+        "hash": "39891030e3dd28812bcd9d418472c116a07e1212d5e4f9c01a9dd6c993e8be9e",
         "impl_version": 1,
         "params": {
           "bitrate": "128k",
@@ -1141,8 +1152,8 @@
         "type": "encode"
       }
     ],
-    "nodes_cached": 1,
-    "nodes_evaluated": 20,
+    "nodes_cached": 21,
+    "nodes_evaluated": 0,
     "timeline": [
       {
         "end_ms": 2583,

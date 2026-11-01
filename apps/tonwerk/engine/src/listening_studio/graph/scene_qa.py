@@ -9,7 +9,9 @@ Three diagnostics, and each one answers a question the other two cannot.
 * **Speaker consistency** — WavLM over the same slices, when the pinned weights are on this
   machine. When they are not, the report says `"weights-missing"` in that field. Never nothing.
 * **Soundscape** — the bed level in the final mix, measured against `dry.wav` (the dialogue bus
-  alone, loudness-normalised the same way), plus the configured coverage the scene asked for.
+  alone, loudness-normalised the same way), plus the configured coverage the scene asked for. A
+  bed measured far under the level its scene asks for fails the report: the scene would read as
+  having a room the learner cannot hear.
 
 Whisper here is MLX and macOS-local. `transcribe_fn` is injected so the unit tests can run in an
 environment that has never seen torch; the CLI passes `qa.transcribe` and fails fast with a
@@ -27,9 +29,17 @@ from typing import Any, Callable, Mapping
 from ..domain import QAReport
 from ..qa import check_units
 from ..scene.model import AmbienceEntry, Scene, SfxEntry
-from ..soundscape import SoundscapeReport, ambience_rms_dbfs
+from ..dsp.chains import clamp
+from ..soundscape import (
+    BED_SHORTFALL_DB,
+    BedLevel,
+    SoundscapeReport,
+    ambience_rms_dbfs,
+    bed_rms_dbfs,
+)
 from ..speaker_qa import EmbeddingBackend, check_unit_consistency, weights_available
-from .nodes import QA_CHANNELS, QA_CODEC, QA_RATE
+from .nodes import LOUDNESS_TARGET_LUFS, QA_CHANNELS, QA_CODEC, QA_RATE, integrated_lufs
+from .render import AMBIENCE_GAIN_MAX, AMBIENCE_GAIN_MIN
 
 #: What the `speaker_qa` field says when the check did not run. A marker, not an omission: an
 #: absent field reads as a report that passed identity, and this one has to read as a report that
@@ -94,6 +104,15 @@ def scene_soundscape(scene: Scene, render: Mapping[str, Any], directory: Path) -
         if beds or events
         else None
     )
+    levels = _bed_levels(scene, render, directory, spans)
+    for bed in levels:
+        if bed.missing:
+            warnings.append(
+                f"{bed.entry_id} measures {bed.measured_rms_dbfs:.1f} dBFS where the scene asks for "
+                f"about {bed.expected_db:.1f}; the bed is missing from the mix"
+            )
+        elif bed.measured_rms_dbfs is None:
+            warnings.append(f"{bed.entry_id} never plays alone long enough to measure")
     return SoundscapeReport(
         bed_count=len(beds),
         event_count=len(events),
@@ -102,8 +121,53 @@ def scene_soundscape(scene: Scene, render: Mapping[str, Any], directory: Path) -
         configured_gain_min_db=min(gains) if gains else None,
         configured_gain_max_db=max(gains) if gains else None,
         measured_ambience_rms_dbfs=measured,
+        beds=levels,
         warnings=warnings,
     )
+
+
+def _bed_levels(
+    scene: Scene, render: Mapping[str, Any], directory: Path, spans: Mapping[str, Any]
+) -> list[BedLevel]:
+    """Each bed measured where it plays alone, against the speech's loudness plus its gain.
+
+    The expectation is the gain the render applied (the authored one, moved by the variant's
+    ambience delta and clamped into the bed window), measured from `dry.wav`'s own loudness: the
+    master is normalised to the speech, so that is where the bed's distance is counted from.
+    """
+
+    beds = [entry for entry in scene.timeline if isinstance(entry, AmbienceEntry)]
+    if not beds:
+        return []
+    speech = integrated_lufs(directory / "dry.wav") if (directory / "dry.wav").exists() else None
+    reference = speech if speech is not None else LOUDNESS_TARGET_LUFS
+    deltas = ((render.get("acoustics") or {}).get("deltas") or {})
+    delta = float(deltas.get("ambience_gain_db") or 0.0)
+    events = [
+        (int(row["start_ms"]), int(row["end_ms"]))
+        for row in spans.values()
+        if row["type"] == "sfx"
+    ]
+    rows = [row for row in render.get("timeline", []) if row["type"] == "ambience"]
+    levels: list[BedLevel] = []
+    for entry, row in zip(beds, rows, strict=False):
+        gain = clamp(entry.gain_db + delta, AMBIENCE_GAIN_MIN, AMBIENCE_GAIN_MAX)
+        expected = round(reference + gain, 1)
+        measured = bed_rms_dbfs(
+            directory / "dry.wav",
+            directory / "master.wav",
+            (int(row["start_ms"]), int(row["end_ms"])),
+            events,
+        )
+        levels.append(
+            BedLevel(
+                entry_id=str(row["entry_id"]),
+                expected_db=expected,
+                measured_rms_dbfs=None if measured is None else round(measured, 1),
+                missing=measured is not None and measured < expected - BED_SHORTFALL_DB,
+            )
+        )
+    return levels
 
 
 def scene_qa(
@@ -147,7 +211,9 @@ def scene_qa(
 
     soundscape = scene_soundscape(scene, render, directory)
     return {
-        "passed": report.passed,
+        # A scene that asks for a bed and has none is not the scene its script describes, which
+        # is the question every check here answers.
+        "passed": report.passed and not soundscape.bed_missing,
         "scene_sha256": render.get("scene_sha256"),
         "variant": render.get("variant"),
         "transcripts": report.model_dump(mode="json"),

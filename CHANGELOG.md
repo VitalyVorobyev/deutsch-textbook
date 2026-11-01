@@ -36,6 +36,10 @@ GitHub Release notes.
 
 - **The website plays the recordings again.** It had been shipping none, so every listening task,
   the A2 Hören sets among them, spoke in the browser's voice. Every build now carries them.
+- **The A2 Hören recordings keep their background under the voice.** In the announcements and
+  several conversations the station, shop or restaurant was too quiet to hear once anyone spoke;
+  eleven recordings now carry it audibly, at the same distance under the speech, from start to
+  finish. Tonwerk's automatic check now fails a scene whose background is missing.
 - **The A2 exam page is arranged like the exam**: a card for each of Übungssatz 1, 2 and 3 with
   Lesen, Hören and Schreiben in exam order. One module is open at a time, with tabs to the others
   in its set, its progress grouped by Teil, and a link that opens it directly. A card shows how far

@@ -7,17 +7,17 @@
   },
   "cleared_by": "automatic-qa",
   "contextual_sources": [],
-  "created_at": "2026-10-31T14:00:20.641122+00:00",
+  "created_at": "2026-11-01T19:24:44.753973+00:00",
   "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
   "dry_audio_sha256": "1f5239271aa5588658271a68961cb6a7f7178a539a58714962bfff654cbcd08e",
   "generation_brief": {
-    "path": "data/prompts/2026-10-31-ls-pruefung-a2-1-hoeren-09-listening.md",
+    "path": "data/prompts/2026-11-01-ls-pruefung-a2-1-hoeren-09-listening.md",
     "sha256": "4e961c45ae72d861b6982cfe73f0173d228a6b7d5811e8e36b175eb6ceff43be"
   },
   "id": "ls-pruefung-a2-1-hoeren-09",
   "kind": "dialogue",
   "level": "A2",
-  "master_audio_sha256": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184",
+  "master_audio_sha256": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820",
   "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
   "models": {
     "qwen_tts_designed": {
@@ -52,19 +52,27 @@
     }
   },
   "published_audio_bitrate": "128k",
-  "published_audio_sha256": "df9d88b150218c1cc19db307c954a5bbd408a914f6ce65968139285cef0896dc",
+  "published_audio_sha256": "90135b66dc73e31f72fd9bf5e3401e967c365e9636ac2ad0aba5d9233e4348d5",
   "qa": {
     "passed": true,
     "scene_sha256": "f92dfed7e2a3aea12d1e9a2d6e153b9527a2d5d2cbcaaea2800423eb7c874eb0",
     "soundscape": {
       "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -44.2,
+          "measured_rms_dbfs": -45.9,
+          "missing": false
+        }
+      ],
       "configured_coverage_ratio": 1.0,
       "configured_gain_max_db": -25.0,
       "configured_gain_min_db": -25.0,
       "continuous_ambience": true,
       "event_count": 0,
-      "measured_ambience_rms_dbfs": -60.763575845909386,
-      "version": 1,
+      "measured_ambience_rms_dbfs": -45.82129277229832,
+      "version": 2,
       "warnings": []
     },
     "speaker_qa": {
@@ -73,24 +81,24 @@
           "line_count": 1,
           "measured_lines": 1,
           "minimum_similarity": null,
-          "pitch_max_hz": 188.23529411764707,
-          "pitch_min_hz": 188.23529411764707,
+          "pitch_max_hz": 186.04651162790697,
+          "pitch_min_hz": 186.04651162790697,
           "pitch_spread_hz": null,
           "speaker": "Frau"
         },
         {
           "line_count": 2,
           "measured_lines": 2,
-          "minimum_similarity": 0.9881542027883767,
-          "pitch_max_hz": 124.03100775193798,
+          "minimum_similarity": 0.9918269229631997,
+          "pitch_max_hz": 125.49212598425197,
           "pitch_min_hz": 111.8881118881119,
-          "pitch_spread_hz": 12.142895863826084,
+          "pitch_spread_hz": 13.604014096140077,
           "speaker": "Mann"
         }
       ],
       "different_characters": [
         {
-          "similarity": 0.3580162934502621,
+          "similarity": 0.34683372503020393,
           "speakers": [
             "Frau",
             "Mann"
@@ -109,14 +117,14 @@
           "line_id": "line-2",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.9881542027883767,
+          "similarity_to_character": 0.9918269229631997,
           "speaker": "Mann"
         },
         {
           "line_id": "line-3",
           "manual_review": false,
           "reason": null,
-          "similarity_to_character": 0.988154202788377,
+          "similarity_to_character": 0.9918269229631997,
           "speaker": "Mann"
         }
       ],
@@ -146,7 +154,7 @@
       }
     ],
     "transcripts": {
-      "created_at": "2026-10-31T13:16:21.830131+00:00",
+      "created_at": "2026-11-01T19:20:58.626356+00:00",
       "failures": [],
       "full_transcript": "Entschuldigung, wo ist hier die Post? Die Post? Die war früher hier am Marktplatz, neben dem Café. Jetzt ist sie im Einkaufszentrum gegenüber vom Bahnhof. Gehen Sie hier geradeaus, dann sehen Sie es schon.",
       "full_wer": 0.0,
@@ -220,12 +228,12 @@
       {
         "kind": "stem",
         "path": "stems/ambience-1.wav",
-        "sha256": "312f811962ebeb5066065c5647b980ecd2eaef40917329883881b0b87280d3f6"
+        "sha256": "1c1651ff8db6bbf872a762f73cfc79b0c56b5266f5afe8c113ddb8b1962b0594"
       },
       {
         "kind": "master",
         "path": "master.wav",
-        "sha256": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184"
+        "sha256": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820"
       },
       {
         "kind": "dry",
@@ -235,12 +243,12 @@
       {
         "kind": "qa",
         "path": "qa.wav",
-        "sha256": "36237b0d73046b42ced8ce0cae38313cdb078cab58c51797d12e058c7f335cdf"
+        "sha256": "231fac1cdce4052b2a340685c4ddbaf3e9ab78c7b71ca0b3af277e27f588a119"
       },
       {
         "kind": "publish",
         "path": "publish.mp3",
-        "sha256": "df9d88b150218c1cc19db307c954a5bbd408a914f6ce65968139285cef0896dc"
+        "sha256": "90135b66dc73e31f72fd9bf5e3401e967c365e9636ac2ad0aba5d9233e4348d5"
       }
     ],
     "assets": {
@@ -255,6 +263,27 @@
         "params": {},
         "request_sha256": "3a2e9d8a9fbdacefcedf13b8cfd4b1b15555835540fc674fc2315d9f49e1d57a",
         "seed": 115
+      },
+      "1c1651ff8db6bbf872a762f73cfc79b0c56b5266f5afe8c113ddb8b1962b0594": {
+        "file": "1c1651ff8db6bbf872a762f73cfc79b0c56b5266f5afe8c113ddb8b1962b0594.wav",
+        "impl_version": 1,
+        "inputs": [
+          "68a08b38eff29beedbcdedd61f30be45f56cb91315f422f38d3a4fec7adff779",
+          "a068994b8f15ff8e4ce266600f69938a795cca20aac338e925af7706cc1b80e2"
+        ],
+        "kind": "track",
+        "node_hash": "2f566b88dd9f247ee24a052df1a45450eef4897762642318b8b3c3ccf364c2d2",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -25.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 16249
+        }
       },
       "1f5239271aa5588658271a68961cb6a7f7178a539a58714962bfff654cbcd08e": {
         "file": "1f5239271aa5588658271a68961cb6a7f7178a539a58714962bfff654cbcd08e.wav",
@@ -271,45 +300,11 @@
           "rate": 48000
         }
       },
-      "312f811962ebeb5066065c5647b980ecd2eaef40917329883881b0b87280d3f6": {
-        "file": "312f811962ebeb5066065c5647b980ecd2eaef40917329883881b0b87280d3f6.wav",
-        "impl_version": 1,
-        "inputs": [
-          "68a08b38eff29beedbcdedd61f30be45f56cb91315f422f38d3a4fec7adff779"
-        ],
-        "kind": "track",
-        "node_hash": "18819069b1d2a3a522416e7892cc4ce25965304c5819777c57a273fec4a27db1",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "delay_ms": 0,
-          "gain_db": -25.0,
-          "loop": true,
-          "pan": 0.0,
-          "rate": 48000,
-          "window_ms": 16249
-        }
-      },
-      "36237b0d73046b42ced8ce0cae38313cdb078cab58c51797d12e058c7f335cdf": {
+      "231fac1cdce4052b2a340685c4ddbaf3e9ab78c7b71ca0b3af277e27f588a119": {
         "encoding": "qa",
-        "file": "36237b0d73046b42ced8ce0cae38313cdb078cab58c51797d12e058c7f335cdf.wav",
+        "file": "231fac1cdce4052b2a340685c4ddbaf3e9ab78c7b71ca0b3af277e27f588a119.wav",
         "kind": "encode",
-        "source": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184"
-      },
-      "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184": {
-        "file": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184.wav",
-        "impl_version": 1,
-        "inputs": [
-          "7d2a774353fb9fab862dd18864d10e41f937225e48ac359ad5c13b368241e8e8"
-        ],
-        "kind": "loudnorm",
-        "node_hash": "85aff0b29ed3dc1f4bf0b4020095a613724e9d0971875160000fb145431ba46c",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
-          "rate": 48000
-        }
+        "source": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820"
       },
       "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b": {
         "channels": 1,
@@ -370,18 +365,62 @@
         },
         "utterance_id": "line-1"
       },
-      "7d2a774353fb9fab862dd18864d10e41f937225e48ac359ad5c13b368241e8e8": {
-        "file": "7d2a774353fb9fab862dd18864d10e41f937225e48ac359ad5c13b368241e8e8.wav",
+      "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e": {
+        "file": "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e.wav",
+        "impl_version": 1,
+        "inputs": [
+          "fb2a560e6b6c76e028a63d3a4afb0cf404e314f4c01de136d02759569a48eac1"
+        ],
+        "kind": "track",
+        "node_hash": "60b695d8779b8b14ee631b99950f6f5e95ee01711adb5abd68c2150f14c3aff9",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 3307,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "90135b66dc73e31f72fd9bf5e3401e967c365e9636ac2ad0aba5d9233e4348d5": {
+        "encoding": "publish",
+        "file": "90135b66dc73e31f72fd9bf5e3401e967c365e9636ac2ad0aba5d9233e4348d5.mp3",
+        "kind": "encode",
+        "source": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820"
+      },
+      "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8": {
+        "file": "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8.wav",
+        "impl_version": 1,
+        "inputs": [
+          "a310ebdad3cce3cc9a9d9e3b531990d631f701e5940615294cf2d4b4003fcaef"
+        ],
+        "kind": "track",
+        "node_hash": "1c58ad226835ebba8d67a7abec46ba219960c20e0970f1fc26ea88b3bcaa85be",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 8985,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "945c34b3b191c101f6fb0733984020814f5c681bfdb1177aa5dd5c2a9b13fcdf": {
+        "file": "945c34b3b191c101f6fb0733984020814f5c681bfdb1177aa5dd5c2a9b13fcdf.wav",
         "impl_version": 2,
         "inputs": [
           "e2ab1acb36ca05b1876601c0df42f4d03f7d5bcbc6a6fc1e17feb2161951c0d5",
           "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e",
           "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8",
-          "312f811962ebeb5066065c5647b980ecd2eaef40917329883881b0b87280d3f6",
+          "1c1651ff8db6bbf872a762f73cfc79b0c56b5266f5afe8c113ddb8b1962b0594",
           "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b"
         ],
         "kind": "mix",
-        "node_hash": "fa0466448e4059763de87369531c3821a4804ff691c34b8a238a05836ffe2a7a",
+        "node_hash": "4b68c68b343b861a6a6f58163c1c389a0654f8e126509b82255e857f380327b1",
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
@@ -433,42 +472,19 @@
           }
         }
       },
-      "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e": {
-        "file": "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e.wav",
+      "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820": {
+        "file": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820.wav",
         "impl_version": 1,
         "inputs": [
-          "fb2a560e6b6c76e028a63d3a4afb0cf404e314f4c01de136d02759569a48eac1"
+          "945c34b3b191c101f6fb0733984020814f5c681bfdb1177aa5dd5c2a9b13fcdf"
         ],
-        "kind": "track",
-        "node_hash": "60b695d8779b8b14ee631b99950f6f5e95ee01711adb5abd68c2150f14c3aff9",
+        "kind": "loudnorm",
+        "node_hash": "1852b55f2cc5d1a555d142b104033c9aab71628e468f2a6f40463ee51cc17782",
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
-          "delay_ms": 3307,
-          "gain_db": 0.0,
-          "loop": false,
-          "pan": 0.0,
-          "rate": 48000,
-          "window_ms": null
-        }
-      },
-      "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8": {
-        "file": "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8.wav",
-        "impl_version": 1,
-        "inputs": [
-          "a310ebdad3cce3cc9a9d9e3b531990d631f701e5940615294cf2d4b4003fcaef"
-        ],
-        "kind": "track",
-        "node_hash": "1c58ad226835ebba8d67a7abec46ba219960c20e0970f1fc26ea88b3bcaa85be",
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "delay_ms": 8985,
-          "gain_db": 0.0,
-          "loop": false,
-          "pan": 0.0,
-          "rate": 48000,
-          "window_ms": null
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
         }
       },
       "a068994b8f15ff8e4ce266600f69938a795cca20aac338e925af7706cc1b80e2": {
@@ -564,12 +580,6 @@
         "request_sha256": "b818e43bcd78d9efd31d4d72478d299257c11c0d103a6bdbbbcee65f3a973f1e",
         "seed": 205
       },
-      "df9d88b150218c1cc19db307c954a5bbd408a914f6ce65968139285cef0896dc": {
-        "encoding": "publish",
-        "file": "df9d88b150218c1cc19db307c954a5bbd408a914f6ce65968139285cef0896dc.mp3",
-        "kind": "encode",
-        "source": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184"
-      },
       "e2ab1acb36ca05b1876601c0df42f4d03f7d5bcbc6a6fc1e17feb2161951c0d5": {
         "file": "e2ab1acb36ca05b1876601c0df42f4d03f7d5bcbc6a6fc1e17feb2161951c0d5.wav",
         "impl_version": 1,
@@ -606,7 +616,7 @@
         "utterance_id": "line-2"
       }
     },
-    "created_at": "2026-10-31T13:16:15.474562+00:00",
+    "created_at": "2026-11-01T19:20:04.059889+00:00",
     "duration_ms": 16249,
     "engines": {
       "qwen_tts_designed": {
@@ -622,7 +632,7 @@
     "nodes": [
       {
         "asset": "08a59c28c5e5aa1b0c8f3aaca825d750339a60332dea5e52e1471b88b57bebf1",
-        "cached": false,
+        "cached": true,
         "hash": "a0e0f1a6e1fa149e314b17e0b55d55ab986cbf151256f420027b95fd17e6fd51",
         "impl_version": 1,
         "params": {
@@ -641,7 +651,7 @@
       },
       {
         "asset": "68eb05864ffc8bf277f176f6c6630edf14ec4c7760f726df1e0fb93816ac1baf",
-        "cached": false,
+        "cached": true,
         "hash": "83cfe231e562d860d639a25f5b1e83e3337c3b1b10dd82bd3f4be29ce360295b",
         "impl_version": 1,
         "params": {
@@ -654,7 +664,7 @@
       },
       {
         "asset": "bc0ff36ef199596c9a75a262a9a300c52d6ff593b89b39abb1dca6d983d39499",
-        "cached": false,
+        "cached": true,
         "hash": "4dab8d4770dc70b2d5d20faa87289b986e12b1030a362b299f57d846c6d1ffc3",
         "impl_version": 1,
         "params": {
@@ -673,7 +683,7 @@
       },
       {
         "asset": "fb2a560e6b6c76e028a63d3a4afb0cf404e314f4c01de136d02759569a48eac1",
-        "cached": false,
+        "cached": true,
         "hash": "182fe0adb97a287d2a02950d447bc7793c02bc6e6f4c48a3f1893746e7d444b3",
         "impl_version": 1,
         "params": {
@@ -686,7 +696,7 @@
       },
       {
         "asset": "dd0f696513b1cdd03eac30eb326385c54edf823cb287950a18a437da8ba95e6c",
-        "cached": false,
+        "cached": true,
         "hash": "b8c170c6f00755e75913d840965f76bfd25ae1b210073c6461c689c0261499b3",
         "impl_version": 1,
         "params": {
@@ -705,7 +715,7 @@
       },
       {
         "asset": "a310ebdad3cce3cc9a9d9e3b531990d631f701e5940615294cf2d4b4003fcaef",
-        "cached": false,
+        "cached": true,
         "hash": "f9793c8f90fee903489a660c13d458c974e4313d69fffc429ff8a863c124f4f1",
         "impl_version": 1,
         "params": {
@@ -718,7 +728,7 @@
       },
       {
         "asset": "68a08b38eff29beedbcdedd61f30be45f56cb91315f422f38d3a4fec7adff779",
-        "cached": false,
+        "cached": true,
         "hash": "6a4b18e05e2a0a8d02a45dbaad9e3ff34e5da40c294a09d7806658f20b4a8700",
         "impl_version": 1,
         "params": {
@@ -736,7 +746,7 @@
       },
       {
         "asset": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
-        "cached": false,
+        "cached": true,
         "hash": "ca3c46169904ab831d641318c0f2a826c4f44235658880f6f0a48b75f45c5946",
         "impl_version": 1,
         "params": {
@@ -757,7 +767,7 @@
       },
       {
         "asset": "e2ab1acb36ca05b1876601c0df42f4d03f7d5bcbc6a6fc1e17feb2161951c0d5",
-        "cached": false,
+        "cached": true,
         "hash": "da24038e91c2812903d03ecf9f1ac62e70f4ba09b1af38f1ebdbde3f51d0e058",
         "impl_version": 1,
         "params": {
@@ -774,7 +784,7 @@
       },
       {
         "asset": "8e1c2de0733cae9d133f519ce3da25d86fedd79574c929a59719721e5f4ff14e",
-        "cached": false,
+        "cached": true,
         "hash": "60b695d8779b8b14ee631b99950f6f5e95ee01711adb5abd68c2150f14c3aff9",
         "impl_version": 1,
         "params": {
@@ -791,7 +801,7 @@
       },
       {
         "asset": "92beb7305f89fb57a7e90bef69746cfdacbb305dd377d32e21efa92368182fb8",
-        "cached": false,
+        "cached": true,
         "hash": "1c58ad226835ebba8d67a7abec46ba219960c20e0970f1fc26ea88b3bcaa85be",
         "impl_version": 1,
         "params": {
@@ -807,15 +817,64 @@
         "type": "track"
       },
       {
-        "asset": "312f811962ebeb5066065c5647b980ecd2eaef40917329883881b0b87280d3f6",
-        "cached": false,
-        "hash": "18819069b1d2a3a522416e7892cc4ce25965304c5819777c57a273fec4a27db1",
+        "asset": "a068994b8f15ff8e4ce266600f69938a795cca20aac338e925af7706cc1b80e2",
+        "cached": true,
+        "hash": "60b4240a56dfd5c9d65fd65914a880c37201a764875d94cc80645f7a8e5dbf9b",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "street",
+            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
+            "tail_ms": 368,
+            "version": 1,
+            "wet": 0.08
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "1c1651ff8db6bbf872a762f73cfc79b0c56b5266f5afe8c113ddb8b1962b0594",
+        "cached": true,
+        "hash": "2f566b88dd9f247ee24a052df1a45450eef4897762642318b8b3c3ccf364c2d2",
         "impl_version": 1,
         "params": {
           "channels": 2,
           "codec": "pcm_s24le",
           "delay_ms": 0,
           "gain_db": -25.0,
+          "level": "dialogue",
           "loop": true,
           "pan": 0.0,
           "rate": 48000,
@@ -824,9 +883,9 @@
         "type": "track"
       },
       {
-        "asset": "7d2a774353fb9fab862dd18864d10e41f937225e48ac359ad5c13b368241e8e8",
-        "cached": false,
-        "hash": "fa0466448e4059763de87369531c3821a4804ff691c34b8a238a05836ffe2a7a",
+        "asset": "945c34b3b191c101f6fb0733984020814f5c681bfdb1177aa5dd5c2a9b13fcdf",
+        "cached": true,
+        "hash": "4b68c68b343b861a6a6f58163c1c389a0654f8e126509b82255e857f380327b1",
         "impl_version": 2,
         "params": {
           "channels": 2,
@@ -881,9 +940,9 @@
         "type": "mix"
       },
       {
-        "asset": "424f88e09dd647b1c351259222e1c3136768db8b8a55746a35c6d18f6a191184",
-        "cached": false,
-        "hash": "85aff0b29ed3dc1f4bf0b4020095a613724e9d0971875160000fb145431ba46c",
+        "asset": "9eb6d87e01f219588f5a0b33dd05ad27d7c709d199e596c8ceffc0afe1bf8820",
+        "cached": true,
+        "hash": "1852b55f2cc5d1a555d142b104033c9aab71628e468f2a6f40463ee51cc17782",
         "impl_version": 1,
         "params": {
           "channels": 2,
@@ -894,56 +953,8 @@
         "type": "loudnorm"
       },
       {
-        "asset": "a068994b8f15ff8e4ce266600f69938a795cca20aac338e925af7706cc1b80e2",
-        "cached": false,
-        "hash": "60b4240a56dfd5c9d65fd65914a880c37201a764875d94cc80645f7a8e5dbf9b",
-        "impl_version": 2,
-        "params": {
-          "channels": 2,
-          "codec": "pcm_s24le",
-          "inputs": [
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-1"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-2"
-            },
-            {
-              "bus": "dialogue",
-              "fade_in_ms": 0,
-              "fade_in_start_ms": 0,
-              "fade_out_ms": 0,
-              "fade_out_start_ms": 0,
-              "send_db": 0.0,
-              "stem_id": "line-3"
-            }
-          ],
-          "rate": 48000,
-          "room": {
-            "id": "street",
-            "ir": "509b5b1beadc72f6aecd62c5ac3f3ed3e82df655a7a1c699bb3e512f01fe603b",
-            "tail_ms": 368,
-            "version": 1,
-            "wet": 0.08
-          }
-        },
-        "type": "mix"
-      },
-      {
         "asset": "1f5239271aa5588658271a68961cb6a7f7178a539a58714962bfff654cbcd08e",
-        "cached": false,
+        "cached": true,
         "hash": "911dd4b081efee874b5c3ea7405aaa7ba673da17b645359440a447db493a9147",
         "impl_version": 1,
         "params": {
@@ -955,9 +966,9 @@
         "type": "loudnorm"
       },
       {
-        "asset": "36237b0d73046b42ced8ce0cae38313cdb078cab58c51797d12e058c7f335cdf",
-        "cached": false,
-        "hash": "3c6ba862e2064506b2dea57bc5349635cf6e156a1897edb787146a3b3ac4f752",
+        "asset": "231fac1cdce4052b2a340685c4ddbaf3e9ab78c7b71ca0b3af277e27f588a119",
+        "cached": true,
+        "hash": "cbb55494c82399d29cd92f7ec8240b9bb71a087733b7366fdd5101bf28cde0a4",
         "impl_version": 1,
         "params": {
           "channels": 1,
@@ -969,9 +980,9 @@
         "type": "encode"
       },
       {
-        "asset": "df9d88b150218c1cc19db307c954a5bbd408a914f6ce65968139285cef0896dc",
-        "cached": false,
-        "hash": "34a30e12b3052386c37a07c838bd9940eb63542658cc329b183dda6e211dbc9a",
+        "asset": "90135b66dc73e31f72fd9bf5e3401e967c365e9636ac2ad0aba5d9233e4348d5",
+        "cached": true,
+        "hash": "e797401c50bec0dbe797ce7cf651373d888d4473b38e4fc2a9d9a3a19b2b67a8",
         "impl_version": 1,
         "params": {
           "bitrate": "128k",
@@ -984,8 +995,8 @@
         "type": "encode"
       }
     ],
-    "nodes_cached": 0,
-    "nodes_evaluated": 18,
+    "nodes_cached": 18,
+    "nodes_evaluated": 0,
     "timeline": [
       {
         "end_ms": 2857,

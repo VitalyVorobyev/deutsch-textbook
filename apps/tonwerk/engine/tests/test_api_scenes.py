@@ -781,3 +781,29 @@ def test_a_plan_names_the_sound_engine_the_last_render_used(tmp_path: Path) -> N
     assert _rendered_sound_engine(tmp_path) == "stable_audio_sfx"
     (tmp_path / "render.json").write_text(json.dumps({"engines": {"qwen_tts": {}}}))
     assert _rendered_sound_engine(tmp_path) is None
+
+
+def test_a_rerender_that_makes_other_bytes_sends_a_checked_scene_back_to_qa(client: Any) -> None:
+    """Same scene, other master: the engine moved, and the QA report describes audio that is gone.
+
+    Found when a bed-level fix re-rendered eleven published scenes in place and the studio still
+    called them exported, refusing their QA and offering their old report.
+    """
+
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+    assert http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).status_code == 200
+    checked = http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH).json()
+    assert checked["stage"] == str(Stage.AUTOMATICALLY_CHECKED)
+
+    again = http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).json()
+    assert again["stage"] == str(Stage.AUTOMATICALLY_CHECKED)
+
+    manifest = store.root / "renders" / scene.sha256() / "natural" / "render.json"
+    written = json.loads(manifest.read_text())
+    for row in written["artifacts"]:
+        if row["kind"] == "master":
+            row["sha256"] = "0" * 64
+    manifest.write_text(json.dumps(written))
+    moved = http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).json()
+    assert moved["stage"] == str(Stage.AUDIO_GENERATED)

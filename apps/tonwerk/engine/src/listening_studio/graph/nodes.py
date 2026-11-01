@@ -81,7 +81,11 @@ PUBLISH_RATE = 48_000
 #: The loudness target of the shipped corpus. Stated once here and reused, because a scene
 #: rendered at a different target would be louder or quieter than the 41 artifacts beside it in
 #: the same lesson, which no learner-facing gate would catch.
-LOUDNORM = "loudnorm=I=-19:TP=-1.5:LRA=7"
+LOUDNESS_TARGET_LUFS = -19.0
+LOUDNORM = f"loudnorm=I={LOUDNESS_TARGET_LUFS:g}:TP=-1.5:LRA=7"
+
+#: Below this a measurement is silence, not a level: EBU R 128's absolute gate.
+SILENCE_LUFS = -70.0
 
 #: The look-ahead limiter the legacy mixer ends on: -1.5 dBFS, the same ceiling as `TP` above.
 LIMITER = "alimiter=limit=0.8414"
@@ -528,8 +532,15 @@ def track_node(
     source_hash: str,
     fx: str = "",
     acoustics: Mapping[str, Any] | None = None,
+    level_reference: str | None = None,
 ) -> Node:
     """One placed stem.
+
+    `level_reference` is set for a bed only: the hash of the dialogue mix the bed is levelled
+    against (`bed_level_db`). It is an input rather than a parameter, so retaking a line moves the
+    bed's hash with it, and its presence is stated as `level` so a bed with no speech to level
+    against (the reference is then the corpus target) is still told apart from a stem that is never
+    levelled.
 
     `fx` and `acoustics` are omitted from the parameters when there is nothing acoustic to say,
     rather than written as `""` and `null`. Two reasons, and the second is the load-bearing one:
@@ -556,7 +567,55 @@ def track_node(
     if fx:
         params["fx"] = fx
         params["acoustics"] = dict(acoustics or {})
-    return _node("track", params, [source_hash])
+    inputs = [source_hash]
+    if loop:
+        params["level"] = "dialogue" if level_reference else "target"
+        if level_reference:
+            inputs.append(level_reference)
+    return _node("track", params, inputs)
+
+
+def integrated_lufs(path: Path) -> float | None:
+    """The file's integrated loudness (EBU R 128), or None when it is silence."""
+
+    probe = subprocess.run(
+        ["ffmpeg", "-nostats", "-v", "info", "-i", str(path), "-af", "ebur128", "-f", "null", "-"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    summary = probe.stderr.rsplit("Summary:", 1)[-1]
+    for line in summary.splitlines():
+        label, _, value = line.strip().partition(":")
+        if label == "I":
+            try:
+                level = float(value.split()[0])
+            except (IndexError, ValueError):
+                return None
+            return level if math.isfinite(level) and level > SILENCE_LUFS else None
+    return None
+
+
+def bed_level_db(source: Path, reference: Path | None) -> float:
+    """The gain that puts a bed at the level of the speech it sits under, before its `gain_db`.
+
+    **A bed's `gain_db` is a distance below the speech, so the source's own level must not count.**
+    A generator returns a quiet room as a quiet file: a department store came back at -47 LUFS, and
+    the -22 dB its scene asked for then put it near -70, under every learner's hearing, while the
+    scene read as if it had a bed. Levelling the source to the dialogue first makes -22 mean 22 dB
+    under the voices whatever the model or the device did to either.
+
+    The reference is the dialogue mix before the master's normalisation; with no speech to measure
+    (a scene without lines, a silent test engine) it is the corpus target, which is where the
+    master puts speech. A silent source gets no gain: there is nothing to level, and the soundscape
+    check reports the bed as missing rather than this function amplifying noise floor into one.
+    """
+
+    level = integrated_lufs(source)
+    if level is None:
+        return 0.0
+    target = integrated_lufs(reference) if reference is not None else None
+    return round((target if target is not None else LOUDNESS_TARGET_LUFS) - level, 2)
 
 
 def evaluate_track(
@@ -569,10 +628,17 @@ def evaluate_track(
     window_ms: int | None,
     loop: bool,
     fx: str = "",
+    level_reference: Path | None = None,
 ) -> None:
-    """Place one take: loop it to its window if it is a bed, then treat, pan, gain and delay it."""
+    """Place one take: loop it to its window if it is a bed, then treat, pan, gain and delay it.
+
+    A bed is levelled against `level_reference` first (`bed_level_db`); that gain joins `gain_db`
+    in the one `volume` filter.
+    """
 
     target.parent.mkdir(parents=True, exist_ok=True)
+    if loop:
+        gain_db = round(gain_db + bed_level_db(source, level_reference), 2)
     subprocess.run(
         [
             "ffmpeg", "-v", "error",

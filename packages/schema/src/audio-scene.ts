@@ -222,7 +222,8 @@ export const sfxEntrySchema = z.strictObject({
 export type SfxEntry = z.infer<typeof sfxEntrySchema>;
 
 /**
- * A continuous bed under some or all of the scene. Capped at -6 dB: a bed at speech level is not a
+ * A continuous bed under some or all of the scene. `gain_db` is its distance under the speech: the
+ * renderer levels the source to the dialogue first. Capped at -6 dB: a bed at speech level is not a
  * bed. `duck_db` (absent: 0) lowers it by exactly that much while anyone speaks.
  */
 export const ambienceEntrySchema = z.strictObject({

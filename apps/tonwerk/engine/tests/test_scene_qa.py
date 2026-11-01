@@ -180,3 +180,35 @@ def test_a_single_word_slip_in_a_short_line_is_forgiven() -> None:
         [("a", "Mit Milch, bitte.")], {"a": "Mit Milch bitte dann"}
     )
     assert report.lines[0].passed is True
+
+
+def test_a_bed_the_learner_cannot_hear_fails_the_scene(tmp_path: Path) -> None:
+    """The scene asks for a room and the mix carries none: the published announcements' defect,
+    passed by a check that measured the chime in the lead-in and called it the bed."""
+
+    import numpy as np
+
+    from listening_studio.graph.assets import AssetStore
+    from listening_studio.scene.model import AmbienceEntry, AssetRef
+
+    raw = tmp_path / "silent-bed.wav"
+    sf.write(str(raw), np.zeros(4 * 16_000), 16_000, subtype="PCM_16")
+    silent = AssetStore(tmp_path).put(raw, {"kind": "test-fixture", "note": "silent bed"})
+    reference = tone_in_store(tmp_path)
+    timeline = [row for row in cafe_scene(reference).timeline if row.type != "ambience"]
+    timeline.append(AmbienceEntry(sound=AssetRef(ref=silent), gain_db=-24.0))
+    scene = cafe_scene(reference, timeline=timeline)
+    result = render(scene, tmp_path)
+    report = scene_qa(scene, result.directory, transcribe_fn=perfect(scene), speaker_qa=False)
+    assert report["transcripts"]["passed"] is True
+    assert report["passed"] is False
+    (bed,) = report["soundscape"]["beds"]
+    assert bed["missing"] is True and bed["entry_id"] == "ambience-1"
+    assert "missing from the mix" in report["soundscape"]["warnings"][0]
+
+
+def test_a_heard_bed_is_measured_and_passes(rendered) -> None:  # type: ignore[no-untyped-def]
+    scene, result = rendered
+    report = scene_qa(scene, result.directory, transcribe_fn=perfect(scene), speaker_qa=False)
+    (bed,) = report["soundscape"]["beds"]
+    assert bed["missing"] is False and bed["measured_rms_dbfs"] is not None
