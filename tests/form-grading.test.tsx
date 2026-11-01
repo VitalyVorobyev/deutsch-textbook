@@ -48,12 +48,20 @@ describe('form items', () => {
 
   test('schema preserves an item-scoped stimulus independently of the set stimulus', () => {
     const set = exerciseSetSchema.parse({
-      topic: 'stadt-wege',
       role: 'exam-practice',
       stimulus: 'set-document',
       items: [{ ...item, stimulus: 'item-document' }],
     });
     expect(set.stimulus).toBe('set-document');
     expect(set.items[0]?.stimulus).toBe('item-document');
+  });
+
+  test('a level-owned set names no topic, and every other set names one', () => {
+    const exam = { role: 'exam-practice', items: [item] };
+    expect(exerciseSetSchema.safeParse(exam).success).toBe(true);
+    expect(exerciseSetSchema.safeParse({ ...exam, topic: 'stadt-wege' }).success).toBe(false);
+    const probe = { role: 'probe', arming: ['a1/stadt-wege::x'], items: [item] };
+    expect(exerciseSetSchema.safeParse(probe).success).toBe(false);
+    expect(exerciseSetSchema.safeParse({ ...probe, topic: 'stadt-wege' }).success).toBe(true);
   });
 });

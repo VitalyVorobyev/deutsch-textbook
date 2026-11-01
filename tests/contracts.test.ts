@@ -93,9 +93,9 @@ describe('scoring and curriculum contracts', () => {
   });
 
   test('the current A2 checkpoint has twenty-two stable item ids including both additive checks', () => {
-    const checkpoint = contentFiles<{ topic: string; role: string; items: { id: string }[] }>(
-      'exercises',
-    ).find((set) => set.role === 'checkpoint' && set.topic === 'aemter-dienstleistungen')!;
+    const checkpoint = contentFiles<{ role: string; items: { id: string }[] }>('exercises').find(
+      (set) => set.role === 'checkpoint' && set.setId === 'a2/checkpoint-a2',
+    )!;
     expect(checkpoint.items).toHaveLength(22);
     expect(checkpoint.items.map((item) => item.id)).toContain('tabelle-da-wo');
     expect(checkpoint.items.map((item) => item.id)).toContain('uebersetzen-sache-person');

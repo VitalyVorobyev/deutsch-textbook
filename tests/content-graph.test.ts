@@ -49,15 +49,31 @@ describe('content graph', () => {
   });
 
   test('no element outranks the topic it belongs to', () => {
-    const orphans = graph.elements.filter((e) => !graph.topics.has(e.topic));
+    const orphans = graph.elements.filter(
+      (e) => e.topic !== undefined && !graph.topics.has(e.topic),
+    );
     expect(orphans.map((e) => e.id)).toEqual([]);
+
+    // Level-owned (ADR 0014): exactly the level-wide sets, and the recordings and documents only
+    // they use. Anything else without a topic is material the census lost.
+    const levelOwned = graph.elements.filter((e) => e.topic === undefined);
+    expect([...new Set(levelOwned.map((e) => e.kind))].sort()).toEqual([
+      'checkpoint',
+      'dokument',
+      'einstufung',
+      'hoertext',
+      'pruefungspraxis',
+    ]);
 
     const rank = (level: string) => LEVELS.indexOf(level as (typeof LEVELS)[number]);
 
     // The CEFR rule, as it actually holds. Everything on the spine must sit exactly at its
     // topic's level — a set, a reading, an article, a recording or a document one level up is
     // how above-level German reaches a learner who has not met it.
-    const spine = graph.elements.filter((e) => e.kind !== 'entdecken' && e.kind !== 'wortschatz');
+    const owned = graph.elements.filter(
+      (e): e is typeof e & { topic: string } => e.topic !== undefined,
+    );
+    const spine = owned.filter((e) => e.kind !== 'entdecken' && e.kind !== 'wortschatz');
     expect(
       spine.filter((e) => e.level !== graph.topics.get(e.topic)!.data.level).map((e) => e.id),
     ).toEqual([]);
@@ -65,7 +81,7 @@ describe('content graph', () => {
     // Two deliberate exemptions, and they are exemptions in opposite directions.
     // A deck may sit BELOW its topic — "A2 vocabulary recycles, never adopts" (CLAUDE.md), so the
     // A1 modal-verb deck hanging off the A2 modal-verb topic is the rule working, not a defect.
-    const decks = graph.elements.filter((e) => e.kind === 'wortschatz');
+    const decks = owned.filter((e) => e.kind === 'wortschatz');
     expect(
       decks.filter((e) => rank(e.level) > rank(graph.topics.get(e.topic)!.data.level)),
     ).toEqual([]);
@@ -74,7 +90,7 @@ describe('content graph', () => {
     // learner to nothing, so a B1 piece is allowed to enrich an A2 topic. Six do today — and one
     // more (`klassiker-lesen`, an A2 piece on the B1 narrative topic) sits below, which is the
     // ordinary direction and needs no exemption.
-    const off = graph.elements.filter(
+    const off = owned.filter(
       (e) => e.kind === 'entdecken' && e.level !== graph.topics.get(e.topic)!.data.level,
     );
     expect(

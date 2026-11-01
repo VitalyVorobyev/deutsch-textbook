@@ -5,12 +5,22 @@ import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
 
+/** A set a topic owns: the only kind training, probes and the Lernpfad serve. */
+export type TopicOwnedSet = TrainingSet & { topicId: string };
+
+/** Level-owned sets (checkpoints, placements, exam practice) have pages of their own and are
+    never served by training, so every training entry point filters them out first. */
+export const isTopicOwned = <T extends { topicId?: string }>(
+  set: T,
+): set is T & { topicId: string } => set.topicId !== undefined;
+
 /** One exercise set flattened for training, with its owning topic's metadata. */
 export interface TrainingSet {
   /** exercise set id, e.g. "a2/perfekt-haben-sein" — attempts are logged under this */
   setId: string;
-  topicId: string;
-  /** German title of the owning topic */
+  /** the owning topic; absent for a level-owned set (checkpoint, placement, exam practice) */
+  topicId?: string;
+  /** German title of the owning topic, or the set's own title for a level-owned set */
   title_de: string;
   level: Level;
   role: ExerciseRole;
@@ -76,12 +86,12 @@ export function revisionLookup(sets: readonly TrainingSet[]): RevisionLookup {
  * topic is opened (readAt) or already practiced (≥1 logged non-pretest attempt
  * — profiles that predate readAt tracking must not lose their pool).
  */
-export function eligibleTrainingSets<T extends { setId: string; topicId: string; role?: string }>(
+export function eligibleTrainingSets<T extends { setId: string; topicId?: string; role?: string }>(
   sets: T[],
   spine: string[],
   nodes: TopicNode[],
   ctx: TopicContext,
-): T[] {
+): Array<T & { topicId: string }> {
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
   const attempted = new Set(ctx.attempts.map((a) => a.setId));
   const practiced = (topicId: string): boolean => {
@@ -89,11 +99,13 @@ export function eligibleTrainingSets<T extends { setId: string; topicId: string;
     return node ? topicPracticeSetIds(node).some((id) => attempted.has(id)) : false;
   };
   void spine;
-  return sets.filter(
-    (s) =>
-      TRAINABLE_ROLES.has((s.role ?? 'practice') as ExerciseRole) &&
-      (ctx.topics[s.topicId]?.readAt || practiced(s.topicId)),
-  );
+  return sets
+    .filter(isTopicOwned)
+    .filter(
+      (s) =>
+        TRAINABLE_ROLES.has((s.role ?? 'practice') as ExerciseRole) &&
+        (ctx.topics[s.topicId]?.readAt || practiced(s.topicId)),
+    );
 }
 
 /**
@@ -187,7 +199,7 @@ export function resumedQueueIsEligible(
  * which is possible exactly when no set holds more than half the queue.
  */
 export function buildSession(
-  sets: readonly TrainingSet[],
+  sets: readonly TopicOwnedSet[],
   count: number,
   attempts: readonly Attempt[],
   current?: RevisionLookup,

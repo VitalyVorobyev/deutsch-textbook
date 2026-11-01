@@ -88,7 +88,7 @@ export interface ProbeFamily {
 /** The shape both the session and the progress page already hold for every set. */
 interface SetLike {
   setId: string;
-  topicId: string;
+  topicId?: string;
   role?: string;
   arming?: readonly string[];
   items: readonly { id: string; outcomes: string[]; focus?: string }[];
@@ -103,7 +103,10 @@ const attemptKey = (setId: string, itemId: string) => `${setId}::${itemId}`;
  * family probes arms it.
  */
 export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
-  const probes = sets.filter((s) => s.role === 'probe');
+  // A probe always names its topic (the schema requires it); the guard is what tells the types.
+  const probes = sets.filter(
+    (s): s is SetLike & { topicId: string } => s.role === 'probe' && s.topicId !== undefined,
+  );
 
   return probes.map((s) => {
     const outcomes = [...new Set(s.items.flatMap((i) => i.outcomes))];

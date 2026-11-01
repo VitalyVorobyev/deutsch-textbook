@@ -189,15 +189,23 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     elements.filter((e) => e.kind === 'praxis' || e.kind === 'drill').map((e) => e.file),
   );
 
-  const gruppen = [...new Set(elements.map((e) => e.topic))].map((tid) => ({
-    id: tid,
-    label: (
-      <a href={href('thema', tid)} className="text-ink hover:text-brand-ink hover:underline">
-        {topicTitle(tid)}
-      </a>
-    ),
-    rows: elements.filter((e) => e.topic === tid),
-  }));
+  // Grouped by owner: a topic, or the level for a checkpoint or exam set (ADR 0014).
+  const ownerKey = (e: Element) => e.topic ?? `niveau:${e.level}`;
+  const gruppen = [...new Set(elements.map(ownerKey))].map((key) => {
+    const rows = elements.filter((e) => ownerKey(e) === key);
+    const tid = rows[0]!.topic;
+    return {
+      id: key,
+      label: tid ? (
+        <a href={href('thema', tid)} className="text-ink hover:text-brand-ink hover:underline">
+          {topicTitle(tid)}
+        </a>
+      ) : (
+        <span className="text-ink-muted">Niveau {rows[0]!.level}</span>
+      ),
+      rows,
+    };
+  });
 
   const columns: Spalte<Element>[] = [
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },

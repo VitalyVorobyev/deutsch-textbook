@@ -82,8 +82,12 @@ export interface Element {
   /** Stable and addressable: `<source-id>#<kind>`, e.g. `a2/perfekt-haben-sein#praxis`. */
   id: string;
   kind: ElementKind;
-  /** The topic this belongs to. Every element belongs to exactly one. */
-  topic: string;
+  /**
+   * The topic this belongs to. Every element has exactly one owner (ADR 0014): a topic, or, when
+   * this is absent, its `level`, as checkpoints, placements, exam practice and the documents and
+   * recordings only they use are.
+   */
+  topic?: string;
   level: Level;
   stage: LessonStage;
   /** Learner-facing purpose of a topic-owned practice/drill file (ADR 0002). */

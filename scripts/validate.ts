@@ -15,6 +15,7 @@ import { z } from 'zod';
 import { reflexivityDeclared } from '@da/schema/headword';
 import {
   atlasSchema,
+  isLevelOwnedRole,
   exerciseSetSchema,
   readingSchema,
   topicManifestSchema,
@@ -1103,9 +1104,8 @@ for (const { file, data } of wortnetze.values()) {
 
 // Checkpoints and placements are data, not wiring: `getCheckpoints()` / `getPlacements()`
 // (src/lib/content.ts) find every set of the role, read its level off its directory and
-// give it the page /checkpoint/<dir> or /einstufung/<dir>. So the directory must name the
-// level the set covers, and a level can own only one of each — a second would fight for
-// the same route.
+// give it the page /checkpoint/<dir> or /einstufung/<dir>. The directory is the level that owns
+// the set, and a level can own only one of each — a second would fight for the same route.
 {
   const routed = [
     { role: 'checkpoint', route: 'checkpoint' },
@@ -1116,12 +1116,6 @@ for (const { file, data } of wortnetze.values()) {
     for (const [setId, { file, data }] of exerciseSets) {
       if (data.role !== role) continue;
       const dir = setId.split('/')[0]!;
-      const level = topics.get(data.topic)?.data.level;
-      if (level && dir.toUpperCase() !== level)
-        fail(
-          file,
-          `${role} directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /${route}/<level> route reads the level off the directory`,
-        );
       const other = byLevel.get(dir);
       if (other)
         fail(
@@ -1188,9 +1182,25 @@ for (const [setId, { file, data }] of exerciseSets) {
  * probe family was found by scanning for `role: probe`, so a probe was "attached" simply by
  * existing.
  */
+// A level-owned set names no topic, so no manifest may list it either: it has its own page and
+// must never be embedded in lesson flow.
+const listedByTopics = new Map<string, string>();
+for (const [topicId, { data }] of topics) {
+  const { exercises, pretest, probes } = data.elements;
+  for (const id of [...exercises, ...probes, ...(pretest ? [pretest] : [])])
+    listedByTopics.set(id, topicId);
+}
 for (const [setId, { file, data }] of exerciseSets) {
-  const owner = topics.get(data.topic);
-  const standalone = STANDALONE_ROLES.has(data.role);
+  if (isLevelOwnedRole(data.role)) {
+    const lister = listedByTopics.get(setId);
+    if (lister)
+      fail(
+        file,
+        `a role: ${data.role} set belongs to its level, not a topic — "${lister}" must not list it in its elements`,
+      );
+    continue;
+  }
+  const owner = data.topic ? topics.get(data.topic) : undefined;
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
   } else if (data.role === 'probe') {
@@ -1200,18 +1210,6 @@ for (const [setId, { file, data }] of exerciseSets) {
       fail(
         file,
         'a role: probe set must not be listed in exercises or as the pretest — it opens the session, not the page',
-      );
-  } else if (standalone) {
-    // Checkpoints and placements anchor to a topic for spine position only — they get their own
-    // pages, belong to a level rather than a topic, and must never be embedded in lesson flow.
-    if (
-      owner.data.elements.exercises.includes(setId) ||
-      owner.data.elements.pretest === setId ||
-      owner.data.elements.probes.includes(setId)
-    )
-      fail(
-        file,
-        `a role: ${data.role} set belongs to a level, not a topic — it must not appear in any topic's elements`,
       );
   } else if (
     !owner.data.elements.exercises.includes(setId) &&
@@ -1725,7 +1723,34 @@ for (const [setId, { file, data }] of exerciseSets) {
   }
 }
 
-for (const { file, data } of documents.values()) {
+// A document with no topic belongs to the level of the level-owned sets that use it, and only
+// they may use it: an exam's newspaper article is not a lesson's.
+const documentUsers = new Map<string, Array<{ setId: string; role: string }>>();
+for (const [setId, { data }] of exerciseSets) {
+  const ids = new Set([data.stimulus, ...data.items.map((item) => item.stimulus)]);
+  for (const id of ids) {
+    if (!id) continue;
+    const users = documentUsers.get(id) ?? [];
+    users.push({ setId, role: data.role });
+    documentUsers.set(id, users);
+  }
+}
+for (const [documentId, { file, data }] of documents) {
+  if (!data.topic) {
+    const users = documentUsers.get(documentId) ?? [];
+    if (users.length === 0)
+      fail(file, 'a document with no topic must be used by a level-owned set');
+    for (const user of users) {
+      if (!isLevelOwnedRole(user.role))
+        fail(
+          file,
+          `has no topic, but "${user.setId}" (role: ${user.role}) uses it — give it a topic`,
+        );
+      else if (user.setId.split('/')[0]!.toUpperCase() !== data.level)
+        fail(file, `level ${data.level} ≠ the level of "${user.setId}", which uses it`);
+    }
+    continue;
+  }
   const topic = topics.get(data.topic);
   if (!topic) fail(file, `topic "${data.topic}" does not resolve`);
   else if (topic.data.level !== data.level)
@@ -2273,8 +2298,18 @@ for (const [setId, { file, data }] of exerciseSets) {
           );
       }
 
-      for (const { file, data } of exerciseSets.values()) {
-        const ownerAt = spinePos.get(data.topic);
+      // A level-owned set sits at the end of its level (ADR 0014): it may use every tag the level
+      // introduces, and nothing a later level does.
+      const levelEnd = new Map<string, number>();
+      for (const node of nodes) {
+        const at = spinePos.get(node.id);
+        if (at !== undefined)
+          levelEnd.set(node.level, Math.max(levelEnd.get(node.level) ?? -1, at));
+      }
+      for (const [setId, { file, data }] of exerciseSets) {
+        const ownerAt = data.topic
+          ? spinePos.get(data.topic)
+          : levelEnd.get(setId.split('/')[0]!.toUpperCase());
         for (const item of data.items) {
           if (!item.focus) continue;
           // An allowlist, not a lookup. A tag missing from the table used to be silently
@@ -2326,11 +2361,12 @@ for (const [setId, { file, data }] of exerciseSets) {
         else m.set(topic, new Set([focus]));
       };
       for (const { data } of exerciseSets.values()) {
+        const owner = data.topic;
+        if (!owner) continue;
         for (const item of data.items) {
           if (!item.focus) continue;
-          remember(focusOfTopic, data.topic, item.focus);
-          if (TRAINABLE_ROLES.has(data.role))
-            remember(trainableFocusOfTopic, data.topic, item.focus);
+          remember(focusOfTopic, owner, item.focus);
+          if (TRAINABLE_ROLES.has(data.role)) remember(trainableFocusOfTopic, owner, item.focus);
         }
       }
       for (const node of nodes) {
