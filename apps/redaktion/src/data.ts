@@ -4,8 +4,12 @@ import type { Diagnostic, FileSnapshot, SaveFileInput, SaveFileResult } from '@d
 import type { ChunkName, GraphPayload } from '@da/content/payload';
 import type { WritePatch, WriteResult } from '@da/content/write';
 import type { RenderSourceInput, PreviewPayload } from '@da/content/preview';
+import type { FileReview } from '@da/content/review-ledger';
+import type { ReviewLedgerEntry } from '@da/schema';
 
-export type { Diagnostic, FileSnapshot, GraphPayload, SaveFileInput, SaveFileResult };
+export type { Diagnostic, FileReview, FileSnapshot, GraphPayload, SaveFileInput, SaveFileResult };
+
+export type MarkResult = { ok: true; entry: ReviewLedgerEntry } | { ok: false; error: string };
 
 export interface WorkspaceInfo {
   root: string;
@@ -45,6 +49,12 @@ export interface CorpusClient {
   writableFields(): Promise<WritableField[]>;
   writeField(input: WritePatch): Promise<WriteResult>;
   markTopicReviewed(topicId: string, expectedRevision: string): Promise<WriteResult>;
+  /** Every reviewable file with its review status (ADR 0014). */
+  reviewStatuses(): Promise<FileReview[]>;
+  /** The text of a reviewed revision, or `null` when it was never committed. */
+  reviewedText(revision: string): Promise<string | null>;
+  /** The owner's mark: `owner-reviewed` at the revision the owner read. */
+  markReviewed(file: string, expectedRevision: string): Promise<MarkResult>;
   subscribe(listener: (event: CorpusEvent) => void): () => void;
 }
 
@@ -108,6 +118,22 @@ class HttpCorpusClient implements CorpusClient {
       }),
     );
   }
+  reviewStatuses() {
+    return response<FileReview[]>(fetch('/__reviews'));
+  }
+  async reviewedText(revision: string) {
+    const result = await fetch(`/__reviewed?revision=${encodeURIComponent(revision)}`);
+    return ((await result.json()) as { text: string | null }).text;
+  }
+  markReviewed(file: string, expectedRevision: string) {
+    return response<MarkResult>(
+      fetch('/__review-mark', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file, expectedRevision }),
+      }),
+    );
+  }
   markTopicReviewed(topicId: string, expectedRevision: string) {
     return response<WriteResult>(
       fetch('/__review', {
@@ -165,6 +191,15 @@ class TauriCorpusClient implements CorpusClient {
   }
   markTopicReviewed(topicId: string, expectedRevision: string) {
     return this.rpc<WriteResult>('markTopicReviewed', { topicId, expectedRevision });
+  }
+  reviewStatuses() {
+    return this.rpc<FileReview[]>('reviewStatuses');
+  }
+  async reviewedText(revision: string) {
+    return (await this.rpc<{ text: string | null }>('reviewedText', { revision })).text;
+  }
+  markReviewed(file: string, expectedRevision: string) {
+    return this.rpc<MarkResult>('markReviewed', { file, expectedRevision });
   }
   subscribe(listener: (event: CorpusEvent) => void): () => void {
     let stopped = false;

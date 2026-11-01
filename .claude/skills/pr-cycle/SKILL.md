@@ -35,6 +35,19 @@ Write the learner-visible lines under `## [Unreleased]` in `CHANGELOG.md`, sayin
 sees or can now do. Tooling-only work gets one plain line. **Do not bump a version or push a tag**:
 releases are cut per batch with the `cut-release` skill.
 
+## 3a. Hand material over for review
+
+A PR that changes material files under `content/` or `data/` hands each of them to the owner,
+after the last edit to it:
+
+```sh
+bun run review:claude <file…> --note "<what the owner should look at>"
+```
+
+It writes a `claude-reviewed` row to `data/review-ledger.yaml` at the file's current bytes, and the
+owner reads it in Redaktion's **Prüfen** inbox (ADR 0014). The note names what to check, not what
+you did. Never write an `owner-reviewed` row: only Redaktion does.
+
 ## 4. Commit and open
 
 - Write the message to a file and use `git commit -F`. Inside `-m "…"`, zsh command-substitutes

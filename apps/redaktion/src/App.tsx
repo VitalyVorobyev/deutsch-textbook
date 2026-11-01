@@ -1,9 +1,9 @@
 /**
- * The shell: `@vitavision/workbench`'s `AppShell` (ADR 0011), with Redaktion's seven sections as a
+ * The shell: `@vitavision/workbench`'s `AppShell` (ADR 0011), with Redaktion's eight sections as a
  * `NavRail`, the history, search and theme in the header, and the workspace facts in the status
  * bar.
  *
- * THE NAVIGATION IS THE ARGUMENT. Seven sections, and two former routes live inside them rather
+ * THE NAVIGATION IS THE ARGUMENT. Eight sections, and two former routes live inside them rather
  * than beside them: the per-level instruments are the strip beneath the Sprachkarte, and the
  * vocabulary decks are one kind inside Materialien. A rail with an entry per report is a file
  * menu; it asks the reader to already know which report answers their question.
@@ -22,6 +22,7 @@ import {
   ChevronRight,
   ClipboardCheck,
   Gauge,
+  Inbox,
   Library,
   Map as MapIcon,
   Settings,
@@ -49,6 +50,7 @@ import { Quellen } from './views/Quellen';
 import { Uebersicht } from './views/Uebersicht';
 import { Einstellungen } from './views/Einstellungen';
 import { Quelle } from './views/Quelle';
+import { Pruefen } from './views/Pruefen';
 
 interface NavItem {
   view: string;
@@ -68,6 +70,7 @@ const NAV: NavItem[] = [
   },
   { view: 'themen', label: 'Themen', icon: <BookOpen />, also: ['thema'] },
   { view: 'materialien', label: 'Materialien', icon: <Library />, also: ['bestand', 'quelle'] },
+  { view: 'pruefen', label: 'Prüfen', icon: <Inbox /> },
   { view: 'qualitaet', label: 'Qualität', icon: <ClipboardCheck />, also: ['luecken'] },
   { view: 'referenzen', label: 'Referenzen', icon: <BookMarked />, also: ['quellen'] },
   { view: 'einstellungen', label: 'Einstellungen', icon: <Settings /> },
@@ -136,6 +139,8 @@ export function App() {
         return <Quellen graph={graph} />;
       case 'einstellungen':
         return <Einstellungen workspace={workspace} />;
+      case 'pruefen':
+        return <Pruefen graph={graph} />;
       case 'quelle':
         return <Quelle graph={graph} path={route.query.pfad} />;
       case 'grammatik':
