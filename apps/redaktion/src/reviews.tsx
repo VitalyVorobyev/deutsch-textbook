@@ -1,17 +1,20 @@
 /**
- * The review ledger as every view sees it (ADR 0014): each file's status, and each topic's review
- * derived from them by `@da/content/topic-review` — the rule the learner build applies too.
+ * The review ledger and the shared queue as every view sees them (ADR 0014): each file's status,
+ * each topic's review derived from them by `@da/content/topic-review` — the rule the learner build
+ * applies too — and the queue's entries.
  *
- * Fetched beside the graph, not inside it: a mark touches no content, so it rebuilds nothing; this
- * provider re-reads the ledger after a mark, when the corpus changes, and when a view asks.
+ * Fetched beside the graph, not inside it: a mark or a queue entry touches no content, so it
+ * rebuilds nothing; this provider re-reads both after a write, when the corpus changes, and when a
+ * view asks.
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { toast } from '@vitavision/ui';
 import { topicReviews, type TopicReview } from '@da/content/topic-review';
-import { corpusClient, type FileReview, type GraphPayload } from './data';
+import { corpusClient, type FileReview, type GraphPayload, type QueueEntry } from './data';
 
 interface Reviews {
   files?: FileReview[];
+  queue?: QueueEntry[];
   byFile: Map<string, FileReview>;
   topics: Map<string, TopicReview>;
   error?: string;
@@ -34,12 +37,13 @@ export function ReviewsProvider({
   children: React.ReactNode;
 }) {
   const [files, setFiles] = useState<FileReview[]>();
+  const [queue, setQueue] = useState<QueueEntry[]>();
   const [error, setError] = useState<string>();
   const reload = useCallback(() => {
-    corpusClient
-      .reviewStatuses()
-      .then((rows) => {
+    Promise.all([corpusClient.reviewStatuses(), corpusClient.queue()])
+      .then(([rows, entries]) => {
         setFiles(rows);
+        setQueue(entries);
         setError(undefined);
       })
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
@@ -54,8 +58,8 @@ export function ReviewsProvider({
       graph && files
         ? topicReviews(graph.topics, graph.elements, files)
         : new Map<string, TopicReview>();
-    return { files, byFile, topics, error, reload };
-  }, [graph, files, error, reload]);
+    return { files, queue, byFile, topics, error, reload };
+  }, [graph, files, queue, error, reload]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 

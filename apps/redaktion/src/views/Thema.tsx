@@ -18,6 +18,7 @@
 import { useState } from 'react';
 import {
   Bar,
+  Button,
   Callout,
   Chip,
   Empty,
@@ -37,6 +38,12 @@ import { Gruppentabelle, Quelllink, Quer, type Spalte } from '../components/Zeil
 import { href } from '../router';
 import { useWritable } from '../write';
 import { useReviews } from '../reviews';
+import {
+  AnliegenEintrag,
+  AnliegenForm,
+  AnliegenZeilen,
+  entriesAbout,
+} from '../components/Anliegen';
 
 type Element = GraphPayload['elements'][number];
 
@@ -74,6 +81,8 @@ type ReiterId = 'ueberblick' | 'elemente' | 'pruefungen' | 'befunde';
 
 export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
   const [reiter, setReiter] = useState<ReiterId>('ueberblick');
+  const [anliegen, setAnliegen] = useState(false);
+  const reviews = useReviews();
   const topic = graph.topics.find((t) => t.id === id);
   const profile = graph.profiles.find((p) => p.topic === id);
   if (!topic || !profile) return <Empty>Kein Thema mit der Kennung „{id}“.</Empty>;
@@ -82,6 +91,11 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
   const median = graph.reports.find((r) => r.level === topic.level)?.medians;
   const problems = graph.problems.filter((p) => p.topic === id);
   const offen = profile.checks.filter((c) => !c.ok);
+  // Entries on the topic or any of its files: the conversations in full, Claude's own findings
+  // folded into one line each.
+  const about = entriesAbout(reviews.queue, { topic: id, files: reviews.topics.get(id)?.files });
+  const thread = about.filter((entry) => entry.thread.some((note) => note.from === 'owner'));
+  const claudeOwn = about.filter((entry) => !thread.includes(entry));
 
   const tagsOf = (topicId: string) =>
     new Set(graph.elements.filter((e) => e.topic === topicId).flatMap((e) => e.focus));
@@ -118,15 +132,42 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           {topic.provenance ? (
             <>
               <span className="ml-2 text-fg-muted">Herkunft</span>
-              <Chip tone={topic.provenance === 'complete' ? 'ok' : 'warn'}>
-                {topic.provenance === 'complete' ? 'geprüft' : 'Prüfung offen'}
+              {/* What the authorship record holds, not a review (ADR 0015). */}
+              <Chip tone={topic.provenance === 'complete' ? 'ok' : 'neutral'}>
+                {topic.provenance === 'complete'
+                  ? 'Entscheidungen erfasst'
+                  : 'keine Entscheidung erfasst'}
               </Chip>
             </>
           ) : null}
           <span className="ml-2 text-fg-muted">Bewertungsentscheidungen</span>
           <span className="tabular text-fg">{topic.rulings}</span>
+          <Button onClick={() => setAnliegen(!anliegen)} pressed={anliegen}>
+            Anliegen an Claude
+          </Button>
         </div>
       </header>
+
+      {anliegen ? (
+        <AnliegenForm target={{ topic: topic.id }} onDone={() => setAnliegen(false)} />
+      ) : null}
+      {thread.length ? (
+        <div className="mb-5 space-y-3">
+          {thread.map((entry) => (
+            <AnliegenEintrag key={entry.id} entry={entry} />
+          ))}
+        </div>
+      ) : null}
+      {claudeOwn.length ? (
+        <details className="mb-5">
+          <summary className="cursor-pointer text-sm text-fg-muted">
+            Claudes Befunde zu diesem Thema ({claudeOwn.length})
+          </summary>
+          <div className="mt-2">
+            <AnliegenZeilen entries={claudeOwn} voll />
+          </div>
+        </details>
+      ) : null}
 
       <Kontextleiste
         titel={topic.title}

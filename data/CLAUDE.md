@@ -6,6 +6,10 @@ Claude Code loads this file when you work in this directory; the root [`CLAUDE.m
 writes `claude-reviewed` rows only through `bun run review:claude`; `owner-reviewed` rows come only
 from Redaktion's Prüfen action and are never written by hand. → the `pr-cycle` skill
 
+**`redaktion-queue.yaml` is the conversation with the owner** (ADR 0014). It is written only by
+Redaktion and by `bun run queue`, never by hand, and a resolved entry is closed in the PR that
+resolves it. → the `pr-cycle` skill
+
 ## Commands
 
 - `bun run exam:ingest` — turn the **local-only** Goethe exam materials (`docs/GeotheInstitute/`, gitignored) into `public/exams/` (also gitignored); nothing it reads or writes may enter the repo. A module's `cues:` are proposed by `bun scripts/exam-cues-scan.ts <setId>/<module>` and **verified by ear before pasting**. → [ADR 0009](../docs/adrs/0009-third-party-and-official-material.md) · [`docs/architecture/exam-trainer.md`](../docs/architecture/exam-trainer.md)

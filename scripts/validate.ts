@@ -84,6 +84,8 @@ import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 import { lidProblems } from '@da/content/lid';
 import { SET_ID_MIGRATION } from '../src/lib/set-id-migration';
 import { reviewLedgerProblems } from '@da/content/review-ledger';
+import { queueProblems } from '@da/content/queue';
+import { contentGraph } from '@da/content/graph';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -257,6 +259,9 @@ for (const problem of authorshipProvenanceProblems(
 
 // The review ledger names only files that exist, one row each (ADR 0014).
 for (const problem of reviewLedgerProblems(ROOT)) errors.push(problem);
+
+// Every queue entry names a file, item, topic or kind that exists (ADR 0014).
+for (const problem of queueProblems(ROOT, contentGraph(ROOT))) errors.push(problem);
 
 /**
  * Soft Lautschrift oracles. The hard rules (charset, stress, the ɡ/ʁ look-alike

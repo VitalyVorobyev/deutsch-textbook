@@ -18,9 +18,11 @@ import { Quelllink } from '../components/Zeilentabelle';
 import { Zeilendiff } from '../components/Zeilendiff';
 import { href, useQueryState } from '../router';
 import { FILE_STATUS, markFile, useReviews } from '../reviews';
+import { AnliegenEintrag, AnliegenZeilen } from '../components/Anliegen';
 
 type Status = FileReview['status'];
-type Ansicht = 'offen' | 'geprueft' | 'entwuerfe';
+type Ansicht = 'offen' | 'anliegen' | 'geprueft' | 'entwuerfe';
+const ANSICHTEN: Ansicht[] = ['offen', 'anliegen', 'geprueft', 'entwuerfe'];
 
 /** The revision a diff starts from: what the owner last accepted. */
 function baseline(review: FileReview): string | undefined {
@@ -94,12 +96,10 @@ function Eintrag({
 }
 
 export function Pruefen({ graph, topicId }: { graph: GraphPayload; topicId?: string }) {
-  const { files: reviews, topics, error, reload } = useReviews();
+  const { files: reviews, queue = [], topics, error, reload } = useReviews();
   useEffect(reload, [reload]);
   const [ansichtValue, setAnsicht] = useQueryState('ansicht', 'offen');
-  const ansicht = (['offen', 'geprueft', 'entwuerfe'] as const).includes(ansichtValue as Ansicht)
-    ? (ansichtValue as Ansicht)
-    : 'offen';
+  const ansicht = ANSICHTEN.includes(ansichtValue as Ansicht) ? (ansichtValue as Ansicht) : 'offen';
 
   // A file's name in the course: the titles of the elements it holds, or the topic it defines.
   const labels = useMemo(() => {
@@ -155,6 +155,15 @@ export function Pruefen({ graph, topicId }: { graph: GraphPayload; topicId?: str
   }
 
   const count = (status: Status) => reviews.filter((r) => r.status === status).length;
+  // The queue: what waits for the owner, what the owner sent that Claude still holds, and the
+  // findings Claude filed for itself, which are listed but not the owner's to act on.
+  const forOwner = queue.filter((e) => e.waiting === 'owner');
+  const withClaude = queue.filter(
+    (e) => e.waiting === 'claude' && e.thread.some((n) => n.from === 'owner'),
+  );
+  const claudeOwn = queue.filter(
+    (e) => e.waiting === 'claude' && e.thread.every((n) => n.from === 'claude'),
+  );
   const shown = reviews.filter((r) =>
     ansicht === 'offen'
       ? r.status === 'claude-reviewed' || r.status === 'geaendert'
@@ -169,8 +178,9 @@ export function Pruefen({ graph, topicId }: { graph: GraphPayload; topicId?: str
         <Label>Redaktion</Label>
         <h1 className="mt-1 text-2xl font-bold tracking-tight text-fg">Prüfen</h1>
         <p className="mt-1 max-w-3xl text-sm text-fg-muted">
-          Was Claude übergeben hat und was sich seit deiner Prüfung geändert hat. Jede Markierung
-          gilt genau der Fassung, die du gelesen hast; ändert sich die Datei, wird sie wieder offen.
+          Was Claude übergeben hat, was sich seit deiner Prüfung geändert hat, und deine Anliegen an
+          Claude. Jede Markierung gilt genau der Fassung, die du gelesen hast; ändert sich die
+          Datei, wird sie wieder offen.
         </p>
       </header>
 
@@ -194,13 +204,44 @@ export function Pruefen({ graph, topicId }: { graph: GraphPayload; topicId?: str
           onChange={setAnsicht}
           options={[
             { id: 'offen', label: 'Offen', count: count('claude-reviewed') + count('geaendert') },
+            { id: 'anliegen', label: 'Anliegen', count: forOwner.length },
             { id: 'geprueft', label: 'Geprüft', count: count('owner-reviewed') },
             { id: 'entwuerfe', label: 'Entwürfe', count: count('entwurf') },
           ]}
         />
       </div>
 
-      {shown.length === 0 ? (
+      {ansicht === 'anliegen' ? (
+        <div className="space-y-6">
+          <section className="space-y-3">
+            <Label>Wartet auf dich</Label>
+            {forOwner.length ? (
+              forOwner.map((entry) => <AnliegenEintrag key={entry.id} entry={entry} />)
+            ) : (
+              <Empty>Keine Antwort von Claude wartet auf dich.</Empty>
+            )}
+          </section>
+          {withClaude.length ? (
+            <section className="space-y-3">
+              <Label>Bei Claude</Label>
+              {withClaude.map((entry) => (
+                <AnliegenEintrag key={entry.id} entry={entry} />
+              ))}
+            </section>
+          ) : null}
+          {claudeOwn.length ? (
+            <details>
+              <summary className="cursor-pointer text-sm text-fg-muted">
+                Claudes eigene Befunde ({claudeOwn.length}) — behoben, wenn ihre Dateien das nächste
+                Mal bearbeitet werden
+              </summary>
+              <div className="mt-3">
+                <AnliegenZeilen entries={claudeOwn} />
+              </div>
+            </details>
+          ) : null}
+        </div>
+      ) : shown.length === 0 ? (
         <Empty>
           {ansicht === 'offen'
             ? 'Nichts wartet auf dich. Was Claude übergibt, erscheint hier.'

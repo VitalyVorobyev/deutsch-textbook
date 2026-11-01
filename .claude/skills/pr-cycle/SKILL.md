@@ -48,6 +48,18 @@ It writes a `claude-reviewed` row to `data/review-ledger.yaml` at the file's cur
 owner reads it in Redaktion's **Prüfen** inbox (ADR 0014). The note names what to check, not what
 you did. Never write an `owner-reviewed` row: only Redaktion does.
 
+## 3b. Settle the queue
+
+Close every queue entry the PR resolves, in the PR itself, and say so in its body:
+
+```sh
+bun run queue --close <id>
+```
+
+An entry you answer without resolving gets `bun run queue --answer <id> "…"` and waits for the
+owner. A finding below the material bar that you notice on the way is filed on its file with
+`bun run queue --new --type finding`, never fixed in passing.
+
 ## 4. Commit and open
 
 - Write the message to a file and use `git commit -F`. Inside `-m "…"`, zsh command-substitutes

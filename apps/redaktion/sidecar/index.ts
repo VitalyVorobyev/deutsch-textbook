@@ -15,6 +15,7 @@ import {
   reviewedText,
   reviewStatuses,
 } from '@da/content/review-ledger';
+import { loadQueue, ownerQueueAction, type OwnerQueueAction } from '@da/content/queue';
 
 const PROTOCOL_VERSION = 1;
 interface RpcRequest {
@@ -80,7 +81,8 @@ function openWorkspace(path: string) {
     // A review mark touches no content, so it never rebuilds the graph (see the dev plugin).
     watchers.push(
       watch(target, { recursive: true }, (_event, name) => {
-        if (dir === 'data' && name === 'review-ledger.yaml') return;
+        if (dir === 'data' && (name === 'review-ledger.yaml' || name === 'redaktion-queue.yaml'))
+          return;
         bump();
       }),
     );
@@ -186,6 +188,10 @@ async function dispatch(method: string, params: Record<string, unknown>) {
     }
     case 'reviewStatuses':
       return reviewStatuses(root(), reviewableFiles(contentGraph(root())));
+    case 'queue':
+      return loadQueue(root()).entries;
+    case 'queueAction':
+      return ownerQueueAction(root(), contentGraph(root()), params as unknown as OwnerQueueAction);
     case 'reviewedText':
       return { text: reviewedText(root(), String(params.revision ?? '')) ?? null };
     case 'markReviewed': {

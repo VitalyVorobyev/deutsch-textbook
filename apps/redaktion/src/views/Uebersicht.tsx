@@ -36,6 +36,7 @@ export function Uebersicht({
   const handedOver = files.filter((file) => file.status === 'claude-reviewed').length;
   const changed = files.filter((file) => file.status === 'geaendert').length;
   const ownerReviewed = files.filter((file) => file.status === 'owner-reviewed').length;
+  const forOwner = (reviews.queue ?? []).filter((entry) => entry.waiting === 'owner').length;
 
   return (
     <>
@@ -112,11 +113,12 @@ export function Uebersicht({
 
         <Panel
           title="Prüfen"
-          tone={handedOver + changed ? 'brand' : 'neutral'}
+          tone={handedOver + changed + forOwner ? 'brand' : 'neutral'}
           action={<Button href={href('pruefen')}>Inbox öffnen</Button>}
         >
-          <StatGroup columns={3}>
+          <StatGroup columns={4}>
             <Stat label="übergeben" value={handedOver} tone={handedOver ? 'brand' : 'neutral'} />
+            <Stat label="Anliegen" value={forOwner} tone={forOwner ? 'brand' : 'neutral'} />
             <Stat label="geändert" value={changed} tone={changed ? 'warn' : 'neutral'} />
             <Stat label="geprüft" value={ownerReviewed} hint={`von ${files.length} Dateien`} />
           </StatGroup>
