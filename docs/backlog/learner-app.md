@@ -24,6 +24,11 @@ Surfaces the learner uses, and the triaged learner feedback. The format and the 
 - **P21-2 · The written-forms material has no index.** An Entdecken piece; small.
 - **P20-1 · `/pruefung/a1` has one entry point**, and its sets declare `topic: freizeit-koennen`
   while their items span six topics — a navigation call and a schema question.
+- **APP-2 · Readings have no surface of their own.** All 85 readings, the 17 extensive readers
+  included, are reachable only from their topic page (`src/pages/topics/[...slug].astro`; no other
+  route renders `ReadingText`). An extensive reader is meant to be read straight through, so it
+  wants a list a learner can browse by level. First step: decide whether it is a Lesen section in
+  Entdecken or its own route, against P25-8's limit on top-level tabs.
 - **APP-1 · Schreiben helper.** A learner-facing Goethe A1 Schreiben scoring and strategy note lived in the
   dev docs (`git show 6979c33:docs/a1-goethe-schreiben-helper.md`). If it is wanted, it becomes an
   in-app page.
