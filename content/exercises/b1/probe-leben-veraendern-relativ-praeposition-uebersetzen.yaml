@@ -1,0 +1,104 @@
+# Delayed probe family — ONE competence: the preposition opens the relative clause together
+# with the pronoun, the verb supplies the preposition, the preposition supplies the case and the
+# outside noun supplies the gender. The topic's cloze family asks the same thing with the frame
+# printed; this one asks for the whole sentence, because building the sentence is where the
+# preposition goes missing (das for für das) and where the pair stops being one block.
+#
+# Armed by the remediation drill alone: every drill item carries this focus, and none of the
+# topic's earlier items is on the list, so the 2/7/21 clock starts when the drill is first
+# practised and the curve reads what survived the drill.
+#
+# Each instruction names the verb with its preposition and the noun with its article, so the
+# item grades the pair, never which verb the author had in mind. Pinned are exactly the
+# preposition and the pronoun; each occurs once in the defining rendering. Cells: masculine
+# accusative (an den), feminine dative (vor der), neuter dative (aus dem). Contexts are fresh:
+# the teacher remembered, the exam feared and the village of origin occur in no practice item,
+# no drill item and no item of the cloze family.
+topic: leben-veraendern
+role: probe
+title:
+  en: "Delayed check — preposition and pronoun, the whole sentence"
+  ru: "Отложенная проверка — предлог и местоимение, всё предложение"
+  uk: "Відкладена перевірка — прийменник і займенник, усе речення"
+  de: "Kontrolle mit Abstand — Präposition und Pronomen im ganzen Satz"
+arming:
+  - b1/drill-relativ-praeposition::cloze-nachbar-stadt
+  - b1/drill-relativ-praeposition::cloze-katze-problem
+  - b1/drill-relativ-praeposition::mc-reise-freuen
+  - b1/drill-relativ-praeposition::uebersetzen-job-interessieren
+  - b1/drill-relativ-praeposition::uebersetzen-freund-warten
+  - b1/drill-relativ-praeposition::uebersetzen-familie-wien
+  - b1/drill-relativ-praeposition::uebersetzen-film-sprechen
+  - b1/drill-relativ-praeposition::uebersetzen-haus-traeumen
+items:
+  - id: variant-a
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'teacher' take der Lehrer, for 'remember' sich erinnern an."
+      ru: "Переведите с относительным придаточным. Для «учителя» возьмите der Lehrer, для «помнить» — sich erinnern an."
+      uk: "Перекладіть із відносним підрядним. Для «учителя» візьміть der Lehrer, для «пам'ятати» — sich erinnern an."
+      de: "Übersetze mit einem Relativsatz, mit der Lehrer und sich erinnern an."
+    prompt_en: "The teacher I remember best was very strict."
+    prompt_ru: "Учитель, которого я помню лучше всех, был очень строгим."
+    prompt_uk: "Учитель, якого я пам'ятаю найкраще, був дуже суворим."
+    answer: "Der Lehrer, an den ich mich am besten erinnere, war sehr streng."
+    accept:
+      # The modal is a fair rendering of "remember" as an ability; the pair is unchanged.
+      - "Der Lehrer, an den ich mich am besten erinnern kann, war sehr streng."
+    key_tokens: ["an", "den"]
+    explain:
+      en: "sich erinnern an takes the accusative, and der Lehrer is masculine, so the pair is an den, standing at the head of the clause with the verb at its end. English lets the clause run without any preposition (the teacher I remember), but German erinnern always brings an, and in a relative clause the preposition travels in front of the pronoun. The dative an dem is the case of a place (an dem Tisch); remembering is a direction of thought and takes the accusative."
+      ru: "sich erinnern an требует аккузатива, а der Lehrer — мужского рода, поэтому пара — an den: она открывает придаточное, глагол стоит в конце. Русское «которого помню» обходится без предлога, но немецкое erinnern без an не бывает, и в придаточном предлог встаёт перед местоимением. Датив an dem — падеж места (an dem Tisch); вспоминают «куда», а не «где», и падеж здесь аккузатив."
+      uk: "sich erinnern an вимагає акузатива, а der Lehrer — чоловічого роду, тому пара — an den: вона відкриває підрядне, дієслово стоїть у кінці. Українське «якого пам'ятаю» обходиться без прийменника, але німецьке erinnern без an не буває, і в підрядному прийменник стає перед займенником. Датив an dem — відмінок місця (an dem Tisch); згадують «куди», а не «де», і відмінок тут акузатив."
+      de: "sich erinnern an steht mit Akkusativ, und der Lehrer ist maskulin, also heißt das Paar an den: Es eröffnet den Nebensatz, das Verb steht am Ende. Im Englischen geht es ohne Präposition (the teacher I remember), aber erinnern kommt im Deutschen immer mit an, und im Relativsatz steht die Präposition vor dem Pronomen. Der Dativ an dem ist der Kasus des Ortes (an dem Tisch); beim Erinnern steht der Akkusativ."
+
+  - id: variant-b
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'exam' take die Prüfung, for 'be afraid of' Angst haben vor."
+      ru: "Переведите с относительным придаточным. Для «экзамена» возьмите die Prüfung, для «бояться» — Angst haben vor."
+      uk: "Перекладіть із відносним підрядним. Для «іспиту» візьміть die Prüfung, для «боятися» — Angst haben vor."
+      de: "Übersetze mit einem Relativsatz, mit die Prüfung und Angst haben vor."
+    prompt_en: "The exam I was so afraid of was very easy in the end."
+    prompt_ru: "Экзамен, которого я так боялся, в конце концов оказался очень лёгким."
+    prompt_uk: "Іспит, якого я так боявся, зрештою виявився дуже легким."
+    answer: "Die Prüfung, vor der ich so viel Angst hatte, war am Ende sehr leicht."
+    accept:
+      # so große Angst carries "so afraid" as well; the Perfekt is the spoken past of hatte.
+      - "Die Prüfung, vor der ich so große Angst hatte, war am Ende sehr leicht."
+      - "Die Prüfung, vor der ich so viel Angst gehabt habe, war am Ende sehr leicht."
+      - "Die Prüfung, vor der ich so große Angst gehabt habe, war am Ende sehr leicht."
+      - "Die Prüfung, vor der ich so viel Angst hatte, war am Ende sehr einfach."
+      - "Die Prüfung, vor der ich so große Angst hatte, war am Ende sehr einfach."
+    key_tokens: ["vor", "der"]
+    explain:
+      en: "Angst haben vor takes the dative, and die Prüfung is feminine, so the pair is vor der. The noun's gender is the German one: die Prüfung is feminine whatever the word is in your own language. English drops the preposition to the end of the clause (the exam I was afraid of); German keeps it at the front, glued to the pronoun."
+      ru: "Angst haben vor требует датива, а die Prüfung — женского рода, поэтому пара — vor der. Род берётся немецкий: «экзамен» по-русски мужского рода, но die Prüfung — женского, и местоимение следует за немецким словом. Русское «которого боялся» стоит без предлога, а немецкий предлог vor открывает придаточное вместе с местоимением."
+      uk: "Angst haben vor вимагає датива, а die Prüfung — жіночого роду, тому пара — vor der. Рід береться німецький: «іспит» українською чоловічого роду, але die Prüfung — жіночого, і займенник іде за німецьким словом. Українське «якого боявся» стоїть без прийменника, а німецький прийменник vor відкриває підрядне разом із займенником."
+      de: "Angst haben vor steht mit Dativ, und die Prüfung ist feminin, also heißt das Paar vor der. Das Genus ist das deutsche: die Prüfung ist feminin, egal welches Genus das Wort in deiner Sprache hat. Das Englische schiebt die Präposition ans Ende (the exam I was afraid of); im Deutschen steht sie vorn, direkt beim Pronomen."
+
+  - id: variant-c
+    outcomes: [relativsatz-praezisieren]
+    type: translate
+    focus: relativ-praeposition
+    instruction:
+      en: "Translate with a relative clause. For 'village' take das Dorf, for 'come from' kommen aus."
+      ru: "Переведите с относительным придаточным. Для «деревни» возьмите das Dorf, для «быть родом из» — kommen aus."
+      uk: "Перекладіть із відносним підрядним. Для «села» візьміть das Dorf, для «походити з» — kommen aus."
+      de: "Übersetze mit einem Relativsatz, mit das Dorf und kommen aus."
+    prompt_en: "The village my grandmother comes from is very small."
+    prompt_ru: "Деревня, из которой родом моя бабушка, очень маленькая."
+    prompt_uk: "Село, з якого походить моя бабуся, дуже маленьке."
+    answer: "Das Dorf, aus dem meine Großmutter kommt, ist sehr klein."
+    accept:
+      - "Das Dorf, aus dem meine Oma kommt, ist sehr klein."
+    key_tokens: ["aus", "dem"]
+    explain:
+      en: "aus always takes the dative, and das Dorf is neuter, so aus dem. The clause then runs to its verb, kommt, and the main clause picks up with ist. English can end the clause on its preposition (the village my grandmother comes from); German cannot, and das alone, without aus, would make the village the object of kommt."
+      ru: "aus всегда требует датива, а das Dorf — среднего рода, поэтому aus dem. Придаточное доходит до своего глагола kommt, и главное продолжается с ist. Русское «из которой» здесь подсказывает верно: предлог стоит перед местоимением. Но род немецкий — das Dorf среднего рода, поэтому dem, а не der, как подсказала бы «деревня»."
+      uk: "aus завжди вимагає датива, а das Dorf — середнього роду, тому aus dem. Підрядне доходить до свого дієслова kommt, і головне продовжується з ist. Українське «з якого» тут підказує правильно: прийменник стоїть перед займенником. Рід теж збігається — «село» середнього роду, як і das Dorf, тому dem."
+      de: "aus steht immer mit Dativ, und das Dorf ist neutral, also aus dem. Der Nebensatz läuft bis zu seinem Verb kommt, dann geht der Hauptsatz mit ist weiter. Englisch kann den Nebensatz mit der Präposition beenden (the village my grandmother comes from), Deutsch nicht; das allein, ohne aus, würde das Dorf zum Objekt von kommt machen."

@@ -1,0 +1,88 @@
+# Delayed probe family — ONE competence: the Präteritum of full verbs in written narration,
+# produced cold. The topic's first family and the kultur-freizeit family probe the same forms
+# and are spent; this one is armed by the remediation drill, so the curve reads what survived
+# the drill. Cloze, because the gap is the graded token and every miss is attributed.
+#
+# Armed by six of the drill's eight items. An item first answered weeks before this family
+# existed would put all three stages in the past at once, a burst of three probes with no delay
+# between them, so the items answered earliest stay off the list; armedAt was measured on the
+# current snapshot before choosing.
+#
+# Each instruction names the infinitive. Cells: vergaß (strong, a → aß, with ß after the long
+# vowel), flog (strong, ie → o), kannten (mixed: a weak -te ending on a changed stem, the class
+# the drill's brachte and dachte belong to). None of these forms occurs in a practice item, a
+# drill item or either earlier family.
+topic: erfahrungen-erzaehlen
+role: probe
+title:
+  en: "Delayed check — the written past, once more"
+  ru: "Отложенная проверка — письменное прошедшее, ещё раз"
+  uk: "Відкладена перевірка — письмове минуле, ще раз"
+  de: "Kontrolle mit Abstand — die geschriebene Vergangenheit, noch einmal"
+arming:
+  - b1/drill-praeteritum-vollverben::cloze-besuch-tante
+  - b1/drill-praeteritum-vollverben::cloze-gemischte-verben
+  - b1/drill-praeteritum-vollverben::mc-sprachen-film
+  - b1/drill-praeteritum-vollverben::uebersetzen-besuch-garten
+  - b1/drill-praeteritum-vollverben::uebersetzen-witz-verstand
+  - b1/drill-praeteritum-vollverben::uebersetzen-stadt-gefiel
+items:
+  - id: variant-a
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Written narrative: the Präteritum of vergessen."
+      ru: "Письменный рассказ: Präteritum глагола vergessen."
+      uk: "Письмова розповідь: Präteritum дієслова vergessen."
+      de: "Geschriebene Erzählung: das Präteritum von vergessen."
+    text: "Am Montag {{vergaß}} ich meinen Regenschirm im Bus."
+    translation:
+      en: "On Monday I left my umbrella on the bus."
+      ru: "В понедельник я забыл зонт в автобусе."
+      uk: "У понеділок я забув парасольку в автобусі."
+    explain:
+      en: "vergessen is strong: vergaß, with the vowel change e → a and no -te. After the long a the s-sound is written ß, as in aß from essen, which follows the same pattern. vergesste is not a form."
+      ru: "vergessen — сильный глагол: vergaß, смена гласной e → a и никакого -te. После долгого a звук [s] пишется через ß, как в aß от essen, который устроен так же. Формы vergesste не существует."
+      uk: "vergessen — сильне дієслово: vergaß, зміна голосної e → a і жодного -te. Після довгого a звук [s] пишеться через ß, як в aß від essen, яке влаштоване так само. Форми vergesste не існує."
+      de: "vergessen ist stark: vergaß, mit dem Vokalwechsel e → a und ohne -te. Nach dem langen a schreibt man ß, wie in aß von essen, das genauso funktioniert. vergesste gibt es nicht."
+
+  - id: variant-b
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Written narrative: the Präteritum of fliegen."
+      ru: "Письменный рассказ: Präteritum глагола fliegen."
+      uk: "Письмова розповідь: Präteritum дієслова fliegen."
+      de: "Geschriebene Erzählung: das Präteritum von fliegen."
+    text: "Im Sommer {{flog}} meine Schwester zum ersten Mal nach Kanada."
+    translation:
+      en: "In the summer my sister flew to Canada for the first time."
+      ru: "Летом моя сестра впервые полетела в Канаду."
+      uk: "Улітку моя сестра вперше полетіла до Канади."
+    explain:
+      en: "fliegen is strong: flog, ie → o, and nothing added for er, sie, es. The weak flieg-te does not exist. The other verbs of this class, ziehen → zog and verlieren → verlor among them, change the same way."
+      ru: "fliegen — сильный глагол: flog, ie → o, и для er, sie, es ничего не добавляется. Слабой формы fliegte не существует. Другие глаголы этого класса, например ziehen → zog и verlieren → verlor, меняются так же."
+      uk: "fliegen — сильне дієслово: flog, ie → o, і для er, sie, es нічого не додається. Слабкої форми fliegte не існує. Інші дієслова цього класу, наприклад ziehen → zog і verlieren → verlor, змінюються так само."
+      de: "fliegen ist stark: flog, ie → o, und für er, sie, es kommt nichts dazu. Ein schwaches fliegte gibt es nicht. Andere Verben dieser Klasse, etwa ziehen → zog und verlieren → verlor, ändern sich genauso."
+
+  - id: variant-c
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Written narrative: the Präteritum of kennen."
+      ru: "Письменный рассказ: Präteritum глагола kennen."
+      uk: "Письмова розповідь: Präteritum дієслова kennen."
+      de: "Geschriebene Erzählung: das Präteritum von kennen."
+    text: "In der neuen Stadt {{kannten}} wir am Anfang niemanden."
+    translation:
+      en: "In the new town we didn't know anybody at first."
+      ru: "В новом городе мы поначалу никого не знали."
+      uk: "У новому місті ми спочатку нікого не знали."
+    explain:
+      en: "kennen is mixed: the stem changes to kann-, as in the participle gekannt, and the ending is the weak -te, so wir kannten. It belongs with brennen → brannte and denken → dachte; kennten is the Konjunktiv II and says something else."
+      ru: "kennen — смешанный глагол: основа меняется на kann-, как в причастии gekannt, а окончание слабое, -te, поэтому wir kannten. Он из той же группы, что brennen → brannte и denken → dachte; kennten — это Konjunktiv II, и значит он другое."
+      uk: "kennen — мішане дієслово: основа змінюється на kann-, як у дієприкметнику gekannt, а закінчення слабке, -te, тому wir kannten. Воно з тієї ж групи, що brennen → brannte і denken → dachte; kennten — це Konjunktiv II, і означає воно інше."
+      de: "kennen ist gemischt: Der Stamm wird zu kann-, wie im Partizip gekannt, und die Endung ist das schwache -te, also wir kannten. Es gehört zu brennen → brannte und denken → dachte; kennten ist der Konjunktiv II und sagt etwas anderes."

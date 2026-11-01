@@ -27,7 +27,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(454);
+    expect(graph.sets.size).toBe(460);
     expect(graph.readings.size).toBe(85);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(76);
@@ -102,12 +102,12 @@ describe('content graph', () => {
       'lesetext-intensiv': 68,
       praxis: 201,
       pretest: 57,
-      probe: 152,
+      probe: 158,
       pruefungspraxis: 12,
       wortfeld: 2,
       wortschatz: 47,
     });
-    expect(graph.elements.length).toBe(757);
+    expect(graph.elements.length).toBe(763);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -118,7 +118,7 @@ describe('content graph', () => {
 
     expect(byStage.get('transfer')).toBe(127);
     expect(byStage.get('geruest')).toBe(77);
-    expect(byStage.get('nachpruefung')).toBe(155);
+    expect(byStage.get('nachpruefung')).toBe(161);
 
     const teaching = graph.elements.filter((element) => element.activity);
     expect(teaching).toHaveLength(227);

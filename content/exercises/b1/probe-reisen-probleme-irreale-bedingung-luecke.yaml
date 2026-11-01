@@ -1,0 +1,88 @@
+# Delayed probe family — ONE competence: marking BOTH halves of an unreal condition with
+# Konjunktiv II. The topic's translate family is spent; this one is a cloze with both halves
+# gapped, so no half arrives already marked and the learner decides each one. Every gap names
+# its verb in brackets, and the main half's verb is werden, so the graded decision is würde
+# against the indicative wird, and hätte/wäre/müsste against hatte/war/musste, in each half.
+# A cloze gap is always attributed: the gap is the graded token.
+#
+# Armed by five of the drill's eight items. An item first answered weeks before this family
+# existed would put all three stages in the past at once, a burst of three probes with no delay
+# between them, so the items answered earliest stay off the list; armedAt was measured on the
+# current snapshot before choosing.
+#
+# Cells: hätte + würde (1sg), wäre + würde (3sg), müssten + würden (1pl, the umlaut a learner
+# drops). Contexts are fresh: the bigger flat, the sister and the move, the Saturday shift
+# occur in no practice item, no drill item and no item of the translate family.
+topic: reisen-probleme
+role: probe
+title:
+  en: "Delayed check — both halves of the unreal condition, in gaps"
+  ru: "Отложенная проверка — обе половины нереального условия, в пропусках"
+  uk: "Відкладена перевірка — обидві половини нереальної умови, у пропусках"
+  de: "Kontrolle mit Abstand — beide Hälften der irrealen Bedingung, als Lücken"
+arming:
+  - b1/drill-irreale-bedingung::cloze-fruehstueck-muede
+  - b1/drill-irreale-bedingung::uebersetzen-freier-tag
+  - b1/drill-irreale-bedingung::uebersetzen-wetter-draussen
+  - b1/drill-irreale-bedingung::uebersetzen-tom-fahrer
+  - b1/drill-irreale-bedingung::uebersetzen-zimmer-balkon
+items:
+  - id: variant-a
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: irreale-bedingung
+    instruction:
+      en: "It is not so: fill both gaps in Konjunktiv II, from the verbs in brackets."
+      ru: "Это не так на самом деле: заполните оба пропуска в Konjunktiv II от глаголов в скобках."
+      uk: "Насправді це не так: заповніть обидва пропуски в Konjunktiv II від дієслів у дужках."
+      de: "Es ist nicht so: Ergänze beide Lücken im Konjunktiv II, aus den Verben in Klammern."
+    text: "Wenn ich mehr Geld {{hätte}} (haben), {{würde}} (werden) ich eine größere Wohnung mieten."
+    translation:
+      en: "If I had more money, I would rent a bigger flat."
+      ru: "Если бы у меня было больше денег, я бы снял квартиру побольше."
+      uk: "Якби в мене було більше грошей, я б винайняв більшу квартиру."
+    explain:
+      en: "Both halves live in the unreal world, so both are marked: hätte in the wenn-clause, würde with the infinitive mieten in the main clause. hatte, without the dots, reports a past that really happened, and wird reports a future that will really come; either one breaks the condition."
+      ru: "Обе половины живут в нереальном мире, поэтому помечены обе: hätte в придаточном с wenn, würde с инфинитивом mieten в главном. hatte без точек сообщает о реально случившемся прошлом, wird — о будущем, которое действительно наступит; любая из этих форм ломает условие. Русское «бы» стоит в обеих половинах, но не спрягается — немецкие формы нужно построить."
+      uk: "Обидві половини живуть у нереальному світі, тому позначені обидві: hätte в підрядному з wenn, würde з інфінітивом mieten у головному. hatte без крапок повідомляє про минуле, що справді сталося, wird — про майбутнє, яке справді настане; будь-яка з цих форм ламає умову. Українське «б» стоїть в обох половинах, але не відмінюється — німецькі форми треба побудувати."
+      de: "Beide Hälften spielen in der irrealen Welt, also sind beide markiert: hätte im wenn-Satz, würde mit dem Infinitiv mieten im Hauptsatz. hatte ohne Punkte meldet eine wirklich geschehene Vergangenheit, wird eine Zukunft, die wirklich kommt; beides bricht die Bedingung."
+
+  - id: variant-b
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: irreale-bedingung
+    instruction:
+      en: "It is not so: fill both gaps in Konjunktiv II, from the verbs in brackets."
+      ru: "Это не так на самом деле: заполните оба пропуска в Konjunktiv II от глаголов в скобках."
+      uk: "Насправді це не так: заповніть обидва пропуски в Konjunktiv II від дієслів у дужках."
+      de: "Es ist nicht so: Ergänze beide Lücken im Konjunktiv II, aus den Verben in Klammern."
+    text: "Wenn meine Schwester hier {{wäre}} (sein), {{würde}} (werden) sie mir beim Umzug helfen."
+    translation:
+      en: "If my sister were here, she would help me with the move."
+      ru: "Если бы моя сестра была здесь, она помогла бы мне с переездом."
+      uk: "Якби моя сестра була тут, вона допомогла б мені з переїздом."
+    explain:
+      en: "sein has its own one-word form, wäre, and it marks the wenn-half. The main half takes würde with the infinitive helfen. war would say she really was here, and wird would promise help that is coming; the sister is not here, so both halves stay in Konjunktiv II."
+      ru: "У sein есть своя однословная форма — wäre, она и помечает половину с wenn. Главная половина берёт würde с инфинитивом helfen. war сказало бы, что сестра действительно была здесь, а wird пообещало бы помощь, которая будет; сестры здесь нет, поэтому обе половины остаются в Konjunktiv II."
+      uk: "У sein є своя однослівна форма — wäre, вона й позначає половину з wenn. Головна половина бере würde з інфінітивом helfen. war сказало б, що сестра справді була тут, а wird пообіцяло б допомогу, яка буде; сестри тут немає, тому обидві половини лишаються в Konjunktiv II."
+      de: "sein hat eine eigene Einwortform, wäre, und die markiert die wenn-Hälfte. Die Haupthälfte nimmt würde mit dem Infinitiv helfen. war hieße, dass sie wirklich hier war, und wird verspräche Hilfe, die kommt; die Schwester ist nicht hier, also bleiben beide Hälften im Konjunktiv II."
+
+  - id: variant-c
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: irreale-bedingung
+    instruction:
+      en: "It is not so: fill both gaps in Konjunktiv II, from the verbs in brackets."
+      ru: "Это не так на самом деле: заполните оба пропуска в Konjunktiv II от глаголов в скобках."
+      uk: "Насправді це не так: заповніть обидва пропуски в Konjunktiv II від дієслів у дужках."
+      de: "Es ist nicht so: Ergänze beide Lücken im Konjunktiv II, aus den Verben in Klammern."
+    text: "Wenn wir am Samstag nicht arbeiten {{müssten}} (müssen), {{würden}} (werden) wir zu eurer Party kommen."
+    translation:
+      en: "If we didn't have to work on Saturday, we would come to your party."
+      ru: "Если бы нам не нужно было работать в субботу, мы бы пришли к вам на вечеринку."
+      uk: "Якби нам не треба було працювати в суботу, ми б прийшли до вас на вечірку."
+    explain:
+      en: "müssen has a one-word Konjunktiv II, müssten, and the umlaut is the whole difference from the past mussten: without it the sentence says that we really had to work. The main half takes würden with kommen. Both forms are plural, because the subject of both halves is wir."
+      ru: "У müssen есть однословный Konjunktiv II — müssten, и вся разница с прошедшим mussten — в умлауте: без него предложение говорит, что работать действительно пришлось. Главная половина берёт würden с kommen. Обе формы во множественном числе, потому что подлежащее обеих половин — wir."
+      uk: "У müssen є однослівний Konjunktiv II — müssten, і вся різниця з минулим mussten — в умлауті: без нього речення каже, що працювати справді довелося. Головна половина бере würden з kommen. Обидві форми в множині, бо підмет обох половин — wir."
+      de: "müssen hat einen einwortigen Konjunktiv II, müssten, und der Umlaut ist der ganze Unterschied zum Präteritum mussten: Ohne ihn sagt der Satz, dass wir wirklich arbeiten mussten. Die Haupthälfte nimmt würden mit kommen. Beide Formen stehen im Plural, weil das Subjekt beider Hälften wir ist."
