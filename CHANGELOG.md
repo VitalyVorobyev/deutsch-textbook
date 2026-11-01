@@ -18,6 +18,11 @@ GitHub Release notes.
   Richtung), a call before a move (A2 Verben mit Kasus), two friends fixing a day to study (A2
   Zeitpräpositionen) and a radio weather report (A2 Natur & Wetter). The Ämter conversation now
   plays its recording too, so every listening-comprehension task in the course is recorded.
+- **Eleven B1 topics gain a recorded listening task**, three questions each, explained in German
+  as well: a house meeting about the courtyard, two help-line calls (a library app, a wrong line
+  on a bill), a call to a culture centre, a message at the door, an emergency call from the
+  street, a stolen-bike report, the insurance counter, two friends talking about quitting, a Kita
+  registration and a meeting where someone is interrupted and takes the floor back.
 - **Three Goethe-style practice sets for A2**, on the A2 exam page: Lesen in the exam's four parts
   (newspaper article, store or office directory, e-mail, ads with one "keine passende Anzeige"),
   each beside its document, and Schreiben with an SMS and an e-mail and a model answer for each.

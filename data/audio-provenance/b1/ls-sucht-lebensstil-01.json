@@ -1,0 +1,2360 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T23:42:50.913615+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "433562b47d221f6effc2be45ce36c3821e156472962a30b7b4833652c7afab0c",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-sucht-lebensstil-01-listening.md",
+    "sha256": "a05b5fa2f702c480d9244d0c35ea54306b817712f9c7584325400eb8d4b8fdc4"
+  },
+  "id": "ls-sucht-lebensstil-01",
+  "kind": "dialogue",
+  "level": "B1",
+  "master_audio_sha256": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "439bc97be1cdd61db78f2b2ef23bf3b0adbeb5da39cfd806c7e308ef19762ad5",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "4d600298f819e86c8ef85794512e0312cda20614baf4daf4b5674f8e4d9ccd61",
+    "soundscape": {
+      "bed_count": 1,
+      "beds": [
+        {
+          "entry_id": "ambience-1",
+          "expected_db": -46.7,
+          "measured_rms_dbfs": -46.8,
+          "missing": false
+        }
+      ],
+      "configured_coverage_ratio": 1.0,
+      "configured_gain_max_db": -28.0,
+      "configured_gain_min_db": -28.0,
+      "continuous_ambience": true,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": -47.005249481151154,
+      "version": 2,
+      "warnings": []
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 5,
+          "measured_lines": 5,
+          "minimum_similarity": 0.9851798437101298,
+          "pitch_max_hz": 170.2127659574468,
+          "pitch_min_hz": 148.14814814814815,
+          "pitch_spread_hz": 22.064617809298653,
+          "speaker": "Miriam"
+        },
+        {
+          "line_count": 4,
+          "measured_lines": 4,
+          "minimum_similarity": 0.897401715294408,
+          "pitch_max_hz": 219.17808219178082,
+          "pitch_min_hz": 173.91304347826087,
+          "pitch_spread_hz": 45.26503871351994,
+          "speaker": "Sabine"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.8714627012190059,
+          "speakers": [
+            "Miriam",
+            "Sabine"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9876561662221349,
+          "speaker": "Miriam"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9442174225727921,
+          "speaker": "Sabine"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9908588510348278,
+          "speaker": "Miriam"
+        },
+        {
+          "line_id": "line-4",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9801457213600109,
+          "speaker": "Sabine"
+        },
+        {
+          "line_id": "line-5",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9851798437101298,
+          "speaker": "Miriam"
+        },
+        {
+          "line_id": "line-6",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.897401715294408,
+          "speaker": "Sabine"
+        },
+        {
+          "line_id": "line-7",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9894559827258536,
+          "speaker": "Miriam"
+        },
+        {
+          "line_id": "line-8",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.978707943592332,
+          "speaker": "Sabine"
+        },
+        {
+          "line_id": "line-9",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9897517092065862,
+          "speaker": "Miriam"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 4748,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 14375,
+        "start_ms": 5198,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 24529,
+        "start_ms": 14825,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 30788,
+        "start_ms": 24979,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 37225,
+        "start_ms": 31238,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 39566,
+        "start_ms": 37675,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 46642,
+        "start_ms": 40016,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 53794,
+        "start_ms": 47092,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 62590,
+        "start_ms": 54244,
+        "utterance_id": "line-9"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T23:35:01.616341+00:00",
+      "failures": [],
+      "full_transcript": "Du hast ja gar keine Zigarette in der Hand, Sabine. Hast du aufgehört? Ich versuche es zum vierten Mal. Einmal mit Pflaster, einmal ganz ohne Hilfe. Nach zwei Wochen habe ich immer wieder angefangen. Das kenne ich. Ich will dir keine Vorwürfe machen. Aber wenn ich du wäre, würde ich mich beraten lassen. Mir hat das sehr geholfen. Beraten lassen? So schlimm ist es doch nicht. Das ist ja keine Sucht wie Alkohol. Doch, Rauchen ist auch eine Sucht. Das hat nichts damit zu tun, dass jemand schwach ist. Und was hast du anders gemacht? Ich habe eine Zeit lang den Kaffee am Morgen sein lassen. Zum Kaffee habe ich nämlich immer geraucht. Bei mir sind es die Pausen. Wenn ich nicht jeden Tag mit den Kollegen rauchen würde, wäre es viel leichter. Dann geh in der Pause doch mit einem Nichtraucher spazieren. Und wenn es diesmal nicht klappt, versuchst du es eben noch einmal.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Du hast ja gar keine Zigarette in der Hand, Sabine. Hast du aufgehört?",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Du hast ja gar keine Zigarette in der Hand, Sabine. Hast du aufgehört?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich versuche es zum vierten Mal. Einmal mit Pflaster, einmal ganz ohne Hilfe. Nach zwei Wochen habe ich immer wieder angefangen.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich versuche es zum vierten Mal. Einmal mit Pflaster, einmal ganz ohne Hilfe. Nach zwei Wochen habe ich immer wieder angefangen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das kenne ich. Ich will dir keine Vorwürfe machen. Aber wenn ich du wäre, würde ich mich beraten lassen. Mir hat das sehr geholfen.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das kenne ich. Ich will dir keine Vorwürfe machen. Aber wenn ich du wäre, würde ich mich beraten lassen. Mir hat das sehr geholfen.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Beraten lassen? So schlimm ist es doch nicht. Das ist ja keine Sucht wie Alkohol.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Beraten lassen? So schlimm ist es doch nicht. Das ist ja keine Sucht wie Alkohol.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Doch, Rauchen ist auch eine Sucht. Das hat nichts damit zu tun, dass jemand schwach ist.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Doch Rauchen ist auch eine Sucht. Das hat nichts damit zu tun, dass jemand schwach ist.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Und was hast du anders gemacht?",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und was hast du anders gemacht?",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich habe eine Zeit lang den Kaffee am Morgen sein lassen. Zum Kaffee habe ich nämlich immer geraucht.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich habe eine Zeit lang den Kaffee am Morgen sein lassen. Zum Kaffee habe ich nämlich immer geraucht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Bei mir sind es die Pausen. Wenn ich nicht jeden Tag mit den Kollegen rauchen würde, wäre es viel leichter.",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Bei mir sind es die Pausen. Wenn ich nicht jeden Tag mit den Kollegen rauchen würde, wäre es viel leichter.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann geh in der Pause doch mit einem Nichtraucher spazieren. Und wenn es diesmal nicht klappt, versuchst du es eben noch einmal.",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann geh in der Pause doch mit einem Nichtraucher spazieren. Und wenn es diesmal nicht klappt, versuchst du es eben noch einmal.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "small-room": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "small-room",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.12
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-4.wav",
+        "sha256": "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-5.wav",
+        "sha256": "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-6.wav",
+        "sha256": "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-7.wav",
+        "sha256": "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-8.wav",
+        "sha256": "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-9.wav",
+        "sha256": "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/ambience-1.wav",
+        "sha256": "41e2e3f8a977efe10a8e0c5f538e37fbca40b16c84d27889c6fe4fb54f2fac78"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "433562b47d221f6effc2be45ce36c3821e156472962a30b7b4833652c7afab0c"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "5884246cd2ae6ca1d1eb843b8c4fe7fe39fb6001ca066f0a45dc2fa79cc6237e"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "439bc97be1cdd61db78f2b2ef23bf3b0adbeb5da39cfd806c7e308ef19762ad5"
+      }
+    ],
+    "assets": {
+      "0445f0c9db2f28e477f06b7db6e0283f179b5551fca70fbf3fcd6a76ccac2339": {
+        "file": "0445f0c9db2f28e477f06b7db6e0283f179b5551fca70fbf3fcd6a76ccac2339.wav",
+        "impl_version": 1,
+        "inputs": [
+          "81e59f93ad281842606e312d51de46c4afbe0060261c4e24d338a9f677c0e3bd"
+        ],
+        "kind": "pace",
+        "node_hash": "ebfdae1c08489c01cf872deb97b8fe66a9ea4f3c74aeffc57c8c582844c65b57",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "utterance_id": "line-5"
+      },
+      "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41": {
+        "file": "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b8f8f66b159009aaf142cf8620de5140eaf9f4581a46628e5ca64f91d6a31d55"
+        ],
+        "kind": "track",
+        "node_hash": "879d266aa9241c5c5000c184b071b43863ade451ef05e031188e2093c8786d13",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 37675,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493": {
+        "file": "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493.wav",
+        "impl_version": 1,
+        "inputs": [
+          "879a661fb8f299d1e34f7f08601250420f7b8137ad2bbf284fb7b756f338d853"
+        ],
+        "kind": "track",
+        "node_hash": "f75e89c95f9f9bd069feee4fa0f8f73f2a5913a8b613981bfc3574bcacb17014",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "2a5f213c9eb2cebeb09946c31709953efe8d0a609e53b3333ec13b8a797eed31": {
+        "file": "2a5f213c9eb2cebeb09946c31709953efe8d0a609e53b3333ec13b8a797eed31.wav",
+        "impl_version": 1,
+        "inputs": [
+          "6c5daec21d5769c4b345e47ba726061df45ef4455e1820f065ed4309d26daf3e"
+        ],
+        "kind": "pace",
+        "node_hash": "e0af8d1f3acd869bf68922506fd1543fd81b4643f5ee6c78ff176d7d28ffb36f",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-8"
+      },
+      "41904db7ac48a0af80fb84c4a7f270e4acf417df202d56f0213eb6ecc35f2184": {
+        "adapter_code_revision": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+        "engine": "stable_audio_sfx",
+        "file": "41904db7ac48a0af80fb84c4a7f270e4acf417df202d56f0213eb6ecc35f2184.wav",
+        "kind": "generated-sound",
+        "license": "Stability AI Community License",
+        "model_id": "stabilityai/stable-audio-3-optimized",
+        "model_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+        "params": {
+          "apg": 1.0,
+          "cfg": 1.0,
+          "dit_dtype": "fp16",
+          "init_noise_level": 1.0,
+          "steps": 8
+        },
+        "request": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet home kitchen ambience, a refrigerator humming softly, a spoon set down on a counter, a kettle far away, no voices, no music",
+          "seed": 5210
+        },
+        "request_sha256": "754a5fafa6c412eeff87198f9dfd7a410726c22247aad3f0150ba270bb4e4cb9",
+        "seed": 5210
+      },
+      "419726a66188b5afa1e1615e8010433a328409f0966501df4de9d62810b684f6": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "419726a66188b5afa1e1615e8010433a328409f0966501df4de9d62810b684f6.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "9e2cc31b5e075c6d6a424ddb5d022d12cce69f96e04871570aa27b327a2c3ca5",
+        "seed": 105
+      },
+      "41e2e3f8a977efe10a8e0c5f538e37fbca40b16c84d27889c6fe4fb54f2fac78": {
+        "file": "41e2e3f8a977efe10a8e0c5f538e37fbca40b16c84d27889c6fe4fb54f2fac78.wav",
+        "impl_version": 1,
+        "inputs": [
+          "41904db7ac48a0af80fb84c4a7f270e4acf417df202d56f0213eb6ecc35f2184",
+          "ace588bfa95592ae7896453e1650747e60edd1639e689793d651b6bea0b4a889"
+        ],
+        "kind": "track",
+        "node_hash": "30c7feaabf25c13e78fb6b34aefc1479ed9159b379ededa29f80ba7ee5501998",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -28.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 62590
+        }
+      },
+      "433562b47d221f6effc2be45ce36c3821e156472962a30b7b4833652c7afab0c": {
+        "file": "433562b47d221f6effc2be45ce36c3821e156472962a30b7b4833652c7afab0c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "ace588bfa95592ae7896453e1650747e60edd1639e689793d651b6bea0b4a889"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "9e9d4ac63d120ed93257e6a1d23ae6b6c95befb11d4db1b623346f45946aba5d",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "439bc97be1cdd61db78f2b2ef23bf3b0adbeb5da39cfd806c7e308ef19762ad5": {
+        "encoding": "publish",
+        "file": "439bc97be1cdd61db78f2b2ef23bf3b0adbeb5da39cfd806c7e308ef19762ad5.mp3",
+        "kind": "encode",
+        "source": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd"
+      },
+      "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd": {
+        "file": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd.wav",
+        "impl_version": 1,
+        "inputs": [
+          "68012820ba6309e729637cc2c76830d87e8fceef305a962e10a87d3903ef4ab6"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "1da1f567bdd1e8ea82f895c0bbde27daa335f8b35995dcb7b22e22407b464959",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "5884246cd2ae6ca1d1eb843b8c4fe7fe39fb6001ca066f0a45dc2fa79cc6237e": {
+        "encoding": "qa",
+        "file": "5884246cd2ae6ca1d1eb843b8c4fe7fe39fb6001ca066f0a45dc2fa79cc6237e.wav",
+        "kind": "encode",
+        "source": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd"
+      },
+      "63dae69ebd6884994ae149e793a8253d1b1b30883f50beef254b78861e9d47f1": {
+        "file": "63dae69ebd6884994ae149e793a8253d1b1b30883f50beef254b78861e9d47f1.wav",
+        "impl_version": 1,
+        "inputs": [
+          "701ad91b9faa9dfdf5df5fc29dcf63caadeeeeabd29a1d831adc21b51dcd4db4"
+        ],
+        "kind": "pace",
+        "node_hash": "a766b80bfcf17e26262c27dd5deee44660eed135e5d9c6f23d108ffc46b86b71",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-4"
+      },
+      "68012820ba6309e729637cc2c76830d87e8fceef305a962e10a87d3903ef4ab6": {
+        "file": "68012820ba6309e729637cc2c76830d87e8fceef305a962e10a87d3903ef4ab6.wav",
+        "impl_version": 2,
+        "inputs": [
+          "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493",
+          "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1",
+          "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702",
+          "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe",
+          "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914",
+          "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41",
+          "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936",
+          "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420",
+          "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e",
+          "41e2e3f8a977efe10a8e0c5f538e37fbca40b16c84d27889c6fe4fb54f2fac78",
+          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+        ],
+        "kind": "mix",
+        "node_hash": "829c5a518411e3e78d909f5aff16871b9de117138c03870655a97b15c07544e3",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 61690,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        }
+      },
+      "69201b8e1c4236a5412d855e97d8b717ebe1633d37efd0eb111f5b88a3e616db": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "69201b8e1c4236a5412d855e97d8b717ebe1633d37efd0eb111f5b88a3e616db.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "8047b0b4305f5118b5c1462fe7fed8226456a9b27f1167373d398f8995358ded",
+        "seed": 115
+      },
+      "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702": {
+        "file": "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e2de61cbe42c3289fc7714cce99e0bde20185898597ed5bedba41ead1340906a"
+        ],
+        "kind": "track",
+        "node_hash": "3cce944374a5473845cdcd3c7a7fa69098aa2229365cf1a455162c9fb5a18eb2",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14825,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "6c5daec21d5769c4b345e47ba726061df45ef4455e1820f065ed4309d26daf3e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "6c5daec21d5769c4b345e47ba726061df45ef4455e1820f065ed4309d26daf3e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "219dfd44760776536e64f77d7ba9c6bb29fc0fc1439020c54c275e15619c210a",
+        "seed": 105
+      },
+      "701ad91b9faa9dfdf5df5fc29dcf63caadeeeeabd29a1d831adc21b51dcd4db4": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "701ad91b9faa9dfdf5df5fc29dcf63caadeeeeabd29a1d831adc21b51dcd4db4.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "82a88c8575961ff2a7bf16c0df2adb0c0c121845fe05ee259a10b6b4d23d0280",
+        "seed": 105
+      },
+      "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe": {
+        "file": "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe.wav",
+        "impl_version": 1,
+        "inputs": [
+          "63dae69ebd6884994ae149e793a8253d1b1b30883f50beef254b78861e9d47f1"
+        ],
+        "kind": "track",
+        "node_hash": "e3f42d138bd8b4899742e6ef134be65078d63bdfa82e5b34fc195c5b7ec95705",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 24979,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936": {
+        "file": "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936.wav",
+        "impl_version": 1,
+        "inputs": [
+          "aa4d721c35fddfd050a00e426bfa34de302f88e235be11284fb3731ccdefd851"
+        ],
+        "kind": "track",
+        "node_hash": "49f67c0f830d0922096ff50a1cfd42b96ff1f1a5fa8300e39d05985f0ed482f5",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 40016,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "81e59f93ad281842606e312d51de46c4afbe0060261c4e24d338a9f677c0e3bd": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "81e59f93ad281842606e312d51de46c4afbe0060261c4e24d338a9f677c0e3bd.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "8e0e5d0aa0783e6796a6266307b160a878ba4bdd9543a805d947881024b3f7bb",
+        "seed": 115
+      },
+      "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420": {
+        "file": "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2a5f213c9eb2cebeb09946c31709953efe8d0a609e53b3333ec13b8a797eed31"
+        ],
+        "kind": "track",
+        "node_hash": "4a6a2ddda74bafe4d42c64d80ebcfc1f375bc87579a62361fe10e8b8271a49c2",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 47092,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e": {
+        "file": "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e.wav",
+        "impl_version": 1,
+        "inputs": [
+          "990fa516c0bd707b34e933c97fcd4151cbd10c05d631db7ed7ed13947dd41c71"
+        ],
+        "kind": "track",
+        "node_hash": "961a5fb8fae95b6979bdd8734b32c341691ed39c51ad22fa7584d7102b5ad507",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 54244,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "879a661fb8f299d1e34f7f08601250420f7b8137ad2bbf284fb7b756f338d853": {
+        "file": "879a661fb8f299d1e34f7f08601250420f7b8137ad2bbf284fb7b756f338d853.wav",
+        "impl_version": 1,
+        "inputs": [
+          "fc4424a609639d10b6d5dbac6c7499ed12cd8bd3e3e69787522e5b2cc5f75cbf"
+        ],
+        "kind": "pace",
+        "node_hash": "813b92e165791eaad159db050c4b9cd14e16ae05bcde488fdea47c4870a59f28",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "990fa516c0bd707b34e933c97fcd4151cbd10c05d631db7ed7ed13947dd41c71": {
+        "file": "990fa516c0bd707b34e933c97fcd4151cbd10c05d631db7ed7ed13947dd41c71.wav",
+        "impl_version": 1,
+        "inputs": [
+          "69201b8e1c4236a5412d855e97d8b717ebe1633d37efd0eb111f5b88a3e616db"
+        ],
+        "kind": "pace",
+        "node_hash": "197c0b1babe9ada6e0dea857f08727f8cc3f922bb24aede17ca5ede8b26e83e1",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "utterance_id": "line-9"
+      },
+      "aa4d721c35fddfd050a00e426bfa34de302f88e235be11284fb3731ccdefd851": {
+        "file": "aa4d721c35fddfd050a00e426bfa34de302f88e235be11284fb3731ccdefd851.wav",
+        "impl_version": 1,
+        "inputs": [
+          "c968ee2d6292d523ec6af6c8952d7067d2c97943445943d30459daf929f6ff66"
+        ],
+        "kind": "pace",
+        "node_hash": "07123ba9c8bf00521fe0999e9af038baf6690c18dfd92c8212c3e5d1253098c8",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "utterance_id": "line-7"
+      },
+      "abb3805820c406ecef880ffe080accbd9eacf6171f7487575abef851570b2711": {
+        "file": "abb3805820c406ecef880ffe080accbd9eacf6171f7487575abef851570b2711.wav",
+        "impl_version": 1,
+        "inputs": [
+          "c1a3fd96761f45853c2e8f0626c2df1e3d3ed980889bccbc8642f217d7081949"
+        ],
+        "kind": "pace",
+        "node_hash": "087bebcf68568fa03695bf891c4cded592656406bb541c4e60e7ab563baf7951",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "ace588bfa95592ae7896453e1650747e60edd1639e689793d651b6bea0b4a889": {
+        "file": "ace588bfa95592ae7896453e1650747e60edd1639e689793d651b6bea0b4a889.wav",
+        "impl_version": 2,
+        "inputs": [
+          "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493",
+          "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1",
+          "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702",
+          "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe",
+          "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914",
+          "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41",
+          "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936",
+          "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420",
+          "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e",
+          "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed"
+        ],
+        "kind": "mix",
+        "node_hash": "0d8d2637c2d58a718d64d183c67b6c39462020c26d37d41ff81dfeee88321614",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        }
+      },
+      "b8f8f66b159009aaf142cf8620de5140eaf9f4581a46628e5ca64f91d6a31d55": {
+        "file": "b8f8f66b159009aaf142cf8620de5140eaf9f4581a46628e5ca64f91d6a31d55.wav",
+        "impl_version": 1,
+        "inputs": [
+          "419726a66188b5afa1e1615e8010433a328409f0966501df4de9d62810b684f6"
+        ],
+        "kind": "pace",
+        "node_hash": "fa6e5e799ffe67b74223f259d5cb067e9c993dd0ea02b06e012fc8d8090e40d5",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-6"
+      },
+      "c1a3fd96761f45853c2e8f0626c2df1e3d3ed980889bccbc8642f217d7081949": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "c1a3fd96761f45853c2e8f0626c2df1e3d3ed980889bccbc8642f217d7081949.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "f9c32eb4b0eccbab6e1874b58ef4871d057e3d933ebec533e0790d288415f296",
+        "seed": 105
+      },
+      "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.45,
+          "early_reflections": 6,
+          "lowpass_hz": 6500.0,
+          "pre_delay_ms": 8,
+          "seed": 1102
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "c968ee2d6292d523ec6af6c8952d7067d2c97943445943d30459daf929f6ff66": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "c968ee2d6292d523ec6af6c8952d7067d2c97943445943d30459daf929f6ff66.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "59164bf366a715b20d8015231dc0b77994789eace552a9dba4a95ff18d0b247f",
+        "seed": 115
+      },
+      "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914": {
+        "file": "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914.wav",
+        "impl_version": 1,
+        "inputs": [
+          "0445f0c9db2f28e477f06b7db6e0283f179b5551fca70fbf3fcd6a76ccac2339"
+        ],
+        "kind": "track",
+        "node_hash": "0d19161f639de9035bdb9051dd2e7a4dc608eaf8ab73a49c124f412c137b5a5c",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 31238,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "e2de61cbe42c3289fc7714cce99e0bde20185898597ed5bedba41ead1340906a": {
+        "file": "e2de61cbe42c3289fc7714cce99e0bde20185898597ed5bedba41ead1340906a.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e3a1417f7fe16bbcc38bf030b971dad93fc0d9a99af9c1a64bdb8bd898764a1c"
+        ],
+        "kind": "pace",
+        "node_hash": "d8ae6250125bf99d6f2bdc1b37cb9256e5a87bb966e1b202a0cb1b6466c021b6",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "e3a1417f7fe16bbcc38bf030b971dad93fc0d9a99af9c1a64bdb8bd898764a1c": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "e3a1417f7fe16bbcc38bf030b971dad93fc0d9a99af9c1a64bdb8bd898764a1c.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "703f9489182e4da8e2efbdc2696d1c3156df97fdd8d15f6b6e8904ccf3adb3c6",
+        "seed": 115
+      },
+      "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1": {
+        "file": "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1.wav",
+        "impl_version": 1,
+        "inputs": [
+          "abb3805820c406ecef880ffe080accbd9eacf6171f7487575abef851570b2711"
+        ],
+        "kind": "track",
+        "node_hash": "6ab26715c7fa16d0bf035a410b5489915c030ab605c2e6594c475a235a86ab67",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5198,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "fc4424a609639d10b6d5dbac6c7499ed12cd8bd3e3e69787522e5b2cc5f75cbf": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "fc4424a609639d10b6d5dbac6c7499ed12cd8bd3e3e69787522e5b2cc5f75cbf.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "db37cf18e949568831354b458f69ee149d8a7574e033e0fce308950f58ab753c",
+        "seed": 115
+      }
+    },
+    "created_at": "2026-11-01T23:34:47.609214+00:00",
+    "duration_ms": 62590,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "fc4424a609639d10b6d5dbac6c7499ed12cd8bd3e3e69787522e5b2cc5f75cbf",
+        "cached": false,
+        "hash": "e6420cf20e3b901c9e51427f883320031dc0e17120d95c42daff3e027de81505",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Du hast ja gar keine Zigarette in der Hand, Sabine. Hast du aufgehört?",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "879a661fb8f299d1e34f7f08601250420f7b8137ad2bbf284fb7b756f338d853",
+        "cached": false,
+        "hash": "813b92e165791eaad159db050c4b9cd14e16ae05bcde488fdea47c4870a59f28",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "c1a3fd96761f45853c2e8f0626c2df1e3d3ed980889bccbc8642f217d7081949",
+        "cached": false,
+        "hash": "5c7472d8add998540504c358d1bc366076ca6c73a2475e6e7437e3ce94d62ae8",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Ich versuche es zum vierten Mal. Einmal mit Pflaster, einmal ganz ohne Hilfe. Nach zwei Wochen habe ich immer wieder angefangen.",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "abb3805820c406ecef880ffe080accbd9eacf6171f7487575abef851570b2711",
+        "cached": false,
+        "hash": "087bebcf68568fa03695bf891c4cded592656406bb541c4e60e7ab563baf7951",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "e3a1417f7fe16bbcc38bf030b971dad93fc0d9a99af9c1a64bdb8bd898764a1c",
+        "cached": false,
+        "hash": "d019e89164953f7dad990728c7ec6a9ac74dc00949a3d26e73c8b31bb83eebd6",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Das kenne ich. Ich will dir keine Vorwürfe machen. Aber wenn ich du wäre, würde ich mich beraten lassen. Mir hat das sehr geholfen.",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "e2de61cbe42c3289fc7714cce99e0bde20185898597ed5bedba41ead1340906a",
+        "cached": false,
+        "hash": "d8ae6250125bf99d6f2bdc1b37cb9256e5a87bb966e1b202a0cb1b6466c021b6",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "701ad91b9faa9dfdf5df5fc29dcf63caadeeeeabd29a1d831adc21b51dcd4db4",
+        "cached": false,
+        "hash": "c41fea7f0cbaea9fb2809993956dd2970abe222d4b8f7eb58c0500539ee241ae",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Beraten lassen? So schlimm ist es doch nicht. Das ist ja keine Sucht wie Alkohol.",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "63dae69ebd6884994ae149e793a8253d1b1b30883f50beef254b78861e9d47f1",
+        "cached": false,
+        "hash": "a766b80bfcf17e26262c27dd5deee44660eed135e5d9c6f23d108ffc46b86b71",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "81e59f93ad281842606e312d51de46c4afbe0060261c4e24d338a9f677c0e3bd",
+        "cached": false,
+        "hash": "1a26b5993f122c2196fb097ebbad14cbb27e65818d58d51fe20be80104f5a75b",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Doch, Rauchen ist auch eine Sucht. Das hat nichts damit zu tun, dass jemand schwach ist.",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "0445f0c9db2f28e477f06b7db6e0283f179b5551fca70fbf3fcd6a76ccac2339",
+        "cached": false,
+        "hash": "ebfdae1c08489c01cf872deb97b8fe66a9ea4f3c74aeffc57c8c582844c65b57",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "419726a66188b5afa1e1615e8010433a328409f0966501df4de9d62810b684f6",
+        "cached": false,
+        "hash": "2392f1cf261e6a92cedb7c8a4b9d64b8c6c2c0db56614efdfc8cc93f6e3041ee",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Und was hast du anders gemacht?",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "b8f8f66b159009aaf142cf8620de5140eaf9f4581a46628e5ca64f91d6a31d55",
+        "cached": false,
+        "hash": "fa6e5e799ffe67b74223f259d5cb067e9c993dd0ea02b06e012fc8d8090e40d5",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "c968ee2d6292d523ec6af6c8952d7067d2c97943445943d30459daf929f6ff66",
+        "cached": false,
+        "hash": "690830dd51ac5982ce5f266d7f7f576831ef9c6890e6e381f957df964bd9b76d",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Ich habe eine Zeit lang den Kaffee am Morgen sein lassen. Zum Kaffee habe ich nämlich immer geraucht.",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "aa4d721c35fddfd050a00e426bfa34de302f88e235be11284fb3731ccdefd851",
+        "cached": false,
+        "hash": "07123ba9c8bf00521fe0999e9af038baf6690c18dfd92c8212c3e5d1253098c8",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "6c5daec21d5769c4b345e47ba726061df45ef4455e1820f065ed4309d26daf3e",
+        "cached": false,
+        "hash": "9ce81f4f1109559da3bf834a6da40674af957601b391ae0f2934f0475eab4b43",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Bei mir sind es die Pausen. Wenn ich nicht jeden Tag mit den Kollegen rauchen würde, wäre es viel leichter.",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "2a5f213c9eb2cebeb09946c31709953efe8d0a609e53b3333ec13b8a797eed31",
+        "cached": false,
+        "hash": "e0af8d1f3acd869bf68922506fd1543fd81b4643f5ee6c78ff176d7d28ffb36f",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "69201b8e1c4236a5412d855e97d8b717ebe1633d37efd0eb111f5b88a3e616db",
+        "cached": false,
+        "hash": "cd9c93fba2ba90e5cae067c781cf8653162e215ee84bc5724cf8915af91ba6ce",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 115,
+            "style": null,
+            "text": "Dann geh in der Pause doch mit einem Nichtraucher spazieren. Und wenn es diesmal nicht klappt, versuchst du es eben noch einmal.",
+            "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "990fa516c0bd707b34e933c97fcd4151cbd10c05d631db7ed7ed13947dd41c71",
+        "cached": false,
+        "hash": "197c0b1babe9ada6e0dea857f08727f8cc3f922bb24aede17ca5ede8b26e83e1",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.89,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "41904db7ac48a0af80fb84c4a7f270e4acf417df202d56f0213eb6ecc35f2184",
+        "cached": true,
+        "hash": "2e235f6612f83bb60b72529f1a15937bef0e6335fb8030ca3ec4014a2958e6cd",
+        "impl_version": 1,
+        "params": {
+          "engine": "stable_audio_sfx",
+          "engine_revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+          "request": {
+            "duration_seconds": 40.0,
+            "negative_prompt": null,
+            "params": {},
+            "prompt": "Quiet home kitchen ambience, a refrigerator humming softly, a spoon set down on a counter, a kettle far away, no voices, no music",
+            "seed": 5210
+          }
+        },
+        "type": "sound-gen"
+      },
+      {
+        "asset": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+        "cached": true,
+        "hash": "ffd102902ac4774587da4918177de2cc79ba5d39cbb1a5ac5e310654eea67472",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.45,
+            "early_reflections": 6,
+            "lowpass_hz": 6500.0,
+            "pre_delay_ms": 8,
+            "seed": 1102
+          },
+          "rate": 48000,
+          "room": "small-room",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "0f2eeac28cfe53a5f37a620ecac8d80ba298eba356e2db8142ee98bfed131493",
+        "cached": false,
+        "hash": "f75e89c95f9f9bd069feee4fa0f8f73f2a5913a8b613981bfc3574bcacb17014",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "e44bdf6a952bd9e67cb270bc7bfe57de8a3891f78359444923a08ccd0b07f9b1",
+        "cached": false,
+        "hash": "6ab26715c7fa16d0bf035a410b5489915c030ab605c2e6594c475a235a86ab67",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5198,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "6a6fa76b8cc72d7dba276dfc8befdd279deaf6860b4912e3f961278d69018702",
+        "cached": false,
+        "hash": "3cce944374a5473845cdcd3c7a7fa69098aa2229365cf1a455162c9fb5a18eb2",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14825,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "75a192263477db08fca94ec428793cebc7cf17c9cd2c66c80f320593b63357fe",
+        "cached": false,
+        "hash": "e3f42d138bd8b4899742e6ef134be65078d63bdfa82e5b34fc195c5b7ec95705",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 24979,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "cebceedd8100d6eb936c2ea87d6e4fd572d5e20f4fa3a55ccc7efab68d777914",
+        "cached": false,
+        "hash": "0d19161f639de9035bdb9051dd2e7a4dc608eaf8ab73a49c124f412c137b5a5c",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 31238,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "0f0f57105cb73ff4f3331c1cb8c422f78c5138f40b4cd0360fd9cb5a7de93b41",
+        "cached": false,
+        "hash": "879d266aa9241c5c5000c184b071b43863ade451ef05e031188e2093c8786d13",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 37675,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "774c498957299a069cf8f82fb3667fd6a08acd468ea1ed9b9852e0665d713936",
+        "cached": false,
+        "hash": "49f67c0f830d0922096ff50a1cfd42b96ff1f1a5fa8300e39d05985f0ed482f5",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 40016,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "82631f0fba5122493ab0376ab62c4d2889c394db1edb6b3c7473ec8e25853420",
+        "cached": false,
+        "hash": "4a6a2ddda74bafe4d42c64d80ebcfc1f375bc87579a62361fe10e8b8271a49c2",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 47092,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "87503e2f80b7381d2edb56b77b0602044e479460357e1476476f100bc25a128e",
+        "cached": false,
+        "hash": "961a5fb8fae95b6979bdd8734b32c341691ed39c51ad22fa7584d7102b5ad507",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 54244,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "ace588bfa95592ae7896453e1650747e60edd1639e689793d651b6bea0b4a889",
+        "cached": false,
+        "hash": "0d8d2637c2d58a718d64d183c67b6c39462020c26d37d41ff81dfeee88321614",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "41e2e3f8a977efe10a8e0c5f538e37fbca40b16c84d27889c6fe4fb54f2fac78",
+        "cached": false,
+        "hash": "30c7feaabf25c13e78fb6b34aefc1479ed9159b379ededa29f80ba7ee5501998",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "gain_db": -28.0,
+          "level": "dialogue",
+          "loop": true,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": 62590
+        },
+        "type": "track"
+      },
+      {
+        "asset": "68012820ba6309e729637cc2c76830d87e8fceef305a962e10a87d3903ef4ab6",
+        "cached": false,
+        "hash": "829c5a518411e3e78d909f5aff16871b9de117138c03870655a97b15c07544e3",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-9"
+            },
+            {
+              "bus": "ambience",
+              "fade_in_ms": 600,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 900,
+              "fade_out_start_ms": 61690,
+              "send_db": null,
+              "stem_id": "ambience-1"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "small-room",
+            "ir": "c26caad3420643b799e33e9f58324566ec037979a77a73441bc30276ca5c80ed",
+            "tail_ms": 458,
+            "version": 1,
+            "wet": 0.12
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "4c4ae3803b89483b6f4ed799f634b03cea96dc249b3c0f5a75d9b6f3ef9ae9cd",
+        "cached": false,
+        "hash": "1da1f567bdd1e8ea82f895c0bbde27daa335f8b35995dcb7b22e22407b464959",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "433562b47d221f6effc2be45ce36c3821e156472962a30b7b4833652c7afab0c",
+        "cached": false,
+        "hash": "9e9d4ac63d120ed93257e6a1d23ae6b6c95befb11d4db1b623346f45946aba5d",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "5884246cd2ae6ca1d1eb843b8c4fe7fe39fb6001ca066f0a45dc2fa79cc6237e",
+        "cached": false,
+        "hash": "92a53587092819dfe080eea5bf19d2af5e88a83cd70e76d61302c01e8f0ca049",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "439bc97be1cdd61db78f2b2ef23bf3b0adbeb5da39cfd806c7e308ef19762ad5",
+        "cached": false,
+        "hash": "70b602d5e968536d2e39a7aa0532ba61efa458c6e91d17a83d89626660ed8b9b",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 2,
+    "nodes_evaluated": 34,
+    "timeline": [
+      {
+        "end_ms": 4748,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 14375,
+        "entry_id": "line-2",
+        "start_ms": 5198,
+        "type": "speech"
+      },
+      {
+        "end_ms": 24529,
+        "entry_id": "line-3",
+        "start_ms": 14825,
+        "type": "speech"
+      },
+      {
+        "end_ms": 30788,
+        "entry_id": "line-4",
+        "start_ms": 24979,
+        "type": "speech"
+      },
+      {
+        "end_ms": 37225,
+        "entry_id": "line-5",
+        "start_ms": 31238,
+        "type": "speech"
+      },
+      {
+        "end_ms": 39566,
+        "entry_id": "line-6",
+        "start_ms": 37675,
+        "type": "speech"
+      },
+      {
+        "end_ms": 46642,
+        "entry_id": "line-7",
+        "start_ms": 40016,
+        "type": "speech"
+      },
+      {
+        "end_ms": 53794,
+        "entry_id": "line-8",
+        "start_ms": 47092,
+        "type": "speech"
+      },
+      {
+        "end_ms": 62590,
+        "entry_id": "line-9",
+        "start_ms": 54244,
+        "type": "speech"
+      },
+      {
+        "end_ms": 62590,
+        "entry_id": "ambience-1",
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 4748,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 14375,
+        "start_ms": 5198,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 24529,
+        "start_ms": 14825,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 30788,
+        "start_ms": 24979,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 37225,
+        "start_ms": 31238,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 39566,
+        "start_ms": 37675,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 46642,
+        "start_ms": 40016,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 53794,
+        "start_ms": 47092,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 62590,
+        "start_ms": 54244,
+        "utterance_id": "line-9"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "small-room",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        55,
+        75
+      ],
+      "grammar_target": "irreale Bedingung mit Konjunktiv II, lassen",
+      "level": "B1",
+      "outcomes": [
+        "rat-zum-aufhoeren"
+      ],
+      "scenario": "Zwei Bekannte sprechen über das Aufhören: die eine erzählt, was sie versucht hat, die andere rät vorsichtig und ohne Vorwurf",
+      "topic": "sucht-lebensstil",
+      "vocabulary": [
+        "Zigarette",
+        "aufhören",
+        "Sucht",
+        "Alkohol",
+        "Nichtraucher"
+      ]
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "so-yeon-park",
+          "version": 2
+        },
+        "role": "Miriam",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 115,
+          "style": null,
+          "voice": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "mira",
+          "version": 2
+        },
+        "role": "Sabine",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 105,
+          "style": null,
+          "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Du hast ja gar keine Zigarette in der Hand, Sabine. Hast du aufgehört?",
+        "id": "line-1",
+        "pace": 0.89,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Miriam",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich versuche es zum vierten Mal. Einmal mit Pflaster, einmal ganz ohne Hilfe. Nach zwei Wochen habe ich immer wieder angefangen.",
+        "id": "line-2",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Sabine",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Das kenne ich. Ich will dir keine Vorwürfe machen. Aber wenn ich du wäre, würde ich mich beraten lassen. Mir hat das sehr geholfen.",
+        "id": "line-3",
+        "pace": 0.89,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Miriam",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Beraten lassen? So schlimm ist es doch nicht. Das ist ja keine Sucht wie Alkohol.",
+        "id": "line-4",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Sabine",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Doch, Rauchen ist auch eine Sucht. Das hat nichts damit zu tun, dass jemand schwach ist.",
+        "id": "line-5",
+        "pace": 0.89,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Miriam",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Und was hast du anders gemacht?",
+        "id": "line-6",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Sabine",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich habe eine Zeit lang den Kaffee am Morgen sein lassen. Zum Kaffee habe ich nämlich immer geraucht.",
+        "id": "line-7",
+        "pace": 0.89,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Miriam",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Bei mir sind es die Pausen. Wenn ich nicht jeden Tag mit den Kollegen rauchen würde, wäre es viel leichter.",
+        "id": "line-8",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Sabine",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Dann geh in der Pause doch mit einem Nichtraucher spazieren. Und wenn es diesmal nicht klappt, versuchst du es eben noch einmal.",
+        "id": "line-9",
+        "pace": 0.89,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Miriam",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-sucht-lebensstil-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-4"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-5"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-6"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-7"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-8"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-9"
+      },
+      {
+        "duck_db": 0.0,
+        "end_ms": null,
+        "fade_in_ms": 600,
+        "fade_out_ms": 900,
+        "gain_db": -28.0,
+        "sound": {
+          "duration_seconds": 40.0,
+          "negative_prompt": null,
+          "params": {},
+          "prompt": "Quiet home kitchen ambience, a refrigerator humming softly, a spoon set down on a counter, a kettle far away, no voices, no music",
+          "seed": 5210
+        },
+        "start_ms": 0,
+        "type": "ambience"
+      }
+    ],
+    "title": {
+      "en": "Trying to quit again",
+      "ru": "Снова бросить",
+      "uk": "Знову кинути"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "4d600298f819e86c8ef85794512e0312cda20614baf4daf4b5674f8e4d9ccd61",
+  "script_sha256": "a7dc7bd548eb3116e97a9644bf79a9f9e5f7ee8e7e84c7d584dce5140b0d34d7",
+  "version": 2,
+  "voices": [
+    {
+      "character": "so-yeon-park",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her late thirties speaking clear standard German. Patient, encouraging, medium voice; articulates every phrase cleanly at a moderate pace, warm without sounding slow.",
+      "reference_sha256": "3f334fc3f4967499600e5562063e90b70ada28030683be8ad1a50c6225a66334",
+      "role": "Miriam",
+      "seed": 115,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "mira",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her early twenties speaking clear standard German. Bright, slightly higher voice with lively but calm energy; quick, friendly and practical, with clear sentence endings.",
+      "reference_sha256": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+      "role": "Sabine",
+      "seed": 105,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

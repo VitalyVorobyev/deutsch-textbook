@@ -1,0 +1,1989 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T23:42:50.626460+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-digitales-leben-01-listening.md",
+    "sha256": "afb73e946a76eddc4a28b48c1987900ef74f57ae9adb4821ae084c0d61ef9649"
+  },
+  "id": "ls-digitales-leben-01",
+  "kind": "dialogue",
+  "level": "B1",
+  "master_audio_sha256": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "9e1365f79197a39e1ded432cbd4924b988c1a76920e66ce59056109c4d478595",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "8eb0d57d7b6b9c0d1f97c0d93517f2a314dc5ffacc9772996e10dd0890820363",
+    "soundscape": {
+      "bed_count": 0,
+      "beds": [],
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 2,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 5,
+          "measured_lines": 5,
+          "minimum_similarity": 0.929023388858768,
+          "pitch_max_hz": 135.02350092579405,
+          "pitch_min_hz": 114.28571428571429,
+          "pitch_spread_hz": 20.73778664007976,
+          "speaker": "Herr Lange"
+        },
+        {
+          "line_count": 4,
+          "measured_lines": 4,
+          "minimum_similarity": 0.9364474747007745,
+          "pitch_max_hz": 213.33333333333334,
+          "pitch_min_hz": 182.86311389759663,
+          "pitch_spread_hz": 30.47021943573671,
+          "speaker": "Frau Petrović"
+        }
+      ],
+      "different_characters": [
+        {
+          "similarity": 0.328144873550869,
+          "speakers": [
+            "Herr Lange",
+            "Frau Petrović"
+          ]
+        }
+      ],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9780600060383544,
+          "speaker": "Herr Lange"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.944066645782923,
+          "speaker": "Frau Petrović"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9859518971429468,
+          "speaker": "Herr Lange"
+        },
+        {
+          "line_id": "line-4",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.969201110012051,
+          "speaker": "Frau Petrović"
+        },
+        {
+          "line_id": "line-5",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9893270499588848,
+          "speaker": "Herr Lange"
+        },
+        {
+          "line_id": "line-6",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9364474747007745,
+          "speaker": "Frau Petrović"
+        },
+        {
+          "line_id": "line-7",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9909119811269866,
+          "speaker": "Herr Lange"
+        },
+        {
+          "line_id": "line-8",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9505710963122388,
+          "speaker": "Frau Petrović"
+        },
+        {
+          "line_id": "line-9",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.929023388858768,
+          "speaker": "Herr Lange"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 5173,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 11247,
+        "start_ms": 5623,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 26950,
+        "start_ms": 11697,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 30194,
+        "start_ms": 27400,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 40072,
+        "start_ms": 30644,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 42414,
+        "start_ms": 40522,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 50745,
+        "start_ms": 42864,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 53542,
+        "start_ms": 51195,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 56568,
+        "start_ms": 53992,
+        "utterance_id": "line-9"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T23:40:22.417829+00:00",
+      "failures": [],
+      "full_transcript": "Statt Bibliothek Hilfe für die Lese-App lange am Apparat. Guten Tag. Ich möchte E-Books leihen, aber die Anmeldung in der App funktioniert nicht. Das schaffen wir. Es sind nur zwei Schritte. Zuerst tippen Sie auf Anmelden und geben Ihre Ausweisnummer und Ihr Passwort ein. Die Nummer steht hinten auf Ihrem Bibliotheksausweis. Gut, das habe ich gemacht. Und jetzt? Jetzt bekommen Sie eine E-Mail mit einem Link. Den müssen Sie innerhalb einer Stunde anklicken. Erst danach funktioniert die Anmeldung. Ich sehe aber keine E-Mail. Dann schauen Sie bitte im Ordner für Werbung. Wenn sie dort auch nicht ist, schicke ich Ihnen den Link noch einmal. Ah, da ist sie. Vielen Dank. Gern geschehen. Viel Spaß beim Lesen.",
+      "full_wer": 0.01680672268907563,
+      "lines": [
+        {
+          "expected": "Stadtbibliothek, Hilfe für die Lese-App, Lange am Apparat.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Stadtbibliothek, Hilfe für die Lese-App, lange am Apparat.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Guten Tag. Ich möchte E-Books leihen, aber die Anmeldung in der App funktioniert nicht.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Guten Tag. Ich möchte E-Books leihen, aber die Anmeldung in der App funktioniert nicht.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das schaffen wir. Es sind nur zwei Schritte. Zuerst tippen Sie auf „Anmelden“ und geben Ihre Ausweisnummer und Ihr Passwort ein. Die Nummer steht hinten auf Ihrem Bibliotheksausweis.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das schaffen wir. Es sind nur zwei Schritte. Zuerst tippen Sie auf Anmelden und geben Ihre Ausweisnummer und Ihr Passwort ein. Die Nummer steht hinten auf Ihrem Bibliotheksausweis.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gut, das habe ich gemacht. Und jetzt?",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gut, das habe ich gemacht. Und jetzt...",
+          "wer": 0.0
+        },
+        {
+          "expected": "Jetzt bekommen Sie eine E-Mail mit einem Link. Den müssen Sie innerhalb einer Stunde anklicken. Erst danach funktioniert die Anmeldung.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Jetzt bekommen Sie eine E-Mail mit einem Link. Den müssen Sie innerhalb einer Stunde anklicken. Erst danach funktioniert die Anmeldung.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ich sehe aber keine E-Mail.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ich sehe aber keine E-Mail.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Dann schauen Sie bitte im Ordner für Werbung. Wenn sie dort auch nicht ist, schicke ich Ihnen den Link noch einmal.",
+          "line_id": "line-7",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Dann schauen Sie bitte im Ordner für Werbung. Wenn sie dort auch nicht ist, schicke ich Ihnen den Link noch einmal.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Ah, da ist sie. Vielen Dank!",
+          "line_id": "line-8",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Ah, da ist sie! Vielen Dank!",
+          "wer": 0.0
+        },
+        {
+          "expected": "Gern geschehen. Viel Spaß beim Lesen!",
+          "line_id": "line-9",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Gern geschehen. Viel Spaß beim Lesen.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {},
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": null,
+      "room_version": null,
+      "variant": "natural",
+      "wet": 0.0
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "f74bd56b4b71c6b22d5b469934afdd674e8220957f3e3890586eea48bb3723e9"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "2576c4bb5f29a1b97a241aaabcf4ec1a59d23bfde44056fc4bdb3d3ae593aa79"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "0642f721fd5027f8a8d2a6f948ef70a8447967d0bff584219bb7409c0426bb95"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-4.wav",
+        "sha256": "fbd26d69c9cc6784253c2c96695e49eac800dede1f8bc6395ecbf5bbfccc0515"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-5.wav",
+        "sha256": "a407f4d7a83c2770edd2fdc1917a7a0e67aaa8858d8ff8ba4bf9c71b94f9f915"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-6.wav",
+        "sha256": "ebd41487c8daeb1d6b6cb559e9d7aa143094cb41e79de7190edda2b6cb0f0dee"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-7.wav",
+        "sha256": "f6e2243f217bef1767cd65da3ef7b73c1c508534e69fb40491c76bea25146fae"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-8.wav",
+        "sha256": "46f13daf3fc4d6bb993cd124c8c56a35cc182d81b77d2c4e84a98a0f4d850285"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-9.wav",
+        "sha256": "f21e512c7ea018d6d24a9e89fc0b4901dc61f874effd3171cc76d422e33237f0"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "29c3fcf15dc94f72f67dd1d6d68cfa9d3a6db2a235d5a7dbf6a2f0c681fdf51f"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "9e1365f79197a39e1ded432cbd4924b988c1a76920e66ce59056109c4d478595"
+      }
+    ],
+    "assets": {
+      "0642f721fd5027f8a8d2a6f948ef70a8447967d0bff584219bb7409c0426bb95": {
+        "file": "0642f721fd5027f8a8d2a6f948ef70a8447967d0bff584219bb7409c0426bb95.wav",
+        "impl_version": 1,
+        "inputs": [
+          "533ce63f7c0ae45269aa11eb738846645f112891774f68d632053a8ac5878ee2"
+        ],
+        "kind": "track",
+        "node_hash": "58271c60cd1714f08fd8c18e2fa759be8c2a2fb64f3703647f3cb9bcf61efd1e",
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 11697,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21": {
+        "file": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21.wav",
+        "impl_version": 1,
+        "inputs": [
+          "ec1d4404d831ecca64d660fe0abce15053401ed0222a229b3a15ab20d635c17c"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "7ea4a645c125538ad2912ad1e7748bc02219c61d2d97e488b1c63dbeb0ba8f3e",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "2576c4bb5f29a1b97a241aaabcf4ec1a59d23bfde44056fc4bdb3d3ae593aa79": {
+        "file": "2576c4bb5f29a1b97a241aaabcf4ec1a59d23bfde44056fc4bdb3d3ae593aa79.wav",
+        "impl_version": 1,
+        "inputs": [
+          "37c1aaaeffb8d6ed3c37f444f66b176ea4c772c34eddc8c215c28d7fe91b0173"
+        ],
+        "kind": "track",
+        "node_hash": "971863cd00bebadddd256a87e44d6e2feb9493b2ad214c1f0fc3d1ff395c8e87",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5623,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "29c3fcf15dc94f72f67dd1d6d68cfa9d3a6db2a235d5a7dbf6a2f0c681fdf51f": {
+        "encoding": "qa",
+        "file": "29c3fcf15dc94f72f67dd1d6d68cfa9d3a6db2a235d5a7dbf6a2f0c681fdf51f.wav",
+        "kind": "encode",
+        "source": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21"
+      },
+      "2aaa2b662353dd9a90d2ffbe8f074e916bdbd7ad246ba076d37626cbe6e58a52": {
+        "file": "2aaa2b662353dd9a90d2ffbe8f074e916bdbd7ad246ba076d37626cbe6e58a52.wav",
+        "impl_version": 1,
+        "inputs": [
+          "d1d63bef504ec704162410cbb605fcbb10a2b01c1b9cb91c97b3d1e7f34c2739"
+        ],
+        "kind": "pace",
+        "node_hash": "a263874c334cb488bc3958c637ce1b8baf5a31cb68a6a3b6961a9689a933d661",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-6"
+      },
+      "2ef29d344a3b7a766f5e629325de9a1d8cc8a764b86d976211ec38c82ae4b61e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "2ef29d344a3b7a766f5e629325de9a1d8cc8a764b86d976211ec38c82ae4b61e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "9634e8cd058f7c132cf8b6629ded7897119c2bfd85ab3be21f53aed1ea855ef1",
+        "seed": 105
+      },
+      "37c1aaaeffb8d6ed3c37f444f66b176ea4c772c34eddc8c215c28d7fe91b0173": {
+        "file": "37c1aaaeffb8d6ed3c37f444f66b176ea4c772c34eddc8c215c28d7fe91b0173.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2ef29d344a3b7a766f5e629325de9a1d8cc8a764b86d976211ec38c82ae4b61e"
+        ],
+        "kind": "pace",
+        "node_hash": "2a7c17efe3768898725084226545e1b25cd01e7ea7b29fb31a9852687f825bc5",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "46f13daf3fc4d6bb993cd124c8c56a35cc182d81b77d2c4e84a98a0f4d850285": {
+        "file": "46f13daf3fc4d6bb993cd124c8c56a35cc182d81b77d2c4e84a98a0f4d850285.wav",
+        "impl_version": 1,
+        "inputs": [
+          "a0f5700547766a57a1c314fba62043e82c34ef95ebcffb080ad4cd8f7e789670"
+        ],
+        "kind": "track",
+        "node_hash": "b0910391b48b1ad89631122d0e31ff755e0145c6d2e28eda77e2523d16253f2a",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 51195,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "533ce63f7c0ae45269aa11eb738846645f112891774f68d632053a8ac5878ee2": {
+        "file": "533ce63f7c0ae45269aa11eb738846645f112891774f68d632053a8ac5878ee2.wav",
+        "impl_version": 1,
+        "inputs": [
+          "67e864c822e9da9c17e3fe98b79bcf9bf42a90648d26cb6dd4e27894634aa011"
+        ],
+        "kind": "pace",
+        "node_hash": "38d058809d3db5bce0b4ecef44b147491e0a824b7134ab04e32595d43a056f84",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "65e20aacac2164e16ce56f5c4d89db1b6b2812db4401acc1a4cd1ead06da0b9e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "65e20aacac2164e16ce56f5c4d89db1b6b2812db4401acc1a4cd1ead06da0b9e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "5232d6eabd96f77607472d60789af13c8f688eb5d5d472f015c508abdb24120f",
+        "seed": 125
+      },
+      "67e864c822e9da9c17e3fe98b79bcf9bf42a90648d26cb6dd4e27894634aa011": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "67e864c822e9da9c17e3fe98b79bcf9bf42a90648d26cb6dd4e27894634aa011.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "601e1b5038b79df91ecd6cef5f8c3208caa3741200dcefdc10073fc2efed393a",
+        "seed": 125
+      },
+      "72d6dcf44241b6319b58cfcef34b8099d9e71d2269e820f573d96f78448c02cd": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "72d6dcf44241b6319b58cfcef34b8099d9e71d2269e820f573d96f78448c02cd.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "e40132b7bf65d73eb424c86a11200e25d2ab1d4dfc83aaa76cb056fa17f21b79",
+        "seed": 125
+      },
+      "9e1365f79197a39e1ded432cbd4924b988c1a76920e66ce59056109c4d478595": {
+        "encoding": "publish",
+        "file": "9e1365f79197a39e1ded432cbd4924b988c1a76920e66ce59056109c4d478595.mp3",
+        "kind": "encode",
+        "source": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21"
+      },
+      "a0f5700547766a57a1c314fba62043e82c34ef95ebcffb080ad4cd8f7e789670": {
+        "file": "a0f5700547766a57a1c314fba62043e82c34ef95ebcffb080ad4cd8f7e789670.wav",
+        "impl_version": 1,
+        "inputs": [
+          "b4e46f2f463fa70af2164955b1c9c94a013ea86062da19a51a664751cee75c9f"
+        ],
+        "kind": "pace",
+        "node_hash": "47bac5e651c1d88ec3114f3e90d10a8364d9fc142f839b5ded5e007f1dc53c6e",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-8"
+      },
+      "a407f4d7a83c2770edd2fdc1917a7a0e67aaa8858d8ff8ba4bf9c71b94f9f915": {
+        "file": "a407f4d7a83c2770edd2fdc1917a7a0e67aaa8858d8ff8ba4bf9c71b94f9f915.wav",
+        "impl_version": 1,
+        "inputs": [
+          "eab2c4acce96609a2e4078c1af13786def28222ff89eb3dede39e8480263d218"
+        ],
+        "kind": "track",
+        "node_hash": "5af47db9c95487dd1042a20aa130a63a079bc97cced84c22e7806299f88e6cb3",
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 30644,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "b4e46f2f463fa70af2164955b1c9c94a013ea86062da19a51a664751cee75c9f": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "b4e46f2f463fa70af2164955b1c9c94a013ea86062da19a51a664751cee75c9f.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "559a31cead18d608c3b1fb20c73d5b3ad6a42c38ba7310b434c49e0d7deac95f",
+        "seed": 105
+      },
+      "bc6887b723d3e9570ec6d20b48fbeb52f1cf2d41d980067bf71c3225f33c666b": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "bc6887b723d3e9570ec6d20b48fbeb52f1cf2d41d980067bf71c3225f33c666b.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "1d370146fac267612881cdc44d297a8bbf8d1b668e2467b98a05973c18337a10",
+        "seed": 125
+      },
+      "ca0b3b44e548081728965c1bc477dbc4cc22b260f5691cc317586850aca9a05f": {
+        "file": "ca0b3b44e548081728965c1bc477dbc4cc22b260f5691cc317586850aca9a05f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e62f3ac7941ecb4b140838df55a73ff563b73a5f1de4708040bf6e5249cf236c"
+        ],
+        "kind": "pace",
+        "node_hash": "4a71620fad6127fc65ae03de8cce3d23858a007ee6366092427266ada9863bec",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "cb4df5d14e59ff342b3eeda4ab98a21869d1b1e699650a6abfb04fdf2e929c0a": {
+        "file": "cb4df5d14e59ff342b3eeda4ab98a21869d1b1e699650a6abfb04fdf2e929c0a.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f2724b5b57f729d61322b0001e2cdf057255f6c016d4cedc0180af5f64733fc3"
+        ],
+        "kind": "pace",
+        "node_hash": "7668da6ffb2322940619682f3c538b6580e0c04383a58d130b8bad85172fad49",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "utterance_id": "line-4"
+      },
+      "d1d63bef504ec704162410cbb605fcbb10a2b01c1b9cb91c97b3d1e7f34c2739": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "d1d63bef504ec704162410cbb605fcbb10a2b01c1b9cb91c97b3d1e7f34c2739.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "cf1b1133b802b0f91f384536fd098e08b0dd9acef69120df63873b41a10dae8f",
+        "seed": 105
+      },
+      "e62f3ac7941ecb4b140838df55a73ff563b73a5f1de4708040bf6e5249cf236c": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "e62f3ac7941ecb4b140838df55a73ff563b73a5f1de4708040bf6e5249cf236c.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "b945a396b14fbf2e5987e67d1e61f2a99863eaefd936c1f3b1b9baa8ff180e6c",
+        "seed": 125
+      },
+      "ea81f68ed5cf058c8e5980fe4dc4b52806868cd830929ef6f420ec1664b6b83a": {
+        "file": "ea81f68ed5cf058c8e5980fe4dc4b52806868cd830929ef6f420ec1664b6b83a.wav",
+        "impl_version": 1,
+        "inputs": [
+          "bc6887b723d3e9570ec6d20b48fbeb52f1cf2d41d980067bf71c3225f33c666b"
+        ],
+        "kind": "pace",
+        "node_hash": "b18315840ccd671660c45e26dbdc8b251710ad2b8cc70b177b65b8c3c24d08be",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-7"
+      },
+      "eab2c4acce96609a2e4078c1af13786def28222ff89eb3dede39e8480263d218": {
+        "file": "eab2c4acce96609a2e4078c1af13786def28222ff89eb3dede39e8480263d218.wav",
+        "impl_version": 1,
+        "inputs": [
+          "72d6dcf44241b6319b58cfcef34b8099d9e71d2269e820f573d96f78448c02cd"
+        ],
+        "kind": "pace",
+        "node_hash": "57b32b45743b8d232bea2cb9fa047ed6802107d7b5ce461cb10fb5222b4e92b7",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-5"
+      },
+      "ebd41487c8daeb1d6b6cb559e9d7aa143094cb41e79de7190edda2b6cb0f0dee": {
+        "file": "ebd41487c8daeb1d6b6cb559e9d7aa143094cb41e79de7190edda2b6cb0f0dee.wav",
+        "impl_version": 1,
+        "inputs": [
+          "2aaa2b662353dd9a90d2ffbe8f074e916bdbd7ad246ba076d37626cbe6e58a52"
+        ],
+        "kind": "track",
+        "node_hash": "93cb679e42ea22fa9eb850576c77fa3f1264a18ff341d05305ed9aef8310f2c6",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 40522,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "ec1d4404d831ecca64d660fe0abce15053401ed0222a229b3a15ab20d635c17c": {
+        "file": "ec1d4404d831ecca64d660fe0abce15053401ed0222a229b3a15ab20d635c17c.wav",
+        "impl_version": 2,
+        "inputs": [
+          "f74bd56b4b71c6b22d5b469934afdd674e8220957f3e3890586eea48bb3723e9",
+          "2576c4bb5f29a1b97a241aaabcf4ec1a59d23bfde44056fc4bdb3d3ae593aa79",
+          "0642f721fd5027f8a8d2a6f948ef70a8447967d0bff584219bb7409c0426bb95",
+          "fbd26d69c9cc6784253c2c96695e49eac800dede1f8bc6395ecbf5bbfccc0515",
+          "a407f4d7a83c2770edd2fdc1917a7a0e67aaa8858d8ff8ba4bf9c71b94f9f915",
+          "ebd41487c8daeb1d6b6cb559e9d7aa143094cb41e79de7190edda2b6cb0f0dee",
+          "f6e2243f217bef1767cd65da3ef7b73c1c508534e69fb40491c76bea25146fae",
+          "46f13daf3fc4d6bb993cd124c8c56a35cc182d81b77d2c4e84a98a0f4d850285",
+          "f21e512c7ea018d6d24a9e89fc0b4901dc61f874effd3171cc76d422e33237f0"
+        ],
+        "kind": "mix",
+        "node_hash": "9df9296c57ba95c406328af9d12b2ac5da994f75d95a985bdea525c6516eb5fa",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-9"
+            }
+          ],
+          "rate": 48000
+        }
+      },
+      "f21e512c7ea018d6d24a9e89fc0b4901dc61f874effd3171cc76d422e33237f0": {
+        "file": "f21e512c7ea018d6d24a9e89fc0b4901dc61f874effd3171cc76d422e33237f0.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f987a90f07bfe505d3e6ee03e817be9f73244c36ec7dc57e9ad9075af303456f"
+        ],
+        "kind": "track",
+        "node_hash": "522274a605673a4d5dc554aaf02208885012a685ba0d98411bb0ed77544432f8",
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 53992,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "f2724b5b57f729d61322b0001e2cdf057255f6c016d4cedc0180af5f64733fc3": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "f2724b5b57f729d61322b0001e2cdf057255f6c016d4cedc0180af5f64733fc3.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "62ebc5720fafc2e9cdd412c8c1c619058e28b7595df94eadc03472ebc45b55ca",
+        "seed": 105
+      },
+      "f6e2243f217bef1767cd65da3ef7b73c1c508534e69fb40491c76bea25146fae": {
+        "file": "f6e2243f217bef1767cd65da3ef7b73c1c508534e69fb40491c76bea25146fae.wav",
+        "impl_version": 1,
+        "inputs": [
+          "ea81f68ed5cf058c8e5980fe4dc4b52806868cd830929ef6f420ec1664b6b83a"
+        ],
+        "kind": "track",
+        "node_hash": "0198d31d2e568638df7019e87bff58720f2c1cc97d2e4d5c930e000f8a15e3c5",
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 42864,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "f74bd56b4b71c6b22d5b469934afdd674e8220957f3e3890586eea48bb3723e9": {
+        "file": "f74bd56b4b71c6b22d5b469934afdd674e8220957f3e3890586eea48bb3723e9.wav",
+        "impl_version": 1,
+        "inputs": [
+          "ca0b3b44e548081728965c1bc477dbc4cc22b260f5691cc317586850aca9a05f"
+        ],
+        "kind": "track",
+        "node_hash": "1ede42775427671445575fcde3d2433b8431d284c3d13e036df2f16a8720fd54",
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "f987a90f07bfe505d3e6ee03e817be9f73244c36ec7dc57e9ad9075af303456f": {
+        "file": "f987a90f07bfe505d3e6ee03e817be9f73244c36ec7dc57e9ad9075af303456f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "65e20aacac2164e16ce56f5c4d89db1b6b2812db4401acc1a4cd1ead06da0b9e"
+        ],
+        "kind": "pace",
+        "node_hash": "9c81d8c792098ae9b2488707b586b299eb7405d8dbb33a58a3157875780b415e",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-9"
+      },
+      "fbd26d69c9cc6784253c2c96695e49eac800dede1f8bc6395ecbf5bbfccc0515": {
+        "file": "fbd26d69c9cc6784253c2c96695e49eac800dede1f8bc6395ecbf5bbfccc0515.wav",
+        "impl_version": 1,
+        "inputs": [
+          "cb4df5d14e59ff342b3eeda4ab98a21869d1b1e699650a6abfb04fdf2e929c0a"
+        ],
+        "kind": "track",
+        "node_hash": "e9ce68d32d119591e13cc4f28319f25ce5a3e3984826a6676ff296abc87cc080",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 27400,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      }
+    },
+    "created_at": "2026-11-01T23:40:13.036925+00:00",
+    "duration_ms": 56568,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "e62f3ac7941ecb4b140838df55a73ff563b73a5f1de4708040bf6e5249cf236c",
+        "cached": true,
+        "hash": "9b5b45fcdbbcf1b7b151a86bcb8dfef5d07e48b2005a48b241aaa0e37ce880f8",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Stadtbibliothek, Hilfe für die Lese-App, Lange am Apparat.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "ca0b3b44e548081728965c1bc477dbc4cc22b260f5691cc317586850aca9a05f",
+        "cached": true,
+        "hash": "4a71620fad6127fc65ae03de8cce3d23858a007ee6366092427266ada9863bec",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "2ef29d344a3b7a766f5e629325de9a1d8cc8a764b86d976211ec38c82ae4b61e",
+        "cached": true,
+        "hash": "e7ab75a99c5af1043ce24c17b5f48ced4d4146097d2ca939e162370f9d97a4aa",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Guten Tag. Ich möchte E-Books leihen, aber die Anmeldung in der App funktioniert nicht.",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "37c1aaaeffb8d6ed3c37f444f66b176ea4c772c34eddc8c215c28d7fe91b0173",
+        "cached": true,
+        "hash": "2a7c17efe3768898725084226545e1b25cd01e7ea7b29fb31a9852687f825bc5",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "67e864c822e9da9c17e3fe98b79bcf9bf42a90648d26cb6dd4e27894634aa011",
+        "cached": true,
+        "hash": "b9851e111929bc57fa59fa273178597056c51b79869e81886fbc7413acc7be3a",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Das schaffen wir. Es sind nur zwei Schritte. Zuerst tippen Sie auf „Anmelden“ und geben Ihre Ausweisnummer und Ihr Passwort ein. Die Nummer steht hinten auf Ihrem Bibliotheksausweis.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "533ce63f7c0ae45269aa11eb738846645f112891774f68d632053a8ac5878ee2",
+        "cached": true,
+        "hash": "38d058809d3db5bce0b4ecef44b147491e0a824b7134ab04e32595d43a056f84",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "f2724b5b57f729d61322b0001e2cdf057255f6c016d4cedc0180af5f64733fc3",
+        "cached": true,
+        "hash": "fdbedc7d81aa0ea9639287b602ee11ac5ae69e9d30d436b873a91187a94ccbfb",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Gut, das habe ich gemacht. Und jetzt?",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "cb4df5d14e59ff342b3eeda4ab98a21869d1b1e699650a6abfb04fdf2e929c0a",
+        "cached": true,
+        "hash": "7668da6ffb2322940619682f3c538b6580e0c04383a58d130b8bad85172fad49",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "72d6dcf44241b6319b58cfcef34b8099d9e71d2269e820f573d96f78448c02cd",
+        "cached": true,
+        "hash": "932a0939dcd80c6983a7693ec11794d18ba8f1882c2334e1814910cedcc013e9",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Jetzt bekommen Sie eine E-Mail mit einem Link. Den müssen Sie innerhalb einer Stunde anklicken. Erst danach funktioniert die Anmeldung.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "eab2c4acce96609a2e4078c1af13786def28222ff89eb3dede39e8480263d218",
+        "cached": true,
+        "hash": "57b32b45743b8d232bea2cb9fa047ed6802107d7b5ce461cb10fb5222b4e92b7",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d1d63bef504ec704162410cbb605fcbb10a2b01c1b9cb91c97b3d1e7f34c2739",
+        "cached": true,
+        "hash": "197f40cb0ecf9ebcf939f920bc4dca68daf90ff1b3a269126fac691f3d17b223",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Ich sehe aber keine E-Mail.",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "2aaa2b662353dd9a90d2ffbe8f074e916bdbd7ad246ba076d37626cbe6e58a52",
+        "cached": true,
+        "hash": "a263874c334cb488bc3958c637ce1b8baf5a31cb68a6a3b6961a9689a933d661",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "bc6887b723d3e9570ec6d20b48fbeb52f1cf2d41d980067bf71c3225f33c666b",
+        "cached": true,
+        "hash": "c67bfca388650bdd8841cab4b05c690e2fa21b2c239cbd22cd271ddde610cb6c",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Dann schauen Sie bitte im Ordner für Werbung. Wenn sie dort auch nicht ist, schicke ich Ihnen den Link noch einmal.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "ea81f68ed5cf058c8e5980fe4dc4b52806868cd830929ef6f420ec1664b6b83a",
+        "cached": true,
+        "hash": "b18315840ccd671660c45e26dbdc8b251710ad2b8cc70b177b65b8c3c24d08be",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "b4e46f2f463fa70af2164955b1c9c94a013ea86062da19a51a664751cee75c9f",
+        "cached": true,
+        "hash": "ffe1275e95a18fc63981d3ba114e292157df2f6f5e49a9ba5e0c1a6b42ce0cfa",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 105,
+            "style": null,
+            "text": "Ah, da ist sie. Vielen Dank!",
+            "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "a0f5700547766a57a1c314fba62043e82c34ef95ebcffb080ad4cd8f7e789670",
+        "cached": true,
+        "hash": "47bac5e651c1d88ec3114f3e90d10a8364d9fc142f839b5ded5e007f1dc53c6e",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.88,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "65e20aacac2164e16ce56f5c4d89db1b6b2812db4401acc1a4cd1ead06da0b9e",
+        "cached": false,
+        "hash": "dabf27c90a0b5b6e2c2e9fad39344e2168dafc91725262b9903a86a30fe1205e",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Gern geschehen. Viel Spaß beim Lesen!",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "f987a90f07bfe505d3e6ee03e817be9f73244c36ec7dc57e9ad9075af303456f",
+        "cached": false,
+        "hash": "9c81d8c792098ae9b2488707b586b299eb7405d8dbb33a58a3157875780b415e",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "f74bd56b4b71c6b22d5b469934afdd674e8220957f3e3890586eea48bb3723e9",
+        "cached": true,
+        "hash": "1ede42775427671445575fcde3d2433b8431d284c3d13e036df2f16a8720fd54",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "2576c4bb5f29a1b97a241aaabcf4ec1a59d23bfde44056fc4bdb3d3ae593aa79",
+        "cached": true,
+        "hash": "971863cd00bebadddd256a87e44d6e2feb9493b2ad214c1f0fc3d1ff395c8e87",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5623,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "0642f721fd5027f8a8d2a6f948ef70a8447967d0bff584219bb7409c0426bb95",
+        "cached": true,
+        "hash": "58271c60cd1714f08fd8c18e2fa759be8c2a2fb64f3703647f3cb9bcf61efd1e",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 11697,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "fbd26d69c9cc6784253c2c96695e49eac800dede1f8bc6395ecbf5bbfccc0515",
+        "cached": true,
+        "hash": "e9ce68d32d119591e13cc4f28319f25ce5a3e3984826a6676ff296abc87cc080",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 27400,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "a407f4d7a83c2770edd2fdc1917a7a0e67aaa8858d8ff8ba4bf9c71b94f9f915",
+        "cached": true,
+        "hash": "5af47db9c95487dd1042a20aa130a63a079bc97cced84c22e7806299f88e6cb3",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 30644,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "ebd41487c8daeb1d6b6cb559e9d7aa143094cb41e79de7190edda2b6cb0f0dee",
+        "cached": true,
+        "hash": "93cb679e42ea22fa9eb850576c77fa3f1264a18ff341d05305ed9aef8310f2c6",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 40522,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "f6e2243f217bef1767cd65da3ef7b73c1c508534e69fb40491c76bea25146fae",
+        "cached": true,
+        "hash": "0198d31d2e568638df7019e87bff58720f2c1cc97d2e4d5c930e000f8a15e3c5",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 42864,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "46f13daf3fc4d6bb993cd124c8c56a35cc182d81b77d2c4e84a98a0f4d850285",
+        "cached": true,
+        "hash": "b0910391b48b1ad89631122d0e31ff755e0145c6d2e28eda77e2523d16253f2a",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 51195,
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "f21e512c7ea018d6d24a9e89fc0b4901dc61f874effd3171cc76d422e33237f0",
+        "cached": false,
+        "hash": "522274a605673a4d5dc554aaf02208885012a685ba0d98411bb0ed77544432f8",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "telephone",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 53992,
+          "fx": "highpass=f=300:p=2,highpass=f=300:p=2,highpass=f=300:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,lowpass=f=3400:p=2,acompressor=threshold=0.100000:ratio=4:attack=5:release=120:makeup=1.584893",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "ec1d4404d831ecca64d660fe0abce15053401ed0222a229b3a15ab20d635c17c",
+        "cached": false,
+        "hash": "9df9296c57ba95c406328af9d12b2ac5da994f75d95a985bdea525c6516eb5fa",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-6"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-7"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-8"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "stem_id": "line-9"
+            }
+          ],
+          "rate": 48000
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "0dd8cceee046109814d9e1d788bd7123991a6665e900b44e0a7953c439131c21",
+        "cached": false,
+        "hash": "7ea4a645c125538ad2912ad1e7748bc02219c61d2d97e488b1c63dbeb0ba8f3e",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "29c3fcf15dc94f72f67dd1d6d68cfa9d3a6db2a235d5a7dbf6a2f0c681fdf51f",
+        "cached": false,
+        "hash": "77ba7dbc5445c70bf6193e1c6ca91dcb6e035c6ea8a556c5c2976d24127ca79d",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "9e1365f79197a39e1ded432cbd4924b988c1a76920e66ce59056109c4d478595",
+        "cached": false,
+        "hash": "0188fdb38edeb3bfed623a9e57afcb801e159e4533fb9bcc28d64702244e7852",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 24,
+    "nodes_evaluated": 7,
+    "timeline": [
+      {
+        "end_ms": 5173,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 11247,
+        "entry_id": "line-2",
+        "start_ms": 5623,
+        "type": "speech"
+      },
+      {
+        "end_ms": 26950,
+        "entry_id": "line-3",
+        "start_ms": 11697,
+        "type": "speech"
+      },
+      {
+        "end_ms": 30194,
+        "entry_id": "line-4",
+        "start_ms": 27400,
+        "type": "speech"
+      },
+      {
+        "end_ms": 40072,
+        "entry_id": "line-5",
+        "start_ms": 30644,
+        "type": "speech"
+      },
+      {
+        "end_ms": 42414,
+        "entry_id": "line-6",
+        "start_ms": 40522,
+        "type": "speech"
+      },
+      {
+        "end_ms": 50745,
+        "entry_id": "line-7",
+        "start_ms": 42864,
+        "type": "speech"
+      },
+      {
+        "end_ms": 53542,
+        "entry_id": "line-8",
+        "start_ms": 51195,
+        "type": "speech"
+      },
+      {
+        "end_ms": 56568,
+        "entry_id": "line-9",
+        "start_ms": 53992,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 5173,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 11247,
+        "start_ms": 5623,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 26950,
+        "start_ms": 11697,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 30194,
+        "start_ms": 27400,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 40072,
+        "start_ms": 30644,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 42414,
+        "start_ms": 40522,
+        "utterance_id": "line-6"
+      },
+      {
+        "end_ms": 50745,
+        "start_ms": 42864,
+        "utterance_id": "line-7"
+      },
+      {
+        "end_ms": 53542,
+        "start_ms": 51195,
+        "utterance_id": "line-8"
+      },
+      {
+        "end_ms": 56568,
+        "start_ms": 53992,
+        "utterance_id": "line-9"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": null,
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        55,
+        75
+      ],
+      "grammar_target": null,
+      "level": "B1",
+      "outcomes": [
+        "anleitung-verstehen"
+      ],
+      "scenario": "Anruf bei der Bibliothekshilfe: zwei Schritte zur Anmeldung in der Lese-App",
+      "topic": "digitales-leben",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "david",
+          "version": 2
+        },
+        "role": "Herr Lange",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 125,
+          "style": null,
+          "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288",
+          "voice_ref": null
+        }
+      },
+      {
+        "character": {
+          "id": "mira",
+          "version": 2
+        },
+        "role": "Frau Petrović",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 105,
+          "style": null,
+          "voice": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Stadtbibliothek, Hilfe für die Lese-App, Lange am Apparat.",
+        "id": "line-1",
+        "pace": 0.77,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Lange",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Guten Tag. Ich möchte E-Books leihen, aber die Anmeldung in der App funktioniert nicht.",
+        "id": "line-2",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Petrović",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Das schaffen wir. Es sind nur zwei Schritte. Zuerst tippen Sie auf „Anmelden“ und geben Ihre Ausweisnummer und Ihr Passwort ein. Die Nummer steht hinten auf Ihrem Bibliotheksausweis.",
+        "id": "line-3",
+        "pace": 0.77,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Lange",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Gut, das habe ich gemacht. Und jetzt?",
+        "id": "line-4",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Petrović",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Jetzt bekommen Sie eine E-Mail mit einem Link. Den müssen Sie innerhalb einer Stunde anklicken. Erst danach funktioniert die Anmeldung.",
+        "id": "line-5",
+        "pace": 0.77,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Lange",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ich sehe aber keine E-Mail.",
+        "id": "line-6",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Petrović",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Dann schauen Sie bitte im Ordner für Werbung. Wenn sie dort auch nicht ist, schicke ich Ihnen den Link noch einmal.",
+        "id": "line-7",
+        "pace": 0.77,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Lange",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Ah, da ist sie. Vielen Dank!",
+        "id": "line-8",
+        "pace": 0.88,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Frau Petrović",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Gern geschehen. Viel Spaß beim Lesen!",
+        "id": "line-9",
+        "pace": 0.77,
+        "pause_after_ms": 450,
+        "pronunciation_overrides": [],
+        "role": "Herr Lange",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-digitales-leben-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "telephone",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "telephone",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-4"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "telephone",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-5"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-6"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "telephone",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-7"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": null,
+        "type": "speech",
+        "utterance_id": "line-8"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "telephone",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-9"
+      }
+    ],
+    "title": {
+      "en": "Two steps into the app",
+      "ru": "Два шага к приложению",
+      "uk": "Два кроки до застосунку"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 2,
+  "scene_sha256": "8eb0d57d7b6b9c0d1f97c0d93517f2a314dc5ffacc9772996e10dd0890820363",
+  "script_sha256": "fada6bca710d006664b5168a01300658fdd2afe15b166b267d28e49a0133d3c7",
+  "version": 2,
+  "voices": [
+    {
+      "character": "mira",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A woman in her early twenties speaking clear standard German. Bright, slightly higher voice with lively but calm energy; quick, friendly and practical, with clear sentence endings.",
+      "reference_sha256": "a3dc919b73594b7c3df56c169a3451f895b54bb37ae9e82c908529421921b2dc",
+      "role": "Frau Petrović",
+      "seed": 105,
+      "synthetic": true,
+      "version": 2
+    },
+    {
+      "character": "david",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his late thirties speaking clear standard German. Grounded, medium-low voice; calm, matter-of-fact and friendly, steady pace, no exaggerated authority.",
+      "reference_sha256": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288",
+      "role": "Herr Lange",
+      "seed": 125,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}
