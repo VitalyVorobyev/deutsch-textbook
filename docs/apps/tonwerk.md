@@ -138,7 +138,9 @@ instructions.
      the timing table, the QA report and any attached exercise all name a line by it.
    - **Szene** — everything that is not the words: the room, the device, the difficulty preset and
      the background. Every picker is filled from the engine, so a renamed room disappears here
-     rather than failing at render time.
+     rather than failing at render time. Beneath the room sit its share, reverb time (RT60),
+     pre-delay and damping for this scene only, each field showing the room's own value; an empty
+     field, or the room's own number, changes nothing, and another room clears them.
    - **Mischung** — what the render actually produced, and the two buttons that produce it. Its
      **Pult** sets each line's level, its three equalizer bands (low, mid, high) and its share of
      the room, and how far a background drops under speech. A line's **Ort · Inserts** button

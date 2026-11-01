@@ -20,6 +20,7 @@ import { Marke, Platte, Zustand } from '../../components/Platte';
 import { Feld, Feldreihe, SkriptFeld, WahlFeld, ZahlFeld } from '../../components/Feld';
 import { Welle } from '../../components/Welle';
 import { Ort } from './Ort';
+import { Raumabweichungen } from './Raum';
 import { kurzSha, sekunden, zahl } from '../../format';
 import {
   eintragAendern,
@@ -27,6 +28,7 @@ import {
   eintragHinzufuegen,
   istBett,
   istEreignis,
+  raumWechseln,
 } from '../../scene-draft';
 import { klangSha, type Acoustics, type SoundRow } from '../../contracts';
 
@@ -157,10 +159,7 @@ export function AufbauModus({
                 })),
               ]}
               onWert={(room) =>
-                setEntwurf({
-                  ...entwurf,
-                  acoustics: { ...entwurf.acoustics, room: room || null },
-                })
+                setEntwurf({ ...entwurf, acoustics: raumWechseln(entwurf.acoustics, room || null) })
               }
             />
             <ZahlFeld
@@ -179,6 +178,13 @@ export function AufbauModus({
               }
             />
           </Feldreihe>
+        )}
+        {akustik === null ? null : (
+          <Raumabweichungen
+            acoustics={entwurf.acoustics}
+            akustik={akustik}
+            setAcoustics={(acoustics) => setEntwurf({ ...entwurf, acoustics })}
+          />
         )}
       </Platte>
 

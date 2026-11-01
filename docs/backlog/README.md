@@ -32,8 +32,8 @@ in that file: `CON`, `APP`, `INS`, `STO`, `TON`, `RED` or `WS`. A number is neve
 ## Doing
 
 - **Redaktion hardening**: P27, in [`redaktion.md`](redaktion.md).
-- **TON-4, TON-5 · Tonwerk studio**: the timeline editor, then production and the learner
-  integration ([`tonwerk.md`](tonwerk.md)), in order.
+- **TON-5 · Tonwerk production**: recordings for the browser-voice items, then wiring them into
+  learning ([`tonwerk.md`](tonwerk.md)).
 - **P9-2 · Entdecken pieces.** Recurring, one or two reviewed pieces per PR, each passing
   [future-content-directions.md](../authoring/future-content-directions.md).
 

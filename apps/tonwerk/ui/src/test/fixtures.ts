@@ -434,7 +434,16 @@ export const acousticsFixture = {
   difficulty_version: 1,
   rooms: [
     { id: 'studio', label: 'Aufnahmestudio', note: 'Fast trocken.', version: 1, wet: 0.04 },
-    { id: 'cafe', label: 'Café', note: 'Hart und voll.', version: 2, wet: 0.18 },
+    {
+      id: 'cafe',
+      label: 'Café',
+      note: 'Hart und voll.',
+      version: 2,
+      wet: 0.18,
+      decay_s: 0.85,
+      pre_delay_ms: 12,
+      lowpass_hz: 5200,
+    },
   ],
   devices: [
     {

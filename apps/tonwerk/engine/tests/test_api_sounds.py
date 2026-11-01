@@ -173,6 +173,11 @@ def test_acoustics_serves_the_repository_s_own_vocabulary(client: Any) -> None:
     rooms = {row["id"]: row for row in body["rooms"]}
     assert "studio" in rooms and rooms["studio"]["version"] >= 1
     assert rooms["studio"]["label"]
+    # What a room override departs from: the send level and the impulse response's own three.
+    hall = rooms["station-hall"]
+    assert (hall["wet"], hall["decay_s"], hall["pre_delay_ms"], hall["lowpass_hz"]) == (
+        0.34, 2.6, 28, 4200.0
+    )
     devices = {row["id"]: row for row in body["devices"]}
     assert "telephone" in devices and devices["telephone"]["label"]
     # What a device override departs from, read off the same profile the renderer uses.
