@@ -935,9 +935,10 @@ export const listeningPlanArtifactSchema =
   listeningPlanArtifactFields.superRefine(checkPlanArtifact);
 
 /**
- * A recording an exercise set owns rather than a unit: one script of an exam practice set.
- * `serves` names the set's items that play it — several when the exam asks five questions about
- * one conversation — which is what lets the validator check that they share one script.
+ * A recording an exercise set owns rather than a unit: one script of an exam practice, checkpoint,
+ * placement or practice set. `serves` names the set's items that play it — several when the exam
+ * asks five questions about one conversation — which is what lets the validator check that they
+ * share one script.
  */
 export const listeningCollectionArtifactSchema = listeningPlanArtifactFields
   .extend({ serves: z.array(slug).min(1) })
@@ -957,7 +958,7 @@ export const listeningPlanSchema = z.object({
   /**
    * Recordings that belong to an exercise set and to no unit. `collection` is the set's id under
    * `content/exercises/<level>/`; its artifacts are `ls-<collection>-01`, `-02`, … in the order
-   * the set plays them.
+   * the set plays them, numbered on after the unit's own when the set is named after its unit.
    */
   collections: z
     .array(

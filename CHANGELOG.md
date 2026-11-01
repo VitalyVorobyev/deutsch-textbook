@@ -34,6 +34,12 @@ GitHub Release notes.
 
 ### Changed
 
+- **53 more listening questions play recorded voices** instead of the browser's: the listening
+  tasks in the placement tests and checkpoints of A1, A2 and B1, and the ones in practice sets
+  that had none. Announcements come over a loudspeaker with the shop or station around them,
+  calls through a phone line, and conversations in their room. Of the listening-comprehension
+  tasks, only the two about the Ämter conversation still use the browser's voice; dictations
+  still use it too.
 - **The website plays the recordings again.** It had been shipping none, so every listening task,
   the A2 Hören sets among them, spoke in the browser's voice. Every build now carries them.
 - **The A2 Hören recordings keep their background under the voice.** In the announcements and

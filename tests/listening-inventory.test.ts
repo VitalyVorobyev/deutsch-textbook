@@ -18,9 +18,10 @@ describe('listening production inventory', () => {
   // One recording per script of the three A2 Hören sets: twelve each, because Teil 2 and Teil 4
   // ask five questions about one conversation.
   test('plans the exam sets as collections, apart from the units', () => {
-    const rows = inventory(import.meta.dir + '/..').filter((row) => row.collection);
+    const collected = inventory(import.meta.dir + '/..').filter((row) => row.collection);
+    expect(collected.every((row) => row.unit === null)).toBe(true);
+    const rows = collected.filter((row) => row.collection!.startsWith('pruefung-'));
     expect(rows).toHaveLength(36);
-    expect(rows.every((row) => row.unit === null)).toBe(true);
     expect(
       Object.values(Object.groupBy(rows, (row) => row.collection!)).map((g) => g!.length),
     ).toEqual([12, 12, 12]);
@@ -81,7 +82,9 @@ describe('listening production inventory', () => {
   });
 
   test('the A2 Hören recordings are published', () => {
-    const rows = inventory(import.meta.dir + '/..').filter((row) => row.collection);
+    const rows = inventory(import.meta.dir + '/..').filter((row) =>
+      row.collection?.startsWith('pruefung-'),
+    );
     expect(rows.filter((row) => row.status === 'published')).toHaveLength(36);
   });
 });
