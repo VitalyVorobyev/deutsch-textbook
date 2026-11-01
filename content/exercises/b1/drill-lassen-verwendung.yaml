@@ -1,0 +1,183 @@
+# Drill from progress: lassen-verwendung is persistent (wrong on four distinct items, recently
+# and on a probe), and four of its five probe attempts failed. The logged sentences show the
+# frame coming apart at different points: a werden passive mixed into it (wird … abholt lassen),
+# zu before the infinitive (lasst … zu waschen), no infinitive at all (Ich lasse den Fahrrad auf
+# die Werkstatt), and the person who is allowed in the dative (unseren Kindern … fernsehen
+# lassen). One form also slipped: lasst for lässt.
+#
+# So the set rebuilds the frame piece by piece: the present forms with their umlaut, the bare
+# infinitive at the end against zu and the participle, the Perfekt with lassen in place of
+# gelassen, and then the whole sentence in four translate items. Three are have-done and one is
+# allow. Each translate item pins lassen and its infinitive, the two ends of the frame. The
+# allowed person's accusative is taught in the explain and not pinned, because the tag grades
+# the frame, not the case.
+#
+# Contexts are fresh. None re-skins the probes' flat, wardrobe, car, bicycle, children or garden,
+# or the primary sets' hair, teeth, beard, pharmacy and balcony.
+topic: sucht-lebensstil
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — lassen + Infinitiv"
+title:
+  en: "Drill — lassen + infinitive"
+  ru: "Тренажёр — lassen + инфинитив"
+  uk: "Тренажер — lassen + інфінітив"
+  de: "Übung — lassen + Infinitiv"
+items:
+  - id: cloze-laesst-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    instruction:
+      en: "Fill in the present-tense form of lassen that each subject needs."
+      ru: "Вставьте форму lassen в настоящем времени, которая нужна каждому подлежащему."
+      uk: "Вставте форму lassen у теперішньому часі, якої потребує кожен підмет."
+      de: "Setz die Präsensform von lassen ein, die jedes Subjekt braucht."
+    text: "Lena {{lässt}} ihr Zeugnis ins Deutsche übersetzen. Und ihr? {{Lasst}} ihr euer altes Dach endlich reparieren?"
+    translation:
+      en: "Lena is having her certificate translated into German. And you? Are you finally having your old roof repaired?"
+      ru: "Лена заказывает перевод своего аттестата на немецкий. А вы? Наймёте наконец мастеров починить старую крышу?"
+      uk: "Лена замовляє переклад свого атестата німецькою. А ви? Наймете нарешті майстрів полагодити старий дах?"
+    explain:
+      en: "lassen changes its vowel for du and er/sie/es, like fahren: du lässt, sie lässt. lasst without the umlaut is the ihr form, so the question to ihr opens with Lasst. In the statement lässt is in position 2, in the yes/no question it comes first, and in both the infinitive, übersetzen and reparieren, waits at the end, the same frame as a modal verb."
+      ru: "lassen меняет гласную у du и er/sie/es, как fahren: du lässt, sie lässt. lasst без умлаута — форма для ihr, поэтому вопрос к ihr начинается с Lasst. В утверждении lässt стоит на втором месте, в вопросе без вопросительного слова — на первом, а инфинитив — übersetzen, reparieren — в обоих случаях ждёт в конце: та же рамка, что у модального глагола. По-русски такой конструкции нет, поэтому перевод описательный: «заказывает перевод», «нанимают мастеров»."
+      uk: "lassen змінює голосну в du та er/sie/es, як fahren: du lässt, sie lässt. lasst без умлаута — форма для ihr, тому питання до ihr починається з Lasst. У ствердженні lässt стоїть на другому місці, у питанні без питального слова — на першому, а інфінітив — übersetzen, reparieren — в обох випадках чекає в кінці: та сама рамка, що в модального дієслова. Українською такої конструкції немає, тож переклад описовий: «замовляє переклад», «наймають майстрів»."
+      de: "lassen wechselt bei du und er/sie/es den Vokal, wie fahren: du lässt, sie lässt. lasst ohne Umlaut ist die ihr-Form, also beginnt die Frage an ihr mit Lasst. In der Aussage steht lässt auf Position 2, in der Ja/Nein-Frage vorn, und in beiden wartet der Infinitiv — übersetzen, reparieren — am Ende, derselbe Rahmen wie bei einem Modalverb."
+
+  - id: mc-moebel-liefern
+    outcomes: [hilfe-veranlassen]
+    type: mc
+    focus: lassen-verwendung
+    prompt: "Wir tragen das nicht selbst. Wir lassen die neuen Möbel morgen ___."
+    options:
+      - "zu liefern"
+      - "geliefert"
+      - "liefern"
+    correct: 2
+    translation:
+      en: "We are not carrying it ourselves. We are having the new furniture delivered tomorrow."
+      ru: "Мы не потащим это сами. Новую мебель нам завтра привезут."
+      uk: "Ми не тягнемо це самі. Нові меблі нам завтра привезуть."
+    explain:
+      en: "After lassen comes the bare infinitive, liefern, exactly as after können or müssen. zu liefern borrows the zu that verbs like versuchen need, and lassen never takes it. geliefert is the English shape (have the furniture delivered), and in German a participle at the end belongs to a passive or a Perfekt, not to lassen."
+      ru: "После lassen идёт голый инфинитив — liefern, точно как после können или müssen. zu liefern заимствует zu, которое нужно глаголам вроде versuchen, а lassen его не берёт никогда. geliefert — английская модель (have the furniture delivered); в немецком причастие в конце бывает в пассиве или в перфекте, но не при lassen."
+      uk: "Після lassen іде голий інфінітив — liefern, точно як після können чи müssen. zu liefern позичає zu, потрібне дієсловам на кшталт versuchen, а lassen його не бере ніколи. geliefert — англійська модель (have the furniture delivered); у німецькій дієприкметник у кінці буває в пасиві чи в перфекті, але не при lassen."
+      de: "Nach lassen steht der reine Infinitiv, liefern, genau wie nach können oder müssen. zu liefern borgt sich das zu, das Verben wie versuchen brauchen, und lassen nimmt es nie. geliefert ist die englische Form (have the furniture delivered); ein Partizip am Ende gehört im Deutschen zum Passiv oder zum Perfekt, nicht zu lassen."
+
+  - id: cloze-perfekt-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    instruction:
+      en: "Both sentences are in the Perfekt with an infinitive. Fill in the last word: lassen or gelassen?"
+      ru: "Оба предложения — в перфекте с инфинитивом. Вставьте последнее слово: lassen или gelassen?"
+      uk: "Обидва речення — у перфекті з інфінітивом. Вставте останнє слово: lassen чи gelassen?"
+      de: "Beide Sätze stehen im Perfekt mit einem Infinitiv. Setz das letzte Wort ein: lassen oder gelassen?"
+    text: "Wir haben die Heizung gestern prüfen {{lassen}}. Hast du die Urlaubsfotos schon drucken {{lassen}}?"
+    translation:
+      en: "We had the heating checked yesterday. Have you had the holiday photos printed yet?"
+      ru: "Вчера нам проверили отопление. Ты уже отдал печатать фотографии из отпуска?"
+      uk: "Учора нам перевірили опалення. Ти вже віддав друкувати фотографії з відпустки?"
+    explain:
+      en: "When lassen has an infinitive beside it, its Perfekt uses the infinitive lassen in place of gelassen: prüfen lassen, drucken lassen, two infinitives at the end. This is the same rule as with modals (Ich habe arbeiten müssen). gelassen appears only when lassen stands alone: Ich habe den Schlüssel zu Hause gelassen."
+      ru: "Когда рядом с lassen стоит инфинитив, в перфекте вместо gelassen идёт инфинитив lassen: prüfen lassen, drucken lassen — два инфинитива в конце. Это то же правило, что у модальных глаголов (Ich habe arbeiten müssen). gelassen бывает только тогда, когда lassen стоит один: Ich habe den Schlüssel zu Hause gelassen."
+      uk: "Коли поруч із lassen стоїть інфінітив, у перфекті замість gelassen іде інфінітив lassen: prüfen lassen, drucken lassen — два інфінітиви в кінці. Це те саме правило, що в модальних дієслів (Ich habe arbeiten müssen). gelassen буває лише тоді, коли lassen стоїть сам: Ich habe den Schlüssel zu Hause gelassen."
+      de: "Steht neben lassen ein Infinitiv, nimmt das Perfekt statt gelassen den Infinitiv lassen: prüfen lassen, drucken lassen, zwei Infinitive am Ende. Das ist dieselbe Regel wie bei den Modalverben (Ich habe arbeiten müssen). gelassen gibt es nur, wenn lassen allein steht: Ich habe den Schlüssel zu Hause gelassen."
+
+  - id: uebersetzen-kueche-renovieren
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate with lassen. For 'renovate' take renovieren."
+      ru: "Переведите с lassen. Для «ремонтировать» возьмите renovieren."
+      uk: "Перекладіть із lassen. Для «ремонтувати» візьміть renovieren."
+      de: "Übersetze mit lassen und renovieren."
+    prompt_en: "We are having our kitchen renovated next week."
+    prompt_ru: "На следующей неделе нам ремонтируют кухню."
+    prompt_uk: "Наступного тижня нам ремонтують кухню."
+    answer: "Wir lassen unsere Küche nächste Woche renovieren."
+    accept:
+      # unsere and die both carry 'our' here, and the time phrase may open the sentence.
+      - "Nächste Woche lassen wir unsere Küche renovieren."
+      - "Wir lassen nächste Woche unsere Küche renovieren."
+      - "Wir lassen die Küche nächste Woche renovieren."
+      - "Nächste Woche lassen wir die Küche renovieren."
+      - "Wir lassen nächste Woche die Küche renovieren."
+    key_tokens: ["lassen", "renovieren"]
+    explain:
+      en: "The people who arrange the work are the subject, wir, and lassen takes position 2 like a modal. renovieren goes bare to the very end: Wir lassen unsere Küche nächste Woche renovieren. Unsere Küche wird renoviert would be correct German too, but it is a different sentence, a passive that hides who arranged it. The two must not mix: wird … renovieren lassen is neither."
+      ru: "Подлежащее — те, кто заказывает работу: wir. lassen, как модальный глагол, стоит на втором месте, а renovieren без всяких добавок уходит в самый конец: Wir lassen unsere Küche nächste Woche renovieren. Unsere Küche wird renoviert — тоже правильный немецкий, но это другое предложение, пассив, который прячет заказчика. Смешивать их нельзя: wird … renovieren lassen — ни то ни другое. Русское «нам ремонтируют» — безличное, а немецкий требует назвать заказчика подлежащим."
+      uk: "Підмет — ті, хто замовляє роботу: wir. lassen, як модальне дієслово, стоїть на другому місці, а renovieren без жодних додатків іде в самий кінець: Wir lassen unsere Küche nächste Woche renovieren. Unsere Küche wird renoviert — теж правильна німецька, але це інше речення, пасив, що ховає замовника. Змішувати їх не можна: wird … renovieren lassen — ні те ні інше. Українське «нам ремонтують» — безособове, а німецька вимагає назвати замовника підметом."
+      de: "Wer die Arbeit veranlasst, ist das Subjekt, wir, und lassen steht wie ein Modalverb auf Position 2. renovieren steht ohne Zusatz ganz am Ende: Wir lassen unsere Küche nächste Woche renovieren. Unsere Küche wird renoviert wäre auch richtig, aber ein anderer Satz — ein Passiv, das verschweigt, wer es veranlasst hat. Mischen darf man die beiden nicht: wird … renovieren lassen ist keins von beiden."
+
+  - id: uebersetzen-lebenslauf-korrigieren
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate with lassen. For 'check' take korrigieren, for 'by a friend' von einer Freundin."
+      ru: "Переведите с lassen. Для «проверять» возьмите korrigieren, для «подруга» — von einer Freundin."
+      uk: "Перекладіть із lassen. Для «перевіряти» візьміть korrigieren, для «подруга» — von einer Freundin."
+      de: "Übersetze mit lassen, korrigieren und von einer Freundin."
+    prompt_en: "I am having my CV checked by a friend."
+    prompt_ru: "Моё резюме мне проверяет подруга."
+    prompt_uk: "Моє резюме мені перевіряє подруга."
+    answer: "Ich lasse meinen Lebenslauf von einer Freundin korrigieren."
+    accept:
+      - "Meinen Lebenslauf lasse ich von einer Freundin korrigieren."
+    key_tokens: ["lasse", "korrigieren"]
+    explain:
+      en: "ich takes lasse, and the infinitive korrigieren goes to the end. The person doing the work comes in with von, von einer Freundin, and sits in the middle field with the object. Ich lasse meinen Lebenslauf korrigiert copies the English participle, and Ich lasse … zu korrigieren adds a zu that lassen never takes."
+      ru: "У ich форма lasse, инфинитив korrigieren — в конце. Исполнитель вводится с von — von einer Freundin — и стоит в середине предложения вместе с дополнением. Ich lasse meinen Lebenslauf korrigiert копирует английское причастие, а Ich lasse … zu korrigieren добавляет zu, которого lassen не берёт никогда."
+      uk: "В ich форма lasse, інфінітив korrigieren — у кінці. Виконавця вводять із von — von einer Freundin — і він стоїть у середині речення разом із додатком. Ich lasse meinen Lebenslauf korrigiert копіює англійський дієприкметник, а Ich lasse … zu korrigieren додає zu, якого lassen не бере ніколи."
+      de: "ich nimmt lasse, der Infinitiv korrigieren steht am Ende. Wer die Arbeit macht, kommt mit von dazu — von einer Freundin — und steht mit dem Objekt im Mittelfeld. Ich lasse meinen Lebenslauf korrigiert kopiert das englische Partizip, und Ich lasse … zu korrigieren fügt ein zu ein, das lassen nie nimmt."
+
+  - id: uebersetzen-eltern-party
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate with lassen in the sense of 'allow'. For 'go to parties' take auf Partys gehen."
+      ru: "Переведите с lassen в значении «разрешать». Для «ходить на вечеринки» возьмите auf Partys gehen."
+      uk: "Перекладіть із lassen у значенні «дозволяти». Для «ходити на вечірки» візьміть auf Partys gehen."
+      de: "Übersetze mit lassen im Sinn von erlauben und mit auf Partys gehen."
+    prompt_en: "My parents never let my brother go to parties."
+    prompt_ru: "Родители никогда не отпускают моего брата на вечеринки."
+    prompt_uk: "Батьки ніколи не відпускають мого брата на вечірки."
+    answer: "Meine Eltern lassen meinen Bruder nie auf Partys gehen."
+    accept:
+      - "Meine Eltern lassen meinen Bruder niemals auf Partys gehen."
+    key_tokens: ["lassen", "gehen"]
+    explain:
+      en: "In the sense of 'allow', lassen keeps the same frame: position 2, bare infinitive at the end. The person who is allowed is the accusative object of lassen, meinen Bruder, the same case as after 'let' in English (let him). It is not the dative that erlauben takes (meinem Bruder erlauben). nie stands before the place phrase, and gehen closes the sentence."
+      ru: "В значении «разрешать» у lassen та же рамка: второе место, голый инфинитив в конце. Тот, кому разрешают, — прямое дополнение lassen в аккузативе: meinen Bruder. Не путайте с erlauben, у которого датив (meinem Bruder erlauben), хотя по-русски и «разрешать кому», и «отпускать кого» звучат естественно. nie стоит перед обстоятельством места, gehen замыкает предложение."
+      uk: "У значенні «дозволяти» lassen має ту саму рамку: друге місце, голий інфінітив у кінці. Той, кому дозволяють, — прямий додаток lassen в акузативі: meinen Bruder. Не плутайте з erlauben, яке має датив (meinem Bruder erlauben), хоча українською і «дозволяти кому», і «відпускати кого» звучать природно. nie стоїть перед обставиною місця, gehen замикає речення."
+      de: "Im Sinn von erlauben behält lassen denselben Rahmen: Position 2, reiner Infinitiv am Ende. Wer etwas darf, ist das Akkusativobjekt von lassen, meinen Bruder, nicht der Dativ, den erlauben nimmt (meinem Bruder erlauben). nie steht vor der Ortsangabe, gehen schließt den Satz."
+
+  - id: uebersetzen-augen-testen
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate with lassen in the Perfekt. For 'test' take testen."
+      ru: "Переведите с lassen в перфекте. Для «проверить» возьмите testen."
+      uk: "Перекладіть із lassen у перфекті. Для «перевірити» візьміть testen."
+      de: "Übersetze mit lassen im Perfekt und mit testen."
+    prompt_en: "Have you already had your eyes tested?"
+    prompt_ru: "Ты уже проверил зрение у врача?"
+    prompt_uk: "Ти вже перевірив зір у лікаря?"
+    answer: "Hast du deine Augen schon testen lassen?"
+    accept:
+      - "Hast du schon deine Augen testen lassen?"
+      - "Hast du die Augen schon testen lassen?"
+      - "Hast du schon die Augen testen lassen?"
+      - "Hast du dir die Augen schon testen lassen?"
+      - "Hast du dir schon die Augen testen lassen?"
+    key_tokens: ["testen", "lassen"]
+    explain:
+      en: "A question in the Perfekt with lassen: hast first, then two infinitives at the end, testen lassen and never testen gelassen. Hast du deine Augen getestet would mean you tested them yourself. The test is done by somebody else, and that is lassen's whole job in the sentence."
+      ru: "Вопрос в перфекте с lassen: сначала hast, в конце два инфинитива — testen lassen, никогда не testen gelassen. Hast du deine Augen getestet значило бы, что ты проверял их сам. Проверяет кто-то другой, и именно это lassen в предложении и сообщает. По-русски «проверил зрение» обычно значит «у врача», а немецкий говорит это явно через lassen."
+      uk: "Питання в перфекті з lassen: спочатку hast, у кінці два інфінітиви — testen lassen, ніколи не testen gelassen. Hast du deine Augen getestet означало б, що ти перевіряв їх сам. Перевіряє хтось інший, і саме це lassen у реченні й повідомляє. Українською «перевірив зір» зазвичай означає «у лікаря», а німецька каже це явно через lassen."
+      de: "Eine Frage im Perfekt mit lassen: zuerst hast, am Ende zwei Infinitive, testen lassen, nie testen gelassen. Hast du deine Augen getestet hieße, du hättest sie selbst getestet. Getestet hat jemand anders, und genau das sagt lassen in diesem Satz."

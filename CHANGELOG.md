@@ -22,9 +22,15 @@ GitHub Release notes.
   interview with Ja/Nein — as recorded audio: station and shop announcements over the room's
   sound, messages on a phone line, a radio report through a radio. Each part says how often the
   exam plays its text, and a question allows no more plays than that.
+- **Four B1 drills for what did not stick**, each on its own topic page and in training: a
+  preposition with its relative pronoun (*die Familie, bei der …*), adjectives used as nouns
+  (*ein Jugendlicher*, *der Jugendliche*), Partizip I or II in front of a noun (*spielende Kinder*,
+  *die reparierte Heizung*), and *lassen* with a bare infinitive (*Wir lassen die Küche renovieren*).
 
 ### Changed
 
+- **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page
+  reports the level's Wortliste, grammar and checkpoint figures from the content itself.
 - **After you answer a listening question, the recording becomes something to study.** Tap any
   line of the transcript to hear just that line, play the whole conversation as often as you like,
   and switch on *Slower* to hear it at three-quarter speed in the same voice. Before you answer,

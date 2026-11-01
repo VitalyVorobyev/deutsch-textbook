@@ -146,6 +146,7 @@ items:
       de: "Bewertet werden wäre und könnten — ein Signal pro Hälfte, und hier sind beide Einwortformen, weil sein und können kein würde brauchen. war würde das Wetter zur Tatsache machen, konnten würde berichten, was wir wirklich tun konnten. Der Umlaut auf beiden Seiten hält den Satz in der Welt, wie sie nicht ist."
 
   - id: uebersetzen-tom-fahrer
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -173,6 +174,12 @@ items:
       - "Tom würde den Fahrer fragen, wenn er Deutsch könnte."
       - "Könnte Tom Deutsch, würde er den Fahrer fragen."
       - "Könnte Tom Deutsch, dann würde er den Fahrer fragen."
+      # «говорил по-немецки» and «говорив німецькою» do not say whether Tom can speak German or
+      # speaks it right now, so auf Deutsch sprechen is a fair reading of those prompts. Only
+      # the würde cells: könnte already reads as ability, which auf Deutsch does not mean.
+      - "Wenn Tom auf Deutsch sprechen würde, würde er den Fahrer fragen."
+      - "Wenn Tom auf Deutsch sprechen würde, dann würde er den Fahrer fragen."
+      - "Tom würde den Fahrer fragen, wenn er auf Deutsch sprechen würde."
     # würde twice: the renderings with würde in both halves grade both slots on purpose.
     key_tokens: ["könnte", "Könnte", "würde", "würde", "fragen"]
     explain:

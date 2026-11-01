@@ -23,10 +23,6 @@ const coverage = goetheCoverage('A1');
 // A level with no committed Wortliste manifest has no coverage figure, and must not
 // invent one. A2 gets its sentence only once data/goethe-a2-wortliste.txt exists.
 const coverageA2 = hasManifest('A2') ? goetheCoverage('A2') : null;
-// B1 is part-authored, so its Wortliste figure is mostly inherited: it measures how
-// much of the B1 list the A1/A2 decks already teach, which is a claim about the
-// learner's lexis and never about B1 completeness. How far the *level* has come is
-// the grammar figure below plus the unit count, both computed like everything else.
 const coverageB1 = hasManifest('B1') ? goetheCoverage('B1') : null;
 // The structural counterpart to the Wortliste figure, and it exists because the lexical
 // one was carrying the whole claim: A2 was called content-complete for months on the
@@ -63,6 +59,7 @@ const totalWords = new Set(vocab.flatMap((deck) => deck.data.entries.map((e) => 
 const checkpoints = await getCheckpoints();
 const checkpointA1 = checkpoints.find((c) => c.level === 'A1');
 const checkpointA2 = checkpoints.find((c) => c.level === 'A2');
+const checkpointB1 = checkpoints.find((c) => c.level === 'B1');
 
 const principles = [
   {
@@ -328,54 +325,66 @@ const principles = [
         </p>
       </article>
 
-      <article class="rounded-lg border-l-4 border-stone-300 p-5 dark:border-stone-600">
+      <article class="rounded-lg border-l-4 border-emerald-500 bg-emerald-50/60 p-5 dark:bg-emerald-950/25">
         <h3 class="font-bold">
-          B1 <span class="lang-en">— in progress</span
-          ><span class="lang-ru">— в работе</span>
-          <span class="lang-uk">— у роботі</span>
+          B1 — <span class="lang-en">complete</span><span class="lang-ru">завершён</span>
+          <span class="lang-uk">завершений</span>
         </h3>
-        <p class="mt-2 max-w-prose text-sm text-stone-600 dark:text-stone-400">
+        <p class="mt-2 max-w-prose text-sm text-stone-700 dark:text-stone-300">
           <span class="lang-en">
-            {b1.units} B1 units are live so far, each built like an A2 one — pretest, article,
-            graded reading, exercises, delayed probe and its own vocabulary — and each also
-            explained in German for learners who no longer need the detour through another
-            language. {grammarB1.taught} of the {grammarB1.total} structures on this course's B1 grammar
-            inventory are taught ({grammarB1.percent}%), measured the same way as at A1 and A2: a
-            point counts only where a practice or drill item names the confusion it drills. The
-            long-term aim is B2, and the course is built so that levels can be added without
-            disturbing what you have already learned.
+            All {b1.units} units are authored. Each one is built like an A2 unit — a diagnostic
+            pretest, an article, a graded reading, exercises across several task types, a delayed
+            probe and its own vocabulary — and each article reads in German first, with an English
+            translation and an explanation in your language folded beneath every section.
             {coverageB1 &&
               ` ${coverageB1.cards + coverageB1.grammar} of the ${coverageB1.total} headwords on the
-              official Goethe-Institut B1 Wortliste are covered so far (${coverageB1.percent}%) —
-              most of it inherited from A1/A2 material, not progress on the level itself.`}
+              official Goethe-Institut B1 Wortliste are covered (${coverageB1.percent}%) —
+              ${coverageB1.cards} as flashcards and ${coverageB1.grammar} taught as grammar rather
+              than as vocabulary.`}
+            {` ${grammarB1.taught} of the ${grammarB1.total} structures on this course's B1 grammar inventory
+              are taught (${grammarB1.percent}%), each one measured by a practice or drill item that names the
+              confusion it drills — testing a structure in a checkpoint does not count as teaching it.`}
+            {checkpointB1 && ` A cumulative ${checkpointB1.items.length}-item B1 checkpoint measures
+              the level end to end.`} What that does not mean is that finishing it makes you B1 —
+            that is a claim about you, not about the content, and no course can make it for you. The
+            long-term aim is B2, and the course is built so that levels can be added without
+            disturbing what you have already learned.
           </span>
           <span class="lang-ru">
-            Пока доступно {b1.units} юнитов уровня B1. Каждый устроен так же, как юнит A2 —
-            претест, статья, текст для чтения, упражнения, отложенная проверка и собственный
-            словарь, — и вдобавок объясняется по-немецки: для тех, кому уже не нужен обходной путь
-            через другой язык. Из {grammarB1.total} структур грамматического
-            инвентаря курса на B1 изложено {grammarB1.taught} ({grammarB1.percent}%); мерка та же, что на
-            A1 и A2: пункт засчитывается, только если упражнение прямо называет соответствующую
-            трудность. Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись,
-            не затрагивая уже пройденное.
+            Написаны все юниты уровня, всего {b1.units}. Каждый устроен так же, как юнит A2: в нём
+            есть диагностический претест, статья, текст для чтения, упражнения нескольких типов,
+            отложенная проверка и собственный словарь. Статьи написаны по-немецки, а под каждым
+            разделом можно развернуть английский перевод и объяснение на вашем языке.
             {coverageB1 &&
-              ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste пока
-              охвачено ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) — в
-              основном унаследовано от материалов A1–A2, а не прогресс по самому уровню.`}
+              ` Из ${coverageB1.total} слов официального списка Goethe-Institut B1 Wortliste охвачено
+              ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%): ${coverageB1.cards} —
+              карточками, ещё ${coverageB1.grammar} даются как грамматика, а не как лексика.`}
+            {` Из ${grammarB1.total} структур грамматического инвентаря курса на B1 изложено ${grammarB1.taught}
+              (${grammarB1.percent}%), и каждая подтверждена упражнением, которое называет соответствующую
+              трудность: проверить структуру в контрольной точке не значит её обучить.`}
+            {checkpointB1 && ` Итоговая контрольная точка B1 из ${checkpointB1.items.length} заданий
+              проверяет уровень целиком.`} Это не значит, что, пройдя курс, вы автоматически получите
+            B1: это утверждение о вас, а не о содержании, и ни один курс не может сделать его за вас.
+            Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись, не затрагивая
+            уже пройденное.
           </span>
           <span class="lang-uk">
-            Наразі доступно {b1.units} юнітів рівня B1. Кожен побудовано так само, як юніт A2 —
-            претест, стаття, адаптований текст для читання, вправи, відкладена перевірка і власний
-            словник, — а ще кожен пояснено німецькою: для тих, кому вже не потрібен обхідний шлях
-            через іншу мову. Із {grammarB1.total} структур граматичного інвентарю курсу
-            на B1 викладено {grammarB1.taught} ({grammarB1.percent}%); мірка та сама, що на A1 і A2:
-            пункт зараховується лише тоді, коли вправа прямо називає відповідну трудність.
+            Написано всі юніти рівня, усього {b1.units}. Кожен побудовано так само, як юніт A2: у ньому
+            є діагностичний претест, стаття, адаптований текст для читання, вправи кількох типів,
+            відкладена перевірка і власний словник. Статті написано німецькою, а під кожним розділом
+            можна розгорнути англійський переклад і пояснення вашою мовою.
+            {coverageB1 &&
+              ` Із ${coverageB1.total} слів офіційного списку Goethe-Institut B1 Wortliste охоплено
+              ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%): ${coverageB1.cards} —
+              картками, ще ${coverageB1.grammar} подано як граматику, а не як лексику.`}
+            {` Із ${grammarB1.total} структур граматичного інвентарю курсу на B1 викладено ${grammarB1.taught}
+              (${grammarB1.percent}%), і кожну підтверджено вправою, яка називає відповідну
+              трудність: перевірити структуру в контрольній точці не означає її навчити.`}
+            {checkpointB1 && ` Підсумкова контрольна точка B1 з ${checkpointB1.items.length} завдань
+              перевіряє рівень повністю.`} Але це не означає, що, пройшовши курс, ви автоматично
+            маєте B1: це твердження про вас, а не про зміст, і жоден курс не може зробити його за вас.
             Довгострокова мета — B2, і курс побудовано так, щоб нові рівні додавалися, не зачіпаючи
             того, що ви вже вивчили.
-            {coverageB1 &&
-              ` Із ${coverageB1.total} слів офіційного списку Goethe-Institut B1 Wortliste поки що
-              охоплено ${coverageB1.cards + coverageB1.grammar} (${coverageB1.percent}%) — здебільшого
-              це успадковано з матеріалів A1–A2, а не поступ на самому рівні.`}
           </span>
         </p>
       </article>

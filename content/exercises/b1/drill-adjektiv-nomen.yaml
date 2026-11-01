@@ -1,0 +1,200 @@
+# Drill from progress: adjektiv-nomen failed all three delayed probe variants. One miss is a
+# spelling slip with the decision intact (Interresantes: capital and -es both right). The other
+# two are the confusion itself: Verwandte after ein, where the article word shows no gender and
+# the noun must show it with -er, and a different noun in place of the one the item named. The
+# depth table had the tag at five teaching items in two files, below the B1 median.
+#
+# So the set is built around the flip: the same word with and without an article word that
+# shows the case. That means Deutsche/Deutscher by gender with no article, Erwachsene/Erwachsenen
+# with and without die, ein Jugendlicher against der Jugendliche, a dative after der, and etwas
+# or nichts with the strong neuter -es. Every item names the adjective it turns into a noun, so
+# what is graded is the ending and never which word the author had in mind. Each translate item
+# pins the one adjective-noun.
+#
+# Contexts are fresh. Angestellte, Bekannte and Verwandte are left out on purpose: the primary
+# set and the probe own them.
+topic: arbeit-bewerbung
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Adjektive als Nomen"
+title:
+  en: "Drill — adjectives used as nouns"
+  ru: "Тренажёр — прилагательные в роли существительных"
+  uk: "Тренажер — прикметники в ролі іменників"
+  de: "Übung — Adjektive als Nomen"
+items:
+  - id: cloze-deutsch-paar
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Use deutsch as a noun in both gaps: a capital letter, and the ending the gap needs."
+      ru: "Используйте deutsch как существительное в обоих пропусках: с заглавной буквы и с нужным окончанием."
+      uk: "Використайте deutsch як іменник в обох пропусках: з великої літери і з потрібним закінченням."
+      de: "Setz deutsch in beide Lücken als Nomen ein: großgeschrieben und mit der passenden Endung."
+    text: "Meine Frau ist {{Deutsche}}, und ich bin seit dem Sommer auch {{Deutscher}}."
+    translation:
+      en: "My wife is German, and since the summer I have been German too."
+      ru: "Моя жена — немка, а с лета и я гражданин Германии."
+      uk: "Моя дружина — німкеня, а з літа і я громадянин Німеччини."
+    explain:
+      en: "No article word stands in front, so the noun itself has to show what an article would have shown, just like an adjective with no article (guter Wein). For the woman that is -e, Deutsche. For the man it is -er, Deutscher. Deutsche for the man is the form you would use after der, der Deutsche, and here there is no der to carry the masculine."
+      ru: "Перед словом нет артикля, поэтому само существительное должно показать то, что показал бы артикль, — как прилагательное без артикля (guter Wein). Для женщины это -e: Deutsche, для мужчины -er: Deutscher. Deutsche для мужчины — это форма после der (der Deutsche), а здесь нет der, который нёс бы мужской род. По-русски тоже есть «немец» и «немка», только в немецком род виден в окончании прилагательного."
+      uk: "Перед словом немає артикля, тому сам іменник мусить показати те, що показав би артикль, — як прикметник без артикля (guter Wein). Для жінки це -e: Deutsche, для чоловіка -er: Deutscher. Deutsche для чоловіка — це форма після der (der Deutsche), а тут немає der, який ніс би чоловічий рід. Українською теж є «німець» і «німкеня», тільки в німецькій рід видно в закінченні прикметника."
+      de: "Vor dem Wort steht kein Artikelwort, also muss das Nomen selbst zeigen, was ein Artikel gezeigt hätte — wie ein Adjektiv ohne Artikel (guter Wein). Für die Frau ist das -e: Deutsche, für den Mann -er: Deutscher. Deutsche für den Mann ist die Form nach der (der Deutsche), und hier gibt es kein der, das das Maskulinum trägt."
+
+  - id: cloze-erwachsen-plural
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Use erwachsen as a noun in both gaps. One plural has an article and one has none."
+      ru: "Используйте erwachsen как существительное в обоих пропусках. Одно множественное число — с артиклем, другое — без."
+      uk: "Використайте erwachsen як іменник в обох пропусках. Одна множина — з артиклем, друга — без."
+      de: "Setz erwachsen in beide Lücken als Nomen ein. Ein Plural hat einen Artikel, einer keinen."
+    text: "Der Schwimmkurs ist nur für {{Erwachsene}}. Die {{Erwachsenen}} üben am Vormittag, die Kinder am Nachmittag."
+    translation:
+      en: "The swimming course is only for adults. The adults practise in the morning, the children in the afternoon."
+      ru: "Курс плавания — только для взрослых. Взрослые занимаются до обеда, дети — после."
+      uk: "Курс плавання — лише для дорослих. Дорослі займаються до обіду, діти — після."
+    explain:
+      en: "A plural with no article takes -e: für Erwachsene, like für gute Freunde. After die, the plural takes -en: die Erwachsenen, like die guten Freunde. The word is the same and only the article word in front decides. Swapping the two endings is the error this item checks for."
+      ru: "Множественное число без артикля получает -e: für Erwachsene — как für gute Freunde. После die множественное число получает -en: die Erwachsenen — как die guten Freunde. Слово одно и то же, решает только то, что стоит перед ним. По-русски «взрослые» не меняются от того, есть ли перед ними слово, — а в немецком окончание меняется."
+      uk: "Множина без артикля отримує -e: für Erwachsene — як für gute Freunde. Після die множина отримує -en: die Erwachsenen — як die guten Freunde. Слово те саме, вирішує лише те, що стоїть перед ним. Українською «дорослі» не змінюються від того, чи є перед ними слово, — а в німецькій закінчення змінюється."
+      de: "Ein Plural ohne Artikel nimmt -e: für Erwachsene, wie für gute Freunde. Nach die nimmt der Plural -en: die Erwachsenen, wie die guten Freunde. Das Wort ist dasselbe, es entscheidet nur, was davor steht."
+
+  - id: cloze-etwas-nichts
+    outcomes: [erfahrung-praesentieren]
+    type: cloze
+    focus: adjektiv-nomen
+    instruction:
+      en: "Use neu and besonders as nouns after etwas and nichts."
+      ru: "Используйте neu и besonders как существительные после etwas и nichts."
+      uk: "Використайте neu і besonders як іменники після etwas і nichts."
+      de: "Setz neu und besonders nach etwas und nichts als Nomen ein."
+    text: "Gibt es in der Firma etwas {{Neues}}? — Nein, nichts {{Besonderes}}."
+    translation:
+      en: "Is there anything new at the company? — No, nothing special."
+      ru: "На фирме есть что-нибудь новое? — Нет, ничего особенного."
+      uk: "У фірмі є щось нове? — Ні, нічого особливого."
+    explain:
+      en: "After etwas, nichts, viel and wenig the adjective becomes a neuter noun: a capital letter and the strong -es, Neues and Besonderes. The -es is the ending das would have carried, and since etwas and nichts carry none, the noun takes it over. Lower case neues or besonderes keeps the ending and loses the noun."
+      ru: "После etwas, nichts, viel и wenig прилагательное становится существительным среднего рода: с заглавной буквы и с сильным -es — Neues, Besonderes. -es — это окончание, которое нёс бы das, а etwas и nichts его не несут, вот существительное и берёт его на себя. Русское «что-нибудь новое», «ничего особенного» устроено так же — средний род, только с маленькой буквы."
+      uk: "Після etwas, nichts, viel і wenig прикметник стає іменником середнього роду: з великої літери і із сильним -es — Neues, Besonderes. -es — це закінчення, яке ніс би das, а etwas і nichts його не несуть, тож іменник бере його на себе. Українське «щось нове», «нічого особливого» побудоване так само — середній рід, тільки з малої літери."
+      de: "Nach etwas, nichts, viel und wenig wird das Adjektiv zu einem neutralen Nomen: großgeschrieben und mit dem starken -es — Neues, Besonderes. Das -es ist die Endung, die das getragen hätte; etwas und nichts tragen keine, also übernimmt das Nomen sie."
+
+  - id: mc-jugendlicher-bus
+    outcomes: [erfahrung-praesentieren]
+    type: mc
+    focus: adjektiv-nomen
+    prompt: "Im Bus hat mir ein ___ seinen Platz angeboten. (jugendlich)"
+    options:
+      - "Jugendliche"
+      - "Jugendlicher"
+      - "Jugendlichen"
+    correct: 1
+    translation:
+      en: "On the bus a young person offered me his seat."
+      ru: "В автобусе подросток уступил мне место."
+      uk: "В автобусі підліток поступився мені місцем."
+    explain:
+      en: "In the nominative ein looks the same for masculine and neuter, so it cannot show the masculine, and the noun has to: ein Jugendlicher, exactly like ein netter Mann. Jugendliche is the form after der, der Jugendliche. Jugendlichen is the form for the dative and the plural after die, and this sentence has neither."
+      ru: "В номинативе ein одинаково для мужского и среднего рода, поэтому мужской род оно показать не может. Значит, это должно сделать само слово: ein Jugendlicher — точно как ein netter Mann. Jugendliche — форма после der (der Jugendliche). Jugendlichen — форма датива и множественного числа после die, а здесь нет ни того, ни другого."
+      uk: "У номінативі ein однакове для чоловічого й середнього роду, тому чоловічий рід воно показати не може. Отже, це мусить зробити саме слово: ein Jugendlicher — точно як ein netter Mann. Jugendliche — форма після der (der Jugendliche). Jugendlichen — форма датива і множини після die, а тут немає ні того, ні іншого."
+      de: "Im Nominativ sieht ein für Maskulinum und Neutrum gleich aus und kann das Maskulinum nicht zeigen, also muss es das Wort selbst zeigen: ein Jugendlicher, genau wie ein netter Mann. Jugendliche ist die Form nach der (der Jugendliche). Jugendlichen ist die Form im Dativ und im Plural nach die, und dieser Satz hat keins von beidem."
+
+  - id: uebersetzen-vater-beamter
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. 'civil servant' is der Beamte, which declines like an adjective."
+      ru: "Переведите. «Госслужащий» — der Beamte; это слово склоняется как прилагательное."
+      uk: "Перекладіть. «Державний службовець» — der Beamte; це слово відмінюється як прикметник."
+      de: "Übersetze mit der Beamte. Das Wort wird wie ein Adjektiv dekliniert."
+    prompt_en: "My father was a civil servant for thirty years."
+    prompt_ru: "Мой отец тридцать лет был госслужащим."
+    prompt_uk: "Мій батько тридцять років був державним службовцем."
+    answer: "Mein Vater war dreißig Jahre lang Beamter."
+    accept:
+      - "Mein Vater war dreißig Jahre Beamter."
+      - "Dreißig Jahre lang war mein Vater Beamter."
+      - "Mein Vater war dreißig Jahre lang ein Beamter."
+    key_tokens: ["Beamter"]
+    explain:
+      en: "A job after sein takes no article in German, and with no article the masculine shows itself in the ending: Beamter, like Deutscher. Beamte is the dictionary form, the one that comes after der, and the word declines like an adjective throughout: der Beamte, ein Beamter, mit dem Beamten. With ein, the ending is the same -er."
+      ru: "Профессия после sein в немецком идёт без артикля, а без артикля мужской род виден в окончании: Beamter — как Deutscher. Beamte — словарная форма, та, что после der, и склоняется это слово во всех формах как прилагательное: der Beamte, ein Beamter, mit dem Beamten. С ein окончание то же — -er. Русскому «был госслужащим» с творительным падежом немецкий отвечает просто номинативом."
+      uk: "Професія після sein у німецькій іде без артикля, а без артикля чоловічий рід видно в закінченні: Beamter — як Deutscher. Beamte — словникова форма, та, що після der, і відмінюється це слово в усіх формах як прикметник: der Beamte, ein Beamter, mit dem Beamten. З ein закінчення те саме — -er. Українському «був державним службовцем» з орудним відмінком німецька відповідає просто номінативом."
+      de: "Ein Beruf nach sein steht im Deutschen ohne Artikel, und ohne Artikel zeigt sich das Maskulinum in der Endung: Beamter, wie Deutscher. Beamte ist die Wörterbuchform, die nach der, und das Wort wird durchgehend wie ein Adjektiv dekliniert: der Beamte, ein Beamter, mit dem Beamten. Mit ein bleibt die Endung -er."
+
+  - id: uebersetzen-jugendliche-handy
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'teenager' use jugendlich as a noun; for 'hand in' take abgeben."
+      ru: "Переведите. Для «подростка» используйте jugendlich как существительное; для «сдать» возьмите abgeben."
+      uk: "Перекладіть. Для «підлітка» використайте jugendlich як іменник; для «здати» візьміть abgeben."
+      de: "Übersetze. Nimm jugendlich als Nomen und abgeben."
+    prompt_en: "The teenager who found my mobile handed it in at the police."
+    prompt_ru: "Подросток, который нашёл мой мобильный, сдал его в полицию."
+    prompt_uk: "Підліток, який знайшов мій мобільний, здав його в поліцію."
+    answer: "Der Jugendliche, der mein Handy gefunden hat, hat es bei der Polizei abgegeben."
+    accept:
+      - "Der Jugendliche, der mein Handy gefunden hat, gab es bei der Polizei ab."
+      - "Der Jugendliche, der mein Handy fand, hat es bei der Polizei abgegeben."
+      - "Der Jugendliche, der mein Handy fand, gab es bei der Polizei ab."
+    key_tokens: ["Jugendliche"]
+    explain:
+      en: "After der the article has already said masculine nominative, so the noun falls back to the short -e: der Jugendliche. Compare ein Jugendlicher, where ein says nothing and the noun has to. If the finder were a girl, it would be die Jugendliche, and only the article would change."
+      ru: "После der артикль уже сказал «мужской род, номинатив», поэтому у существительного остаётся короткое -e: der Jugendliche. Сравните ein Jugendlicher, где ein ничего не говорит и сказать должно само слово. Если бы телефон нашла девочка, было бы die Jugendliche — поменялся бы только артикль."
+      uk: "Після der артикль уже сказав «чоловічий рід, номінатив», тому в іменника лишається коротке -e: der Jugendliche. Порівняйте ein Jugendlicher, де ein нічого не каже і сказати мусить саме слово. Якби телефон знайшла дівчинка, було б die Jugendliche — змінився б лише артикль."
+      de: "Nach der hat der Artikel schon Maskulinum Nominativ gesagt, also bleibt dem Nomen das kurze -e: der Jugendliche. Vergleiche ein Jugendlicher, wo ein nichts sagt und das Nomen es sagen muss. Hätte ein Mädchen das Handy gefunden, hieße es die Jugendliche — nur der Artikel ändert sich."
+
+  - id: uebersetzen-kranken-essen
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'the sick woman' use krank as a noun."
+      ru: "Переведите. Для «больной» используйте krank как существительное."
+      uk: "Перекладіть. Для «хворої» використайте krank як іменник."
+      de: "Übersetze mit krank als Nomen."
+    prompt_en: "The nurse brings the sick woman her food."
+    prompt_ru: "Медсестра приносит больной еду."
+    prompt_uk: "Медсестра приносить хворій їжу."
+    answer: "Die Krankenschwester bringt der Kranken das Essen."
+    accept:
+      # ihr Essen and das Essen both carry 'her food'.
+      - "Die Krankenschwester bringt der Kranken ihr Essen."
+    key_tokens: ["Kranken"]
+    explain:
+      en: "The sick woman is the one who receives the food, so dative: der Kranken. In the dative every adjective-noun after an article word ends in -en, whatever its gender, so the ending is no clue to who is meant. The article is: der Kranken is a woman, dem Kranken a man."
+      ru: "Больная — та, кому приносят еду, значит, датив: der Kranken. В дативе после артикля любое существительное-прилагательное оканчивается на -en, какого бы рода оно ни было, так что окончание не подскажет, о ком речь. Подскажет артикль: der Kranken — женщина, dem Kranken — мужчина. Русское «больной» — тоже прилагательное в роли существительного, и тоже склоняется как прилагательное."
+      uk: "Хвора — та, кому приносять їжу, отже, датив: der Kranken. У дативі після артикля будь-який іменник-прикметник закінчується на -en, якого б роду він не був, тож закінчення не підкаже, про кого мова. Підкаже артикль: der Kranken — жінка, dem Kranken — чоловік. Українське «хвора» — теж прикметник у ролі іменника, і теж відмінюється як прикметник."
+      de: "Die Kranke bekommt das Essen, also Dativ: der Kranken. Im Dativ endet nach einem Artikelwort jedes Adjektiv-Nomen auf -en, gleich welches Genus, also verrät die Endung nicht, wer gemeint ist. Das verrät der Artikel: der Kranken ist eine Frau, dem Kranken ein Mann."
+
+  - id: uebersetzen-erwachsene-preis
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: adjektiv-nomen
+    instruction:
+      en: "Translate. For 'adults' use erwachsen as a noun, for 'pay' zahlen."
+      ru: "Переведите. Для «взрослых» используйте erwachsen как существительное, для «платить» — zahlen."
+      uk: "Перекладіть. Для «дорослих» використайте erwachsen як іменник, для «платити» — zahlen."
+      de: "Übersetze mit erwachsen als Nomen und mit zahlen."
+    prompt_en: "Children pay half, adults pay the full price."
+    prompt_ru: "Дети платят половину, взрослые — полную цену."
+    prompt_uk: "Діти платять половину, дорослі — повну ціну."
+    answer: "Kinder zahlen die Hälfte, Erwachsene zahlen den vollen Preis."
+    accept:
+      - "Kinder zahlen die Hälfte, Erwachsene den vollen Preis."
+      - "Kinder zahlen die Hälfte und Erwachsene den vollen Preis."
+      - "Kinder zahlen die Hälfte und Erwachsene zahlen den vollen Preis."
+    key_tokens: ["Erwachsene"]
+    explain:
+      en: "A general statement about adults has no article, as with Kinder beside it, and a plural with no article takes -e: Erwachsene. Die Erwachsenen would point at particular adults, the ones in this group. Erwachsenen with no article is the ending of the article form placed where no article is."
+      ru: "Общее утверждение о взрослых обходится без артикля — как и Kinder рядом, — а множественное число без артикля получает -e: Erwachsene. Die Erwachsenen указывало бы на конкретных взрослых, тех, что в этой группе. Erwachsenen без артикля — окончание формы с артиклем там, где артикля нет."
+      uk: "Загальне твердження про дорослих обходиться без артикля — як і Kinder поруч, — а множина без артикля отримує -e: Erwachsene. Die Erwachsenen вказувало б на конкретних дорослих, тих, що в цій групі. Erwachsenen без артикля — закінчення форми з артиклем там, де артикля немає."
+      de: "Eine allgemeine Aussage über Erwachsene braucht keinen Artikel — wie Kinder daneben —, und ein Plural ohne Artikel nimmt -e: Erwachsene. Die Erwachsenen würde auf bestimmte Erwachsene zeigen, die in dieser Gruppe. Erwachsenen ohne Artikel ist die Endung der Artikelform an einer Stelle ohne Artikel."
