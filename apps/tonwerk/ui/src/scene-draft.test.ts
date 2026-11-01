@@ -2,6 +2,8 @@ import { describe, expect, test } from 'vitest';
 import { sceneDocumentFixture } from './test/fixtures';
 import {
   ZeitleisteFestError,
+  abweichungSetzen,
+  geraetWechseln,
   aeusserungAendern,
   aeusserungEntfernen,
   aeusserungHinzufuegen,
@@ -317,5 +319,57 @@ describe('katalogStimmeUebernehmen', () => {
     const member = katalogStimmeUebernehmen(szene, rolle(szene), preset).cast[0]!;
     expect(member.voice.engine).toBe('qwen_tts');
     expect(member.voice.style).toBe('Ruhig.');
+  });
+});
+
+describe('device overrides on a placement', () => {
+  const pa = { highpass_hz: 180, lowpass_hz: 5600, gain_db: -1, room_send_db: 5 };
+  const ort = { device: 'pa', distance: 1, pan: 0 };
+
+  test('an override is written whole, and one back at the device or emptied leaves nothing', () => {
+    const tiefer = abweichungSetzen(ort, 'lowpass_hz', 4200, pa);
+    expect(tiefer.device_overrides).toEqual({
+      gain_db: null,
+      highpass_hz: null,
+      lowpass_hz: 4200,
+      room_send_db: null,
+    });
+    expect(abweichungSetzen(tiefer, 'lowpass_hz', 5600, pa)).toEqual(ort);
+    expect(abweichungSetzen(tiefer, 'lowpass_hz', null, pa)).toEqual(ort);
+  });
+
+  test("the band never passes nothing, the device's own edge counting", () => {
+    expect(abweichungSetzen(ort, 'lowpass_hz', 100, pa).device_overrides?.lowpass_hz).toBe(181);
+    expect(abweichungSetzen(ort, 'highpass_hz', 9000, pa).device_overrides?.highpass_hz).toBe(5599);
+  });
+
+  test('another device drops the overrides, which were numbers against the old one', () => {
+    const tiefer = abweichungSetzen(ort, 'lowpass_hz', 4200, pa);
+    expect(geraetWechseln(tiefer, 'telephone')).toEqual({ ...ort, device: 'telephone' });
+  });
+
+  test('an engine-spelled null override is no edit', () => {
+    const mitOrt = (device_overrides?: null): Scene => ({
+      ...szene,
+      timeline: szene.timeline.map((entry) =>
+        entry.type === 'speech'
+          ? {
+              ...entry,
+              placement: { ...ort, ...(device_overrides === null ? { device_overrides } : {}) },
+            }
+          : entry,
+      ),
+    });
+    expect(istGeaendert(mitOrt(null), mitOrt())).toBe(false);
+    expect(
+      istGeaendert(mitOrt(), {
+        ...mitOrt(),
+        timeline: mitOrt().timeline.map((entry) =>
+          entry.type === 'speech'
+            ? { ...entry, placement: abweichungSetzen(ort, 'gain_db', -3, pa) }
+            : entry,
+        ),
+      }),
+    ).toBe(true);
   });
 });

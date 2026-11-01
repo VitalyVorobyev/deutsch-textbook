@@ -349,6 +349,7 @@ function Editor({
           geaendert={geaendert}
           api={api}
           nachLauf={neuLaden}
+          akustik={akustik.data}
         />
       ) : null}
 

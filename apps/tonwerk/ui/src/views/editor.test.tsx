@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test, vi } from 'vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { ApiContext } from '../useEngine';
 import { charactersFixture, sceneDetailFixture, stubApi } from '../test/fixtures';
 import { Szene } from './Szene';
@@ -327,7 +327,9 @@ describe('das Pult', () => {
     }));
     mount(<Szene slug="ls-wohnen-01" />, editor({ reviseScene: reviseScene as never }));
 
-    const aufklappen = await screen.findByRole('button', { name: /^line-1 · .*: Inserts$/ });
+    const aufklappen = await screen.findByRole('button', {
+      name: /^line-1 · .*: Ort und Inserts$/,
+    });
     expect(screen.queryByRole('switch', { name: 'Hochpass' })).toBeNull();
     fireEvent.click(aufklappen);
     const hochpass = screen.getAllByRole('switch', { name: 'Hochpass' })[0]!;
@@ -348,6 +350,43 @@ describe('das Pult', () => {
       lowpass: null,
       compression: null,
       crush: null,
+    });
+  });
+
+  test('a line gets a device in the pult, and an override beside it is kept only while it departs', async () => {
+    window.location.hash = '#/szene/ls-wohnen-01?modus=mischung';
+    const reviseScene = vi.fn(async () => ({
+      project_id: 3,
+      slug: 'ls-wohnen-01',
+      revision: 5,
+      scene_sha256: 'neue-bytes',
+      has_exercise: true,
+      stage: 'draft',
+    }));
+    mount(<Szene slug="ls-wohnen-01" />, editor({ reviseScene: reviseScene as never }));
+
+    fireEvent.click(await screen.findByRole('button', { name: /^line-1 · .*: Ort und Inserts$/ }));
+    const ort = within(screen.getByRole('group', { name: /^line-1 · .*: Ort$/ }));
+    fireEvent.click(ort.getByRole('button', { name: 'Ort setzen' }));
+    fireEvent.change(ort.getByRole('combobox', { name: /^Gerät/ }), { target: { value: 'pa' } });
+    const tiefpass = await ort.findByRole('spinbutton', { name: /^Geräte-Tiefpass Hz/ });
+    expect(tiefpass.getAttribute('placeholder')).toBe('5600');
+
+    const speichern = screen.getByRole('button', { name: 'Als neue Revision speichern' });
+    fireEvent.focus(tiefpass);
+    fireEvent.change(tiefpass, { target: { value: '4200' } });
+    await waitFor(() => expect(speichern.hasAttribute('disabled')).toBe(false));
+    fireEvent.click(speichern);
+    await waitFor(() => expect(reviseScene).toHaveBeenCalledTimes(1));
+    const gesendet = (reviseScene.mock.calls[0] as unknown as [string, Scene])[1];
+    const zeile = gesendet.timeline.find(
+      (entry) => entry.type === 'speech' && entry.utterance_id === 'line-1',
+    );
+    expect(zeile && 'placement' in zeile ? zeile.placement : undefined).toEqual({
+      device: 'pa',
+      distance: 1,
+      pan: 0,
+      device_overrides: { gain_db: null, highpass_hz: null, lowpass_hz: 4200, room_send_db: null },
     });
   });
 });

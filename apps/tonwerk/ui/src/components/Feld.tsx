@@ -16,6 +16,7 @@
  * `einheit` prints the unit the number is in — ms, dB, ×. A number whose unit is only in the
  * author's head is a number somebody will type seconds into.
  */
+import { NumberInput } from '@vitavision/ui';
 import { FELD, SKRIPT_FELD, WAHL, ZAHL_FELD } from './steuerung';
 import type { ReactNode } from 'react';
 
@@ -138,6 +139,47 @@ export function ZahlFeld({
           const zahl = Number(roh);
           if (Number.isFinite(zahl)) onWert(zahl);
         }}
+      />
+    </Rahmen>
+  );
+}
+
+/**
+ * An optional number whose writer may move it: `null` when empty, the placeholder saying what empty
+ * means.
+ *
+ * Unlike `ZahlFeld` the typed text survives while the field has focus (`NumberInput`), so a writer
+ * that clamps the value — a band edge held above the other edge — does not overwrite the
+ * half-typed number under the cursor.
+ */
+export function WertFeld({
+  wert,
+  onWert,
+  min,
+  max,
+  schritt,
+  platzhalter,
+  ...rest
+}: Gemeinsam & {
+  wert: number | null;
+  onWert(next: number | null): void;
+  min?: number;
+  max?: number;
+  schritt?: number;
+  platzhalter?: string;
+}): React.JSX.Element {
+  return (
+    <Rahmen {...rest}>
+      <NumberInput
+        className={ZAHL_FELD}
+        value={wert}
+        min={min}
+        max={max}
+        step={schritt}
+        placeholder={platzhalter}
+        disabled={rest.disabled}
+        onValueChange={onWert}
+        onClear={() => onWert(null)}
       />
     </Rahmen>
   );

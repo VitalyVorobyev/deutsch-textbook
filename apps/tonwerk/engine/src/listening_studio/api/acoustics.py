@@ -84,6 +84,13 @@ def router(store: Store, repo: Path) -> APIRouter:
                     "label": device.label,
                     "note": device.note,
                     "version": device.version,
+                    # The four numbers a placement's `device_overrides` may replace, so an editor
+                    # shows what an override departs from. A band the device does not have is
+                    # null: an override then adds it.
+                    "highpass_hz": device.highpass.hz if device.highpass else None,
+                    "lowpass_hz": device.lowpass.hz if device.lowpass else None,
+                    "gain_db": device.gain_db,
+                    "room_send_db": device.room_send_db,
                 }
                 for device_id, device in sorted(profiles.devices.items())
             ],

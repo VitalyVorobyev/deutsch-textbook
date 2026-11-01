@@ -175,6 +175,11 @@ def test_acoustics_serves_the_repository_s_own_vocabulary(client: Any) -> None:
     assert rooms["studio"]["label"]
     devices = {row["id"]: row for row in body["devices"]}
     assert "telephone" in devices and devices["telephone"]["label"]
+    # What a device override departs from, read off the same profile the renderer uses.
+    pa = devices["pa"]
+    assert (pa["highpass_hz"], pa["lowpass_hz"], pa["gain_db"], pa["room_send_db"]) == (
+        180.0, 5600.0, -1.0, 5.0
+    )
 
     presets = {row["id"]: row for row in body["presets"]}
     assert set(presets) >= {"clean", "natural", "challenging"}

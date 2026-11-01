@@ -141,12 +141,16 @@ instructions.
      rather than failing at render time.
    - **Mischung** — what the render actually produced, and the two buttons that produce it. Its
      **Pult** sets each line's level, its three equalizer bands (low, mid, high) and its share of
-     the room, and how far a background drops under speech. A line's **Inserts** button opens its
-     effects beneath it, in the order the render applies them: high-pass and low-pass (a cutoff,
+     the room, and how far a background drops under speech. A line's **Ort · Inserts** button
+     opens two things beneath it. First its place: pan, distance and the device it is heard
+     through (a telephone, a station loudspeaker). Beside the device sit its high-pass, low-pass,
+     level and room share for this line only, each field showing the device's own value; an
+     empty field, or the device's own number, changes nothing, and another device clears them.
+     Then its effects, in the order the render applies them: high-pass and low-pass (a cutoff,
      and how steep: each step adds 12 dB per octave), compressor and crusher. Each switches on at
-     a gentle starting value and off by removing it; the low-pass always stays above the
+     a gentle starting value and off by removing it; a low-pass always stays above its
      high-pass. The Pult edits the draft like every other field: a change is heard after saving
-     and rendering again.
+     and rendering again. An event's place and device are set the same way under **Szene**.
 
    Undo and redo work across all three modes, for everything since the last save: the arrow
    buttons beside **Verwerfen**, or `⌘/Strg + Z` and `⌘/Strg + Umschalt + Z`. A fader move or a

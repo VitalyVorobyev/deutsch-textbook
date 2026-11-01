@@ -32,6 +32,8 @@ import type {
   CastMember,
   Compression,
   Crush,
+  DeviceOverrides,
+  Placement,
   Scene,
   SfxEntry,
   SpeechEntry,
@@ -417,6 +419,62 @@ export function mischungSetzen(scene: Scene, index: number, werte: Mischwerte): 
       return neu as TimelineEntry;
     }),
   };
+}
+
+/** A device's own values for the four numbers a placement may override; null is a missing band. */
+export interface Geraetwerte {
+  highpass_hz?: number | null;
+  lowpass_hz?: number | null;
+  gain_db?: number;
+  room_send_db?: number;
+}
+
+export type Abweichung = keyof DeviceOverrides;
+
+/**
+ * Another device on a placement. Its overrides go: they were numbers against the previous device's
+ * band and level, and carried over they would describe neither.
+ */
+export function geraetWechseln(placement: Placement, device: string | null): Placement {
+  const neu: Placement = { ...placement, device };
+  delete neu.device_overrides;
+  return neu;
+}
+
+/**
+ * One override on a placement's device, or none when `wert` is empty or the device's own value.
+ *
+ * **An override equal to the device is no override**, and an empty set is removed, so returning a
+ * field to the device's number leaves the scene as it was (`kanonisch`). The band keeps the rule
+ * the Pult keeps: the edge being moved stops 1 Hz short of the other, the device's own edge
+ * counting when the other is not overridden, because the engine refuses a band that passes
+ * nothing.
+ */
+export function abweichungSetzen(
+  placement: Placement,
+  feld: Abweichung,
+  wert: number | null,
+  geraet: Geraetwerte | undefined,
+): Placement {
+  // Spelled whole, unset fields null, the way the engine returns a stored override.
+  const werte: DeviceOverrides = {
+    gain_db: null,
+    highpass_hz: null,
+    lowpass_hz: null,
+    room_send_db: null,
+    ...placement.device_overrides,
+  };
+  werte[feld] = wert === null || wert === geraet?.[feld] ? null : wert;
+  const hoch = werte.highpass_hz ?? geraet?.highpass_hz ?? null;
+  const tief = werte.lowpass_hz ?? geraet?.lowpass_hz ?? null;
+  if (hoch !== null && tief !== null && tief <= hoch) {
+    if (feld === 'lowpass_hz') werte.lowpass_hz = hoch + 1;
+    else if (feld === 'highpass_hz') werte.highpass_hz = tief - 1;
+  }
+  const neu: Placement = { ...placement };
+  if (Object.values(werte).some((zahl) => zahl !== null)) neu.device_overrides = werte;
+  else delete neu.device_overrides;
+  return neu;
 }
 
 function setzeOderLoesche(ziel: Record<string, unknown>, feld: string, wert: number): void {
