@@ -1,17 +1,15 @@
 /**
  * Which build ships the reviewed listening recordings.
  *
- * Both shipping targets do. This started as a desktop/web split — the recordings would have been
- * most of a public static site's download — but the measured corpus is 14.2 MB of 64 kbps mono
- * MP3 against a 69 MB site and a 1 GB Pages limit, fetched per item only when a learner opens
- * one. So the demo ships them too, and what the flag actually distinguishes is a shipping build
- * from a lean one that carries no binaries.
+ * Every build does, unless `PUBLIC_ATLAS_AUDIO_BUNDLE=0` asks for a lean one with no binaries.
+ * The recordings are fetched per item only when a learner opens one, so shipping them costs the
+ * site download nothing; withholding them costs every listening item its voice (`lib/audio.ts`).
  *
  * An `audio-comprehension` item carries its script either way (`source.turns`), and the
  * validator holds that script equal to the recording's transcript, so a build without audio asks
  * the learner exactly the same question. Only the voice differs: a reviewed take, or browser TTS.
  *
- * `PUBLIC_ATLAS_AUDIO_BUNDLE=1` turns it on. The name is deliberately `PUBLIC_` — Vite exposes
+ * The name is deliberately `PUBLIC_` — Vite exposes
  * only that prefix to client code, and `AudioComprehension.tsx` has to read the same flag that
  * decided whether the files were copied. One boolean rather than a per-id manifest, because
  * the copy is all-or-nothing and the validator already guarantees every committed artifact has
@@ -164,9 +162,8 @@ export function audioBundle(): AstroIntegration {
     name: 'audio-bundle',
     hooks: {
       /**
-       * The dev server never reaches `astro:build:done`, so without this `bun tauri dev` sets
-       * the bundle flag, the component asks for `/audio/<id>.mp3`, and every reviewed recording
-       * 404s — the one command anyone would use to check that a freshly published take plays.
+       * The dev server never reaches `astro:build:done`, so without this the component asks for
+       * `/audio/<id>.mp3` and every reviewed recording 404s — the one command anyone would use to check that a freshly published take plays.
        * Serving from the content tree rather than a copy also means an edited recording is
        * audible on reload, which is what a dev server is for.
        */
@@ -247,7 +244,7 @@ export function audioBundle(): AstroIntegration {
         logger.info(
           bundle
             ? `shipped ${shipped.length} dialogue(s) and ${shippedReadings.length} reading narration(s), ${megabytes} MB → ${relative(root, audioDir)}`
-            : `${available.length + availableReadings.length} reviewed audio artifact(s) withheld (${AUDIO_BUNDLE_ENV} unset) — items fall back to browser TTS`,
+            : `${available.length + availableReadings.length} reviewed audio artifact(s) withheld (${AUDIO_BUNDLE_ENV}=0) — items fall back to browser TTS`,
         );
       },
     },

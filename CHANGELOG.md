@@ -34,6 +34,12 @@ GitHub Release notes.
 
 ### Changed
 
+- **The website plays the recordings again.** It had been shipping none, so every listening task,
+  the A2 Hören sets among them, spoke in the browser's voice. Every build now carries them.
+- **The A2 exam page is arranged like the exam**: a card for each of Übungssatz 1, 2 and 3 with
+  Lesen, Hören and Schreiben in exam order. One module is open at a time, with tabs to the others
+  in its set, its progress grouped by Teil, and a link that opens it directly. A card shows how far
+  you got today.
 - **Redaktion**, the editorial workbench, now uses the shared vitavision design system, shows
   every kind of material, and has a **Prüfen** inbox for reviewing what changed.
 - A topic counts as reviewed once its editor has read every file it owns, and turns back into a

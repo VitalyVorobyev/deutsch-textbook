@@ -35,9 +35,9 @@
 #   NODE_VERSION       22   — package.json requires >=22.12.0 and Astro 7 needs
 #                            >=20; the platform default is older.
 #   PUBLIC_ATLAS_AUDIO_BUNDLE
-#                      1    — without it the build logs "41 reviewed recording(s)
-#                            withheld" and the site speaks browser TTS over
-#                            scripts that were recorded and human-approved.
+#                      leave unset. Every build ships the reviewed recordings;
+#                      0 here would withhold them and the site would speak
+#                      browser TTS. `bun run deploy:smoke` checks the result.
 #   SITE_URL           https://deutsch.vitavision.dev
 #                           — canonical, /install QR and sitemap URLs only;
 #                             astro.config already defaults to this host.
