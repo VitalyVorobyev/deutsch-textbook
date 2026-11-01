@@ -27,6 +27,14 @@ import { repoRoot } from '@da/content/repo-root';
 import { applyPatch, writableFields, type WritePatch } from '@da/content/write';
 import { readSource, saveSource, type SaveFileInput } from '@da/content/editor';
 import { renderSource, type RenderSourceInput } from '@da/content/preview';
+import {
+  OWNER,
+  REVIEW_LEDGER_FILE,
+  recordReview,
+  reviewableFiles,
+  reviewedText,
+  reviewStatuses,
+} from '@da/content/review-ledger';
 
 const CHUNKS: ChunkName[] = ['items', 'vocab', 'texts'];
 
@@ -121,6 +129,9 @@ export function corpus(): Plugin {
       let changed: string[] = [];
       const invalidate = (file: string) => {
         if (!file.startsWith(`${root}/content`) && !file.startsWith(`${root}/data`)) return;
+        // A review mark touches no content, so it never rebuilds the graph: a review pass is many
+        // one-file writes, and the Prüfen view refetches the ledger itself.
+        if (file === `${root}/${REVIEW_LEDGER_FILE}`) return;
         changed.push(file);
         if (pending) clearTimeout(pending);
         pending = setTimeout(() => {
@@ -260,6 +271,44 @@ export function corpus(): Plugin {
             .then((result) => {
               if (!result.ok) res.statusCode = 422;
               if (result.ok && result.changed) invalidateContentGraph(root);
+              json(res, result);
+            })
+            .catch((error: unknown) => {
+              res.statusCode = error instanceof SyntaxError ? 400 : 413;
+              json(res, { error: error instanceof Error ? error.message : String(error) });
+            });
+          return;
+        }
+        if (url === '/__reviews') {
+          return json(res, reviewStatuses(root, reviewableFiles(contentGraph(root))));
+        }
+        if (url === '/__reviewed') {
+          const text = reviewedText(root, parsedUrl.searchParams.get('revision') ?? '');
+          if (text === undefined) res.statusCode = 404;
+          return json(res, { text: text ?? null });
+        }
+        if (url === '/__review-mark') {
+          if (req.method !== 'POST') {
+            res.statusCode = 405;
+            return json(res, { error: 'POST only' });
+          }
+          void readBody(req, MAX_PATCH_BYTES)
+            .then((raw) => JSON.parse(raw) as { file?: string; expectedRevision?: string })
+            .then(({ file, expectedRevision }) => {
+              if (!file || !expectedRevision || !reviewableFiles(contentGraph(root)).includes(file))
+                return {
+                  ok: false,
+                  error: 'a reviewable file and its expectedRevision are required',
+                };
+              return recordReview(root, {
+                file,
+                state: 'owner-reviewed',
+                by: OWNER,
+                expectedRevision,
+              });
+            })
+            .then((result) => {
+              if (!result.ok) res.statusCode = 422;
               json(res, result);
             })
             .catch((error: unknown) => {

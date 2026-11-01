@@ -2,6 +2,10 @@
 
 Claude Code loads this file when you work in this directory; the root [`CLAUDE.md`](../CLAUDE.md) applies too. Grading rulings (`grading-decisions.yaml`) follow the drills-from-progress procedure in [`content/CLAUDE.md`](../content/CLAUDE.md).
 
+**`review-ledger.yaml` records who read each material file, at which bytes** (ADR 0014). Claude
+writes `claude-reviewed` rows only through `bun run review:claude`; `owner-reviewed` rows come only
+from Redaktion's Prüfen action and are never written by hand. → the `pr-cycle` skill
+
 ## Commands
 
 - `bun run exam:ingest` — turn the **local-only** Goethe exam materials (`docs/GeotheInstitute/`, gitignored) into `public/exams/` (also gitignored); nothing it reads or writes may enter the repo. A module's `cues:` are proposed by `bun scripts/exam-cues-scan.ts <setId>/<module>` and **verified by ear before pasting**. → [ADR 0009](../docs/adrs/0009-third-party-and-official-material.md) · [`docs/architecture/exam-trainer.md`](../docs/architecture/exam-trainer.md)

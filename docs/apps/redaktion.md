@@ -113,6 +113,20 @@ navigation. Closing or reloading the window is guarded by the platform prompt.
 The **GitHub** link is secondary provenance. It opens the corresponding source on `main`; it does
 not replace the local preview, the local edit, or review of the eventual branch diff.
 
+## Review what Claude changed
+
+**Prüfen** is your inbox. It lists every file Claude handed over, each with a note on what to look
+at, and every file you reviewed before that has changed since.
+
+1. Open an entry and click **Diff zeigen**. The diff starts at the version you last accepted; a file
+   you never reviewed shows whole.
+2. Read it, and open the file from its path if you want the full context.
+3. Click **Als geprüft markieren**. The mark covers exactly the version you read: if the file
+   changed after you opened it, the mark is refused and you read again.
+
+A mark rebuilds nothing, so a review pass is quick. Marks are written to `data/review-ledger.yaml`;
+commit that file like any other.
+
 ## Mark a topic reviewed
 
 Do not change a manifest from `draft` to `reviewed` in the source textarea — Redaktion rejects that
@@ -136,7 +150,8 @@ corpus, and rolls the status change back on failure.
 
 ## What it deliberately does not do
 
-No Git staging, commit or PR UI. No comments or assignments. No file creation, deletion or moves.
+No Git staging, commit or PR UI; Prüfen reads old versions from Git but writes only the ledger. No
+comments or assignments. No file creation, deletion or moves.
 No learner progress, no grading queue, no audio generation — audio is [Tonwerk's](tonwerk.md).
 B2–C2 grammar cells remain source-led unknown territory, and Windows and Linux packaging are not
 release targets.

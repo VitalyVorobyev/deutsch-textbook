@@ -2008,3 +2008,52 @@ export const gradingDecisionSchema = z.object({
 export type GradingDecision = z.infer<typeof gradingDecisionSchema>;
 
 export const gradingDecisionsSchema = z.array(gradingDecisionSchema);
+
+// ---------------------------------------------------------------------------
+// Review ledger (data/review-ledger.yaml) — ADR 0014
+// ---------------------------------------------------------------------------
+
+/**
+ * Who has read a material file, at which bytes. One row per file, the latest review only: `git log`
+ * keeps the rest. `revision` is the git blob hash of the reviewed bytes, so a review expires the
+ * moment the file changes, and the reviewed text can be read back for a diff.
+ *
+ * - `claude-reviewed` — Claude read the file against the authoring rules and its gates; `note`
+ *   says what the owner should look at. A hand-off, not a verdict.
+ * - `owner-reviewed` — the owner read it in Redaktion and accepts it as what the course should
+ *   teach. Only Redaktion writes it.
+ *
+ * A file with no row is a draft. Nothing is backfilled.
+ */
+export const REVIEW_STATES = ['claude-reviewed', 'owner-reviewed'] as const;
+export type ReviewState = (typeof REVIEW_STATES)[number];
+
+export const reviewLedgerEntrySchema = z
+  .object({
+    /** repo-relative path of the reviewed file */
+    file: z.string().regex(/^(content|data)\/[^\s]+$/, 'must be a path under content/ or data/'),
+    state: z.enum(REVIEW_STATES),
+    /** git blob hash (SHA-1) of the bytes that were reviewed */
+    revision: z.string().regex(/^[0-9a-f]{40}$/, 'must be a 40-hex git blob hash'),
+    by: z.string().min(1),
+    at: z.iso.date(),
+    note: z.string().min(1).optional(),
+    /**
+     * On a `claude-reviewed` row: the revision the owner last reviewed, carried forward when Claude
+     * hands the file over again, so the owner's diff starts where the owner left off.
+     */
+    since: z
+      .string()
+      .regex(/^[0-9a-f]{40}$/)
+      .optional(),
+  })
+  .strict();
+export type ReviewLedgerEntry = z.infer<typeof reviewLedgerEntrySchema>;
+
+export const reviewLedgerSchema = z
+  .object({
+    version: z.literal(1),
+    entries: z.array(reviewLedgerEntrySchema),
+  })
+  .strict();
+export type ReviewLedger = z.infer<typeof reviewLedgerSchema>;

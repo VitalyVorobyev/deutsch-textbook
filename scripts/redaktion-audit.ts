@@ -42,6 +42,7 @@ const ROUTES = [
   'struktur',
   'fokus',
   'referenzen',
+  'pruefen',
   'qualitaet',
   'einstellungen',
   'quelle?pfad=content%2Fatlas.yaml',

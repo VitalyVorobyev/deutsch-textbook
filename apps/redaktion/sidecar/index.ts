@@ -8,6 +8,13 @@ import { graphChunk, graphPayload, type ChunkName } from '@da/content/payload';
 import { readSource, saveSource, type SaveFileInput } from '@da/content/editor';
 import { applyPatch, writableFields, type WritePatch } from '@da/content/write';
 import { renderSource, type RenderSourceInput } from '@da/content/preview';
+import {
+  OWNER,
+  recordReview,
+  reviewableFiles,
+  reviewedText,
+  reviewStatuses,
+} from '@da/content/review-ledger';
 
 const PROTOCOL_VERSION = 1;
 interface RpcRequest {
@@ -70,7 +77,13 @@ function openWorkspace(path: string) {
   for (const dir of ['content', 'data']) {
     const target = join(workspaceRoot, dir);
     if (!existsSync(target)) continue;
-    watchers.push(watch(target, { recursive: true }, bump));
+    // A review mark touches no content, so it never rebuilds the graph (see the dev plugin).
+    watchers.push(
+      watch(target, { recursive: true }, (_event, name) => {
+        if (dir === 'data' && name === 'review-ledger.yaml') return;
+        bump();
+      }),
+    );
   }
   revision += 1;
   return workspaceInfo();
@@ -170,6 +183,17 @@ async function dispatch(method: string, params: Record<string, unknown>) {
         revision += 1;
       }
       return result;
+    }
+    case 'reviewStatuses':
+      return reviewStatuses(root(), reviewableFiles(contentGraph(root())));
+    case 'reviewedText':
+      return { text: reviewedText(root(), String(params.revision ?? '')) ?? null };
+    case 'markReviewed': {
+      const file = String(params.file ?? '');
+      const expectedRevision = String(params.expectedRevision ?? '');
+      if (!file || !expectedRevision || !reviewableFiles(contentGraph(root())).includes(file))
+        return { ok: false, error: 'a reviewable file and its expectedRevision are required' };
+      return recordReview(root(), { file, state: 'owner-reviewed', by: OWNER, expectedRevision });
     }
     case 'readAsset': {
       const checkout = realpathSync(root());
