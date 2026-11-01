@@ -224,6 +224,7 @@ a test take reaches a learner.
 | `POST /api/scenes/from-reading` | `{reading_id, profile?}` — one Lesetext converted and imported as a narration draft; no `profile` means `default_profile_id`. 409 when that slug is already a project |
 | `POST /api/scenes/{slug}/validate` | re-validate the stored bytes, plus the acoustic ids this repository does not define |
 | `POST /api/scenes/{slug}/render` | `{variant, sound_engine}`; the engine comes from the stored cast, never from the request |
+| `POST /api/scenes/{slug}/plan` | `{scene, variant, sound_engine?}` — where an **unsaved** draft's entries would land, timed by the render's own `_resolve_timing` from takes and sounds already in the node cache (`plan_scene`). Nothing is written and the stage does not move. `missing` names every entry no render has made a take or sound for, and then `timeline` is empty. Without `sound_engine`, the one the variant's last render recorded is used to look generated sounds up |
 | `POST /api/scenes/{slug}/qa` | `{variant}` — transcript, speaker and soundscape QA of that variant's render; **409 with a sentence** when the local MLX Whisper runtime is absent |
 | `GET …/renders/{variant}/master` · `/qa-report` | the audio, and the machine's report on exactly that variant's render (404 when that variant was never checked) |
 | `GET …/renders/{variant}/artifact/{path}` | any file the render **declared it wrote**; the allowlist is `render.json`'s `artifacts`, never the filesystem |

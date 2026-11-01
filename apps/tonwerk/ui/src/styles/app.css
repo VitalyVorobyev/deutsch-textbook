@@ -745,6 +745,35 @@
   stroke-width: 1.5;
 }
 
+/* A piece that can be dragged says so on hover; a bed's edges stretch it. */
+.zeitleiste-stueck-beweglich {
+  cursor: grab;
+  touch-action: none;
+}
+
+.zeitleiste-stueck-beweglich:active {
+  cursor: grabbing;
+}
+
+.zeitleiste-kante {
+  cursor: ew-resize;
+}
+
+.zeitleiste-plan {
+  margin-bottom: var(--ton-mass-3);
+  font-size: var(--ton-grad-13);
+}
+
+.zeitleiste-auswahl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--ton-mass-3);
+  margin-top: var(--ton-mass-3);
+  padding-top: var(--ton-mass-3);
+  border-top: 1px solid var(--ton-kante);
+}
+
 /* --- Spieler ------------------------------------------------------------------------------ */
 
 .spielbereich {

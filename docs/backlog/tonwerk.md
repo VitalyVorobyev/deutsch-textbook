@@ -10,15 +10,13 @@ come first so that the course's audio is produced in the finished tool. Characte
 only after this queue
 ([proposal](../proposals/characters-and-stories.md)).
 
-- **TON-4 · The timeline editor.** Mischung's timeline draws each stem's waveform and plays a
-  stem or the master from any point, and its Pult sets each line's level, equalizer and room send
-  and each bed's ducking (`apps/tonwerk/ui/src/views/szene/Pult.tsx`). What the contract carries
-  and no view edits yet: band filters, compressor and crusher on a line, device overrides on a
-  placement, and room overrides on the scene.
-  - **UI:** dragging on the timeline (a line's `at_ms`, a bed's start and end), fades, a Web Audio
-    preview of stems before a render, and undo inside the draft, on `@vitavision/*` per
-    [ADR 0011](../adrs/0011-shared-ui-from-vitavision-packages.md).
-  - **First step:** drag a line on the timeline to set its `at_ms`.
+- **TON-4 · The rest of the timeline editor.** Mischung's timeline drags lines, events and beds,
+  plans the draft through `POST …/plan`, previews it from the last render's stems and undoes inside
+  the draft; its Pult sets each line's level, equalizer and room send and each bed's ducking. What
+  the contract carries and no view edits yet: band filters, compressor and crusher on a line,
+  device overrides on a placement, and room overrides on the scene.
+  - **First step:** the line inserts (high-pass, low-pass, compressor, crusher) in the Pult, with
+    the neutral-value rule `mischungSetzen` already applies.
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 55 of 195
   `audio-comprehension` items and all 85 `listen` items, and no Lesetext has narration
   (`grep -rh "^ *recording:" content/exercises | wc -l` gives 140).

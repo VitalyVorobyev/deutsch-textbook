@@ -30,6 +30,7 @@ import {
   registrySchema,
   renderPeaksSchema,
   renderResultSchema,
+  scenePlanSchema,
   reviseResultSchema,
   sceneDeletionSchema,
   sceneArchiveSchema,
@@ -50,6 +51,7 @@ import {
   type DeclineResult,
   type Doctor,
   type NarrationProfiles,
+  type ScenePlan,
   type QaResult,
   type Registry,
   type RenderPeaks,
@@ -162,6 +164,10 @@ export interface Api {
    */
   reviseScene(slug: string, scene: Scene, exercise: unknown): Promise<ReviseResult>;
   renderScene(slug: string, variant: string, soundEngine?: string): Promise<RenderResult>;
+  /** Time an unsaved draft from cached takes. Writes nothing and moves no stage. */
+  planScene(slug: string, scene: Scene, variant: string, signal?: AbortSignal): Promise<ScenePlan>;
+  /** The bytes of one authenticated audio endpoint, for Web Audio to decode. */
+  audioBytes(path: string, signal?: AbortSignal): Promise<ArrayBuffer>;
   runQa(slug: string, variant: string): Promise<QaResult>;
   /** The waveform of one render, one level per `resolutionMs` window. 404 before a render. */
   peaks(
@@ -352,6 +358,12 @@ export function createApi(options: ApiOptions = {}): Api {
         body: { variant, ...(soundEngine ? { sound_engine: soundEngine } : {}) },
       }),
 
+    planScene: (slug, scene, variant, signal) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/plan`, scenePlanSchema, signal, {
+        method: 'POST',
+        body: { scene, variant },
+      }),
+
     peaks: (slug, variant, resolutionMs, signal) =>
       read(
         `/api/scenes/${encodeURIComponent(slug)}/renders/${encodeURIComponent(variant)}/peaks?resolution_ms=${resolutionMs}`,
@@ -474,6 +486,11 @@ export function createApi(options: ApiOptions = {}): Api {
         method: 'POST',
         body: {},
       }),
+
+    async audioBytes(path, signal) {
+      const response = await send(path, signal);
+      return response.arrayBuffer();
+    },
 
     async objectUrl(path, signal) {
       const response = await send(path, signal);

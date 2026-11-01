@@ -18,7 +18,11 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from listening_studio.api.workflow import APPROVAL_CHECKLIST, _required_checks
+from listening_studio.api.workflow import (
+    APPROVAL_CHECKLIST,
+    _rendered_sound_engine,
+    _required_checks,
+)
 from listening_studio.domain import Stage
 from listening_studio.scene.model import DifficultyVariant, Scene
 from listening_studio.storage import Store
@@ -711,3 +715,69 @@ def test_peaks_draw_every_stem_over_its_measured_span_and_are_cached(client: Any
 
     assert http.get(f"{base}/natural/peaks?resolution_ms=1", headers=AUTH).status_code == 422
     assert http.get(f"{base}/nirgends/peaks", headers=AUTH).status_code == 404
+
+
+def test_a_plan_times_an_unsaved_draft_from_cached_takes_and_writes_nothing(client: Any) -> None:
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+    plan = f"/api/scenes/{scene.slug}/plan"
+
+    def ask(draft: Scene) -> Any:
+        return http.post(plan, json={"scene": draft.model_dump(mode="json")}, headers=AUTH)
+
+    # Before any render no take exists, so nothing can be timed and every entry is named.
+    before = ask(scene)
+    assert before.status_code == 200, before.text
+    assert before.json()["complete"] is False and before.json()["timeline"] == []
+    assert set(before.json()["missing"]) == {"line-1", "line-2", "line-3", "ambience-1", "sfx-1"}
+
+    assert http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).status_code == 200
+    detail = http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()
+    measured = next(row for row in detail["renders"] if row["variant"] == "natural")["timeline"]
+
+    # The saved scene plans to exactly what its render measured.
+    same = ask(scene).json()
+    assert same["complete"] is True and same["timeline"] == measured
+
+    # A turn pinned earlier moves, the sequential turn after it follows, and nothing is stored.
+    line2 = next(row for row in measured if row["entry_id"] == "line-2")
+    timeline = list(scene.timeline)
+    timeline[1] = timeline[1].model_copy(update={"at_ms": 0})
+    moved = ask(scene.model_copy(update={"timeline": timeline})).json()
+    spans = {row["entry_id"]: row for row in moved["timeline"]}
+    lead = scene.acoustics.lead_in_ms
+    assert spans["line-2"]["start_ms"] == lead
+    assert spans["line-2"]["end_ms"] - lead == line2["end_ms"] - line2["start_ms"]
+    assert spans["line-3"]["start_ms"] < next(
+        row["start_ms"] for row in measured if row["entry_id"] == "line-3"
+    )
+    revisions = http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()["history"]
+    assert len(revisions) == 1
+
+    # A rewritten line has no take yet: the plan says which, and gives no times at all.
+    script = list(scene.script)
+    script[2] = script[2].model_copy(update={"display_text": "Ohne Milch, bitte."})
+    rewritten = ask(scene.model_copy(update={"script": script})).json()
+    assert rewritten["complete"] is False and rewritten["missing"] == ["line-3"]
+
+    other = scene.model_copy(update={"slug": "anders"})
+    assert ask(other).status_code == 409
+
+
+def test_a_plan_names_the_sound_engine_the_last_render_used(tmp_path: Path) -> None:
+    # A generated sound is looked up by a hash that includes its engine, so a plan that named none
+    # could find no generated sound at all — every scene with one would be unplannable.
+    assert _rendered_sound_engine(tmp_path) is None
+    (tmp_path / "render.json").write_text(
+        json.dumps(
+            {
+                "engines": {
+                    "qwen_tts_designed": {"name": "qwen_tts_designed", "revision": "a"},
+                    "stable_audio_sfx": {"name": "stable_audio_sfx", "revision": "b"},
+                }
+            }
+        )
+    )
+    assert _rendered_sound_engine(tmp_path) == "stable_audio_sfx"
+    (tmp_path / "render.json").write_text(json.dumps({"engines": {"qwen_tts": {}}}))
+    assert _rendered_sound_engine(tmp_path) is None

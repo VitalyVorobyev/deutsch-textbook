@@ -423,3 +423,120 @@ export function katalogStimmeUebernehmen(scene: Scene, rolle: string, figur: Kat
         : scene.script.map((zeile) => (zeile.role === rolle ? { ...zeile, pace } : zeile)),
   };
 }
+
+// -- timing on the timeline ---------------------------------------------------------------------
+
+/**
+ * The id the render gives each timeline entry, by position — `graph.render._entry_ids`: a speech
+ * entry is its utterance, a bed or an event is numbered among its own kind. The render manifest and
+ * a plan name their spans with these, so this is how a span finds the entry it was made from.
+ */
+export function eintragIds(scene: Scene): string[] {
+  const zaehler = { ambience: 0, sfx: 0 };
+  return scene.timeline.map((entry) => {
+    if (entry.type === 'speech') return entry.utterance_id;
+    zaehler[entry.type] += 1;
+    return `${entry.type}-${zaehler[entry.type]}`;
+  });
+}
+
+/** The scene's timeline position of the entry a span names, or -1. */
+export function eintragIndex(scene: Scene, entryId: string): number {
+  return eintragIds(scene).indexOf(entryId);
+}
+
+const ganz = (ms: number): number => Math.max(0, Math.round(ms));
+
+/**
+ * The range a speech entry's `at_ms` may take: the scene refuses explicit speech times that move
+ * backwards, so a pinned turn sits between the pinned turns before and after it.
+ */
+export function sprechzeitRahmen(scene: Scene, index: number): { min: number; max: number } {
+  let min = 0;
+  let max = Number.POSITIVE_INFINITY;
+  scene.timeline.forEach((entry, position) => {
+    if (entry.type !== 'speech' || entry.at_ms === null || position === index) return;
+    if (position < index) min = Math.max(min, entry.at_ms);
+    else max = Math.min(max, entry.at_ms);
+  });
+  return { min, max };
+}
+
+/**
+ * Pin one turn at `atMs` after the speech start (`acoustics.lead_in_ms`), held inside its range.
+ *
+ * Pinning is the contract's way to overlap or interrupt; the turns after it that are still
+ * sequential follow it. A pinned scene is no longer reorderable from the script
+ * (`istSequentiell`), which is the price of a decision someone placed by hand.
+ */
+export function sprechzeitSetzen(scene: Scene, index: number, atMs: number): Scene {
+  const entry = scene.timeline[index];
+  if (entry?.type !== 'speech') return scene;
+  const { min, max } = sprechzeitRahmen(scene, index);
+  const at = Math.min(max, Math.max(min, ganz(atMs)));
+  return {
+    ...scene,
+    timeline: scene.timeline.map((eintrag, position) =>
+      position === index ? { ...entry, at_ms: at } : eintrag,
+    ),
+  };
+}
+
+/** Release a pinned turn: it follows the previous one again. */
+export function sprechzeitLoesen(scene: Scene, index: number): Scene {
+  const entry = scene.timeline[index];
+  if (entry?.type !== 'speech' || entry.at_ms === null) return scene;
+  return {
+    ...scene,
+    timeline: scene.timeline.map((eintrag, position) =>
+      position === index ? { ...entry, at_ms: null } : eintrag,
+    ),
+  };
+}
+
+/** An event's moment, in absolute scene time — not after the speech start. */
+export function ereigniszeitSetzen(scene: Scene, index: number, atMs: number): Scene {
+  if (scene.timeline[index]?.type !== 'sfx') return scene;
+  return eintragAendern(scene, index, { at_ms: ganz(atMs) });
+}
+
+/** The fade limit the contract sets on a bed. */
+const BLENDE_MAX = 10000;
+
+/**
+ * A bed's span and fades. `end_ms: null` keeps its meaning — fill to the end of the scene — and a
+ * span is never allowed to close: an end at or before the start is moved one millisecond past it,
+ * because a bed with no length is a render refusal the author would only meet later.
+ */
+export function bettSetzen(
+  scene: Scene,
+  index: number,
+  werte: { start_ms?: number; end_ms?: number | null; fade_in_ms?: number; fade_out_ms?: number },
+): Scene {
+  const entry = scene.timeline[index];
+  if (entry?.type !== 'ambience') return scene;
+  const start = werte.start_ms === undefined ? entry.start_ms : ganz(werte.start_ms);
+  const gewuenscht = werte.end_ms === undefined ? entry.end_ms : werte.end_ms;
+  const end = gewuenscht === null ? null : Math.max(start + 1, ganz(gewuenscht));
+  const blende = (wert: number | undefined, alt: number) =>
+    wert === undefined ? alt : Math.min(BLENDE_MAX, ganz(wert));
+  return eintragAendern(scene, index, {
+    start_ms: start,
+    end_ms: end,
+    fade_in_ms: blende(werte.fade_in_ms, entry.fade_in_ms),
+    fade_out_ms: blende(werte.fade_out_ms, entry.fade_out_ms),
+  });
+}
+
+/** Whether two scenes differ anywhere but in the timing fields a plan can answer from the cache. */
+export function nurZeitGeaendert(original: Scene, entwurf: Scene): boolean {
+  const ohneZeit = (scene: Scene) => ({
+    ...scene,
+    timeline: scene.timeline.map((entry) => {
+      if (entry.type === 'speech') return { ...entry, at_ms: null };
+      if (entry.type === 'sfx') return { ...entry, at_ms: 0 };
+      return { ...entry, start_ms: 0, end_ms: null, fade_in_ms: 0, fade_out_ms: 0 };
+    }),
+  });
+  return stabilesJson(ohneZeit(original)) === stabilesJson(ohneZeit(entwurf));
+}

@@ -108,6 +108,9 @@ GitHub Release notes.
   takes out for a blind listen; nothing the comparison makes can be published.
 - A Tonwerk scene can set a line's level and effects, duck its background under speech, and adjust
   its room and device per scene; existing scenes keep their approvals and render as before.
+- Tonwerk's timeline is editable: drag a line, a sound or a background to retime it, see where the
+  next render would put everything, hear the draft before rendering, and undo any edit since the
+  last save.
 - Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
   any one track on its own.
 - Tonwerk speaks every roster character in its own designed voice on one model, and publishes a

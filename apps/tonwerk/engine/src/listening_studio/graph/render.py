@@ -667,6 +667,118 @@ def _entry_ids(scene: Scene) -> dict[int, str]:
 # -- the render ---------------------------------------------------------------
 
 
+def _sources(
+    scene: Scene,
+    acoustics: ResolvedAcoustics,
+    engines: Mapping[str, SpeechGenerator],
+    cast_voices: Mapping[str, VoiceRef],
+    assets: AssetStore,
+    sound_engine: SoundGenerator | None,
+    run: RunNode,
+) -> tuple[dict[str, str], dict[int, str]]:
+    """Pass 1: every paced take, by utterance id, and every sound, by timeline index.
+
+    Shared by `render_scene` and `plan_scene`, so a plan asks the cache about exactly the nodes a
+    render would evaluate: the same requests, the same hashes.
+    """
+
+    paced: dict[str, str] = {}
+    for utterance in scene.script:
+        member = scene.member(utterance.role)
+        engine = engines[utterance.role]
+        request = SpeechRequest(
+            text=utterance.spoken_text(),
+            voice=member.voice.voice,
+            language="German",
+            style=member.voice.style,
+            seed=scene.seed_for(utterance),
+            voice_ref=member.voice.voice_ref,
+        )
+        synth = synth_node(request, engine, cast_voices.get(utterance.role))
+        # Synthesis is deliberately upstream of every acoustic parameter: a difficulty variant
+        # changes what happens *to* a take, never what the model is asked for, so two variants of
+        # one scene share their takes however far apart they sound.
+        take = run(synth, partial(_synth, engine, request))
+        pace = _variant_pace(utterance, acoustics.deltas.pace)
+        node = pace_node(pace, take)
+        paced[utterance.id] = run(node, partial(_paced, assets, take, utterance, node, pace))
+
+    sounds: dict[int, str] = {}
+    for index, entry in enumerate(scene.timeline):
+        if isinstance(entry, SpeechEntry):
+            continue
+        sounds[index] = _resolve_sound(entry.sound, assets, sound_engine, run)
+    return paced, sounds
+
+
+@dataclass(frozen=True)
+class ScenePlan:
+    """Where a scene's entries would land, timed from takes the cache already holds.
+
+    `missing` names every entry whose take or sound no render has produced yet — a rewritten line,
+    a changed pace, a new sound. Timing needs every duration, so a plan with anything missing has
+    no timeline: an estimate for the missing one would move every sequential turn after it.
+    """
+
+    variant: str
+    missing: list[str]
+    timeline: list[EntryTiming]
+    duration_ms: int | None
+
+    @property
+    def complete(self) -> bool:
+        return not self.missing
+
+
+def plan_scene(
+    scene: Scene,
+    store_dir: Path,
+    *,
+    variant: str = "natural",
+    speech_engines: Mapping[str, SpeechGenerator],
+    sound_engine: SoundGenerator | None = None,
+    repo: Path | None = None,
+    voices: Mapping[str, VoiceRef] | None = None,
+) -> ScenePlan:
+    """Time `scene` as `render_scene` would, without evaluating a node or writing a byte.
+
+    Pass 1 runs against the cache only, and pass 2 is the render's own `_resolve_timing`, so a
+    plan and the render that follows it agree on every span they both state. What only a render
+    can do — synthesise, mix, measure the master — is left out. This is what lets the editor show
+    where a dragged turn will land before anyone pays for a render.
+    """
+
+    acoustics = _resolve_acoustics(scene, variant, repo or REPO_ROOT)
+    assets = AssetStore(store_dir)
+    cache = NodeCache(store_dir)
+
+    def known(node: Node, produce: Produce, suffix: str = ".wav") -> str:
+        asset = cache.get(node.node_hash())
+        # An empty digest stands for "no render has made this"; a node downstream of it hashes it
+        # and misses in turn, which is the right answer for a pace of a take that does not exist.
+        return asset if asset is not None and assets.get(asset) is not None else ""
+
+    engines = _resolve_engines(scene, speech_engines)
+    cast_voices = _resolve_cast_voices(scene, voices or {})
+    paced, sounds = _sources(scene, acoustics, engines, cast_voices, assets, sound_engine, known)
+    ids = _entry_ids(scene)
+    missing = [
+        ids[index]
+        for index, entry in enumerate(scene.timeline)
+        if not (paced[entry.utterance_id] if isinstance(entry, SpeechEntry) else sounds[index])
+    ]
+    if missing:
+        return ScenePlan(variant=variant, missing=missing, timeline=[], duration_ms=None)
+    durations = {uid: _duration_ms(assets, asset) for uid, asset in paced.items()}
+    sound_durations = {index: _duration_ms(assets, asset) for index, asset in sounds.items()}
+    _, timeline, scene_end = _resolve_timing(
+        scene, durations, sound_durations, overlap_ms=acoustics.deltas.overlap_ms
+    )
+    return ScenePlan(variant=variant, missing=[], timeline=timeline, duration_ms=scene_end)
+
+
+
+
 def render_scene(
     scene: Scene,
     store_dir: Path,
@@ -723,32 +835,7 @@ def render_scene(
         engines = _resolve_engines(scene, speech_engines)
         cast_voices = _resolve_cast_voices(scene, voices or {})
         cast_designed = _resolve_cast_designed(scene, designed or {})
-        paced: dict[str, str] = {}
-        for utterance in scene.script:
-            member = scene.member(utterance.role)
-            engine = engines[utterance.role]
-            request = SpeechRequest(
-                text=utterance.spoken_text(),
-                voice=member.voice.voice,
-                language="German",
-                style=member.voice.style,
-                seed=scene.seed_for(utterance),
-                voice_ref=member.voice.voice_ref,
-            )
-            synth = synth_node(request, engine, cast_voices.get(utterance.role))
-            # Synthesis is deliberately upstream of every acoustic parameter: a difficulty variant
-            # changes what happens *to* a take, never what the model is asked for, so two variants
-            # of one scene share their takes however far apart they sound.
-            take = run(synth, partial(_synth, engine, request))
-            pace = _variant_pace(utterance, acoustics.deltas.pace)
-            node = pace_node(pace, take)
-            paced[utterance.id] = run(node, partial(_paced, assets, take, utterance, node, pace))
-
-        sounds: dict[int, str] = {}
-        for index, entry in enumerate(scene.timeline):
-            if isinstance(entry, SpeechEntry):
-                continue
-            sounds[index] = _resolve_sound(entry.sound, assets, sound_engine, run)
+        paced, sounds = _sources(scene, acoustics, engines, cast_voices, assets, sound_engine, run)
 
         ir_asset = ""
         if acoustics.room is not None and acoustics.wet > 0.0 and acoustics.room_id is not None:
