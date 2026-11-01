@@ -30,6 +30,7 @@ import {
 import { Chip, Empty } from '@da/ui/primitives';
 import { Hinweis } from './components/Hinweis';
 import { useCorpus } from './data';
+import { ReviewsProvider } from './reviews';
 import {
   BUEHNE_ID,
   handleInternalLinkClick,
@@ -140,7 +141,7 @@ export function App() {
       case 'einstellungen':
         return <Einstellungen workspace={workspace} />;
       case 'pruefen':
-        return <Pruefen graph={graph} />;
+        return <Pruefen graph={graph} topicId={route.query.thema} />;
       case 'quelle':
         return <Quelle graph={graph} path={route.query.pfad} />;
       case 'grammatik':
@@ -231,7 +232,11 @@ export function App() {
         }
         main={
           <div id={BUEHNE_ID} className="h-full overflow-auto">
-            <div className="mx-auto max-w-[1680px] px-4 pb-16 pt-6 lg:px-6">{body()}</div>
+            <div className="mx-auto max-w-[1680px] px-4 pb-16 pt-6 lg:px-6">
+              <ReviewsProvider graph={graph} revision={revision}>
+                {body()}
+              </ReviewsProvider>
+            </div>
           </div>
         }
         bottom={

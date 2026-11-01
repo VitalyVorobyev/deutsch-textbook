@@ -126,7 +126,9 @@ The source route reads exact MDX/YAML bytes and returns a SHA-256 revision. Save
 and physical paths below `content/` or `data/`, refuses unknown/non-text/non-existing files, caps the
 request, parses MDX/YAML/JSON, applies the file-local schema where one exists, compares the expected
 revision and atomically renames a same-directory temporary file. A cross-file-invalid draft can be
-saved; a `reviewed` transition continues through the stricter allowlisted splice-and-rollback gate.
+saved. A topic manifest's schema is strict and has no review field: whether a topic is reviewed is
+derived from the review ledger by `@da/content/topic-review`, the one rule Redaktion's views and the
+learner build both apply ([ADR 0015](../adrs/0015-review-is-reading-provenance-is-decisions.md)).
 
 Source links are internal Redaction navigation; only real web provenance opens a new window. The
 hash router owns one app-local history position for links, filters and global search, exposes
@@ -135,9 +137,9 @@ views provide a path back to their collection or owning topic rather than ending
 
 Profile findings are advisory editorial work, not validator errors. Their diagnostic severity is
 therefore `attention` (or `info` for deliberate context) even when the owning topic is already
-`reviewed`; topic lifecycle is a separate queue facet. `blocking` is reserved for a condition that
-actually prevents Save or the strict review transaction. The earlier implementation inferred
-severity from `topic.status` and displayed hundreds of fictional blockers that no gate consulted.
+reviewed; topic review is a separate queue facet. `blocking` is reserved for a condition that
+actually prevents Save. Severity once followed a topic's review status, and the views showed
+hundreds of fictional blockers that no gate consulted.
 
 Three operational notes that cost time to find:
 
@@ -161,12 +163,11 @@ a working page), that permalinks survive reload, that no request leaves the orig
 two layout rules hold: row height ≤ 2× the median, ≤ 1 primary link per row. It is not part of
 `bun test`, which may not depend on a dev server or a browser.
 
-## Writing back: three scalar fields, five rules, and one measurement that decided the design
+## Writing back: two scalar fields, five rules, and one measurement that decided the design
 
 `content/` is the source of truth and `git diff` on a topic is the editorial process. Both survive
-exactly as long as it takes one tool to reserialise a file. So Redaktion can write three scalar
-fields — an exercise set's `stage:` or `activity:`, and a topic manifest's `status:` — and
-`@da/content/write` is where every
+exactly as long as it takes one tool to reserialise a file. So Redaktion can write two scalar
+fields — an exercise set's `stage:` and `activity:` — and `@da/content/write` is where every
 rule about that lives. The UI holds none of them: it fetches the allowlist from `/__writable`, so a
 control can only appear after the controller would accept it.
 
@@ -183,11 +184,9 @@ Five checks, each broken on purpose once in `tests/write-controller.test.ts`: co
 not string-prefixed), file class, field-and-value allowlist, Zod re-validation of the resulting text,
 and a structural post-condition that **no second key moved**.
 
-**And the corpus check is not optional.** A per-file schema check cannot see a corpus-level rule, and
-one of the two writable fields reaches one: marking a **B1** topic `reviewed` makes
-`authorshipProvenanceProblems` demand records it may not have, so a write that is valid as a manifest
-turns `bun run validate` red. The caller injects a `verify` hook; when it reports anything the
-original bytes go back and the write is refused.
+**And the corpus check is not optional.** A per-file schema check cannot see a corpus-level rule,
+so the caller injects a `verify` hook; when it reports anything the original bytes go back and the
+write is refused.
 
 **Unreachable from a build, by construction.** The plugin is `apply: 'serve'`, so a `vite build`
 contains no endpoint at all — verified: `GET /__write` on the built bundle is a 404 and the view

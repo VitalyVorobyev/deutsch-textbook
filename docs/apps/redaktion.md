@@ -88,8 +88,11 @@ The durable contract and its trade-offs are in [ADR 0002](../adrs/0002-topic-man
 ## Edit a source
 
 1. Open a source link from **Themen**, **Materialien** or a grammar detail.
-2. Read the editorial preview on the left and edit the exact YAML or MDX on the right. For an
-   article, switch between **EN**, **RU**, **UK** and **DE** above the preview; every button says
+2. Read the preview on the left and edit the exact YAML or MDX on the right. Articles, Entdecken
+   pieces, exercise sets, reading texts and vocabulary decks have a preview; every other file is
+   data whose clearest form is its source, so the source takes the full width. In a reading the
+   glosses stand open beside their phrases, and a deck lists each word with its forms, translation
+   and example. For an article, switch between **EN**, **RU**, **UK** and **DE** above the preview; every button says
    whether all, some or none of the article's explanation blocks support that language. German
    examples do not manufacture a DE translation status.
 3. In an exercise set, use the same language switch and inspect every prompt, model answer, accepted
@@ -124,21 +127,22 @@ at, and every file you reviewed before that has changed since.
 3. Click **Als geprüft markieren**. The mark covers exactly the version you read: if the file
    changed after you opened it, the mark is refused and you read again.
 
+Any file's source page has the same button, so you can also mark a file you came across yourself.
 A mark rebuilds nothing, so a review pass is quick. Marks are written to `data/review-ledger.yaml`;
 commit that file like any other.
 
-## Mark a topic reviewed
+## Review a topic
 
-Do not change a manifest from `draft` to `reviewed` in the source textarea — Redaktion rejects that
-shortcut. Instead:
+A topic is reviewed when you have marked every file it owns — the manifest, the article and each
+exercise set, reading and deck — at its current version. Nobody sets it by hand, and it lapses on
+its own when one of those files changes or the topic gains a new one. Learners see a topic as a
+draft until then.
 
-1. Save all draft changes.
-2. Open the topic manifest source.
-3. Click **Als geprüft markieren**.
-4. Read every reported reason if the gate refuses.
+1. Open the topic. Next to its status, **Prüfen** lists all its files with their state.
+2. Work through the ones not yet marked, as above.
 
-The action is a strict transaction: it checks the current revision, the provenance and the whole
-corpus, and rolls the status change back on failure.
+Marking a B1 topic writes nothing into its authorship-provenance record: that record describes
+decisions you made, not what you read ([ADR 0015](../adrs/0015-review-is-reading-provenance-is-decisions.md)).
 
 ## Before each session
 
@@ -146,7 +150,7 @@ corpus, and rolls the status change back on failure.
 - keep one editor responsible for a file at a time;
 - save one coherent change, then inspect `git diff`;
 - run `bun run validate` before committing content;
-- keep the topic as `draft` until the strict reviewed gate passes.
+- mark a file reviewed only after reading the version on screen.
 
 ## What it deliberately does not do
 

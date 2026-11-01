@@ -31,8 +31,7 @@ in that file: `CON`, `APP`, `INS`, `STO`, `TON`, `RED` or `WS`. A number is neve
 
 ## Doing
 
-- **Redaktion governance** ([ADR 0014](../adrs/0014-material-governance.md)): RED-3, RED-4, then
-  P27, in [`redaktion.md`](redaktion.md).
+- **Redaktion governance** ([ADR 0014](../adrs/0014-material-governance.md)): RED-4, then P27, in [`redaktion.md`](redaktion.md).
 - **TON-4, TON-5 · Tonwerk studio**: the timeline editor, then production and the learner
   integration ([`tonwerk.md`](tonwerk.md)), in order.
 - **P9-2 · Entdecken pieces.** Recurring, one or two reviewed pieces per PR, each passing

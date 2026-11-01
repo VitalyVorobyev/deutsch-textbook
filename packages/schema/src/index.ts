@@ -1907,37 +1907,40 @@ export type TopicElements = z.infer<typeof topicElementsSchema>;
  * file — `langcheck.ts`'s uk-wave detection keys off `*_uk` fields, and a second title convention
  * would be the duplication this file exists to remove.
  */
-export const topicManifestSchema = z.object({
-  id: slug,
-  level: levelSchema,
-  kind: topicKindSchema,
-  strand: z.enum(CURRICULUM_STRANDS),
-  group: slug,
-  title_de: z.string().min(1),
-  title_en: z.string().min(1),
-  title_ru: z.string().min(1),
-  title_uk: z.string().min(1).optional(),
-  status: z.enum(['draft', 'reviewed']).default('draft'),
-  tags: z.array(slug).default([]),
-  prerequisites: z.array(slug).default([]),
-  /** base topics this one revisits at greater depth (spiral learning). A target
+export const topicManifestSchema = z
+  .object({
+    id: slug,
+    level: levelSchema,
+    kind: topicKindSchema,
+    strand: z.enum(CURRICULUM_STRANDS),
+    group: slug,
+    title_de: z.string().min(1),
+    title_en: z.string().min(1),
+    title_ru: z.string().min(1),
+    title_uk: z.string().min(1).optional(),
+    tags: z.array(slug).default([]),
+    prerequisites: z.array(slug).default([]),
+    /** base topics this one revisits at greater depth (spiral learning). A target
       may also be a prerequisite — both meanings can apply. Must appear earlier
       in the spine. */
-  deepens: z.array(slug).default([]),
-  /** Useful comparison/association; symmetric, non-blocking, and unordered. */
-  related: z.array(slug).default([]),
-  /** 2–5 can-do statements the topic teaches, at the topic's CEFR level */
-  outcomes: z.array(outcomeSchema).min(2).max(5),
-  /**
-   * `<source-id>:<entry-key>` into `data/themenlisten/` — the published *theme* this topic is
-   * about. The third anchor dimension, and the one that answers a question neither of the others
-   * can: a course can teach every structure the standard lists, cover every communicative
-   * function, and never once mention Versicherungen. Optional; a topic citing nothing is reported
-   * as `beyond`, not as a defect.
-   */
-  claims: z.array(z.string()).optional(),
-  elements: topicElementsSchema,
-});
+    deepens: z.array(slug).default([]),
+    /** Useful comparison/association; symmetric, non-blocking, and unordered. */
+    related: z.array(slug).default([]),
+    /** 2–5 can-do statements the topic teaches, at the topic's CEFR level */
+    outcomes: z.array(outcomeSchema).min(2).max(5),
+    /**
+     * `<source-id>:<entry-key>` into `data/themenlisten/` — the published *theme* this topic is
+     * about. The third anchor dimension, and the one that answers a question neither of the others
+     * can: a course can teach every structure the standard lists, cover every communicative
+     * function, and never once mention Versicherungen. Optional; a topic citing nothing is reported
+     * as `beyond`, not as a defect.
+     */
+    claims: z.array(z.string()).optional(),
+    elements: topicElementsSchema,
+  })
+  // Strict, so a key with no meaning fails rather than vanishing. A topic declares no review
+  // status: whether it is reviewed is derived from `data/review-ledger.yaml` (ADR 0014).
+  .strict();
 export type TopicManifest = z.infer<typeof topicManifestSchema>;
 
 /** One curriculum unit. The file order of `units:` IS the spine order — new

@@ -7,26 +7,19 @@
  * revision the owner just read. A file that changed after it was opened is refused, so a mark never
  * covers bytes nobody saw.
  *
- * The ledger is fetched here, not with the graph: a mark touches no content and rebuilds nothing.
+ * With `?thema=<id>` it lists every file that topic owns, whatever its state: a topic is reviewed
+ * when all of them are, so this is where a topic is signed off, one file at a time.
  */
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { toast } from '@vitavision/ui';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, Chip, Empty, Label, Panel, Stat, StatGroup } from '@da/ui/primitives';
-import { corpusClient, type FileReview, type GraphPayload } from '../data';
+import type { FileReview, GraphPayload } from '../data';
 import { Reiter } from '../components/Hinweis';
 import { Quelllink } from '../components/Zeilentabelle';
 import { Zeilendiff } from '../components/Zeilendiff';
 import { href, useQueryState } from '../router';
+import { FILE_STATUS, markFile, useReviews } from '../reviews';
 
 type Status = FileReview['status'];
-
-const STATUS: Record<Status, { label: string; tone: 'neutral' | 'brand' | 'ok' | 'warn' }> = {
-  entwurf: { label: 'Entwurf', tone: 'neutral' },
-  'claude-reviewed': { label: 'von Claude übergeben', tone: 'brand' },
-  'owner-reviewed': { label: 'von dir geprüft', tone: 'ok' },
-  geaendert: { label: 'seit Prüfung geändert', tone: 'warn' },
-};
-
 type Ansicht = 'offen' | 'geprueft' | 'entwuerfe';
 
 /** The revision a diff starts from: what the owner last accepted. */
@@ -48,23 +41,19 @@ function Eintrag({
 }) {
   const [offen, setOffen] = useState(false);
   const [busy, setBusy] = useState(false);
-  const status = STATUS[review.status];
+  const status = FILE_STATUS[review.status];
+  const done = review.status === 'owner-reviewed';
   const mark = async () => {
-    if (!review.current) return;
     setBusy(true);
     try {
-      const result = await corpusClient.markReviewed(review.file, review.current);
-      if (result.ok) {
-        toast({ tone: 'success', title: 'Als geprüft markiert', description: review.file });
-        onMarked();
-      } else toast({ tone: 'error', title: 'Nicht markiert', description: result.error });
+      if (await markFile(review)) onMarked();
     } finally {
       setBusy(false);
     }
   };
   return (
     <Panel
-      tone={review.status === 'geaendert' ? 'warn' : 'brand'}
+      tone={review.status === 'geaendert' ? 'warn' : done ? 'ok' : 'brand'}
       title={
         <span className="flex flex-wrap items-center gap-2">
           <span>{label}</span>
@@ -76,9 +65,11 @@ function Eintrag({
           <Button onClick={() => setOffen(!offen)} pressed={offen}>
             {offen ? 'Diff schließen' : 'Diff zeigen'}
           </Button>
-          <Button stark onClick={() => void mark()} disabled={busy || !review.current}>
-            Als geprüft markieren
-          </Button>
+          {done ? null : (
+            <Button stark onClick={() => void mark()} disabled={busy || !review.current}>
+              Als geprüft markieren
+            </Button>
+          )}
         </span>
       }
     >
@@ -102,24 +93,13 @@ function Eintrag({
   );
 }
 
-export function Pruefen({ graph }: { graph: GraphPayload }) {
-  const [reviews, setReviews] = useState<FileReview[] | null>(null);
-  const [error, setError] = useState<string>();
+export function Pruefen({ graph, topicId }: { graph: GraphPayload; topicId?: string }) {
+  const { files: reviews, topics, error, reload } = useReviews();
+  useEffect(reload, [reload]);
   const [ansichtValue, setAnsicht] = useQueryState('ansicht', 'offen');
   const ansicht = (['offen', 'geprueft', 'entwuerfe'] as const).includes(ansichtValue as Ansicht)
     ? (ansichtValue as Ansicht)
     : 'offen';
-
-  const load = useCallback(() => {
-    corpusClient
-      .reviewStatuses()
-      .then((rows) => {
-        setReviews(rows);
-        setError(undefined);
-      })
-      .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
-  }, []);
-  useEffect(load, [load]);
 
   // A file's name in the course: the titles of the elements it holds, or the topic it defines.
   const labels = useMemo(() => {
@@ -132,6 +112,47 @@ export function Pruefen({ graph }: { graph: GraphPayload }) {
 
   if (error) return <Empty>Das Prüfprotokoll ließ sich nicht lesen: {error}</Empty>;
   if (!reviews) return <Empty>Prüfprotokoll wird gelesen …</Empty>;
+
+  const topic = topicId ? graph.topics.find((t) => t.id === topicId) : undefined;
+  const topicReview = topicId ? topics.get(topicId) : undefined;
+  if (topic && topicReview) {
+    const byFile = new Map(reviews.map((r) => [r.file, r]));
+    // What still needs reading first; the files already accepted after them.
+    const rank: Record<Status, number> = {
+      geaendert: 0,
+      'claude-reviewed': 1,
+      entwurf: 2,
+      'owner-reviewed': 3,
+    };
+    const rows = topicReview.files
+      .flatMap((file) => byFile.get(file) ?? [])
+      .sort((a, b) => rank[a.status] - rank[b.status]);
+    return (
+      <div>
+        <header className="mb-5">
+          <Label>Prüfen · Thema</Label>
+          <h1 className="mt-1 text-2xl font-bold tracking-tight text-fg">{topic.title}</h1>
+          <p className="mt-1 max-w-3xl text-sm text-fg-muted">
+            Ein Thema ist geprüft, wenn jede seiner Dateien in der aktuellen Fassung von dir geprüft
+            ist: {topicReview.ownerReviewed} von {topicReview.files.length}.{' '}
+            <a className="text-signal underline underline-offset-2" href={href('thema', topic.id)}>
+              Zum Thema
+            </a>
+          </p>
+        </header>
+        <div className="space-y-3">
+          {rows.map((review) => (
+            <Eintrag
+              key={review.file}
+              review={review}
+              label={labels.get(review.file) ?? review.file}
+              onMarked={reload}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   const count = (status: Status) => reviews.filter((r) => r.status === status).length;
   const shown = reviews.filter((r) =>
@@ -194,7 +215,7 @@ export function Pruefen({ graph }: { graph: GraphPayload }) {
               key={review.file}
               review={review}
               label={labels.get(review.file) ?? review.file}
-              onMarked={load}
+              onMarked={reload}
             />
           ))}
         </div>

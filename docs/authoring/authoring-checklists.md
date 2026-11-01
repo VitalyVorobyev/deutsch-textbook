@@ -11,9 +11,9 @@ hazards that are invisible until they fire, and the full drills-from-progress pr
 New topic — a topic is not done until every line here is:
 0. For B1.4 and later, read the
    [`authorship-provenance` skill](../../.claude/skills/authorship-provenance/SKILL.md) and maintain
-   the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
-   is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
-   `status: reviewed`.
+   the topic record in `data/authorship-provenance.yaml`. Its human review stays pending until
+   Vitaly makes a decision it can record; whether the topic is reviewed is the review ledger's, not
+   the record's ([ADR 0015](../adrs/0015-review-is-reading-provenance-is-decisions.md)).
 1. `content/topics/<level>/<id>.topic.yaml` — the manifest — and `<id>.mdx` beside it: the article following the skeleton, prose only, no frontmatter ([ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md)).
 2. Learning activities in `content/exercises/<level>/` — every topic has exactly one
    `role: practice`, `activity: core`, `stage: geruest` Grundübung of 8–15 items, named explicitly by

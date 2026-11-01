@@ -14,7 +14,7 @@ function fixture(): string {
   const topic = readFileSync(
     join(import.meta.dir, '..', 'content', 'topics', 'a1', 'erste-schritte.topic.yaml'),
     'utf8',
-  ).replace('status: reviewed', 'status: draft');
+  );
   writeFileSync(join(root, 'content', 'topics', 'a1', 'probe.topic.yaml'), topic);
   return root;
 }
@@ -74,19 +74,19 @@ describe('Redaktion source editor', () => {
     }
   });
 
-  test('cannot bypass the strict reviewed gate through generic source Save', async () => {
+  test('a manifest cannot declare a review status: review is derived from the ledger', async () => {
     const root = fixture();
     try {
       const path = 'content/topics/a1/probe.topic.yaml';
       const before = await readSource(root, path);
       const result = await saveSource(root, {
         path,
-        text: before.text.replace('status: draft', 'status: reviewed'),
+        text: before.text.replace(/^(title_uk: .*\n)/m, '$1status: reviewed\n'),
         expectedRevision: before.revision,
       });
       expect(result.ok).toBe(false);
-      expect(result.ok ? '' : result.diagnostics[0]?.message).toContain(
-        'strict corpus-wide reviewed gate',
+      expect(result.ok ? '' : result.diagnostics.map((d) => d.message).join('\n')).toContain(
+        'status',
       );
       expect(readFileSync(join(root, path), 'utf8')).toBe(before.text);
     } finally {

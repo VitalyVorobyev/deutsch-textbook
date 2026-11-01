@@ -36,10 +36,9 @@ import { Kontextleiste, type Nachbar } from '../components/Kontextleiste';
 import { Gruppentabelle, Quelllink, Quer, type Spalte } from '../components/Zeilentabelle';
 import { href } from '../router';
 import { useWritable } from '../write';
+import { useReviews } from '../reviews';
 
 type Element = GraphPayload['elements'][number];
-
-const STATUS_LABEL: Record<string, string> = { draft: 'Entwurf', reviewed: 'geprüft' };
 
 const STAGE_LABEL: Record<string, string> = {
   pretest: 'Pretest',
@@ -115,7 +114,7 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-fg-muted">Status</span>
-          <StatusFeld graph={graph} topic={topic} />
+          <StatusFeld topic={topic} />
           {topic.provenance ? (
             <>
               <span className="ml-2 text-fg-muted">Herkunft</span>
@@ -172,27 +171,21 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
  * The write control exists only if the controller would accept the write — the allowlist is
  * fetched, never copied. No endpoint (a built bundle, a server without the plugin) means a chip.
  */
-function StatusFeld({
-  graph,
-  topic,
-}: {
-  graph: GraphPayload;
-  topic: GraphPayload['topics'][number];
-}) {
-  void graph;
+/** The topic's review, derived from the ledger: every file it owns, read at its current bytes. */
+function StatusFeld({ topic }: { topic: GraphPayload['topics'][number] }) {
+  const review = useReviews().topics.get(topic.id);
+  if (!review) return <span className="text-xs text-fg-muted">…</span>;
   return (
     <span className="inline-flex items-center gap-2">
-      <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>
-        {STATUS_LABEL[topic.status] ?? topic.status}
+      <Chip tone={review.reviewed ? 'ok' : 'warn'}>
+        {review.reviewed ? 'geprüft' : `Entwurf · ${review.ownerReviewed}/${review.files.length}`}
       </Chip>
-      {topic.status !== 'reviewed' ? (
-        <a
-          className="text-xs text-signal underline underline-offset-2"
-          href={href('quelle', undefined, { pfad: topic.file })}
-        >
-          Gate öffnen
-        </a>
-      ) : null}
+      <a
+        className="text-xs text-signal underline underline-offset-2"
+        href={href('pruefen', undefined, { thema: topic.id })}
+      >
+        {review.reviewed ? 'Dateien' : 'Prüfen'}
+      </a>
     </span>
   );
 }

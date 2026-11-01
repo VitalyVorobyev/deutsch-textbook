@@ -206,21 +206,6 @@ async function dispatch(method: string, params: Record<string, unknown>) {
         throw new Error('only committed listening MP3 files are readable');
       return `data:audio/mpeg;base64,${readFileSync(target).toString('base64')}`;
     }
-    case 'markTopicReviewed': {
-      const topicId = String(params.topicId ?? '');
-      const expectedRevision = String(params.expectedRevision ?? '');
-      const topic = contentGraph(root()).topics.get(topicId);
-      if (!topic || !expectedRevision) throw new Error('topicId and expectedRevision are required');
-      const result = verifiedPatch(
-        { file: topic.file, field: 'status', value: 'reviewed' },
-        expectedRevision,
-      );
-      if (result.ok && result.changed) {
-        invalidateContentGraph(root());
-        revision += 1;
-      }
-      return result;
-    }
     default:
       throw new Error(`unknown RPC method "${method}"`);
   }

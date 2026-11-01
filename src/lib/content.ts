@@ -15,7 +15,28 @@ import type { TopicNode } from './mastery';
 import type { TrainingSet } from './training';
 import { getCurriculum } from '@da/content/curriculum';
 import { loadLidBank, loadLidLessons, loadLidNotes, loadLidTopics } from '@da/content/lid';
+import { contentGraph } from '@da/content/graph';
+import { repoRoot } from '@da/content/repo-root';
+import { topicReviewStates } from '@da/content/review-ledger';
 import type { LidCatalogue, LidEntry, LidLessonView } from '../components/lid/shared';
+
+let reviewedTopics: Set<string> | undefined;
+
+/**
+ * Whether a topic is reviewed: every file it owns read and accepted by its editor at the bytes
+ * being built, per `data/review-ledger.yaml` (ADR 0014). Read once per build.
+ */
+export function isTopicReviewed(id: string): boolean {
+  if (!reviewedTopics) {
+    const root = repoRoot();
+    reviewedTopics = new Set(
+      [...topicReviewStates(root, contentGraph(root)).values()]
+        .filter((review) => review.reviewed)
+        .map((review) => review.topic),
+    );
+  }
+  return reviewedTopics.has(id);
+}
 
 /**
  * Every exercise set, flattened with its owning topic's metadata — the one assembly behind the

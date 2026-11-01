@@ -252,33 +252,6 @@ export function corpus(): Plugin {
           );
           return;
         }
-        if (url === '/__review') {
-          if (req.method !== 'POST') {
-            res.statusCode = 405;
-            return json(res, { error: 'POST only' });
-          }
-          void readBody(req, MAX_PATCH_BYTES)
-            .then((raw) => JSON.parse(raw) as { topicId?: string; expectedRevision?: string })
-            .then(({ topicId, expectedRevision }) => {
-              const topic = topicId ? contentGraph(root).topics.get(topicId) : undefined;
-              if (!topic || !expectedRevision)
-                return { ok: false, error: 'topicId and expectedRevision are required' } as const;
-              return applyPatch({ file: topic.file, field: 'status', value: 'reviewed' }, root, {
-                expectedRevision,
-                verify: validateCorpus,
-              });
-            })
-            .then((result) => {
-              if (!result.ok) res.statusCode = 422;
-              if (result.ok && result.changed) invalidateContentGraph(root);
-              json(res, result);
-            })
-            .catch((error: unknown) => {
-              res.statusCode = error instanceof SyntaxError ? 400 : 413;
-              json(res, { error: error instanceof Error ? error.message : String(error) });
-            });
-          return;
-        }
         if (url === '/__reviews') {
           return json(res, reviewStatuses(root, reviewableFiles(contentGraph(root))));
         }

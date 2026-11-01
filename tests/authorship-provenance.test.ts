@@ -13,7 +13,7 @@ import {
   LEGACY_ASSET_BASELINE_SHA256,
   LEGACY_TOPIC_IDS,
   legacyAssetChangeProblems,
-  reviewedTopicAuthorshipProblems,
+  topicAuthorshipProblems,
   simulatedInstructionalAssetPaths,
 } from '@da/content/authorship-provenance';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
@@ -108,13 +108,8 @@ describe('authorship provenance', () => {
   });
 
   test('the current manifests cover every asset and have fresh hashes', () => {
-    const statuses = new Map([
-      ['erfahrungen-erzaehlen', 'reviewed'],
-      ['leben-veraendern', 'reviewed'],
-      ['gesundheit-wohlbefinden', 'reviewed'],
-    ]);
     expect(
-      authorshipProvenanceProblems(root, statuses, [
+      authorshipProvenanceProblems(root, [
         'erfahrungen-erzaehlen',
         'leben-veraendern',
         'gesundheit-wohlbefinden',
@@ -125,17 +120,6 @@ describe('authorship provenance', () => {
     );
     expect(simulatedInstructionalAssetPaths(root)).toEqual(
       assetManifest.assets.map((asset) => asset.path).sort(),
-    );
-  });
-
-  test('B1.4+ cannot become reviewed while human review is pending', () => {
-    const manifest = authorshipManifestSchema.parse(
-      YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
-    );
-    expect(
-      reviewedTopicAuthorshipProblems(manifest, new Map([['arbeit-bewerbung', 'reviewed']])),
-    ).toContain(
-      'data/authorship-provenance.yaml: reviewed topic "arbeit-bewerbung" requires explicit completed human review',
     );
   });
 
@@ -165,11 +149,7 @@ describe('authorship provenance', () => {
     const manifest = authorshipManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
     );
-    expect(
-      reviewedTopicAuthorshipProblems(manifest, new Map([['future-b1-topic', 'draft']]), [
-        'future-b1-topic',
-      ]),
-    ).toContain(
+    expect(topicAuthorshipProblems(manifest, ['future-b1-topic'])).toContain(
       'data/authorship-provenance.yaml: B1.4+ topic "future-b1-topic" has no authorship record',
     );
   });
@@ -194,13 +174,8 @@ describe('authorship provenance', () => {
       humanReview: { status: 'pending', substantiveContributions: [], reviewedAt: null },
     });
     const parsed = authorshipManifestSchema.parse(forged);
-    expect(
-      reviewedTopicAuthorshipProblems(parsed, new Map([['arbeit-bewerbung', 'reviewed']])),
-    ).toEqual(
-      expect.arrayContaining([
-        'data/authorship-provenance.yaml: "arbeit-bewerbung" legacy flag disagrees with the frozen B1.1–B1.3 allowlist',
-        'data/authorship-provenance.yaml: reviewed topic "arbeit-bewerbung" requires explicit completed human review',
-      ]),
+    expect(topicAuthorshipProblems(parsed)).toContain(
+      'data/authorship-provenance.yaml: "arbeit-bewerbung" legacy flag disagrees with the frozen B1.1–B1.3 allowlist',
     );
   });
 

@@ -3,15 +3,30 @@ import YAML from 'yaml';
 import { Button, Chip, Empty, Label, Panel } from '@da/ui/primitives';
 import { ArticlePreview } from '@da/renderers/article';
 import { ExerciseSetPreview } from '@da/renderers/exercises';
+import { ReadingPreview, VocabPreview } from '@da/renderers/material';
 import type { ContentLanguage, PreviewPayload } from '@da/content/preview';
 import { corpusClient, type FileSnapshot, type GraphPayload, type ValidationRun } from '../data';
-import { blockNavigation } from '../router';
+import { blockNavigation, href } from '../router';
+import { FILE_STATUS, markFile, useReviews } from '../reviews';
 
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 const LANGUAGE_LABEL: Record<ContentLanguage, string> = { de: 'DE', en: 'EN', ru: 'RU', uk: 'UK' };
 const CONTENT_LANGUAGES = Object.keys(LANGUAGE_LABEL) as ContentLanguage[];
 
+/**
+ * The kinds with a preview of what the learner meets. Every other file is data whose clearest
+ * rendering is its own source, so it gets the full width rather than a restatement of itself.
+ */
+const PREVIEWS = new Set<FileSnapshot['kind']>([
+  'topic-article',
+  'discovery',
+  'exercise-set',
+  'reading',
+  'vocabulary',
+]);
+
 export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) {
+  const reviews = useReviews();
   const [snapshot, setSnapshot] = useState<FileSnapshot>();
   const [text, setText] = useState('');
   const [error, setError] = useState('');
@@ -110,6 +125,7 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
       if (result.ok) {
         setSnapshot(result.snapshot);
         setText(result.snapshot.text);
+        if (result.changed) reviews.reload();
       } else if (result.conflict)
         setError(
           'Die Datei wurde außerhalb der Redaktion geändert. Neu laden oder die Änderungen manuell zusammenführen.',
@@ -127,32 +143,17 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
     setValidation(await corpusClient.validateWorkspace());
   };
   const topic = graph.topics.find((item) => item.file === path);
-  let sourceStatus: string | undefined;
-  if (snapshot.kind === 'topic-manifest') {
-    try {
-      sourceStatus = (YAML.parse(text) as { status?: string }).status;
-    } catch {
-      /* Save will explain the syntax error. */
-    }
-  }
+  const review = reviews.byFile.get(path);
   const markReviewed = async () => {
-    if (!topic) return;
+    if (!review) return;
     setSaving(true);
     try {
-      const result = await corpusClient.markTopicReviewed(topic.id, snapshot.revision);
-      if (!result.ok) setError(result.error);
-      else {
-        const next = await corpusClient.readFile(path);
-        setSnapshot(next);
-        setText(next.text);
-        setError('');
-      }
-    } catch (reason) {
-      setError(reason instanceof Error ? reason.message : String(reason));
+      if (await markFile(review)) reviews.reload();
     } finally {
       setSaving(false);
     }
   };
+  const previewable = PREVIEWS.has(snapshot.kind);
 
   return (
     <>
@@ -165,9 +166,12 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
           <p className="mt-1 break-all text-xs text-fg-muted">{path}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          {review ? (
+            <Chip tone={FILE_STATUS[review.status].tone}>{FILE_STATUS[review.status].label}</Chip>
+          ) : null}
           <Chip tone={dirty ? 'warn' : 'ok'}>{dirty ? 'ungespeichert' : 'gespeichert'}</Chip>
           <Button onClick={() => void validate()}>Korpus prüfen</Button>
-          {topic && sourceStatus === 'draft' ? (
+          {review && review.status !== 'owner-reviewed' ? (
             <Button onClick={() => void markReviewed()} disabled={dirty || saving}>
               Als geprüft markieren
             </Button>
@@ -200,16 +204,29 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
         </details>
       ) : null}
 
-      <div className="grid min-h-[68vh] gap-4 xl:grid-cols-2">
-        <Panel title="Redaktionelle Vorschau" className="min-h-0 overflow-auto">
-          <EditorialPreview
-            kind={snapshot.kind}
-            text={text}
-            language={language}
-            preview={preview?.path === path && preview.language === language ? preview : undefined}
-            onLanguage={chooseLanguage}
-          />
-        </Panel>
+      {topic ? (
+        <p className="mb-3 text-sm text-fg-muted">
+          Das Manifest von{' '}
+          <a className="text-signal underline underline-offset-2" href={href('thema', topic.id)}>
+            {topic.title}
+          </a>{' '}
+          — Lernziele, Bausteine und Prüfstand zeigt die Themenseite.
+        </p>
+      ) : null}
+      <div className={`grid min-h-[68vh] gap-4 ${previewable ? 'xl:grid-cols-2' : ''}`}>
+        {previewable ? (
+          <Panel title="Vorschau" className="min-h-0 overflow-auto">
+            <EditorialPreview
+              kind={snapshot.kind}
+              text={text}
+              language={language}
+              preview={
+                preview?.path === path && preview.language === language ? preview : undefined
+              }
+              onLanguage={chooseLanguage}
+            />
+          </Panel>
+        ) : null}
         <section className="flex min-h-[68vh] min-w-0 flex-col overflow-hidden rounded-lg border border-line bg-surface">
           <div className="flex items-center justify-between border-b border-line px-4 py-2">
             <Label>Quelle</Label>
@@ -249,14 +266,13 @@ function EditorialPreview({
   onLanguage: (language: ContentLanguage) => void;
 }) {
   const parsed = useMemo(() => {
-    if (!['topic-article', 'discovery', 'text'].includes(kind)) {
-      try {
-        return YAML.parse(text) as unknown;
-      } catch {
-        return undefined;
-      }
+    if (kind === 'topic-article' || kind === 'discovery') return undefined;
+    try {
+      const value = YAML.parse(text) as unknown;
+      return value && typeof value === 'object' ? (value as Record<string, unknown>) : undefined;
+    } catch {
+      return undefined;
     }
-    return undefined;
   }, [kind, text]);
 
   if (kind === 'topic-article' || kind === 'discovery') {
@@ -267,15 +283,18 @@ function EditorialPreview({
       </div>
     );
   }
-  if (!parsed || typeof parsed !== 'object')
-    return <Empty>Keine strukturierte Vorschau verfügbar.</Empty>;
+  if (!parsed) return <Empty>Die Quelle ist kein gültiges YAML; die Vorschau wartet.</Empty>;
   return (
-    <StructuredPreview
-      kind={kind}
-      value={parsed as Record<string, unknown>}
-      language={language}
-      onLanguage={onLanguage}
-    />
+    <div>
+      <LanguageSwitch language={language} onLanguage={onLanguage} />
+      {kind === 'exercise-set' ? (
+        <ExerciseSetPreview value={parsed} language={language} />
+      ) : kind === 'reading' ? (
+        <ReadingPreview value={parsed} language={language} />
+      ) : (
+        <VocabPreview value={parsed} language={language} />
+      )}
+    </div>
   );
 }
 
@@ -314,85 +333,5 @@ function LanguageSwitch({
         );
       })}
     </div>
-  );
-}
-
-function StructuredPreview({
-  kind,
-  value,
-  language,
-  onLanguage,
-}: {
-  kind: FileSnapshot['kind'];
-  value: Record<string, unknown>;
-  language: ContentLanguage;
-  onLanguage: (language: ContentLanguage) => void;
-}) {
-  const items = Array.isArray(value.items) ? (value.items as Record<string, unknown>[]) : [];
-  const entries = Array.isArray(value.entries) ? (value.entries as Record<string, unknown>[]) : [];
-  const rows = items.length ? items : entries;
-  return (
-    <div className="space-y-5">
-      {kind === 'exercise-set' ? (
-        <>
-          <LanguageSwitch language={language} onLanguage={onLanguage} />
-          <ExerciseSetPreview value={value} language={language} />
-        </>
-      ) : null}
-      <dl className="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-1 text-xs">
-        {Object.entries(value)
-          .filter(([, item]) => !Array.isArray(item) && typeof item !== 'object')
-          .slice(0, 14)
-          .map(([key, item]) => (
-            <div key={key} className="contents">
-              <dt className="text-fg-muted">{key}</dt>
-              <dd className="break-words text-fg">{String(item)}</dd>
-            </div>
-          ))}
-      </dl>
-      {rows.length && kind !== 'exercise-set' ? (
-        <section>
-          <Label>
-            {items.length ? `Aufgaben (${items.length})` : `Einträge (${entries.length})`}
-          </Label>
-          <ol className="mt-2 space-y-3">
-            {rows.slice(0, 80).map((row, index) => (
-              <li
-                key={String(row.id ?? row.de ?? index)}
-                className="rounded-md border border-line bg-ground p-3"
-              >
-                <p className="text-xs font-semibold text-fg">
-                  {String(row.id ?? row.de ?? `#${index + 1}`)}
-                </p>
-                <Field label="Prompt" value={row.prompt ?? row.de ?? row.text} />
-                <Field
-                  label="Antwort"
-                  value={row.answer ?? row.answers ?? row.accept ?? row.correct}
-                  tone="ok"
-                />
-                <Field label="Erklärung" value={row.explain ?? row.explanation} tone="info" />
-                <Field label="Fokus" value={row.focus ?? row.outcomes} />
-              </li>
-            ))}
-          </ol>
-        </section>
-      ) : kind !== 'exercise-set' ? (
-        <pre className="overflow-auto whitespace-pre-wrap text-xs text-fg">
-          {JSON.stringify(value, null, 2)}
-        </pre>
-      ) : null}
-    </div>
-  );
-}
-
-function Field({ label, value, tone }: { label: string; value: unknown; tone?: 'ok' | 'info' }) {
-  if (value === undefined || value === null || value === '') return null;
-  const text = typeof value === 'string' ? value : JSON.stringify(value, null, 2);
-  return (
-    <p
-      className={`mt-2 whitespace-pre-wrap text-xs ${tone === 'ok' ? 'text-normal' : tone === 'info' ? 'text-signal' : 'text-fg-muted'}`}
-    >
-      <span className="font-semibold">{label}:</span> {text}
-    </p>
   );
 }

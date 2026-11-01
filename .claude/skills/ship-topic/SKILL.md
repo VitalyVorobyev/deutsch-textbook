@@ -62,5 +62,6 @@ bun run validate && bun run activity:audit && bun scripts/grammar-coverage.ts <l
 
 Then run `bun scripts/prose-shape.ts content/topics/<level>`, fill and **review** `ipa` with
 `bun run gen:ipa --only <deck>`, and scan produced answers for off-Wortliste German. Parse every deck
-with the yaml package; never grep. Ship through the `pr-cycle` skill. The topic stays
-`status: draft` until the owner's explicit review.
+with the yaml package; never grep. Ship through the `pr-cycle` skill, which hands every new file
+over with `bun run review:claude`. The topic is a draft until the owner has marked all its files in
+Redaktion.

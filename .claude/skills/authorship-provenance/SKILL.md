@@ -21,11 +21,13 @@ Treat provenance as evidence of process, never as a promise of copyrightability.
    `complete`, so a known drafting history left as `tools: []` reads as a legacy record whose
    history is gone, and the evidence is lost the moment the session ends. `tools: []` is honest
    only before anything is drafted, or on a `legacy` record carrying `toolHistoryUnavailable`.
-5. Leave `humanReview.status: pending` until Vitaly explicitly reviews the result. An agent may
-   record proposed contributions but must not invent selections, rewrites, arrangements, dates or
-   sign-off.
-6. After explicit review, record concrete human selection, rewriting or arrangement decisions and
-   the real review date before changing a topic to `status: reviewed`.
+5. Leave `humanReview.status: pending` until Vitaly makes a decision it can record: approving a
+   brief, choosing among alternatives you offered, or filing a finding that changed the material.
+   An agent may record proposed contributions but must not invent selections, rewrites,
+   arrangements, dates or sign-off.
+6. Record each such decision, in plain words of what Vitaly chose, with its real date. Reading and
+   accepting a file is not a contribution: it is a review, and it lives in the review ledger, not
+   here ([ADR 0015](../../../docs/adrs/0015-review-is-reading-provenance-is-decisions.md)).
 7. Never describe AI-assisted output as copyrighted, original or human-authored. Describe only the
    known process.
 

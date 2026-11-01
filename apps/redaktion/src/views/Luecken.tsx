@@ -7,6 +7,7 @@ import { PROBLEM_LABELS } from '@da/content/profile';
 import type { Diagnostic, GraphPayload } from '../data';
 import { Quelllink, Zeilentabelle, Quer, type Spalte } from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
+import { topicStatus as statusOf, useReviews } from '../reviews';
 
 type Level = GraphPayload['levels'][number];
 type Problem = GraphPayload['problems'][number];
@@ -80,11 +81,11 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
 
   const kindOptions = [...new Set(graph.problems.map((p) => p.kind))].sort();
   const topicTitle = (id: string) => graph.topics.find((t) => t.id === id)?.title ?? id;
-  const topicStatus = new Map(graph.topics.map((topic) => [topic.id, topic.status]));
+  const reviews = useReviews();
   const workItems: WorkItem[] = graph.problems.map((problem, index) => ({
     ...problem,
     diagnostic: graph.diagnostics[index]!,
-    topicStatus: problem.topic ? topicStatus.get(problem.topic) : undefined,
+    topicStatus: problem.topic ? statusOf(reviews, problem.topic) : undefined,
   }));
 
   const filtered = workItems.filter(

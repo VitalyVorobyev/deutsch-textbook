@@ -73,9 +73,14 @@ export const LEGACY_TOPIC_IDS = new Set([
   'gesundheit-wohlbefinden',
 ]);
 
-export function reviewedTopicAuthorshipProblems(
+/**
+ * Record-level problems: duplicates, a legacy flag off the frozen allowlist, a B1 topic with no
+ * record. Whether a topic is *reviewed* is not asked here — that is the review ledger's (ADR 0014).
+ * A record's `humanReview` describes the human decisions that actually shaped the topic, and stays
+ * `pending` until there are some; a review that only read and accepted is in the ledger instead.
+ */
+export function topicAuthorshipProblems(
   manifest: AuthorshipManifest,
-  topicStatuses: ReadonlyMap<string, string>,
   b1TopicIds: readonly string[] = [],
 ): string[] {
   const problems: string[] = [];
@@ -87,15 +92,6 @@ export function reviewedTopicAuthorshipProblems(
     if (record.legacy !== LEGACY_TOPIC_IDS.has(record.topic)) {
       problems.push(
         `data/authorship-provenance.yaml: "${record.topic}" legacy flag disagrees with the frozen B1.1–B1.3 allowlist`,
-      );
-    }
-    if (
-      !LEGACY_TOPIC_IDS.has(record.topic) &&
-      topicStatuses.get(record.topic) === 'reviewed' &&
-      record.humanReview.status !== 'complete'
-    ) {
-      problems.push(
-        `data/authorship-provenance.yaml: reviewed topic "${record.topic}" requires explicit completed human review`,
       );
     }
   }
@@ -368,7 +364,6 @@ function formatZod(prefix: string, error: z.ZodError): string[] {
 
 export function authorshipProvenanceProblems(
   root: string,
-  topicStatuses: ReadonlyMap<string, string>,
   b1TopicIds: readonly string[] = [],
 ): string[] {
   const problems: string[] = [];
@@ -381,9 +376,7 @@ export function authorshipProvenanceProblems(
   if (!authorshipResult.success) {
     problems.push(...formatZod('data/authorship-provenance.yaml', authorshipResult.error));
   } else {
-    problems.push(
-      ...reviewedTopicAuthorshipProblems(authorshipResult.data, topicStatuses, b1TopicIds),
-    );
+    problems.push(...topicAuthorshipProblems(authorshipResult.data, b1TopicIds));
   }
 
   const assetResult = assetProvenanceManifestSchema.safeParse(

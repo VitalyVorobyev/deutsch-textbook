@@ -37,22 +37,15 @@
  * `revision` contract a form cannot honour; they need their own review, not a row in this table.
  *
  * AND THE CORPUS CHECK IS NOT OPTIONAL EITHER. A per-file schema check cannot see a corpus-level
- * rule, and one of the two writable fields reaches one: marking a **B1** topic `reviewed` makes
- * `authorshipProvenanceProblems` demand provenance records it may not have, so a write that is
- * valid on its own turns `bun run validate` red. Callers therefore pass a `verify` hook; when it
- * reports a problem the original bytes are put back and the write is refused. `bun run validate`
- * takes about six seconds — the honest cost of not shipping a red gate by accident.
+ * rule, so callers pass a `verify` hook; when it reports a problem the original bytes are put back
+ * and the write is refused. `bun run validate` takes about six seconds — the honest cost of not
+ * shipping a red gate by accident.
  */
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import * as YAML from 'yaml';
-import {
-  exerciseSetSchema,
-  topicManifestSchema,
-  LEARNING_ACTIVITIES,
-  LESSON_STAGES,
-} from '@da/schema';
+import { exerciseSetSchema, LEARNING_ACTIVITIES, LESSON_STAGES } from '@da/schema';
 import { repoRoot } from './repo-root';
 
 interface WritableField {
@@ -82,12 +75,6 @@ const CLASSES: FileClass[] = [
       stage: { values: LESSON_STAGES, after: ['role', 'topic'] },
       activity: { values: LEARNING_ACTIVITIES, after: ['stage', 'role', 'topic'] },
     },
-  },
-  {
-    id: 'topic-manifest',
-    match: /^content\/topics\/[a-z0-9]+\/[a-z0-9-]+\.topic\.yaml$/,
-    schema: topicManifestSchema,
-    fields: { status: { values: ['draft', 'reviewed'], after: ['title_uk', 'title_ru', 'kind'] } },
   },
 ];
 

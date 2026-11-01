@@ -48,7 +48,6 @@ export interface CorpusClient {
   assetUrl(path: string): Promise<string>;
   writableFields(): Promise<WritableField[]>;
   writeField(input: WritePatch): Promise<WriteResult>;
-  markTopicReviewed(topicId: string, expectedRevision: string): Promise<WriteResult>;
   /** Every reviewable file with its review status (ADR 0014). */
   reviewStatuses(): Promise<FileReview[]>;
   /** The text of a reviewed revision, or `null` when it was never committed. */
@@ -134,15 +133,6 @@ class HttpCorpusClient implements CorpusClient {
       }),
     );
   }
-  markTopicReviewed(topicId: string, expectedRevision: string) {
-    return response<WriteResult>(
-      fetch('/__review', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topicId, expectedRevision }),
-      }),
-    );
-  }
   subscribe(listener: (event: CorpusEvent) => void): () => void {
     const handler = (event: { file?: string } = {}) =>
       listener({ type: 'changed', file: event.file });
@@ -188,9 +178,6 @@ class TauriCorpusClient implements CorpusClient {
   }
   writeField(input: WritePatch) {
     return this.rpc<WriteResult>('writeField', input as unknown as Record<string, unknown>);
-  }
-  markTopicReviewed(topicId: string, expectedRevision: string) {
-    return this.rpc<WriteResult>('markTopicReviewed', { topicId, expectedRevision });
   }
   reviewStatuses() {
     return this.rpc<FileReview[]>('reviewStatuses');

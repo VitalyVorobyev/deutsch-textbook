@@ -36,6 +36,9 @@ GitHub Release notes.
 
 - **Redaktion**, the editorial workbench, now uses the shared vitavision design system, shows
   every kind of material, and has a **Prüfen** inbox for reviewing what changed.
+- A topic counts as reviewed once its editor has read every file it owns, and turns back into a
+  draft when one of them changes. Redaktion previews reading texts and vocabulary decks as the
+  learner meets them, and shows other data files as plain source.
 - **Exercise sets renamed to one convention**, so each file name starts with its topic. Your
   answer history moves to the new names automatically; update the desktop app to keep it in step.
 - **B1 is marked complete on the Über page**, like A1 and A2: every unit is authored, and the page

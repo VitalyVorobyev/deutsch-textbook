@@ -19,9 +19,10 @@ Record one state for each surface:
 - **needs specialist or media review** — do not guess, especially when a recording or provenance
   claim would need replacement.
 
-An automated or agent-assisted pass does not set a topic to `reviewed`. That status remains a
-separate human editorial transaction with the full validator and provenance gate. Existing human
-sign-offs are retained; a new corpus pass records its evidence without impersonating approval.
+An automated or agent-assisted pass does not make a topic reviewed. Only the owner's marks in the
+review ledger do, file by file ([ADR 0014](../adrs/0014-material-governance.md)). A pass hands the
+files it changed over with `bun run review:claude`, and records its evidence without impersonating
+approval.
 
 ## Topic and article
 
@@ -148,9 +149,8 @@ are engagement signals and never stand in for learning.
 ## Where the pass stands
 
 `Pass complete` means a topic's surfaces were read together and every material defect found was
-corrected. It is **not** human editorial approval and not a claim about learning. The manifest's
-`status` and the provenance records stay the approval source of truth, so a pass never sets
-`reviewed`.
+corrected. It is **not** human editorial approval and not a claim about learning. The review
+ledger stays the approval source of truth, and a pass never writes an `owner-reviewed` row.
 
 | Level | Topics | Pass |
 | --- | ---: | --- |

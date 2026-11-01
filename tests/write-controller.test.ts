@@ -55,7 +55,6 @@ group: verbformen-zeit
 title_de: "Fixture"
 title_en: "Fixture"
 title_ru: "Фикстура"
-status: draft
 tags: []
 prerequisites: []
 deepens: []
@@ -86,6 +85,18 @@ const reset = (): void => {
   writeFileSync(join(ROOT, TOPIC), TOPIC_SOURCE);
 };
 const read = (rel: string): string => readFileSync(join(ROOT, rel), 'utf8');
+/**
+ * The fixture as a valid core set: a practice set needs an authored `stage`, and `core` and
+ * `extension` both admit `geruest`, so switching between them is a write the schema accepts.
+ */
+const STAGED_SOURCE = SET_SOURCE.replace(
+  'role: practice   # trailing comment on the line being read\n',
+  'role: practice   # trailing comment on the line being read\nstage: geruest\n',
+).replace('activity: application', 'activity: core');
+const staged = (): void => {
+  reset();
+  writeFileSync(join(ROOT, SET), STAGED_SOURCE);
+};
 
 beforeAll(() => {
   ROOT = mkdtempSync(join(tmpdir(), 'da-write-'));
@@ -110,14 +121,14 @@ describe('the write controller writes', () => {
     expect(after.replace('stage: transfer\n', '')).toBe(SET_SOURCE);
   });
 
-  test('replaces an existing scalar and keeps the comment on its line', () => {
-    reset();
-    expect(applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT)).toMatchObject({
+  test('replaces an existing scalar, changing nothing else', () => {
+    staged();
+    expect(applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT)).toMatchObject({
       ok: true,
-      before: 'draft',
-      after: 'reviewed',
+      before: 'core',
+      after: 'extension',
     });
-    expect(read(TOPIC)).toBe(TOPIC_SOURCE.replace('status: draft', 'status: reviewed'));
+    expect(read(SET)).toBe(STAGED_SOURCE.replace('activity: core', 'activity: extension'));
   });
 
   test('a required teaching-contract key cannot be removed', () => {
@@ -135,10 +146,10 @@ describe('the write controller writes', () => {
   });
 
   test('an unchanged write touches nothing', () => {
-    reset();
-    const result = applyPatch({ file: TOPIC, field: 'status', value: 'draft' }, ROOT);
+    staged();
+    const result = applyPatch({ file: SET, field: 'activity', value: 'core' }, ROOT);
     expect(result).toMatchObject({ ok: true, changed: false });
-    expect(read(TOPIC)).toBe(TOPIC_SOURCE);
+    expect(read(SET)).toBe(STAGED_SOURCE);
   });
 });
 
@@ -163,8 +174,12 @@ describe('the write controller refuses', () => {
   });
 
   test('a file class it does not know', () => {
-    // Real content files, all outside the two writable classes on purpose.
+    // Real content files, all outside the one writable class on purpose. A topic manifest is
+    // among them: it declares no review status, and nothing else in it is a form's to change.
     expect(refused({ file: 'content/atlas.yaml', field: 'status', value: 'reviewed' })).toContain(
+      'no writable file class',
+    );
+    expect(refused({ file: TOPIC, field: 'status', value: 'reviewed' })).toContain(
       'no writable file class',
     );
     expect(
@@ -180,16 +195,13 @@ describe('the write controller refuses', () => {
     // attempt measures. None of them may move through a form.
     for (const field of ['revision', 'key_tokens', 'answers', 'items', 'topic', 'role', 'arming'])
       expect(refused({ file: SET, field, value: '1' })).toContain('is not writable');
-    expect(refused({ file: TOPIC, field: 'level', value: 'B1' })).toContain('is not writable');
   });
 
   test('a value the field does not accept', () => {
     expect(refused({ file: SET, field: 'stage', value: 'scaffold' })).toContain('is not one of');
     // English is not the vocabulary here — the stages are German, like the rest of the editorial
     // surface, and a near-miss must fail rather than land as a typo'd enum.
-    expect(refused({ file: TOPIC, field: 'status', value: 'published' })).toContain(
-      'is not one of',
-    );
+    expect(refused({ file: SET, field: 'activity', value: 'kern' })).toContain('is not one of');
   });
 
   test('a file that does not exist', () => {
@@ -198,23 +210,23 @@ describe('the write controller refuses', () => {
     ).toContain('does not exist');
   });
 
-  test('a stale reviewed transition cannot overwrite an external change', () => {
+  test('a stale write cannot overwrite an external change', () => {
     reset();
     const expectedRevision = '0'.repeat(64);
-    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, {
+    const result = applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT, {
       expectedRevision,
     });
     expect(result.ok).toBe(false);
     expect(result.ok ? '' : result.error).toContain('changed on disk');
-    expect(read(TOPIC)).toBe(TOPIC_SOURCE);
+    expect(read(SET)).toBe(SET_SOURCE);
   });
 
   test('a result that would not validate against the schema', () => {
     // The backstop the allowlist cannot be. Break the file first — a valid patch onto an invalid
     // document must still refuse, because the writer would otherwise bless it by writing it.
     reset();
-    writeFileSync(join(ROOT, TOPIC), TOPIC_SOURCE.replace('level: A2\n', ''));
-    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT);
+    writeFileSync(join(ROOT, SET), SET_SOURCE.replace('type: translate', 'type: nonsense'));
+    const result = applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT);
     expect(result.ok).toBe(false);
     expect(result.ok ? '' : result.error).toContain('would not validate');
     reset();
@@ -223,47 +235,45 @@ describe('the write controller refuses', () => {
 
 describe('the corpus check can undo a write the schema accepted', () => {
   /**
-   * The hole this closes is real and not hypothetical: `status: reviewed` on a **B1** topic makes
-   * `authorshipProvenanceProblems` demand provenance records, so a patch that is perfectly valid as
-   * a manifest can still turn `bun run validate` red. A per-file check cannot see that by
-   * construction, so the caller injects the gate — and the bytes go back if it complains.
+   * A per-file schema check cannot see a corpus-level rule by construction, so the caller injects
+   * the gate — and the bytes go back if it complains.
    */
   test('a verify hook that reports a problem restores the file', () => {
-    reset();
+    staged();
     const seen: string[] = [];
-    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, {
+    const result = applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT, {
       verify: (root) => {
         // It runs on the written tree, not on the old one: the reason it can catch anything.
         seen.push(
-          readFileSync(join(root, TOPIC), 'utf8').includes('status: reviewed')
+          readFileSync(join(root, SET), 'utf8').includes('activity: extension')
             ? 'written'
             : 'not-written',
         );
-        return 'content/topics/a2/fixture-topic.topic.yaml: a reviewed B1 topic needs provenance';
+        return 'content/exercises/a2/fixture-set.yaml: a corpus rule the schema cannot see';
       },
     });
     expect(seen).toEqual(['written']);
     expect(result.ok).toBe(false);
     expect(result.ok ? '' : result.error).toContain('the corpus would not validate');
-    expect(read(TOPIC)).toBe(TOPIC_SOURCE);
+    expect(read(SET)).toBe(STAGED_SOURCE);
   });
 
   test('a silent verify hook lets the write stand, and an unchanged write never calls it', () => {
-    reset();
+    staged();
     let calls = 0;
     const verify = () => {
       calls += 1;
       return undefined;
     };
     expect(
-      applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify }),
+      applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT, { verify }),
     ).toMatchObject({ ok: true });
-    expect(read(TOPIC)).toContain('status: reviewed');
+    expect(read(SET)).toContain('activity: extension');
     expect(calls).toBe(1);
     // Writing the same value again changes no bytes, so there is nothing to verify — six seconds
     // of validator for a no-op is the kind of cost that gets a feature turned off.
     expect(
-      applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify }),
+      applyPatch({ file: SET, field: 'activity', value: 'extension' }, ROOT, { verify }),
     ).toMatchObject({
       ok: true,
       changed: false,
@@ -273,7 +283,7 @@ describe('the corpus check can undo a write the schema accepted', () => {
 });
 
 describe('the writable surface is declared, not implied', () => {
-  test('exactly three scalar fields, and all are editorial judgements', () => {
+  test('exactly two scalar fields, and both are editorial judgements', () => {
     expect(writableFields()).toEqual([
       {
         class: 'exercise-set',
@@ -285,7 +295,6 @@ describe('the writable surface is declared, not implied', () => {
         field: 'activity',
         values: ['core', 'extension', 'application', 'remediation'],
       },
-      { class: 'topic-manifest', field: 'status', values: ['draft', 'reviewed'] },
     ]);
   });
 });
