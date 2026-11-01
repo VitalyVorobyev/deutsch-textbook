@@ -17,8 +17,9 @@ import { Button } from '@vitavision/ui';
 import { isAssetRef } from '@da/schema/audio-scene';
 import type { AmbienceEntry, Scene, SfxEntry, Sound } from '@da/schema/audio-scene';
 import { Marke, Platte, Zustand } from '../../components/Platte';
-import { Feld, Feldreihe, Regler, SkriptFeld, WahlFeld, ZahlFeld } from '../../components/Feld';
+import { Feld, Feldreihe, SkriptFeld, WahlFeld, ZahlFeld } from '../../components/Feld';
 import { Welle } from '../../components/Welle';
+import { Ort } from './Ort';
 import { kurzSha, sekunden, zahl } from '../../format';
 import {
   eintragAendern,
@@ -460,7 +461,7 @@ function Eintrag({
           <ZahlFeld
             legende="Pegel"
             einheit="dB"
-            hinweis="−40 bis −6"
+            hinweis="Unter der Sprache, −40 bis −6"
             wert={(entry as AmbienceEntry).gain_db}
             min={-40}
             max={-6}
@@ -675,65 +676,5 @@ function Klangquelle({
         </>
       )}
     </div>
-  );
-}
-
-function Ort({
-  placement,
-  akustik,
-  setPlacement,
-}: {
-  placement: { device: string | null; distance: number; pan: number } | null;
-  akustik: Acoustics | null;
-  setPlacement(next: { device: string | null; distance: number; pan: number } | null): void;
-}): React.JSX.Element {
-  if (placement === null) {
-    return (
-      <div className="reihe">
-        <span className="entfernt feld-hinweis">
-          Referenzposition: mittig, ein Meter, ohne Gerät.
-        </span>
-        <Button size="sm" onClick={() => setPlacement({ device: null, distance: 1, pan: 0 })}>
-          Ort setzen
-        </Button>
-      </div>
-    );
-  }
-  return (
-    <>
-      <Feldreihe spalten="11rem">
-        <Regler
-          legende="Panorama"
-          wert={placement.pan}
-          onWert={(pan) => setPlacement({ ...placement, pan })}
-        />
-        <ZahlFeld
-          legende="Abstand"
-          einheit="×"
-          hinweis="1 ist die Referenz."
-          wert={placement.distance}
-          min={0}
-          schritt={0.05}
-          onWert={(distance) => setPlacement({ ...placement, distance: distance ?? 1 })}
-        />
-        <WahlFeld
-          legende="Gerät"
-          hinweis={akustik?.devices.find((row) => row.id === placement.device)?.note || undefined}
-          disabled={akustik === null}
-          wert={placement.device ?? ''}
-          optionen={[
-            { wert: '', name: '– direkt im Raum –' },
-            ...(akustik?.devices ?? []).map((row) => ({
-              wert: row.id,
-              name: `${row.label} · v${row.version}`,
-            })),
-          ]}
-          onWert={(device) => setPlacement({ ...placement, device: device || null })}
-        />
-      </Feldreihe>
-      <Button size="sm" onClick={() => setPlacement(null)}>
-        Ort zurücksetzen
-      </Button>
-    </>
   );
 }

@@ -7,9 +7,10 @@
  * leaving a moved fader to look as if it had done nothing.
  *
  * **A strip carries the whole insert chain, folded.** A line has a level against the other lines,
- * three fixed equalizer bands and a send into the scene's room in its row; its inserts — high-pass,
- * low-pass, compressor, crusher, in the order the renderer applies them — open in a row beneath it,
- * because ten more columns would push the script off the screen. An insert is switched on at a
+ * three fixed equalizer bands and a send into the scene's room in its row; its place (pan,
+ * distance, the device it is heard through and that device's overrides, `Ort`) and its inserts —
+ * high-pass, low-pass, compressor, crusher, in the order the renderer applies them — open in a row
+ * beneath it, because ten more columns would push the script off the screen. An insert is switched on at a
  * gentle start (`INSERT_START`) and switched off by removing it, never by zeroing its numbers. A
  * bed has how far it drops under speech.
  *
@@ -19,15 +20,19 @@
 import { Button, NumberInput, Switch } from '@vitavision/ui';
 import { useState } from 'react';
 import { Platte } from '../../components/Platte';
-import { INSERT_START, mischungSetzen, type Mischwerte } from '../../scene-draft';
+import type { Acoustics } from '../../contracts';
+import { INSERT_START, eintragAendern, mischungSetzen, type Mischwerte } from '../../scene-draft';
 import type {
   AmbienceEntry,
   BandFilter,
   Compression,
   Crush,
+  Placement,
   Scene,
+  SfxEntry,
   SpeechEntry,
 } from '@da/schema/audio-scene';
+import { Ort } from './Ort';
 
 const SPRACHE_PEGEL = { min: -24, max: 6 };
 const BAND = { min: -12, max: 12 };
@@ -37,10 +42,13 @@ export function Pult({
   entwurf,
   setEntwurf,
   bearbeitbar,
+  akustik,
 }: {
   entwurf: Scene;
   setEntwurf(next: Scene): void;
   bearbeitbar: boolean;
+  /** The device catalog, for each line's device and what an override departs from. */
+  akustik: Acoustics | null;
 }): React.JSX.Element {
   const texte = new Map(entwurf.script.map((zeile) => [zeile.id, zeile] as const));
   const setzen = (index: number, werte: Mischwerte): void =>
@@ -57,7 +65,7 @@ export function Pult({
     <Platte
       titel="Pult"
       zaehler={`${zeilen.length} Zeilen · ${betten.length} Betten`}
-      erklaerung="Pegel, Klang, Raumanteil und Inserts jeder Zeile, und wie weit ein Bett unter Sprache absinkt. Das Pult ändert den Entwurf: zu hören ist eine Änderung erst nach Speichern und neuem Rendern."
+      erklaerung="Pegel, Klang, Raumanteil, Ort mit Gerät und Inserts jeder Zeile, und wie weit ein Bett unter Sprache absinkt. Das Pult ändert den Entwurf: zu hören ist eine Änderung erst nach Speichern und neuem Rendern."
       randlos
     >
       <div className="tabelle-rahmen">
@@ -70,7 +78,7 @@ export function Pult({
               <th scope="col">Mitten dB</th>
               <th scope="col">Höhen dB</th>
               <th scope="col">Raum dB</th>
-              <th scope="col">Inserts</th>
+              <th scope="col">Ort · Inserts</th>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +93,10 @@ export function Pult({
                   entry={entry}
                   bearbeitbar={bearbeitbar}
                   setzen={(werte) => setzen(index, werte)}
+                  akustik={akustik}
+                  setPlacement={(placement) =>
+                    setEntwurf(eintragAendern(entwurf, index, { placement } as Partial<SfxEntry>))
+                  }
                 />
               );
             })}
@@ -125,14 +137,22 @@ function Kanal({
   entry,
   bearbeitbar,
   setzen,
+  akustik,
+  setPlacement,
 }: {
   name: string;
   text: string | undefined;
   entry: SpeechEntry;
   bearbeitbar: boolean;
   setzen(werte: Mischwerte): void;
+  akustik: Acoustics | null;
+  setPlacement(next: Placement | null): void;
 }): React.JSX.Element {
   const eq = entry.effects?.eq;
+  const geraet = entry.placement?.device
+    ? (akustik?.devices.find((row) => row.id === entry.placement?.device)?.label ??
+      entry.placement.device)
+    : null;
   const [offen, setOffen] = useState(false);
   const aktiv = (['highpass', 'lowpass', 'compression', 'crush'] as const).filter(
     (name) => entry.effects?.[name] != null,
@@ -196,16 +216,19 @@ function Kanal({
             variant="ghost"
             size="sm"
             aria-expanded={offen}
-            aria-label={`${name}: Inserts`}
+            aria-label={`${name}: Ort und Inserts`}
             onClick={() => setOffen(!offen)}
           >
-            {aktiv > 0 ? `${aktiv} an` : 'keine'} {offen ? '▴' : '▾'}
+            {geraet ?? 'direkt'} · {aktiv > 0 ? `${aktiv} an` : 'keine'} {offen ? '▴' : '▾'}
           </Button>
         </td>
       </tr>
       {offen ? (
         <tr className="pult-inserts">
           <td colSpan={7}>
+            <fieldset className="pult-ort" aria-label={`${name}: Ort`} disabled={!bearbeitbar}>
+              <Ort placement={entry.placement} akustik={akustik} setPlacement={setPlacement} />
+            </fieldset>
             <Inserts name={name} entry={entry} bearbeitbar={bearbeitbar} setzen={setzen} />
           </td>
         </tr>

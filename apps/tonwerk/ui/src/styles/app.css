@@ -1382,6 +1382,20 @@
   padding-block: 4px 8px;
 }
 
+.pult-ort {
+  display: grid;
+  gap: var(--ton-mass-2);
+  border: 0;
+  margin: 0 0 12px;
+  padding: 0 0 12px;
+  min-width: 0;
+  border-bottom: 1px solid var(--ton-kante);
+}
+
+.pult-ort > button {
+  justify-self: start;
+}
+
 .pult-insert {
   display: flex;
   flex-wrap: wrap;

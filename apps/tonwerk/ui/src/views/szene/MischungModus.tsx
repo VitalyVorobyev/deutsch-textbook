@@ -36,7 +36,7 @@ import { fehlerText } from '../fehler';
 import { Pult } from './Pult';
 import { Zeitleiste } from './Zeitleiste';
 import type { Api } from '../../api';
-import type { Approval, QaReport, RenderRow, SpeakerQa } from '../../contracts';
+import type { Acoustics, Approval, QaReport, RenderRow, SpeakerQa } from '../../contracts';
 import type { Scene } from '@da/schema/audio-scene';
 
 export function MischungModus({
@@ -55,6 +55,7 @@ export function MischungModus({
   geaendert,
   api,
   nachLauf,
+  akustik,
 }: {
   scene: Scene;
   /** The draft the pult edits; `scene` is the saved revision the render belongs to. */
@@ -74,6 +75,8 @@ export function MischungModus({
   geaendert: boolean;
   api: Api;
   nachLauf(): void;
+  /** The device catalog the pult's places pick from. */
+  akustik: Acoustics | null;
 }): React.JSX.Element {
   const bericht = useRef<HTMLDivElement | null>(null);
   const stand = renders.find((row) => row.variant === variante) ?? null;
@@ -246,7 +249,7 @@ export function MischungModus({
         )}
       </Platte>
 
-      <Pult entwurf={entwurf} setEntwurf={setEntwurf} bearbeitbar={bearbeitbar} />
+      <Pult entwurf={entwurf} setEntwurf={setEntwurf} bearbeitbar={bearbeitbar} akustik={akustik} />
 
       <Platte
         titel="Prüfergebnis"

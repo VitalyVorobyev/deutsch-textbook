@@ -123,6 +123,8 @@ GitHub Release notes.
   last save.
 - Tonwerk's Pult switches a line's high-pass, low-pass, compressor and crusher on and off and sets
   their values, and a mix moved back to neutral no longer reads as unsaved.
+- Tonwerk's Pult also sets where a line sits and the device it is heard through, and a line or an
+  event can change that device's band, level and room share for itself alone.
 - Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
   any one track on its own.
 - Tonwerk speaks every roster character in its own designed voice on one model, and publishes a

@@ -571,7 +571,15 @@ export type AcousticEntry = z.infer<typeof acousticEntrySchema>;
 
 export const acousticsSchema = z.looseObject({
   rooms: z.array(acousticEntrySchema.extend({ wet: z.number().optional() })),
-  devices: z.array(acousticEntrySchema),
+  /** With the four numbers a placement's `device_overrides` may replace; a missing band is null. */
+  devices: z.array(
+    acousticEntrySchema.extend({
+      highpass_hz: z.number().nullable().optional(),
+      lowpass_hz: z.number().nullable().optional(),
+      gain_db: z.number().optional(),
+      room_send_db: z.number().optional(),
+    }),
+  ),
   presets: z.array(
     acousticEntrySchema.extend({ deltas: z.record(z.string(), z.number()).default({}) }),
   ),

@@ -437,8 +437,26 @@ export const acousticsFixture = {
     { id: 'cafe', label: 'Café', note: 'Hart und voll.', version: 2, wet: 0.18 },
   ],
   devices: [
-    { id: 'telephone', label: 'Telefon', note: '300–3400 Hz.', version: 1 },
-    { id: 'pa', label: 'Lautsprecherdurchsage', note: 'Ein Horn an der Wand.', version: 1 },
+    {
+      id: 'telephone',
+      label: 'Telefon',
+      note: '300–3400 Hz.',
+      version: 1,
+      highpass_hz: 300,
+      lowpass_hz: 3400,
+      gain_db: 0,
+      room_send_db: 0,
+    },
+    {
+      id: 'pa',
+      label: 'Lautsprecherdurchsage',
+      note: 'Ein Horn an der Wand.',
+      version: 1,
+      highpass_hz: 180,
+      lowpass_hz: 5600,
+      gain_db: -1,
+      room_send_db: 5,
+    },
   ],
   presets: [
     {
