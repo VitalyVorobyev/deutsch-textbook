@@ -1373,3 +1373,34 @@
 .pult-zahl {
   width: 5.5rem;
 }
+
+/* The insert row beneath a line: the four inserts side by side, wrapping on a narrow window. */
+.pult-insertreihe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding-block: 4px 8px;
+}
+
+.pult-insert {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.pult-feld {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pult-einheit {
+  font-size: var(--ton-grad-13);
+  color: var(--ton-schrift-ab);
+  white-space: nowrap;
+}

@@ -28,7 +28,10 @@
  */
 import type {
   AmbienceEntry,
+  BandFilter,
   CastMember,
+  Compression,
+  Crush,
   Scene,
   SfxEntry,
   SpeechEntry,
@@ -50,7 +53,36 @@ export function stabilesJson(value: unknown): string {
 
 /** Whether the draft says anything the original does not. Key order is not a difference. */
 export function istGeaendert(original: Scene, entwurf: Scene): boolean {
-  return stabilesJson(original) !== stabilesJson(entwurf);
+  return stabilesJson(kanonisch(original)) !== stabilesJson(kanonisch(entwurf));
+}
+
+/**
+ * The scene as the engine hashes it: every mixing field at its neutral value left out, as the
+ * engine's `OMIT_AT_DEFAULT` leaves it out. The engine returns those fields filled in
+ * (`gain_db: 0`, `effects: null`) and the pult removes them on the way back to neutral, so two
+ * scenes that differ only in that spelling are the same scene and must not read as an edit.
+ */
+export function kanonisch(scene: Scene): Scene {
+  const ohne = <T extends object>(objekt: T, neutral: Record<string, unknown>): T => {
+    const kopie = { ...objekt } as Record<string, unknown>;
+    for (const [feld, wert] of Object.entries(neutral)) {
+      if (feld in kopie && kopie[feld] === wert) delete kopie[feld];
+    }
+    return kopie as T;
+  };
+  return {
+    ...scene,
+    acoustics: ohne(scene.acoustics, { room_overrides: null }),
+    timeline: scene.timeline.map((entry) => {
+      const mitOrt =
+        'placement' in entry && entry.placement
+          ? { ...entry, placement: ohne(entry.placement, { device_overrides: null }) }
+          : entry;
+      if (mitOrt.type === 'speech') return ohne(mitOrt, { gain_db: 0, effects: null });
+      if (mitOrt.type === 'sfx') return ohne(mitOrt, { effects: null });
+      return ohne(mitOrt, { duck_db: 0 });
+    }),
+  };
 }
 
 /** The reordering rules refuse rather than guess, and they say so with this. */
@@ -312,9 +344,28 @@ export interface Mischwerte {
   eq?: { low_db?: number; mid_db?: number; high_db?: number };
   /** The line's send into the scene's room, in dB. */
   room_send_db?: number;
+  /** The inserts, each whole; null takes it out of the chain. */
+  highpass?: BandFilter | null;
+  lowpass?: BandFilter | null;
+  compression?: Compression | null;
+  crush?: Crush | null;
   /** How far a bed drops under speech, in dB. */
   duck_db?: number;
 }
+
+/**
+ * What an insert starts at when it is switched on: the gentlest of the device presets in
+ * `data/acoustic-profiles.yaml` (the mobile phone's levelling and crush), and band edges wide
+ * enough to be heard as a trim rather than as a device.
+ */
+export const INSERT_START = {
+  highpass: { hz: 120, sections: 1 },
+  lowpass: { hz: 8000, sections: 1 },
+  compression: { threshold_db: -18, ratio: 3, attack_ms: 5, release_ms: 140, makeup_db: 3 },
+  crush: { bits: 12, mix: 0.3 },
+} as const satisfies Record<string, BandFilter | Compression | Crush>;
+
+const INSERTS = ['highpass', 'lowpass', 'compression', 'crush'] as const;
 
 export function mischungSetzen(scene: Scene, index: number, werte: Mischwerte): Scene {
   return {
@@ -329,14 +380,27 @@ export function mischungSetzen(scene: Scene, index: number, werte: Mischwerte): 
       if (entry.type === 'speech' && werte.gain_db !== undefined) {
         setzeOderLoesche(neu, 'gain_db', werte.gain_db);
       }
-      if (werte.eq !== undefined || werte.room_send_db !== undefined) {
+      const effektWerte =
+        werte.eq !== undefined ||
+        werte.room_send_db !== undefined ||
+        INSERTS.some((name) => werte[name] !== undefined);
+      if (effektWerte) {
         const alt = entry.effects ?? null;
         const eq = { low_db: 0, mid_db: 0, high_db: 0, ...alt?.eq, ...werte.eq };
+        let highpass = werte.highpass !== undefined ? werte.highpass : (alt?.highpass ?? null);
+        let lowpass = werte.lowpass !== undefined ? werte.lowpass : (alt?.lowpass ?? null);
+        // The engine refuses a band that passes nothing, so the edge being moved stops 1 Hz
+        // short of the other one instead of producing a scene that cannot be saved.
+        if (highpass && lowpass && lowpass.hz <= highpass.hz) {
+          if (werte.lowpass !== undefined) lowpass = { ...lowpass, hz: highpass.hz + 1 };
+          else highpass = { ...highpass, hz: lowpass.hz - 1 };
+        }
         const effekte = {
-          compression: alt?.compression ?? null,
-          crush: alt?.crush ?? null,
-          highpass: alt?.highpass ?? null,
-          lowpass: alt?.lowpass ?? null,
+          compression:
+            werte.compression !== undefined ? werte.compression : (alt?.compression ?? null),
+          crush: werte.crush !== undefined ? werte.crush : (alt?.crush ?? null),
+          highpass,
+          lowpass,
           eq: eq.low_db === 0 && eq.mid_db === 0 && eq.high_db === 0 ? null : eq,
           room_send_db: werte.room_send_db ?? alt?.room_send_db ?? 0,
         };
@@ -538,5 +602,5 @@ export function nurZeitGeaendert(original: Scene, entwurf: Scene): boolean {
       return { ...entry, start_ms: 0, end_ms: null, fade_in_ms: 0, fade_out_ms: 0 };
     }),
   });
-  return stabilesJson(ohneZeit(original)) === stabilesJson(ohneZeit(entwurf));
+  return stabilesJson(kanonisch(ohneZeit(original))) === stabilesJson(kanonisch(ohneZeit(entwurf)));
 }
