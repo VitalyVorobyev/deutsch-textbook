@@ -777,9 +777,9 @@ units:
       - id: ls-versicherungen-behoerden-01
         wave: 2
         purpose: model-input
-        scenario: "Am Schalter der Krankenkasse: eine Kundin weiß nicht, ob ein Schaden versichert ist, fragt nach und bittet um einen schriftlichen Nachweis"
+        scenario: "Am Schalter der Krankenkasse: eine Kundin weiß nicht, ob ein Schaden versichert ist, fragt nach und bittet um eine schriftliche Bestätigung"
         outcomes: [versicherung-klaeren]
-        required_vocabulary: [versichert, Nachweis, Frist, Antrag, Behörde]
+        required_vocabulary: [versichert, Bestätigung, Frist, Antrag, Behörde]
         grammar_target: "ob-Nebensatz nach weiß nicht, Präpositionen mit Genitiv"
         duration_seconds: { min: 55, max: 75 }
         speakers: { min: 2, max: 2 }

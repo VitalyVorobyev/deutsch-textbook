@@ -1,0 +1,140 @@
+topic: polizei-anzeige
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Polizei & Anzeige"
+title:
+  en: 'Reporting a stolen bike'
+  ru: 'Заявление о краже велосипеда'
+  uk: 'Заява про крадіжку велосипеда'
+  de: 'Ein gestohlenes Fahrrad anzeigen'
+items:
+- id: q1
+  outcomes:
+  - diebstahl-melden
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Beamter
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Lindner
+      text: 'Ich möchte eine Anzeige machen. Mein Fahrrad ist gestohlen worden.'
+    - speaker: Beamter
+      text: 'Wann und wo haben Sie es zuletzt gesehen?'
+    - speaker: Frau Lindner
+      text: 'Gestern Abend um sieben vor dem Fitnessstudio in der Schillerstraße. Heute Morgen um acht war das abgeschlossene Rad weg.'
+    - speaker: Beamter
+      text: 'Also zwischen neunzehn Uhr gestern und acht Uhr heute. Gibt es Zeugen oder einen Verdacht?'
+    - speaker: Frau Lindner
+      text: 'Eine Nachbarin hat erzählt, dass sie nachts zwei Männer mit einem kleinen Lastwagen gesehen hat. Sie weiß aber nicht, ob die etwas mit dem Fahrrad zu tun hatten.'
+    - speaker: Beamter
+      text: 'Wir sprechen mit der Zeugin. Haben Sie einen Beweis, dass es Ihr Rad ist, zum Beispiel die Rechnung?'
+    - speaker: Frau Lindner
+      text: 'Die Rechnung mit der Nummer vom Rad habe ich zu Hause.'
+    - speaker: Beamter
+      text: 'Gut. Bringen Sie sie bitte bis Freitag vorbei. Dann bekommen Sie die Bestätigung für Ihre Versicherung.'
+  recording: ls-polizei-anzeige-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'In welchem Zeitraum wurde das Fahrrad gestohlen?'
+  options:
+  - 'Zwischen sieben Uhr abends und acht Uhr morgens.'
+  - 'Zwischen acht Uhr morgens und sieben Uhr abends.'
+  - 'Gestern Nachmittag.'
+  correct: 0
+  explain:
+    en: 'The officer turns her two times into a span: zwischen neunzehn Uhr gestern und acht Uhr heute. From eight in the morning to seven in the evening has the ends the wrong way round.'
+    ru: 'Полицейский превращает два её времени в промежуток: zwischen neunzehn Uhr gestern und acht Uhr heute. В варианте с восьми утра до семи вечера начало и конец перепутаны.'
+    uk: 'Поліцейський перетворює два її часи на проміжок: zwischen neunzehn Uhr gestern und acht Uhr heute. У варіанті з восьмої ранку до сьомої вечора початок і кінець переплутано.'
+    de: 'Der Beamte macht aus ihren zwei Uhrzeiten einen Zeitraum: „zwischen neunzehn Uhr gestern und acht Uhr heute“. „Zwischen acht Uhr morgens und sieben Uhr abends“ dreht Anfang und Ende um.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - diebstahl-melden
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Beamter
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Lindner
+      text: 'Ich möchte eine Anzeige machen. Mein Fahrrad ist gestohlen worden.'
+    - speaker: Beamter
+      text: 'Wann und wo haben Sie es zuletzt gesehen?'
+    - speaker: Frau Lindner
+      text: 'Gestern Abend um sieben vor dem Fitnessstudio in der Schillerstraße. Heute Morgen um acht war das abgeschlossene Rad weg.'
+    - speaker: Beamter
+      text: 'Also zwischen neunzehn Uhr gestern und acht Uhr heute. Gibt es Zeugen oder einen Verdacht?'
+    - speaker: Frau Lindner
+      text: 'Eine Nachbarin hat erzählt, dass sie nachts zwei Männer mit einem kleinen Lastwagen gesehen hat. Sie weiß aber nicht, ob die etwas mit dem Fahrrad zu tun hatten.'
+    - speaker: Beamter
+      text: 'Wir sprechen mit der Zeugin. Haben Sie einen Beweis, dass es Ihr Rad ist, zum Beispiel die Rechnung?'
+    - speaker: Frau Lindner
+      text: 'Die Rechnung mit der Nummer vom Rad habe ich zu Hause.'
+    - speaker: Beamter
+      text: 'Gut. Bringen Sie sie bitte bis Freitag vorbei. Dann bekommen Sie die Bestätigung für Ihre Versicherung.'
+  recording: ls-polizei-anzeige-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was hat die Nachbarin erzählt?'
+  options:
+  - 'Dass sie nachts zwei Männer mit einem kleinen Lastwagen gesehen hat.'
+  - 'Dass sie den Dieb kennt.'
+  - 'Dass das Fahrrad nicht abgeschlossen war.'
+  correct: 0
+  explain:
+    en: 'Frau Lindner reports it in indirect speech — hat erzählt, dass … — and adds what the neighbour does not know: ob die etwas damit zu tun hatten. The bike was locked: das abgeschlossene Rad.'
+    ru: 'Госпожа Линднер передаёт это косвенной речью — hat erzählt, dass …, — и добавляет, чего соседка не знает: ob die etwas damit zu tun hatten. Велосипед был заперт: das abgeschlossene Rad.'
+    uk: 'Пані Лінднер передає це непрямою мовою — hat erzählt, dass …, — і додає, чого сусідка не знає: ob die etwas damit zu tun hatten. Велосипед був замкнений: das abgeschlossene Rad.'
+    de: 'Frau Lindner gibt es mit „hat erzählt, dass …“ wieder und sagt auch, was die Nachbarin nicht weiß: ob die Männer etwas damit zu tun hatten. Das Rad war abgeschlossen: „das abgeschlossene Rad“.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - diebstahl-melden
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Beamter
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Lindner
+      text: 'Ich möchte eine Anzeige machen. Mein Fahrrad ist gestohlen worden.'
+    - speaker: Beamter
+      text: 'Wann und wo haben Sie es zuletzt gesehen?'
+    - speaker: Frau Lindner
+      text: 'Gestern Abend um sieben vor dem Fitnessstudio in der Schillerstraße. Heute Morgen um acht war das abgeschlossene Rad weg.'
+    - speaker: Beamter
+      text: 'Also zwischen neunzehn Uhr gestern und acht Uhr heute. Gibt es Zeugen oder einen Verdacht?'
+    - speaker: Frau Lindner
+      text: 'Eine Nachbarin hat erzählt, dass sie nachts zwei Männer mit einem kleinen Lastwagen gesehen hat. Sie weiß aber nicht, ob die etwas mit dem Fahrrad zu tun hatten.'
+    - speaker: Beamter
+      text: 'Wir sprechen mit der Zeugin. Haben Sie einen Beweis, dass es Ihr Rad ist, zum Beispiel die Rechnung?'
+    - speaker: Frau Lindner
+      text: 'Die Rechnung mit der Nummer vom Rad habe ich zu Hause.'
+    - speaker: Beamter
+      text: 'Gut. Bringen Sie sie bitte bis Freitag vorbei. Dann bekommen Sie die Bestätigung für Ihre Versicherung.'
+  recording: ls-polizei-anzeige-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was soll Frau Lindner bis Freitag bringen?'
+  options:
+  - 'Die Rechnung mit der Nummer vom Rad.'
+  - 'Die Zeugin.'
+  - 'Die Bestätigung der Versicherung.'
+  correct: 0
+  explain:
+    en: 'The invoice is her Beweis that the bike is hers; she has it at home. The confirmation is what she gets afterwards, and the police talk to the witness themselves.'
+    ru: 'Счёт — её Beweis, что велосипед принадлежит ей; он лежит у неё дома. Подтверждение она получит потом, а со свидетельницей полиция поговорит сама.'
+    uk: 'Рахунок — її Beweis, що велосипед належить їй; він у неї вдома. Підтвердження вона отримає потім, а зі свідкою поліція поговорить сама.'
+    de: 'Die Rechnung ist ihr Beweis, dass es ihr Rad ist; sie liegt zu Hause. Die Bestätigung bekommt sie erst danach, und mit der Zeugin spricht die Polizei selbst.'
+  max_replays: 3

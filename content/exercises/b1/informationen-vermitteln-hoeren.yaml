@@ -1,0 +1,128 @@
+topic: informationen-vermitteln
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Informationen vermitteln"
+title:
+  en: 'A message at the door'
+  ru: 'Сообщение у двери'
+  uk: 'Повідомлення біля дверей'
+  de: 'Eine Nachricht an der Wohnungstür'
+items:
+- id: q1
+  outcomes:
+  - mitteilung-weitergeben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Becker
+      text: 'Guten Tag, Frau Nguyen. Entschuldigen Sie die Störung. Wohnt Herr Wolf nicht auch bei Ihnen?'
+    - speaker: Frau Nguyen
+      text: 'Ja, Jan ist mein Mitbewohner, aber er ist bis morgen verreist. Kann ich ihm etwas ausrichten?'
+    - speaker: Herr Becker
+      text: 'Gern. Der Techniker für die Heizung kommt nicht am zwölften, sondern schon am zehnten. Die Hausverwaltung hat das heute früh mitgeteilt.'
+    - speaker: Frau Nguyen
+      text: 'Am zehnten, also zwei Tage früher. Und die Uhrzeit?'
+    - speaker: Herr Becker
+      text: 'Die bleibt: zwischen neun und zwölf Uhr. Aber Herr Wolf hat doch den Kellerschlüssel. Den muss er bis zum neunten bei Frau Kraus im Erdgeschoss abgeben.'
+    - speaker: Frau Nguyen
+      text: 'Ich wiederhole mal: Der Termin ist am zehnten statt am zwölften, die Zeit bleibt, und der Schlüssel muss bis zum neunten zu Frau Kraus.'
+    - speaker: Herr Becker
+      text: 'Genau so. Vielen Dank!'
+  recording: ls-informationen-vermitteln-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was hat sich geändert?'
+  options:
+  - 'Der Techniker kommt zwei Tage früher.'
+  - 'Er kommt am Nachmittag statt am Vormittag.'
+  - 'Er kommt zwei Tage später.'
+  correct: 0
+  explain:
+    en: 'Nicht am zwölften, sondern schon am zehnten: schon marks it as earlier, and Frau Nguyen says it outright — zwei Tage früher. The time stays nine to twelve.'
+    ru: 'Nicht am zwölften, sondern schon am zehnten: schon показывает, что раньше, и госпожа Нгуен говорит это прямо — zwei Tage früher. Время остаётся с девяти до двенадцати.'
+    uk: 'Nicht am zwölften, sondern schon am zehnten: schon показує, що раніше, і пані Нгуєн каже це прямо — zwei Tage früher. Час залишається з дев''ятої до дванадцятої.'
+    de: '„Nicht am zwölften, sondern schon am zehnten“: „schon“ zeigt, dass es früher ist, und Frau Nguyen sagt es auch: „zwei Tage früher“. Die Uhrzeit bleibt, zwischen neun und zwölf.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - mitteilung-weitergeben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Becker
+      text: 'Guten Tag, Frau Nguyen. Entschuldigen Sie die Störung. Wohnt Herr Wolf nicht auch bei Ihnen?'
+    - speaker: Frau Nguyen
+      text: 'Ja, Jan ist mein Mitbewohner, aber er ist bis morgen verreist. Kann ich ihm etwas ausrichten?'
+    - speaker: Herr Becker
+      text: 'Gern. Der Techniker für die Heizung kommt nicht am zwölften, sondern schon am zehnten. Die Hausverwaltung hat das heute früh mitgeteilt.'
+    - speaker: Frau Nguyen
+      text: 'Am zehnten, also zwei Tage früher. Und die Uhrzeit?'
+    - speaker: Herr Becker
+      text: 'Die bleibt: zwischen neun und zwölf Uhr. Aber Herr Wolf hat doch den Kellerschlüssel. Den muss er bis zum neunten bei Frau Kraus im Erdgeschoss abgeben.'
+    - speaker: Frau Nguyen
+      text: 'Ich wiederhole mal: Der Termin ist am zehnten statt am zwölften, die Zeit bleibt, und der Schlüssel muss bis zum neunten zu Frau Kraus.'
+    - speaker: Herr Becker
+      text: 'Genau so. Vielen Dank!'
+  recording: ls-informationen-vermitteln-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was muss Herr Wolf bis zum neunten tun?'
+  options:
+  - 'Den Kellerschlüssel bei Frau Kraus abgeben.'
+  - 'Die Hausverwaltung anrufen.'
+  - 'Zu Hause auf den Techniker warten.'
+  correct: 0
+  explain:
+    en: 'The key has its own deadline, a day before the visit: bis zum neunten bei Frau Kraus. The building management only passed the news on.'
+    ru: 'У ключа свой срок, на день раньше визита: bis zum neunten bei Frau Kraus. Управляющая компания лишь сообщила новость.'
+    uk: 'Ключ має власний термін, на день раніше візиту: bis zum neunten bei Frau Kraus. Керуюча компанія лише повідомила новину.'
+    de: 'Der Schlüssel hat eine eigene Frist, einen Tag vor dem Termin: „bis zum neunten bei Frau Kraus“. Die Hausverwaltung hat die Nachricht nur weitergegeben.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - mitteilung-weitergeben
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Becker
+      text: 'Guten Tag, Frau Nguyen. Entschuldigen Sie die Störung. Wohnt Herr Wolf nicht auch bei Ihnen?'
+    - speaker: Frau Nguyen
+      text: 'Ja, Jan ist mein Mitbewohner, aber er ist bis morgen verreist. Kann ich ihm etwas ausrichten?'
+    - speaker: Herr Becker
+      text: 'Gern. Der Techniker für die Heizung kommt nicht am zwölften, sondern schon am zehnten. Die Hausverwaltung hat das heute früh mitgeteilt.'
+    - speaker: Frau Nguyen
+      text: 'Am zehnten, also zwei Tage früher. Und die Uhrzeit?'
+    - speaker: Herr Becker
+      text: 'Die bleibt: zwischen neun und zwölf Uhr. Aber Herr Wolf hat doch den Kellerschlüssel. Den muss er bis zum neunten bei Frau Kraus im Erdgeschoss abgeben.'
+    - speaker: Frau Nguyen
+      text: 'Ich wiederhole mal: Der Termin ist am zehnten statt am zwölften, die Zeit bleibt, und der Schlüssel muss bis zum neunten zu Frau Kraus.'
+    - speaker: Herr Becker
+      text: 'Genau so. Vielen Dank!'
+  recording: ls-informationen-vermitteln-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Warum wiederholt Frau Nguyen die Nachricht?'
+  options:
+  - 'Damit sie sie richtig an Jan weitergeben kann.'
+  - 'Weil sie Herrn Becker nicht glaubt.'
+  - 'Weil sie selbst den Schlüssel hat.'
+  correct: 0
+  explain:
+    en: 'She took the message for Jan — kann ich ihm etwas ausrichten? — and repeats all three points so Herr Becker can confirm them. His genau so is that confirmation.'
+    ru: 'Она взялась передать сообщение Яну — kann ich ihm etwas ausrichten? — и повторяет все три пункта, чтобы господин Беккер их подтвердил. Его genau so и есть подтверждение.'
+    uk: 'Вона взялася передати повідомлення Янові — kann ich ihm etwas ausrichten? — і повторює всі три пункти, щоб пан Беккер їх підтвердив. Його genau so і є підтвердження.'
+    de: 'Sie hat angeboten, Jan etwas auszurichten, und wiederholt alle drei Punkte, damit Herr Becker sie bestätigen kann. Sein „Genau so“ ist diese Bestätigung.'
+  max_replays: 3

@@ -27,10 +27,10 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(465);
+    expect(graph.sets.size).toBe(476);
     expect(graph.readings.size).toBe(85);
     expect(graph.vocab.size).toBe(129);
-    expect(graph.listening.size).toBe(134);
+    expect(graph.listening.size).toBe(145);
     expect(graph.documents.size).toBe(17);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
@@ -122,7 +122,7 @@ describe('content graph', () => {
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 68,
       'lid-lektion': 12,
-      praxis: 206,
+      praxis: 217,
       pretest: 57,
       probe: 158,
       pruefungspraxis: 12,
@@ -131,9 +131,9 @@ describe('content graph', () => {
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(948);
-    // 11 of the Hörtexte are planned scenes: named by the plan, not yet published.
-    expect(graph.elements.filter((e) => e.planned).length).toBe(11);
+    expect(graph.elements.length).toBe(959);
+    // Every Hörtext the plan names is published: none is planned any more.
+    expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -142,12 +142,12 @@ describe('content graph', () => {
       byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(132);
+    expect(byStage.get('transfer')).toBe(143);
     expect(byStage.get('geruest')).toBe(77);
     expect(byStage.get('nachpruefung')).toBe(161);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(232);
+    expect(teaching).toHaveLength(243);
     expect(
       Object.fromEntries(
         LEARNING_ACTIVITIES.map((activity) => [
@@ -155,7 +155,7 @@ describe('content graph', () => {
           teaching.filter((element) => element.activity === activity).length,
         ]),
       ),
-    ).toEqual({ core: 57, extension: 29, application: 120, remediation: 26 });
+    ).toEqual({ core: 57, extension: 29, application: 131, remediation: 26 });
     expect(
       [...graph.topics.keys()].filter(
         (topic) =>

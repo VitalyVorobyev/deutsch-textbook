@@ -1,0 +1,146 @@
+topic: unfall-notruf
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Unfall & Notruf"
+title:
+  en: 'An emergency call'
+  ru: 'Звонок в экстренную службу'
+  uk: 'Дзвінок до екстреної служби'
+  de: 'Ein Notruf'
+items:
+- id: q1
+  outcomes:
+  - notruf-absetzen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Leitstelle
+      text: 'Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Unfall?'
+    - speaker: Anrufer
+      text: 'An der Kreuzung Bahnhofstraße und Lindenweg, vor der Apotheke.'
+    - speaker: Leitstelle
+      text: 'Was ist passiert?'
+    - speaker: Anrufer
+      text: 'Ein Auto hat einen Radfahrer getroffen. Er liegt auf der Straße.'
+    - speaker: Leitstelle
+      text: 'Ist er verletzt? Ist er wach?'
+    - speaker: Anrufer
+      text: 'Ja, er spricht mit mir. Er blutet am Kopf, und sein Bein tut ihm sehr weh.'
+    - speaker: Leitstelle
+      text: 'Gibt es noch weitere Verletzte?'
+    - speaker: Anrufer
+      text: 'Nein. Der Autofahrer ist nicht verletzt.'
+    - speaker: Leitstelle
+      text: 'Gut. Der Krankenwagen ist unterwegs und in wenigen Minuten da. Bewegen Sie den Mann nicht und bleiben Sie bitte am Telefon, bis die Kollegen da sind.'
+    - speaker: Anrufer
+      text: 'In Ordnung, ich bleibe am Telefon.'
+  recording: ls-unfall-notruf-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Wo ist der Unfall passiert?'
+  options:
+  - 'An einer Kreuzung vor der Apotheke.'
+  - 'Am Bahnhof.'
+  - 'Vor dem Krankenhaus im Lindenweg.'
+  correct: 0
+  explain:
+    en: 'The first thing the control centre asks is wo, and the caller names the crossing and a landmark: vor der Apotheke. Bahnhofstraße is a street name, not the station.'
+    ru: 'Первым делом диспетчер спрашивает wo, и звонящий называет перекрёсток и ориентир: vor der Apotheke. Bahnhofstraße — название улицы, а не вокзал.'
+    uk: 'Першим ділом диспетчер питає wo, і той, хто дзвонить, називає перехрестя й орієнтир: vor der Apotheke. Bahnhofstraße — назва вулиці, а не вокзал.'
+    de: 'Die Leitstelle fragt zuerst nach dem Ort, und der Anrufer nennt die Kreuzung und einen Ort, den man leicht findet: „vor der Apotheke“. Die Bahnhofstraße ist eine Straße, nicht der Bahnhof.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - notruf-absetzen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Leitstelle
+      text: 'Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Unfall?'
+    - speaker: Anrufer
+      text: 'An der Kreuzung Bahnhofstraße und Lindenweg, vor der Apotheke.'
+    - speaker: Leitstelle
+      text: 'Was ist passiert?'
+    - speaker: Anrufer
+      text: 'Ein Auto hat einen Radfahrer getroffen. Er liegt auf der Straße.'
+    - speaker: Leitstelle
+      text: 'Ist er verletzt? Ist er wach?'
+    - speaker: Anrufer
+      text: 'Ja, er spricht mit mir. Er blutet am Kopf, und sein Bein tut ihm sehr weh.'
+    - speaker: Leitstelle
+      text: 'Gibt es noch weitere Verletzte?'
+    - speaker: Anrufer
+      text: 'Nein. Der Autofahrer ist nicht verletzt.'
+    - speaker: Leitstelle
+      text: 'Gut. Der Krankenwagen ist unterwegs und in wenigen Minuten da. Bewegen Sie den Mann nicht und bleiben Sie bitte am Telefon, bis die Kollegen da sind.'
+    - speaker: Anrufer
+      text: 'In Ordnung, ich bleibe am Telefon.'
+  recording: ls-unfall-notruf-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Wie ist der Radfahrer verletzt?'
+  options:
+  - 'Er blutet am Kopf, und sein Bein tut weh.'
+  - 'Er spricht nicht mehr.'
+  - 'Er hat sich am Arm verletzt.'
+  correct: 0
+  explain:
+    en: 'He is awake — er spricht mit mir — and the caller names two injuries: er blutet am Kopf, sein Bein tut ihm sehr weh. Nothing is said about an arm.'
+    ru: 'Он в сознании — er spricht mit mir, — и звонящий называет две травмы: er blutet am Kopf, sein Bein tut ihm sehr weh. О руке ничего не сказано.'
+    uk: 'Він при тямі — er spricht mit mir, — і той, хто дзвонить, називає дві травми: er blutet am Kopf, sein Bein tut ihm sehr weh. Про руку нічого не сказано.'
+    de: 'Er ist wach — „er spricht mit mir“ —, und der Anrufer nennt zwei Verletzungen: Er blutet am Kopf, und sein Bein tut ihm sehr weh. Von einem Arm ist keine Rede.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - notruf-absetzen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Leitstelle
+      text: 'Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Unfall?'
+    - speaker: Anrufer
+      text: 'An der Kreuzung Bahnhofstraße und Lindenweg, vor der Apotheke.'
+    - speaker: Leitstelle
+      text: 'Was ist passiert?'
+    - speaker: Anrufer
+      text: 'Ein Auto hat einen Radfahrer getroffen. Er liegt auf der Straße.'
+    - speaker: Leitstelle
+      text: 'Ist er verletzt? Ist er wach?'
+    - speaker: Anrufer
+      text: 'Ja, er spricht mit mir. Er blutet am Kopf, und sein Bein tut ihm sehr weh.'
+    - speaker: Leitstelle
+      text: 'Gibt es noch weitere Verletzte?'
+    - speaker: Anrufer
+      text: 'Nein. Der Autofahrer ist nicht verletzt.'
+    - speaker: Leitstelle
+      text: 'Gut. Der Krankenwagen ist unterwegs und in wenigen Minuten da. Bewegen Sie den Mann nicht und bleiben Sie bitte am Telefon, bis die Kollegen da sind.'
+    - speaker: Anrufer
+      text: 'In Ordnung, ich bleibe am Telefon.'
+  recording: ls-unfall-notruf-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was soll der Anrufer tun, bis der Krankenwagen da ist?'
+  options:
+  - 'Am Telefon bleiben und den Mann nicht bewegen.'
+  - 'Den Mann an den Straßenrand tragen.'
+  - 'In der Apotheke Hilfe holen.'
+  correct: 0
+  explain:
+    en: 'Two instructions in one line: bewegen Sie den Mann nicht and bleiben Sie am Telefon. His ich bleibe am Telefon — I''ll stay on the line — confirms the second.'
+    ru: 'Две инструкции в одной реплике: bewegen Sie den Mann nicht и bleiben Sie am Telefon. Его ich bleibe am Telefon — «я остаюсь на линии» — подтверждает вторую.'
+    uk: 'Дві інструкції в одній репліці: bewegen Sie den Mann nicht і bleiben Sie am Telefon. Його ich bleibe am Telefon — «я залишаюся на лінії» — підтверджує другу.'
+    de: 'In einem Satz stehen zwei Anweisungen: „Bewegen Sie den Mann nicht“ und „bleiben Sie am Telefon“. Mit „Ich bleibe am Telefon“ bestätigt der Anrufer die zweite.'
+  max_replays: 3

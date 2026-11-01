@@ -10,21 +10,22 @@ come first so that the course's audio is produced in the finished tool. Characte
 only after this queue
 ([proposal](../proposals/characters-and-stories.md)).
 
-- **TON-5 · Produce, then wire into learning.** Every one of the 210 `audio-comprehension`
-  items plays a recording (`grep -rh "^ *recording:" content/exercises | wc -l` gives 210); all 85
-  `listen` items still speak in the browser's voice, and no Lesetext has narration.
+- **TON-5 · Produce, then wire into learning.** Every one of the 243 `audio-comprehension`
+  items plays a recording (`grep -rh "^ *recording:" content/exercises | wc -l` gives 243), and
+  every recording the listening plan names is published; all 85 `listen` items still speak in the
+  browser's voice, and no Lesetext has narration.
   After an answer, an `audio-comprehension` item already replays any one line, follows the
   transcript and plays slower; every published recording carries turn cues. The roster speaks
   through its designed voices on `qwen_tts_designed` (ADR 0013), and a dialogue publishes on its
   automatic QA with `scene publish-checked`.
-  - **Production order:** the 11 B1 unit recordings still planned (`bun run listening:inventory`),
-    then narrations, then recasting the 40 published dialogues from their presets to the roster.
+  - **Production order:** narrations, then recasting the 40 published dialogues from their
+    presets to the roster.
   - **Learner app:** `listen` items may cut a turn from a recording instead of TTS.
   - **Narrations need a plan first.** No file lists which readings should be narrated, so
     Redaktion's census cannot show them as absences the way it shows planned scenes (ADR 0014).
     Plan them where the scenes are planned, before producing any.
-  - **First step:** the 11 B1 units, each needing a script and a `-hoeren` set written to its
-    plan entry, with the German half B1 sets carry.
+  - **First step:** the narration plan: which Lesetexte are narrated, in which voice, beside the
+    scene plan.
 
 ## Open defects
 

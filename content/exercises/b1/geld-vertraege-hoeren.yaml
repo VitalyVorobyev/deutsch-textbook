@@ -1,0 +1,140 @@
+topic: geld-vertraege
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Geld & Verträge"
+title:
+  en: 'A wrong line on the internet bill'
+  ru: 'Ошибка в счёте за интернет'
+  uk: 'Помилка в рахунку за інтернет'
+  de: 'Eine falsche Zeile auf der Internetrechnung'
+items:
+- id: q1
+  outcomes:
+  - rechnung-pruefen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Schulz
+      text: 'Netzwelt, Kundenservice, mein Name ist Schulz. Was kann ich für Sie tun?'
+    - speaker: Frau Rossi
+      text: 'Guten Tag, ich rufe wegen meiner Rechnung vom März an. Da steht eine Miete für das Telefon, vier Euro neunundneunzig im Monat.'
+    - speaker: Herr Schulz
+      text: 'Einen Moment, ich sehe nach. Ja, das steht in Ihrem Vertrag.'
+    - speaker: Frau Rossi
+      text: 'Das Telefon habe ich aber am Anfang vom Vertrag gekauft, nicht gemietet. Die Quittung habe ich noch.'
+    - speaker: Herr Schulz
+      text: 'Sie haben recht, das war ein Fehler bei uns. Ich nehme die Miete von der Rechnung, und Sie bekommen das Geld für Januar und Februar zurück.'
+    - speaker: Frau Rossi
+      text: 'Muss ich die Rechnung jetzt trotzdem bezahlen?'
+    - speaker: Herr Schulz
+      text: 'Ja, aber nur den Grundpreis von neunundzwanzig Euro. Das Geld nehmen wir wie immer am fünfzehnten von Ihrem Konto, daran ändert sich nichts.'
+    - speaker: Frau Rossi
+      text: 'Bekomme ich das schriftlich?'
+    - speaker: Herr Schulz
+      text: 'Natürlich. Sie bekommen heute noch eine E-Mail mit der korrigierten Rechnung.'
+  recording: ls-geld-vertraege-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was stimmt auf der Rechnung nicht?'
+  options:
+  - 'Sie enthält eine Miete für ein Telefon, das Frau Rossi gekauft hat.'
+  - 'Der Grundpreis ist zu hoch.'
+  - 'Der Tag der Zahlung ist falsch.'
+  correct: 0
+  explain:
+    en: 'Gekauft, nicht gemietet is the whole complaint, and the receipt proves it. The basic price and the payment day stay as they are.'
+    ru: 'Gekauft, nicht gemietet — в этом вся претензия, и квитанция это подтверждает. Базовая цена и день оплаты остаются прежними.'
+    uk: 'Gekauft, nicht gemietet — у цьому вся претензія, і квитанція це підтверджує. Базова ціна й день оплати залишаються незмінними.'
+    de: '„Gekauft, nicht gemietet“ ist das ganze Problem, und die Quittung beweist es. Der Grundpreis und der Tag der Zahlung bleiben, wie sie sind.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - rechnung-pruefen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Schulz
+      text: 'Netzwelt, Kundenservice, mein Name ist Schulz. Was kann ich für Sie tun?'
+    - speaker: Frau Rossi
+      text: 'Guten Tag, ich rufe wegen meiner Rechnung vom März an. Da steht eine Miete für das Telefon, vier Euro neunundneunzig im Monat.'
+    - speaker: Herr Schulz
+      text: 'Einen Moment, ich sehe nach. Ja, das steht in Ihrem Vertrag.'
+    - speaker: Frau Rossi
+      text: 'Das Telefon habe ich aber am Anfang vom Vertrag gekauft, nicht gemietet. Die Quittung habe ich noch.'
+    - speaker: Herr Schulz
+      text: 'Sie haben recht, das war ein Fehler bei uns. Ich nehme die Miete von der Rechnung, und Sie bekommen das Geld für Januar und Februar zurück.'
+    - speaker: Frau Rossi
+      text: 'Muss ich die Rechnung jetzt trotzdem bezahlen?'
+    - speaker: Herr Schulz
+      text: 'Ja, aber nur den Grundpreis von neunundzwanzig Euro. Das Geld nehmen wir wie immer am fünfzehnten von Ihrem Konto, daran ändert sich nichts.'
+    - speaker: Frau Rossi
+      text: 'Bekomme ich das schriftlich?'
+    - speaker: Herr Schulz
+      text: 'Natürlich. Sie bekommen heute noch eine E-Mail mit der korrigierten Rechnung.'
+  recording: ls-geld-vertraege-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was passiert mit den Beträgen für Januar und Februar?'
+  options:
+  - 'Frau Rossi bekommt das Geld zurück.'
+  - 'Sie muss sie noch zusätzlich bezahlen.'
+  - 'Sie werden am fünfzehnten vom Konto genommen.'
+  correct: 0
+  explain:
+    en: 'The rent was on the bill by mistake in those months too, so she gets that money back: Sie bekommen das Geld zurück. On the fifteenth she pays only the basic price.'
+    ru: 'Аренда по ошибке стояла в счёте и в эти месяцы, поэтому деньги ей вернут: Sie bekommen das Geld zurück. Пятнадцатого она платит только базовую цену.'
+    uk: 'Оренда помилково стояла в рахунку й у ці місяці, тому гроші їй повернуть: Sie bekommen das Geld zurück. П''ятнадцятого вона платить лише базову ціну.'
+    de: 'Die Miete stand auch in diesen Monaten falsch auf der Rechnung, deshalb bekommt sie das Geld zurück. Am fünfzehnten zahlt sie nur den Grundpreis.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - rechnung-pruefen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Schulz
+      text: 'Netzwelt, Kundenservice, mein Name ist Schulz. Was kann ich für Sie tun?'
+    - speaker: Frau Rossi
+      text: 'Guten Tag, ich rufe wegen meiner Rechnung vom März an. Da steht eine Miete für das Telefon, vier Euro neunundneunzig im Monat.'
+    - speaker: Herr Schulz
+      text: 'Einen Moment, ich sehe nach. Ja, das steht in Ihrem Vertrag.'
+    - speaker: Frau Rossi
+      text: 'Das Telefon habe ich aber am Anfang vom Vertrag gekauft, nicht gemietet. Die Quittung habe ich noch.'
+    - speaker: Herr Schulz
+      text: 'Sie haben recht, das war ein Fehler bei uns. Ich nehme die Miete von der Rechnung, und Sie bekommen das Geld für Januar und Februar zurück.'
+    - speaker: Frau Rossi
+      text: 'Muss ich die Rechnung jetzt trotzdem bezahlen?'
+    - speaker: Herr Schulz
+      text: 'Ja, aber nur den Grundpreis von neunundzwanzig Euro. Das Geld nehmen wir wie immer am fünfzehnten von Ihrem Konto, daran ändert sich nichts.'
+    - speaker: Frau Rossi
+      text: 'Bekomme ich das schriftlich?'
+    - speaker: Herr Schulz
+      text: 'Natürlich. Sie bekommen heute noch eine E-Mail mit der korrigierten Rechnung.'
+  recording: ls-geld-vertraege-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Wann nimmt die Firma das Geld vom Konto?'
+  options:
+  - 'Wie immer am fünfzehnten.'
+  - 'Erst nach der neuen Rechnung.'
+  - 'Heute noch.'
+  correct: 0
+  explain:
+    en: 'Wie immer am fünfzehnten, daran ändert sich nichts — one line of the bill changes, the payment day does not. Heute noch is when the corrected bill arrives by e-mail.'
+    ru: 'Wie immer am fünfzehnten, daran ändert sich nichts — меняется строка, а день оплаты нет. Heute noch придёт исправленный счёт по почте.'
+    uk: 'Wie immer am fünfzehnten, daran ändert sich nichts — змінюється рядок, а день оплати ні. Heute noch прийде виправлений рахунок електронною поштою.'
+    de: '„Wie immer am fünfzehnten, daran ändert sich nichts“ — eine Zeile der Rechnung ändert sich, der Tag der Zahlung nicht. „Heute noch“ kommt die korrigierte Rechnung per E-Mail.'
+  max_replays: 3

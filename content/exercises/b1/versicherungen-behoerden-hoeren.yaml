@@ -1,0 +1,140 @@
+topic: versicherungen-behoerden
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Versicherungen & Behörden"
+title:
+  en: 'Who pays for the glasses?'
+  ru: 'Кто заплатит за очки?'
+  uk: 'Хто заплатить за окуляри?'
+  de: 'Wer zahlt die Brille?'
+items:
+- id: q1
+  outcomes:
+  - versicherung-klaeren
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Krüger
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Sommer
+      text: 'Guten Tag. Meiner Tochter ist beim Schulsport die Brille kaputtgegangen. Ich weiß nicht, ob so ein Schaden versichert ist.'
+    - speaker: Herr Krüger
+      text: 'Ist das während der Sportstunde passiert?'
+    - speaker: Frau Sommer
+      text: 'Ja, ein Ball hat sie im Gesicht getroffen. Verletzt ist sie zum Glück nicht.'
+    - speaker: Herr Krüger
+      text: 'Dann sind wir leider nicht zuständig. Bei Unfällen in der Schule zahlt statt der Krankenkasse die Unfallkasse.'
+    - speaker: Frau Sommer
+      text: 'Die Unfallkasse? Muss ich dort einen Antrag stellen? Mit Behörden habe ich wenig Erfahrung.'
+    - speaker: Herr Krüger
+      text: 'Nein, den Unfall meldet die Schule. Aber sagen Sie heute noch im Sekretariat Bescheid. Die Schule hat dafür nur eine kurze Frist.'
+    - speaker: Frau Sommer
+      text: 'Gut. Könnten Sie mir bitte schriftlich geben, dass Sie nicht zahlen? Dann habe ich eine Bestätigung für die Schule.'
+    - speaker: Herr Krüger
+      text: 'Natürlich. Ich drucke Ihnen das gleich aus.'
+  recording: ls-versicherungen-behoerden-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Warum zahlt die Krankenkasse nicht?'
+  options:
+  - 'Weil der Unfall während der Sportstunde passiert ist.'
+  - 'Weil eine Brille nie versichert ist.'
+  - 'Weil die Tochter nicht verletzt ist.'
+  correct: 0
+  explain:
+    en: 'Herr Krüger asks whether it happened während der Sportstunde, and her ja settles it: accidents at school are paid by the Unfallkasse, statt der Krankenkasse. That the girl wasn''t hurt is good news, not the reason.'
+    ru: 'Господин Крюгер уточняет, случилось ли это während der Sportstunde, и её ja всё решает: несчастные случаи в школе оплачивает Unfallkasse, statt der Krankenkasse. То, что девочка не пострадала, — хорошая новость, а не причина.'
+    uk: 'Пан Крюгер уточнює, чи сталося це während der Sportstunde, і її ja все вирішує: нещасні випадки в школі оплачує Unfallkasse, statt der Krankenkasse. Те, що дівчинка не постраждала, — добра новина, а не причина.'
+    de: 'Der Unfall ist „während der Sportstunde“ passiert, und bei Unfällen in der Schule zahlt „statt der Krankenkasse die Unfallkasse“. Dass die Tochter nicht verletzt ist, ist eine gute Nachricht, aber nicht der Grund.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - versicherung-klaeren
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Krüger
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Sommer
+      text: 'Guten Tag. Meiner Tochter ist beim Schulsport die Brille kaputtgegangen. Ich weiß nicht, ob so ein Schaden versichert ist.'
+    - speaker: Herr Krüger
+      text: 'Ist das während der Sportstunde passiert?'
+    - speaker: Frau Sommer
+      text: 'Ja, ein Ball hat sie im Gesicht getroffen. Verletzt ist sie zum Glück nicht.'
+    - speaker: Herr Krüger
+      text: 'Dann sind wir leider nicht zuständig. Bei Unfällen in der Schule zahlt statt der Krankenkasse die Unfallkasse.'
+    - speaker: Frau Sommer
+      text: 'Die Unfallkasse? Muss ich dort einen Antrag stellen? Mit Behörden habe ich wenig Erfahrung.'
+    - speaker: Herr Krüger
+      text: 'Nein, den Unfall meldet die Schule. Aber sagen Sie heute noch im Sekretariat Bescheid. Die Schule hat dafür nur eine kurze Frist.'
+    - speaker: Frau Sommer
+      text: 'Gut. Könnten Sie mir bitte schriftlich geben, dass Sie nicht zahlen? Dann habe ich eine Bestätigung für die Schule.'
+    - speaker: Herr Krüger
+      text: 'Natürlich. Ich drucke Ihnen das gleich aus.'
+  recording: ls-versicherungen-behoerden-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Was soll Frau Sommer heute noch tun?'
+  options:
+  - 'Im Sekretariat der Schule Bescheid sagen.'
+  - 'Einen Antrag bei der Unfallkasse stellen.'
+  - 'Eine neue Brille kaufen.'
+  correct: 0
+  explain:
+    en: 'She asks whether she has to file an Antrag, and the answer is nein — the school reports the accident. Her own task is heute noch im Sekretariat Bescheid sagen, because the school has only a short Frist.'
+    ru: 'Она спрашивает, нужно ли подавать Antrag, и слышит nein — о несчастном случае сообщает школа. Её задача — heute noch im Sekretariat Bescheid sagen, потому что у школы короткий срок, Frist.'
+    uk: 'Вона питає, чи треба подавати Antrag, і чує nein — про нещасний випадок повідомляє школа. Її завдання — heute noch im Sekretariat Bescheid sagen, бо в школи короткий строк, Frist.'
+    de: 'Einen Antrag muss sie nicht stellen, denn den Unfall meldet die Schule. Sie selbst soll „heute noch im Sekretariat Bescheid sagen“, weil die Schule nur eine kurze Frist hat.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - versicherung-klaeren
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Herr Krüger
+      text: 'Guten Tag. Was kann ich für Sie tun?'
+    - speaker: Frau Sommer
+      text: 'Guten Tag. Meiner Tochter ist beim Schulsport die Brille kaputtgegangen. Ich weiß nicht, ob so ein Schaden versichert ist.'
+    - speaker: Herr Krüger
+      text: 'Ist das während der Sportstunde passiert?'
+    - speaker: Frau Sommer
+      text: 'Ja, ein Ball hat sie im Gesicht getroffen. Verletzt ist sie zum Glück nicht.'
+    - speaker: Herr Krüger
+      text: 'Dann sind wir leider nicht zuständig. Bei Unfällen in der Schule zahlt statt der Krankenkasse die Unfallkasse.'
+    - speaker: Frau Sommer
+      text: 'Die Unfallkasse? Muss ich dort einen Antrag stellen? Mit Behörden habe ich wenig Erfahrung.'
+    - speaker: Herr Krüger
+      text: 'Nein, den Unfall meldet die Schule. Aber sagen Sie heute noch im Sekretariat Bescheid. Die Schule hat dafür nur eine kurze Frist.'
+    - speaker: Frau Sommer
+      text: 'Gut. Könnten Sie mir bitte schriftlich geben, dass Sie nicht zahlen? Dann habe ich eine Bestätigung für die Schule.'
+    - speaker: Herr Krüger
+      text: 'Natürlich. Ich drucke Ihnen das gleich aus.'
+  recording: ls-versicherungen-behoerden-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+    de: Hör zu und wähle die richtige Antwort.
+  question: 'Wofür braucht Frau Sommer die Bestätigung?'
+  options:
+  - 'Für die Schule.'
+  - 'Für ihren Antrag bei der Unfallkasse.'
+  - 'Damit die Krankenkasse später doch zahlt.'
+  correct: 0
+  explain:
+    en: 'Könnten Sie mir bitte schriftlich geben… — the Konjunktiv makes the request polite, and she says what it is for: eine Bestätigung für die Schule. She files no Antrag at all.'
+    ru: 'Könnten Sie mir bitte schriftlich geben… — сослагательное наклонение делает просьбу вежливой, а зачем ей это, она говорит сама: eine Bestätigung für die Schule. Никакого Antrag она не подаёт.'
+    uk: 'Könnten Sie mir bitte schriftlich geben… — умовний спосіб робить прохання ввічливим, а навіщо їй це, вона каже сама: eine Bestätigung für die Schule. Жодного Antrag вона не подає.'
+    de: 'Mit „Könnten Sie mir bitte schriftlich geben …“ bittet sie höflich um eine Bestätigung und sagt auch, wofür: „Dann habe ich eine Bestätigung für die Schule.“ Einen Antrag stellt sie gar nicht.'
+  max_replays: 3

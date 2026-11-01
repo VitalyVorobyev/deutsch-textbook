@@ -1,0 +1,57 @@
+id: ls-unfall-notruf-01
+level: B1
+title:
+  en: An emergency call
+  ru: Звонок в экстренную службу
+  uk: Дзвінок до екстреної служби
+scenario: 'Notruf 112: die Leitstelle fragt nach Adresse, Hergang und Verletzung,
+  die anrufende Person antwortet knapp und bleibt am Telefon'
+duration_seconds: 46
+speakers:
+- Leitstelle
+- Anrufer
+transcript:
+- speaker: Leitstelle
+  text: Notruf Feuerwehr und Rettungsdienst. Wo genau ist der Unfall?
+- speaker: Anrufer
+  text: An der Kreuzung Bahnhofstraße und Lindenweg, vor der Apotheke.
+- speaker: Leitstelle
+  text: Was ist passiert?
+- speaker: Anrufer
+  text: Ein Auto hat einen Radfahrer getroffen. Er liegt auf der Straße.
+- speaker: Leitstelle
+  text: Ist er verletzt? Ist er wach?
+- speaker: Anrufer
+  text: Ja, er spricht mit mir. Er blutet am Kopf, und sein Bein tut ihm sehr weh.
+- speaker: Leitstelle
+  text: Gibt es noch weitere Verletzte?
+- speaker: Anrufer
+  text: Nein. Der Autofahrer ist nicht verletzt.
+- speaker: Leitstelle
+  text: Gut. Der Krankenwagen ist unterwegs und in wenigen Minuten da. Bewegen Sie
+    den Mann nicht und bleiben Sie bitte am Telefon, bis die Kollegen da sind.
+- speaker: Anrufer
+  text: In Ordnung, ich bleibe am Telefon.
+provenance: data/audio-provenance/b1/ls-unfall-notruf-01.json
+cue_source: render
+cues:
+- start_ms: 0
+  end_ms: 4903
+- start_ms: 5353
+  end_ms: 10180
+- start_ms: 10630
+  end_ms: 12279
+- start_ms: 12729
+  end_ms: 16594
+- start_ms: 17044
+  end_ms: 19613
+- start_ms: 20063
+  end_ms: 26050
+- start_ms: 26500
+  end_ms: 28605
+- start_ms: 29055
+  end_ms: 32190
+- start_ms: 32640
+  end_ms: 42863
+- start_ms: 43313
+  end_ms: 46032
