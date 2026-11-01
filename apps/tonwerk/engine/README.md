@@ -258,10 +258,10 @@ is published. Rows also carry the plan's duration `window`, the published `durat
 `scene`. A recording is published when its record, audio and provenance are all there and a person
 approved it or its automatic QA cleared it (`cleared_by: automatic-qa` with a passing report), the
 rule `listening-inventory.ts` keeps. Against the real corpus and an empty store, `registry()`
-reports 145 planned recordings, 128 of them published and 17 without an exercise item, and 2
-`audio-comprehension` items without a recording (measured with
+reports 145 planned recordings, 134 of them published and 11 without an exercise item, and no
+`audio-comprehension` item without a recording (measured with
 `api.registry.registry(Store(<tmp>/studio.sqlite3), <repo>)`); `bun run listening:inventory`
-prints `145 planned · 128 published · 16 planned · 1 drafted`.
+prints `145 planned · 134 published · 11 planned`.
 
 ## The render graph
 

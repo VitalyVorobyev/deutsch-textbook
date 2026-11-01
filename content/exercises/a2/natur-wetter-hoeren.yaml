@@ -1,0 +1,115 @@
+topic: natur-wetter
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Natur & Wetter"
+title:
+  en: 'The weather forecast on the radio'
+  ru: 'Прогноз погоды по радио'
+  uk: 'Прогноз погоди по радіо'
+items:
+- id: q1
+  outcomes:
+  - wetterbericht-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Radio
+      text: 'Und jetzt das Wetter für heute, morgen und das Wochenende.'
+    - speaker: Radio
+      text: 'Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.'
+    - speaker: Radio
+      text: 'Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.'
+    - speaker: Radio
+      text: 'Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.'
+    - speaker: Radio
+      text: 'Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.'
+    - speaker: Radio
+      text: 'Das war das Wetter. Und jetzt hören Sie Musik.'
+  recording: ls-natur-wetter-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Wie ist das Wetter heute?'
+  options:
+  - 'Bewölkt und trocken.'
+  - 'Sonnig und warm.'
+  - 'Es regnet oft.'
+  correct: 0
+  explain:
+    en: 'Heute ist es bewölkt, aber trocken — the aber keeps the clouds from meaning rain. Sun comes tomorrow morning, and frequent rain at the weekend.'
+    ru: 'Heute ist es bewölkt, aber trocken — aber говорит, что облака ещё не значат дождь. Солнце будет завтра утром, а частые дожди — на выходных.'
+    uk: 'Heute ist es bewölkt, aber trocken — aber каже, що хмари ще не означають дощу. Сонце буде завтра зранку, а часті дощі — на вихідних.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - wetterbericht-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Radio
+      text: 'Und jetzt das Wetter für heute, morgen und das Wochenende.'
+    - speaker: Radio
+      text: 'Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.'
+    - speaker: Radio
+      text: 'Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.'
+    - speaker: Radio
+      text: 'Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.'
+    - speaker: Radio
+      text: 'Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.'
+    - speaker: Radio
+      text: 'Das war das Wetter. Und jetzt hören Sie Musik.'
+  recording: ls-natur-wetter-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Was passiert morgen am Nachmittag?'
+  options:
+  - 'Es kommt ein Gewitter.'
+  - 'Die Sonne scheint.'
+  - 'Es wird kühl.'
+  correct: 0
+  explain:
+    en: 'Morgen splits in two: sun am Vormittag, then aber am Nachmittag kommt ein Gewitter — with the advice to stay indoors. Kühl belongs to this evening.'
+    ru: 'Завтрашний день делится надвое: солнце am Vormittag, а потом aber am Nachmittag kommt ein Gewitter — с советом остаться дома. Kühl относится к сегодняшнему вечеру.'
+    uk: 'Завтрашній день ділиться навпіл: сонце am Vormittag, а потім aber am Nachmittag kommt ein Gewitter — з порадою залишитися вдома. Kühl стосується сьогоднішнього вечора.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - wetterbericht-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Radio
+      text: 'Und jetzt das Wetter für heute, morgen und das Wochenende.'
+    - speaker: Radio
+      text: 'Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.'
+    - speaker: Radio
+      text: 'Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.'
+    - speaker: Radio
+      text: 'Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.'
+    - speaker: Radio
+      text: 'Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.'
+    - speaker: Radio
+      text: 'Das war das Wetter. Und jetzt hören Sie Musik.'
+  recording: ls-natur-wetter-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Wie warm wird es am Wochenende?'
+  options:
+  - 'Zwölf Grad.'
+  - 'Vierzehn Grad.'
+  - 'Zwanzig Grad.'
+  correct: 0
+  explain:
+    en: 'Three temperatures are said, one per day: fourteen today, up to twenty tomorrow, nur noch zwölf at the weekend. Nur noch marks the drop.'
+    ru: 'Звучат три температуры, по одной на день: четырнадцать сегодня, до двадцати завтра и nur noch zwölf на выходных. Nur noch и показывает, что станет холоднее.'
+    uk: 'Звучать три температури, по одній на день: чотирнадцять сьогодні, до двадцяти завтра й nur noch zwölf на вихідних. Nur noch і показує, що похолоднішає.'
+  max_replays: 3

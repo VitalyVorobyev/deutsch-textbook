@@ -13,6 +13,11 @@ GitHub Release notes.
 
 ### Added
 
+- **Five topics gain a recorded listening task**, three questions each: a courtyard-party poster
+  read aloud (A1 Wortbildung), a phone call about where someone is and is going (A1 Ort &
+  Richtung), a call before a move (A2 Verben mit Kasus), two friends fixing a day to study (A2
+  Zeitpräpositionen) and a radio weather report (A2 Natur & Wetter). The Ämter conversation now
+  plays its recording too, so every listening-comprehension task in the course is recorded.
 - **Three Goethe-style practice sets for A2**, on the A2 exam page: Lesen in the exam's four parts
   (newspaper article, store or office directory, e-mail, ads with one "keine passende Anzeige"),
   each beside its document, and Schreiben with an SMS and an e-mail and a model answer for each.
@@ -37,9 +42,8 @@ GitHub Release notes.
 - **53 more listening questions play recorded voices** instead of the browser's: the listening
   tasks in the placement tests and checkpoints of A1, A2 and B1, and the ones in practice sets
   that had none. Announcements come over a loudspeaker with the shop or station around them,
-  calls through a phone line, and conversations in their room. Of the listening-comprehension
-  tasks, only the two about the Ämter conversation still use the browser's voice; dictations
-  still use it too.
+  calls through a phone line, and conversations in their room. Dictations still use the
+  browser's voice.
 - **The website plays the recordings again.** It had been shipping none, so every listening task,
   the A2 Hören sets among them, spoke in the browser's voice. Every build now carries them.
 - **The A2 Hören recordings keep their background under the voice.** In the announcements and

@@ -1,0 +1,133 @@
+topic: ort-richtung-praepositionen
+role: practice
+stage: transfer
+activity: application
+title_de: "Hören im Kontext — Ort & Richtung: wohin, wo, woher"
+title:
+  en: 'Where are you right now?'
+  ru: 'Где ты сейчас?'
+  uk: 'Де ти зараз?'
+items:
+- id: q1
+  outcomes:
+  - weg-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Tom
+      text: 'Hallo Lisa! Wo bist du gerade?'
+    - speaker: Lisa
+      text: 'Ich bin im Supermarkt. Ich kaufe Brot und Milch.'
+    - speaker: Tom
+      text: 'Kommst du heute noch zu mir?'
+    - speaker: Lisa
+      text: 'Ja, aber später. Zuerst gehe ich zur Post und dann zum Arzt.'
+    - speaker: Tom
+      text: 'Zum Arzt? Bist du krank?'
+    - speaker: Lisa
+      text: 'Nein, ich habe nur einen Termin. Und woher kommst du gerade?'
+    - speaker: Tom
+      text: 'Ich komme aus dem Park. Ich war dort mit meinem Sohn. Jetzt bin ich an der Haltestelle.'
+    - speaker: Lisa
+      text: 'Gut. Ich nehme dann den Bus. Bis sieben bei dir!'
+    - speaker: Tom
+      text: 'Bis dann!'
+  recording: ls-ort-richtung-praepositionen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Wo ist Lisa gerade?'
+  options:
+  - 'Im Supermarkt.'
+  - 'Bei der Post.'
+  - 'Beim Arzt.'
+  correct: 0
+  explain:
+    en: 'Tom asks wo, and Lisa answers with a place where she already is: im Supermarkt. The post office and the doctor come after zuerst and dann — places she is going to, not where she is.'
+    ru: 'Том спрашивает wo, и Лиза называет место, где она уже находится: im Supermarkt. Почта и врач идут после zuerst и dann — туда она только собирается.'
+    uk: 'Том питає wo, і Ліза називає місце, де вона вже є: im Supermarkt. Пошта й лікар ідуть після zuerst і dann — туди вона тільки збирається.'
+  max_replays: 3
+- id: q2
+  outcomes:
+  - weg-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Tom
+      text: 'Hallo Lisa! Wo bist du gerade?'
+    - speaker: Lisa
+      text: 'Ich bin im Supermarkt. Ich kaufe Brot und Milch.'
+    - speaker: Tom
+      text: 'Kommst du heute noch zu mir?'
+    - speaker: Lisa
+      text: 'Ja, aber später. Zuerst gehe ich zur Post und dann zum Arzt.'
+    - speaker: Tom
+      text: 'Zum Arzt? Bist du krank?'
+    - speaker: Lisa
+      text: 'Nein, ich habe nur einen Termin. Und woher kommst du gerade?'
+    - speaker: Tom
+      text: 'Ich komme aus dem Park. Ich war dort mit meinem Sohn. Jetzt bin ich an der Haltestelle.'
+    - speaker: Lisa
+      text: 'Gut. Ich nehme dann den Bus. Bis sieben bei dir!'
+    - speaker: Tom
+      text: 'Bis dann!'
+  recording: ls-ort-richtung-praepositionen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Wohin geht Lisa zuerst?'
+  options:
+  - 'Zur Post.'
+  - 'Zum Arzt.'
+  - 'Zu Tom.'
+  correct: 0
+  explain:
+    en: 'Zuerst comes right before zur Post; the doctor is dann, and Tom''s place is seven o''clock. Zur and zum both answer wohin.'
+    ru: 'Zuerst стоит прямо перед zur Post; врач — это dann, а к Тому она придёт в семь. И zur, и zum отвечают на вопрос wohin.'
+    uk: 'Zuerst стоїть одразу перед zur Post; лікар — це dann, а до Тома вона прийде о сьомій. І zur, і zum відповідають на питання wohin.'
+  max_replays: 3
+- id: q3
+  outcomes:
+  - weg-verstehen
+  type: audio-comprehension
+  source:
+    kind: tts
+    turns:
+    - speaker: Tom
+      text: 'Hallo Lisa! Wo bist du gerade?'
+    - speaker: Lisa
+      text: 'Ich bin im Supermarkt. Ich kaufe Brot und Milch.'
+    - speaker: Tom
+      text: 'Kommst du heute noch zu mir?'
+    - speaker: Lisa
+      text: 'Ja, aber später. Zuerst gehe ich zur Post und dann zum Arzt.'
+    - speaker: Tom
+      text: 'Zum Arzt? Bist du krank?'
+    - speaker: Lisa
+      text: 'Nein, ich habe nur einen Termin. Und woher kommst du gerade?'
+    - speaker: Tom
+      text: 'Ich komme aus dem Park. Ich war dort mit meinem Sohn. Jetzt bin ich an der Haltestelle.'
+    - speaker: Lisa
+      text: 'Gut. Ich nehme dann den Bus. Bis sieben bei dir!'
+    - speaker: Tom
+      text: 'Bis dann!'
+  recording: ls-ort-richtung-praepositionen-01
+  instruction:
+    en: Listen and choose the correct answer.
+    ru: Прослушайте и выберите правильный ответ.
+    uk: 'Прослухайте та оберіть правильну відповідь.'
+  question: 'Woher kommt Tom?'
+  options:
+  - 'Aus dem Park.'
+  - 'Aus dem Supermarkt.'
+  - 'Von der Haltestelle.'
+  correct: 0
+  explain:
+    en: 'Woher is answered with aus: aus dem Park. Tom is at the stop now — an der Haltestelle answers wo — and the supermarket is where Lisa is.'
+    ru: 'На woher отвечают с aus: aus dem Park. На остановке Том сейчас — an der Haltestelle отвечает на wo, — а в супермаркете находится Лиза.'
+    uk: 'На woher відповідають з aus: aus dem Park. На зупинці Том зараз — an der Haltestelle відповідає на wo, — а в супермаркеті Ліза.'
+  max_replays: 3

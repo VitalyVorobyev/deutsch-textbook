@@ -1,0 +1,1531 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-11-01T21:42:50.334589+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c",
+  "generation_brief": {
+    "path": "data/prompts/2026-11-01-ls-natur-wetter-01-listening.md",
+    "sha256": "f8e5f0d8441365af9d930a71138b7a68ea2fa82b537260eb454189ec0c7940ab"
+  },
+  "id": "ls-natur-wetter-01",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "38f0f92279d02982221121b4f4f4119c65a3ea19fd3ab3360ca05833e5d25bdf",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "d4e9c376bfaabaaa32c81ba735e96436960886881828cb9258c0d69086c3bcc3",
+    "soundscape": {
+      "bed_count": 0,
+      "beds": [],
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 2,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 6,
+          "measured_lines": 6,
+          "minimum_similarity": 0.9713113272503533,
+          "pitch_max_hz": 139.1304347826087,
+          "pitch_min_hz": 98.76543209876543,
+          "pitch_spread_hz": 40.36500268384326,
+          "speaker": "Radio"
+        }
+      ],
+      "different_characters": [],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9713113272503533,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.98518726579648,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9918545788052541,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-4",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9849302777253361,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-5",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9839266770599957,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-6",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9823160452628085,
+          "speaker": "Radio"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 4535,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 13327,
+        "start_ms": 5235,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 20057,
+        "start_ms": 14027,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 25660,
+        "start_ms": 20757,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 31538,
+        "start_ms": 26360,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 36113,
+        "start_ms": 32238,
+        "utterance_id": "line-6"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-11-01T21:42:34.370231+00:00",
+      "failures": [],
+      "full_transcript": "Und jetzt das Wetter für heute, morgen und das Wochenende. Heute ist es bewölkt, aber trocken und es ist windig. Wir haben 14 Grad, am Abend wird es kühl. Morgen wird es wärmer, am Vormittag scheint die Sonne und es werden bis zu 20 Grad. Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus. Am Wochenende regnet es oft und es wird kühler, nur noch 12 Grad. Das war das Wetter. Und jetzt hören Sie Musik.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Und jetzt das Wetter für heute, morgen und das Wochenende.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und jetzt das Wetter für heute, morgen und das Wochenende.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Heute ist es bewölkt, aber trocken und es ist windig. Wir haben 14 Grad, am Abend wird es kühl.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Morgen wird es wärmer, am Vormittag scheint die Sonne und es werden bis zu 20 Grad.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.",
+          "line_id": "line-4",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.",
+          "line_id": "line-5",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Wochenende regnet es oft und es wird kühler, nur noch 12 Grad.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Das war das Wetter. Und jetzt hören Sie Musik.",
+          "line_id": "line-6",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Das war das Wetter. Und jetzt hören Sie Musik.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "studio": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "studio",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.04
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "12a66a3f5e40d605cca0f0f80776fc8d6e779f3acf73bfc68bd1eea845cb7d1b"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "ccc6bc75b9edef93d50ee4e68c996b7f2d348d6e992d0adb0b867aa2c0a46615"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "415f985f40f0f74f8f5e815e68036df99e8e433ed4275bff8bf85007e21d77d2"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-4.wav",
+        "sha256": "5e1af3fbed9bae2bf16c4670241c2d58e1ed4beb5b164e33dd7dafbe49ccc61f"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-5.wav",
+        "sha256": "da8bb43e212c0d126a54803372ac667259564c3739a70743f064443b7a3a5ffc"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-6.wav",
+        "sha256": "63878fae6a7b6b05b23e8ea4bc04e65c6c53c8c013f9bd9fc5bdbfaeccb1bcee"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "92481882522deaf7c06a3281e7f180ddaaf07d7070dd9ec5e77a6b6dec711fca"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "38f0f92279d02982221121b4f4f4119c65a3ea19fd3ab3360ca05833e5d25bdf"
+      }
+    ],
+    "assets": {
+      "12a66a3f5e40d605cca0f0f80776fc8d6e779f3acf73bfc68bd1eea845cb7d1b": {
+        "file": "12a66a3f5e40d605cca0f0f80776fc8d6e779f3acf73bfc68bd1eea845cb7d1b.wav",
+        "impl_version": 1,
+        "inputs": [
+          "52ae45d21194695ff3d1a08669f77a1112778403b1a2b15a2e04c294c1f14dae"
+        ],
+        "kind": "track",
+        "node_hash": "dd03e51d86d317c54a259d3b8d9da1f43797b3c8d3e72183246383cf7efb7b6b",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "174f71c4f37eb50208027f9961af0931301fac044dad6f926a00cc8d20324915": {
+        "file": "174f71c4f37eb50208027f9961af0931301fac044dad6f926a00cc8d20324915.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f705821212d19219461745595f569cf9b8b2e43c6f02f9b366d846e2fde013e3"
+        ],
+        "kind": "pace",
+        "node_hash": "22485729d90c104d0b14af593ea02ced42434ba18291a2cc6bc65f8ea85256ba",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "268e296c053acdeabf5acd47f40bd241000c7cbcb2debd892fee22bb8cecec6e": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "268e296c053acdeabf5acd47f40bd241000c7cbcb2debd892fee22bb8cecec6e.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "c8355d560879f5cf50a9aeaec5d96f995fadabb31b9a970531c4d6249375d66f",
+        "seed": 130
+      },
+      "32ba6cb726bbbba7bba17e57fafcc29d8f5b1eaaa9bd283587436844d75ace56": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "32ba6cb726bbbba7bba17e57fafcc29d8f5b1eaaa9bd283587436844d75ace56.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "3f6368279b91fba30bba122cc87b6dfadc2a25d2400b5cdff6585f7043f31a34",
+        "seed": 130
+      },
+      "38f0f92279d02982221121b4f4f4119c65a3ea19fd3ab3360ca05833e5d25bdf": {
+        "encoding": "publish",
+        "file": "38f0f92279d02982221121b4f4f4119c65a3ea19fd3ab3360ca05833e5d25bdf.mp3",
+        "kind": "encode",
+        "source": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c"
+      },
+      "415f985f40f0f74f8f5e815e68036df99e8e433ed4275bff8bf85007e21d77d2": {
+        "file": "415f985f40f0f74f8f5e815e68036df99e8e433ed4275bff8bf85007e21d77d2.wav",
+        "impl_version": 1,
+        "inputs": [
+          "174f71c4f37eb50208027f9961af0931301fac044dad6f926a00cc8d20324915"
+        ],
+        "kind": "track",
+        "node_hash": "5293db59408dc9ebdce70a0222ed1c7d02056bd2289e2e001b84e8d415b6a03a",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14027,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "52ae45d21194695ff3d1a08669f77a1112778403b1a2b15a2e04c294c1f14dae": {
+        "file": "52ae45d21194695ff3d1a08669f77a1112778403b1a2b15a2e04c294c1f14dae.wav",
+        "impl_version": 1,
+        "inputs": [
+          "7cd8291e8d922422e043926e9c4cd9f5afba0430ac7b3f8d80a13d652064f55a"
+        ],
+        "kind": "pace",
+        "node_hash": "0f97b79650b778e7369cc594c0d6e3b71dc735e9d05b1db9db00903213368497",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "584f6a6bdbd2b5a1793848d5f9de89c1dbf00e39ac73c88bd0d168a75e439136": {
+        "file": "584f6a6bdbd2b5a1793848d5f9de89c1dbf00e39ac73c88bd0d168a75e439136.wav",
+        "impl_version": 1,
+        "inputs": [
+          "dd832fc6a55da03f1cd12fb2468aac710ce877029bc6a629670b368727b67feb"
+        ],
+        "kind": "pace",
+        "node_hash": "7073b5a8441b718db53d76b03b7fbda9a2dd1b3e8e2d9be331346b184a340a95",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-4"
+      },
+      "5e1af3fbed9bae2bf16c4670241c2d58e1ed4beb5b164e33dd7dafbe49ccc61f": {
+        "file": "5e1af3fbed9bae2bf16c4670241c2d58e1ed4beb5b164e33dd7dafbe49ccc61f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "584f6a6bdbd2b5a1793848d5f9de89c1dbf00e39ac73c88bd0d168a75e439136"
+        ],
+        "kind": "track",
+        "node_hash": "1fe196cb2a2253ebcb8fc2f24f6e67912cb80ccfed281edb55fb791276f9ad77",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 20757,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "63878fae6a7b6b05b23e8ea4bc04e65c6c53c8c013f9bd9fc5bdbfaeccb1bcee": {
+        "file": "63878fae6a7b6b05b23e8ea4bc04e65c6c53c8c013f9bd9fc5bdbfaeccb1bcee.wav",
+        "impl_version": 1,
+        "inputs": [
+          "cf0c050077bde9b138956fb9ce536f7259126516c2af4e5086c24fe084a165a8"
+        ],
+        "kind": "track",
+        "node_hash": "148dd9d752ff5cf3da500b7c683cd289b27fb863f09f5e4c49d37b7dc60d3dca",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 32238,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c": {
+        "file": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "79ba56578bcc9dc05f75acabebbac37c116205976ef007c89ce9f8845e68138b"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "5dbcb4262d54f9da2de059edd8a0bfc2a3c3cc542978e877b9c67dcea344c5ec",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "79ba56578bcc9dc05f75acabebbac37c116205976ef007c89ce9f8845e68138b": {
+        "file": "79ba56578bcc9dc05f75acabebbac37c116205976ef007c89ce9f8845e68138b.wav",
+        "impl_version": 2,
+        "inputs": [
+          "12a66a3f5e40d605cca0f0f80776fc8d6e779f3acf73bfc68bd1eea845cb7d1b",
+          "ccc6bc75b9edef93d50ee4e68c996b7f2d348d6e992d0adb0b867aa2c0a46615",
+          "415f985f40f0f74f8f5e815e68036df99e8e433ed4275bff8bf85007e21d77d2",
+          "5e1af3fbed9bae2bf16c4670241c2d58e1ed4beb5b164e33dd7dafbe49ccc61f",
+          "da8bb43e212c0d126a54803372ac667259564c3739a70743f064443b7a3a5ffc",
+          "63878fae6a7b6b05b23e8ea4bc04e65c6c53c8c013f9bd9fc5bdbfaeccb1bcee",
+          "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+        ],
+        "kind": "mix",
+        "node_hash": "21ec112629cfff9074922caf762f4289fe88272827f42a8080215863cdc62bb1",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        }
+      },
+      "7cd8291e8d922422e043926e9c4cd9f5afba0430ac7b3f8d80a13d652064f55a": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "7cd8291e8d922422e043926e9c4cd9f5afba0430ac7b3f8d80a13d652064f55a.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "9d475f94ccf8177437cf4badeb167b1d96b73e0fe375e054b0b003ace18492cd",
+        "seed": 130
+      },
+      "8680c9cf8752b01c06ccd3ab08ea83a6b6e1ea318c6b7468d855ebb2df5acb95": {
+        "file": "8680c9cf8752b01c06ccd3ab08ea83a6b6e1ea318c6b7468d855ebb2df5acb95.wav",
+        "impl_version": 1,
+        "inputs": [
+          "268e296c053acdeabf5acd47f40bd241000c7cbcb2debd892fee22bb8cecec6e"
+        ],
+        "kind": "pace",
+        "node_hash": "9f3405c9f3c40d372b593ca140f5b7615a08d0b6295dacf3dc627e6f1577adc2",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-5"
+      },
+      "92481882522deaf7c06a3281e7f180ddaaf07d7070dd9ec5e77a6b6dec711fca": {
+        "encoding": "qa",
+        "file": "92481882522deaf7c06a3281e7f180ddaaf07d7070dd9ec5e77a6b6dec711fca.wav",
+        "kind": "encode",
+        "source": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c"
+      },
+      "ccc6bc75b9edef93d50ee4e68c996b7f2d348d6e992d0adb0b867aa2c0a46615": {
+        "file": "ccc6bc75b9edef93d50ee4e68c996b7f2d348d6e992d0adb0b867aa2c0a46615.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e9d1c56fabd311c1cd07328f40599eec633aa8f6555202718e819d43a54c9fa5"
+        ],
+        "kind": "track",
+        "node_hash": "b312f06811790970de5a915100f6c88127079b5a688b64eba76223e3b7b6da6f",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5235,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "cf0c050077bde9b138956fb9ce536f7259126516c2af4e5086c24fe084a165a8": {
+        "file": "cf0c050077bde9b138956fb9ce536f7259126516c2af4e5086c24fe084a165a8.wav",
+        "impl_version": 1,
+        "inputs": [
+          "edb49c9458be6f8082e1c90a602348fde09695742b5616e5c158c6021c80ddd7"
+        ],
+        "kind": "pace",
+        "node_hash": "c3907ae2283975e8ee09f333fe597d16eb0208f55f8ec589ead4a71cf8ea4296",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-6"
+      },
+      "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.25,
+          "early_reflections": 3,
+          "lowpass_hz": 9000.0,
+          "pre_delay_ms": 4,
+          "seed": 1101
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "da8bb43e212c0d126a54803372ac667259564c3739a70743f064443b7a3a5ffc": {
+        "file": "da8bb43e212c0d126a54803372ac667259564c3739a70743f064443b7a3a5ffc.wav",
+        "impl_version": 1,
+        "inputs": [
+          "8680c9cf8752b01c06ccd3ab08ea83a6b6e1ea318c6b7468d855ebb2df5acb95"
+        ],
+        "kind": "track",
+        "node_hash": "ff62375e786dbf3a1604ee5ca7ca4835abe820870857fe201dcd759f8fd52fb1",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 26360,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "dd832fc6a55da03f1cd12fb2468aac710ce877029bc6a629670b368727b67feb": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "dd832fc6a55da03f1cd12fb2468aac710ce877029bc6a629670b368727b67feb.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "3768682e9cc950a4fc192efe89e5526cbbca02a15394cf655085c3367a2ccd3c",
+        "seed": 130
+      },
+      "e9d1c56fabd311c1cd07328f40599eec633aa8f6555202718e819d43a54c9fa5": {
+        "file": "e9d1c56fabd311c1cd07328f40599eec633aa8f6555202718e819d43a54c9fa5.wav",
+        "impl_version": 1,
+        "inputs": [
+          "32ba6cb726bbbba7bba17e57fafcc29d8f5b1eaaa9bd283587436844d75ace56"
+        ],
+        "kind": "pace",
+        "node_hash": "551e800125bddb171eb33ebf1209b1dfbe80a955471c88041c934ba66aeef531",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "edb49c9458be6f8082e1c90a602348fde09695742b5616e5c158c6021c80ddd7": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "edb49c9458be6f8082e1c90a602348fde09695742b5616e5c158c6021c80ddd7.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "aafee71f26de93eb4eb8d323149cd008e1594aa719b8c550f71bea5d4280dd22",
+        "seed": 130
+      },
+      "f705821212d19219461745595f569cf9b8b2e43c6f02f9b366d846e2fde013e3": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "f705821212d19219461745595f569cf9b8b2e43c6f02f9b366d846e2fde013e3.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "84149461ac6f3b78b6776f828f90fffa91ebf364ca6bba1210f2d9f1641ea4b9",
+        "seed": 130
+      }
+    },
+    "created_at": "2026-11-01T21:42:26.429629+00:00",
+    "duration_ms": 36113,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "7cd8291e8d922422e043926e9c4cd9f5afba0430ac7b3f8d80a13d652064f55a",
+        "cached": true,
+        "hash": "8baf75c0c0864074860a442118b425638c6c19479a4c5dd6dba21fa1c879f891",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Und jetzt das Wetter für heute, morgen und das Wochenende.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "52ae45d21194695ff3d1a08669f77a1112778403b1a2b15a2e04c294c1f14dae",
+        "cached": true,
+        "hash": "0f97b79650b778e7369cc594c0d6e3b71dc735e9d05b1db9db00903213368497",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "32ba6cb726bbbba7bba17e57fafcc29d8f5b1eaaa9bd283587436844d75ace56",
+        "cached": true,
+        "hash": "a5a1037384291d6a174ce89420fa641a542662cb6e50fe45fbf158a84e85e15c",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "e9d1c56fabd311c1cd07328f40599eec633aa8f6555202718e819d43a54c9fa5",
+        "cached": true,
+        "hash": "551e800125bddb171eb33ebf1209b1dfbe80a955471c88041c934ba66aeef531",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "f705821212d19219461745595f569cf9b8b2e43c6f02f9b366d846e2fde013e3",
+        "cached": true,
+        "hash": "ecb245e6c807f5beb70989d367d48e3897c3a262a6101d6852343cb54ce73275",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "174f71c4f37eb50208027f9961af0931301fac044dad6f926a00cc8d20324915",
+        "cached": true,
+        "hash": "22485729d90c104d0b14af593ea02ced42434ba18291a2cc6bc65f8ea85256ba",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "dd832fc6a55da03f1cd12fb2468aac710ce877029bc6a629670b368727b67feb",
+        "cached": false,
+        "hash": "1cace5377a4f9bb9cd37caea3d24dda637d175831c8b4583cf337295d39c6e67",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "584f6a6bdbd2b5a1793848d5f9de89c1dbf00e39ac73c88bd0d168a75e439136",
+        "cached": false,
+        "hash": "7073b5a8441b718db53d76b03b7fbda9a2dd1b3e8e2d9be331346b184a340a95",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "268e296c053acdeabf5acd47f40bd241000c7cbcb2debd892fee22bb8cecec6e",
+        "cached": true,
+        "hash": "29494f6ccdbe14d61f72c4386f41370ba2326b5f92536467d2a914d8d30a23a4",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "8680c9cf8752b01c06ccd3ab08ea83a6b6e1ea318c6b7468d855ebb2df5acb95",
+        "cached": true,
+        "hash": "9f3405c9f3c40d372b593ca140f5b7615a08d0b6295dacf3dc627e6f1577adc2",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "edb49c9458be6f8082e1c90a602348fde09695742b5616e5c158c6021c80ddd7",
+        "cached": true,
+        "hash": "b0ee18bda4d8d4b9023d9d6caa77eec176945d63db352d1306751914edd2c68c",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 130,
+            "style": null,
+            "text": "Das war das Wetter. Und jetzt hören Sie Musik.",
+            "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "cf0c050077bde9b138956fb9ce536f7259126516c2af4e5086c24fe084a165a8",
+        "cached": true,
+        "hash": "c3907ae2283975e8ee09f333fe597d16eb0208f55f8ec589ead4a71cf8ea4296",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.86,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+        "cached": true,
+        "hash": "e0bf0366e9dbfced2e725932d588bb35635585193efcd4e6c1e2f22378c9172b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.25,
+            "early_reflections": 3,
+            "lowpass_hz": 9000.0,
+            "pre_delay_ms": 4,
+            "seed": 1101
+          },
+          "rate": 48000,
+          "room": "studio",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "12a66a3f5e40d605cca0f0f80776fc8d6e779f3acf73bfc68bd1eea845cb7d1b",
+        "cached": true,
+        "hash": "dd03e51d86d317c54a259d3b8d9da1f43797b3c8d3e72183246383cf7efb7b6b",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "ccc6bc75b9edef93d50ee4e68c996b7f2d348d6e992d0adb0b867aa2c0a46615",
+        "cached": true,
+        "hash": "b312f06811790970de5a915100f6c88127079b5a688b64eba76223e3b7b6da6f",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 5235,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "415f985f40f0f74f8f5e815e68036df99e8e433ed4275bff8bf85007e21d77d2",
+        "cached": true,
+        "hash": "5293db59408dc9ebdce70a0222ed1c7d02056bd2289e2e001b84e8d415b6a03a",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14027,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "5e1af3fbed9bae2bf16c4670241c2d58e1ed4beb5b164e33dd7dafbe49ccc61f",
+        "cached": false,
+        "hash": "1fe196cb2a2253ebcb8fc2f24f6e67912cb80ccfed281edb55fb791276f9ad77",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 20757,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "da8bb43e212c0d126a54803372ac667259564c3739a70743f064443b7a3a5ffc",
+        "cached": false,
+        "hash": "ff62375e786dbf3a1604ee5ca7ca4835abe820870857fe201dcd759f8fd52fb1",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 26360,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "63878fae6a7b6b05b23e8ea4bc04e65c6c53c8c013f9bd9fc5bdbfaeccb1bcee",
+        "cached": false,
+        "hash": "148dd9d752ff5cf3da500b7c683cd289b27fb863f09f5e4c49d37b7dc60d3dca",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 32238,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "79ba56578bcc9dc05f75acabebbac37c116205976ef007c89ce9f8845e68138b",
+        "cached": false,
+        "hash": "21ec112629cfff9074922caf762f4289fe88272827f42a8080215863cdc62bb1",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-4"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-5"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-6"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "6cec30d3f8c5ca50c3390b30f15206aa40de9c2aba15fd9e363a8d847733434c",
+        "cached": false,
+        "hash": "5dbcb4262d54f9da2de059edd8a0bfc2a3c3cc542978e877b9c67dcea344c5ec",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "92481882522deaf7c06a3281e7f180ddaaf07d7070dd9ec5e77a6b6dec711fca",
+        "cached": false,
+        "hash": "64467b06e5f566a1b0e5b06d61cef09e334538b76ed1b270737c129c344f0aae",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "38f0f92279d02982221121b4f4f4119c65a3ea19fd3ab3360ca05833e5d25bdf",
+        "cached": false,
+        "hash": "21a39ccf85dc9cc7926a2b6b30b191e30a09ed64096ae7d93b6f67a19101935c",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 14,
+    "nodes_evaluated": 9,
+    "timeline": [
+      {
+        "end_ms": 4535,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 13327,
+        "entry_id": "line-2",
+        "start_ms": 5235,
+        "type": "speech"
+      },
+      {
+        "end_ms": 20057,
+        "entry_id": "line-3",
+        "start_ms": 14027,
+        "type": "speech"
+      },
+      {
+        "end_ms": 25660,
+        "entry_id": "line-4",
+        "start_ms": 20757,
+        "type": "speech"
+      },
+      {
+        "end_ms": 31538,
+        "entry_id": "line-5",
+        "start_ms": 26360,
+        "type": "speech"
+      },
+      {
+        "end_ms": 36113,
+        "entry_id": "line-6",
+        "start_ms": 32238,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 4535,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 13327,
+        "start_ms": 5235,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 20057,
+        "start_ms": 14027,
+        "utterance_id": "line-3"
+      },
+      {
+        "end_ms": 25660,
+        "start_ms": 20757,
+        "utterance_id": "line-4"
+      },
+      {
+        "end_ms": 31538,
+        "start_ms": 26360,
+        "utterance_id": "line-5"
+      },
+      {
+        "end_ms": 36113,
+        "start_ms": 32238,
+        "utterance_id": "line-6"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "studio",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        35,
+        50
+      ],
+      "grammar_target": "unpersönliches es mit Wetterverben und mit sein/werden",
+      "level": "A2",
+      "outcomes": [
+        "wetterbericht-verstehen"
+      ],
+      "scenario": "Kurzer Wetterbericht im Radio: heute, morgen und das Wochenende, mit Temperaturen und einer Warnung vor einem Gewitter",
+      "topic": "natur-wetter",
+      "vocabulary": [
+        "Wetter",
+        "Grad",
+        "Gewitter",
+        "bewölkt",
+        "trocken"
+      ]
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "emil-wagner",
+          "version": 2
+        },
+        "role": "Radio",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 130,
+          "style": null,
+          "voice": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Und jetzt das Wetter für heute, morgen und das Wochenende.",
+        "id": "line-1",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Heute ist es bewölkt, aber trocken, und es ist windig. Wir haben vierzehn Grad, am Abend wird es kühl.",
+        "id": "line-2",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Morgen wird es wärmer. Am Vormittag scheint die Sonne, und es werden bis zu zwanzig Grad.",
+        "id": "line-3",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Aber am Nachmittag kommt ein Gewitter. Bleiben Sie dann bitte im Haus.",
+        "id": "line-4",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Am Wochenende regnet es oft, und es wird kühler, nur noch zwölf Grad.",
+        "id": "line-5",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Das war das Wetter. Und jetzt hören Sie Musik.",
+        "id": "line-6",
+        "pace": 0.86,
+        "pause_after_ms": 700,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-natur-wetter-01",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-3"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-4"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-5"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-6"
+      }
+    ],
+    "title": {
+      "en": "The weather forecast on the radio",
+      "ru": "Прогноз погоды по радио",
+      "uk": "Прогноз погоди по радіо"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 3,
+  "scene_sha256": "d4e9c376bfaabaaa32c81ba735e96436960886881828cb9258c0d69086c3bcc3",
+  "script_sha256": "a1cfd98a39e7633c635f7626d75963a4790fa1d1454a0abed8c2246232d41f3f",
+  "version": 2,
+  "voices": [
+    {
+      "character": "emil-wagner",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his mid-sixties speaking clear standard German. Low, measured, slightly resonant voice; deliberate pace, composed and courteous, informative rather than stern.",
+      "reference_sha256": "0e51762a2d2c64810931bc5d3eba344d39697a159f034c82707ffad9bd6f22a1",
+      "role": "Radio",
+      "seed": 130,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}
