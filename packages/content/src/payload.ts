@@ -66,7 +66,6 @@ export interface TopicSummary {
   title: string;
   level: Level;
   kind: string;
-  status: string;
   file: string;
   unit?: string;
   unitTitle?: string;
@@ -241,7 +240,6 @@ function buildPayload(graph: ContentGraph): GraphPayload {
       title: topic.data.title_de,
       level: topic.data.level,
       kind: topic.data.kind,
-      status: topic.data.status ?? 'draft',
       file: topic.file,
       unit: unit?.id,
       unitTitle: unit?.title_de,

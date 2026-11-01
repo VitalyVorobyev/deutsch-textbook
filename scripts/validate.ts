@@ -250,7 +250,6 @@ for (const file of manifestFiles(ROOT)) {
 
 for (const problem of authorshipProvenanceProblems(
   ROOT,
-  new Map([...topics].map(([id, topic]) => [id, topic.data.status])),
   [...topics].filter(([, topic]) => topic.data.level === 'B1').map(([id]) => id),
 )) {
   errors.push(problem);

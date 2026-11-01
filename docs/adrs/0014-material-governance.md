@@ -1,6 +1,6 @@
 # ADR 0014: Every kind of material has one owner, one review state that expires, and one shared queue
 
-Status: accepted · 2026-11-01
+Status: accepted · 2026-11-01 · its provenance clause superseded by [0015](0015-review-is-reading-provenance-is-decisions.md) · 2026-11-01
 
 ## Context
 

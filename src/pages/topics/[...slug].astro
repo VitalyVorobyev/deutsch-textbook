@@ -24,6 +24,7 @@ import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { deckWords } from '../../lib/vocab-mastery';
 import SeeAlso from '../../components/topic/SeeAlso.astro';
 import { getCurriculum } from '@da/content/curriculum';
+import { isTopicReviewed } from '../../lib/content';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
 
@@ -172,7 +173,7 @@ const KIND_KEY: Record<string, StringKey> = {
       <span class="rounded-full bg-stone-200 px-2.5 py-0.5 font-medium text-stone-600 dark:bg-stone-700 dark:text-stone-300">
         <Chrome k={KIND_KEY[data.kind]} />
       </span>
-      {data.status === 'draft' && (
+      {!isTopicReviewed(data.id) && (
         <span class="rounded-full border border-stone-300 px-2.5 py-0.5 text-stone-400 dark:border-stone-600">
           <Chrome k="topic.draft" />
         </span>

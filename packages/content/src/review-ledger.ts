@@ -10,7 +10,7 @@
  *   ever committed. Reading an object is the only thing this module asks of git; it never stages,
  *   commits or checks anything out (ADR 0012).
  *
- * A file with no row is a draft. The ledger is never backfilled.
+ * A file with no row is a draft. A row records a review someone performed; none is inferred.
  */
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -19,6 +19,7 @@ import { join } from 'node:path';
 import YAML from 'yaml';
 import { reviewLedgerSchema, type ReviewLedger, type ReviewLedgerEntry } from '@da/schema';
 import type { ContentGraph } from './graph';
+import { topicReviews, type TopicReview } from './topic-review';
 
 export const REVIEW_LEDGER_FILE = join('data', 'review-ledger.yaml');
 
@@ -79,6 +80,12 @@ export function reviewStatuses(root: string, files: readonly string[]): FileRevi
         : 'geaendert';
     return { file, status, ...(current ? { current } : {}), ...(entry ? { entry } : {}) };
   });
+}
+
+/** Each topic's review, derived from the ledger as it stands (see `./topic-review`). */
+export function topicReviewStates(root: string, graph: ContentGraph): Map<string, TopicReview> {
+  const topics = [...graph.topics.values()].map((topic) => ({ id: topic.id, file: topic.file }));
+  return topicReviews(topics, graph.elements, reviewStatuses(root, reviewableFiles(graph)));
 }
 
 /** Ledger defects the validator reports: a row for a missing file, or two rows for one file. */

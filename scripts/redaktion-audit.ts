@@ -55,6 +55,8 @@ const TABLE_VIEWS = new Set(['struktur', 'fokus', 'referenzen', 'materialien']);
 const PERMALINK = 'struktur?strang=verbformen&niveau=A1';
 
 const RAGGEDNESS_MAX = 2;
+/** A maximised browser on a 1440×900 laptop screen, less its tab bar and toolbar. */
+const FULL_WINDOW_HEIGHT = 760;
 
 const args = process.argv.slice(2);
 const flag = (name: string, fallback?: string) => {
@@ -195,6 +197,24 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
       `${route} ≤ 1 primary link per row`,
       `max ${m.primaryMax} primary, ${m.anchorMax} anchors total`,
     );
+  }
+
+  // The front page is read at a glance: at a full window it fits without scrolling.
+  if (width >= 1280) {
+    await page.setViewportSize({ width, height: FULL_WINDOW_HEIGHT });
+    await page.goto(`${base}/#/uebersicht`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(400);
+    const fit = await page.evaluate((id) => {
+      const pane = document.getElementById(id);
+      return pane ? { scroll: pane.scrollHeight, client: pane.clientHeight } : undefined;
+    }, 'redaktion-buehne');
+    check(
+      !!fit && fit.scroll <= fit.client,
+      `uebersicht fits one screen at ${width}×${FULL_WINDOW_HEIGHT}`,
+      fit ? `${fit.scroll}px content in a ${fit.client}px pane` : 'no pane',
+    );
+    await page.setViewportSize({ width, height: 1000 });
   }
 
   // 4. The classes that exist only in `packages/ui`. Sprachkarte mounts all three.

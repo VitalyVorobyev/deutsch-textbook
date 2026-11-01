@@ -24,6 +24,7 @@ import { PROBLEM_LABELS } from '@da/content/profile';
 import { Hinweis } from '../components/Hinweis';
 import type { GraphPayload } from '../data';
 import { href } from '../router';
+import { TOPIC_STATUS_LABEL, topicStatus, useReviews } from '../reviews';
 
 type Level = GraphPayload['levels'][number];
 type Topic = GraphPayload['topics'][number];
@@ -35,8 +36,6 @@ const ACTIVITY_LABEL: Record<string, string> = {
   application: 'Anwenden',
   remediation: 'Gezielt üben',
 };
-
-const STATUS_LABEL: Record<string, string> = { draft: 'Entwurf', reviewed: 'geprüft' };
 
 export function Themen({ graph }: { graph: GraphPayload }) {
   const [search, setSearch] = useState('');
@@ -165,6 +164,7 @@ function ThemaKarte({
    */
   const tone = par === undefined ? 'neutral' : met < par ? 'warn' : met > par ? 'ok' : 'neutral';
   const kinds = [...new Set(problems.map((p) => p.kind))];
+  const status = topicStatus(useReviews(), topic.id);
 
   return (
     <Panel tone={tone} className="flex flex-col gap-2.5">
@@ -176,7 +176,7 @@ function ThemaKarte({
           {topic.title}
         </a>
         <span className="shrink-0 whitespace-nowrap pt-0.5 text-xs text-fg-muted">
-          {STATUS_LABEL[topic.status] ?? topic.status}
+          {status ? TOPIC_STATUS_LABEL[status] : ''}
         </span>
       </div>
       {/* Units are 1:1 with topics today, so the unit title repeats the topic title on most cards.

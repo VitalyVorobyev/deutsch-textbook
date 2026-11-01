@@ -290,23 +290,6 @@ export async function saveSource(root: string, input: SaveFileInput): Promise<Sa
     };
   const diagnostics = await validateSource(input.path, input.text);
   if (diagnostics.some((item) => item.severity === 'blocking')) return { ok: false, diagnostics };
-  // A generic source save may leave cross-file diagnostics behind, but it must never smuggle a
-  // topic through the one transition whose contract is deliberately corpus-wide. The dedicated
-  // reviewed transaction runs full validation and rolls back on provenance or evidence failures.
-  if (before.kind === 'topic-manifest') {
-    const previousStatus = (YAML.parse(before.text) as { status?: string }).status;
-    const nextStatus = (YAML.parse(input.text) as { status?: string }).status;
-    if (previousStatus !== 'reviewed' && nextStatus === 'reviewed')
-      return {
-        ok: false,
-        diagnostics: [
-          diagnostic(
-            input.path,
-            'use “Als geprüft markieren” for the strict corpus-wide reviewed gate',
-          ),
-        ],
-      };
-  }
   if (before.text === input.text) return { ok: true, snapshot: before, changed: false };
 
   const target = resolveEditableSource(root, input.path);

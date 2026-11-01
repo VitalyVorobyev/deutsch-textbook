@@ -1,17 +1,14 @@
-import {
-  Bar,
-  Button,
-  Callout,
-  Chip,
-  Label,
-  Panel,
-  Section,
-  Stat,
-  StatGroup,
-} from '@da/ui/primitives';
-import type { ReactNode } from 'react';
+/**
+ * The front page: the state of the course and what is waiting, on one screen at a full window.
+ *
+ * Every block answers "is something waiting for me?" — findings, files to review, the review state
+ * per level. A block with nothing to say is not drawn: an all-clear callout or a card reading "0"
+ * pushes what does need attention below the fold.
+ */
+import { Bar, Button, Callout, Chip, Label, Panel, Stat, StatGroup } from '@da/ui/primitives';
 import type { GraphPayload, WorkspaceInfo } from '../data';
 import { href } from '../router';
+import { useReviews } from '../reviews';
 
 export function Uebersicht({
   graph,
@@ -22,11 +19,11 @@ export function Uebersicht({
 }) {
   const count = (severity: GraphPayload['diagnostics'][number]['severity']) =>
     graph.diagnostics.filter((item) => item.severity === severity).length;
-  const topics = graph.topics.length;
-  const reviewed = graph.topics.filter((topic) => topic.status === 'reviewed').length;
+  const reviews = useReviews();
   const reviewedIds = new Set(
-    graph.topics.filter((topic) => topic.status === 'reviewed').map((topic) => topic.id),
+    [...reviews.topics.values()].filter((review) => review.reviewed).map((review) => review.topic),
   );
+  const reviewed = reviewedIds.size;
   const reviewedDebt = graph.problems.filter(
     (problem) => problem.topic && reviewedIds.has(problem.topic),
   ).length;
@@ -35,58 +32,53 @@ export function Uebersicht({
   ).length;
   const workspaceDebt = graph.problems.filter((problem) => !problem.topic).length;
   const thin = graph.tags.filter((tag) => tag.teaching > 0 && tag.teaching <= 3).length;
+  const files = reviews.files ?? [];
+  const handedOver = files.filter((file) => file.status === 'claude-reviewed').length;
+  const changed = files.filter((file) => file.status === 'geaendert').length;
+  const ownerReviewed = files.filter((file) => file.status === 'owner-reviewed').length;
+
   return (
     <>
-      <header className="mb-7">
-        <Label>Redaktioneller Arbeitsraum</Label>
-        <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-fg">
-          Deutsch-Atlas im Überblick
-        </h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-fg-muted">
-          Katalog, Belege und Quellen bleiben getrennte Aussagen. Eine grüne Abdeckung ist kein
-          Beweis für Tiefe oder Behalten.
-        </p>
+      <header className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <Label>Redaktioneller Arbeitsraum</Label>
+          <h1 className="mt-1 font-serif text-2xl font-semibold tracking-tight text-fg">
+            Deutsch-Atlas im Überblick
+          </h1>
+          <p className="mt-1 max-w-3xl text-sm text-fg-muted">
+            Katalog, Belege und Quellen bleiben getrennte Aussagen. Eine grüne Abdeckung ist kein
+            Beweis für Tiefe oder Behalten.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Chip tone={workspace?.writable ? 'ok' : 'warn'}>
+            {workspace?.writable ? 'lokal schreibbar' : 'nur lesbar'}
+          </Chip>
+          <Chip>{workspace?.transport ?? 'vite'}</Chip>
+        </div>
       </header>
 
       {count('blocking') ? (
-        <Callout
-          tone="warn"
-          eyebrow="Technische Sperre"
-          title={`${count('blocking')} tatsächlich blockierende Befunde`}
-          action={
-            <Button href={href('qualitaet', undefined, { schwere: 'blocking' })}>
-              Arbeitsliste öffnen
-            </Button>
-          }
-        >
-          Diese Fehler verhindern Speichern oder Freigabe und müssen zuerst behoben werden.
-        </Callout>
-      ) : reviewedDebt ? (
-        <Callout
-          tone="brand"
-          eyebrow="Redaktionelle Schuld"
-          title={`${reviewedDebt} Befunde in geprüften Themen`}
-          action={
-            <Button href={href('qualitaet', undefined, { status: 'reviewed' })}>
-              priorisieren
-            </Button>
-          }
-        >
-          Diese {reviewedDebt} Befunde sind keine Validatorfehler. Sie markieren ältere
-          Qualitätslücken in bereits geprüften Themen und werden als Arbeitsvorrat priorisiert.
-        </Callout>
-      ) : (
-        <Callout
-          tone="ok"
-          eyebrow="Redaktioneller Status"
-          title="Keine offenen Befunde in geprüften Themen"
-        />
-      )}
+        <div className="mb-4">
+          <Callout
+            tone="warn"
+            eyebrow="Technische Sperre"
+            title={`${count('blocking')} tatsächlich blockierende Befunde`}
+            action={
+              <Button href={href('qualitaet', undefined, { schwere: 'blocking' })}>
+                Arbeitsliste öffnen
+              </Button>
+            }
+          >
+            Diese Fehler verhindern Speichern oder Freigabe und müssen zuerst behoben werden.
+          </Callout>
+        </div>
+      ) : null}
 
-      <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+      <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
         <Panel title="Kurszustand">
           <StatGroup columns={4}>
-            <Stat label="Themen" value={topics} hint={`${reviewed} geprüft`} />
+            <Stat label="Themen" value={graph.topics.length} hint={`${reviewed} geprüft`} />
             <Stat label="Materialien" value={graph.elements.length} />
             <Stat
               label="Grammatikpunkte"
@@ -100,56 +92,62 @@ export function Uebersicht({
               tone={thin ? 'warn' : 'neutral'}
             />
           </StatGroup>
-          <div className="mt-6 border-t border-line pt-4">
-            <Label>Redaktioneller Status</Label>
-            <div className="mt-2">
-              <Bar value={reviewed} max={topics} tone="brand" label={`${reviewed}/${topics}`} />
+          <div className="mt-5 border-t border-line pt-4">
+            <Label>Geprüfte Themen je Niveau</Label>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {graph.levels.map((level) => {
+                const ids = graph.topics.filter((topic) => topic.level === level);
+                if (!ids.length) return null;
+                const done = ids.filter((topic) => reviewedIds.has(topic.id)).length;
+                return (
+                  <div key={level} className="flex items-center gap-2">
+                    <span className="w-6 text-xs font-semibold text-fg">{level}</span>
+                    <Bar value={done} max={ids.length} tone="ok" label={`${done}/${ids.length}`} />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </Panel>
-        <Panel title="Arbeitsumgebung">
-          <p className="break-all text-sm text-fg">{workspace?.root ?? graph.root}</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Chip tone={workspace?.writable ? 'ok' : 'warn'}>
-              {workspace?.writable ? 'lokal schreibbar' : 'nur lesbar'}
-            </Chip>
-            <Chip>{workspace?.transport ?? 'vite'}</Chip>
-            <Chip>{workspace?.platform ?? 'browser'}</Chip>
-          </div>
-          <p className="mt-4 text-xs leading-5 text-fg-muted">
-            Der Checkout ist die einzige Inhaltsquelle. Redaktion speichert keine zweite Fassung in
-            einer Datenbank.
-          </p>
+
+        <Panel
+          title="Prüfen"
+          tone={handedOver + changed ? 'brand' : 'neutral'}
+          action={<Button href={href('pruefen')}>Inbox öffnen</Button>}
+        >
+          <StatGroup columns={3}>
+            <Stat label="übergeben" value={handedOver} tone={handedOver ? 'brand' : 'neutral'} />
+            <Stat label="geändert" value={changed} tone={changed ? 'warn' : 'neutral'} />
+            <Stat label="geprüft" value={ownerReviewed} hint={`von ${files.length} Dateien`} />
+          </StatGroup>
         </Panel>
       </div>
 
-      <Section>Arbeitslisten</Section>
-      <div className="grid gap-4 md:grid-cols-3">
-        <Queue
-          title="Geprüfte Themen"
-          count={reviewedDebt}
-          tone="warn"
-          href={href('qualitaet', undefined, { status: 'reviewed' })}
-        >
-          Bestehende Qualitätslücken, geordnet nach gemeinsamer Ursache.
-        </Queue>
-        <Queue
-          title="Entwürfe"
-          count={draftDebt}
-          tone="brand"
-          href={href('qualitaet', undefined, { status: 'draft' })}
-        >
-          Befunde, die vor der nächsten redaktionellen Prüfung bearbeitet werden sollten.
-        </Queue>
-        <Queue
-          title="Korpusweit"
-          count={workspaceDebt}
-          tone="info"
-          href={href('qualitaet', undefined, { status: 'workspace' })}
-        >
-          Fokus-Tags, Inventar und Quellen ohne eindeutiges Eigentümerthema.
-        </Queue>
-      </div>
+      <Panel title="Befunde" className="mt-4">
+        <ul className="grid gap-x-6 gap-y-2 md:grid-cols-3">
+          <Queue
+            title="In geprüften Themen"
+            count={reviewedDebt}
+            href={href('qualitaet', undefined, { status: 'reviewed' })}
+          >
+            ältere Qualitätslücken, nach Ursache geordnet
+          </Queue>
+          <Queue
+            title="In Entwürfen"
+            count={draftDebt}
+            href={href('qualitaet', undefined, { status: 'draft' })}
+          >
+            vor der nächsten Prüfung zu bearbeiten
+          </Queue>
+          <Queue
+            title="Korpusweit"
+            count={workspaceDebt}
+            href={href('qualitaet', undefined, { status: 'workspace' })}
+          >
+            Fokus-Tags, Inventar und Quellen ohne Eigentümerthema
+          </Queue>
+        </ul>
+      </Panel>
     </>
   );
 }
@@ -157,26 +155,30 @@ export function Uebersicht({
 function Queue({
   title,
   count,
-  tone,
   href: target,
   children,
 }: {
   title: string;
   count: number;
-  tone: 'warn' | 'brand' | 'info';
   href: string;
-  children: ReactNode;
+  children: string;
 }) {
   return (
-    <Panel
-      title={title}
-      tone={tone}
-      action={<span className="tabular text-2xl font-semibold text-fg">{count}</span>}
-    >
-      <p className="text-sm leading-5 text-fg-muted">{children}</p>
-      <p className="mt-4">
-        <Button href={target}>öffnen</Button>
-      </p>
-    </Panel>
+    <li>
+      <a
+        href={target}
+        className="flex items-baseline justify-between gap-3 rounded-md px-2 py-1.5 hover:bg-raised"
+      >
+        <span className="min-w-0">
+          <span className="block text-sm font-semibold text-fg">{title}</span>
+          <span className="block text-xs text-fg-muted">{children}</span>
+        </span>
+        <span
+          className={`tabular text-xl font-semibold ${count ? 'text-signal' : 'text-fg-muted'}`}
+        >
+          {count}
+        </span>
+      </a>
+    </li>
   );
 }

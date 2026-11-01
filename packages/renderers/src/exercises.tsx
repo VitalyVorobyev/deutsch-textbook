@@ -19,7 +19,10 @@ function prompt(item: Row, language: ContentLanguage): ReactNode {
   const direct = item[`prompt_${language}`] ?? item.prompt ?? item.text ?? item.instruction;
   if (item.type === 'cloze' && typeof item.text === 'string')
     return item.text.replace(/\{\{([^}|]+)(?:\|[^}]*)?\}\}/g, '▢');
-  if (item.type === 'mc') return text(direct);
+  if (item.type === 'mc')
+    return Array.isArray(item.options)
+      ? `${text(direct)}\n${item.options.map((option) => `· ${text(option)}`).join('\n')}`
+      : text(direct);
   if (item.type === 'match') return `Paare: ${asRows(item.pairs).length}`;
   if (item.type === 'order') return text(item.tokens ?? direct);
   if (item.type === 'table') return local(item.instruction, language) || 'Tabelle ausfüllen';
@@ -30,6 +33,8 @@ function prompt(item: Row, language: ContentLanguage): ReactNode {
 function answers(item: Row, language: ContentLanguage): string[] {
   const result: string[] = [];
   if (typeof item.answer === 'string') result.push(item.answer);
+  if (Array.isArray(item.options) && typeof item.correct === 'number')
+    result.push(text(item.options[item.correct]));
   for (const candidate of asRows(item.choices))
     if (candidate.correct) result.push(text(candidate.text ?? candidate.label ?? candidate.value));
   if (Array.isArray(item.answers)) result.push(...item.answers.map(text));

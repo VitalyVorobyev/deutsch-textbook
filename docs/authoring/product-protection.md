@@ -46,9 +46,11 @@ tool, retained brief, candidate selection and human editing are recorded separat
 ## Enforced editorial process
 
 For B1.4 and later, `data/authorship-provenance.yaml` begins with a human-approved creative brief.
-AI output remains a draft. A topic may exist with review pending, but it cannot ship with
-`status: reviewed` until Vitaly explicitly completes the record with concrete selection,
-rewriting or arrangement decisions and a review date.
+AI output remains a draft until Vitaly has read every file of the topic and accepted it, which the
+review ledger records file by file, with the exact bytes read. The authorship record's human review
+lists only decisions Vitaly actually made — a choice among alternatives, a finding that changed
+the material — and stays pending until there is one. Neither is written on the owner's behalf, and
+neither gates the other ([ADR 0015](../adrs/0015-review-is-reading-provenance-is-decisions.md)).
 
 Generated and simulated assets use the parallel asset manifest. Exact prompts that were not saved
 for legacy assets are marked unavailable rather than reconstructed. New generated assets must
