@@ -3,16 +3,14 @@
 The editorial workbench. The format and the ID rule are in the [backlog README](README.md). The
 governance entries implement [ADR 0014](../adrs/0014-material-governance.md), in this order.
 
-- **RED-2 · The census covers every kind, and the level owns level-wide material.**
+- **RED-2 · The census covers every kind.** Level ownership is done; what is left:
   - Add as graph elements: readings, documents, listening scenes, planned scenes, reading-audio
     slots, Referenz pages (with the focus tags each covers), Wortnetze and LiD lessons.
   - Index grading rulings and provenance by topic.
-  - Give checkpoints, placements and exam practice sets (with the scenes and documents only they
-    use) a level owner and no `topic:`.
   - Derive Materialien's tabs from element kinds.
 
-  Evidence: Bestand filters for kind `referenz`, which no element has, and lists no exam practice
-  (`apps/redaktion/src/views/Bestand.tsx`).
+  Evidence: Bestand filters for kind `referenz`, which no element has, and its Übungen tab lists
+  no `pruefungspraxis` (`apps/redaktion/src/views/Bestand.tsx`).
 - **RED-3 · Review ledger and Prüfen.** Add `data/review-ledger.yaml` (file, state, revision hash,
   by, at, note), owner-only `owner-reviewed` writes that set B1 provenance `humanReview`, and the
   Prüfen inbox with a diff against the reviewed revision. Retire topic `status:`: carry the ten

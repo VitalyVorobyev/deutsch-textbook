@@ -43,7 +43,9 @@ written down.
 `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
 `-ausblenden`/`-remediation`, or `drill-<focus>` (validator-enforced). A set id is half of every
 attempt key, so a rename needs an entry in `src/lib/set-id-migration.ts`, and a retired id is never
-reused. → [ADR 0014](../docs/adrs/0014-material-governance.md)
+reused. **Checkpoints, placements and exam practice sets belong to their level**: they carry no
+`topic:`, their directory is their level, and a document only they use carries no `topic:` either
+(validator-enforced). → [ADR 0014](../docs/adrs/0014-material-governance.md)
 
 ## Authoring rules (content quality is the product)
 

@@ -459,7 +459,7 @@ function build(root: string): ContentGraph {
 function element(
   kind: ElementKind,
   id: string,
-  topic: string,
+  topic: string | undefined,
   level: Level,
   file: string,
   extra: Partial<Element> = {},
@@ -498,8 +498,9 @@ function buildElements(graph: ContentGraph): void {
   }
 
   for (const set of graph.sets.values()) {
-    const topic = set.data?.topic;
-    if (!topic) continue;
+    if (!set.data) continue;
+    // Absent exactly for the level-owned roles; the schema holds the two together.
+    const topic = set.data.topic;
     const kind = kindForRole(set.data.role);
     const declared = set.data.stage;
     const summary = summariseItems(set.data.items ?? []);
@@ -532,18 +533,19 @@ function buildElements(graph: ContentGraph): void {
     );
   }
 
-  // A recording belongs to the topic of the set whose item names it; the artifact itself
-  // records only a level. Two hops, and the only path that exists.
-  const recordingTopic = new Map<string, string>();
+  // A recording belongs to the owner of the set whose item names it; the artifact itself records
+  // only a level. Two hops, and the only path that exists. A recording an exam set plays belongs
+  // to the level, like the set.
+  const recordingOwner = new Map<string, string | undefined>();
   for (const set of graph.sets.values()) {
     for (const item of set.data?.items ?? []) {
       const recording = (item as { recording?: string }).recording;
-      if (recording && set.data.topic) recordingTopic.set(recording, set.data.topic);
+      if (recording) recordingOwner.set(recording, set.data.topic);
     }
   }
   for (const artifact of graph.listening.values()) {
-    const topic = recordingTopic.get(artifact.id);
-    if (!topic) continue;
+    if (!recordingOwner.has(artifact.id)) continue;
+    const topic = recordingOwner.get(artifact.id);
     out.push(
       element('hoertext', `${artifact.id}#hoertext`, topic, artifact.level, artifact.file, {
         touches: ['input'],
@@ -555,7 +557,7 @@ function buildElements(graph: ContentGraph): void {
   }
 
   for (const doc of graph.documents.values()) {
-    if (!doc.data?.topic) continue;
+    if (!doc.data) continue;
     out.push(
       element('dokument', `${doc.id}#dokument`, doc.data.topic, doc.data.level ?? 'A1', doc.file, {
         touches: ['input'],
@@ -655,7 +657,8 @@ function push<K, V>(map: Map<K, V[]>, key: K, value: V): void {
 
 function buildIndexes(graph: ContentGraph): void {
   for (const element of graph.elements) {
-    push(graph.elementsByTopic, element.topic, element);
+    // A level-owned element is in no topic's list; its level is on the element.
+    if (element.topic) push(graph.elementsByTopic, element.topic, element);
     for (const tag of element.focus) push(graph.elementsByTag, tag, element);
   }
   for (const list of graph.elementsByTopic.values()) {
@@ -686,7 +689,8 @@ function buildIndexes(graph: ContentGraph): void {
   for (const point of graph.inventory) {
     const topics = new Set<string>();
     for (const tag of point.focus ?? []) {
-      for (const element of graph.elementsByTag.get(tag) ?? []) topics.add(element.topic);
+      for (const element of graph.elementsByTag.get(tag) ?? [])
+        if (element.topic) topics.add(element.topic);
     }
     for (const topicId of point.taught_in ?? []) topics.add(topicId);
     if (topics.size) graph.topicsByPoint.set(point.id, [...topics].sort());

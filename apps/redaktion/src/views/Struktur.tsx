@@ -51,7 +51,11 @@ function teachingTopics(graph: GraphPayload, point: GrammarPoint): string[] {
   const tags = new Set(point.focus ?? []);
   if (!tags.size) return [];
   return [
-    ...new Set(graph.elements.filter((e) => e.focus.some((f) => tags.has(f))).map((e) => e.topic)),
+    ...new Set(
+      graph.elements
+        .filter((e) => e.focus.some((f) => tags.has(f)))
+        .flatMap((e) => (e.topic ? [e.topic] : [])),
+    ),
   ];
 }
 

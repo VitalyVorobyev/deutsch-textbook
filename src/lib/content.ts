@@ -9,7 +9,7 @@ import {
 } from './srs';
 import { topicPath, withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
-import type { ExerciseSet } from '@da/schema';
+import type { ExerciseSet, Level } from '@da/schema';
 import { shownHeadwordIndex } from '@da/schema/headword';
 import type { TopicNode } from './mastery';
 import type { TrainingSet } from './training';
@@ -30,6 +30,21 @@ export async function getTrainingSets(): Promise<TrainingSet[]> {
   const topicById = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
   const documentById = new Map(documents.map((document) => [document.id, document.data]));
   return exercises.map((e) => {
+    const base = {
+      setId: e.id,
+      role: e.data.role,
+      arming: e.data.arming,
+      items: e.data.items,
+      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
+      title: e.data.title,
+    };
+    // A level-owned set names no topic; its level is its directory (ADR 0014).
+    if (!e.data.topic)
+      return {
+        ...base,
+        title_de: e.data.title_de ?? e.data.title?.de ?? e.id,
+        level: e.id.split('/')[0]!.toUpperCase() as Level,
+      };
     const topic = topicById.get(e.data.topic);
     if (!topic)
       throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
@@ -134,7 +149,7 @@ export type PlacementDescriptor = LevelSetDescriptor;
  * (`content/exercises/a2/…` → A2), and every surface that shows one iterates the list.
  * Shipping the B1 checkpoint or the B1 placement test is therefore one new YAML file
  * and no code. `bun run validate` enforces one set per level per role (they would
- * share a route) and that the directory matches the level of the topic it anchors to.
+ * share a route); the directory is the level that owns the set (ADR 0014).
  */
 async function levelSets(
   role: 'checkpoint' | 'placement',

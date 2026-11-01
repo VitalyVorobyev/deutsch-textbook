@@ -687,10 +687,18 @@ export const LESSON_STAGES = [
 ] as const;
 export type LessonStage = (typeof LESSON_STAGES)[number];
 
+/**
+ * Roles that belong to a level, not a topic (ADR 0014): they test or rehearse the whole level, so
+ * they carry no `topic:`, and their level is the directory they live in.
+ */
+export const LEVEL_OWNED_ROLES = ['checkpoint', 'placement', 'exam-practice'] as const;
+export const isLevelOwnedRole = (role: string): boolean =>
+  (LEVEL_OWNED_ROLES as readonly string[]).includes(role);
+
 export const exerciseSetSchema = z
   .object({
-    /** back-reference to the owning topic id */
-    topic: slug,
+    /** back-reference to the owning topic id; absent exactly for the level-owned roles */
+    topic: slug.optional(),
     /** explicit learning role; controls training eligibility and evidence use */
     role: exerciseRoleSchema.default('practice'),
     /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0002. */
@@ -707,6 +715,18 @@ export const exerciseSetSchema = z
     items: z.array(exerciseItemSchema).min(1),
   })
   .superRefine((set, ctx) => {
+    if (isLevelOwnedRole(set.role) && set.topic)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['topic'],
+        message: `a role: ${set.role} set belongs to its level, not a topic — remove topic:`,
+      });
+    if (!isLevelOwnedRole(set.role) && !set.topic)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['topic'],
+        message: `a role: ${set.role} set needs the topic that owns it`,
+      });
     if (set.role !== 'practice' && set.role !== 'drill') return;
 
     if (!set.activity) {
@@ -1033,7 +1053,8 @@ export type ReadingAudioArtifact = z.infer<typeof readingAudioArtifactSchema>;
 
 export const visualDocumentSchema = z
   .object({
-    topic: slug,
+    /** the owning topic; absent for a document only level-owned sets use, such as an exam's */
+    topic: slug.optional(),
     level: levelSchema,
     title_de: z.string().min(1),
     genre: z.enum([

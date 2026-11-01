@@ -9,6 +9,7 @@ import { recommendedNext, type TopicNode } from '../../lib/mastery';
 import {
   buildSession,
   eligibleTrainingSets,
+  isTopicOwned,
   revisionLookup,
   resumedQueueIsEligible,
   type SessionItem,
@@ -71,6 +72,7 @@ function restoreSession(
 
   const byUid = new Map<string, SessionItem>();
   for (const s of sets) {
+    if (!isTopicOwned(s)) continue;
     for (const item of s.items) {
       byUid.set(`${s.setId}::${item.id}`, {
         uid: `${s.setId}::${item.id}`,

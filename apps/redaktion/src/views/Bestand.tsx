@@ -458,7 +458,12 @@ function Elemente({
     {
       key: 'topic',
       head: 'Thema',
-      cell: (e) => <Quer href={href('thema', e.topic)}>{topicTitle(e.topic)}</Quer>,
+      cell: (e) =>
+        e.topic ? (
+          <Quer href={href('thema', e.topic)}>{topicTitle(e.topic)}</Quer>
+        ) : (
+          <span className="text-ink-muted">Niveau {e.level}</span>
+        ),
     },
     {
       key: 'focus',
