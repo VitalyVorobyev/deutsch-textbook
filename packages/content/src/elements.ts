@@ -55,6 +55,7 @@ export const ELEMENT_KINDS = [
   'wortnetz',
   'entdecken',
   'referenz',
+  'lid-lektion',
 ] as const;
 export type ElementKind = (typeof ELEMENT_KINDS)[number];
 
@@ -108,6 +109,11 @@ export interface Element {
   title?: string;
   /** True when the derivation was overridden by a declared `stage:` in the source file. */
   stageDeclared?: boolean;
+  /**
+   * An absence: material a plan names that the corpus does not hold yet, such as a listening scene
+   * in `data/listening-plan.yaml` with no published artifact. `file` is then the plan.
+   */
+  planned?: true;
 }
 
 /** `role` → the kind of element a set is. */
@@ -149,6 +155,7 @@ const STAGE_BY_KIND: Record<ElementKind, LessonStage> = {
   wortnetz: 'keine',
   entdecken: 'keine',
   referenz: 'keine',
+  'lid-lektion': 'keine',
 };
 
 export function defaultStage(kind: ElementKind): LessonStage {

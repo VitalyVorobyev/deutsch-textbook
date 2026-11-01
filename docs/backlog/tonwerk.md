@@ -29,6 +29,9 @@ only after this queue
   - **Production order:** the TTS-only items, then unstarted plan artifacts, then narrations,
     then recasting the 40 published dialogues from their presets to the roster.
   - **Learner app:** `listen` items may cut a turn from a recording instead of TTS.
+  - **Narrations need a plan first.** No file lists which readings should be narrated, so
+    Redaktion's census cannot show them as absences the way it shows planned scenes (ADR 0014).
+    Plan them where the scenes are planned, before producing any.
   - **First step:** plan the 55 TTS-only items as recordings in `data/listening-plan.yaml`, the
     way the A2 Hören collections are planned.
 

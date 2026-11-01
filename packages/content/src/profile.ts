@@ -154,7 +154,8 @@ export function itemMix(graph: ContentGraph, topicId: string) {
 export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile | undefined {
   const topic = graph.topics.get(topicId);
   if (!topic) return undefined;
-  const elements = graph.elementsByTopic.get(topicId) ?? [];
+  // What the topic holds, not what a plan says it will: a planned scene is an absence.
+  const elements = (graph.elementsByTopic.get(topicId) ?? []).filter((e) => !e.planned);
   const node = topic.data;
   const of = (kind: string) => elements.filter((e) => e.kind === kind);
 

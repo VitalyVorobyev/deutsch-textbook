@@ -27,7 +27,9 @@ import {
   discoverySchema,
   exerciseSetSchema,
   listeningArtifactSchema,
+  listeningPlanSchema,
   readingSchema,
+  referenceDataSchema,
   topicManifestSchema,
   visualDocumentSchema,
   vocabFileSchema,
@@ -47,6 +49,8 @@ import {
   type WordField,
   type Wortnetz,
 } from '@da/schema';
+import { lidLessonSchema } from '@da/schema/lid';
+import { focusIntroducedBy } from './focus-tags';
 import { repoRoot } from './repo-root';
 import {
   loadGrammarInventory,
@@ -129,6 +133,12 @@ export interface ContentGraph {
   discovery: Map<string, { id: string; data: Discovery; file: string }>;
   wortfelder: Map<string, { id: string; data: WordField; file: string }>;
   wortnetze: Map<string, { id: string; data: Wortnetz; file: string }>;
+  /** `content/reference-data/<id>.yaml`, each behind one Referenz page, with the tags it covers. */
+  referenceData: Map<string, { id: string; focus: string[]; file: string }>;
+  /** `content/lid/lessons/<id>.mdx`, the Leben-in-Deutschland reading lessons. */
+  lidLessons: Map<string, { id: string; title: string; file: string }>;
+  /** Every artifact `data/listening-plan.yaml` names, published or not. */
+  listeningPlan: Array<{ id: string; unit: string; level: Level; scenario: string }>;
 
   groups: AtlasGroup[];
   units: AtlasUnit[];
@@ -385,6 +395,43 @@ function build(root: string): ContentGraph {
     wortfelder.set(data.id, { id: data.id, data, file: rel(file) });
   }
 
+  const referenceData = new Map<string, { id: string; focus: string[]; file: string }>();
+  for (const file of listFiles(join(CONTENT, 'reference-data'), '.yaml')) {
+    const data = readYaml<{ id: string; focus?: string[] }>(loader, file, referenceDataSchema);
+    if (!data) continue;
+    referenceData.set(data.id, { id: data.id, focus: data.focus ?? [], file: rel(file) });
+  }
+
+  const lidLessons = new Map<string, { id: string; title: string; file: string }>();
+  for (const file of listFiles(join(CONTENT, 'lid', 'lessons'), '.mdx')) {
+    const { data } = readMdx<{ title_de?: string }>(loader, file, lidLessonSchema);
+    const id = file
+      .split(sep)
+      .at(-1)!
+      .replace(/\.mdx$/, '');
+    lidLessons.set(id, { id, title: data?.title_de ?? id, file: rel(file) });
+  }
+
+  const listeningPlan: ContentGraph['listeningPlan'] = [];
+  const planFile = join(root, 'data', 'listening-plan.yaml');
+  if (existsSync(planFile)) {
+    const plan = readYaml<{
+      units: Array<{
+        unit: string;
+        level: Level;
+        artifacts: Array<{ id: string; scenario: string }>;
+      }>;
+    }>(loader, planFile, listeningPlanSchema);
+    for (const unit of plan?.units ?? [])
+      for (const artifact of unit.artifacts)
+        listeningPlan.push({
+          id: artifact.id,
+          unit: unit.unit,
+          level: unit.level,
+          scenario: artifact.scenario,
+        });
+  }
+
   const wortnetze = new Map<string, { id: string; data: Wortnetz; file: string }>();
   for (const file of listFiles(join(CONTENT, 'wortnetze'), '.yaml')) {
     const data = readYaml<Wortnetz>(loader, file, wortnetzSchema);
@@ -427,6 +474,9 @@ function build(root: string): ContentGraph {
     discovery,
     wortfelder,
     wortnetze,
+    referenceData,
+    lidLessons,
+    listeningPlan,
     groups: atlas.groups ?? [],
     units,
     inventory,
@@ -480,6 +530,7 @@ function element(
     activity: extra.activity,
     medium: extra.medium,
     stageDeclared: extra.stageDeclared,
+    ...(extra.planned ? { planned: true as const } : {}),
   };
 }
 
@@ -544,7 +595,7 @@ function buildElements(graph: ContentGraph): void {
     }
   }
   for (const artifact of graph.listening.values()) {
-    if (!recordingOwner.has(artifact.id)) continue;
+    // A published recording no exercise plays still exists: it belongs to its level, like an exam's.
     const topic = recordingOwner.get(artifact.id);
     out.push(
       element('hoertext', `${artifact.id}#hoertext`, topic, artifact.level, artifact.file, {
@@ -629,6 +680,82 @@ function buildElements(graph: ContentGraph): void {
         ),
       );
     }
+  }
+
+  // A planned scene is an absence (ADR 0014): the plan names it, the corpus does not hold it yet.
+  // It belongs to its unit's topic, and its row opens the plan.
+  const published = new Set(graph.listening.keys());
+  for (const row of graph.listeningPlan) {
+    if (published.has(row.id) || published.has(`${row.level.toLowerCase()}/${row.id}`)) continue;
+    out.push(
+      element(
+        'hoertext',
+        `${row.id}#hoertext`,
+        graph.topics.has(row.unit) ? row.unit : undefined,
+        row.level,
+        'data/listening-plan.yaml',
+        // No touches, modes or items: an absence delivers nothing, and a topic profile must not
+        // count a planned scene as listening the topic already has.
+        { depth: { items: 0, production: 0, parts: 0 }, title: row.scenario, planned: true },
+      ),
+    );
+  }
+
+  for (const net of graph.wortnetze.values()) {
+    out.push(
+      element('wortnetz', `${net.id}#wortnetz`, undefined, net.data.level, net.file, {
+        touches: ['input'],
+        depth: { items: 1, production: 0, parts: net.data.members?.length ?? 0 },
+        title: net.data.title_de,
+      }),
+    );
+  }
+
+  // A Referenz page belongs to the earliest level that introduces one of the tags it covers: that
+  // is where a learner first needs it. Its tags are what links it to the topics that teach them.
+  const levelRank = (level: Level) => ['A1', 'A2', 'B1', 'B2'].indexOf(level);
+  for (const ref of graph.referenceData.values()) {
+    const levels = ref.focus
+      .map((tag) => graph.topics.get(focusIntroducedBy[tag] ?? '')?.data.level)
+      .filter((level): level is Level => level !== undefined)
+      .sort((a, b) => levelRank(a) - levelRank(b));
+    out.push(
+      element('referenz', `${ref.id}#referenz`, undefined, levels[0] ?? 'A1', ref.file, {
+        focus: [...ref.focus].sort(),
+        title: ref.id,
+      }),
+    );
+  }
+
+  // The Leben-in-Deutschland lessons sit outside the CEFR spine; they belong to B1, the level the
+  // official test assumes.
+  for (const lesson of graph.lidLessons.values()) {
+    out.push(
+      element('lid-lektion', `${lesson.id}#lid-lektion`, undefined, 'B1', lesson.file, {
+        touches: ['input'],
+        modes: ['reading'],
+        title: lesson.title,
+      }),
+    );
+  }
+
+  // A deck no topic lists (a Wortliste completion deck, unowned by rule) belongs to its level.
+  const ownedDecks = new Set([...graph.topics.values()].flatMap((t) => t.data.elements.vocab));
+  for (const deck of graph.vocab.values()) {
+    if (ownedDecks.has(deck.id) || !deck.data) continue;
+    const entries = deck.data.entries ?? [];
+    const productive = entries.filter((e) => (e.cards ?? 'both') === 'both').length;
+    out.push(
+      element('wortschatz', `${deck.id}#wortschatz`, undefined, deck.data.level, deck.file, {
+        touches: productive ? ['abruf', 'produktion'] : ['abruf'],
+        depth: {
+          items: entries.length,
+          production: productive,
+          parts: entries.length + productive,
+        },
+        title: deck.data.title_de,
+      }),
+    );
   }
 
   graph.elements = out;

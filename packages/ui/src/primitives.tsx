@@ -385,7 +385,7 @@ export function Button({
 }) {
   const variant = stark || pressed ? 'primary' : 'secondary';
   return href ? (
-    <ButtonLink href={href} variant={variant}>
+    <ButtonLink href={href} variant={variant} className="whitespace-nowrap">
       {children}
     </ButtonLink>
   ) : (
@@ -395,6 +395,7 @@ export function Button({
       onClick={onClick}
       aria-pressed={pressed}
       disabled={disabled}
+      className="whitespace-nowrap"
     >
       {children}
     </SystemButton>
