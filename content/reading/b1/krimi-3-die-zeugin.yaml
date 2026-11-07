@@ -1,0 +1,86 @@
+topic: versicherungen-behoerden
+kind: extensive
+title_de: "Ein Fall für den Hof (3): Die Zeugin"
+text:
+  - >-
+    Am Dienstag um halb fünf fuhr Mira mit dem Fahrrad zur Frühschicht. Es war
+    noch dunkel, und die Straßen waren leer. In der Gartenstraße, zwei Minuten
+    von der Bäckerei, stand vor einem Hoftor ein weißer
+    [[Lieferwagen::van::фургон::фургон]] mit einer Leiter auf dem Dach. Der
+    Fahrer stand am Tor und tippte eine Nummer. Das Tor ging auf, und er stieg
+    wieder ein.
+  - >-
+    Mira war nur noch wenige Meter hinter dem Wagen, als er plötzlich ohne Licht
+    rückwärts über den Radweg fuhr. Sie bremste stark und fiel auf die Straße. Der Wagen
+    hielt kurz. Dann fuhr er schnell weg, und das
+    [[Kennzeichen::number plate::номерной знак::номерний знак]] konnte Mira im
+    Dunkeln nicht lesen. Das Tor stand noch offen. Durch das Tor sah Mira in den
+    Hof.
+  - >-
+    Das Knie tat weh, aber Mira konnte es bewegen. Sie wählte die 112 und nannte
+    zuerst die Straße. Dann erzählte sie, was passiert war. Die Frau in der
+    [[Leitstelle::emergency control centre::диспетчерская::диспетчерська]]
+    fragte, ob sie blutet und ob sie aufstehen kann. Nach zehn Minuten kam ein
+    Krankenwagen, kurz danach auch die Polizei.
+  - >-
+    Nachdem ein [[Sanitäter::paramedic::санитар, фельдшер::санітар, фельдшер]]
+    das Knie untersucht hatte, war klar: Gebrochen war nichts, das Knie war nur
+    [[geprellt::bruised::ушиблено::забите]]. In die Klinik musste Mira nicht.
+    Sie zeigte ihre Versichertenkarte, und er schrieb ihre Personalien auf. Mira
+    fragte, ob sie am Samstag Fußball spielen darf. Er meinte, dass sie lieber
+    eine Woche Pause machen soll.
+  - >-
+    Der Polizist wollte wissen, ob sie das Kennzeichen gesehen hat. Mira
+    schüttelte den Kopf und beschrieb den Wagen. Dann fragte sie, wer ein neues
+    [[Vorderrad::front wheel::переднее колесо::переднє колесо]] bezahlt, denn
+    ihres war ganz kaputt. Der Polizist erklärte, dass dafür die Versicherung des
+    Fahrers zahlen muss. Aber zuerst musste die Polizei den Fahrer finden, und
+    dafür war Mira eine wichtige Zeugin.
+  - >-
+    Wegen des Unfalls kam Mira eine Stunde zu spät in die Bäckerei und erzählte
+    alles. Herr Ott schickte sie sofort auf einen Stuhl. Er sagte, dass sie auf
+    dem Weg zur Arbeit über die Bäckerei gegen Unfall versichert ist. Wenn das
+    Knie am nächsten Tag noch wehtat, sollte sie zum Arzt gehen und dort sagen,
+    dass der Unfall auf dem Weg zur Arbeit passiert war.
+  - >-
+    Lena stand hinter der Kasse und hörte zu. Beim Wort „Leiter“ drehte sie sich
+    um. „Mira, hast du gesehen, wie das Tor aufging?“ – „Der Fahrer hat eine
+    Nummer getippt. Er kannte sie also. Und im Hof steht ein neues Fahrraddach.
+    Genau so eins wie bei euch.“ Lena sagte lange nichts.
+questions:
+  - id: q-das-vorderrad
+    outcomes: [versicherung-klaeren]
+    type: mc
+    prompt: "Wer soll Mira ein neues Vorderrad bezahlen?"
+    options:
+      - "Die Versicherung des Fahrers, wenn die Polizei ihn findet."
+      - "Die Bäckerei, weil Mira auf dem Weg zur Arbeit war."
+      - "Miras Krankenkasse, weil sie ihre Versichertenkarte gezeigt hat."
+    correct: 0
+    translation:
+      en: "Who is supposed to pay for a new front wheel for Mira?"
+      ru: "Кто должен заплатить за новое переднее колесо для Миры?"
+      uk: "Хто має заплатити за нове переднє колесо для Міри?"
+    explain:
+      en: "The policeman says the driver's insurance has to pay for the wheel, but first the police have to find the driver. The card Mira shows the paramedic is her health-insurance card, and the cover through the bakery that Herr Ott mentions is for her knee, not for her bike."
+      ru: "Полицейский объясняет, что за колесо должна заплатить страховка водителя, но сначала полиция должна этого водителя найти. Карточка, которую Мира показывает санитару, — это карточка её медицинской страховки, а страховка через пекарню, о которой говорит господин Отт, касается её колена, а не велосипеда."
+      uk: "Поліцейський пояснює, що за колесо має заплатити страховка водія, але спершу поліція мусить цього водія знайти. Картка, яку Міра показує санітарові, — це картка її медичного страхування, а страхування через пекарню, про яке каже пан Отт, стосується її коліна, а не велосипеда."
+      de: "Der Polizist erklärt, dass die Versicherung des Fahrers für das Rad zahlen muss. Aber zuerst muss die Polizei den Fahrer finden. Die Versichertenkarte, die Mira dem Sanitäter zeigt, ist die Karte ihrer Krankenkasse, und die Versicherung über die Bäckerei, von der Herr Ott spricht, ist für das Knie, nicht für das Rad."
+  - id: q-das-knie
+    outcomes: [versicherung-klaeren]
+    type: mc
+    prompt: "Warum ist Mira über die Bäckerei gegen Unfall versichert?"
+    options:
+      - "Weil der Unfall auf dem Weg zur Arbeit passiert ist."
+      - "Weil sie ihre Versichertenkarte bei sich hatte."
+      - "Weil der Sanitäter ihre Personalien aufgeschrieben hat."
+    correct: 0
+    translation:
+      en: "Why is Mira insured against accidents through the bakery?"
+      ru: "Почему Мира застрахована от несчастного случая через пекарню?"
+      uk: "Чому Міра застрахована від нещасного випадку через пекарню?"
+    explain:
+      en: "Herr Ott explains that on the way to work Mira is insured against accidents through the bakery. That is why, if the knee still hurts the next day, she should tell the doctor that it happened on her way to work. The card and the personal details belong to the paramedic's visit at the scene; neither is what makes this cover apply."
+      ru: "Господин Отт объясняет: по дороге на работу Мира застрахована от несчастного случая через пекарню. Поэтому, если колено на следующий день ещё будет болеть, ей нужно сказать врачу, что это случилось по дороге на работу. Карточка и личные данные нужны были санитару на месте аварии, но эту страховку дают не они."
+      uk: "Пан Отт пояснює: дорогою на роботу Міра застрахована від нещасного випадку через пекарню. Тому, якщо коліно наступного дня ще болітиме, вона має сказати лікареві, що це сталося дорогою на роботу. Картка й особисті дані потрібні були санітарові на місці аварії, але це страхування дають не вони."
+      de: "Herr Ott erklärt, dass Mira auf dem Weg zur Arbeit über die Bäckerei gegen Unfall versichert ist. Deshalb soll sie beim Arzt sagen, dass der Unfall auf dem Weg zur Arbeit passiert ist, wenn das Knie am nächsten Tag noch wehtut. Die Versichertenkarte und die Personalien braucht der Sanitäter am Unfallort, aber sie sind nicht der Grund für diese Versicherung."
