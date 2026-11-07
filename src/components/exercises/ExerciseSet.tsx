@@ -56,7 +56,10 @@ const UI = {
   },
   tryAgain: { en: 'Try again', ru: 'Ещё раз' },
   results: { en: 'Results', ru: 'Результат' },
-  recording: { en: 'The recording for every task below', ru: 'Запись — для всех заданий ниже' },
+  recording: {
+    en: 'One recording for every task in this set',
+    ru: 'Одна запись для всех заданий этого блока',
+  },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Answered {

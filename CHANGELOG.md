@@ -213,6 +213,7 @@ GitHub Release notes.
 - Tooling: records for the recurring cast (Lena, Mira, Timo, Frau Kern), checked by the content validator against every recording and reading.
 - Tooling: Frau Kern, the neighbour in the Lena serial, is cast with an existing roster voice; the course designs no new voices.
 - Tooling: task sets, an exercise set built on one shared recording with one player and the transcript after the last answer; and retired sets, which keep their ids but are served nowhere.
+- Freunde, Einladungen & Feste: the listening exercise is now one task on one recording. Lena, Mira and a colleague plan Mira's party in the bakery, and six questions climb from the gist to a reply you type; the transcript opens after the last answer.
 
 ## [0.6.19] — 2026-10-14
 

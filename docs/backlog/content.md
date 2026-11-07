@@ -81,13 +81,16 @@ Course content: articles, items, probes, vocabulary, readings and their language
 - **CON-6 · Pilot the task shape and the cast on two topics**
   ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). Listening-comprehension
   questions sit at a ceiling, 97% over 64 attempts (`bun run progress:audit --profile vitaly`), and
-  81 of 145 recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort |
-  uniq -c`). Convert A2 `freunde-feste` (Mira's party is already a Lena episode) and one B1 topic:
-  tasks in cycle order, four or more items per recording, speakers from the cast, and
-  re-recordings through `scene publish-checked`. Every cast member has a voice (ADR 0018), and
-  neither `freunde-feste` recording waits for a recast. The pilot decides how a task
-  looks on the page. First step: choose the B1 topic, then write both task lists against the topics'
-  current sets, with the cost of re-recording each.
+  most recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort | uniq -c`).
+  A2 `freunde-feste` is converted: `a2/freunde-feste-aufgabe` asks six things of one bakery scene
+  with Lena, Mira and a walk-on colleague (`ls-freunde-feste-aufgabe-01`). B1
+  `gesellschaft-zusammenleben` is next: a house meeting about the courtyard with Lena and Frau Kern,
+  where Lena first says *Sie* to her, picking up the Lena episode `lena-7-ein-brief-fuer-den-hof`.
+  It also gets a listening probe family for `diskussion-folgen`, because ADR 0016 gives each
+  listening outcome a delayed probe. Two open points: the `lena` and `mira` voices are close
+  (WavLM similarity 0.878 in the scene's automatic QA report, against 0.51 and 0.33 to the walk-on), which weakens a "who
+  said it" item between the two; and no portraits exist yet. First step: the B1 scene and its task
+  set.
 - **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 35 places
   name a cast member without having been read against the record (`continuity_pending`: Lena 20,
   Mira 6, Frau Kern 5, Timo 4). Some places add a fact the record lacks: in `ls-dativ-01`, Frau
