@@ -37,7 +37,7 @@ do not understand is a rule to go read**, not a rule to guess at. The full doc m
 | touching a **coverage figure** (Wortliste `~`, grammar inventory, `/about`) | [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md) |
 | hand-editing a vocab **`ipa`** | [`docs/authoring/lautschrift.md`](docs/authoring/lautschrift.md) |
 | authoring **Entdecken** material or adding a **document** | [`docs/authoring/future-content-directions.md`](docs/authoring/future-content-directions.md) |
-| deciding **what a unit owns** and what it may not touch, with which frozen identities | [`docs/curriculum/a2-b1.md`](docs/curriculum/a2-b1.md) |
+| deciding **what a unit owns** and what it may not touch, with which frozen identities | [`docs/curriculum/a2-b1.md`](docs/curriculum/a2-b1.md) · [`b1-b2.md`](docs/curriculum/b1-b2.md) |
 | adding a **grammar-inventory row**, a `claims:` citation or an external **Strukturenliste** | [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md) · [ADR 0004](docs/adrs/0004-completeness-is-evidence-contracts.md) |
 | writing or changing **any document** — developer or user-facing | [`docs/README.md`](docs/README.md) |
 | committing, opening a **PR**, answering a review or **merging** | the `pr-cycle` skill |

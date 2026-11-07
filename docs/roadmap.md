@@ -47,10 +47,12 @@ the order. The suggested order follows the dependencies:
    **Tonwerk studio** ([ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md),
    [queue](backlog/tonwerk.md)) and Redaktion's governance work ([queue](backlog/redaktion.md))
    continue on that base.
-2. **The lesson task system** ([proposal](proposals/lesson-task-system.md)) and **characters and
-   stories** ([proposal](proposals/characters-and-stories.md)), decided together. A story is a
-   kind of input inside a lesson, so neither design is complete without the other. Tonwerk's cast
-   becomes content-level characters that readings, scenes and tasks reference.
+2. **The lesson task system and the recurring cast**, decided together in
+   [ADR 0016](adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md). A lesson becomes tasks
+   built on one stimulus each. A character becomes content, and a voice stays casting. Genre lives
+   in the reading serials. The steps run in order: the character record and its checks
+   (INS-10), the walk-on voice pool (TON-6), the two-topic pilot (CON-6), then the Krimi serial
+   (CON-7).
 3. **The learner app on lab-ui**, once its visual language is written down and the tools have
    proved the theme layer.
 
@@ -59,12 +61,11 @@ the order. The suggested order follows the dependencies:
 B2 starts from the same evidence contracts as A1–B1. Before any B2 topic is authored, the course
 needs:
 
-- a curriculum contract (`docs/curriculum/b1-b2.md`): units, owned structures and frozen
-  identities;
-- named anchors for the denominator. The Goethe B2 *Prüfungsziele* is held locally (gitignored,
-  [ADR 0009](adrs/0009-third-party-and-official-material.md)). Whether a published lexical list
-  exists for B2 is an open question, to be checked before the Wortliste instrument is extended;
-- the decision on the lesson task system, so B2 is authored once, in its final shape.
+- the units of the curriculum contract, [`curriculum/b1-b2.md`](curriculum/b1-b2.md). Its anchors
+  and rules are written, and its units are not;
+- the lexical and structural anchor. Goethe publishes no B2 list and points to *Profile deutsch*
+  instead (P26-7, to buy);
+- the pilot of the task shape (CON-6), so that B2.1 is authored once, in its final shape.
 
 ## Tools at full power
 

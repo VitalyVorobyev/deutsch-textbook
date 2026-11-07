@@ -78,9 +78,32 @@ Course content: articles, items, probes, vocabulary, readings and their language
   adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
 - **CON-5 · Original B1 practice sets.** `/pruefung/b1` serves the official sets only where the
   materials are local, so a clean build has nothing to practise there.
+- **CON-6 · Pilot the task shape and the cast on two topics**
+  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). Listening-comprehension
+  questions sit at a ceiling, 97% over 64 attempts (`bun run progress:audit --profile vitaly`), and
+  81 of 145 recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort |
+  uniq -c`). Convert A2 `freunde-feste` (Mira's party is already a Lena episode) and one B1 topic:
+  tasks in cycle order, four or more items per recording, speakers from the cast, and
+  re-recordings through `scene publish-checked`. It needs INS-10 and TON-6. The pilot decides how a
+  task looks on the page and who the older adult is. First step: choose the B1 topic, then write
+  both task lists against the topics' current sets, with the cost of re-recording each.
+- **CON-7 · A Krimi serial, B1–B2, extensive**
+  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). The extensive strand has
+  one serial, Lena (seven episodes, A1–A2, `ls content/reading/*/lena-*`), and B1 has only the
+  Klassiker. A crime serial cast from the characters recycles `polizei-anzeige` and
+  `unfall-notruf`. It is also how the cast grows past four. Each episode carries a manual
+  continuity read against the character records. First step: after CON-6, an outline of the
+  episodes with the cast and the topic each one recycles.
+- **CON-8 · Contract the B2 units** ([curriculum/b1-b2.md](../curriculum/b1-b2.md)). The anchors
+  and the inherited rules are written, and no unit is. Each unit needs a mission, owned structures
+  and exclusions, like B1's. Units wait on *Profile deutsch* (P26-7) for the structures they own.
+  First step: `data/themenlisten/goethe-b2.yaml`, holding the 14 Prüfungsthemen of the B2
+  *Prüfungsziele* §4.3 with entries `unclaimed`.
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
-  978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9); also the adult Goethe A2
-  *Prüfungsziele* (the free A2 list is the youth exam). Each becomes one
+  978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9), which is also B2's only
+  lexical and structural anchor; also the adult Goethe A2 *Prüfungsziele* (the free A2 list is the
+  youth exam), and the current Goethe B2 *Prüfungsziele*: the local copy is the 2007 handbook, and
+  the 2025 Modellsatz cites a newer edition. Each becomes one
   `data/strukturenlisten/*.yaml` whose entries start `unclaimed`.
 
 Findings on single files, below the material bar, live in the shared queue (`bun run queue`,

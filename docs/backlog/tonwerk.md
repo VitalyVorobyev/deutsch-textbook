@@ -7,8 +7,8 @@ The studio's contract is [ADR 0012](../adrs/0012-editorial-tools-and-the-tonwerk
 
 The owner has put the studio first and the learner integration after it. The roster and the editor
 come first so that the course's audio is produced in the finished tool. Characters enter lessons
-only after this queue
-([proposal](../proposals/characters-and-stories.md)).
+after this queue, cast from the character records
+([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)).
 
 - **TON-5 · Produce, then wire into learning.** Every one of the 243 `audio-comprehension`
   items plays a recording (`grep -rh "^ *recording:" content/exercises | wc -l` gives 243), and
@@ -26,6 +26,14 @@ only after this queue
     Plan them where the scenes are planned, before producing any.
   - **First step:** the narration plan: which Lesetexte are narrated, in which voice, beside the
     scene plan.
+
+- **TON-6 · A walk-on voice pool, and casting from character records.** ADR 0016 binds each cast
+  member to one roster voice that speaks for nobody else. The unnamed roles (*Durchsage*, *Kundin*,
+  *Beamter*, …) then need voices outside the cast. Today the 12 roster voices play every role,
+  about 160 speaker names in all (`grep -h "^- [A-ZÄÖÜ]" content/listening/*/*.yaml | sort -u`).
+  At least one third of each level's recorded listening seconds stays with walk-on voices.
+  First step: count each level's recorded seconds by role, named or unnamed, to size the pool.
+  Then design the walk-on voices on `qwen_tts_designed`.
 
 ## Open defects
 

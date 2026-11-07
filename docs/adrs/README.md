@@ -41,7 +41,7 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | ADR | Decision |
 | --- | --- |
 | [`0001`](0001-repository-is-the-content-database.md) | The repository is the content database |
-| [`0002`](0002-topic-manifests-and-learning-activities.md) | A topic is one manifest, and its exercises are organised as learning activities |
+| [`0002`](0002-topic-manifests-and-learning-activities.md) | A topic is one manifest, and its exercises are organised as learning activities (its lesson shape superseded by 0016) |
 | [`0003`](0003-the-evidence-model.md) | What counts as learning evidence, and what never does |
 | [`0004`](0004-completeness-is-evidence-contracts.md) | Course completeness is a set of evidence contracts against named anchors |
 | [`0005`](0005-explanation-languages.md) | Explanations are authored per language, and B1 reads German first |
@@ -55,6 +55,7 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0013`](0013-designed-voices-and-automatic-publishing.md) | The course speaks in designed synthetic voices on one model, and its audio publishes on automatic QA |
 | [`0014`](0014-material-governance.md) | Every kind of material has one owner, one review state that expires, and one shared queue (its provenance clause superseded by 0015) |
 | [`0015`](0015-review-is-reading-provenance-is-decisions.md) | A review records what the owner read, and provenance records only the decisions the owner made |
+| [`0016`](0016-lessons-are-tasks-and-a-cast-carries-them.md) | A lesson is a sequence of tasks, each built on one stimulus, and a recurring cast of people carries the stimuli |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),
