@@ -9,6 +9,7 @@ import { recommendedNext, type TopicNode } from '../../lib/mastery';
 import {
   buildSession,
   eligibleTrainingSets,
+  isServed,
   isTopicOwned,
   revisionLookup,
   resumedQueueIsEligible,
@@ -72,7 +73,7 @@ function restoreSession(
 
   const byUid = new Map<string, SessionItem>();
   for (const s of sets) {
-    if (!isTopicOwned(s)) continue;
+    if (!isTopicOwned(s) || !isServed(s)) continue;
     for (const item of s.items) {
       byUid.set(`${s.setId}::${item.id}`, {
         uid: `${s.setId}::${item.id}`,
@@ -82,6 +83,7 @@ function restoreSession(
         level: s.level,
         item,
         document: s.document,
+        recording: s.recording,
       });
     }
   }
@@ -436,6 +438,7 @@ export default function MixedTraining({
               index + 1 < session.length ? t('action.next', uiLang) : pick(lang, UI.results)
             }
             storageKey={entry.uid}
+            recording={entry.recording}
           />
         </div>
       )}

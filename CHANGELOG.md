@@ -212,6 +212,7 @@ GitHub Release notes.
 - Tooling: TypeScript 7, Astro 7.4, Oxlint 1.88, Oxfmt formatting and current dependency patches.
 - Tooling: records for the recurring cast (Lena, Mira, Timo, Frau Kern), checked by the content validator against every recording and reading.
 - Tooling: Frau Kern, the neighbour in the Lena serial, is cast with an existing roster voice; the course designs no new voices.
+- Tooling: task sets, an exercise set built on one shared recording with one player and the transcript after the last answer; and retired sets, which keep their ids but are served nowhere.
 
 ## [0.6.19] — 2026-10-14
 

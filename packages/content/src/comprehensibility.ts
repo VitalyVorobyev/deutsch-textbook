@@ -1016,11 +1016,13 @@ export function loadCorpus(root = repoRoot()): Corpus {
   for (const file of walk(exerciseRoot, '.yaml')) {
     const data = YAML.parse(readFileSync(file, 'utf8')) as {
       role?: string;
+      retired?: boolean;
       items?: Array<Record<string, unknown>>;
     };
     const role = data.role ?? 'practice';
+    // A retired set is served nowhere, so its German is input nobody meets.
     const german =
-      role === 'practice' || role === 'drill'
+      (role === 'practice' || role === 'drill') && !data.retired
         ? (data.items ?? []).flatMap(itemGerman).join('\n')
         : '';
     exercises.set(refOf(exerciseRoot, file), german);

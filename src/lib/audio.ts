@@ -47,3 +47,16 @@ export const listeningCuesUrl = (id: string): string => `/audio/${id}.cues.json`
 /** Reviewed long-form narration uses a separate namespace from dialogue recordings. */
 export const readingAudioUrl = (level: string, id: string): string =>
   `/audio/readings/${level.toLowerCase()}/${id}.mp3`;
+
+/**
+ * A recording as a player needs it: its id, which names the MP3 and cue files, and the turns that
+ * are both the transcript shown after the answer and the browser-TTS fallback. An
+ * `audio-comprehension` item builds one from its own `source`; a task set from its set recording.
+ */
+export interface RecordingScript {
+  /** the reviewed recording's id; absent for an item that only ever speaks through TTS */
+  id?: string;
+  turns: readonly { speaker: string; text: string }[];
+  /** browser-TTS rate for the fallback voice */
+  rate?: number;
+}

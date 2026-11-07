@@ -13,7 +13,7 @@ import { LID_EXAM } from '@da/schema/lid';
 // The hub is the only map of Prüfung: one card per exam, and every page below it carries a
 // breadcrumb back here instead of a further row of tabs.
 const practiceLevels = new Set(
-  (await getCollection('exercises', ({ data }) => data.role === 'exam-practice')).map((set) => set.id.split('/')[0]),
+  (await getCollection('exercises', ({ data }) => data.role === 'exam-practice' && !data.retired)).map((set) => set.id.split('/')[0]),
 );
 const { state, entries } = getLidCatalogue();
 const card =

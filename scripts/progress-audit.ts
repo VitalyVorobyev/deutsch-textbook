@@ -151,6 +151,8 @@ export interface CatalogItem extends ExerciseItem {
   topic?: string;
   role?: string;
   arming?: string[];
+  /** a retired set's item: it still resolves its old attempts, but no probe family is built on it */
+  retired?: boolean;
 }
 
 /** The prompt as each explanation language shows it; absent halves fall back to EN at render. */
@@ -589,6 +591,7 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
       topic?: string;
       role?: string;
       arming?: string[];
+      retired?: boolean;
       items?: ExerciseItem[];
     };
     for (const item of data.items ?? [])
@@ -598,6 +601,7 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
         topic: data.topic,
         role: data.role,
         arming: data.arming,
+        ...(data.retired ? { retired: true } : {}),
       });
   }
 
@@ -1145,6 +1149,7 @@ function delayedSummary(
       topicId: string;
       role?: string;
       arming?: string[];
+      retired?: boolean;
       items: Array<{ id: string; outcomes: string[] }>;
     }
   >();
@@ -1155,6 +1160,7 @@ function delayedSummary(
       topicId: item.topic,
       role: item.role,
       arming: item.arming,
+      retired: item.retired,
       items: [],
     };
     set.items.push({ id: item.id, outcomes: item.outcomes ?? [] });

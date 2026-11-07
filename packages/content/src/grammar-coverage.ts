@@ -197,13 +197,14 @@ export function drilledFocusTags(root = repoRoot()): Map<string, Set<Level>> {
   const tags = new Map<string, Set<Level>>();
   const base = join(root, 'content', 'exercises');
   for (const file of walk(base)) {
-    let doc: { role?: string; items?: { focus?: string; preview?: boolean }[] };
+    let doc: { role?: string; retired?: boolean; items?: { focus?: string; preview?: boolean }[] };
     try {
       doc = YAML.parse(readFileSync(file, 'utf8'));
     } catch {
       continue;
     }
-    if (doc.role !== 'practice' && doc.role !== 'drill') continue;
+    // A retired set is served nowhere, so it teaches nothing.
+    if ((doc.role !== 'practice' && doc.role !== 'drill') || doc.retired) continue;
     const level = exerciseLevelFromPath(file, base);
     for (const item of doc.items ?? []) {
       if (!item.focus || item.preview) continue;
