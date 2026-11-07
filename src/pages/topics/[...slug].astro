@@ -24,7 +24,7 @@ import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { deckWords } from '../../lib/vocab-mastery';
 import SeeAlso from '../../components/topic/SeeAlso.astro';
 import { getCurriculum } from '@da/content/curriculum';
-import { isTopicReviewed } from '../../lib/content';
+import { getSetRecording, isTopicReviewed } from '../../lib/content';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
 
@@ -70,7 +70,8 @@ const exerciseSets = await Promise.all(
       if (!itemDocument) throw new Error(`Topic ${data.id}: document "${documentId}" not found`);
       return [documentId, itemDocument.data] as const;
     }));
-    return { id, data: set.data, document: document?.data, documents: Object.fromEntries(itemDocuments) };
+    const recording = await getSetRecording(set.data);
+    return { id, data: set.data, document: document?.data, documents: Object.fromEntries(itemDocuments), recording };
   }),
 );
 
@@ -339,7 +340,7 @@ const KIND_KEY: Record<string, StringKey> = {
                 </div>
                 <div class="flex flex-col gap-4">
                   {group.sets.map((s) => (
-                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} recording={s.recording} />
                   ))}
                 </div>
               </section>
@@ -357,7 +358,7 @@ const KIND_KEY: Record<string, StringKey> = {
                 </summary>
                 <div class="flex flex-col gap-4 border-t border-stone-200 p-3 dark:border-stone-700 sm:p-4">
                   {group.sets.map((s) => (
-                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} recording={s.recording} />
                   ))}
                 </div>
               </details>

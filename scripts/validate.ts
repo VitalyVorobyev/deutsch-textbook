@@ -87,6 +87,7 @@ import { reviewLedgerProblems } from '@da/content/review-ledger';
 import { characterProblems } from '@da/content/characters';
 import { queueProblems } from '@da/content/queue';
 import { contentGraph } from '@da/content/graph';
+import { isTaskSet, taskSetProblems } from '@da/content/task-sets';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -1127,7 +1128,7 @@ for (const { file, data } of wortnetze.values()) {
   for (const { role, route } of routed) {
     const byLevel = new Map<string, string>();
     for (const [setId, { file, data }] of exerciseSets) {
-      if (data.role !== role) continue;
+      if (data.role !== role || data.retired) continue;
       const dir = setId.split('/')[0]!;
       const other = byLevel.get(dir);
       if (other)
@@ -1143,14 +1144,15 @@ for (const { file, data } of wortnetze.values()) {
 /**
  * A teaching set's name says its owner and its job (ADR 0014): `<topic>`, `<topic>-produktion`,
  * `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
- * `<topic>[-<point>]-ausblenden` / `-remediation`, and `drill-<focus>` for drills. Without the
+ * `<topic>[-<point>]-ausblenden` / `-remediation`, `<topic>-aufgabe[-<n>]` for a task set (its own
+ * rules are `taskSetProblems`), and `drill-<focus>` for drills. Without the
  * rule, names drifted into five conventions, and a name stopped telling an editor which topic a
  * file belongs to.
  *
  * And no set may take an id the rename map retired: an attempt logged under that id would be
  * filed under the set the map points to.
  */
-const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|dokument)$/;
+const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|dokument|aufgabe(-\d+)?)$/;
 for (const [setId, { file, data }] of exerciseSets) {
   if (Object.hasOwn(SET_ID_MIGRATION, setId))
     fail(
@@ -1177,8 +1179,8 @@ for (const [setId, { file, data }] of exerciseSets) {
     fail(
       file,
       data.stage === 'transfer'
-        ? `a transfer set ends in -produktion, -transfer, -hoeren or -dokument`
-        : `-produktion, -transfer, -hoeren and -dokument name transfer sets, but stage is "${data.stage}"`,
+        ? `a transfer set ends in -produktion, -transfer, -hoeren, -dokument or -aufgabe[-<n>]`
+        : `-produktion, -transfer, -hoeren, -dokument and -aufgabe name transfer sets, but stage is "${data.stage}"`,
     );
   if (name.endsWith('-hoeren') && !data.items.every((item) => item.type === 'audio-comprehension'))
     fail(file, `a -hoeren set holds audio-comprehension items only`);
@@ -1204,9 +1206,11 @@ for (const [topicId, { data }] of topics) {
     listedByTopics.set(id, topicId);
 }
 for (const [setId, { file, data }] of exerciseSets) {
+  // A retired set is served nowhere and listed by no manifest (`taskSetProblems` holds that); its
+  // items are still checked below, because attempts logged against them keep resolving.
   if (isLevelOwnedRole(data.role)) {
     const lister = listedByTopics.get(setId);
-    if (lister)
+    if (lister && !data.retired)
       fail(
         file,
         `a role: ${data.role} set belongs to its level, not a topic — "${lister}" must not list it in its elements`,
@@ -1214,7 +1218,9 @@ for (const [setId, { file, data }] of exerciseSets) {
     continue;
   }
   const owner = data.topic ? topics.get(data.topic) : undefined;
-  if (!owner) {
+  if (data.retired) {
+    // listed nowhere by construction
+  } else if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
   } else if (data.role === 'probe') {
     if (!owner.data.elements.probes.includes(setId))
@@ -1671,8 +1677,10 @@ for (const [setId, { file, data }] of exerciseSets) {
         // web demo speaks — so the two must say exactly the same thing, or a learner on Pages
         // and a learner on the desktop app would be answering questions about different audio.
         // The WAV itself is checked in bundle-audio.ts, not here: content validates identically
-        // in both builds, and only one of them has the file on disk.
-        if (item.recording) {
+        // in both builds, and only one of them has the file on disk. An item in a task set has
+        // neither turns nor a recording of its own: the set's recording is its script
+        // (`taskSetProblems`).
+        if (item.recording && item.source) {
           const artifact = listeningArtifacts.get(item.recording);
           if (!artifact)
             fail(
@@ -1881,9 +1889,18 @@ for (const [readingId, { file, data }] of readings) {
   for (const p of deParityProblems(data)) fail(file, p);
 }
 
+// Task sets (ADR 0016): the ladder, the shared recording, the -aufgabe name, converted topics and
+// retired sets (packages/content/src/task-sets.ts).
+for (const problem of taskSetProblems({
+  sets: exerciseSets,
+  topics,
+  recordings: listeningArtifacts,
+}))
+  errors.push(problem);
+
 // Orphan exercise sets (not referenced by any topic)
 for (const [setId, { file, data }] of exerciseSets) {
-  if (STANDALONE_ROLES.has(data.role)) continue; // standalone by design
+  if (STANDALONE_ROLES.has(data.role) || data.retired) continue; // standalone by design
   const referenced = [...topics.values()].some(
     (t) => t.data.elements.exercises.includes(setId) || t.data.elements.pretest === setId,
   );
@@ -2465,14 +2482,21 @@ function checkListeningCollections(plan: ListeningPlan, artifactIds: Set<string>
       });
       const [first] = items;
       if (!first) return;
+      // A task set's items carry no script: they all play the set's recording, which is theirs.
+      const setRecording = isTaskSet(set.data)
+        ? listeningArtifacts.get(set.data.recording!)?.data.transcript
+        : undefined;
+      const turns = (item: typeof first) => item.source?.turns ?? setRecording ?? [];
       const script = (item: typeof first) =>
-        JSON.stringify(item.source.turns.map(({ speaker, text }) => ({ speaker, text })));
+        JSON.stringify(turns(item).map(({ speaker, text }) => ({ speaker, text })));
       for (const item of items.slice(1))
         if (script(item) !== script(first))
           fail(at, `"${item.id}" and "${first.id}" are one recording but differ in their turns`);
-      for (const item of items)
-        if (item.recording && item.recording !== artifact.id)
-          fail(at, `"${item.id}" plays recording "${item.recording}", not this one`);
+      for (const item of items) {
+        const plays = item.recording ?? set.data.recording;
+        if (plays && plays !== artifact.id)
+          fail(at, `"${item.id}" plays recording "${plays}", not this one`);
+      }
       const outcomes = new Set(items.flatMap((item) => item.outcomes));
       if (
         outcomes.size !== artifact.outcomes.length ||
@@ -2481,7 +2505,7 @@ function checkListeningCollections(plan: ListeningPlan, artifactIds: Set<string>
         fail(at, `outcomes must be its items' outcomes: ${[...outcomes].join(', ')}`);
       if (artifact.questions !== items.length)
         fail(at, `questions is ${artifact.questions}, but it serves ${items.length} items`);
-      const speakers = new Set(first.source.turns.map((turn) => turn.speaker)).size;
+      const speakers = new Set(turns(first).map((turn) => turn.speaker)).size;
       if (speakers < artifact.speakers.min || speakers > artifact.speakers.max)
         fail(
           at,

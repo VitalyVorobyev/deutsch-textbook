@@ -549,7 +549,8 @@ function buildElements(graph: ContentGraph): void {
   }
 
   for (const set of graph.sets.values()) {
-    if (!set.data) continue;
+    // A retired set keeps its file (its ids stay reserved) but is course material no longer.
+    if (!set.data || set.data.retired) continue;
     // Absent exactly for the level-owned roles; the schema holds the two together.
     const topic = set.data.topic;
     const kind = kindForRole(set.data.role);
@@ -589,6 +590,9 @@ function buildElements(graph: ContentGraph): void {
   // to the level, like the set.
   const recordingOwner = new Map<string, string | undefined>();
   for (const set of graph.sets.values()) {
+    if (set.data?.retired) continue;
+    // A task set plays its recording for every item; any other set names one per item.
+    if (set.data?.recording) recordingOwner.set(set.data.recording, set.data.topic);
     for (const item of set.data?.items ?? []) {
       const recording = (item as { recording?: string }).recording;
       if (recording) recordingOwner.set(recording, set.data.topic);

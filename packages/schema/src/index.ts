@@ -317,6 +317,16 @@ export const focusEvidenceSchema = z
     message: 'focus_evidence needs at least one retained or failed predicate',
   });
 
+/**
+ * The rungs of a task set's ladder, in the order a set climbs them (ADR 0016): what the
+ * recording is about, a detail in it, who said it, noticing the target form, and a typed reply.
+ */
+export const TASK_RUNGS = ['gist', 'detail', 'who', 'form', 'reply'] as const;
+export type TaskRung = (typeof TASK_RUNGS)[number];
+
+/** How many plays a recording allows before the answer, when nothing says otherwise. */
+export const DEFAULT_MAX_REPLAYS = 3;
+
 const itemBase = {
   id: slug,
   /** Task contract version persisted with attempts. */
@@ -346,6 +356,8 @@ const itemBase = {
     .optional(),
   /** Optional document shown for this item. It overrides the set-level stimulus. */
   stimulus: z.string().min(1).optional(),
+  /** The item's rung on a task set's ladder; required in a task set, meaningless elsewhere. */
+  rung: z.enum(TASK_RUNGS).optional(),
 };
 
 export const mcItemSchema = z.object({
@@ -578,7 +590,11 @@ export const audioSourceSchema = z.object({
 export const audioComprehensionItemSchema = z.object({
   ...itemBase,
   type: z.literal('audio-comprehension'),
-  source: audioSourceSchema,
+  /**
+   * The item's own script. Required outside a task set; inside one the item omits it, because
+   * the set's `recording` is the one stimulus every item answers (`exerciseSetSchema`).
+   */
+  source: audioSourceSchema.optional(),
   /**
    * Optional id of a reviewed `content/listening/<level>/<id>.yaml` recording.
    *
@@ -593,7 +609,7 @@ export const audioComprehensionItemSchema = z.object({
   options: z.array(z.string().min(1)).min(2),
   correct: z.number().int().min(0),
   translation: bilingualSchema.optional(),
-  max_replays: z.number().int().min(1).max(10).default(3),
+  max_replays: z.number().int().min(1).max(10).default(DEFAULT_MAX_REPLAYS),
 });
 
 export const exerciseItemSchema = z.discriminatedUnion('type', [
@@ -710,11 +726,52 @@ export const exerciseSetSchema = z
     title: bilingualSchema.optional(),
     /** Reusable document kept visible while every item in this set is answered. */
     stimulus: z.string().optional(),
+    /**
+     * The id of a reviewed `content/listening/<level>/<id>.yaml` recording the whole set is built
+     * on. A set that has one is a **task set** (ADR 0016): one player and one play budget for every
+     * item, the transcript only once every item is answered, and its `audio-comprehension` items
+     * carry neither `source` nor `recording` of their own. Exclusive with `stimulus`.
+     */
+    recording: slug.optional(),
+    /** Plays of the set's recording allowed before the set is finished (default 3). */
+    max_replays: z.number().int().min(1).max(10).optional(),
+    /**
+     * A retired set is listed by no manifest and served nowhere, but its file stays: its set and
+     * item ids stay reserved, and attempts logged against it keep resolving.
+     */
+    retired: z.literal(true).optional(),
     /** Exact `setId::itemId` sources that arm a delayed probe family. Probe sets require it. */
     arming: z.array(z.string().min(1)).default([]),
     items: z.array(exerciseItemSchema).min(1),
   })
   .superRefine((set, ctx) => {
+    if (set.recording && set.stimulus)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['recording'],
+        message: 'a set is built on one stimulus — a recording or a document, not both',
+      });
+    if (set.max_replays !== undefined && !set.recording)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['max_replays'],
+        message: 'max_replays counts plays of the set recording — this set has no recording:',
+      });
+    set.items.forEach((item, index) => {
+      if (item.type !== 'audio-comprehension') return;
+      if (set.recording && (item.source || item.recording))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['items', index],
+          message: `item "${item.id}" is in a task set, which plays the set recording "${set.recording}" — remove its source: and recording:`,
+        });
+      if (!set.recording && !item.source)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['items', index, 'source'],
+          message: `item "${item.id}" needs its source: turns — only a set with a recording: may omit them`,
+        });
+    });
     if (isLevelOwnedRole(set.role) && set.topic)
       ctx.addIssue({
         code: 'custom',
@@ -1874,11 +1931,11 @@ export const topicElementsSchema = z.object({
   /** 3-item diagnostic rendered above the article */
   pretest: z.string().optional(),
   /**
-   * Exercise sets in **page order, which is the authored teaching order** — deliberately one list
-   * rather than a `practice:`/`drill:` split. 14 of the 49 topics interleave the two on purpose
-   * (`dativ` runs practice → drill → drill → practice → practice → drill → drill → practice), which
-   * is the scaffold→fade arc written down; bucketing by role would have silently reordered their
-   * pages.
+   * Exercise sets in the authored teaching order — deliberately one list rather than a
+   * `practice:`/`drill:` split, because the scaffold→fade arc interleaves practice and drill sets.
+   * The topic page groups the sets by `activity` (core, extension, application, remediation) and
+   * keeps this order inside each group, so the list is the order within a group, not the page
+   * order across groups.
    */
   exercises: z.array(z.string()).default([]),
   /**

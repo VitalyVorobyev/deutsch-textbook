@@ -14,6 +14,7 @@ it is a question about meaning — the text says so, and it is then on the autho
 - [`key_tokens` — the tokens the focus tag grades](#item-mix-validator-enforced-per-topic)
 - [Focus-evidence predicates](#focus-evidence-predicates)
 - [Item mix](#item-mix-validator-enforced-per-topic)
+- [Task sets](#task-sets)
 - [Placement sets](#placement-sets-the-entry-test)
 - [Vocab entries](#vocab-entries)
 
@@ -65,7 +66,8 @@ it is a question about meaning — the text says so, and it is then on the autho
   to match a new take. The transcript stays hidden until submission, replaying writes no attempt,
   and there is deliberately no second audio item type: single-choice is `mc`, ordering is `order`
   and dictation is `listen`, so a parallel response union would be a second place for every
-  grading rule to be forgotten.
+  grading rule to be forgotten. Inside a [task set](#task-sets) the item carries neither `source`
+  nor `recording`: the set's recording is its script.
 - `speak` items: declare `mode: spoken-production|spoken-interaction`, a bilingual communicative `prompt` and `goal`, 2–4 bilingual self-check points (rendered as guidance on the compare screen, never as a gated form), and a concise German `model_answer`. Recording is optional and local-only; a stopped take auto-plays and the learner may re-record freely, including after seeing the model. Audio is never uploaded, persisted or automatically scored.
 - Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — three non-empty `::`-separated fields, or four with a trailing `uk` gloss (`[[de::en::ru::uk]]`), all-or-none per reading; every reading should gloss 6–10 phrases.
 - Every exercise set declares `role: pretest|practice|drill|checkpoint|probe|placement`. Pretests are 3-item sets at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`, never mixed into training, never counted as `Geübt`, and **never weakness evidence**. That last one was an oversight for months: `focusStats` keys only by `focus` and saw them, and since all 96 pretest items are `mc` — the format the pilot learner scores ~93% on — 91 easy recognition attempts sat in the denominators of a signal that exists to find *production* confusion. It changed the error rate of 27 tags and swapped a member of the weak set (`nebensatz-vorfeld` masked, `konjunktionaladverb-inversion` falsely raised). `isPretestAttempt` (`src/lib/weakness.ts`) now excludes them, in `focusStats` and in the audit's own table, and **the `-pretest` filename is validator-enforced in both directions** because an attempt records no role — the runtime predicate reads the suffix, so the convention has to be a checked contract.
@@ -180,6 +182,44 @@ Checked per **topic**, not per set, so a set may still specialize — a Hören s
 `arming:` keys and grading decisions atomically when moving an item. Preserve ids when the learning
 design is already sound, but do not create a meaningless extra file merely to protect a test
 profile. During pre-release normalization, the better course outranks backward compatibility.
+
+---
+
+## Task sets
+
+A task set is one exercise set built on one shared recording ([ADR
+0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md), decisions 1 and 2): the learner
+hears one scene and does 4–6 things with it. Rules, all validator-enforced (`exerciseSetSchema`
+for the file, `taskSetProblems` in `packages/content/src/task-sets.ts` for the rest):
+
+- **The set names the recording.** `recording: <artifact-id>` at set level, resolving to
+  `content/listening/<level>/<id>.yaml` of the set's own level; `max_replays` (default 3) is its
+  play budget. A set has one stimulus, so `recording` and `stimulus` exclude each other. Its
+  `audio-comprehension` items omit `source` and `recording`; every other set's items keep them.
+- **The items climb one ladder.** Every item has a `rung`, and rungs never go back:
+  `gist` → `detail` → `who` → `form` → `reply`. A rung may repeat. The first item is `gist` and
+  the last is `reply`, and at least 4 items are scored (`write` and `speak` are not).
+
+  | Rung | Item type | Options |
+  | --- | --- | --- |
+  | `gist`, `detail` | `audio-comprehension` | ≥ 4 |
+  | `who` | `audio-comprehension` | ≥ 3, every one a name in the recording's `speakers` |
+  | `form` | `cloze` or `translate` | — |
+  | `reply` | `translate` or `write` | — |
+
+- **The name says it.** `<topic>-aufgabe`, or `<topic>-aufgabe-<n>` for a second task, with
+  `role: practice`, `activity: application`, `stage: transfer`. The suffix names task sets only.
+- **A converted topic asks no listening question outside a task set.** Once a manifest lists one
+  task set in `elements.exercises`, no other non-probe set of that topic may hold an
+  `audio-comprehension` item. Probe families are exempt.
+- **Converting retires, it never renames.** Mark the old listening set `retired: true` and drop it
+  from every manifest list. A retired set is listed by no manifest, armed by no probe and served
+  nowhere — not on the page, in training, remediation, probes or the measurements — but its file
+  stays, so its set and item ids stay reserved and logged attempts keep resolving. Write the task
+  set's items as new ids in the new set.
+
+The learner sees one player beside the items with one play budget for the whole set, and the
+transcript, line replay and slower speed only once every item is answered.
 
 ---
 

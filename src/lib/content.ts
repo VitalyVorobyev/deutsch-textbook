@@ -19,6 +19,7 @@ import { contentGraph } from '@da/content/graph';
 import { repoRoot } from '@da/content/repo-root';
 import { topicReviewStates } from '@da/content/review-ledger';
 import type { LidCatalogue, LidEntry, LidLessonView } from '../components/lid/shared';
+import type { RecordingScript } from './audio';
 
 let reviewedTopics: Set<string> | undefined;
 
@@ -39,6 +40,24 @@ export function isTopicReviewed(id: string): boolean {
 }
 
 /**
+ * The script of a task set's `recording` (ADR 0016), as `ExerciseSet` and mixed training play it:
+ * the recording's id and its transcript. Undefined for a set without one. A recording that does
+ * not resolve is a build error — `bun run validate` already refuses it (`taskSetProblems`).
+ */
+export async function getSetRecording(
+  set: Pick<ExerciseSet, 'recording'>,
+): Promise<RecordingScript | undefined> {
+  if (!set.recording) return undefined;
+  const recordings = await getCollection('listening');
+  const record = recordings.find((entry) => entry.data.id === set.recording);
+  if (!record) throw new Error(`recording "${set.recording}" not found in content/listening`);
+  return {
+    id: record.data.id,
+    turns: record.data.transcript.map(({ speaker, text }) => ({ speaker, text })),
+  };
+}
+
+/**
  * Every exercise set, flattened with its owning topic's metadata — the one assembly behind the
  * session pages' shared sets file (src/lib/corpus-payload.ts). A set naming a topic the curriculum
  * does not have is a build error: `elements:` is closed, so validation already refuses it.
@@ -50,37 +69,38 @@ export async function getTrainingSets(): Promise<TrainingSet[]> {
   ]);
   const topicById = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
   const documentById = new Map(documents.map((document) => [document.id, document.data]));
-  return exercises.map((e) => {
-    const base = {
-      setId: e.id,
-      role: e.data.role,
-      arming: e.data.arming,
-      items: e.data.items,
-      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
-      title: e.data.title,
-    };
-    // A level-owned set names no topic; its level is its directory (ADR 0014).
-    if (!e.data.topic)
+  return Promise.all(
+    exercises.map(async (e) => {
+      const recording = await getSetRecording(e.data);
+      const base = {
+        setId: e.id,
+        role: e.data.role,
+        arming: e.data.arming,
+        items: e.data.items,
+        document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
+        title: e.data.title,
+        ...(recording ? { recording } : {}),
+        // Kept in the payload so old attempts resolve; never served (`isServed`, src/lib/training.ts).
+        ...(e.data.retired ? { retired: true as const } : {}),
+      };
+      // A level-owned set names no topic; its level is its directory (ADR 0014).
+      if (!e.data.topic)
+        return {
+          ...base,
+          title_de: e.data.title_de ?? e.data.title?.de ?? e.id,
+          level: e.id.split('/')[0]!.toUpperCase() as Level,
+        };
+      const topic = topicById.get(e.data.topic);
+      if (!topic)
+        throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
       return {
         ...base,
-        title_de: e.data.title_de ?? e.data.title?.de ?? e.id,
-        level: e.id.split('/')[0]!.toUpperCase() as Level,
+        topicId: topic.id,
+        title_de: topic.title_de,
+        level: topic.level,
       };
-    const topic = topicById.get(e.data.topic);
-    if (!topic)
-      throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
-    return {
-      setId: e.id,
-      topicId: topic.id,
-      title_de: topic.title_de,
-      level: topic.level,
-      role: e.data.role,
-      arming: e.data.arming,
-      items: e.data.items,
-      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
-      title: e.data.title,
-    };
-  });
+    }),
+  );
 }
 
 /**
@@ -179,7 +199,7 @@ async function levelSets(
 ): Promise<LevelSetDescriptor[]> {
   const exercises = await getCollection('exercises');
   return exercises
-    .filter((entry) => entry.data.role === role)
+    .filter((entry) => entry.data.role === role && !entry.data.retired)
     .map((entry) => {
       const slug = entry.id.split('/')[0]!;
       const level = slug.toUpperCase();

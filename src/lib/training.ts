@@ -1,6 +1,7 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
 import type { Bilingual, ExerciseItem, ExerciseRole, Level, VisualDocument } from '@da/schema';
+import type { RecordingScript } from './audio';
 import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
@@ -13,6 +14,13 @@ export type TopicOwnedSet = TrainingSet & { topicId: string };
 export const isTopicOwned = <T extends { topicId?: string }>(
   set: T,
 ): set is T & { topicId: string } => set.topicId !== undefined;
+
+/**
+ * A retired set stays in the corpus so its ids stay reserved and its attempts keep resolving
+ * (`revisionLookup` reads every set), but nothing serves it: not training, not remediation, not
+ * a probe, not a resumed queue.
+ */
+export const isServed = (set: { retired?: boolean }): boolean => set.retired !== true;
 
 /** One exercise set flattened for training, with its owning topic's metadata. */
 export interface TrainingSet {
@@ -29,6 +37,10 @@ export interface TrainingSet {
   document?: VisualDocument;
   /** the set's own bilingual title, when authored — not every set carries one (schema-optional) */
   title?: Bilingual;
+  /** a task set's shared recording: its items carry no script, so served alone they play this */
+  recording?: RecordingScript;
+  /** retired: kept so old attempts resolve, never served (`isServed`) */
+  retired?: true;
 }
 
 /**
@@ -49,6 +61,7 @@ export interface SessionItem {
   level: Level;
   item: ExerciseItem;
   document?: VisualDocument;
+  recording?: RecordingScript;
 }
 
 /**
@@ -86,7 +99,9 @@ export function revisionLookup(sets: readonly TrainingSet[]): RevisionLookup {
  * topic is opened (readAt) or already practiced (≥1 logged non-pretest attempt
  * — profiles that predate readAt tracking must not lose their pool).
  */
-export function eligibleTrainingSets<T extends { setId: string; topicId?: string; role?: string }>(
+export function eligibleTrainingSets<
+  T extends { setId: string; topicId?: string; role?: string; retired?: boolean },
+>(
   sets: T[],
   spine: string[],
   nodes: TopicNode[],
@@ -101,6 +116,7 @@ export function eligibleTrainingSets<T extends { setId: string; topicId?: string
   void spine;
   return sets
     .filter(isTopicOwned)
+    .filter(isServed)
     .filter(
       (s) =>
         TRAINABLE_ROLES.has((s.role ?? 'practice') as ExerciseRole) &&
@@ -139,6 +155,7 @@ export function remediationSetFor(
   const candidates = sets.filter(
     (s) =>
       s.topicId === topicId &&
+      isServed(s) &&
       TRAINABLE_ROLES.has(s.role) &&
       s.items.some((item) => item.focus === focus),
   );
@@ -240,6 +257,7 @@ export function buildSession(
       level: s.level,
       item,
       document: s.document,
+      recording: s.recording,
     })),
   );
 

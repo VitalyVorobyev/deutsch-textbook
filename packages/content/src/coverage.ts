@@ -324,10 +324,12 @@ export function taughtSurface(root = repoRoot()): string {
   for (const file of walk(join(root, 'content/exercises'), '.yaml')) {
     const data = YAML.parse(readFileSync(file, 'utf8')) as {
       role?: string;
+      retired?: boolean;
       items?: Array<Record<string, unknown>>;
     };
     const role = data.role ?? 'practice';
-    if (role !== 'practice' && role !== 'drill') continue;
+    // A retired set is served nowhere, so it earns no `~`.
+    if ((role !== 'practice' && role !== 'drill') || data.retired) continue;
     for (const item of data.items ?? []) parts.push(...itemGerman(item));
   }
 

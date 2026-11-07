@@ -187,12 +187,18 @@ function computeTagDepths(root: string): Map<string, TagDepth> {
   const filesByTag = new Map<string, Set<string>>();
   const base = join(root, 'content', 'exercises');
   for (const file of walk(base)) {
-    let doc: { role?: string; items?: { type?: string; focus?: string; preview?: boolean }[] };
+    let doc: {
+      role?: string;
+      retired?: boolean;
+      items?: { type?: string; focus?: string; preview?: boolean }[];
+    };
     try {
       doc = YAML.parse(readFileSync(file, 'utf8'));
     } catch {
       continue;
     }
+    // A retired set is served nowhere: no practice, no probe stands behind it.
+    if (doc.retired) continue;
     const role = doc.role ?? 'practice';
     const stem = file.slice(base.length + 1);
     for (const item of doc.items ?? []) {

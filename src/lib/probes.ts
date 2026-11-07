@@ -92,6 +92,8 @@ interface SetLike {
   role?: string;
   arming?: readonly string[];
   items: readonly { id: string; outcomes: string[]; focus?: string }[];
+  /** a retired set is never a family: it is served nowhere */
+  retired?: boolean;
 }
 
 /** Attempt identity for item-level arming — the same `::` shape card ids already use. */
@@ -105,7 +107,8 @@ const attemptKey = (setId: string, itemId: string) => `${setId}::${itemId}`;
 export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
   // A probe always names its topic (the schema requires it); the guard is what tells the types.
   const probes = sets.filter(
-    (s): s is SetLike & { topicId: string } => s.role === 'probe' && s.topicId !== undefined,
+    (s): s is SetLike & { topicId: string } =>
+      s.role === 'probe' && s.topicId !== undefined && s.retired !== true,
   );
 
   return probes.map((s) => {

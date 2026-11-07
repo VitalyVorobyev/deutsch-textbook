@@ -1,5 +1,11 @@
 import { useState, type ReactElement } from 'react';
-import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '@da/schema';
+import {
+  DEFAULT_MAX_REPLAYS,
+  type ExerciseItem,
+  type ExerciseSet as ExerciseSetData,
+  type VisualDocument,
+} from '@da/schema';
+import type { RecordingScript } from '../../lib/audio';
 import { logAttemptDurably } from '../../lib/write-journal';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
@@ -17,6 +23,7 @@ import { Translate } from './Translate';
 import { Write } from './Write';
 import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
+import { RecordingPlayer } from './RecordingPlayer';
 import type { ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import DocumentStimulus from './DocumentStimulus';
@@ -27,6 +34,11 @@ interface Props {
   set: ExerciseSetData;
   document?: VisualDocument;
   documents?: Record<string, VisualDocument>;
+  /**
+   * The script of the set's `recording`, when the set is a task set: one shared panel, one play
+   * budget, and the transcript only once every item is answered.
+   */
+  recording?: RecordingScript;
   /** The exam Teile the items fall into; the progress dots are then grouped by Teil. */
   teile?: readonly Teil[] | null;
 }
@@ -44,6 +56,7 @@ const UI = {
   },
   tryAgain: { en: 'Try again', ru: 'Ещё раз' },
   results: { en: 'Results', ru: 'Результат' },
+  recording: { en: 'The recording for every task below', ru: 'Запись — для всех заданий ниже' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Answered {
@@ -62,6 +75,10 @@ interface ItemProps {
   onNext: () => void;
   nextLabel: string;
   storageKey?: string;
+  /** the set recording of the task set the item belongs to (see `AudioComprehension`) */
+  recording?: RecordingScript;
+  /** the set renders that recording once, beside the item, so the item renders no player */
+  sharedRecording?: boolean;
 }
 
 /**
@@ -102,6 +119,8 @@ function ItemBody({
   onNext,
   nextLabel,
   storageKey,
+  recording,
+  sharedRecording,
   // explicit return type so a forgotten case fails the type check
 }: ItemProps): ReactElement {
   const props = { lang, onResult, locked, onNext, nextLabel };
@@ -127,11 +146,25 @@ function ItemBody({
     case 'speak':
       return <Speak item={item} {...props} />;
     case 'audio-comprehension':
-      return <AudioComprehension item={item} {...props} />;
+      return (
+        <AudioComprehension
+          item={item}
+          recording={recording}
+          sharedRecording={sharedRecording}
+          {...props}
+        />
+      );
   }
 }
 
-export default function ExerciseSet({ setId, set, document, documents = {}, teile }: Props) {
+export default function ExerciseSet({
+  setId,
+  set,
+  document,
+  documents = {},
+  recording,
+  teile,
+}: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const items = set.items;
@@ -154,6 +187,26 @@ export default function ExerciseSet({ setId, set, document, documents = {}, teil
   const item = items[index];
   const itemDocument = item?.stimulus ? documents[item.stimulus] : undefined;
   const activeDocument = itemDocument ?? document;
+  // A task set's one stimulus: the player keeps its play budget across items because it is
+  // mounted once, beside them, and is remounted only by a fresh round.
+  const sharedRecording = set.recording && recording ? recording : undefined;
+  const recordingPanel = sharedRecording && (
+    <section
+      key={`recording-${round}`}
+      className="rounded-lg border border-stone-300 bg-stone-50 p-3 dark:border-stone-600 dark:bg-stone-900/50"
+      aria-label={pick(lang, UI.recording)}
+    >
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-400">
+        {pick(lang, UI.recording)}
+      </p>
+      <RecordingPlayer
+        script={sharedRecording}
+        maxReplays={set.max_replays ?? DEFAULT_MAX_REPLAYS}
+        revealed={answered.length >= items.length}
+        lang={lang}
+      />
+    </section>
+  );
 
   function handleResult(result: ItemResult) {
     if (!item) return;
@@ -207,24 +260,27 @@ export default function ExerciseSet({ setId, set, document, documents = {}, teil
     const score = verified.reduce((s, a) => s + a.score, 0);
     const pct = verified.length ? Math.round((score / verified.length) * 100) : 0;
     return (
-      <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
-        <p className="text-3xl font-bold">
-          {formatScore(score, lang)} / {verified.length}
-        </p>
-        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-          {verified.length === 0
-            ? pick(lang, UI.practiceSaved)
-            : pct >= 80
-              ? pick(lang, UI.scoreHigh)
-              : pick(lang, UI.scoreLow)}
-        </p>
-        <button
-          type="button"
-          onClick={restart}
-          className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
-        >
-          {pick(lang, UI.tryAgain)}
-        </button>
+      <div className="flex flex-col gap-4">
+        {recordingPanel}
+        <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
+          <p className="text-3xl font-bold">
+            {formatScore(score, lang)} / {verified.length}
+          </p>
+          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+            {verified.length === 0
+              ? pick(lang, UI.practiceSaved)
+              : pct >= 80
+                ? pick(lang, UI.scoreHigh)
+                : pick(lang, UI.scoreLow)}
+          </p>
+          <button
+            type="button"
+            onClick={restart}
+            className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
+          >
+            {pick(lang, UI.tryAgain)}
+          </button>
+        </div>
       </div>
     );
   }
@@ -277,11 +333,15 @@ export default function ExerciseSet({ setId, set, document, documents = {}, teil
 
       {item && (
         <div
-          className={activeDocument ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}
+          className={
+            activeDocument || recordingPanel
+              ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]'
+              : ''
+          }
         >
-          {activeDocument && (
+          {(activeDocument || recordingPanel) && (
             <div className="lg:sticky lg:top-4 lg:self-start">
-              <DocumentStimulus document={activeDocument} />
+              {recordingPanel || <DocumentStimulus document={activeDocument!} />}
             </div>
           )}
           <ItemView
@@ -293,6 +353,7 @@ export default function ExerciseSet({ setId, set, document, documents = {}, teil
             onNext={next}
             nextLabel={index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)}
             storageKey={`${setId}::${item.id}`}
+            sharedRecording={sharedRecording !== undefined}
           />
         </div>
       )}

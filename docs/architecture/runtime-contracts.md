@@ -9,7 +9,8 @@ authoring rules.
 | Curriculum order and graph | `content/atlas.yaml`, `packages/content/src/curriculum.ts` | contracts/deepens tests |
 | Review queue and daily new-card budget | `src/lib/decks.ts` | review-plan tests |
 | In-session retry after "Again" or a missed LiD question | `src/lib/requeue.ts` | requeue tests, `tests/lid-question.test.tsx` |
-| Training eligibility and interleaving | `src/lib/training.ts` | eligibility/broad-retrieval tests |
+| Training eligibility and interleaving | `src/lib/training.ts` (`isServed`: a retired set is never served, while `revisionLookup` still resolves it) | eligibility/broad-retrieval and task-set tests |
+| Task-set playback: one recording, one play budget, transcript after the last answer | `src/components/exercises/RecordingPlayer.tsx`, `ExerciseSet.tsx` | task-set panel and audio-comprehension replay tests |
 | Mastery and navigation evidence | `src/lib/mastery.ts`, `src/lib/placement.ts` | mastery/placement tests |
 | Delayed probes | `src/lib/probes.ts` | probe tests and progress audit |
 | Scoring and focus attribution | `src/lib/scoring.ts`, `packages/grading/src/production.ts`, `packages/grading/src/evidence.ts` (`focus_evidence` predicates: where an item declares them they decide attribution — on `translate`, `listen` and the `cloze`/`order`/`table` islands alike (`islandAttribution`, `src/lib/evidence.ts`) — and a `failed` match beats `dictationSlip`) | grading/contract, evidence, focus-attribution and focus-evidence tests |

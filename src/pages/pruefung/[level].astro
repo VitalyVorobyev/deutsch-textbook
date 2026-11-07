@@ -16,7 +16,7 @@ const { exam } = Astro.props as { exam: (typeof GOETHE_EXAMS)[number] };
 const level = exam.level;
 // The course's own Goethe-style sets — committed, repeatable, and present in
 // every build, unlike the official sets above them.
-const sets = (await getCollection('exercises', ({ data }) => data.role === 'exam-practice')).filter((set) =>
+const sets = (await getCollection('exercises', ({ data }) => data.role === 'exam-practice' && !data.retired)).filter((set) =>
   set.id.startsWith(`${level}/`),
 );
 const saetze = uebungssaetze(sets);
