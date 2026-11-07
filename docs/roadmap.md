@@ -54,8 +54,8 @@ the order. The suggested order follows the dependencies:
    ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records that the
    validator holds. Each speaks through one of the twelve roster voices, and the rest speak the
    walk-on roles ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). The steps
-   run in order: the two-topic pilot (CON-6), the recasts (TON-6), the continuity debt (CON-9),
-   then the Krimi serial (CON-7).
+   run in order: the rollout of the task shape that the A2 and B1 pilots proved (CON-10), the
+   recasts (TON-6), the continuity debt (CON-9), then the Krimi serial (CON-7).
 3. **The learner app on lab-ui**, once its visual language is written down and the tools have
    proved the theme layer.
 
@@ -68,7 +68,8 @@ needs:
   and rules are written, and its units are not;
 - the lexical and structural anchor. Goethe publishes no B2 list and points to *Profile deutsch*
   instead (P26-7, to buy);
-- the pilot of the task shape (CON-6), so that B2.1 is authored once, in its final shape.
+- the task shape, which A2 `freunde-feste` and B1 `gesellschaft-zusammenleben` now pilot, so that
+  B2.1 is authored once, in its final shape.
 
 ## Tools at full power
 

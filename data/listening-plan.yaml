@@ -1884,21 +1884,23 @@ collections:
         item_types: [audio-comprehension]
         questions: 1
         context_sound: null
-  - collection: gesellschaft-zusammenleben-produktion
+  - collection: gesellschaft-zusammenleben-aufgabe
     level: B1
     artifacts:
-      - id: ls-gesellschaft-zusammenleben-produktion-01
-        serves: [hoeren-abstimmung]
+      - id: ls-gesellschaft-zusammenleben-aufgabe-01
+        serves: [aufgabe-worum-geht-es, aufgabe-warum-einwand, aufgabe-was-beschlossen, aufgabe-wer-sagt-jedes-wort]
         wave: 2
         purpose: listening-outcome
-        scenario: "Mieterversammlung: Abstimmung über Spielplatz oder Garten"
+        scenario: "Versammlung im Hof hinter Lenas Haus: Tisch, Kisten für Blumen oder ein Dach für Fahrräder — Frau Kern hat einen Einwand, Lena schlägt einen Kompromiss vor"
         outcomes: [diskussion-folgen]
-        duration_seconds: { min: 17, max: 27 }
+        required_vocabulary: [Einwand, Ecke, Dach, Treppenhaus, Lärm, Ruhe, dagegen]
+        grammar_target: "Einwand und Kompromiss (Wie wäre es, wenn …; wir könnten …; trotzdem), Relativwörter wo und was, Indefinitpronomen (viele, jedes, jemand, niemand, beides)"
+        duration_seconds: { min: 65, max: 85 }
         speakers: { min: 3, max: 3 }
-        register: "formell, Versammlung"
+        register: "Versammlung, neutral; Frau Kern duzt Lena, Lena siezt Frau Kern"
         item_types: [audio-comprehension]
-        questions: 1
-        context_sound: "leiser Gemeinschaftsraum"
+        questions: 4
+        context_sound: "ruhiger Innenhof am Abend"
   - collection: gespraech-steuern-produktion
     level: B1
     artifacts:
@@ -2025,3 +2027,42 @@ collections:
         item_types: [audio-comprehension]
         questions: 1
         context_sound: null
+  - collection: probe-gesellschaft-zusammenleben-hoeren
+    level: B1
+    artifacts:
+      - id: ls-probe-gesellschaft-zusammenleben-hoeren-01
+        serves: [variant-a]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Treppenhaus: Ein Nachbar bittet eine Mieterin, abends früher mit dem Klavier aufzuhören, und die beiden finden eine Lösung"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 20, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, höflich, Sie"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "ruhiges Treppenhaus"
+      - id: ls-probe-gesellschaft-zusammenleben-hoeren-02
+        serves: [variant-b]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Keller: Eine Mieterin ärgert sich über nasse Wäsche in der Waschmaschine, der Hausmeister und sie finden eine Lösung"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 20, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Sie"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Waschmaschine im Keller, leise"
+      - id: ls-probe-gesellschaft-zusammenleben-hoeren-03
+        serves: [variant-c]
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Im Treppenhaus: Eine Mieterin erinnert einen Nachbarn an das Putzen, und die beiden tauschen die Wochen"
+        outcomes: [diskussion-folgen]
+        duration_seconds: { min: 20, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Sie"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Treppenhaus am Tag, fernes Straßengeräusch"

@@ -27,10 +27,10 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(477);
+    expect(graph.sets.size).toBe(479);
     expect(graph.readings.size).toBe(85);
     expect(graph.vocab.size).toBe(129);
-    expect(graph.listening.size).toBe(145);
+    expect(graph.listening.size).toBe(148);
     expect(graph.documents.size).toBe(17);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
@@ -118,20 +118,20 @@ describe('content graph', () => {
       drill: 26,
       einstufung: 3,
       entdecken: 19,
-      hoertext: 145,
+      hoertext: 148,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 68,
       'lid-lektion': 12,
       praxis: 217,
       pretest: 57,
-      probe: 158,
+      probe: 159,
       pruefungspraxis: 12,
       referenz: 7,
       wortfeld: 2,
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(959);
+    expect(graph.elements.length).toBe(963);
     // Every Hörtext the plan names is published: none is planned any more.
     expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });
@@ -144,7 +144,7 @@ describe('content graph', () => {
 
     expect(byStage.get('transfer')).toBe(143);
     expect(byStage.get('geruest')).toBe(77);
-    expect(byStage.get('nachpruefung')).toBe(161);
+    expect(byStage.get('nachpruefung')).toBe(162);
 
     const teaching = graph.elements.filter((element) => element.activity);
     expect(teaching).toHaveLength(243);

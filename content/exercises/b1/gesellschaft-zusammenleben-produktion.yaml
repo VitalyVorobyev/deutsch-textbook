@@ -1,28 +1,21 @@
 # B1.10 production half: the transfer set. Fresh contexts, none a rehearsal of a
-# primary-practice sentence — the vote heard once rather than read, a dictation of the
-# line that sums the room up, two translations in frames the primary set does not use
-# (the concession with a Perfekt at the wall, wo after a place), and the open tasks the
-# outcomes claim. Open tasks are minimal ceremony: attempt → model → done;
-# `requirements` and `checklist` are guidance for comparing your own production against
-# the model — the app cannot verify free production, so it charges no steps for
-# feedback it cannot give.
-# Tag notes. hoeren-abstimmung IS tagged obwohl-trotzdem, deviating from B1.9's
-# untagged listening item deliberately: its three options differ in nothing but which
-# half of one concession carries the claim, so a wrong pick is a decode failure of
-# exactly this structure and of nothing else. hoeren-diktat is tagged
-# indefinitpronomen-erweitert on B1.8's precedent — the typed jeder hat … niemand hat
-# IS the tag's substance, and writing haben for a heard hat is the singular-agreement
-# slip itself, not a spelling slip (three edits, so `dictationSlip` does not withhold
-# attribution). The write and speak tasks stay untagged — unverified production must
-# never feed the weakness signal.
+# primary-practice sentence — a dictation of the line that sums the room up, two
+# translations in frames the primary set does not use (the concession with a Perfekt at
+# the wall, wo after a place), and the open tasks the outcomes claim. Open tasks are
+# minimal ceremony: attempt → model → done; `requirements` and `checklist` are guidance
+# for comparing your own production against the model — the app cannot verify free
+# production, so it charges no steps for feedback it cannot give.
+# Tag notes. hoeren-diktat is tagged indefinitpronomen-erweitert on B1.8's precedent —
+# the typed jeder hat … niemand hat IS the tag's substance, and writing haben for a heard
+# hat is the singular-agreement slip itself, not a spelling slip (three edits, so
+# `dictationSlip` does not withhold attribution). The write and speak tasks stay
+# untagged — unverified production must never feed the weakness signal.
 # Outcome discipline continues the primary set's arming channels (probe families arm by
 # outcome, src/lib/probes.ts): the concession work on einwand-ausdruecken, the
 # who-is-where comprehension on diskussion-folgen, the decision-recording sentence and
 # the compromise tasks on kompromiss-vorschlagen. As in B1.6–B1.9, outcome-keyed arming
 # cannot look inside an item, so the 2/7/21 clock may start from a comprehension
 # attempt or an open task rather than a graded production.
-# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns
-# is both the script a future take would be made from and today's TTS fallback.
 topic: gesellschaft-zusammenleben
 role: practice
 stage: transfer
@@ -33,40 +26,6 @@ title:
   uk: "Продукція — почути голосування, висловити заперечення, запропонувати компроміс"
   de: "Produktion — die Abstimmung hören, den Einwand nennen, den Kompromiss vorschlagen"
 items:
-  - id: hoeren-abstimmung
-    outcomes: [diskussion-folgen]
-    type: audio-comprehension
-    focus: obwohl-trotzdem
-    instruction:
-      en: "The vote, heard and not read. One speaker names what he likes better and votes for something else — listen for which half of his sentence is the vote."
-      ru: "Голосование, услышанное, а не прочитанное. Один из говорящих называет то, что нравится ему больше, и голосует за другое — слушайте, какая половина его фразы и есть голос."
-      uk: "Голосування, почуте, а не прочитане. Один із мовців називає те, що подобається йому більше, і голосує за інше — слухайте, яка половина його фрази і є голос."
-      de: "Die Abstimmung, gehört und nicht gelesen. Ein Sprecher nennt, was ihm besser gefällt, und stimmt für etwas anderes — hör darauf, welche Hälfte seines Satzes die Stimme ist."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Frau Kolb", text: "So, wir haben jetzt alle drei Vorschläge gehört. Ich bitte um Ihre Stimmen." }
-        - { speaker: "Herr Weber", text: "Obwohl mir der Garten besser gefällt, stimme ich für den Spielplatz." }
-        - { speaker: "Frau Adamek", text: "Ich schließe mich Herrn Weber an." }
-        - { speaker: "Frau Kolb", text: "Acht Stimmen dafür, drei dagegen. Die Mehrheit ist für den Spielplatz." }
-    recording: ls-gesellschaft-zusammenleben-produktion-01
-    question: "Wofür stimmt Herr Weber?"
-    options:
-      - "Für den Spielplatz, obwohl ihm der Garten besser gefällt."
-      - "Für den Garten, weil er ihm besser gefällt."
-      - "Für den Garten, obwohl ihm der Spielplatz besser gefällt."
-    correct: 0
-    translation:
-      en: "What does Herr Weber vote for?"
-      ru: "За что голосует господин Вебер?"
-      uk: "За що голосує пан Вебер?"
-    explain:
-      en: "All three options are built out of the same two proposals, so only the structure decides. The obwohl-clause is what is conceded, never what is claimed: it grants that the garden appeals to him more. The claim sits in the main clause — stimme ich für den Spielplatz. Hear the concession as the vote and you have him voting against his own words."
-      ru: "Все три варианта собраны из одних и тех же двух предложений, так что решает только структура. Придаточное с obwohl — это то, что уступают, а не то, что утверждают: оно признаёт, что сад нравится ему больше. Утверждение — в главном предложении: stimme ich für den Spielplatz. Услышьте уступку как голос — и он проголосует против собственных слов."
-      uk: "Усі три варіанти зібрані з тих самих двох пропозицій, тож вирішує лише структура. Підрядне з obwohl — це те, що поступаються, а не те, що стверджують: воно визнає, що сад подобається йому більше. Твердження — у головному реченні: stimme ich für den Spielplatz. Почуйте поступку як голос — і він проголосує проти власних слів."
-      de: "Alle drei Optionen sind aus denselben zwei Vorschlägen gebaut, also entscheidet allein die Struktur. Der obwohl-Satz ist das Zugeständnis, nie die Behauptung: Er räumt ein, dass ihm der Garten besser gefällt. Die Behauptung steht im Hauptsatz — stimme ich für den Spielplatz. Wer das Zugeständnis für die Stimme hält, lässt ihn gegen seine eigenen Worte stimmen."
-
   - id: hoeren-diktat
     outcomes: [diskussion-folgen]
     type: listen
