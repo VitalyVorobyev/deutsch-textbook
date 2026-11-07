@@ -84,7 +84,8 @@ Course content: articles, items, probes, vocabulary, readings and their language
   81 of 145 recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort |
   uniq -c`). Convert A2 `freunde-feste` (Mira's party is already a Lena episode) and one B1 topic:
   tasks in cycle order, four or more items per recording, speakers from the cast, and
-  re-recordings through `scene publish-checked`. It needs TON-6, and the pilot decides how a task
+  re-recordings through `scene publish-checked`. Every cast member has a voice (ADR 0018), and
+  neither `freunde-feste` recording waits for a recast. The pilot decides how a task
   looks on the page. First step: choose the B1 topic, then write both task lists against the topics'
   current sets, with the cost of re-recording each.
 - **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 35 places

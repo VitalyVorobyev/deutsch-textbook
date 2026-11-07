@@ -27,16 +27,14 @@ after this queue, cast from the character records
   - **First step:** the narration plan: which Lesetexte are narrated, in which voice, beside the
     scene plan.
 
-- **TON-6 · A walk-on voice pool, and casting from character records.** ADR 0016 binds each cast
-  member to one roster voice that speaks for nobody else. The unnamed roles (*Durchsage*, *Kundin*,
-  *Beamter*, …) then need voices outside the cast. Today the 12 roster voices play every role,
-  about 160 speaker names in all (`grep -h "^- [A-ZÄÖÜ]" content/listening/*/*.yaml | sort -u`).
-  At least one third of each level's recorded listening seconds stays with walk-on voices
-  (`bun run listening:inventory`; today A1 43%, A2 71%, B1 72%). Frau Kern also needs a voice,
-  because the roster has no older woman's (ADR 0017). 50 recordings break a cast member's voice
-  and wait in `recast_pending` (`data/speaker-registry.yaml`). First step: design Frau Kern's
-  voice and the walk-on voices on `qwen_tts_designed`, then recast the A2 `freunde-feste`
-  recordings first, for CON-6.
+- **TON-6 · Recast from the character records.** Each cast member speaks through one roster voice
+  that speaks nobody else, and the other roster voices speak the walk-on roles. No new voice is
+  designed ([ADR 0018](../adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). 65
+  recordings break that casting and wait in `recast_pending` (`data/speaker-registry.yaml`): 11
+  at A1, 33 at A2 and 21 at B1. Each recast re-synthesises the recording and removes its entry,
+  and the ceiling in `tests/characters.test.ts` drops with it. At least one third of each level's
+  recorded listening time stays with walk-on voices (`bun run listening:inventory`; today A1 34%,
+  A2 60%, B1 56%). First step: the 11 A1 recordings, because A1 sits nearest the floor.
 
 ## Open defects
 
