@@ -29,16 +29,17 @@ after this queue, cast from the character records
 
 - **TON-6 · Recast from the character records.** Each cast member speaks through one roster voice
   that speaks nobody else, and the other roster voices speak the walk-on roles. No new voice is
-  designed ([ADR 0018](../adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). 52
-  recordings break that casting and wait in `recast_pending` (`data/speaker-registry.yaml`). 19 of
-  them belong to the A2 Prüfung sets and 33 to topics. Each recast re-synthesises the recording and
-  removes its entry, and the ceiling in `tests/characters.test.ts` drops with it. A recast revises
-  the scene still held in the engine store: it adopts the walk-on voice for the breaking roles only,
-  then renders, runs QA and publishes with `scene publish-checked --yes --repo <root>`. The script
-  stays word for word. Topic recordings are worth recasting only where the topic will not be
-  converted soon (CON-10 replaces them). At least one third of each level's recorded listening
-  time stays with walk-on voices (`bun run listening:inventory`; today A1 59%, A2 60%, B1 61%).
-  First step: the 19 Prüfung recordings.
+  designed ([ADR 0018](../adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). Every
+  level-owned recording (checkpoints, placements, Prüfung sets) is cast that way. 33 topic
+  recordings still break the rule and wait in `recast_pending` (`data/speaker-registry.yaml`).
+  Each recast re-synthesises the recording and removes its entry, and the ceiling in
+  `tests/characters.test.ts` drops with it. A recast revises the scene still held in the engine
+  store. It adopts the walk-on voice for the breaking roles only, then renders, runs QA and
+  publishes with `scene publish-checked --yes --repo <root>`. The script stays word for word.
+  Converting a topic to a task set (CON-10) replaces its recordings, so a topic recording is worth
+  recasting only when its conversion is far off. At least one third of each level's recorded
+  listening time stays with walk-on voices (`bun run listening:inventory`; today A1 59%, A2 85%,
+  B1 61%). First step: none until CON-10's order is set; then recast the topics it leaves for last.
 
 ## Open defects
 
