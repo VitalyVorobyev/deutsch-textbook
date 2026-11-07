@@ -26,6 +26,7 @@ Claude Code loads this file when you work in this directory; the root [`CLAUDE.m
 | `content/wortfelder/`, `content/wortnetze/` | lexical overlays and word families; **enrich only the answer side** — receptive members create no cards and no mastery |
 | `content/discovery/`, `content/reference-data/` | optional Entdecken material; canonical lookup data |
 | `content/atlas.yaml` | the `groups:` taxonomy **and the curriculum spine** (`units:`) |
+| `content/characters/<id>.yaml` | **a person of the recurring cast** ([ADR 0016](../docs/adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md), names in [ADR 0017](../docs/adrs/0017-the-first-four-are-the-lena-serials-cast.md)): name, the one roster voice that speaks them, and facts and relations each pinned to the text that states them; `appearances` lists every text checked against the record |
 | `data/lid/bank.yaml`, `content/lid/` | the official LiD questions (generated, verbatim) and the course's notes: `topics.yaml`, and `notes/<topic>.yaml`, whose file **is** each question's topic; `lessons/<id>.mdx` are reading lessons over 1+ topics (a topic in **at most one** lesson) — German throughout, `## Kurz gesagt` first, and **every section with German text closes with one `<Translation>`** (EN/RU/UK, translated from the German, nothing added; hidden under `de`), collapsed except the summary's `<Translation open>`. A lesson's maps and pictures are its `figures:`, shown by `<Figure id>` outside any `<Translation>` — a bank picture (`official`, never `withheld`) or a credited file under `public/lid/lessons/`, ≤ 300 KB → [`docs/authoring/future-content-directions.md`](../docs/authoring/future-content-directions.md#leben-in-deutschland-lesson-figures). Notes and lessons carry the UK half like every other file |
 | `progress/<profile>/*.json` | learner snapshots, one folder per local profile — **local only, gitignored** |
 | `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
@@ -74,6 +75,7 @@ H2 headings, in German, in this order:
 ### Exercise items → [`docs/authoring/item-authoring.md`](../docs/authoring/item-authoring.md)
 
 - Topic `id` equals the filename; kebab-case ASCII. Exercise refs are path-ids like `a2/perfekt-haben-sein`.
+- **A named speaker is a cast member, a role or a legacy name** (`data/speaker-registry.yaml`, validator-enforced). A new scene names a cast member or a role, never a new person; a cast name in a new text joins that record's `appearances` only after the text is read against its facts. → [ADR 0016](../docs/adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)
 - **Item ids are stable.** Increment `revision` only when prompts, accepted answers, scoring, outcomes or focus semantics change — not for explanation polish.
 - Every set declares `role: pretest|practice|drill|checkpoint|probe|placement`.
 - **Every topic owns at least one `role: practice` set** and names one `elements.primary_practice` — completing it advances the Lernpfad, **so its item list must not grow later.**

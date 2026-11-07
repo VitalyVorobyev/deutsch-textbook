@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
 import { listeningAudioPath, listeningPlanSchema } from '@da/schema';
+import { voiceShare } from '@da/content/characters';
 
 export type ListeningInventoryStatus =
   | 'planned'
@@ -98,6 +99,18 @@ if (import.meta.main) {
       `\n${rows.length} planned · ${Object.entries(totals)
         .map(([key, value]) => `${value?.length ?? 0} ${key}`)
         .join(' · ')}`,
+    );
+    // ADR 0016 keeps at least a third of each level's recorded listening with walk-on voices.
+    console.log('\nLEVEL\tCAST\tWALK-ON\tWALK-ON SHARE\tUNCOUNTED');
+    for (const share of voiceShare(root)) {
+      const total = share.castMs + share.walkOnMs;
+      const percent = total ? Math.round((100 * share.walkOnMs) / total) : 0;
+      console.log(
+        `${share.level}\t${Math.round(share.castMs / 1000)} s\t${Math.round(share.walkOnMs / 1000)} s\t${percent}%\t${share.uncounted}`,
+      );
+    }
+    console.log(
+      "CAST is time spoken by a cast member's voice; UNCOUNTED recordings record no casting.",
     );
   }
 }

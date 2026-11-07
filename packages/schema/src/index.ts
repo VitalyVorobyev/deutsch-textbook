@@ -2123,3 +2123,82 @@ export const queueSchema = z
   })
   .strict();
 export type Queue = z.infer<typeof queueSchema>;
+
+// ---------------------------------------------------------------------------
+// The recurring cast (content/characters/, ADR 0016)
+// ---------------------------------------------------------------------------
+
+/**
+ * Where a character fact, relation or appearance lives: a reading text, a recording, or an
+ * exercise set whose scripted turns name the speaker.
+ *
+ * - `reading:<level>/<id>` is `content/reading/<level>/<id>.yaml`;
+ * - `listening:<id>` is the recording `content/listening/<level>/<id>.yaml`;
+ * - `exercise:<level>/<set>` is `content/exercises/<level>/<set>.yaml`.
+ */
+export const characterRefSchema = z
+  .string()
+  .regex(
+    /^(reading:(a1|a2|b1|b2)\/[a-z0-9-]+|listening:[a-z0-9-]+|exercise:(a1|a2|b1|b2)\/[a-z0-9-]+)$/,
+    'is reading:<level>/<id>, listening:<id> or exercise:<level>/<set>',
+  );
+
+export const CHARACTER_AGE_BANDS = ['child', 'young-adult', 'adult', 'older-adult'] as const;
+
+/**
+ * A person of the recurring cast. A person is content and a voice is casting: `voice` names the
+ * one roster voice (`data/listening-characters.yaml`) that speaks this person and nobody else.
+ * It is absent until a designed voice exists for the person.
+ *
+ * Every fact and relation names the shipped text that states it (`source`), because a fact
+ * ships only when a task uses it. `appearances` lists every text or recording in which the
+ * person's name has been checked against this record.
+ */
+export const characterSchema = z
+  .object({
+    id: slug,
+    /** The name the texts use: `Lena`, `Frau Kern`. */
+    name: z.string().min(1),
+    voice: slug.optional(),
+    age_band: z.enum(CHARACTER_AGE_BANDS),
+    facts: z.array(z.object({ de: z.string().min(1), source: characterRefSchema }).strict()).min(1),
+    relations: z
+      .array(
+        z
+          .object({
+            with: slug,
+            /** What the other person is to this one, in German: `Nachbarin`, `Kollegin`. */
+            de: z.string().min(1),
+            /** How this person addresses the other, where a text shows it. */
+            address: z.enum(['du', 'Sie']).optional(),
+            source: characterRefSchema,
+          })
+          .strict(),
+      )
+      .default([]),
+    appearances: z.array(characterRefSchema).min(1),
+  })
+  .strict();
+export type Character = z.infer<typeof characterSchema>;
+
+/**
+ * Every speaker name the course uses that is not a cast member, and the cast's open debts
+ * (`data/speaker-registry.yaml`). Every list may only shrink: an entry that no longer matches
+ * anything is an error, so a fixed case leaves the list in the same change.
+ */
+export const speakerRegistrySchema = z
+  .object({
+    version: z.literal(1),
+    /** Unnamed roles, spoken by walk-on voices: `Durchsage`, `Kundin`, `Beamter`. */
+    roles: z.array(z.string().min(1)),
+    /** Named speakers who are neither cast nor role yet: renamed, cast or made a role later. */
+    legacy_names: z.array(z.string().min(1)),
+    /** Places a cast member's name occurs that have not been checked against the record. */
+    continuity_pending: z.array(
+      z.object({ name: z.string().min(1), refs: z.array(characterRefSchema).min(1) }).strict(),
+    ),
+    /** Recordings whose casting breaks a cast member's voice, until they are re-recorded. */
+    recast_pending: z.array(z.string().regex(/^[a-z0-9-]+$/)),
+  })
+  .strict();
+export type SpeakerRegistry = z.infer<typeof speakerRegistrySchema>;

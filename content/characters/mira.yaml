@@ -1,0 +1,20 @@
+# Lena's colleague in the Lena serial (ADR 0016). Each fact names the text that states it.
+id: mira
+name: Mira
+voice: mira
+age_band: young-adult
+facts:
+  - de: Mira arbeitet mit Lena in der Bäckerei.
+    source: reading:a2/lena-3-die-bewerbung
+  - de: Mira wird im August dreißig.
+    source: reading:a2/lena-4-miras-fest
+  - de: Mira spielt seit zehn Jahren Fußball beim SV Nord.
+    source: reading:a2/lena-4-miras-fest
+relations:
+  - with: lena
+    de: Kollegin aus der Bäckerei
+    address: du
+    source: reading:a2/lena-4-miras-fest
+appearances:
+  - reading:a2/lena-3-die-bewerbung
+  - reading:a2/lena-4-miras-fest

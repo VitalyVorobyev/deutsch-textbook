@@ -84,6 +84,7 @@ import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 import { lidProblems } from '@da/content/lid';
 import { SET_ID_MIGRATION } from '../src/lib/set-id-migration';
 import { reviewLedgerProblems } from '@da/content/review-ledger';
+import { characterProblems } from '@da/content/characters';
 import { queueProblems } from '@da/content/queue';
 import { contentGraph } from '@da/content/graph';
 
@@ -259,6 +260,10 @@ for (const problem of authorshipProvenanceProblems(
 
 // The review ledger names only files that exist, one row each (ADR 0014).
 for (const problem of reviewLedgerProblems(ROOT)) errors.push(problem);
+
+// The recurring cast: records resolve, every speaker is known, a cast name is checked against
+// its record, and a cast member's voice speaks nobody else (ADR 0016).
+for (const problem of characterProblems(ROOT)) errors.push(problem);
 
 // Every queue entry names a file, item, topic or kind that exists (ADR 0014).
 for (const problem of queueProblems(ROOT, contentGraph(ROOT))) errors.push(problem);
