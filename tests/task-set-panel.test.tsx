@@ -1,7 +1,8 @@
 /**
  * A task set plays one recording for all its items: one player beside them, one play budget
- * across them, and the transcript only once every item is answered. Its items show their question
- * and options and nothing else.
+ * across them, and the transcript only once every item is answered. It opens on its listening
+ * questions, without their options, and keeps them in view while the items are answered. Its items
+ * show their question and options and nothing else.
  *
  * Fixtures are inline and state every field the assertions read.
  */
@@ -43,6 +44,20 @@ const set = exerciseSetSchema.parse({
   ],
 });
 
+/** The same set with an item on the scene's language after its two listening questions. */
+const withForm = exerciseSetSchema.parse({
+  ...set,
+  items: [
+    ...set.items,
+    {
+      id: 'form',
+      type: 'cloze',
+      text: 'Frau Kern {{kommt}} auch.',
+      explain: { en: 'Third person singular.', ru: 'Третье лицо единственного числа.' },
+    },
+  ],
+});
+
 const script = {
   id: 'ls-panel-fixture-01',
   turns: [
@@ -52,6 +67,7 @@ const script = {
 };
 
 const PLAY = '▶ Anhören';
+const START = 'Zur ersten Aufgabe →';
 
 const original = {
   bundle: process.env.PUBLIC_ATLAS_AUDIO_BUNDLE,
@@ -61,6 +77,7 @@ const original = {
 };
 
 beforeEach(() => {
+  logAttemptDurably.mockClear();
   process.env.PUBLIC_ATLAS_AUDIO_BUNDLE = '1';
   window.HTMLMediaElement.prototype.play = () => Promise.resolve();
   window.HTMLMediaElement.prototype.pause = () => {};
@@ -83,9 +100,71 @@ function playThrough() {
   fireEvent.ended(document.querySelector('audio')!);
 }
 
+/** The listening questions as the panel lists them, in order. */
+function listedQuestions(): string[] {
+  const list = screen.getByRole('list', { name: 'The listening questions' });
+  return Array.from(list.querySelectorAll('li [lang="de"]')).map((node) => node.textContent ?? '');
+}
+
 describe('a task set', () => {
+  test('opens on the listening questions, without their options or the later items', () => {
+    render(<ExerciseSet setId="a2/wohnen-aufgabe" set={withForm} recording={script} />);
+
+    expect(screen.getByText('Lesen Sie zuerst die Aufgaben.')).toBeTruthy();
+    expect(listedQuestions()).toEqual(['Worum geht es?', 'Wer kommt auch?']);
+    for (const option of ['Einen Besuch', 'Eine Reise', 'Frau Kern', 'Jonas'])
+      expect(screen.queryByText(option)).toBeNull();
+    expect(document.querySelector('input')).toBeNull();
+    expect(screen.getByText('Then 1 task on the language of the scene.')).toBeTruthy();
+  });
+
+  test('reading the questions spends no play, and starting does not interrupt one', () => {
+    render(<ExerciseSet setId="a2/wohnen-aufgabe" set={set} recording={script} />);
+
+    expect(screen.getByText('0 / 2')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: START }));
+    expect(screen.getByText('0 / 2')).toBeTruthy();
+
+    cleanup();
+    render(<ExerciseSet setId="a2/wohnen-aufgabe" set={set} recording={script} />);
+    fireEvent.click(screen.getByRole('button', { name: PLAY }));
+    expect(screen.getByText('1 / 2')).toBeTruthy();
+    const audio = document.querySelector('audio');
+    fireEvent.click(screen.getByRole('button', { name: START }));
+    // The same player, still playing: the item mounted beside it, not in place of it.
+    expect(document.querySelector('audio')).toBe(audio);
+    expect(screen.getByRole('button', { name: '…' })).toBeTruthy();
+    expect(screen.getByText('1 / 2')).toBeTruthy();
+  });
+
+  test('the questions stay in view while the items are answered', () => {
+    render(<ExerciseSet setId="a2/wohnen-aufgabe" set={withForm} recording={script} />);
+    fireEvent.click(screen.getByRole('button', { name: START }));
+
+    expect(listedQuestions()).toEqual(['Worum geht es?', 'Wer kommt auch?']);
+    const current = () =>
+      screen
+        .getByRole('list', { name: 'The listening questions' })
+        .querySelector('[aria-current="step"] [lang="de"]')?.textContent;
+    expect(current()).toBe('Worum geht es?');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Einen Besuch' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Weiter →' }));
+    expect(listedQuestions()).toEqual(['Worum geht es?', 'Wer kommt auch?']);
+    expect(current()).toBe('Wer kommt auch?');
+    expect(screen.getByText('✓')).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Jonas' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Weiter →' }));
+    // On the language item the list is still there, with nothing current and both answers marked.
+    expect(listedQuestions()).toEqual(['Worum geht es?', 'Wer kommt auch?']);
+    expect(current()).toBeUndefined();
+    expect(screen.getByText('✗')).toBeTruthy();
+  });
+
   test('one player and one budget for every item; the transcript once all are answered', () => {
     render(<ExerciseSet setId="a2/wohnen-aufgabe" set={set} recording={script} />);
+    fireEvent.click(screen.getByRole('button', { name: START }));
 
     expect(screen.getAllByRole('button', { name: PLAY })).toHaveLength(1);
     expect(document.querySelectorAll('audio')).toHaveLength(1);

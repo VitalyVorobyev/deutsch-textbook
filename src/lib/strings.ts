@@ -213,6 +213,19 @@ export const STRINGS = {
     uk: 'Спеціальні символи',
   },
   'exercise.words': { de: 'Wörter', en: 'words', ru: 'слов', uk: 'слів' },
+  // A task set's listening questions, read before the recording plays (the exam's own rubric).
+  'exercise.readTasksFirst': {
+    de: 'Lesen Sie zuerst die Aufgaben.',
+    en: 'Read the tasks first.',
+    ru: 'Сначала прочитайте задания.',
+    uk: 'Спочатку прочитайте завдання.',
+  },
+  'exercise.toFirstTask': {
+    de: 'Zur ersten Aufgabe →',
+    en: 'To the first task →',
+    ru: 'К первому заданию →',
+    uk: 'До першого завдання →',
+  },
 
   // Document stimulus.
   'document.everyday': {

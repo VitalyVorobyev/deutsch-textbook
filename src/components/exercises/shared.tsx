@@ -105,7 +105,7 @@ export function Translation({ text, lang }: { text?: Bilingual; lang: ExplainLan
 }
 
 /** Prüfen and Weiter share these metrics, so swapping one for the other moves nothing. */
-const ACTION_BUTTON =
+export const ACTION_BUTTON =
   'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-40 sm:min-h-0 sm:py-1.5';
 
 /**

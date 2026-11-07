@@ -24,7 +24,7 @@ import { Write } from './Write';
 import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
 import { RecordingPlayer } from './RecordingPlayer';
-import type { ItemResult } from './shared';
+import { ACTION_BUTTON, type ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import DocumentStimulus from './DocumentStimulus';
 import type { Teil } from '../../lib/exam-practice';
@@ -60,7 +60,36 @@ const UI = {
     en: 'One recording for every task in this set',
     ru: 'Одна запись для всех заданий этого блока',
   },
-} as const satisfies Record<string, { en: string; ru: string }>;
+  readFirstHint: {
+    en: 'Read the questions before you listen. They stay next to the recording while you answer, so you know what to listen for.',
+    ru: 'Прочитайте вопросы, прежде чем слушать. Пока вы отвечаете, они остаются рядом с записью, и вы заранее знаете, что нужно услышать.',
+    uk: 'Прочитайте запитання, перш ніж слухати. Поки ви відповідаєте, вони лишаються поруч із записом, тож ви наперед знаєте, що треба почути.',
+    de: 'Lesen Sie die Fragen, bevor Sie hören. Beim Antworten bleiben sie neben der Aufnahme.',
+  },
+  listeningQuestions: {
+    en: 'The listening questions',
+    ru: 'Вопросы к записи',
+    uk: 'Запитання до запису',
+    de: 'Die Fragen zum Hörtext',
+  },
+} as const satisfies Record<string, { en: string; ru: string; uk?: string; de?: string }>;
+
+/** The line under the listening questions that announces the set's remaining items. */
+function laterTasks(lang: ExplainLang, n: number): string {
+  if (lang === 'ru') {
+    const form = new Intl.PluralRules('ru').select(n);
+    const noun = form === 'one' ? 'задание' : form === 'few' ? 'задания' : 'заданий';
+    return `Затем — ещё ${n} ${noun} на языковой материал сцены.`;
+  }
+  if (lang === 'uk') {
+    const form = new Intl.PluralRules('uk').select(n);
+    const noun = form === 'many' ? 'завдань' : 'завдання';
+    return `Далі — ще ${n} ${noun} на мовний матеріал сцени.`;
+  }
+  if (lang === 'de')
+    return `Danach ${n} ${n === 1 ? 'Aufgabe' : 'Aufgaben'} zur Sprache der Szene.`;
+  return `Then ${n} ${n === 1 ? 'task' : 'tasks'} on the language of the scene.`;
+}
 
 interface Answered {
   itemId: string;
@@ -185,6 +214,8 @@ export default function ExerciseSet({
   const [index, setIndex] = useState(answered.length);
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
+  // A task set opens on its listening questions, as the exam does; a resumed run is past them.
+  const [started, setStarted] = useState(answered.length > 0);
 
   const finished = index >= items.length;
   const item = items[index];
@@ -193,6 +224,18 @@ export default function ExerciseSet({
   // A task set's one stimulus: the player keeps its play budget across items because it is
   // mounted once, beside them, and is remounted only by a fresh round.
   const sharedRecording = set.recording && recording ? recording : undefined;
+  /** The questions the recording answers, with their place in the set (the rest are on its language). */
+  const listening = sharedRecording
+    ? items.flatMap((it, i) =>
+        it.type === 'audio-comprehension' ? [{ id: it.id, question: it.question, at: i }] : [],
+      )
+    : [];
+  const laterCount = items.length - listening.length;
+  const readingFirst = listening.length > 0 && !started && !finished;
+
+  // Every slot below keeps its position whether the questions are being read first or answered,
+  // so starting the items never remounts the player: a play already running keeps playing, and
+  // reading the list costs no play.
   const recordingPanel = sharedRecording && (
     <section
       key={`recording-${round}`}
@@ -202,12 +245,92 @@ export default function ExerciseSet({
       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-400">
         {pick(lang, UI.recording)}
       </p>
+      {readingFirst && (
+        <div className="mb-3">
+          <h3 lang="de" className="text-base font-semibold text-stone-800 dark:text-stone-100">
+            {t('exercise.readTasksFirst', uiLang)}
+          </h3>
+          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+            {pick(lang, UI.readFirstHint)}
+          </p>
+        </div>
+      )}
+      {readingFirst && (
+        <ol aria-label={pick(lang, UI.listeningQuestions)} className="mb-4 space-y-2">
+          {listening.map((q) => (
+            <li key={q.id} className="flex min-w-0 gap-2">
+              <span className="shrink-0 font-semibold tabular-nums text-stone-400">
+                {q.at + 1}.
+              </span>
+              <span lang="de" className="min-w-0 font-medium">
+                {q.question}
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
       <RecordingPlayer
         script={sharedRecording}
         maxReplays={set.max_replays ?? DEFAULT_MAX_REPLAYS}
         revealed={answered.length >= items.length}
         lang={lang}
       />
+      {!readingFirst && listening.length > 0 && (
+        <ol
+          aria-label={pick(lang, UI.listeningQuestions)}
+          className="-mt-1 mb-1 space-y-0.5 text-sm"
+        >
+          {listening.map((q) => {
+            const a = answered[q.at];
+            const current = !finished && q.at === index;
+            return (
+              <li
+                key={q.id}
+                aria-current={current ? 'step' : undefined}
+                className={`flex min-w-0 gap-2 rounded px-2 py-1 ${
+                  current
+                    ? 'bg-amber-100 text-stone-900 dark:bg-amber-900/40 dark:text-stone-100'
+                    : a
+                      ? 'text-stone-400 dark:text-stone-500'
+                      : 'text-stone-600 dark:text-stone-300'
+                }`}
+              >
+                <span className="shrink-0 font-semibold tabular-nums">{q.at + 1}.</span>
+                <span
+                  lang="de"
+                  className={`min-w-0 flex-1 ${current ? '' : 'truncate lg:whitespace-normal'}`}
+                >
+                  {q.question}
+                </span>
+                {a && (
+                  <span
+                    aria-hidden="true"
+                    className={`shrink-0 ${a.correct ? 'text-green-600' : 'text-red-500'}`}
+                  >
+                    {a.correct ? '✓' : '✗'}
+                  </span>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+      {readingFirst && (
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setStarted(true)}
+            className={`${ACTION_BUTTON} bg-stone-800 text-white hover:bg-stone-700 dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300`}
+          >
+            {t('exercise.toFirstTask', uiLang)}
+          </button>
+          {laterCount > 0 && (
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              {laterTasks(lang, laterCount)}
+            </p>
+          )}
+        </div>
+      )}
     </section>
   );
 
@@ -255,6 +378,7 @@ export default function ExerciseSet({
     setIndex(0);
     setAnswered([]);
     setCurrentDone(false);
+    setStarted(false);
     setRound((r) => r + 1);
   }
 
@@ -337,27 +461,33 @@ export default function ExerciseSet({
       {item && (
         <div
           className={
-            activeDocument || recordingPanel
+            (activeDocument || recordingPanel) && !readingFirst
               ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]'
               : ''
           }
         >
           {(activeDocument || recordingPanel) && (
-            <div className="lg:sticky lg:top-4 lg:self-start">
+            // min-w-0: a grid item is otherwise as wide as its longest unbroken line, and the
+            // questions under the player are truncated on one line each below lg.
+            <div className="min-w-0 lg:sticky lg:top-4 lg:self-start">
               {recordingPanel || <DocumentStimulus document={activeDocument!} />}
             </div>
           )}
-          <ItemView
-            instanceKey={`${round}-${item.id}`}
-            item={item}
-            lang={lang}
-            onResult={handleResult}
-            locked={currentDone}
-            onNext={next}
-            nextLabel={index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)}
-            storageKey={`${setId}::${item.id}`}
-            sharedRecording={sharedRecording !== undefined}
-          />
+          {!readingFirst && (
+            <ItemView
+              instanceKey={`${round}-${item.id}`}
+              item={item}
+              lang={lang}
+              onResult={handleResult}
+              locked={currentDone}
+              onNext={next}
+              nextLabel={
+                index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)
+              }
+              storageKey={`${setId}::${item.id}`}
+              sharedRecording={sharedRecording !== undefined}
+            />
+          )}
         </div>
       )}
     </div>
