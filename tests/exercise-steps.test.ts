@@ -168,6 +168,6 @@ describe('one kind of work per set', () => {
     const { sets } = loadTaskSetCorpus(process.cwd());
     expect(exerciseStepProblems(sets)).toEqual([]);
     // Today's count. Splitting a mixed set lowers it, in the change that splits it; nothing raises it.
-    expect(MIXED_APPLICATION_PENDING.length).toBe(54);
+    expect(MIXED_APPLICATION_PENDING.length).toBe(53);
   });
 });

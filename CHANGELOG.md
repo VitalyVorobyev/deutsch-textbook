@@ -50,6 +50,11 @@ GitHub Release notes.
   drills follow, folded, as **Gezielt wiederholen**.
 - **A listening task shows its questions first**, as the exam does: you read what to listen for
   before you play the recording, and the questions stay beside the player while you answer.
+- **Freunde, Einladungen & Feste is the first topic sorted into the three steps.** Its listening
+  task has a new recording of Mira's party: the questions ask for a time, a cake and a day, and
+  each answer competes with one the speakers take back. The writing, speaking and dictation
+  exercises move out of Anwenden into Aufgaben, each under its skill; your earlier answers count
+  where they are now, and every set is named after what it is about.
 - **53 more listening questions play recorded voices** instead of the browser's: the listening
   tasks in the placement tests and checkpoints of A1, A2 and B1, and the ones in practice sets
   that had none. Announcements come over a loudspeaker with the shop or station around them,

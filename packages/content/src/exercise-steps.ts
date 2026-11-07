@@ -131,7 +131,6 @@ export const MIXED_APPLICATION_PENDING: readonly string[] = [
   'a2/biografie-erfahrungen-produktion',
   'a2/dativ-produktion',
   'a2/einkaufen-reklamation-produktion',
-  'a2/freunde-feste-produktion',
   'a2/gesundheit-arzttermin-produktion',
   'a2/infinitiv-mit-zu-produktion',
   'a2/lernen-verstehen-produktion',

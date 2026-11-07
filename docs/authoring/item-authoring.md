@@ -154,8 +154,12 @@ Sprechen), and **Gezielt wiederholen** (`remediation`, folded). Manifest order h
   recording set keeps its `form` and `reply` rungs. `lesen`: a document (the set's `stimulus`, or
   one on every item), and nothing asked by ear. `schreiben`: `write` items. `sprechen`: `speak`
   items.
+- A `schreiben` or `sprechen` task set is one situation: one message to write or one conversation
+  to hold, and its title names that situation. A second, unrelated prompt is a second task set, or
+  stays in the application it came from (an application may hold `write`). The author decides
+  this; no gate checks it.
 - The suffix names the task: `-hoeren`, `-diktat` and `-aufgabe` are `skill: hoeren`, `-dokument`
-  is `skill: lesen`.
+  is `skill: lesen`, `-schreiben` is `skill: schreiben` and `-sprechen` is `skill: sprechen`.
 
 The graph derives the medium: all `listen`/
 `audio-comprehension` becomes `listening`; a stimulus becomes `document`; everything else is

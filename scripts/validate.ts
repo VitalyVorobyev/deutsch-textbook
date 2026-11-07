@@ -1152,19 +1152,23 @@ for (const { file, data } of wortnetze.values()) {
 /**
  * A teaching set's name says its owner and its job (ADR 0014): `<topic>`, `<topic>-produktion`,
  * `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
- * `<topic>[-<point>]-ausblenden` / `-remediation`, `<topic>-aufgabe[-<n>]` for a task set (its own
- * rules are `taskSetProblems`), and `drill-<focus>` for drills. Without the
+ * `<topic>[-<point>]-ausblenden` / `-remediation`, `<topic>-aufgabe[-<n>]` for a recording task set
+ * (its own rules are `taskSetProblems`), `<topic>-schreiben` / `-sprechen` for a writing or speaking
+ * task, and `drill-<focus>` for drills. Without the
  * rule, names drifted into five conventions, and a name stopped telling an editor which topic a
  * file belongs to.
  *
  * And no set may take an id the rename map retired: an attempt logged under that id would be
  * filed under the set the map points to.
  */
-const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|diktat|dokument|aufgabe(-\d+)?)$/;
+const TRANSFER_SUFFIX =
+  /-(produktion|transfer|hoeren|diktat|dokument|schreiben|sprechen|aufgabe(-\d+)?)$/;
 /** A stimulus set's suffix names a task (ADR 0019), and the skill it is built for. */
 const TASK_SUFFIX_SKILL: [RegExp, string][] = [
   [/-(hoeren|diktat|aufgabe(-\d+)?)$/, 'hoeren'],
   [/-dokument$/, 'lesen'],
+  [/-schreiben$/, 'schreiben'],
+  [/-sprechen$/, 'sprechen'],
 ];
 for (const [setId, { file, data }] of exerciseSets) {
   if (Object.hasOwn(SET_ID_MIGRATION, setId))
@@ -1192,8 +1196,8 @@ for (const [setId, { file, data }] of exerciseSets) {
     fail(
       file,
       data.stage === 'transfer'
-        ? `a transfer set ends in -produktion, -transfer, -hoeren, -diktat, -dokument or -aufgabe[-<n>]`
-        : `-produktion, -transfer, -hoeren, -diktat, -dokument and -aufgabe name transfer sets, but stage is "${data.stage}"`,
+        ? `a transfer set ends in -produktion, -transfer, -hoeren, -diktat, -dokument, -schreiben, -sprechen or -aufgabe[-<n>]`
+        : `-produktion, -transfer, -hoeren, -diktat, -dokument, -schreiben, -sprechen and -aufgabe name transfer sets, but stage is "${data.stage}"`,
     );
   const taskSkill = TASK_SUFFIX_SKILL.find(([suffix]) => suffix.test(name))?.[1];
   if (taskSkill && !data.retired && (data.activity !== 'task' || data.skill !== taskSkill))
