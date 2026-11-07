@@ -293,7 +293,7 @@ describe('the writable surface is declared, not implied', () => {
       {
         class: 'exercise-set',
         field: 'activity',
-        values: ['core', 'extension', 'application', 'remediation'],
+        values: ['core', 'extension', 'application', 'task', 'remediation'],
       },
     ]);
   });

@@ -3,6 +3,7 @@ import type { z } from 'zod';
 import type { writeItemSchema } from '@da/schema';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
+import { formerItemLocations } from '../../lib/set-id-migration';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
@@ -88,6 +89,23 @@ function restoreSaved(raw: string | null): SavedWriting | null {
   }
 }
 
+/**
+ * The stored draft, or — when the item has moved between sets (ADR 0019) and nothing is stored
+ * under its current key yet — the draft left under a location it moved from.
+ */
+function readDraft(draftKey: string, storageKey: string): string | null {
+  const current = localStorage.getItem(draftKey);
+  if (current !== null) return current;
+  const cut = storageKey.lastIndexOf('::');
+  if (cut <= 0) return null;
+  const prefix = draftKey.slice(0, draftKey.length - storageKey.length);
+  for (const former of formerItemLocations(storageKey.slice(0, cut), storageKey.slice(cut + 2))) {
+    const draft = localStorage.getItem(`${prefix}${former}`);
+    if (draft !== null) return draft;
+  }
+  return null;
+}
+
 function wordCount(value: string): number {
   return value.trim() ? value.trim().split(/\s+/).length : 0;
 }
@@ -108,7 +126,7 @@ export function Write({
   // deleting someone's unfinished paragraph overnight is worse than keeping it.
   const draftKey = `da:write:${getActiveProfileId()}:${storageKey}`;
   const saved =
-    typeof localStorage === 'undefined' ? null : restoreSaved(localStorage.getItem(draftKey));
+    typeof localStorage === 'undefined' ? null : restoreSaved(readDraft(draftKey, storageKey));
   const [stage, setStage] = useState<Stage>(locked ? 'done' : (saved?.stage ?? 'draft'));
   const [draft, setDraft] = useState(saved?.draft ?? '');
   const [text, setText] = useState(saved?.text ?? '');

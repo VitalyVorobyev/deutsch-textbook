@@ -29,12 +29,13 @@ import { TOPIC_STATUS_LABEL, topicStatus, useReviews } from '../reviews';
 type Level = GraphPayload['levels'][number];
 type Topic = GraphPayload['topics'][number];
 
-const ACTIVITIES = ['core', 'extension', 'application', 'remediation'] as const;
+const ACTIVITIES = ['core', 'extension', 'application', 'task', 'remediation'] as const;
 const ACTIVITY_LABEL: Record<string, string> = {
   core: 'Grundübung',
   extension: 'Vertiefen',
   application: 'Anwenden',
-  remediation: 'Gezielt üben',
+  task: 'Aufgaben',
+  remediation: 'Gezielt wiederholen',
 };
 
 export function Themen({ graph }: { graph: GraphPayload }) {
@@ -191,7 +192,8 @@ function ThemaKarte({
         <div className="flex items-center gap-1.5" role="img" aria-label={activityLabel(profile)}>
           {ACTIVITIES.map((activity) => {
             const n = profile?.activities[activity] ?? 0;
-            const optional = activity === 'extension' || activity === 'remediation';
+            const optional =
+              activity === 'extension' || activity === 'task' || activity === 'remediation';
             return (
               <span
                 key={activity}

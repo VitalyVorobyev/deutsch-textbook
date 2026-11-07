@@ -68,10 +68,10 @@ totals.
 1. Run `bun run activity:audit`. It names core-band exceptions, topics without productive
    application, and dense topics. These are review queues, not scores.
 2. In **Themen**, open the topic. The activity panel distinguishes **Grundübung**, **Vertiefen**,
-   **Anwenden** and **Gezielt üben**. A Grundübung and a productive Anwendung are required; the
-   other two are optional.
+   **Anwenden**, **Aufgaben** and **Gezielt wiederholen**. A Grundübung and a productive Anwendung
+   are required; the other three are optional.
 3. Open **Elemente**. Read `Funktion`, `Stufe` and `Medium` separately — a short listening artifact
-   may be an application at transfer, and "listening" is not its purpose.
+   may be a task at transfer, and "listening" is not its purpose.
 4. Open each source and ask what single learner job the set performs, which outcomes it gives
    evidence for, and whether its support matches the stage. A file that exists only because of
    repository history should be merged, reclassified or retired.

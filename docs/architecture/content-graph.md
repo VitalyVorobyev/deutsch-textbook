@@ -42,9 +42,10 @@ An `Element` is one row per artifact, whatever file it came from, carrying:
 delayed-check. For teaching sets it is explicit. The runtime can also fade support through mixed
 training, so a missing dedicated fade file is not itself a defect.
 
-**`activity`** — pedagogical purpose: `core`, `extension`, `application`, `remediation`. It is
-orthogonal to role and stage. Exactly one core matches `primary_practice`, and every topic has a
-productive application in a fresh context.
+**`activity`** — pedagogical purpose: `core`, `extension`, `application`, `task`, `remediation`.
+It is orthogonal to role and stage. Exactly one core matches `primary_practice`, every topic has a
+productive application in a fresh context, and a `task` set names its `skill` ([ADR
+0019](../adrs/0019-a-topics-exercises-are-three-steps.md)).
 
 **`medium`** — derived delivery surface: `mixed`, `listening`, `document`. It prevents the old
 category error where “listening” sat beside “core” as if a medium and a purpose were alternatives.

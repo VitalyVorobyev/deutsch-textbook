@@ -47,7 +47,8 @@ const ACTIVITY_LABEL: Record<string, string> = {
   core: 'Grundübung',
   extension: 'Vertiefen',
   application: 'Anwenden',
-  remediation: 'Gezielt üben',
+  task: 'Aufgaben',
+  remediation: 'Gezielt wiederholen',
 };
 const MEDIUM_LABEL: Record<string, string> = {
   mixed: 'gemischt',
@@ -257,7 +258,7 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
             <Filter
               label="Lernfunktion"
               value={activity}
-              options={['core', 'extension', 'application', 'remediation']}
+              options={['core', 'extension', 'application', 'task', 'remediation']}
               labels={ACTIVITY_LABEL}
               onChange={setActivity}
             />

@@ -23,6 +23,6 @@ memoised per root and **degrades a malformed file to a `note` rather than throwi
 the model an editor reads *while* authoring. Every artifact becomes an **`Element`** with its lesson
 `stage`, pedagogical `activity`, derived delivery `medium` and the `touches` it delivers ([ADR
 0002](../docs/adrs/0002-topic-manifests-and-learning-activities.md)): purpose (`core`, `extension`,
-`application`, `remediation`) is never confused with media or with a file count.
+`application`, `task`, `remediation`) is never confused with media or with a file count.
 `packages/content/src/profile.ts` turns that into per-topic checks and a ranked problem list,
 **with no composite score**.

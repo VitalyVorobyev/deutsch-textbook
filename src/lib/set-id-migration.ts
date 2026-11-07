@@ -1,14 +1,14 @@
 /**
  * Exercise sets renamed to the one naming convention: `<topic>`, `<topic>-produktion`,
  * `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `drill-<focus>`
- * (ADR 0014). A set id is half of every attempt's identity, so this map is permanent: an
- * attempt logged under an old id, by an older client or in an older snapshot, must keep
- * counting for the set it was answered in.
+ * (ADR 0014), and items moved from one set to another (ADR 0019). A set id is half of every
+ * attempt's identity, so both maps are permanent: an attempt logged under an old location, by an
+ * older client or in an older snapshot, must keep counting for the set the item lives in now.
  *
- * It is applied wherever attempts enter, are compared or are read:
+ * They are applied wherever attempts enter, are compared or are read:
  * - `parseProgressSnapshot` on import and sync merge;
- * - `attemptKey`, so an old-id and a new-id copy of one attempt dedupe as one;
- * - `getAttempts`, so every reader sees the current id, whatever the stored blob holds;
+ * - `attemptKey`, so an old-location and a new-location copy of one attempt dedupe as one;
+ * - `getAttempts`, so every reader sees the current location, whatever the stored blob holds;
  * - `progress:audit`, which reads snapshot files directly.
  *
  * Never remove an entry, and never give a new set an id that appears on the left:
@@ -106,20 +106,127 @@ export const SET_ID_MIGRATION: Readonly<Record<string, string>> = {
   'b1/ls-reisen-probleme-01-hoeren': 'b1/reisen-probleme-hoeren',
 };
 
+/**
+ * Items moved between sets with their history (ADR 0019): `"<old-set-id>::<item-id>"` to the id of
+ * the set that holds the item now. The item id and its revision travel unchanged; only the set
+ * half of its location changes. A key names its set by the current id, so a lookup takes the set
+ * map first; a moved item may move again, so the lookup follows the chain.
+ *
+ * `itemMoveProblems` holds every entry against the corpus (run by `bun run validate`): the new set
+ * holds the item, the old location never holds it again, and every chain ends.
+ */
+export const ITEM_MOVES: Readonly<Record<string, string>> = {};
+
 /** The current id of a set, for an id that may predate a rename. */
 export function currentSetId(setId: string): string {
   return Object.hasOwn(SET_ID_MIGRATION, setId) ? SET_ID_MIGRATION[setId]! : setId;
 }
 
+/** Hops a chain of moves may take before it is treated as a cycle (`itemMoveProblems` fails one). */
+const MAX_MOVE_HOPS = 32;
+
+/** The set that holds an item now, for a location that may predate a rename or a move. */
+export function currentItemSetId(setId: string, itemId: string): string {
+  let current = currentSetId(setId);
+  for (let hop = 0; hop < MAX_MOVE_HOPS; hop++) {
+    const key = `${current}::${itemId}`;
+    if (!Object.hasOwn(ITEM_MOVES, key)) return current;
+    const next = ITEM_MOVES[key]!;
+    current = currentSetId(next);
+  }
+  return current;
+}
+
 /**
- * Attempts with every set id current. Returns the input array itself when nothing needed
- * renaming, so the common case allocates nothing and an unchanged blob is not rewritten.
+ * Every earlier location an item at `setId` was moved from, as `<set-id>::<item-id>` — what a
+ * reader of per-item local state (a write draft) looks up when the current key holds nothing.
  */
-export function migrateAttemptSetIds<T extends { setId: string }>(attempts: T[]): T[] {
-  if (!attempts.some((attempt) => Object.hasOwn(SET_ID_MIGRATION, attempt.setId))) return attempts;
+export function formerItemLocations(setId: string, itemId: string): string[] {
+  return Object.keys(ITEM_MOVES).filter((key) => {
+    const cut = key.lastIndexOf('::');
+    return key.slice(cut + 2) === itemId && currentItemSetId(key.slice(0, cut), itemId) === setId;
+  });
+}
+
+/**
+ * Attempts with every location current. Returns the input array itself when nothing needed
+ * renaming or moving, so the common case allocates nothing and an unchanged blob is not rewritten.
+ */
+export function migrateAttemptSetIds<T extends { setId: string; itemId: string }>(
+  attempts: T[],
+): T[] {
+  const stale = (attempt: T) => currentItemSetId(attempt.setId, attempt.itemId) !== attempt.setId;
+  if (!attempts.some(stale)) return attempts;
   return attempts.map((attempt) =>
-    Object.hasOwn(SET_ID_MIGRATION, attempt.setId)
-      ? { ...attempt, setId: currentSetId(attempt.setId) }
+    stale(attempt)
+      ? { ...attempt, setId: currentItemSetId(attempt.setId, attempt.itemId) }
       : attempt,
   );
+}
+
+/**
+ * What the corpus must keep true of a move map, as messages (empty when it holds):
+ * - a key is `<set-id>::<item-id>`, names its set by the current id (never a renamed one), and
+ *   names a different set than its target;
+ * - the set a move ends in exists and holds the item;
+ * - the location a key names holds no item of that id — a moved-out
+ *   location is never reused, or its new item would inherit the moved item's history;
+ * - every chain ends.
+ *
+ * `sets` maps each current set id to the item ids it holds. The map is a parameter so the tests
+ * can watch each rule fail on a planted entry.
+ */
+export function itemMoveProblems(
+  sets: ReadonlyMap<string, ReadonlySet<string>>,
+  moves: Readonly<Record<string, string>> = ITEM_MOVES,
+): string[] {
+  const problems: string[] = [];
+  const target = (setId: string, itemId: string): string | undefined => {
+    const key = `${setId}::${itemId}`;
+    return Object.hasOwn(moves, key) ? moves[key] : undefined;
+  };
+  for (const [key, to] of Object.entries(moves)) {
+    const cut = key.lastIndexOf('::');
+    const from = cut > 0 ? key.slice(0, cut) : '';
+    const itemId = cut > 0 ? key.slice(cut + 2) : '';
+    if (!from || !itemId || from.includes(':') || itemId.includes(':')) {
+      problems.push(`item move "${key}" is not <set-id>::<item-id>`);
+      continue;
+    }
+    if (currentSetId(from) !== from) {
+      problems.push(
+        `item move "${key}" names a renamed set — write it under the current id, "${currentSetId(from)}::${itemId}"`,
+      );
+      continue;
+    }
+    if (from === currentSetId(to)) {
+      problems.push(`item move "${key}" points to its own set`);
+      continue;
+    }
+    if (sets.get(from)?.has(itemId))
+      problems.push(
+        `item move "${key}": "${from}" still holds "${itemId}" — a moved-out location is never reused`,
+      );
+    let at = currentSetId(to);
+    const seen = new Set([from]);
+    let ended = false;
+    for (let hop = 0; hop < MAX_MOVE_HOPS; hop++) {
+      if (seen.has(at)) break;
+      seen.add(at);
+      const next = target(at, itemId);
+      if (next === undefined) {
+        ended = true;
+        break;
+      }
+      at = currentSetId(next);
+    }
+    if (!ended) {
+      problems.push(`item move "${key}" never ends — its chain returns to a set it left`);
+      continue;
+    }
+    if (!sets.has(at)) problems.push(`item move "${key}" ends in "${at}", which is not a set`);
+    else if (!sets.get(at)!.has(itemId))
+      problems.push(`item move "${key}" ends in "${at}", which holds no item "${itemId}"`);
+  }
+  return problems;
 }

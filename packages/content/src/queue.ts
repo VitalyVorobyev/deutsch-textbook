@@ -114,11 +114,34 @@ export function closeEntry(root: string, id: string): QueueResult {
   return { ok: true };
 }
 
-/** Why a target names nothing in the corpus, or `undefined` when it names something. */
+/** The set that holds an item now — the item move map of the learner app, passed in by a caller. */
+export type ItemLocator = (setId: string, itemId: string) => string;
+
+/** The ids of the items or questions a YAML file holds, or `undefined` when it is not such a file. */
+function fileItemIds(root: string, file: string): string[] | undefined {
+  try {
+    const doc = YAML.parse(readFileSync(join(root, file), 'utf8')) as {
+      items?: { id?: string }[];
+      questions?: { id?: string }[];
+    };
+    return [...(doc.items ?? []), ...(doc.questions ?? [])].flatMap((i) => (i.id ? [i.id] : []));
+  } catch {
+    return undefined;
+  }
+}
+
+const EXERCISE_FILE = /^content\/exercises\/(.+)\.yaml$/;
+
+/**
+ * Why a target names nothing in the corpus, or `undefined` when it names something. An entry is
+ * never rewritten by hand, so an item filed against a set it has since moved out of (ADR 0019) is
+ * read at its current location when `locate` is given.
+ */
 export function targetProblem(
   root: string,
   graph: ContentGraph,
   target: QueueTarget,
+  locate?: ItemLocator,
 ): string | undefined {
   if (target.topic)
     return graph.topics.has(target.topic) ? undefined : `no topic "${target.topic}"`;
@@ -129,21 +152,22 @@ export function targetProblem(
   const file = target.file!;
   if (!existsSync(join(root, file))) return `${file} does not exist`;
   if (!target.item) return undefined;
-  let ids: string[] = [];
-  try {
-    const doc = YAML.parse(readFileSync(join(root, file), 'utf8')) as {
-      items?: { id?: string }[];
-      questions?: { id?: string }[];
-    };
-    ids = [...(doc.items ?? []), ...(doc.questions ?? [])].flatMap((i) => (i.id ? [i.id] : []));
-  } catch {
-    return `${file} is not YAML with items`;
-  }
-  return ids.includes(target.item) ? undefined : `${file} has no item "${target.item}"`;
+  const ids = fileItemIds(root, file);
+  if (!ids) return `${file} is not YAML with items`;
+  if (ids.includes(target.item)) return undefined;
+  const setId = EXERCISE_FILE.exec(file)?.[1];
+  const now = setId && locate ? locate(setId, target.item) : undefined;
+  if (
+    now &&
+    now !== setId &&
+    fileItemIds(root, `content/exercises/${now}.yaml`)?.includes(target.item)
+  )
+    return undefined;
+  return `${file} has no item "${target.item}"`;
 }
 
 /** Queue defects the validator reports: a malformed file, a duplicate id, a dangling target. */
-export function queueProblems(root: string, graph: ContentGraph): string[] {
+export function queueProblems(root: string, graph: ContentGraph, locate?: ItemLocator): string[] {
   let queue: Queue;
   try {
     queue = loadQueue(root);
@@ -155,7 +179,7 @@ export function queueProblems(root: string, graph: ContentGraph): string[] {
   for (const entry of queue.entries) {
     if (seen.has(entry.id)) problems.push(`${QUEUE_FILE}: two entries with id ${entry.id}`);
     seen.add(entry.id);
-    const problem = targetProblem(root, graph, entry.target);
+    const problem = targetProblem(root, graph, entry.target, locate);
     if (problem) problems.push(`${QUEUE_FILE}: ${entry.id} — ${problem}`);
   }
   return problems;

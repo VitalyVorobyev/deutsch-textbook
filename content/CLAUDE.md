@@ -44,7 +44,9 @@ written down.
 `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
 `-ausblenden`/`-remediation`, or `drill-<focus>` (validator-enforced). A set id is half of every
 attempt key, so a rename needs an entry in `src/lib/set-id-migration.ts`, and a retired id is never
-reused. **Checkpoints, placements and exam practice sets belong to their level**: they carry no
+reused. **An item moved to another set keeps its id and revision and gets an `ITEM_MOVES` entry
+there**; every file that names its location names the new one, and the old location is never reused
+(validator-enforced, [ADR 0019](../docs/adrs/0019-a-topics-exercises-are-three-steps.md)). **Checkpoints, placements and exam practice sets belong to their level**: they carry no
 `topic:`, their directory is their level, and a document only they use carries no `topic:` either
 (validator-enforced). → [ADR 0014](../docs/adrs/0014-material-governance.md)
 
@@ -123,7 +125,7 @@ validator-enforced. **Viewing a document is never learning evidence.**
 A topic is not done until all nine are:
 
 1. `content/topics/<level>/<id>.topic.yaml` — the manifest, and `<id>.mdx` beside it: the article following the skeleton, **prose only**.
-2. Learning activities — exactly one 8–15-item `activity: core` Grundübung named by `primary_practice`, plus at least one productive `activity: application` in a fresh context; `extension` and `remediation` only for a coherent extra job. Every teaching set declares `stage`, `activity`, `title_de`; every item has `explain`; every `translate` has `key_tokens`. The item-mix bar is per topic. Run `bun run activity:audit`.
+2. Learning activities — exactly one 8–15-item `activity: core` Grundübung named by `primary_practice`, plus at least one productive `activity: application` in a fresh context; `extension` and `remediation` only for a coherent extra job. **One kind of work per set**: an application holds no listening, speaking or document item — those are `activity: task` sets with a `skill` (validator-enforced, the rest drains a pending list; [ADR 0019](../docs/adrs/0019-a-topics-exercises-are-three-steps.md)). Every teaching set declares `stage`, `activity`, `title_de`; every item has `explain`; every `translate` has `key_tokens`. The item-mix bar is per topic. Run `bun run activity:audit`.
 3. Pretest — 3 items at `<id>-pretest.yaml`, referenced via `pretest`.
 4. Probe family — `probe-<id>.yaml`, listed in `elements.probes`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A further family is ordinary work — each has its own explicit `arming:` list — but **measure `armedAt` before and after**.
 5. Reading — `kind: intensive`, 6–10 glosses, 3 questions. ~90–130 words is the authoring target and **no gate enforces it**: length is a cognitive-load judgement, made by the author.
