@@ -79,6 +79,18 @@ describe('inventory anchors', () => {
   });
 
   /**
+   * B2's Themen denominator is the Goethe-Zertifikat B2 handbook's § 4.3, its fourteen numbered
+   * themes. The size is pinned because the source is fixed: an entry added or lost is a
+   * transcription change, never a coverage one. No floor yet — no B2 topic exists to claim one.
+   */
+  test('B2 Themen are anchored by the fourteen Prüfungsthemen', () => {
+    const coverage = themaCoverage('B2');
+    expect(coverage.anchored).toBe(true);
+    expect(coverage.total).toBe(14);
+    expect(coverage.sources.map((s) => s.id)).toEqual(['goethe-b2-themen']);
+  });
+
+  /**
    * `audience` was documentation until it wasn't: A2 read 138/138 = 100% for a day against *Fit in
    * Deutsch 2*, the exam for teenagers, and nothing in the report said so. This course is for an
    * adult, so at least one current adult source must cover every level the course claims to teach.

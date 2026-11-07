@@ -8,16 +8,16 @@
  * Sprachhandlung coverage measures what it lets the learner do. Neither can see that a course has
  * never mentioned Versicherungen, Polizei or Kinderbetreuung.
  *
- *   bun scripts/themen.ts [A1|A2|B1] [--unclaimed-only] [--beyond]
+ *   bun scripts/themen.ts [A1|A2|B1|B2] [--unclaimed-only] [--beyond]
  */
 import { themaCoverage, topicClaimants } from '@da/content/themen';
-import type { Level } from '@da/schema';
+import { LEVELS, type Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const unclaimedOnly = args.includes('--unclaimed-only');
 const showBeyond = args.includes('--beyond');
 const requested = args.filter((a) => !a.startsWith('--')).map((a) => a.toUpperCase() as Level);
-const levels: Level[] = requested.length ? requested : ['A1', 'A2', 'B1'];
+const levels: Level[] = requested.length ? requested : [...LEVELS];
 
 const claimants = topicClaimants();
 const byId = new Map(claimants.map((c) => [c.id, c]));

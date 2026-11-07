@@ -12,10 +12,13 @@ to declare anything, its identity split across a directory, an MDX frontmatter a
 | file | level | audience | mode | entries | free |
 | --- | --- | --- | --- | --- | --- |
 | `goethe-dtz.yaml` | A2 + B1 | Erwachsene | unstated | 70 | yes |
+| `goethe-b2.yaml` | B2 | Erwachsene | unstated | 14 | yes |
 
 `mode: unstated` is not an omission. § 8.4 says its structures must be mastered *"aktiv und
 passiv"*; § 8.1 says nothing of the kind — it constrains task *selection*. A theme is not something
-one produces. Everything else about the format — `cumulative`, `printed`, `pdf_pages`, the
+one produces. The B2 handbook's § 4.3 is coarser than the DTZ: it numbers fourteen themes and
+illustrates each with an open-ended *z. B. … u. Ä.* gloss, so the themes are the entries and a B2
+hole is findable at theme level only. Everything else about the format — `cumulative`, `printed`, `pdf_pages`, the
 labels-only boundary, `bun scripts/anchor-check.ts` — is shared and documented once in
 [`../strukturenlisten/README.md`](../strukturenlisten/README.md).
 
@@ -30,7 +33,7 @@ claims:
 ```
 
 ```
-bun scripts/themen.ts [A1|A2|B1] [--unclaimed-only] [--beyond]
+bun scripts/themen.ts [A1|A2|B1|B2] [--unclaimed-only] [--beyond]
 ```
 
 ## What the first run found

@@ -218,6 +218,7 @@ GitHub Release notes.
 - Twelve checkpoint and placement recordings are re-voiced so that each recurring character's voice speaks only that character; the words are unchanged.
 - The 19 A2 Prüfung Hören recordings that used a recurring character's voice for someone else are re-voiced; the words are unchanged.
 - Thirteen readings that used Lena, Mira, Timo or Frau Kern for someone else now use other names, so those names mean the recurring characters; their changed questions start fresh.
+- Tooling: the Goethe B2 Prüfungsthemen as a theme anchor, so `themen.ts B2` measures B2 topics as they are written.
 
 ## [0.6.19] — 2026-10-14
 
