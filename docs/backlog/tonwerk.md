@@ -31,9 +31,12 @@ after this queue, cast from the character records
   member to one roster voice that speaks for nobody else. The unnamed roles (*Durchsage*, *Kundin*,
   *Beamter*, …) then need voices outside the cast. Today the 12 roster voices play every role,
   about 160 speaker names in all (`grep -h "^- [A-ZÄÖÜ]" content/listening/*/*.yaml | sort -u`).
-  At least one third of each level's recorded listening seconds stays with walk-on voices.
-  First step: count each level's recorded seconds by role, named or unnamed, to size the pool.
-  Then design the walk-on voices on `qwen_tts_designed`.
+  At least one third of each level's recorded listening seconds stays with walk-on voices
+  (`bun run listening:inventory`; today A1 43%, A2 71%, B1 72%). Frau Kern also needs a voice,
+  because the roster has no older woman's (ADR 0017). 50 recordings break a cast member's voice
+  and wait in `recast_pending` (`data/speaker-registry.yaml`). First step: design Frau Kern's
+  voice and the walk-on voices on `qwen_tts_designed`, then recast the A2 `freunde-feste`
+  recordings first, for CON-6.
 
 ## Open defects
 

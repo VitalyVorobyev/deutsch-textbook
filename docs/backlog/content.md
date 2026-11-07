@@ -84,9 +84,18 @@ Course content: articles, items, probes, vocabulary, readings and their language
   81 of 145 recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort |
   uniq -c`). Convert A2 `freunde-feste` (Mira's party is already a Lena episode) and one B1 topic:
   tasks in cycle order, four or more items per recording, speakers from the cast, and
-  re-recordings through `scene publish-checked`. It needs INS-10 and TON-6. The pilot decides how a
-  task looks on the page and who the older adult is. First step: choose the B1 topic, then write
-  both task lists against the topics' current sets, with the cost of re-recording each.
+  re-recordings through `scene publish-checked`. It needs TON-6, and the pilot decides how a task
+  looks on the page. First step: choose the B1 topic, then write both task lists against the topics'
+  current sets, with the cost of re-recording each.
+- **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 35 places
+  name a cast member without having been read against the record (`continuity_pending`: Lena 20,
+  Mira 6, Frau Kern 5, Timo 4). Some places add a fact the record lacks: in `ls-dativ-01`, Frau
+  Kern has a daughter. Others contradict it: in `ls-arbeit-beruf-01`, Mira takes orders from a
+  Frau Behrens and checks parcel deliveries, but the serial has her at the bakery with Herr Ott. 106 more
+  named speakers belong to nobody (`legacy_names`). Each place either agrees with the record and
+  joins its `appearances`, or is renamed. A recording that is renamed is also re-recorded. Lower
+  the ceilings in `tests/characters.test.ts` in the same change. First step: Mira's two places in
+  `arbeit-beruf` (the recording and its set). Only four of the 35 places have been read so far.
 - **CON-7 · A Krimi serial, B1–B2, extensive**
   ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). The extensive strand has
   one serial, Lena (seven episodes, A1–A2, `ls content/reading/*/lena-*`), and B1 has only the

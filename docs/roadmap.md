@@ -50,9 +50,10 @@ the order. The suggested order follows the dependencies:
 2. **The lesson task system and the recurring cast**, decided together in
    [ADR 0016](adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md). A lesson becomes tasks
    built on one stimulus each. A character becomes content, and a voice stays casting. Genre lives
-   in the reading serials. The steps run in order: the character record and its checks
-   (INS-10), the walk-on voice pool (TON-6), the two-topic pilot (CON-6), then the Krimi serial
-   (CON-7).
+   in the reading serials. The first four people, Lena, Mira, Timo and Frau Kern
+   ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records that the
+   validator holds. The steps run in order: the walk-on voice pool (TON-6), the two-topic pilot
+   (CON-6), the continuity debt (CON-9), then the Krimi serial (CON-7).
 3. **The learner app on lab-ui**, once its visual language is written down and the tools have
    proved the theme layer.
 

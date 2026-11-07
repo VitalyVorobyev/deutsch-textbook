@@ -210,6 +210,7 @@ GitHub Release notes.
 ### Changed
 
 - Tooling: TypeScript 7, Astro 7.4, Oxlint 1.88, Oxfmt formatting and current dependency patches.
+- Tooling: records for the recurring cast (Lena, Mira, Timo, Frau Kern), checked by the content validator against every recording and reading.
 
 ## [0.6.19] — 2026-10-14
 

@@ -113,15 +113,3 @@ Graders, validators, measurements and the progress audit. The format and the ID 
   order items show `Prompt: —` and `Answer: —`, so the item detail cannot be read without opening
   the YAML (`bun run progress:audit --profile vitaly --item b1/probe-leben-veraendern-relativ-praeposition:variant-a`).
   First step: print the cloze `text` with its keyed gaps.
-- **INS-10 · Character records and their checks**
-  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). Nothing ties a speaker
-  name to a person or a voice yet. The 12 roster voices play about 160 names
-  (`grep -h "^- [A-ZÄÖÜ]" content/listening/*/*.yaml | sort -u`). The checks this entry adds:
-  - a `content/characters/` schema in `@da/schema`;
-  - a validator rule that every named speaker is a cast member or an unnamed role;
-  - a rule that a cast member's voice speaks for nobody else;
-  - a `listening:inventory` column for each level's share of recorded seconds, cast against
-    walk-on.
-
-  Watch each rule fail once. First step: the schema, with the four first records (Lena, Mira,
-  Jonas and the older adult), holding only the facts a shipped task already uses.

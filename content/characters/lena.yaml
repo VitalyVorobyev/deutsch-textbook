@@ -1,0 +1,36 @@
+# The protagonist of the Lena serial (ADR 0016). Each fact names the text that states it.
+id: lena
+name: Lena
+voice: lena
+age_band: young-adult
+facts:
+  - de: Lena kommt aus Polen. Sie ist vierundzwanzig, als sie nach Bremen kommt.
+    source: reading:a1/lena-1-der-erste-tag
+  - de: Lena hat ein Zimmer in der Bahnhofstraße in Bremen.
+    source: reading:a1/lena-1-der-erste-tag
+  - de: Ihr Deutschkurs fängt im September an. Seit Oktober arbeitet sie in einer Bäckerei in der Bahnhofstraße.
+    source: reading:a2/lena-2-der-wecker-um-vier
+  - de: Lenas Vater hat in Polen eine kleine Fahrradwerkstatt, und Lena kann Fahrräder reparieren.
+    source: reading:a2/lena-3-die-bewerbung
+  - de: Ab dem ersten Juli arbeitet Lena drei Tage in der Woche in der Werkstatt von Frau Beck und macht nur noch zwei Frühschichten in der Bäckerei.
+    source: reading:a2/lena-3-die-bewerbung
+  - de: Lena hat im Winter Geburtstag.
+    source: reading:a2/lena-4-miras-fest
+relations:
+  - with: mira
+    de: Kollegin aus der Bäckerei
+    source: reading:a2/lena-3-die-bewerbung
+  - with: frau-kern
+    de: Nachbarin
+    source: reading:a2/lena-2-der-wecker-um-vier
+  - with: timo
+    de: Bekannter von Miras Fest
+    source: reading:a2/lena-4-miras-fest
+appearances:
+  - reading:a1/lena-1-der-erste-tag
+  - reading:a2/lena-2-der-wecker-um-vier
+  - reading:a2/lena-3-die-bewerbung
+  - reading:a2/lena-4-miras-fest
+  - reading:a2/lena-5-der-mann-aus-stein
+  - reading:a2/lena-6-die-blaue-tasche
+  - reading:a2/lena-7-ein-brief-fuer-den-hof

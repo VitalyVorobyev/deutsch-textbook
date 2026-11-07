@@ -2,6 +2,30 @@
 # `bun run review:claude`; a file with no row is a draft.
 version: 1
 entries:
+  - file: content/characters/frau-kern.yaml
+    state: claude-reviewed
+    revision: 3b33beefdb60c520c41aa07b9d0d144886abc7aa
+    by: Claude Code
+    at: 2026-11-07
+    note: Each fact should say exactly what its source episode says. Check the ages, the jobs and the du/Sie lines first.
+  - file: content/characters/lena.yaml
+    state: claude-reviewed
+    revision: 3254d9f344698615007b0ab63e429d3f07701a33
+    by: Claude Code
+    at: 2026-11-07
+    note: Each fact should say exactly what its source episode says. Check the ages, the jobs and the du/Sie lines first.
+  - file: content/characters/mira.yaml
+    state: claude-reviewed
+    revision: 6399e4b15b17aaf2774f1ee1089d42021b5f1071
+    by: Claude Code
+    at: 2026-11-07
+    note: Each fact should say exactly what its source episode says. Check the ages, the jobs and the du/Sie lines first.
+  - file: content/characters/timo.yaml
+    state: claude-reviewed
+    revision: 2eb28b6eed06ea5c5757432faa18a9dc8ff904a0
+    by: Claude Code
+    at: 2026-11-07
+    note: Each fact should say exactly what its source episode says. Check the ages, the jobs and the du/Sie lines first.
   - file: content/discovery/a1/ampelmaennchen.mdx
     state: owner-reviewed
     revision: 4e2e14446b18b30135d26005e9260091a756044e
@@ -910,3 +934,9 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: data/speaker-registry.yaml
+    state: claude-reviewed
+    revision: 93f715587c10dcbbea30c46fe187803e8a427267
+    by: Claude Code
+    at: 2026-11-07
+    note: "Check the roles list: each should be an unnamed function (Durchsage, Kundin), never a person's name."
