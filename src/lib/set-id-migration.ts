@@ -115,7 +115,12 @@ export const SET_ID_MIGRATION: Readonly<Record<string, string>> = {
  * `itemMoveProblems` holds every entry against the corpus (run by `bun run validate`): the new set
  * holds the item, the old location never holds it again, and every chain ends.
  */
-export const ITEM_MOVES: Readonly<Record<string, string>> = {};
+export const ITEM_MOVES: Readonly<Record<string, string>> = {
+  'a2/freunde-feste-produktion::hoeren-diktat-mitbringen': 'a2/freunde-feste-diktat',
+  'a2/freunde-feste-produktion::schreiben-einladung': 'a2/freunde-feste-schreiben',
+  'a2/freunde-feste-produktion::sprechen-glueckwunsch-tischrede': 'a2/freunde-feste-sprechen',
+  'a2/freunde-feste-produktion::sprechen-gruppenchat-absprache': 'a2/freunde-feste-sprechen',
+};
 
 /** The current id of a set, for an id that may predate a rename. */
 export function currentSetId(setId: string): string {

@@ -42,11 +42,11 @@ written down.
 
 **A teaching set's name is its topic plus its job**: `<topic>`, `<topic>-produktion`,
 `<topic>-<point>[-transfer]`, `<topic>-hoeren`, `<topic>-diktat`, `<topic>-dokument`,
-`-ausblenden`/`-remediation`, or `drill-<focus>` (validator-enforced). A set id is half of every
-attempt key, so a rename needs an entry in `src/lib/set-id-migration.ts`, and a retired id is never
-reused. **An item moved to another set keeps its id and revision and gets an `ITEM_MOVES` entry
-there**; every file that names its location names the new one, and the old location is never reused
-(validator-enforced, [ADR 0019](../docs/adrs/0019-a-topics-exercises-are-three-steps.md)). **Checkpoints, placements and exam practice sets belong to their level**: they carry no
+`<topic>-schreiben`, `<topic>-sprechen`, `-ausblenden`/`-remediation`, or `drill-<focus>`
+(validator-enforced). A set id is half of every attempt key, so a rename needs an entry in
+`src/lib/set-id-migration.ts`, and a retired id is never reused. **An item moved to another set
+keeps its id and revision and gets an `ITEM_MOVES` entry there**; every file that names its
+location names the new one, and the old location is never reused (validator-enforced, [ADR 0019](../docs/adrs/0019-a-topics-exercises-are-three-steps.md)). **Checkpoints, placements and exam practice sets belong to their level**: they carry no
 `topic:`, their directory is their level, and a document only they use carries no `topic:` either
 (validator-enforced). → [ADR 0014](../docs/adrs/0014-material-governance.md)
 

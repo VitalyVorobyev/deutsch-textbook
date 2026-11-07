@@ -1562,14 +1562,14 @@ collections:
     level: A2
     artifacts:
       - id: ls-freunde-feste-aufgabe-01
-        serves: [aufgabe-worum-geht-es, aufgabe-warum-absage, aufgabe-wer-bringt-was, aufgabe-wer-sagt-hochzeit]
+        serves: [aufgabe-worum-geht-es, aufgabe-wann-beginnt, aufgabe-was-bringt-lena, aufgabe-wann-vorbei]
         wave: 2
         purpose: listening-outcome
-        scenario: "In der Bäckerei, ein paar Tage vor Miras Fest: Lena sagt zu, ein Kollege sagt höflich ab, und alle sprechen ab, wer was mitbringt"
+        scenario: "In der Bäckerei, ein paar Tage vor Miras Fest: Mira fragt, ob ihre Karte angekommen ist, Lena sagt zu und fragt, was sie mitbringen soll, ein Kollege sagt ab und will später vorbeikommen."
         outcomes: [einladen-zusagen-absagen, absprachen-aushandeln]
-        required_vocabulary: [Einladung, mitbringen, vorbeikommen, Torte, Geschenk, Feier, Hochzeit]
+        required_vocabulary: [Karte, mitbringen, vorbeikommen, Salat, Kuchen, Torte, Geschenk, Hochzeit]
         grammar_target: "Dativpronomen (mir, dir, ihr) und trennbare Verben (mitbringen, vorbeikommen)"
-        duration_seconds: { min: 45, max: 65 }
+        duration_seconds: { min: 60, max: 90 }
         speakers: { min: 3, max: 3 }
         register: "informell"
         item_types: [audio-comprehension]

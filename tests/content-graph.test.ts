@@ -27,7 +27,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(479);
+    expect(graph.sets.size).toBe(482);
     expect(graph.readings.size).toBe(91);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(148);
@@ -122,7 +122,7 @@ describe('content graph', () => {
       'lesetext-extensiv': 23,
       'lesetext-intensiv': 68,
       'lid-lektion': 12,
-      praxis: 217,
+      praxis: 220,
       pretest: 57,
       probe: 159,
       pruefungspraxis: 12,
@@ -131,7 +131,7 @@ describe('content graph', () => {
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(969);
+    expect(graph.elements.length).toBe(972);
     // Every Hörtext the plan names is published: none is planned any more.
     expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });
@@ -142,12 +142,12 @@ describe('content graph', () => {
       byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(149);
+    expect(byStage.get('transfer')).toBe(152);
     expect(byStage.get('geruest')).toBe(77);
     expect(byStage.get('nachpruefung')).toBe(162);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(243);
+    expect(teaching).toHaveLength(246);
     expect(
       Object.fromEntries(
         LEARNING_ACTIVITIES.map((activity) => [
@@ -155,7 +155,7 @@ describe('content graph', () => {
           teaching.filter((element) => element.activity === activity).length,
         ]),
       ),
-    ).toEqual({ core: 57, extension: 23, application: 70, task: 67, remediation: 26 });
+    ).toEqual({ core: 57, extension: 23, application: 70, task: 70, remediation: 26 });
     expect(
       [...graph.topics.keys()].filter(
         (topic) =>

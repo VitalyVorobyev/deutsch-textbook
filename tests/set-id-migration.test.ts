@@ -109,8 +109,9 @@ describe('snapshot import', () => {
 });
 
 /**
- * Item moves (ADR 0019). The shipped map starts empty, so the mechanism is held on a fixture
- * entry planted for this block and removed after it; the rules are held on fixture corpora.
+ * Item moves (ADR 0019). The mechanism is held on a fixture entry planted for this block and
+ * removed after it, so no assertion depends on which items the corpus has moved; the rules are
+ * held on fixture corpora.
  */
 describe('item moves', () => {
   const FROM = 'a2/fixture-mixed';
