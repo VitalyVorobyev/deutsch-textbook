@@ -27,7 +27,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(476);
+    expect(graph.sets.size).toBe(477);
     expect(graph.readings.size).toBe(85);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(145);

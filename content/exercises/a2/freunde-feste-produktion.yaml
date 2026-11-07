@@ -8,37 +8,6 @@ title:
   ru: "Практика — голосовое сообщение, приглашение, полный стол гостей"
   uk: "Практика — голосове повідомлення, запрошення, повний стіл гостей"
 items:
-  - id: hoeren-absage-sprachnachricht
-    outcomes: [einladen-zusagen-absagen]
-    type: audio-comprehension
-    instruction:
-      en: "Tom has sent Anna a voice message. Listen once. He mentions Saturday, a present and a coffee — but he does only one of those things himself, and only on one of the days."
-      ru: "Том прислал Анне голосовое сообщение. Прослушайте один раз. В нём звучат и суббота, и подарок, и кофе — но сам он делает только одно из этого и только в один из дней."
-      uk: "Том надіслав Анні голосове повідомлення. Прослухайте один раз. У ньому звучать і субота, і подарунок, і кава — але сам він робить лише одне з цього і лише в один із днів."
-    source:
-      kind: tts
-      rate: 0.9
-      turns:
-        - { speaker: "Tom", text: "Hallo Anna, hier ist Tom. Vielen Dank für die Einladung! Ich freue mich sehr für dich." }
-        - { speaker: "Tom", text: "Aber leider kann ich am Samstag nicht kommen, weil ich arbeiten muss. Meine Schicht endet erst um zweiundzwanzig Uhr." }
-        - { speaker: "Tom", text: "Ich habe ein Geschenk für dich. Nina bringt dir das Geschenk mit. Es ist eine Überraschung!" }
-        - { speaker: "Tom", text: "Am Sonntag habe ich Zeit. Trinken wir zusammen einen Kaffee? Herzlichen Glückwunsch zum Geburtstag!" }
-    recording: ls-freunde-feste-produktion-01
-    question: "Was macht Tom am Samstag?"
-    options:
-      - "Er arbeitet bis zweiundzwanzig Uhr."
-      - "Er bringt Anna ein Geschenk mit."
-      - "Er trinkt mit Anna einen Kaffee."
-    correct: 0
-    translation:
-      en: "What is Tom doing on Saturday?"
-      ru: "Что Том делает в субботу?"
-      uk: "Що Том робить у суботу?"
-    explain:
-      en: "All three options are made of words that really are in the message — a single familiar word decides nothing, and you have to hear who does what, and when. The present is real, but Tom is not the one who carries it: „Nina bringt dir das Geschenk mit.“ The coffee is real too, and it is his own suggestion — but it is for Sunday: „Am Sonntag habe ich Zeit.“ Saturday is the day he gives away, and he gives the reason in the sentence this whole lesson is built to produce: „…, weil ich arbeiten muss.“ Note also how he softens the refusal before making it: thanks first, then the bad news, then a present and a new date. That order is what turns a no into a polite no."
-      ru: "Все три варианта собраны из слов, которые в сообщении действительно звучат: одного знакомого слова недостаточно — нужно услышать, кто именно что делает и когда. Подарок есть, но несёт его не Том: „Nina bringt dir das Geschenk mit.“ Кофе тоже есть, и предлагает его сам Том — но в воскресенье: „Am Sonntag habe ich Zeit.“ А суббота — это тот день, от которого он отказывается, и причину называет ровно той конструкцией, ради которой затевался урок: „…, weil ich arbeiten muss.“ Обратите внимание и на порядок: сначала благодарность, потом плохая новость, потом подарок и новая дата. Именно этот порядок превращает отказ в вежливый отказ."
-      uk: "Усі три варіанти зібрані зі слів, які в повідомленні справді звучать: одного знайомого слова недостатньо — треба почути, хто саме що робить і коли. Подарунок є, але несе його не Том: „Nina bringt dir das Geschenk mit.“ Кава теж є, і пропонує її сам Том — але в неділю: „Am Sonntag habe ich Zeit.“ А субота — це той день, від якого він відмовляється, і причину називає рівно тією конструкцією, заради якої затівався урок: „…, weil ich arbeiten muss.“ Зверніть увагу й на порядок: спочатку подяка, потім погана новина, потім подарунок і нова дата. Саме цей порядок перетворює відмову на ввічливу відмову."
-
   - id: hoeren-diktat-mitbringen
     outcomes: [absprachen-aushandeln]
     type: listen

@@ -1,4 +1,4 @@
-# Listening generation brief — ls-freunde-feste-produktion-01
+# Listening generation brief — ls-freunde-feste-aufgabe-01
 
 ## Model-drafted; the submitted brief was not retained
 
