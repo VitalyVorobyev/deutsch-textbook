@@ -301,8 +301,8 @@ engine rule.
 
 - [`../../apps/tonwerk/ui/DESIGN.md`](../../apps/tonwerk/ui/DESIGN.md) — the visual language, and why the
   app spends colour on exactly one distinction.
-- [the characters proposal](../proposals/characters-and-stories.md) — a recurring cast with voices
-  and stories, still open.
+- [ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md) — the recurring cast:
+  a character is content, a voice is casting.
 - [`../authoring/product-protection.md`](../authoring/product-protection.md) — the consent and
   licensing policy behind cloned voices and imported sound.
 - [`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md) — the engine:

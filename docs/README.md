@@ -31,6 +31,7 @@ to the other where a reader needs to cross, and copies nothing — duplicated te
 | [`proposals/`](proposals/README.md) | Directions under discussion; each ends in an ADR or is deleted |
 | **Curriculum** | |
 | [`curriculum/a2-b1.md`](curriculum/a2-b1.md) | What A2 and B1 teach, which unit owns what, what each may not touch |
+| [`curriculum/b1-b2.md`](curriculum/b1-b2.md) | B2's anchors and the rules every B2 unit inherits; its units once contracted |
 | **Authoring** | |
 | [`authoring/article-prose.md`](authoring/article-prose.md) | How an explanation article is shaped; the paragraph ceiling |
 | [`authoring/item-authoring.md`](authoring/item-authoring.md) | Exercise and vocabulary contracts: `key_tokens`, item mix, placement, vocab entries |

@@ -72,5 +72,5 @@ an approval names are never reaped.
 - Shared presentation comes from one UI system ([ADR 0011](0011-shared-ui-from-vitavision-packages.md)).
   Each tool's look is a theme, not a fork.
 - Character and story work will need content-level identities that both tools and the learner app
-  read. That is a future ADR ([proposal](../proposals/characters-and-stories.md)), not a
+  read. That is a future ADR ([ADR 0016](0016-lessons-are-tasks-and-a-cast-carries-them.md)), not a
   Tonwerk-private data file.
