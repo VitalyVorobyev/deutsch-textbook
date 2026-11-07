@@ -1,6 +1,6 @@
 # ADR 0016: A lesson is a sequence of tasks, each built on one stimulus, and a recurring cast of people carries the stimuli
 
-Status: accepted · 2026-11-07 · its first four names superseded by [0017](0017-the-first-four-are-the-lena-serials-cast.md) · 2026-11-07
+Status: accepted · 2026-11-07 · its first four names superseded by [0017](0017-the-first-four-are-the-lena-serials-cast.md) · 2026-11-07 · its walk-on voice pool superseded by [0018](0018-the-twelve-roster-voices-are-the-whole-pool.md) · 2026-11-07
 
 ## Context
 

@@ -1,6 +1,6 @@
 # ADR 0017: The first four cast members are the Lena serial's own people: Lena, Mira, Timo and Frau Kern
 
-Status: accepted · 2026-11-07
+Status: accepted · 2026-11-07 · its voiceless Frau Kern superseded by [0018](0018-the-twelve-roster-voices-are-the-whole-pool.md) · 2026-11-07
 
 ## Context
 

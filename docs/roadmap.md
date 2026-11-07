@@ -52,8 +52,10 @@ the order. The suggested order follows the dependencies:
    built on one stimulus each. A character becomes content, and a voice stays casting. Genre lives
    in the reading serials. The first four people, Lena, Mira, Timo and Frau Kern
    ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records that the
-   validator holds. The steps run in order: the walk-on voice pool (TON-6), the two-topic pilot
-   (CON-6), the continuity debt (CON-9), then the Krimi serial (CON-7).
+   validator holds. Each speaks through one of the twelve roster voices, and the rest speak the
+   walk-on roles ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). The steps
+   run in order: the two-topic pilot (CON-6), the recasts (TON-6), the continuity debt (CON-9),
+   then the Krimi serial (CON-7).
 3. **The learner app on lab-ui**, once its visual language is written down and the tools have
    proved the theme layer.
 

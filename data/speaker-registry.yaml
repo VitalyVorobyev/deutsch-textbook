@@ -1,6 +1,7 @@
 # Every speaker name that is not a cast member, and the cast's open debts (ADR 0016).
 # `bun run validate` reads it beside content/characters/. Every list may only shrink: an entry
-# that matches nothing is an error, so fixing a case removes its entry in the same change.
+# that matches nothing is an error, so fixing a case removes its entry in the same change. Only
+# giving a cast member a voice adds to recast_pending, in the change that gives it.
 version: 1
 
 # Unnamed roles, spoken by walk-on voices.
@@ -218,15 +219,21 @@ continuity_pending:
 recast_pending:
   - ls-adjektive-deklination-produktion-01
   - ls-alltag-tagesablauf-produktion-01
+  - ls-arbeit-bewerbung-produktion-01
   - ls-bildungswege-01
+  - ls-biografie-erfahrungen-produktion-01
+  - ls-checkpoint-a1-02
   - ls-checkpoint-a1-03
+  - ls-checkpoint-a2-01
   - ls-checkpoint-b1-01
   - ls-dativ-produktion-01
   - ls-digitales-leben-01
+  - ls-digitales-leben-produktion-01
   - ls-essen-trinken-01
   - ls-essen-trinken-produktion-01
   - ls-freizeit-koennen-diktat-01
   - ls-geld-vertraege-01
+  - ls-gesellschaft-zusammenleben-01
   - ls-gesellschaft-zusammenleben-produktion-01
   - ls-gespraech-steuern-01
   - ls-gespraech-steuern-produktion-01
@@ -240,29 +247,38 @@ recast_pending:
   - ls-nebensaetze-plaene-produktion-01
   - ls-ort-richtung-praepositionen-01
   - ls-perfekt-haben-sein-produktion-01
+  - ls-placement-a1-01
   - ls-placement-a1-02
   - ls-placement-a1-04
   - ls-placement-a2-05
   - ls-placement-b1-01
   - ls-placement-b1-02
+  - ls-placement-b1-03
   - ls-placement-b1-04
   - ls-polizei-anzeige-01
+  - ls-pruefung-a2-1-hoeren-04
   - ls-pruefung-a2-1-hoeren-06
   - ls-pruefung-a2-1-hoeren-07
+  - ls-pruefung-a2-1-hoeren-10
   - ls-pruefung-a2-1-hoeren-11
+  - ls-pruefung-a2-2-hoeren-01
   - ls-pruefung-a2-2-hoeren-04
   - ls-pruefung-a2-2-hoeren-05
   - ls-pruefung-a2-2-hoeren-07
   - ls-pruefung-a2-2-hoeren-08
+  - ls-pruefung-a2-2-hoeren-09
   - ls-pruefung-a2-2-hoeren-10
   - ls-pruefung-a2-2-hoeren-12
   - ls-pruefung-a2-3-hoeren-05
   - ls-pruefung-a2-3-hoeren-06
+  - ls-pruefung-a2-3-hoeren-08
   - ls-pruefung-a2-3-hoeren-09
   - ls-pruefung-a2-3-hoeren-10
-  - ls-relativsaetze-produktion-01
+  - ls-pruefung-a2-3-hoeren-12
   - ls-sucht-lebensstil-01
   - ls-trennbare-verben-produktion-01
+  - ls-verben-mit-kasus-01
   - ls-verben-mit-praepositionen-02
+  - ls-versicherungen-behoerden-01
   - ls-wohnen-umzug-produktion-01
   - ls-wortbildung-01
