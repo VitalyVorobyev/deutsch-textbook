@@ -1,0 +1,85 @@
+topic: polizei-anzeige
+kind: extensive
+title_de: "Ein Fall für den Hof (1): Das leere Dach"
+text:
+  - >-
+    Seit drei Wochen stand in der Ecke des Hofes das neue Fahrraddach. Die
+    Bewohner hatten es bei einer [[Versammlung::meeting::собрание::збори]] beschlossen,
+    und alle waren froh, dass die Räder nicht mehr im Treppenhaus standen. Seit
+    dem Bau ging das Tor zum Hof nur noch mit einer Nummer aus vier Zahlen auf.
+    Diese Nummer kannten nur die Bewohner, die Hausverwaltung und die Firma, die
+    das Dach gebaut hatte.
+  - >-
+    Am Samstagmorgen wollte Lena zum Markt fahren. Unter dem Dach standen nur noch
+    fünf alte Räder. Ihr Fahrrad war weg, und das Rad von Frau Aydin auch.
+    Von Lenas Schloss lagen nur zwei Stücke auf dem Boden. Ihr Rad war nicht neu,
+    aber Lena hatte fast jedes Teil selbst repariert. Am
+    [[Lenker::handlebars::руль::кермо]] hing eine alte Klingel aus der Werkstatt
+    ihres Vaters.
+  - >-
+    Frau Kern kam in den Hof. Sie war wie immer schon lange wach. „Um halb fünf
+    habe ich das Tor gehört, Kind“, sagte sie. „Aber es war ganz leise.“ Lena
+    prüfte das Tor. Es war nicht
+    [[beschädigt::damaged::повреждены::пошкоджені]], und das Schloss funktionierte
+    wie immer. Der Dieb hatte also die Nummer gekannt. „Ich weiß, wer das war“,
+    sagte Frau Kern. „Der Neue aus dem dritten Stock. Herr Hansen trägt jeden
+    Abend Fahrräder in den Keller.“ Lena schüttelte den Kopf. „Das ist ein
+    Verdacht, Frau Kern. Ein Verdacht ist noch kein
+    [[Beweis::proof::доказательство::доказ]].“
+  - >-
+    Am Mittag ging Lena zur Polizei, um eine Anzeige zu machen. Die Beamtin
+    fragte, wann sie das Rad zuletzt gesehen hatte und ob es
+    [[abgeschlossen::locked::пристёгнут::пристебнутий]] war. Lena erzählte,
+    dass sie es am Freitagabend um neun unter das Dach gestellt hatte. Dann wollte
+    die Beamtin wissen, wer die Nummer für das Tor kannte. Lena nannte die
+    Bewohner, die Hausverwaltung und die Firma. Den Namen von Herrn Hansen nannte
+    sie nicht.
+  - >-
+    Bei der Frage nach der [[Rahmennummer::frame number::номер рамы::номер рами]]
+    lächelte die Beamtin zum ersten Mal. Lena hatte sie nämlich
+    fotografiert, denn das hatte sie von ihrem Vater gelernt. „Das hilft
+    sehr“, sagte die Beamtin. „In diesem Monat wurden in Ihrem Viertel schon sechs
+    Räder gestohlen. Viele werden später im Internet verkauft.“
+  - >-
+    Am Abend suchte Lena auf dem Handy nach
+    [[gebrauchten::second-hand::подержанным::уживаним]] Fahrrädern. Beim dritten
+    Foto wurde sie ganz still. Das Rad war schwarz, nicht grün wie ihres. Aber am Lenker hing eine alte Klingel. „Fast neu, nur
+    zwei Monate gefahren“, stand unter dem Foto. Lena kannte diese Klingel seit
+    ihrer Kindheit.
+questions:
+  - id: q-das-tor
+    outcomes: [aussage-wiedergeben]
+    type: mc
+    prompt: "Warum glaubt Lena, dass der Dieb die Nummer für das Tor kannte?"
+    options:
+      - "Frau Kern hat das Tor leise gehört, und das Tor war nicht kaputt."
+      - "Herr Hansen hat die Nummer an die Tür geschrieben."
+      - "Die Beamtin hat ihr gesagt, dass das Tor offen war."
+    correct: 0
+    translation:
+      en: "Why does Lena think the thief knew the number for the gate?"
+      ru: "Почему Лена думает, что вор знал код от ворот?"
+      uk: "Чому Лена думає, що злодій знав код від воріт?"
+    explain:
+      en: "Frau Kern heard the gate at half past four, and it was quiet. Lena then finds the gate undamaged and its lock working as usual. Nobody forced it, so whoever came in opened it with the number."
+      ru: "Фрау Керн слышала ворота в половине пятого, и было тихо. Потом Лена видит, что ворота целы, а замок работает как обычно. Их никто не взламывал — значит, тот, кто вошёл, открыл их кодом."
+      uk: "Фрау Керн чула ворота о пів на п'яту, і все було тихо. Потім Лена бачить, що ворота цілі, а замок працює як завжди. Їх ніхто не зламував — отже, той, хто ввійшов, відчинив їх кодом."
+      de: "Frau Kern hat das Tor um halb fünf gehört, und es war leise. Danach sieht Lena, dass das Tor nicht beschädigt ist und das Schloss wie immer funktioniert. Niemand hat es kaputt gemacht, also hat der Dieb es mit der Nummer geöffnet."
+  - id: q-die-klingel
+    outcomes: [diebstahl-melden]
+    type: mc
+    prompt: "Wie erkennt Lena am Abend ihr Fahrrad?"
+    options:
+      - "An der alten Klingel aus der Werkstatt ihres Vaters."
+      - "An der grünen Farbe."
+      - "An der Rahmennummer auf dem Foto."
+    correct: 0
+    translation:
+      en: "How does Lena recognise her bicycle in the evening?"
+      ru: "По чему Лена вечером узнаёт свой велосипед?"
+      uk: "За чим Лена ввечері впізнає свій велосипед?"
+    explain:
+      en: "The bicycle in the photo is black, not green, so the colour has changed. The frame number is never mentioned in the advert. What stayed is the old bell from her father's workshop, which Lena has known since she was a child."
+      ru: "Велосипед на фото чёрный, а не зелёный: цвет изменили. Номер рамы в объявлении вообще не упоминается. Остался старый звонок из мастерской её отца, который Лена знает с детства."
+      uk: "Велосипед на фото чорний, а не зелений: колір змінили. Номер рами в оголошенні взагалі не згадано. Лишився старий дзвоник із майстерні її батька, який Лена знає з дитинства."
+      de: "Das Rad auf dem Foto ist schwarz, nicht grün: Die Farbe ist also anders. Die Rahmennummer steht nicht unter dem Foto. Geblieben ist die alte Klingel aus der Werkstatt ihres Vaters, die Lena seit ihrer Kindheit kennt."
