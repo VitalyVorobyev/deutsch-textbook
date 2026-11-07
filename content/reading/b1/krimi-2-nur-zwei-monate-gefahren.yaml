@@ -1,0 +1,83 @@
+topic: polizei-anzeige
+kind: extensive
+title_de: "Ein Fall für den Hof (2): Nur zwei Monate gefahren"
+text:
+  - >-
+    Am Sonntagmorgen saß Lena mit Timo auf der Bank im Hof und zeigte ihm die
+    Anzeige auf dem Handy. Timo machte das Foto größer. „Schwarz
+    [[lackiert::painted::покрашен::пофарбований]], aber die Klingel ist deine“,
+    sagte er. „Und ‚fast neu‘? Das stimmt bestimmt nicht.“ Lena lachte kurz. „An
+    diesem Rad habe ich fast jedes Teil selbst repariert.“
+  - >-
+    Der Preis war hundertzwanzig Euro. Timo suchte im Internet nach neuen Rädern
+    wie diesem und verglich die Preise. „Neu kostet so ein Rad mindestens siebenhundert
+    Euro“, sagte er. „Wer ein fast neues Rad so billig verkauft, braucht schnell
+    Geld. Oder das Rad gehört ihm nicht.“ Lena wollte dem Verkäufer sofort
+    schreiben, aber Timo hatte eine bessere Idee. „Ich schreibe ihm. Für ihn bin
+    ich ein ganz normaler Käufer.“
+  - >-
+    Timo schrieb: „Guten Tag, ist das Fahrrad noch da? Kann ich es heute
+    ansehen? Ich zahle bar.“ Nach fünfzehn Minuten kam die Antwort. Der
+    Verkäufer schrieb, dass das Rad leider schon verkauft ist. Lena legte das
+    Handy auf die Bank. Aber Timo klickte noch auf den Namen des Verkäufers.
+    Unter diesem Namen gab es seit gestern eine zweite Anzeige: ein rotes Rad mit
+    einem blauen [[Kindersitz::child seat::детское кресло::дитяче сидіння]],
+    neunzig Euro, nur Bargeld bei
+    [[Abholung::collection, picking it up::самовывоз::самовивіз]]. Lena kannte
+    diesen Kindersitz. Mit diesem Rad brachte Frau Aydin jeden Morgen ihre
+    Tochter in den Kindergarten.
+  - >-
+    Timo machte von beiden Anzeigen einen
+    [[Screenshot::screenshot::скриншот::скриншот]]. Dann sah er sich die zwei
+    Fotos noch einmal genau an. „Schau mal, hinten links.“ Auf beiden Fotos stand
+    im [[Hintergrund::background::на заднем плане::на задньому плані]] ein weißer
+    [[Lieferwagen::van::фургон::фургон]] mit einer Leiter auf dem Dach. „So einen
+    Wagen haben viele Firmen, das weißt du doch“, sagte Lena. „Stimmt“, sagte Timo. „Aber auf beiden Fotos?“
+  - >-
+    Am Montag gingen sie mit Frau Aydin zur Polizei. Es war dieselbe Beamtin wie
+    am Samstag. Sie druckte die Screenshots aus und legte sie zu den Anzeigen der
+    beiden Frauen. Dann erklärte sie, dass das Konto des Verkäufers jetzt geprüft
+    wird, aber dass das dauern kann. Sie sagte auch, dass sie den Verkäufer auf keinen
+    Fall allein treffen sollen.
+  - >-
+    Draußen lachte Timo. „Jetzt hast du in drei Tagen drei Anzeigen: eine bei
+    der Polizei und zwei im Internet.“ Lena konnte nicht lachen. Sie dachte an
+    den weißen Wagen. Von ihm hatten sie der Beamtin nichts gesagt. Ein Wagen mit
+    einer Leiter war noch kein Beweis.
+questions:
+  - id: q-die-antwort
+    outcomes: [aussage-wiedergeben]
+    type: mc
+    prompt: "Was hat der Verkäufer Timo geantwortet?"
+    options:
+      - "Dass das Rad schon verkauft ist."
+      - "Dass Timo das Rad heute ansehen kann."
+      - "Dass er nur eine Überweisung nimmt."
+    correct: 0
+    translation:
+      en: "What did the seller reply to Timo?"
+      ru: "Что продавец ответил Тимо?"
+      uk: "Що продавець відповів Тімо?"
+    explain:
+      en: "Timo asks whether the bike is still there, whether he can see it today, and says he will pay cash. The reply that comes a quarter of an hour later is reported in a dass-clause: the bike has, sadly, already been sold. Nobody mentions a bank transfer."
+      ru: "Тимо спрашивает, продаётся ли ещё велосипед и можно ли посмотреть его сегодня, и обещает заплатить наличными. Ответ приходит через четверть часа и передан придаточным с dass: велосипед, к сожалению, уже продан. О переводе на счёт никто не говорит."
+      uk: "Тімо питає, чи велосипед ще продається і чи можна подивитися на нього сьогодні, та обіцяє заплатити готівкою. Відповідь надходить за чверть години, і її передано підрядним реченням з dass: велосипед, на жаль, уже продано. Про переказ на рахунок ніхто не згадує."
+      de: "Timo fragt, ob das Rad noch da ist und ob er es heute ansehen kann, und er will bar bezahlen. Nach fünfzehn Minuten schreibt der Verkäufer, dass das Rad leider schon verkauft ist. Von einer Überweisung ist keine Rede."
+  - id: q-bei-der-polizei
+    outcomes: [diebstahl-melden]
+    type: mc
+    prompt: "Was geben Lena und Timo am Montag der Beamtin?"
+    options:
+      - "Screenshots von zwei Anzeigen: Lenas Rad und das Rad von Frau Aydin."
+      - "Lenas schwarzes Fahrrad, das sie im Internet gekauft haben."
+      - "Ein Foto von dem Verkäufer und seinem weißen Wagen."
+    correct: 0
+    translation:
+      en: "What do Lena and Timo give the police officer on Monday?"
+      ru: "Что Лена и Тимо в понедельник отдают сотруднице полиции?"
+      uk: "Що Лена й Тімо в понеділок віддають працівниці поліції?"
+    explain:
+      en: "They never buy the bike: the seller says it is already sold. What they bring are the screenshots of both adverts, Lena's bike and Frau Aydin's, and the officer prints them and adds them to the two women's reports. They have no photo of the seller, and they say nothing about the van."
+      ru: "Велосипед они не покупают: продавец пишет, что он уже продан. В полицию они приносят скриншоты обоих объявлений — с велосипедом Лены и с велосипедом фрау Айдин. Сотрудница распечатывает их и прикладывает к заявлениям обеих женщин. Фотографии продавца у них нет, а о белом фургоне они молчат."
+      uk: "Велосипед вони не купують: продавець пише, що його вже продано. До поліції вони приносять скриншоти обох оголошень — з велосипедом Лени і з велосипедом фрау Айдин. Працівниця роздруковує їх і долучає до заяв обох жінок. Фото продавця в них немає, а про білий фургон вони мовчать."
+      de: "Das Rad kaufen sie nicht, denn der Verkäufer schreibt, dass es schon verkauft ist. Zur Polizei bringen sie die Screenshots von beiden Anzeigen, mit Lenas Rad und mit dem Rad von Frau Aydin. Die Beamtin druckt sie aus und legt sie zu den Anzeigen der beiden Frauen. Ein Foto vom Verkäufer haben sie nicht, und von dem weißen Wagen sagen sie nichts."

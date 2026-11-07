@@ -57,7 +57,7 @@ def test_the_corpus_is_the_size_this_suite_thinks_it_is() -> None:
     """If either number moves, the totality tests below stopped covering what they claim."""
 
     assert len(PUBLISHED) == 40
-    assert len(READINGS) == 86
+    assert len(READINGS) == 88
 
 
 @pytest.mark.parametrize("artifact_id", PUBLISHED)
