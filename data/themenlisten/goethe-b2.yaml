@@ -1,0 +1,70 @@
+# Goethe-Zertifikat B2 — § 4.3 Prüfungsthemen (Prüfungsziele, Testbeschreibung, S. 18–19)
+#
+# WHY THIS FILE EXISTS. The DTZ ends at B1, so `goethe-dtz.yaml` says nothing about what a B2
+# course is about. This is B2's Themen denominator, and the first B2 anchor this repo holds in any
+# dimension: the same handbook delegates grammar and vocabulary to *Profile deutsch* (§ 4.4), which
+# is not held, so `data/strukturenlisten/` has no B2 file.
+#
+# WHAT THE SOURCE IS. § 4.3 opens with a paragraph of scope on S. 18 and prints the list on S. 19:
+# fourteen numbered themes in two columns, (1)–(7) on the left and (8)–(14) on the right, taken
+# from the CEFR theme catalogue. The entries follow the source's numbering, not the reading order
+# of the two columns. Each theme is followed by a short illustration opening with "z. B." and
+# closing with "u. Ä.". Those illustrations are NOT transcribed. They are open-ended by their own
+# wording, so they cannot serve as a denominator, and half of them are descriptive prose rather
+# than labels, so transcribing them would mean either copying the source's sentences or paraphrasing
+# them, and the boundary below forbids both. The fourteen themes are therefore the entries, and the
+# resolution is the source's: a hole at B2 is findable only at theme level. `--unaccounted` lists
+# the illustration lines as the deliberate omission they are.
+#
+# The scope paragraph adds two things worth knowing, recorded here and not as entries: B2 differs
+# from C1 in the depth of its texts rather than the breadth of its themes, and the texts assume
+# general education and familiarity with European life, never specialist or historical knowledge.
+#
+# MODE IS `unstated`. § 4.3 frames the themes as the range for both what the candidate reads and
+# hears and what the candidate writes and says. It names no mode of its own, and a theme is not
+# something one produces.
+#
+# EDITION. This is the 1st edition of 2007. The exam's current Modellsatz cites a newer edition of
+# the Prüfungsziele, which this repo does not hold; the labels here are the 2007 edition's.
+#
+# BOUNDARY (ADR 0009 / ADR 0004): labels only, in the source's own order. No example sentences, no
+# Exponenten and none of the illustrations; the PDF stays local-only and gitignored.
+#
+# COMPLETENESS: all fourteen themes of § 4.3, S. 18–19 (PDF 20–21). The labels are all on S. 19.
+
+source:
+  id: goethe-b2-themen
+  title: "Goethe-Zertifikat B2 — Prüfungsziele, Testbeschreibung"
+  publisher: "Goethe-Institut"
+  edition: "1. Auflage 2007 (Bolton)"
+  chapter: "4 Prüfungsziele — 4.3 Prüfungsthemen"
+  pages: "19"
+  pdf_pages: "21"
+  label_columns: [[203, 206], [443, 445]]
+  levels: [B2]
+  status: current
+  audience: "Erwachsene"
+  mode: unstated
+  url: "https://www.goethe.de/pro/relaunch/prf/de/Pruefungsziele_Testbeschreibung_B2.pdf"
+  local: "docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_B2.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  - id: pruefungsthemen
+    de: "Prüfungsthemen"
+    page: 19
+    entries:
+      - { key: persoenliche-daten, level: B2, de: "Persönliche Daten und Verhältnisse" }
+      - { key: wohnen-umwelt, level: B2, de: "Wohnen, Umwelt" }
+      - { key: taegliches-leben-arbeit, level: B2, de: "tägliches Leben, Arbeit" }
+      - { key: freizeit-unterhaltung, level: B2, de: "Freizeit, Unterhaltung" }
+      - { key: reise, level: B2, de: "Reise" }
+      - { key: beziehungen-kultur-tradition, level: B2, de: "Beziehungen zu anderen Menschen, Kultur, Tradition" }
+      - { key: gesundheit-hygiene, level: B2, de: "Gesundheit und Hygiene" }
+      - { key: erziehung-ausbildung-lernen, level: B2, de: "Erziehung, Ausbildung, Lernen" }
+      - { key: konsum-handel, level: B2, de: "Konsum, Handel" }
+      - { key: ernaehrung, level: B2, de: "Ernährung" }
+      - { key: dienstleistungen, level: B2, de: "Dienstleistungen" }
+      - { key: orte, level: B2, de: "Orte" }
+      - { key: sprache-kommunikation, level: B2, de: "Sprache, Kommunikation" }
+      - { key: klima, level: B2, de: "Klima" }

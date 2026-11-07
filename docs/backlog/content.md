@@ -120,8 +120,9 @@ Course content: articles, items, probes, vocabulary, readings and their language
 - **CON-8 · Contract the B2 units** ([curriculum/b1-b2.md](../curriculum/b1-b2.md)). The anchors
   and the inherited rules are written, and no unit is. Each unit needs a mission, owned structures
   and exclusions, like B1's. Units wait on *Profile deutsch* (P26-7) for the structures they own.
-  First step: `data/themenlisten/goethe-b2.yaml`, holding the 14 Prüfungsthemen of the B2
-  *Prüfungsziele* §4.3 with entries `unclaimed`.
+  The Themen denominator is `data/themenlisten/goethe-b2.yaml` (the 14 Prüfungsthemen of §4.3, all
+  `unclaimed`). Next step: the unit list in `b1-b2.md`, each unit naming the Prüfungsthemen its
+  topics will claim.
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
   978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9), which is also B2's only
   lexical and structural anchor; also the adult Goethe A2 *Prüfungsziele* (the free A2 list is the

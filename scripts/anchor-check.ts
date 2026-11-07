@@ -205,7 +205,9 @@ function unaccounted(anchor: Anchor, pdf: string, pages: number[]): string[] | u
       .map((w) => w[1])
       .join(' ')
       .replace(/&amp;/g, '&');
-    const key = norm(text);
+    // A numbered list prints its marker in front of the label (`(3) tägliches Leben, Arbeit`);
+    // the marker is layout, and the label behind it is what an entry accounts for.
+    const key = norm(text.replace(/^\(\d+\)\s+/, ''));
     if (!key || seen.has(key) || known.has(key)) continue;
     seen.add(key);
     rows.push(text);
