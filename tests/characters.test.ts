@@ -222,6 +222,6 @@ describe('the registry only shrinks', () => {
   });
 
   test('recordings waiting for a recast', () => {
-    expect(registry.recast_pending.length).toBeLessThanOrEqual(52);
+    expect(registry.recast_pending.length).toBeLessThanOrEqual(33);
   });
 });
