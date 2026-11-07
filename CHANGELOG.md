@@ -48,6 +48,8 @@ GitHub Release notes.
   Grundübung first, then the extra practice), **Anwenden** (the same points in new sentences) and
   **Aufgaben** (the listening, dictation and document tasks, each under its skill). The targeted
   drills follow, folded, as **Gezielt wiederholen**.
+- **A listening task shows its questions first**, as the exam does: you read what to listen for
+  before you play the recording, and the questions stay beside the player while you answer.
 - **53 more listening questions play recorded voices** instead of the browser's: the listening
   tasks in the placement tests and checkpoints of A1, A2 and B1, and the ones in practice sets
   that had none. Announcements come over a loudspeaker with the shop or station around them,

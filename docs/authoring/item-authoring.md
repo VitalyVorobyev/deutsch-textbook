@@ -244,8 +244,31 @@ for the file, `taskSetProblems` in `packages/content/src/task-sets.ts` for the r
   stays, so its set and item ids stay reserved and logged attempts keep resolving. Write the task
   set's items as new ids in the new set.
 
-The learner sees one player beside the items with one play budget for the whole set, and the
-transcript, line replay and slower speed only once every item is answered.
+**What the learner sees.** The set opens on its listening questions, as the exam does (*Lesen Sie
+zuerst die Aufgaben.*): the `question` of every `audio-comprehension` item, numbered, without its
+options, and one line counting the items on the scene's language that follow. The player is already
+there, and reading the list costs no play; the learner plays when ready and moves to the first item.
+From then on one player sits beside the items with one play budget for the whole set, and the
+listening questions stay under it — the current one highlighted, answered ones marked — so the
+learner always knows what to listen for next. The transcript, line replay and slower speed appear
+only once every item is answered.
+
+### The recording's script
+
+The questions are read first, so a task tests **listening, not memory** — and a script written like
+a reading text makes every question easy. Not validator-enforced; the author reads the script
+against its items:
+
+- **It is speech, not a written dialogue.** Short turns; hesitations and fillers (*äh*, *also*,
+  *na ja*); discourse particles (*doch*, *mal*, *ja*, *eigentlich*); a self-correction; a reaction
+  before an answer — all within the level's grammar and Wortliste.
+- **Each listening question is answerable from one stretch of the recording, and its answer competes
+  with a distractor in the scene**: a plan that changes (*um sechs … nee, doch lieber um sieben*), an
+  option mentioned and rejected, a second person's different answer. The right option is never
+  simply the only thing said.
+- **No line recaps the facts the items ask for.** *Also: ich bringe …, und du kommst …* answers the
+  detail question for the learner; people in a real conversation do not summarise for a listener.
+- **Length serves the task**: as long as the distractors need, no longer.
 
 ---
 

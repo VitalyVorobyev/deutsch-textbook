@@ -11,6 +11,7 @@ Create the first complete version with Tonwerk's engine (`apps/tonwerk/engine`, 
 
 1. Read `CLAUDE.md`, `apps/tonwerk/CLAUDE.md`, `docs/overview.md`, the matching unit in `data/listening-plan.yaml`, `data/listening-characters.yaml`, and the available source list from `atlas-listening sources list`.
 2. Preserve the planned level, outcomes, vocabulary, duration window, register and speaker count. Keep every German turn inside that CEFR level.
+   For a scene a task set is built on, write the script by [the recording-script rules](../../../docs/authoring/item-authoring.md#the-recordings-script).
 3. Select versioned characters by role, register and usage balance. Reject every pair named in `incompatible_with`; never use a Research/private voice.
 4. Write a complete structured draft. Use one identity profile per character; vary only delivery, pronunciation, pace and pause per line.
 5. Select a reviewed `bed` and any necessary `event`. Store `placement_authoring: ai-assisted` and a concrete editorial reason. A context sound must not reveal a correct answer.
