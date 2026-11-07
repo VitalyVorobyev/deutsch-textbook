@@ -218,7 +218,7 @@ describe('the registry only shrinks', () => {
 
   test('places waiting for a continuity check', () => {
     const refs = registry.continuity_pending.reduce((sum, entry) => sum + entry.refs.length, 0);
-    expect(refs).toBeLessThanOrEqual(35);
+    expect(refs).toBeLessThanOrEqual(14);
   });
 
   test('recordings waiting for a recast', () => {

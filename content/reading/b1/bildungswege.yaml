@@ -3,13 +3,13 @@ kind: intensive
 title_de: "Zwei Kinder, zwei Entscheidungen"
 text:
   - >-
-    Marta hat zwei Kinder. Die kleine Lena ist drei Jahre alt und wartet auf einen
+    Marta hat zwei Kinder. Die kleine Greta ist drei Jahre alt und wartet auf einen
     Platz in der
     [[Kita::the short everyday name for a day-care centre; the long form on the letter
     is die Kindertagesstätte::короткое обиходное название детского сада полного дня; в
     письме стоит длинная форма die Kindertagesstätte::коротка побутова назва дитячого
     садка повного дня; у листі стоїть довга форма die Kindertagesstätte]]. Falls im
-    Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause.
+    Herbst kein Platz frei wird, bleibt Greta noch ein Jahr zu Hause.
   - >-
     Ihr Bruder Tim ist neun und geht in die vierte Klasse der
     [[Grundschule::the first school, years one to four in most Länder (to six in
@@ -43,23 +43,24 @@ text:
     Zeugnis zu bekommen.
 questions:
   - id: frage-lena
+    revision: 2
     outcomes: [schulinfo-verstehen]
     type: mc
-    prompt: "Warum bleibt Lena vielleicht noch ein Jahr zu Hause?"
+    prompt: "Warum bleibt Greta vielleicht noch ein Jahr zu Hause?"
     options:
       - "Weil in der Kita vielleicht kein Platz frei wird."
       - "Weil sie erst zwei Jahre alt ist."
       - "Weil die Kita im Herbst zumacht."
     correct: 0
     translation:
-      en: Why might Lena stay at home for another year?
-      ru: Почему Лена, возможно, останется дома ещё на год?
-      uk: Чому Лена, можливо, залишиться вдома ще на рік?
+      en: Why might Greta stay at home for another year?
+      ru: Почему Грета, возможно, останется дома ещё на год?
+      uk: Чому Грета, можливо, залишиться вдома ще на рік?
     explain:
-      en: "„Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause.“ The word *falls* is the whole answer: it marks a case the family does not expect but has to plan for. Lena's age is given in the first sentence — she is three, not two — and the text says nothing about the Kita closing."
-      ru: "«Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause». Всё держится на слове *falls*: оно помечает случай, которого семья не ждёт, но который приходится закладывать в план. Возраст Лены назван в первом предложении — ей три, а не два, — и о закрытии сада в тексте не сказано ничего."
-      uk: "«Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause». Усе тримається на слові *falls*: воно позначає випадок, якого родина не чекає, але який доводиться закладати в план. Вік Лени названо в першому реченні — їй три, а не два, — і про зачинення садка в тексті не сказано нічого."
-      de: "„Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause.“ Das Wort *falls* ist die ganze Antwort: Es markiert einen Fall, mit dem die Familie nicht rechnet, den sie aber einplanen muss. Lenas Alter steht im ersten Satz — sie ist drei, nicht zwei —, und dass die Kita zumacht, steht nirgends im Text."
+      en: "„Falls im Herbst kein Platz frei wird, bleibt Greta noch ein Jahr zu Hause.“ The word *falls* is the whole answer: it marks a case the family does not expect but has to plan for. Greta's age is given in the first sentence — she is three, not two — and the text says nothing about the Kita closing."
+      ru: "«Falls im Herbst kein Platz frei wird, bleibt Greta noch ein Jahr zu Hause». Всё держится на слове *falls*: оно помечает случай, которого семья не ждёт, но который приходится закладывать в план. Возраст Греты назван в первом предложении — ей три, а не два, — и о закрытии сада в тексте не сказано ничего."
+      uk: "«Falls im Herbst kein Platz frei wird, bleibt Greta noch ein Jahr zu Hause». Усе тримається на слові *falls*: воно позначає випадок, якого родина не чекає, але який доводиться закладати в план. Вік Грети названо в першому реченні — їй три, а не два, — і про зачинення садка в тексті не сказано нічого."
+      de: "„Falls im Herbst kein Platz frei wird, bleibt Greta noch ein Jahr zu Hause.“ Das Wort *falls* ist die ganze Antwort: Es markiert einen Fall, mit dem die Familie nicht rechnet, den sie aber einplanen muss. Gretas Alter steht im ersten Satz — sie ist drei, nicht zwei —, und dass die Kita zumacht, steht nirgends im Text."
 
   - id: frage-note
     outcomes: [schulinfo-verstehen]
@@ -81,13 +82,14 @@ questions:
       de: "Tim hat in Deutsch *eine Drei*, und der Text nennt das Wort dazu: *eine Drei heißt befriedigend*. Die Falle ist die Richtung der Skala — 1 ist die beste Note und 6 die schlechteste, eine Drei steht also in der Mitte und nicht weit unten. *Sehr gut* ist eine Eins, *mangelhaft* eine Fünf, und das ist schon nicht bestanden."
 
   - id: frage-zweck
+    revision: 2
     outcomes: [schulinfo-verstehen]
     type: mc
     prompt: "Wozu geht Marta zur Lehrerin?"
     options:
       - "Damit die Lehrerin das Zeugnis erklärt."
       - "Damit Tim eine bessere Note bekommt."
-      - "Damit Lena einen Platz in der Kita bekommt."
+      - "Damit Greta einen Platz in der Kita bekommt."
     correct: 0
     translation:
       en: What is Marta going to see the teacher for?
