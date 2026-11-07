@@ -1,0 +1,83 @@
+topic: versicherungen-behoerden
+kind: extensive
+title_de: "Ein Fall für den Hof (4): Was die Versicherung wissen will"
+text:
+  - >-
+    Am Dienstag, nach der Frühschicht, saß Lena bei Frau Kern in der Küche. Auf dem Tisch
+    lag Lenas roter Ordner mit dem Vertrag ihrer
+    [[Hausratversicherung::home contents insurance::страховка домашнего имущества::страхування домашнього майна]].
+    „Ruf dort an, Kind“, sagte Frau Kern. „Vielleicht zahlt sie für dein Rad.“ „Ich weiß
+    nicht, ob mein Fahrrad versichert ist.“ – „Dann frag.“
+  - >-
+    Die
+    [[Sachbearbeiterin::claims handler::сотрудница, ведущая дело::співробітниця, що веде справу]]
+    am Telefon war freundlich, aber genau. Zuerst wollte sie Lenas Personalien wissen:
+    Name, Geburtsdatum, Adresse und die Nummer des Vertrags. Dann fragte sie, ob der
+    Diebstahl schon bei der Polizei angezeigt ist. Lena las die
+    [[Vorgangsnummer::case number::номер дела::номер справи]] von ihrer Anzeige vor. „Und
+    war das Rad abgeschlossen?“ – „Ja. Der Dieb hat das Schloss kaputt gemacht.“ – „Das
+    ist wichtig. Ein Fahrrad ohne Schloss ist bei uns nicht versichert.“
+  - >-
+    Dann nannte sie eine Frist. Innerhalb einer Woche sollte Lena ein Formular ausfüllen
+    und drei Dinge schicken: die Vorgangsnummer der Polizei, die
+    [[Rahmennummer::frame number::номер рамы::номер рами]] und ein Foto vom kaputten
+    Schloss. Die zwei Stücke lagen zum Glück noch in Lenas Flur.
+  - >-
+    Am Ende fragte sie noch: „Wissen Sie, welche Firma Ihr Fahrraddach gebaut hat?“ Lena
+    sah aus dem Fenster und las den Namen vom Schild am Dach vor. Die Frau schwieg kurz.
+    „In diesem Monat hatten wir drei ähnliche Fälle. Immer ein neues Fahrraddach, immer
+    ein Tor ohne Schaden. Und alle drei Dächer hat diese Firma gebaut. Das haben wir auch
+    der Polizei gemeldet.“ Lena fragte, ob einer der Fälle in der Gartenstraße war. „Dazu
+    darf ich Ihnen leider nichts sagen.“ Aber sie sagte auch nicht nein.
+  - >-
+    „Diese Firma?“, fragte Frau Kern nach dem Gespräch. „Die Männer hatten einen weißen
+    Wagen. Mit einer Leiter auf dem Dach. Beim Bau habe ich ihnen jeden Morgen Kaffee
+    gebracht.“ Jetzt erzählte Lena ihr von den Fotos im Internet und von Miras Unfall.
+  - >-
+    Später sahen sie unten im Hof Herrn Hansen. Er trug zwei kleine Fahrräder zur
+    Kellertür. Frau Kern ging sofort nach unten. „Herr Hansen, was machen Sie eigentlich
+    jeden Abend mit so vielen Rädern?“ Er lachte. „Das sind alte Kinderräder. Ich
+    repariere sie für die Grundschule am Park. Die Schule schenkt sie Kindern, die kein
+    Fahrrad haben.“ Frau Kern war einen Moment still. Dann sagte sie: „Im Keller habe ich
+    noch eine alte [[Luftpumpe::bicycle pump::насос::насос]]. Die bringe ich Ihnen
+    morgen.“
+  - >-
+    Auf der Treppe nach oben sagte sie leise zu Lena: „Du hattest recht, Kind. Ein
+    Verdacht ist noch kein Beweis.“ Dann lächelte sie. „Aber jetzt habe ich einen neuen.“
+questions:
+  - id: q-das-schloss
+    outcomes: [versicherung-klaeren]
+    type: mc
+    prompt: "Wann ist ein Fahrrad bei Lenas Versicherung versichert?"
+    options:
+      - "Nur, wenn es abgeschlossen war."
+      - "Nur, wenn die Polizei den Dieb findet."
+      - "Nur, wenn es im Keller stand."
+    correct: 0
+    translation:
+      en: "When is a bicycle insured with Lena's insurance company?"
+      ru: "В каком случае велосипед застрахован у страховой компании Лены?"
+      uk: "У якому разі велосипед застрахований у страховій компанії Лени?"
+    explain:
+      en: "The claims handler asks whether the bike was locked and says plainly that a bike without a lock is not insured with them. Lena's was locked: the thief broke the lock, and the two pieces are still in her hall. Waiting for the police to find someone is what Mira's front wheel depends on, not Lena's claim, and nobody says the bike had to be in a cellar."
+      ru: "Сотрудница спрашивает, был ли велосипед пристёгнут, и прямо говорит: велосипед без замка у них не застрахован. Велосипед Лены был пристёгнут — вор сломал замок, и обе половинки до сих пор лежат у неё в прихожей. Ждать, пока полиция кого-то найдёт, приходится Мире с её передним колесом, а не Лене, и о подвале никто не говорит."
+      uk: "Співробітниця питає, чи був велосипед пристебнутий, і прямо каже: велосипед без замка в них не застрахований. Велосипед Лени був пристебнутий — злодій зламав замок, і обидві половинки досі лежать у неї в передпокої. Чекати, доки поліція когось знайде, мусить Міра зі своїм переднім колесом, а не Лена, а про підвал ніхто не каже."
+      de: "Die Sachbearbeiterin fragt, ob das Rad abgeschlossen war, und sagt deutlich: Ein Fahrrad ohne Schloss ist bei ihnen nicht versichert. Lenas Rad war abgeschlossen. Der Dieb hat das Schloss kaputt gemacht, und die zwei Stücke liegen noch in ihrem Flur. Auf die Polizei warten muss Mira mit ihrem Vorderrad, nicht Lena, und von einem Keller spricht niemand."
+  - id: q-die-frist
+    outcomes: [frist-nennen]
+    type: mc
+    prompt: "Was soll Lena innerhalb einer Woche schicken?"
+    options:
+      - "Die Vorgangsnummer der Polizei, die Rahmennummer und ein Foto vom Schloss."
+      - "Den Namen der Firma, die das Fahrraddach gebaut hat."
+      - "Die Screenshots der beiden Anzeigen im Internet."
+    correct: 0
+    translation:
+      en: "What is Lena supposed to send within a week?"
+      ru: "Что Лена должна отправить в течение недели?"
+      uk: "Що Лена має надіслати протягом тижня?"
+    explain:
+      en: "The deadline is one week: by then Lena fills in a form and sends three things, the police case number, the frame number and a photo of the broken lock. She reads the firm's name out on the phone, so nothing needs sending there, and the screenshots of the adverts went to the police, not to the insurer."
+      ru: "Срок — одна неделя: за это время Лена заполняет бланк и отправляет три вещи — номер дела из полиции, номер рамы и фото сломанного замка. Название фирмы она зачитывает по телефону, посылать его не нужно, а скриншоты объявлений ушли в полицию, а не в страховую."
+      uk: "Строк — один тиждень: за цей час Лена заповнює бланк і надсилає три речі — номер справи з поліції, номер рами та фото зламаного замка. Назву фірми вона зачитує телефоном, надсилати її не треба, а скриншоти оголошень пішли до поліції, а не до страхової."
+      de: "Die Frist ist eine Woche. Bis dahin füllt Lena ein Formular aus und schickt drei Dinge: die Vorgangsnummer der Polizei, die Rahmennummer und ein Foto vom kaputten Schloss. Den Namen der Firma liest sie am Telefon vor, und die Screenshots der Anzeigen hat sie der Polizei gegeben, nicht der Versicherung."

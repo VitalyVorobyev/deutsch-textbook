@@ -53,9 +53,10 @@ the order. The suggested order follows the dependencies:
    in the reading serials. The first four people, Lena, Mira, Timo and Frau Kern
    ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records that the
    validator holds. Each speaks through one of the twelve roster voices, and the rest speak the
-   walk-on roles ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). The steps
-   run in order: the rollout of the task shape that the A2 and B1 pilots proved (CON-10), the
-   recasts (TON-6), the continuity debt (CON-9), then the Krimi serial (CON-7).
+   walk-on roles ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). What
+   remains is the rollout of the task shape that the A2 and B1 pilots proved (CON-10). Each
+   conversion also clears its topic's last recasts (TON-6) and continuity places (CON-9). The B1
+   Krimi serial *Ein Fall für den Hof* is written (CON-7).
 3. **The learner app on lab-ui**, once its visual language is written down and the tools have
    proved the theme layer.
 

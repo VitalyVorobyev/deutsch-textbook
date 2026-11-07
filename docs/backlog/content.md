@@ -111,25 +111,18 @@ Course content: articles, items, probes, vocabulary, readings and their language
   while Timo speaks through the voice catalogued as `jonas`. A conversion that meets Jonas renames
   him too. First step: none of its own; each conversion clears its topic's pair.
 - **CON-7 · A Krimi serial, B1–B2, extensive**
-  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). The extensive strand has
-  one serial, Lena (seven episodes, A1–A2, `ls content/reading/*/lena-*`), and B1 has only the
-  Klassiker. *Ein Fall für den Hof* (`content/reading/b1/krimi-<n>-*`) is the crime serial cast
-  from the characters, and it is how the cast grows past four. Each episode carries a manual
-  continuity read against the character records, and a new fact joins the record it is about.
-  Each episode hangs on a topic at or after `polizei-anzeige` in the spine, so the episodes come
-  in order, and it recycles a topic the learner has met by then. Bicycles vanish from the new
-  Fahrraddach in Lena's courtyard. The thief is a worker of the firm that built the roof, who
-  kept the gate number, and a reader can name him after episode 4.
-  1. **Das leere Dach**: done (owner `polizei-anzeige`, recycles it). Lena reports her stolen bike. The gate is undamaged, and only the residents, the Hausverwaltung and the roof firm know its number. Frau Kern suspects the newcomer Herr Hansen: a Verdacht, no Beweis. Hook: a black bike for sale online carries her father's bell.
-  2. **Nur zwei Monate gefahren**: done (owner `polizei-anzeige`, recycles `digitales-leben` and `geld-vertraege`). Timo answers the advert as a buyer; the price is far too low for a bike that new. The seller says the bike is sold, but a second advert from the same account shows Frau Aydin's bike, and they hand screenshots of both to the police. Clue: both photos show a white van with a ladder on its roof; Lena keeps it from the police as no Beweis.
-  3. **Die Zeugin**: done (owner `versicherungen-behoerden`, recycles `unfall-notruf`). At half past four Mira, on her way to the early shift, sees the van's driver type the number at a courtyard gate in the Gartenstraße; the van reverses into the gateway across the cycle path, she falls, and it drives off before she can read its plate in the dark. She calls 112 and has only a bruised knee. The insurance strand: the driver's insurance owes her front wheel once he is found, and Herr Ott says the bakery's accident cover holds on the way to work. Clue: the driver knew the number, and that courtyard has a new Fahrraddach too.
-  4. **Was die Versicherung wissen will** (owner `versicherungen-behoerden`, recycles it). Frau Kern helps Lena with the claim: Personalien, the Anzeige's number, a deadline, insured only if locked. Clue: the Sachbearbeiterin mentions three similar claims, all from courtyards whose new roofs the same firm built. Turn: Herr Hansen's cellar bikes are old children's bikes that he repairs for a school, and Frau Kern apologises.
-  5. **Ein Kunde ohne Eile** (owner `gespraech-steuern`, recycles it). A young man in the firm's jacket brings a freshly painted black bike to Frau Beck's workshop. Lena checks the frame number from episode 1, keeps him talking, evades politely and books his pick-up for the next morning. New person: the customer, a described role.
-  6. **Ein Dach für alle** (owner `gespraech-steuern`, recycles `polizei-anzeige`'s Polizeimeldung and `meinung-medien`). The police wait at the workshop, and a short newspaper report gives the rest in the passive and in reported speech. The courtyard changes its number and invites Herr Hansen. Lena gets her bike back.
-
-  Herr Hansen is the candidate fifth cast member: a neighbour who repairs bikes, suspected and
-  then cleared. He stays described, never voiced, until a task needs him (ADR 0016, 0018). Next
-  step: episode 4.
+  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). *Ein Fall für den Hof*
+  is the B1 crime serial cast from the characters: six episodes, hung on topics from
+  `polizei-anzeige` onward in spine order (`ls content/reading/b1/krimi-*`). Each episode carries
+  a manual continuity read against the character records, and a new fact joins the record it is
+  about. What remains:
+  - **Herr Hansen**, the neighbour who repairs old children's bikes for the Grundschule am Park
+    under the courtyard's bike roof, is the candidate fifth cast member. He has no record: he
+    stays described, never voiced, until a task needs him (ADR 0016, 0018), and the first text
+    that needs him adds the record with the facts episodes 1, 4 and 6 state.
+  - **A B2 serial** waits on the B2 units (CON-8): the same rule holds, each episode on a topic
+    of its own, recycling one the learner has met.
+  - **Narration** of the serial belongs to the narration plan (TON-5), not here.
 - **CON-8 · Contract the B2 units** ([curriculum/b1-b2.md](../curriculum/b1-b2.md)). The anchors
   and the inherited rules are written, and no unit is. Each unit needs a mission, owned structures
   and exclusions, like B1's. Units wait on *Profile deutsch* (P26-7) for the structures they own.

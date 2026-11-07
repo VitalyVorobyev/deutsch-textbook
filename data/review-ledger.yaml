@@ -4,22 +4,22 @@ version: 1
 entries:
   - file: content/characters/frau-kern.yaml
     state: claude-reviewed
-    revision: c8b9bd1431b85c78dce2f6c4cb1e7b617c2343ea
+    revision: 8558e3185362e244361fe70683078e1d100140f5
     by: Claude Code
     at: 2026-11-07
-    note: "Krimi serial episode 1 (Ein Fall für den Hof): read the clues, the Verdacht/Beweis scene and the new Lena and Frau Kern facts against the records"
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/characters/lena.yaml
     state: claude-reviewed
-    revision: 7feadb20403162c3eed37215034ea95144cabab3
+    revision: c02a286c16c2461d8b91da0dd74dc722cd59ad4e
     by: Claude Code
     at: 2026-11-07
-    note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/characters/mira.yaml
     state: claude-reviewed
-    revision: 496b137a4fb5f8750fd0976b5b1c97beb60f9b35
+    revision: 91c678cad61f181e788d1d694f83a623dd59c647
     by: Claude Code
     at: 2026-11-07
-    note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/characters/timo.yaml
     state: claude-reviewed
     revision: b616fa5a323ef9e8f2db1ba20b3cb0201d707665
@@ -889,6 +889,24 @@ entries:
     by: Claude Code
     at: 2026-11-07
     note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+  - file: content/reading/b1/krimi-4-was-die-versicherung-wissen-will.yaml
+    state: claude-reviewed
+    revision: 7ba159c42f74848a4fb582cf75c3e9f81523d77e
+    by: Claude Code
+    at: 2026-11-07
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+  - file: content/reading/b1/krimi-5-ein-kunde-ohne-eile.yaml
+    state: claude-reviewed
+    revision: 4d578921c9378986f030d33cf2000675d5d652e4
+    by: Claude Code
+    at: 2026-11-07
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+  - file: content/reading/b1/krimi-6-ein-dach-fuer-alle.yaml
+    state: claude-reviewed
+    revision: 2a61649531fd9f95868e1761a603a0ddb8b76fb2
+    by: Claude Code
+    at: 2026-11-07
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/reading/b1/leben-veraendern.yaml
     state: owner-reviewed
     revision: f196659d025f349ed1ac0805667562edbdf71a78
@@ -1021,6 +1039,12 @@ entries:
     by: Claude Code
     at: 2026-11-07
     note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/topics/b1/gespraech-steuern.topic.yaml
+    state: claude-reviewed
+    revision: f21cb4215ad6019aa6137bec6348cd238075bcfe
+    by: Claude Code
+    at: 2026-11-07
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/topics/b1/gesundheit-wohlbefinden.mdx
     state: owner-reviewed
     revision: 474ccb0b42186c7d1c7613914ba210485f9193a4
@@ -1053,10 +1077,10 @@ entries:
     note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
   - file: content/topics/b1/versicherungen-behoerden.topic.yaml
     state: claude-reviewed
-    revision: 77d0a5b08f5951f05944ed893d8a84d0117793cf
+    revision: da94ab702cc8d8cca59deaf421d15f42021f0b12
     by: Claude Code
     at: 2026-11-07
-    note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/vocab/erfahrungen-erzaehlen.yaml
     state: owner-reviewed
     revision: edb352a3289d3869da9dede1673804e951fdde25
@@ -1119,10 +1143,10 @@ entries:
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: data/authorship-provenance.yaml
     state: claude-reviewed
-    revision: 73a26e5ad1e177c9bc518d38b522bced44a4edf4
+    revision: ac200af34eba1af2a6726ed429c795179d8928f3
     by: Claude Code
     at: 2026-11-07
-    note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: data/listening-plan.yaml
     state: claude-reviewed
     revision: 727be447e71873dbcc2c60dc7363b17b1ac1db23
