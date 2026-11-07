@@ -1,4 +1,4 @@
-# Listening generation brief — ls-gesellschaft-zusammenleben-produktion-01
+# Listening generation brief — ls-probe-gesellschaft-zusammenleben-hoeren-03
 
 ## Model-drafted; the submitted brief was not retained
 

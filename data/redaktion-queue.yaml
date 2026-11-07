@@ -79,11 +79,14 @@ entries:
     type: finding
     target:
       topic: gesellschaft-zusammenleben
-    waiting: claude
+    waiting: owner
     thread:
       - from: claude
         at: 2026-11-01
         text: Herr Weber votes for the playground in `hoeren-abstimmung`, demands the whole courtyard as parking in `sprechen-einwand` and "war dagegen" in the *dagegen* card's example — one name, two positions; the `hoeren-abstimmung` instruction ("votes for something else") rules out one option before the audio plays, and its closing *Die Mehrheit ist für den Spielplatz* points at the answer without the *obwohl* decoding; `frage-einwand`'s key copies the reading's sentence word for word; the reading's *einen Kompromiss vorgeschlagen, was … alle überzeugt hat* reads more naturally with *der*, since the compromise convinced and not the proposing; *Bewohner*, *Spielplatz* and *Grill* are produced in translate items but carded recognition-only; the *dagegen* RU gloss «зато» names *dafür*'s compensation, not *dagegen*'s contrast; the *Gemeinschaft* note calls *gemeinsam handeln* "the verb behind it"; `match-redemittel`'s explain gives a discussion "five moves in a fixed order"; the speaking checklist and the `konjunktionaladverb-inversion` tag row name only position 1 for *trotzdem*; the primary and production headers say outcomes arm the families (arming is by item key)
+      - from: claude
+        at: 2026-11-07
+        text: "Partly resolved by the task-set conversion: hoeren-abstimmung is removed with its recording, so the instruction that ruled out an option and the giveaway closing line are gone, and Herr Weber now has one position (sprechen-einwand) plus the dagegen card. The other points stay open."
   - id: q-0010
     type: finding
     target:

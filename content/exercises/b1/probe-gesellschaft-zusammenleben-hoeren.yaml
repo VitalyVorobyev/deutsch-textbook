@@ -1,0 +1,135 @@
+# Delayed probe family for the topic's listening outcome — ONE competence: following a
+# short disagreement between neighbours to the outcome they settle on, cold, with no
+# transcript. Three parallel audio-comprehension variants, each on its own recording,
+# served in authoring order across the 2/7/21 delays — one retention curve over one skill.
+#
+# Each variant is a different everyday question of a shared building (piano practice in
+# the evening, the washing machine in the cellar, cleaning the stairwell), spoken by two
+# walk-on voices, never the cast. Each asks the same thing — how the two solve it — and
+# each offers four outcomes built from the recording's own words: the first demand, a
+# proposal that is turned down, a half of the deal, and the deal itself. So a learner who
+# catches one keyword and not the turn of the conversation picks a wrong option.
+#
+# No focus tag: the competence is comprehension of a whole exchange, and no single
+# confusion owns a wrong pick. A false tag is worse than none.
+#
+# Content fresh against the task set and the practice union: no courtyard, no table, no
+# bicycles, no Frau Kern, and none of the three questions is asked anywhere else in the
+# topic.
+#
+# arming: the two detail items of the task set, in which the learner follows the meeting to
+# a reason and to its decision. The gist and who items are left out: naming the topic or a
+# voice is not following a discussion to its end.
+topic: gesellschaft-zusammenleben
+role: probe
+title:
+  en: "Delayed check — how two neighbours settle it"
+  ru: "Отложенная проверка — как договариваются двое соседей"
+  uk: "Відкладена перевірка — як домовляються двоє сусідів"
+  de: "Kontrolle mit Abstand — wie sich zwei Nachbarn einigen"
+arming:
+  - b1/gesellschaft-zusammenleben-aufgabe::aufgabe-warum-einwand
+  - b1/gesellschaft-zusammenleben-aufgabe::aufgabe-was-beschlossen
+items:
+  - id: variant-a
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    instruction:
+      en: "Two neighbours disagree. Listen to how they solve the problem and choose the answer."
+      ru: "Двое соседей не согласны друг с другом. Послушайте, как они решают проблему, и выберите ответ."
+      uk: "Двоє сусідів не згодні одне з одним. Послухайте, як вони розв'язують проблему, і оберіть відповідь."
+      de: "Zwei Nachbarn sind nicht einer Meinung. Hör zu, wie sie das Problem lösen, und wähle die Antwort."
+    source:
+      kind: tts
+      turns:
+        - { speaker: "Nachbar", text: "Entschuldigung, Sie spielen jeden Abend Klavier, oft bis zehn Uhr. Mein Sohn muss aber um acht schlafen." }
+        - { speaker: "Mieterin", text: "Das tut mir leid. Aber ich arbeite bis sechs, und vorher habe ich keine Zeit zum Üben." }
+        - { speaker: "Nachbar", text: "Das verstehe ich. Könnten Sie dann vielleicht früher aufhören?" }
+        - { speaker: "Mieterin", text: "Wie wäre es, wenn ich nur noch von halb sieben bis halb acht spiele? Am Wochenende dann am Nachmittag." }
+        - { speaker: "Nachbar", text: "Einverstanden, das ist fair." }
+    recording: ls-probe-gesellschaft-zusammenleben-hoeren-01
+    question: "Wie lösen die beiden das Problem?"
+    options:
+      - "Sie spielt weiter bis zehn Uhr, aber nicht mehr am Wochenende."
+      - "Sie spielt abends nur noch bis halb acht und am Wochenende am Nachmittag."
+      - "Sie spielt nur noch am Wochenende am Nachmittag."
+      - "Sie spielt abends nur noch bis acht Uhr, dann schläft der Sohn."
+    correct: 1
+    translation:
+      en: "How do the two solve the problem?"
+      ru: "Как эти двое решают проблему?"
+      uk: "Як ці двоє розв'язують проблему?"
+    explain:
+      en: "The solution is hers, and he accepts it: „Wie wäre es, wenn ich nur noch von halb sieben bis halb acht spiele? Am Wochenende dann am Nachmittag.“ — „Einverstanden.“ Ten o'clock is how late she plays today, eight is when the son goes to bed, and the weekend is added to the evenings, not instead of them."
+      ru: "Решение предлагает она, а он его принимает: „Wie wäre es, wenn ich nur noch von halb sieben bis halb acht spiele? Am Wochenende dann am Nachmittag.“ — „Einverstanden.“ Десять часов — это до скольких она играет сейчас, восемь — когда ложится спать сын, а выходные добавляются к вечерам, а не заменяют их."
+      uk: "Рішення пропонує вона, а він його приймає: „Wie wäre es, wenn ich nur noch von halb sieben bis halb acht spiele? Am Wochenende dann am Nachmittag.“ — „Einverstanden.“ Десята — це до котрої вона грає зараз, восьма — коли лягає спати син, а вихідні додаються до вечорів, а не замінюють їх."
+      de: "Die Lösung kommt von ihr, und er nimmt sie an: „Wie wäre es, wenn ich nur noch von halb sieben bis halb acht spiele? Am Wochenende dann am Nachmittag.“ — „Einverstanden.“ Bis zehn spielt sie heute, um acht schläft der Sohn, und am Wochenende spielt sie außerdem, nicht statt der Abende."
+
+  - id: variant-b
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    instruction:
+      en: "Two neighbours disagree. Listen to how they solve the problem and choose the answer."
+      ru: "Двое соседей не согласны друг с другом. Послушайте, как они решают проблему, и выберите ответ."
+      uk: "Двоє сусідів не згодні одне з одним. Послухайте, як вони розв'язують проблему, і оберіть відповідь."
+      de: "Zwei Nachbarn sind nicht einer Meinung. Hör zu, wie sie das Problem lösen, und wähle die Antwort."
+    source:
+      kind: tts
+      turns:
+        - { speaker: "Mieterin", text: "Schon wieder liegt nasse Wäsche in der Maschine im Keller. Ich warte seit einer Stunde." }
+        - { speaker: "Hausmeister", text: "Ich weiß, viele beschweren sich. Aber ich kann nicht jeden Tag kontrollieren, wer wäscht." }
+        - { speaker: "Mieterin", text: "Wir könnten doch einen Plan an die Tür hängen. Jede Wohnung bekommt einen festen Tag." }
+        - { speaker: "Hausmeister", text: "Ein fester Tag ist zu wenig für Familien. Besser ist eine Liste, wo man seine Zeit einträgt." }
+        - { speaker: "Mieterin", text: "Gut, eine Liste. Dann weiß jeder, wann die Maschine frei ist." }
+        - { speaker: "Hausmeister", text: "Ich hänge sie morgen an die Tür." }
+    recording: ls-probe-gesellschaft-zusammenleben-hoeren-02
+    question: "Wie lösen die beiden das Problem?"
+    options:
+      - "Jede Wohnung bekommt einen festen Tag für die Maschine."
+      - "Der Hausmeister kontrolliert jetzt jeden Tag die Maschine."
+      - "Im Keller steht bald eine zweite Waschmaschine."
+      - "An der Tür hängt bald eine Liste, wo man seine Zeit einträgt."
+    correct: 3
+    translation:
+      en: "How do the two solve the problem?"
+      ru: "Как эти двое решают проблему?"
+      uk: "Як ці двоє розв'язують проблему?"
+    explain:
+      en: "Her fixed day per flat is a proposal, and he turns it down: „Ein fester Tag ist zu wenig für Familien.“ His counter-proposal is the one she takes — „Gut, eine Liste“ — and he will put it up tomorrow. Checking every day is exactly what he says he cannot do, and nobody mentions a second machine."
+      ru: "Постоянный день для каждой квартиры — это её предложение, и он его отклоняет: „Ein fester Tag ist zu wenig für Familien.“ Она принимает его встречное предложение — „Gut, eine Liste“, — и завтра он её повесит. Проверять каждый день — как раз то, чего он, по его словам, делать не может, а о второй машине никто не говорит."
+      uk: "Постійний день для кожної квартири — це її пропозиція, і він її відхиляє: „Ein fester Tag ist zu wenig für Familien.“ Вона приймає його зустрічну пропозицію — „Gut, eine Liste“, — і завтра він її повісить. Перевіряти щодня — якраз те, чого він, за його словами, робити не може, а про другу машину ніхто не говорить."
+      de: "Ein fester Tag pro Wohnung ist ihr Vorschlag, und er lehnt ihn ab: „Ein fester Tag ist zu wenig für Familien.“ Seinen Vorschlag nimmt sie an — „Gut, eine Liste“ —, und morgen hängt er sie auf. Jeden Tag kontrollieren ist genau das, was er nach eigenen Worten nicht kann, und von einer zweiten Maschine spricht niemand."
+
+  - id: variant-c
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    instruction:
+      en: "Two neighbours disagree. Listen to how they solve the problem and choose the answer."
+      ru: "Двое соседей не согласны друг с другом. Послушайте, как они решают проблему, и выберите ответ."
+      uk: "Двоє сусідів не згодні одне з одним. Послухайте, як вони розв'язують проблему, і оберіть відповідь."
+      de: "Zwei Nachbarn sind nicht einer Meinung. Hör zu, wie sie das Problem lösen, und wähle die Antwort."
+    source:
+      kind: tts
+      turns:
+        - { speaker: "Mieterin", text: "Das Treppenhaus ist schon wieder schmutzig. Eigentlich müssen Sie diese Woche putzen." }
+        - { speaker: "Nachbar", text: "Ich weiß, aber ich arbeite diese Woche jeden Tag bis spät. Ich habe einfach keine Zeit." }
+        - { speaker: "Mieterin", text: "Und ich soll alles allein machen? Das finde ich nicht fair." }
+        - { speaker: "Nachbar", text: "Nein, natürlich nicht. Wie wäre es, wenn wir tauschen? Sie putzen diese Woche, und ich putze dafür die nächsten zwei Wochen." }
+        - { speaker: "Mieterin", text: "Zwei Wochen? Gut, einverstanden." }
+    recording: ls-probe-gesellschaft-zusammenleben-hoeren-03
+    question: "Wie lösen die beiden das Problem?"
+    options:
+      - "Er putzt diese Woche doch noch, am Wochenende."
+      - "Die beiden putzen diese Woche zusammen."
+      - "Sie putzt diese Woche, und er putzt dann zwei Wochen lang."
+      - "Sie putzt diese Woche, und er putzt dafür nur die nächste Woche."
+    correct: 2
+    translation:
+      en: "How do the two solve the problem?"
+      ru: "Как эти двое решают проблему?"
+      uk: "Як ці двоє розв'язують проблему?"
+    explain:
+      en: "He has no time this week, so he offers a swap: „Sie putzen diese Woche, und ich putze dafür die nächsten zwei Wochen.“ She repeats the number — „Zwei Wochen?“ — and agrees. Nobody suggests cleaning together, and he never says he could still do it at the weekend."
+      ru: "На этой неделе у него нет времени, поэтому он предлагает поменяться: „Sie putzen diese Woche, und ich putze dafür die nächsten zwei Wochen.“ Она переспрашивает число — „Zwei Wochen?“ — и соглашается. Убирать вместе никто не предлагает, и о выходных он ничего не говорит."
+      uk: "Цього тижня в нього немає часу, тож він пропонує помінятися: „Sie putzen diese Woche, und ich putze dafür die nächsten zwei Wochen.“ Вона перепитує число — „Zwei Wochen?“ — і погоджується. Прибирати разом ніхто не пропонує, і про вихідні він нічого не каже."
+      de: "Diese Woche hat er keine Zeit, also bietet er einen Tausch an: „Sie putzen diese Woche, und ich putze dafür die nächsten zwei Wochen.“ Sie fragt bei der Zahl nach — „Zwei Wochen?“ — und ist einverstanden. Zusammen putzen schlägt niemand vor, und vom Wochenende sagt er nichts."

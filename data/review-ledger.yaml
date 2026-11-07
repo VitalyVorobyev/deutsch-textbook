@@ -4,16 +4,16 @@ version: 1
 entries:
   - file: content/characters/frau-kern.yaml
     state: claude-reviewed
-    revision: 32cc0a1fa04464bbb7dbe7c73810e5b76b5b8175
+    revision: 55880e52fe2d15ce9c765335f08fc22cdf1dedb3
     by: Claude Code
     at: 2026-11-07
-    note: "Frau Kern takes the anna-keller roster voice (ADR 0018); recast_pending regenerated from the validator: +16, -ls-relativsaetze-produktion-01"
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/characters/lena.yaml
     state: claude-reviewed
-    revision: 1efb46c81bd131d671c45b95c694211482743531
+    revision: e27c20587cf9fe0bdd146c6d3eae0e0231e8bafa
     by: Claude Code
     at: 2026-11-07
-    note: "A2 pilot of the task shape: new cast scene, task set on the gist→reply ladder, old -hoeren set retired, single listening item removed from -produktion with its recording; items read for determinacy, A2 vocabulary scanned"
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/characters/mira.yaml
     state: claude-reviewed
     revision: ed696ad0938f953a148a26faf659d3976bd7a1ae
@@ -466,6 +466,24 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/exercises/b1/gesellschaft-zusammenleben-aufgabe.yaml
+    state: claude-reviewed
+    revision: 9998d1343c4a4e921aa5a733a7d3001a46fa658b
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/exercises/b1/gesellschaft-zusammenleben-hoeren.yaml
+    state: claude-reviewed
+    revision: 6d11263f6dd52a573f6f995129fc4b9f3828d97e
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/exercises/b1/gesellschaft-zusammenleben-produktion.yaml
+    state: claude-reviewed
+    revision: 22323cfa1476ebfbede7886b652a9243a01bb6cb
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/exercises/b1/gesundheit-wohlbefinden-hoeren.yaml
     state: owner-reviewed
     revision: 6ab32369ee15518318de0afec8a9ada95a1dbadd
@@ -542,6 +560,18 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/exercises/b1/probe-gesellschaft-zusammenleben-hoeren.yaml
+    state: claude-reviewed
+    revision: afbb74b5fd4787bdf1552abdc2529b79976ecd58
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/exercises/b1/probe-gesellschaft-zusammenleben.yaml
+    state: claude-reviewed
+    revision: e1c2fcb9c64f08cbb2a63ab9ed7606be0cf7fdd4
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/exercises/b1/probe-gesundheit-wohlbefinden-adjektiv-nullartikel.yaml
     state: owner-reviewed
     revision: 13838cb52535f194b584cda7f6c9ee745bc3772f
@@ -664,6 +694,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/listening/b1/ls-gesellschaft-zusammenleben-aufgabe-01.yaml
+    state: claude-reviewed
+    revision: 4fe5a1d1fd50ada7202332db457bce80dc1576ed
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/listening/b1/ls-gesundheit-wohlbefinden-01.yaml
     state: owner-reviewed
     revision: 1118ac15c050d8022df02947f36e800bdf4c097e
@@ -676,6 +712,24 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/listening/b1/ls-probe-gesellschaft-zusammenleben-hoeren-01.yaml
+    state: claude-reviewed
+    revision: c7a68075d4ec43d77bb51454ee97f2dfb477c353
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/listening/b1/ls-probe-gesellschaft-zusammenleben-hoeren-02.yaml
+    state: claude-reviewed
+    revision: 07f171e4690b58069bf175a63d4adfd8fa5a1357
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/listening/b1/ls-probe-gesellschaft-zusammenleben-hoeren-03.yaml
+    state: claude-reviewed
+    revision: fff2471d4f55e64615adbbc8829694eed7a3eb1f
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/reading/a1/erste-schritte.yaml
     state: owner-reviewed
     revision: 6a33320867ee8fb8cc181d746ef4c093d6325fa5
@@ -880,6 +934,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/topics/b1/gesellschaft-zusammenleben.topic.yaml
+    state: claude-reviewed
+    revision: 3041fbc404ed4dfc31df98a3a3470491d7203535
+    by: Claude Code
+    at: 2026-11-07
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: content/topics/b1/gesundheit-wohlbefinden.mdx
     state: owner-reviewed
     revision: 474ccb0b42186c7d1c7613914ba210485f9193a4
@@ -966,13 +1026,13 @@ entries:
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: data/listening-plan.yaml
     state: claude-reviewed
-    revision: 39b326c19781b31a93229bcc7ea389cc2e52e53f
+    revision: 727be447e71873dbcc2c60dc7363b17b1ac1db23
     by: Claude Code
     at: 2026-11-07
-    note: "A2 pilot of the task shape: new cast scene, task set on the gist→reply ladder, old -hoeren set retired, single listening item removed from -produktion with its recording; items read for determinacy, A2 vocabulary scanned"
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: data/speaker-registry.yaml
     state: claude-reviewed
-    revision: ff9888f59107728c39fbdbdc0b83f18f97cbd68b
+    revision: 9a9a530c6e935f4d940ce55e65e9f7fff152c903
     by: Claude Code
     at: 2026-11-07
-    note: "Frau Kern takes the anna-keller roster voice (ADR 0018); recast_pending regenerated from the validator: +16, -ls-relativsaetze-produktion-01"
+    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."

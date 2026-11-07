@@ -213,7 +213,7 @@ describe('the registry only shrinks', () => {
   const registry = loadSpeakerRegistry(repoRoot());
 
   test('legacy names', () => {
-    expect(registry.legacy_names.length).toBeLessThanOrEqual(106);
+    expect(registry.legacy_names.length).toBeLessThanOrEqual(104);
   });
 
   test('places waiting for a continuity check', () => {
@@ -222,6 +222,6 @@ describe('the registry only shrinks', () => {
   });
 
   test('recordings waiting for a recast', () => {
-    expect(registry.recast_pending.length).toBeLessThanOrEqual(65);
+    expect(registry.recast_pending.length).toBeLessThanOrEqual(64);
   });
 });

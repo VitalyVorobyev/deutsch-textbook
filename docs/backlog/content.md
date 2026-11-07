@@ -78,19 +78,24 @@ Course content: articles, items, probes, vocabulary, readings and their language
   adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
 - **CON-5 · Original B1 practice sets.** `/pruefung/b1` serves the official sets only where the
   materials are local, so a clean build has nothing to practise there.
-- **CON-6 · Pilot the task shape and the cast on two topics**
-  ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). Listening-comprehension
-  questions sit at a ceiling, 97% over 64 attempts (`bun run progress:audit --profile vitaly`), and
-  most recordings serve one question (`grep -rhE "^ *recording:" content/exercises | sort | uniq -c`).
-  A2 `freunde-feste` is converted: `a2/freunde-feste-aufgabe` asks six things of one bakery scene
-  with Lena, Mira and a walk-on colleague (`ls-freunde-feste-aufgabe-01`). B1
-  `gesellschaft-zusammenleben` is next: a house meeting about the courtyard with Lena and Frau Kern,
-  where Lena first says *Sie* to her, picking up the Lena episode `lena-7-ein-brief-fuer-den-hof`.
-  It also gets a listening probe family for `diskussion-folgen`, because ADR 0016 gives each
-  listening outcome a delayed probe. Two open points: the `lena` and `mira` voices are close
-  (WavLM similarity 0.878 in the scene's automatic QA report, against 0.51 and 0.33 to the walk-on), which weakens a "who
-  said it" item between the two; and no portraits exist yet. First step: the B1 scene and its task
-  set.
+- **CON-10 · Roll the task shape out** ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)).
+  Two topics are converted. `a2/freunde-feste-aufgabe` is a bakery scene with Lena and Mira.
+  `b1/gesellschaft-zusammenleben-aufgabe` is a courtyard meeting with Lena and Frau Kern, and
+  the first listening probe family, `probe-gesellschaft-zusammenleben-hoeren`, has three recordings
+  of its own. 55 topics are left (A1 12, A2 24, B1 19), every one with a listening item, counted
+  as manifests listing no `-aufgabe` set. Each costs one new scene, a task set and a retired
+  `-hoeren` set. A topic with a listening outcome also needs three probe recordings.
+  - **The evidence comes first.** The pilots exist to take listening off its 97% ceiling. Before
+    converting in batches, read the two task sets in `bun run progress:audit --profile vitaly`
+    once they have been done.
+  - **The voices are an open question for the ear.** The QA's speaker similarity (WavLM, between
+    voice centroids) separates men from women and little else. Every same-gender pair in the
+    published provenance scores 0.84–0.99 and every mixed pair 0.24–0.66
+    (`qa.speaker_qa.different_characters` in `data/audio-provenance/*/*.json`). Whether Lena,
+    Mira and Frau Kern can be told apart is therefore the owner's judgement from listening. The
+    figure cannot answer it.
+  - No portraits exist yet. ADR 0016 gives them one job: the "who said it" item.
+  - First step: the audit read, then the remaining B1 topics in batches of three.
 - **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 35 places
   name a cast member without having been read against the record (`continuity_pending`: Lena 20,
   Mira 6, Frau Kern 5, Timo 4). Some places add a fact the record lacks: in `ls-dativ-01`, Frau
@@ -105,7 +110,7 @@ Course content: articles, items, probes, vocabulary, readings and their language
   one serial, Lena (seven episodes, A1–A2, `ls content/reading/*/lena-*`), and B1 has only the
   Klassiker. A crime serial cast from the characters recycles `polizei-anzeige` and
   `unfall-notruf`. It is also how the cast grows past four. Each episode carries a manual
-  continuity read against the character records. First step: after CON-6, an outline of the
+  continuity read against the character records. First step: an outline of the
   episodes with the cast and the topic each one recycles.
 - **CON-8 · Contract the B2 units** ([curriculum/b1-b2.md](../curriculum/b1-b2.md)). The anchors
   and the inherited rules are written, and no unit is. Each unit needs a mission, owned structures
