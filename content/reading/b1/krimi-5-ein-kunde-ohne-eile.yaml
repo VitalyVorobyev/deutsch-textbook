@@ -1,0 +1,79 @@
+topic: gespraech-steuern
+kind: extensive
+title_de: "Ein Fall für den Hof (5): Ein Kunde ohne Eile"
+text:
+  - >-
+    Am Mittwoch gegen elf kam ein junger Mann mit einem schwarzen Fahrrad in die Werkstatt
+    von Frau Beck. Auf dem Rücken seiner Arbeitsjacke stand der Name einer Firma. Lena
+    kannte diesen Namen: Gestern hatte sie ihn am Telefon vorgelesen, vom Schild am
+    Fahrraddach. Vor der Tür stand ein weißer Lieferwagen mit einer Leiter auf dem Dach.
+  - >-
+    „Seit ich das Rad [[lackiert::painted::покрасил::пофарбував]] habe, springt die
+    Kette“, sagte der Mann. Lena brachte das Rad ans Fenster. Die Farbe war frisch, und am
+    [[Lenker::handlebars::руль::кермо]] fehlte eine Klingel. Dann sah sie unten am
+    [[Rahmen::frame::рама::рама]] nach. Unter der dünnen Farbe konnte man die Rahmennummer
+    noch lesen. Lena verglich sie mit dem Foto auf ihrem Handy. Jede Zahl stimmte.
+  - >-
+    Ihr Herz schlug schnell, aber ihre Stimme blieb ruhig. Sie wollte, dass der Mann
+    weiterspricht. „Verstehe“, sagte sie. „Und seit wann haben Sie das Rad?“ – „Seit zwei
+    Monaten. Es ist fast neu.“ – „Wirklich?“ Lena prüfte langsam die Kette. „Sie fahren
+    sicher viel damit.“ – „Nein, eigentlich nicht. Ich bin den ganzen Tag mit dem Wagen
+    unterwegs, auf Baustellen hier im Viertel.“
+  - >-
+    Dann wurde er nervös. „Sie sehen das Rad aber sehr genau an. Stimmt etwas nicht?“ Lena
+    lächelte. „Da bin ich mir noch nicht sicher. Ich frage meine Chefin und sage Ihnen
+    morgen Bescheid.“ – „Und was kostet das?“ – „Dazu kann ich leider noch nichts sagen.“
+  - >-
+    „Kein Problem“, sagte der Mann. „Ich habe keine Eile.“ Lena öffnete das Auftragsbuch.
+    „Dann holen Sie das Rad morgen früh um acht ab?“ – „Gut“, sagte er und schrieb seinen
+    Namen und seine Telefonnummer auf. Durch das Fenster sah Lena, wie er in den weißen
+    Wagen stieg. Anders als bei Miras Unfall war es hell, und sie konnte das
+    [[Kennzeichen::number plate::номерной знак::номерний знак]] lesen.
+  - >-
+    Frau Beck kam aus dem Büro. „Was ist los? Sie sind ja ganz blass.“ – „Frau Beck, das
+    ist mein Fahrrad.“ Lena zeigte ihr das Foto und die Zahlen am Rahmen. „Dann rufen Sie
+    jetzt die Polizei an. Das Rad bleibt hier.“
+  - >-
+    Lena rief die Beamtin an, die ihre Anzeige aufgenommen hatte, und nannte die
+    [[Vorgangsnummer::case number::номер дела::номер справи]]. Sie erzählte von der Jacke,
+    vom Wagen und vom Termin am nächsten Morgen. „Haben Sie ihm etwas gesagt?“, fragte die
+    Beamtin. „Nein. Nur, dass ich mir nicht sicher bin.“ – „Gut. Wir sind morgen um acht
+    da.“ Ein Kunde ohne Eile, dachte Lena. Morgen um acht hatte er Zeit, und die Polizei
+    auch.
+questions:
+  - id: q-nicht-sicher
+    outcomes: [hoeflich-ausweichen]
+    type: mc
+    prompt: "Der Kunde fragt: „Stimmt etwas nicht?“ Was macht Lena?"
+    options:
+      - "Sie antwortet höflich, dass sie sich nicht sicher ist, und sagt nichts von ihrem Rad."
+      - "Sie sagt ihm, dass das Fahrrad ihr gehört."
+      - "Sie sagt, dass sie die Polizei schon angerufen hat."
+    correct: 0
+    translation:
+      en: "The customer asks: \"Is something wrong?\" What does Lena do?"
+      ru: "Клиент спрашивает: «Что-то не так?» Что делает Лена?"
+      uk: "Клієнт питає: «Щось не так?» Що робить Лена?"
+    explain:
+      en: "Lena does not want to answer, so she sidesteps politely: \"Da bin ich mir noch nicht sicher\", and she will ask her boss and let him know tomorrow. She tells Frau Beck that it is her bike only after he has gone, and she calls the police after that, not before."
+      ru: "Лена не хочет отвечать и вежливо уходит от ответа: «Da bin ich mir noch nicht sicher» — она спросит начальницу и сообщит ему завтра. Что это её велосипед, она говорит только фрау Бек, когда клиент уже ушёл, и в полицию звонит после этого, а не до."
+      uk: "Лена не хоче відповідати і ввічливо ухиляється: «Da bin ich mir noch nicht sicher» — вона спитає начальницю і скаже йому завтра. Що це її велосипед, вона каже лише фрау Бек, коли клієнт уже пішов, а до поліції дзвонить після цього, а не раніше."
+      de: "Lena will nicht antworten und weicht höflich aus: „Da bin ich mir noch nicht sicher.“ Sie will ihre Chefin fragen und ihm morgen Bescheid sagen. Dass es ihr Rad ist, sagt sie erst Frau Beck, als der Kunde weg ist, und die Polizei ruft sie danach an, nicht vorher."
+  - id: q-wirklich
+    outcomes: [zuhoeren-anknuepfen]
+    type: mc
+    prompt: "Warum sagt Lena „Verstehe“ und „Wirklich?“?"
+    options:
+      - "Sie zeigt, dass sie zuhört, damit der Mann weiterspricht."
+      - "Sie glaubt dem Mann, dass das Rad fast neu ist."
+      - "Sie hat nicht verstanden, was der Mann gesagt hat."
+    correct: 0
+    translation:
+      en: "Why does Lena say \"Verstehe\" and \"Wirklich?\"?"
+      ru: "Зачем Лена говорит «Verstehe» и «Wirklich?»?"
+      uk: "Навіщо Лена каже «Verstehe» і «Wirklich?»?"
+    explain:
+      en: "The text says it: Lena wants the man to keep talking. \"Verstehe\" and \"Wirklich?\" are listener signals; they show she is following and invite more, which is why he goes on about his two months and his building sites. They are not agreement, and Lena knows the bike is not almost new: she has just read her own frame number on it."
+      ru: "Текст говорит об этом прямо: Лена хочет, чтобы клиент продолжал говорить. «Verstehe» и «Wirklich?» — сигналы слушателя: они показывают, что она следит за разговором, и приглашают сказать больше, поэтому он и рассказывает про два месяца и про стройки. Это не согласие: Лена знает, что велосипед вовсе не почти новый, — она только что прочитала на нём свой номер рамы."
+      uk: "Текст каже про це прямо: Лена хоче, щоб клієнт і далі говорив. «Verstehe» і «Wirklich?» — сигнали слухача: вони показують, що вона стежить за розмовою, і заохочують сказати більше, тому він і розповідає про два місяці та про будови. Це не згода: Лена знає, що велосипед аж ніяк не майже новий, — вона щойно прочитала на ньому свій номер рами."
+      de: "Der Text sagt es: Lena will, dass der Mann weiterspricht. „Verstehe“ und „Wirklich?“ zeigen, dass sie zuhört, und deshalb erzählt er weiter, von den zwei Monaten und von den Baustellen. Sie bedeuten keine Zustimmung: Lena weiß, dass das Rad nicht fast neu ist, denn sie hat gerade ihre eigene Rahmennummer darauf gelesen."

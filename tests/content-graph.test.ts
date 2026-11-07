@@ -28,7 +28,7 @@ describe('content graph', () => {
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
     expect(graph.sets.size).toBe(479);
-    expect(graph.readings.size).toBe(88);
+    expect(graph.readings.size).toBe(91);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(148);
     expect(graph.documents.size).toBe(17);
@@ -119,7 +119,7 @@ describe('content graph', () => {
       einstufung: 3,
       entdecken: 19,
       hoertext: 148,
-      'lesetext-extensiv': 20,
+      'lesetext-extensiv': 23,
       'lesetext-intensiv': 68,
       'lid-lektion': 12,
       praxis: 217,
@@ -131,7 +131,7 @@ describe('content graph', () => {
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(966);
+    expect(graph.elements.length).toBe(969);
     // Every Hörtext the plan names is published: none is planned any more.
     expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });

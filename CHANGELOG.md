@@ -221,6 +221,7 @@ GitHub Release notes.
 - Tooling: the Goethe B2 Prüfungsthemen as a theme anchor, so `themen.ts B2` measures B2 topics as they are written.
 - A new B1 reading serial begins: "Ein Fall für den Hof (1): Das leere Dach", a neighbourhood Krimi with Lena and Frau Kern, on the Polizei & Anzeige page.
 - "Ein Fall für den Hof" continues with episodes 2 and 3: Lena and Timo track the bike adverts (Polizei & Anzeige), and Mira becomes a witness (Versicherungen & Behörden).
+- "Ein Fall für den Hof" ends with episodes 4 to 6: the insurance turns up a pattern and Herr Hansen is cleared (Versicherungen & Behörden), and the thief brings Lena's bike to Frau Beck's workshop, where the frame number gives him away (Ein Gespräch steuern).
 
 ## [0.6.19] — 2026-10-14
 
