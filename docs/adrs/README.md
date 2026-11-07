@@ -41,7 +41,7 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | ADR | Decision |
 | --- | --- |
 | [`0001`](0001-repository-is-the-content-database.md) | The repository is the content database |
-| [`0002`](0002-topic-manifests-and-learning-activities.md) | A topic is one manifest, and its exercises are organised as learning activities (its lesson shape superseded by 0016) |
+| [`0002`](0002-topic-manifests-and-learning-activities.md) | A topic is one manifest, and its exercises are organised as learning activities (its lesson shape superseded by 0016, its page grouping in part by 0019) |
 | [`0003`](0003-the-evidence-model.md) | What counts as learning evidence, and what never does |
 | [`0004`](0004-completeness-is-evidence-contracts.md) | Course completeness is a set of evidence contracts against named anchors |
 | [`0005`](0005-explanation-languages.md) | Explanations are authored per language, and B1 reads German first |
@@ -55,9 +55,10 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0013`](0013-designed-voices-and-automatic-publishing.md) | The course speaks in designed synthetic voices on one model, and its audio publishes on automatic QA |
 | [`0014`](0014-material-governance.md) | Every kind of material has one owner, one review state that expires, and one shared queue (its provenance clause superseded by 0015) |
 | [`0015`](0015-review-is-reading-provenance-is-decisions.md) | A review records what the owner read, and provenance records only the decisions the owner made |
-| [`0016`](0016-lessons-are-tasks-and-a-cast-carries-them.md) | A lesson is a sequence of tasks, each built on one stimulus, and a recurring cast of people carries the stimuli (its first four names superseded by 0017, its walk-on voice pool by 0018) |
+| [`0016`](0016-lessons-are-tasks-and-a-cast-carries-them.md) | A lesson is a sequence of tasks, each built on one stimulus, and a recurring cast of people carries the stimuli (its first four names superseded by 0017, its walk-on voice pool by 0018, its frozen-identity clause in part by 0019) |
 | [`0017`](0017-the-first-four-are-the-lena-serials-cast.md) | The first four cast members are the Lena serial's own people: Lena, Mira, Timo and Frau Kern (its voiceless Frau Kern superseded by 0018) |
 | [`0018`](0018-the-twelve-roster-voices-are-the-whole-pool.md) | The twelve roster voices are the whole pool; Frau Kern speaks with the anna-keller voice |
+| [`0019`](0019-a-topics-exercises-are-three-steps.md) | A topic's exercises are three steps — Üben, Anwenden, Aufgaben — with one kind of work per set, and an item may move between sets with its history |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),

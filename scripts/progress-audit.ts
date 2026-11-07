@@ -36,7 +36,7 @@ import type { GradingDecision } from '@da/schema';
 import { LID_EXAM, type LidBank, type LidTopics } from '@da/schema/lid';
 import { lidReadiness, lidStatuses, type LidState } from '../src/lib/lid';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
-import { migrateAttemptSetIds } from '../src/lib/set-id-migration';
+import { currentItemSetId, migrateAttemptSetIds } from '../src/lib/set-id-migration';
 import {
   armedAt,
   dueProbes,
@@ -395,7 +395,9 @@ function parseItemRef(ref: string): { setId: string; itemId: string } {
   const at = ref.lastIndexOf(':');
   if (at <= 0 || at === ref.length - 1)
     throw new Error(`Invalid --item "${ref}"; expected <set-id>:<item-id>`);
-  return { setId: ref.slice(0, at), itemId: ref.slice(at + 1) };
+  // A ref written before a rename or a move names the item where it lives now, like the attempts.
+  const itemId = ref.slice(at + 1);
+  return { setId: currentItemSetId(ref.slice(0, at), itemId), itemId };
 }
 
 export function resolveSnapshotPath(root: string, profile?: string, explicit?: string): string {
@@ -432,7 +434,7 @@ export function readSnapshot(path: string): AuditSnapshot {
     exportedAt: parsed.exportedAt ?? '',
     profile: parsed.profile,
     // Snapshot files are read here directly, not through the app's import path, so the set
-    // rename map is applied here too.
+    // rename and item move maps are applied here too.
     attempts: migrateAttemptSetIds(parsed.attempts),
     cards: parsed.cards,
     sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],

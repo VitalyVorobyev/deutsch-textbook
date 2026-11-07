@@ -76,10 +76,10 @@ it is a question about meaning — the text says so, and it is then on the autho
   `stage: geruest`, 8–15 items and the one required learner step. Every topic also owns a productive
   `activity: application`, `stage: transfer`; a listening-only transfer is useful input, but does
   not prove that the learner can use the material.
-- **Purpose, stage and medium are different axes.** `activity` is `core`, `extension`, `application`
-  or `remediation`. `stage` says scaffold/fade/transfer. The graph derives `medium: listening` from
+- **Purpose, stage and medium are different axes.** `activity` is `core`, `extension`, `application`,
+  `task` or `remediation`. `stage` says scaffold/fade/transfer. The graph derives `medium: listening` from
   all-listening items and `medium: document` from a stimulus; neither is an activity. A two-question
-  recording may be a complete application, while a two-item addendum with no independent job should
+  recording may be a complete task, while a two-item addendum with no independent job should
   be merged or retired. See [ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md).
 - Every item declares `outcomes: [stable-outcome-id]`; ids, modes and domains live in `content/atlas.yaml`. Use `preview: true` only when an item intentionally uses a focus introduced later in the spine; the validator otherwise rejects curriculum-order leakage.
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
@@ -136,10 +136,28 @@ are not acceptable answers.
 | --- | --- | --- | --- |
 | `core` | `role: practice`, `stage: geruest`, exactly one per topic, 8–15 items | the shortest scaffolded route through the topic's central outcomes | every item the topic owns |
 | `extension` | `role: practice`, `stage: geruest` or `ausblenden` | one additional contrast or subskill that can be skipped without breaking the core | a late file created only because the primary was once frozen |
-| `application` | `role: practice`, `stage: transfer`; at least one per topic must require production | a fresh situation, message, mission, conversation or integrated listening response | another blocked table of the same forms |
+| `application` | `role: practice`, `stage: transfer`; at least one per topic must require production; written items only | the same points in new sentences: translation, cloze, a written message | listening, speaking or a document — those are tasks |
+| `task` | `role: practice`, `stage: transfer`, a `skill` | one situation for one skill around one stimulus: a recording, a document, a message to write, a conversation to hold | a second application with a different name |
 | `remediation` | `role: drill`, `stage: ausblenden` | one named confusion selected from evidence or a known high-risk contrast | a mandatory second lesson or general revision |
 
-Every one also declares `title_de`. The graph derives the medium: all `listen`/
+Every one also declares `title_de`. The topic page shows the activities as the same steps on every
+topic ([ADR 0019](../adrs/0019-a-topics-exercises-are-three-steps.md)): **Üben** (`core` first, then
+`extension`), **Anwenden** (`application`), **Aufgaben** (`task`, listed Hören, Lesen, Schreiben,
+Sprechen), and **Gezielt wiederholen** (`remediation`, folded). Manifest order holds within a step.
+
+**One kind of work per set** (validator-enforced, `packages/content/src/exercise-steps.ts`):
+
+- An `application` set holds no `listen`, `audio-comprehension` or `speak` item and no document.
+  The sets that still do are `MIXED_APPLICATION_PENDING`; the list only shrinks, and
+  `tests/exercise-steps.test.ts` holds its length.
+- A `task` set's items fit its `skill`. `hoeren`: a set recording, or listening items only — a
+  recording set keeps its `form` and `reply` rungs. `lesen`: a document (the set's `stimulus`, or
+  one on every item), and nothing asked by ear. `schreiben`: `write` items. `sprechen`: `speak`
+  items.
+- The suffix names the task: `-hoeren`, `-diktat` and `-aufgabe` are `skill: hoeren`, `-dokument`
+  is `skill: lesen`.
+
+The graph derives the medium: all `listen`/
 `audio-comprehension` becomes `listening`; a stimulus becomes `document`; everything else is
 `mixed`. A medium never answers why the activity exists.
 
@@ -178,10 +196,17 @@ Checked per **topic**, not per set, so a set may still specialize — a Hören s
 `order` gives the learner every token and asks only for the sequence. It is scaffolded first-encounter practice for a word-order rule, not a test of one, and it saturates fast — 99% over 78 attempts here. **Validator-enforced at ≤ 2 per set**, and per *set* rather than per topic on purpose: the topic-level caps above cannot see a single set that is mostly `order`, because a sibling set's `translate` items dilute the ratio. `a2/trennbare-verben` had 4 of 18 while `trennbar-wortstellung` was one of the worst persistent weak focuses in the log — a quarter of the practice for a rule the learner was failing handed them the tokens. Never let `order` stand in for a `translate` of the same rule.
 
 **Adding or moving items changes evidence identity.** `pathDone` reads the explicit
-`primary_practice`; attempts and probe arming use the set/item pair. Update manifest references,
-`arming:` keys and grading decisions atomically when moving an item. Preserve ids when the learning
-design is already sound, but do not create a meaningless extra file merely to protect a test
-profile. During pre-release normalization, the better course outranks backward compatibility.
+`primary_practice`; attempts and probe arming use the set/item pair. To move an item, keep its id
+and revision and add `"<old-set>::<item-id>": <new-set>`, both by their current set ids, to
+`ITEM_MOVES` in `src/lib/set-id-migration.ts`
+([ADR 0019](../adrs/0019-a-topics-exercises-are-three-steps.md)). Every attempt reader applies
+the map, so the learner's history follows the item. The validator holds the rest: the new set
+holds the item, the old location never holds that id again, chains end, and probe `arming:` keys
+and `data/grading-decisions.yaml` name the current location. The owner queue is read through the
+map. A cast name the item's turns carry fails the continuity check until a record or
+`continuity_pending` names the new set. Never move an item into the `primary_practice` set: its
+item list must not grow. Preserve ids when the learning design is already sound, but do not create
+a meaningless extra file merely to protect a test profile. During pre-release normalization, the better course outranks backward compatibility.
 
 ---
 
@@ -208,7 +233,8 @@ for the file, `taskSetProblems` in `packages/content/src/task-sets.ts` for the r
   | `reply` | `translate` or `write` | — |
 
 - **The name says it.** `<topic>-aufgabe`, or `<topic>-aufgabe-<n>` for a second task, with
-  `role: practice`, `activity: application`, `stage: transfer`. The suffix names task sets only.
+  `role: practice`, `activity: task`, `skill: hoeren`, `stage: transfer`. The suffix names
+  recording sets only.
 - **A converted topic asks no listening question outside a task set.** Once a manifest lists one
   task set in `elements.exercises`, no other non-probe set of that topic may hold an
   `audio-comprehension` item. Probe families are exempt.

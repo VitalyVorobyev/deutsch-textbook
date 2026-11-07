@@ -680,9 +680,23 @@ export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
  * activity explains why this particular stable file exists and how several files are presented as
  * one coherent lesson. See ADR 0002.
  */
-export const LEARNING_ACTIVITIES = ['core', 'extension', 'application', 'remediation'] as const;
+export const LEARNING_ACTIVITIES = [
+  'core',
+  'extension',
+  'application',
+  'task',
+  'remediation',
+] as const;
 export const learningActivitySchema = z.enum(LEARNING_ACTIVITIES);
 export type LearningActivity = z.infer<typeof learningActivitySchema>;
+
+/**
+ * The one skill an `activity: task` set exercises around its stimulus (ADR 0019), in the order the
+ * topic page lists them. Required on a task set and forbidden on every other.
+ */
+export const TASK_SKILLS = ['hoeren', 'lesen', 'schreiben', 'sprechen'] as const;
+export const taskSkillSchema = z.enum(TASK_SKILLS);
+export type TaskSkill = z.infer<typeof taskSkillSchema>;
 
 /**
  * Where an artifact sits on the lesson cycle `CLAUDE.md` requires of every topic:
@@ -721,6 +735,8 @@ export const exerciseSetSchema = z
     stage: z.enum(LESSON_STAGES).optional(),
     /** Learner-facing purpose; presentation groups files by this value, never by filename. */
     activity: learningActivitySchema.optional(),
+    /** The skill of an `activity: task` set, and of no other (ADR 0019). */
+    skill: taskSkillSchema.optional(),
     /** German editorial/activity label; separate from explanation-language parity on A1/A2. */
     title_de: z.string().min(1).optional(),
     title: bilingualSchema.optional(),
@@ -784,6 +800,18 @@ export const exerciseSetSchema = z
         path: ['topic'],
         message: `a role: ${set.role} set needs the topic that owns it`,
       });
+    if (set.activity === 'task' && !set.skill)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['skill'],
+        message: `an activity: task set names its skill: ${TASK_SKILLS.join(', ')} (ADR 0019)`,
+      });
+    if (set.skill && set.activity !== 'task')
+      ctx.addIssue({
+        code: 'custom',
+        path: ['skill'],
+        message: `only an activity: task set has a skill — this set is activity: ${set.activity ?? '(none)'}`,
+      });
     if (set.role !== 'practice' && set.role !== 'drill') return;
 
     if (!set.activity) {
@@ -813,6 +841,7 @@ export const exerciseSetSchema = z
       core: { role: 'practice', stages: ['geruest'] },
       extension: { role: 'practice', stages: ['geruest', 'ausblenden'] },
       application: { role: 'practice', stages: ['transfer'] },
+      task: { role: 'practice', stages: ['transfer'] },
       remediation: { role: 'drill', stages: ['ausblenden'] },
     };
     const expected = contract[set.activity];
@@ -1933,9 +1962,10 @@ export const topicElementsSchema = z.object({
   /**
    * Exercise sets in the authored teaching order — deliberately one list rather than a
    * `practice:`/`drill:` split, because the scaffold→fade arc interleaves practice and drill sets.
-   * The topic page groups the sets by `activity` (core, extension, application, remediation) and
-   * keeps this order inside each group, so the list is the order within a group, not the page
-   * order across groups.
+   * The topic page groups the sets into steps by `activity` (ADR 0019: core and extension are
+   * Üben, application is Anwenden, task is Aufgaben, remediation is folded at the end) and keeps
+   * this order inside each step, so the list is the order within a step, not the page order
+   * across steps.
    */
   exercises: z.array(z.string()).default([]),
   /**

@@ -68,7 +68,8 @@ const ACTIVITY_LABEL: Record<string, string> = {
   core: 'Grundübung',
   extension: 'Vertiefen',
   application: 'Anwenden',
-  remediation: 'Gezielt üben',
+  task: 'Aufgaben',
+  remediation: 'Gezielt wiederholen',
 };
 
 const MEDIUM_LABEL: Record<string, string> = {
@@ -289,27 +290,32 @@ function Ueberblick({
 
         <Panel title="Lernaktivitäten">
           <ul className="space-y-1.5">
-            {(['core', 'extension', 'application', 'remediation'] as const).map((activity) => {
-              const n = profile.activities[activity] ?? 0;
-              return (
-                <li key={activity} className="flex items-center justify-between gap-2 text-xs">
-                  <span
-                    className={
-                      n || activity === 'extension' || activity === 'remediation'
-                        ? 'text-fg'
-                        : 'text-defect'
-                    }
-                  >
-                    {ACTIVITY_LABEL[activity]}
-                  </span>
-                  <span
-                    className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-fg-muted' : 'text-defect'}`}
-                  >
-                    {n || '—'}
-                  </span>
-                </li>
-              );
-            })}
+            {(['core', 'extension', 'application', 'task', 'remediation'] as const).map(
+              (activity) => {
+                const n = profile.activities[activity] ?? 0;
+                return (
+                  <li key={activity} className="flex items-center justify-between gap-2 text-xs">
+                    <span
+                      className={
+                        n ||
+                        activity === 'extension' ||
+                        activity === 'task' ||
+                        activity === 'remediation'
+                          ? 'text-fg'
+                          : 'text-defect'
+                      }
+                    >
+                      {ACTIVITY_LABEL[activity]}
+                    </span>
+                    <span
+                      className={`tabular ${n || activity === 'extension' || activity === 'task' || activity === 'remediation' ? 'text-fg-muted' : 'text-defect'}`}
+                    >
+                      {n || '—'}
+                    </span>
+                  </li>
+                );
+              },
+            )}
           </ul>
           <p className="mt-3 border-t border-line pt-2 text-xs text-fg-muted">
             Stufe beschreibt die Lernabsicht; Medium und Dateizahl sind eigene Dimensionen.
@@ -518,7 +524,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
     },
   ];
 
-  const activityOrder = ['core', 'extension', 'application', 'remediation'] as const;
+  const activityOrder = ['core', 'extension', 'application', 'task', 'remediation'] as const;
   const gruppen = [
     ...activityOrder.map((activity) => ({
       id: activity,

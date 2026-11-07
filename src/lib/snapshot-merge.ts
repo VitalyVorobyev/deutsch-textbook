@@ -6,17 +6,18 @@ import type {
   StoredCard,
   TopicsState,
 } from './store';
-import { currentSetId, migrateAttemptSetIds } from './set-id-migration';
+import { currentItemSetId, migrateAttemptSetIds } from './set-id-migration';
 
 /** Identity of one logged attempt — the dedupe key for merges AND for retried writes
     (`logAttempt` dedupes on it inside its read-modify-write, which is what makes a
-    journal replay or a timed retry of the same attempt safe). The set id is taken through the
-    rename map, so a copy stored under a set's old id and one under its new id are one attempt. */
+    journal replay or a timed retry of the same attempt safe). The location is taken through the
+    rename and move maps, so a copy stored under an item's old location and one under its current
+    location are one attempt. */
 export const attemptKey = (attempt: Attempt) =>
-  `${currentSetId(attempt.setId)}|${attempt.itemId}|${attempt.ts}`;
+  `${currentItemSetId(attempt.setId, attempt.itemId)}|${attempt.itemId}|${attempt.ts}`;
 
-/** Union of two attempt logs, every set id current — so the first merge after a rename also
-    rewrites the stored blob onto the current ids. */
+/** Union of two attempt logs, every location current — so the first merge after a rename or a
+    move also rewrites the stored blob onto the current locations. */
 export function mergeAttempts(a: Attempt[], b: Attempt[]): Attempt[] {
   const seen = new Set(a.map(attemptKey));
   const out = [...migrateAttemptSetIds(a)];

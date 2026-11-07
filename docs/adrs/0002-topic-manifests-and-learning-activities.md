@@ -1,6 +1,6 @@
 # ADR 0002: A topic is one manifest, and its exercises are organised as learning activities
 
-Status: accepted · 2026-10-18 · its lesson shape superseded by [0016](0016-lessons-are-tasks-and-a-cast-carries-them.md) · 2026-11-07
+Status: accepted · 2026-10-18 · its lesson shape superseded by [0016](0016-lessons-are-tasks-and-a-cast-carries-them.md) · 2026-11-07 · its page grouping superseded in part by [0019](0019-a-topics-exercises-are-three-steps.md) · 2026-11-07
 
 ## Context
 

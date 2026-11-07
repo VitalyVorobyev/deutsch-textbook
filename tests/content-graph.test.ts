@@ -142,7 +142,7 @@ describe('content graph', () => {
       byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(143);
+    expect(byStage.get('transfer')).toBe(149);
     expect(byStage.get('geruest')).toBe(77);
     expect(byStage.get('nachpruefung')).toBe(162);
 
@@ -155,7 +155,7 @@ describe('content graph', () => {
           teaching.filter((element) => element.activity === activity).length,
         ]),
       ),
-    ).toEqual({ core: 57, extension: 29, application: 131, remediation: 26 });
+    ).toEqual({ core: 57, extension: 23, application: 70, task: 67, remediation: 26 });
     expect(
       [...graph.topics.keys()].filter(
         (topic) =>

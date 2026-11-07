@@ -82,12 +82,18 @@ import { authorshipProvenanceProblems } from '@da/content/authorship-provenance'
 import { audioProvenanceProblems } from '@da/schema/audio-provenance';
 import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 import { lidProblems } from '@da/content/lid';
-import { SET_ID_MIGRATION } from '../src/lib/set-id-migration';
+import {
+  currentItemSetId,
+  ITEM_MOVES,
+  itemMoveProblems,
+  SET_ID_MIGRATION,
+} from '../src/lib/set-id-migration';
 import { reviewLedgerProblems } from '@da/content/review-ledger';
 import { characterProblems } from '@da/content/characters';
 import { queueProblems } from '@da/content/queue';
 import { contentGraph } from '@da/content/graph';
 import { isTaskSet, taskSetProblems } from '@da/content/task-sets';
+import { exerciseStepProblems } from '@da/content/exercise-steps';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -266,8 +272,10 @@ for (const problem of reviewLedgerProblems(ROOT)) errors.push(problem);
 // its record, and a cast member's voice speaks nobody else (ADR 0016).
 for (const problem of characterProblems(ROOT)) errors.push(problem);
 
-// Every queue entry names a file, item, topic or kind that exists (ADR 0014).
-for (const problem of queueProblems(ROOT, contentGraph(ROOT))) errors.push(problem);
+// Every queue entry names a file, item, topic or kind that exists (ADR 0014); an item that moved
+// to another set since it was filed is read where it lives now (ADR 0019).
+for (const problem of queueProblems(ROOT, contentGraph(ROOT), currentItemSetId))
+  errors.push(problem);
 
 /**
  * Soft Lautschrift oracles. The hard rules (charset, stress, the ɡ/ʁ look-alike
@@ -1152,7 +1160,12 @@ for (const { file, data } of wortnetze.values()) {
  * And no set may take an id the rename map retired: an attempt logged under that id would be
  * filed under the set the map points to.
  */
-const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|dokument|aufgabe(-\d+)?)$/;
+const TRANSFER_SUFFIX = /-(produktion|transfer|hoeren|diktat|dokument|aufgabe(-\d+)?)$/;
+/** A stimulus set's suffix names a task (ADR 0019), and the skill it is built for. */
+const TASK_SUFFIX_SKILL: [RegExp, string][] = [
+  [/-(hoeren|diktat|aufgabe(-\d+)?)$/, 'hoeren'],
+  [/-dokument$/, 'lesen'],
+];
 for (const [setId, { file, data }] of exerciseSets) {
   if (Object.hasOwn(SET_ID_MIGRATION, setId))
     fail(
@@ -1179,8 +1192,14 @@ for (const [setId, { file, data }] of exerciseSets) {
     fail(
       file,
       data.stage === 'transfer'
-        ? `a transfer set ends in -produktion, -transfer, -hoeren, -dokument or -aufgabe[-<n>]`
-        : `-produktion, -transfer, -hoeren, -dokument and -aufgabe name transfer sets, but stage is "${data.stage}"`,
+        ? `a transfer set ends in -produktion, -transfer, -hoeren, -diktat, -dokument or -aufgabe[-<n>]`
+        : `-produktion, -transfer, -hoeren, -diktat, -dokument and -aufgabe name transfer sets, but stage is "${data.stage}"`,
+    );
+  const taskSkill = TASK_SUFFIX_SKILL.find(([suffix]) => suffix.test(name))?.[1];
+  if (taskSkill && !data.retired && (data.activity !== 'task' || data.skill !== taskSkill))
+    fail(
+      file,
+      `a set named like "${name}" is a task: activity: task, skill: ${taskSkill} (ADR 0019)`,
     );
   if (name.endsWith('-hoeren') && !data.items.every((item) => item.type === 'audio-comprehension'))
     fail(file, `a -hoeren set holds audio-comprehension items only`);
@@ -1253,7 +1272,13 @@ for (const [setId, { file, data }] of exerciseSets) {
       const sourceSet = exerciseSets.get(sourceSetId)?.data;
       const sourceItem = sourceSet?.items.find((item) => item.id === sourceItemId);
       if (!sourceSet || !sourceItem) {
-        fail(file, `arming key "${key}" does not resolve to an exercise item`);
+        const now = sourceItemId ? currentItemSetId(sourceSetId, sourceItemId) : sourceSetId;
+        fail(
+          file,
+          now !== sourceSetId
+            ? `arming key "${key}" names where the item was — it lives in "${now}" now: write "${now}::${sourceItemId}"`
+            : `arming key "${key}" does not resolve to an exercise item`,
+        );
         continue;
       }
       if (sourceSet.role !== 'practice' && sourceSet.role !== 'drill')
@@ -1888,6 +1913,22 @@ for (const [readingId, { file, data }] of readings) {
     fail(file, p);
   for (const p of deParityProblems(data)) fail(file, p);
 }
+
+// Item moves (ADR 0019): a moved item lives in the set the map names, and never again where it was.
+{
+  const itemsBySet = new Map(
+    [...exerciseSets].map(([setId, { data }]) => [
+      setId,
+      new Set(data.items.map((item) => item.id)),
+    ]),
+  );
+  for (const problem of itemMoveProblems(itemsBySet, ITEM_MOVES))
+    fail('src/lib/set-id-migration.ts', problem);
+}
+
+// One kind of work per set (ADR 0019): an application set holds no listening, speaking or
+// document item, and a task set's items fit its skill (packages/content/src/exercise-steps.ts).
+for (const problem of exerciseStepProblems(exerciseSets)) errors.push(problem);
 
 // Task sets (ADR 0016): the ladder, the shared recording, the -aufgabe name, converted topics and
 // retired sets (packages/content/src/task-sets.ts).
@@ -2706,6 +2747,20 @@ for (const { article, body } of topics.values()) {
     });
     for (const message of checked.errors) fail(GRADING_DECISIONS_FILE, message);
     for (const message of checked.warnings) warn(GRADING_DECISIONS_FILE, message);
+    // A ruling is matched against attempts filed at the item's current location, so it names
+    // that location too (ADR 0019).
+    for (const decision of decisions) {
+      const at = decision.item.lastIndexOf(':');
+      if (at <= 0) continue;
+      const setId = decision.item.slice(0, at).replace(/:$/, '');
+      const itemId = decision.item.slice(at + 1);
+      const now = currentItemSetId(setId, itemId);
+      if (now !== setId)
+        fail(
+          GRADING_DECISIONS_FILE,
+          `${decision.item} ("${decision.given}"): the item moved to "${now}" — the ruling names its current location, ${now}:${itemId}`,
+        );
+    }
   } catch (e) {
     if (!ruled) fail(GRADING_DECISIONS_FILE, `parse error: ${e instanceof Error ? e.message : e}`);
     else throw e;

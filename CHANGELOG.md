@@ -44,6 +44,10 @@ GitHub Release notes.
 
 ### Changed
 
+- **Every topic page shows its exercises in the same three steps**, all open: **Üben** (the
+  Grundübung first, then the extra practice), **Anwenden** (the same points in new sentences) and
+  **Aufgaben** (the listening, dictation and document tasks, each under its skill). The targeted
+  drills follow, folded, as **Gezielt wiederholen**.
 - **53 more listening questions play recorded voices** instead of the browser's: the listening
   tasks in the placement tests and checkpoints of A1, A2 and B1, and the ones in practice sets
   that had none. Announcements come over a loudspeaker with the shop or station around them,

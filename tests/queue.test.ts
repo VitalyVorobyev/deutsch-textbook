@@ -121,3 +121,30 @@ describe('the shared queue', () => {
     ).toMatchObject({ ok: false });
   });
 });
+
+describe('an item filed in a set it has since moved out of (ADR 0019)', () => {
+  test('is read where it lives now, and only when a locator says so', () => {
+    reset();
+    writeFileSync(join(ROOT, 'content/exercises/a1/t-aufgabe.yaml'), 'items:\n  - id: moved\n');
+    writeFileSync(
+      join(ROOT, QUEUE_FILE),
+      [
+        'version: 1',
+        'entries:',
+        '  - id: q-0001',
+        '    type: finding',
+        `    target: { file: ${SET}, item: moved }`,
+        '    waiting: claude',
+        '    thread: [{ from: owner, at: 2026-11-07, text: x }]',
+      ].join('\n'),
+    );
+    const moves: Record<string, string> = { 'a1/t-praxis::moved': 'a1/t-aufgabe' };
+    const locate = (setId: string, itemId: string) => moves[`${setId}::${itemId}`] ?? setId;
+    expect(queueProblems(ROOT, GRAPH)).toEqual([
+      `${QUEUE_FILE}: q-0001 — ${SET} has no item "moved"`,
+    ]);
+    expect(queueProblems(ROOT, GRAPH, locate)).toEqual([]);
+    // a locator pointing at a set that does not hold the item resolves nothing
+    expect(queueProblems(ROOT, GRAPH, () => 'a1/t-praxis')).toHaveLength(1);
+  });
+});

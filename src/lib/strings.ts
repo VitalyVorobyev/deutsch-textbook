@@ -828,50 +828,44 @@ export const STRINGS = {
   },
   'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
   'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
-  'topic.activityIntro': {
-    de: 'Beginne mit der Grundübung. Öffne danach nur die Aktivität, die du jetzt brauchst.',
-    en: 'Start with the core practice. Then open only the activity you need now.',
-    ru: 'Начните с основной практики. Затем откройте только то, что вам сейчас нужно.',
-    uk: 'Почніть з основної практики. Потім відкрийте лише те, що вам зараз потрібно.',
+  // The steps of a topic's Übungen section (ADR 0019) and the skills of its Aufgaben.
+  'topic.stepUeben': { de: 'Üben', en: 'Practice', ru: 'Отработка', uk: 'Відпрацювання' },
+  'topic.stepUebenHint': {
+    de: 'Die Formen des Themas üben, die Grundübung zuerst.',
+    en: 'Practise the forms of this topic, the core practice first.',
+    ru: 'Отработайте формы этой темы — сначала основную практику.',
+    uk: 'Відпрацюйте форми цієї теми — спершу основну практику.',
   },
-  'topic.activityCore': {
-    de: 'Grundübung',
-    en: 'Core practice',
-    ru: 'Основная практика',
-    uk: 'Основна практика',
+  'topic.stepAnwenden': { de: 'Anwenden', en: 'Apply', ru: 'Применение', uk: 'Застосування' },
+  'topic.stepAnwendenHint': {
+    de: 'Dieselben Punkte in neuen Sätzen.',
+    en: 'The same points in new sentences.',
+    ru: 'Те же явления в новых предложениях.',
+    uk: 'Ті самі явища в нових реченнях.',
   },
-  'topic.activityCoreHint': {
-    de: 'Der verpflichtende nächste Schritt im Lernpfad.',
-    en: 'The required next step on the learning path.',
-    ru: 'Обязательный следующий шаг учебного пути.',
-    uk: 'Обов’язковий наступний крок навчального шляху.',
+  'topic.stepAufgaben': { de: 'Aufgaben', en: 'Tasks', ru: 'Задания', uk: 'Завдання' },
+  'topic.stepAufgabenHint': {
+    de: 'Eine Situation je Fertigkeit, rund um einen Text oder eine Aufnahme.',
+    en: 'One situation per skill, around one text or recording.',
+    ru: 'По одной ситуации на каждый навык — вокруг одного текста или записи.',
+    uk: 'По одній ситуації на кожну навичку — навколо одного тексту чи запису.',
   },
-  'topic.activityExtension': { de: 'Vertiefen', en: 'Deepen', ru: 'Углубить', uk: 'Поглибити' },
-  'topic.activityExtensionHint': {
-    de: 'Zusätzliche Kontraste und Teilfertigkeiten.',
-    en: 'Additional contrasts and subskills.',
-    ru: 'Дополнительные контрасты и отдельные навыки.',
-    uk: 'Додаткові контрасти й окремі навички.',
+  'topic.stepWiederholen': {
+    de: 'Gezielt wiederholen',
+    en: 'Targeted review',
+    ru: 'Точечное повторение',
+    uk: 'Точкове повторення',
   },
-  'topic.activityApplication': { de: 'Anwenden', en: 'Apply', ru: 'Применить', uk: 'Застосувати' },
-  'topic.activityApplicationHint': {
-    de: 'Die Struktur in einem neuen Zusammenhang selbst verwenden.',
-    en: 'Use the structure independently in a new context.',
-    ru: 'Самостоятельно применить структуру в новом контексте.',
-    uk: 'Самостійно застосувати структуру в новому контексті.',
-  },
-  'topic.activityRemediation': {
-    de: 'Gezielt üben',
-    en: 'Targeted practice',
-    ru: 'Точечная тренировка',
-    uk: 'Точкове тренування',
-  },
-  'topic.activityRemediationHint': {
+  'topic.stepWiederholenHint': {
     de: 'Nur für eine konkrete Verwechslung; auch im gemischten Training verfügbar.',
     en: 'For a specific confusion only; also available in mixed training.',
     ru: 'Только для конкретной путаницы; также доступно в смешанной тренировке.',
     uk: 'Лише для конкретної плутанини; також доступно у змішаному тренуванні.',
   },
+  'topic.skillHoeren': { de: 'Hören', en: 'Listening', ru: 'Аудирование', uk: 'Аудіювання' },
+  'topic.skillLesen': { de: 'Lesen', en: 'Reading', ru: 'Чтение', uk: 'Читання' },
+  'topic.skillSchreiben': { de: 'Schreiben', en: 'Writing', ru: 'Письмо', uk: 'Письмо' },
+  'topic.skillSprechen': { de: 'Sprechen', en: 'Speaking', ru: 'Говорение', uk: 'Говоріння' },
   // Topic-kind badge (grammar/vocab-field/communication/phonetics). Dedicated
   // keys rather than reusing strand.*: kinds and strands are different
   // taxonomies that merely share three German words today.

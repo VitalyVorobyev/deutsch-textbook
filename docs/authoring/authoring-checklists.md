@@ -18,8 +18,9 @@ New topic — a topic is not done until every line here is:
 2. Learning activities in `content/exercises/<level>/` — every topic has exactly one
    `role: practice`, `activity: core`, `stage: geruest` Grundübung of 8–15 items, named explicitly by
    `primary_practice`; and at least one productive `activity: application`, `stage: transfer` in a
-   fresh context. Add `extension` only for a coherent extra contrast/subskill and `remediation` only
-   for a named confusion. Every teaching set declares `title_de`; every item has `explain`; every
+   fresh context, written only. Listening, speaking and documents are `activity: task` sets with
+   their `skill` ([ADR 0019](../adrs/0019-a-topics-exercises-are-three-steps.md)). Add `extension`
+   only for a coherent extra contrast/subskill and `remediation` only for a named confusion. Every teaching set declares `title_de`; every item has `explain`; every
    `translate` has `key_tokens`. Include the modes the outcomes claim. Item-mix checks are per topic,
    not per file. `bun run activity:audit` shows architecture and review queues without inventing a
    score. Compatibility with a test profile never justifies a pedagogically incoherent set.
