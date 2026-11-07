@@ -96,15 +96,20 @@ Course content: articles, items, probes, vocabulary, readings and their language
     figure cannot answer it.
   - No portraits exist yet. ADR 0016 gives them one job: the "who said it" item.
   - First step: the audit read, then the remaining B1 topics in batches of three.
-- **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 35 places
-  name a cast member without having been read against the record (`continuity_pending`: Lena 20,
-  Mira 6, Frau Kern 5, Timo 4). Some places add a fact the record lacks: in `ls-dativ-01`, Frau
-  Kern has a daughter. Others contradict it: in `ls-arbeit-beruf-01`, Mira takes orders from a
-  Frau Behrens and checks parcel deliveries, but the serial has her at the bakery with Herr Ott. 106 more
-  named speakers belong to nobody (`legacy_names`). Each place either agrees with the record and
-  joins its `appearances`, or is renamed. A recording that is renamed is also re-recorded. Lower
-  the ceilings in `tests/characters.test.ts` in the same change. First step: Mira's two places in
-  `arbeit-beruf` (the recording and its set). Only four of the 35 places have been read so far.
+- **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 14 refs
+  in `continuity_pending` name a cast member without having been read against the record. They
+  are 7 recordings and the set that uses each one: `ls-relativsaetze-produktion-01`,
+  `ls-menschen-familie-02`, `ls-infinitiv-mit-zu-produktion-01`, `ls-dativ-produktion-01`,
+  `ls-alltag-tagesablauf-01`, `ls-arbeit-beruf-01` and `ls-modalverben-01`. Each is a different
+  person under a cast name. Examples: Frau Kern at a Makler with her mother living with her; Mira
+  with a partner and a child, or checking parcels for a Frau Behrens; Timo as a new flatmate; and
+  Lena, for whom getting up at nine is early, against the serial's alarm at four. Renaming a
+  speaker means re-recording, so each one is renamed to a role when its topic is converted
+  (CON-10), which replaces the recording anyway. 104 more named speakers belong to nobody
+  (`legacy_names`). Lower the ceilings in `tests/characters.test.ts` in the change that clears an
+  entry. The legacy name Jonas recurs beside the cast (Lena's brother or friend, Mira's helper)
+  while Timo speaks through the voice catalogued as `jonas`. A conversion that meets Jonas renames
+  him too. First step: none of its own; each conversion clears its topic's pair.
 - **CON-7 · A Krimi serial, B1–B2, extensive**
   ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). The extensive strand has
   one serial, Lena (seven episodes, A1–A2, `ls content/reading/*/lena-*`), and B1 has only the

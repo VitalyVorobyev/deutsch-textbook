@@ -4,7 +4,7 @@ text:
   - >-
     Jonas hat eine neue Wohnung. Heute ist [[der Umzug::the move (to a new
     flat)::переезд::переїзд]], und seine Freunde helfen ihm. Paul kommt mit dem Auto,
-    Lena kommt mit dem Fahrrad. Sie bringt Kaffee und Brötchen für alle.
+    Nora kommt mit dem Fahrrad. Sie bringt Kaffee und Brötchen für alle.
   - >-
     Die Arbeit ist [[schwer::hard, heavy::тяжёлая::важка]]. In den
     [[Kisten::boxes::коробках::коробках]] sind Bücher, Teller und Gläser. Die Bücher
@@ -12,28 +12,29 @@ text:
     Jonas hilft ihm. Nach zwei Stunden sind alle müde.
   - >-
     Am Abend bestellt Jonas Pizza. Sie schmeckt seinen Freunden sehr gut.
-    „Die Wohnung gefällt mir“, sagt Lena. „Sie ist [[hell::bright::светлая::світла]]
+    „Die Wohnung gefällt mir“, sagt Nora. „Sie ist [[hell::bright::светлая::світла]]
     und [[ruhig::quiet::тихая::тиха]].“ Jonas dankt seinen Freunden: „Vielen Dank!
     [[Ohne euch geht es nicht::it doesn't work without you::без вас никак::без вас ніяк]].“
     Dann fährt Paul mit dem Auto nach Hause.
 questions:
   - id: frage-fahrrad
+    revision: 2
     outcomes: [dativ-praepositionen]
     type: mc
-    prompt: "Wie kommt Lena zu Jonas?"
+    prompt: "Wie kommt Nora zu Jonas?"
     options:
       - "Mit dem Auto."
       - "Mit dem Fahrrad."
       - "Mit dem Bus."
     correct: 1
     translation:
-      en: How does Lena get to Jonas's place?
-      ru: Как Лена добирается до Йонаса?
-      uk: Як Лена дістається до Йонаса?
+      en: How does Nora get to Jonas's place?
+      ru: Как Нора добирается до Йонаса?
+      uk: Як Нора дістається до Йонаса?
     explain:
-      en: "The text says: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ The car is how Paul gets there, and a bus never appears in the story."
-      ru: "В тексте сказано: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ На машине приезжает Пауль, а автобус в тексте вообще не упоминается."
-      uk: "У тексті сказано: „Paul kommt mit dem Auto, Lena kommt mit dem Fahrrad.“ Машиною приїжджає Пауль, а автобус у тексті взагалі не згадується."
+      en: "The text says: „Paul kommt mit dem Auto, Nora kommt mit dem Fahrrad.“ The car is how Paul gets there, and a bus never appears in the story."
+      ru: "В тексте сказано: „Paul kommt mit dem Auto, Nora kommt mit dem Fahrrad.“ На машине приезжает Пауль, а автобус в тексте вообще не упоминается."
+      uk: "У тексті сказано: „Paul kommt mit dem Auto, Nora kommt mit dem Fahrrad.“ Машиною приїжджає Пауль, а автобус у тексті взагалі не згадується."
   - id: frage-buecher
     outcomes: [dativ-verben]
     type: mc

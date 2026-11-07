@@ -4,16 +4,16 @@ version: 1
 entries:
   - file: content/characters/frau-kern.yaml
     state: claude-reviewed
-    revision: 55880e52fe2d15ce9c765335f08fc22cdf1dedb3
+    revision: 7cf7d7b78e1b6b96342142bd9685df2aee655dcc
     by: Claude Code
     at: 2026-11-07
-    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/characters/lena.yaml
     state: claude-reviewed
-    revision: e27c20587cf9fe0bdd146c6d3eae0e0231e8bafa
+    revision: 2680ab2f20e83e8ccb6813ecde37f759988e71f2
     by: Claude Code
     at: 2026-11-07
-    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/characters/mira.yaml
     state: claude-reviewed
     revision: ed696ad0938f953a148a26faf659d3976bd7a1ae
@@ -730,12 +730,24 @@ entries:
     by: Claude Code
     at: 2026-11-07
     note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: content/reading/a1/akkusativ-2.yaml
+    state: claude-reviewed
+    revision: 4cd522d03f9bad023977325bcb3a8b231a13cbf9
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/reading/a1/erste-schritte.yaml
     state: owner-reviewed
     revision: 6a33320867ee8fb8cc181d746ef4c093d6325fa5
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/reading/a1/freizeit-koennen.yaml
+    state: claude-reviewed
+    revision: 00f834a53360eaea2714377ed6b66f5331ff69f5
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/reading/a1/menschen-familie.yaml
     state: owner-reviewed
     revision: df3ccd5440d3b05b7a8ad7c5d84477c4c39be211
@@ -743,11 +755,12 @@ entries:
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/reading/a1/ort-richtung-praepositionen.yaml
-    state: owner-reviewed
-    revision: d05aacc0a88a786c89e453d42fdcc32516a5f699
-    by: Vitaly Vorobyev
-    at: 2026-11-01
-    note: "Carried over from the topic manifest's former status: reviewed."
+    state: claude-reviewed
+    revision: 006dffc4c67d492b0760bcdea7834c2ae01e664b
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+    since: d05aacc0a88a786c89e453d42fdcc32516a5f699
   - file: content/reading/a1/stadt-wege.yaml
     state: owner-reviewed
     revision: 7b2c75920e945e6a849c27650274906358119e90
@@ -755,11 +768,30 @@ entries:
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/reading/a1/wohnen.yaml
-    state: owner-reviewed
-    revision: 1f68e78856f9f37a07f99c9bac8b07e3730d7009
-    by: Vitaly Vorobyev
-    at: 2026-11-01
-    note: "Carried over from the topic manifest's former status: reviewed."
+    state: claude-reviewed
+    revision: 779544aee007de4803686ba4a19f527e46d2d0fe
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+    since: 1f68e78856f9f37a07f99c9bac8b07e3730d7009
+  - file: content/reading/a2/adjektive-deklination.yaml
+    state: claude-reviewed
+    revision: 3c7b0cdb46ad6a0dfccd0de9cffba50fdb3241f5
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+  - file: content/reading/a2/dativ.yaml
+    state: claude-reviewed
+    revision: 4636cb1baca94527cfd5331f02a60f98d6ccc369
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+  - file: content/reading/a2/einkaufen-reklamation.yaml
+    state: claude-reviewed
+    revision: 4bd3df0533fd79d03fb4cf858338bc6e642b746e
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/reading/a2/klassiker-3-die-bremer-stadtmusikanten.yaml
     state: owner-reviewed
     revision: 9d4999080a4a3618eb5522f0ae7fcbd2105712e0
@@ -773,17 +805,42 @@ entries:
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/reading/a2/reisen-verkehr.yaml
-    state: owner-reviewed
-    revision: a01a6df5c3da42511ac4ad6415044c3675263c63
-    by: Vitaly Vorobyev
-    at: 2026-11-01
-    note: "Carried over from the topic manifest's former status: reviewed."
+    state: claude-reviewed
+    revision: 247cac3d6af3c8936197c67058b40ef47365c191
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+    since: a01a6df5c3da42511ac4ad6415044c3675263c63
   - file: content/reading/a2/relativsaetze.yaml
     state: owner-reviewed
     revision: 3824a1e5daa278686fe1957f8c5a87c30182db30
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/reading/a2/verben-mit-kasus.yaml
+    state: claude-reviewed
+    revision: 8e3bf0efcb034e9977e0634661079b38245ab7a8
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+  - file: content/reading/a2/wohnen-umzug.yaml
+    state: claude-reviewed
+    revision: 3515416fad19e29b4135d1436b8eec16636054e0
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+  - file: content/reading/b1/arbeit-bewerbung.yaml
+    state: claude-reviewed
+    revision: f539afe9b11e54f36a434dbea6719bf00d72f062
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
+  - file: content/reading/b1/bildungswege.yaml
+    state: claude-reviewed
+    revision: bceb9816d116388597db0dc293d3fbc5f105bcdd
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/reading/b1/erfahrungen-erzaehlen.yaml
     state: owner-reviewed
     revision: bd49b082177c659856d61c3cd38b444b985dbd87
@@ -820,6 +877,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/reading/b1/reisen-probleme.yaml
+    state: claude-reviewed
+    revision: 64ebced349851237c42a3b79d649203ab74e8244
+    by: Claude Code
+    at: 2026-11-07
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
   - file: content/topics/a1/erste-schritte.mdx
     state: owner-reviewed
     revision: 1c551d11afd68c714b4388369d0d6b67dd475e0d
@@ -1032,7 +1095,7 @@ entries:
     note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
   - file: data/speaker-registry.yaml
     state: claude-reviewed
-    revision: 9a9a530c6e935f4d940ce55e65e9f7fff152c903
+    revision: 7a4c9243ce8ea5dfe10b4f03a7b7c23d8d67bf9e
     by: Claude Code
     at: 2026-11-07
-    note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+    note: "Cast continuity: six places join Lena and Frau Kern, thirteen readings renamed away from the cast"
