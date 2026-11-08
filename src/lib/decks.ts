@@ -1,4 +1,5 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
+import { LEVELS, type Level } from '@da/schema';
 import type { TopicContext, TopicNode } from './mastery';
 import {
   introducedToday,
@@ -61,7 +62,10 @@ export function eligibleFreshCards<C extends CardRef>(
   return fresh.filter((c) => eligible.has(c.deckId));
 }
 
-/** Goal route first, then the current topic, level-core decks, and everything else. */
+/**
+ * Goal route first, then the next lesson, then what is left of the levels below the current one
+ * (lowest first), then the current level's lesson decks, its completion decks, and anything above.
+ */
 export function prioritizeFreshCards<C extends CardRef>(
   cards: readonly C[],
   spine: string[],
@@ -80,7 +84,7 @@ export function prioritizeFreshCards<C extends CardRef>(
     : recommendedNext(spine, nodes, ctx);
   const nextDecks = new Set(next?.vocabIds ?? []);
   // A learner who placed out of every topic has no next lesson, so `next.level` is
-  // undefined and bands 2/3 below can never match — every deck would fall to band 4 and
+  // undefined and the level bands below can never match — every deck would fall to the last band and
   // the level structure would dissolve into one shuffle. Fall back to the highest level
   // they have actually reached, which is where their vocabulary work belongs.
   const currentLevel =
@@ -93,16 +97,23 @@ export function prioritizeFreshCards<C extends CardRef>(
   // A deck no topic lists in `vocab:` is a Wortliste completion deck. It teaches
   // the level's lexis, not any lesson's, so it belongs behind the decks that do.
   const owned = new Set(nodes.flatMap((n) => n.vocabIds));
+  const rank = (level: string | undefined) => (level ? LEVELS.indexOf(level as Level) : -1);
+  const current = rank(currentLevel);
   function priority(card: CardRef) {
     if (routeDecks.has(card.deckId)) return 0;
     if (nextDecks.has(card.deckId)) return 1;
-    // Band 2 used to hold every deck at the current level, owned or not. Closing the
-    // A2 Wortliste puts ~680 completion words in it against ~250 lesson words, so a
-    // learner who finished their unit's deck would meet `Volleyball` shuffled in with
-    // the vocabulary of the unit they are about to study. Splitting the band costs
-    // nothing and keeps the lesson in front.
-    if (deckLevels[card.deckId] === currentLevel) return owned.has(card.deckId) ? 2 : 3;
-    return 4;
+    const level = rank(deckLevels[card.deckId]);
+    // A word a lower level left unlearned comes before the current level's: a B1 text
+    // assumes the A2 words, and they are the more frequent ones. Below the current level a
+    // learner's decks are all opened, so with ~3400 B1 words and 15 new cards a day, a band
+    // behind the current level would never be reached. Lowest level first: A1, then A2.
+    if (level >= 0 && current >= 0 && level < current) return 2 + level / LEVELS.length;
+    // The current level's lesson decks come before its Wortliste completion decks: closing
+    // the A2 Wortliste put ~680 completion words beside ~250 lesson words, and a learner who
+    // finished their unit's deck would otherwise meet `Volleyball` shuffled in with the
+    // vocabulary of the unit they are about to study.
+    if (level === current) return owned.has(card.deckId) ? 3 : 4;
+    return 5;
   }
   // Shuffle, then stable-sort by priority: curriculum order decides which decks
   // come first, chance decides the order inside a deck. Sorting by card id

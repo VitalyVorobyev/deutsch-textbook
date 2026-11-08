@@ -1,5 +1,10 @@
 import { describe, expect, test } from 'bun:test';
-import { planReview, type ReviewContext, type ReviewGate } from '../src/lib/decks';
+import {
+  planReview,
+  prioritizeFreshCards,
+  type ReviewContext,
+  type ReviewGate,
+} from '../src/lib/decks';
 import type { TopicNode } from '../src/lib/mastery';
 import { gradeCard, Rating, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
@@ -420,5 +425,57 @@ describe('planReview over card refs', () => {
     ]);
     expect(fromCards.dueCount).toBe(6);
     expect(fromCards.freshCount).toBe(8);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Which fresh cards come first
+// ---------------------------------------------------------------------------
+
+describe('fresh-card priority across levels', () => {
+  const at = (id: string, level: 'A1' | 'A2' | 'B1', deckId: string): TopicNode => ({
+    ...topicNode(id, deckId),
+    path: `/topics/${level.toLowerCase()}/${id}`,
+    level,
+  });
+  const a1 = at('a1-thema', 'A1', 'a1-deck');
+  const a2 = at('a2-thema', 'A2', 'a2-deck');
+  const b1Done = at('b1-erst', 'B1', 'b1-erst-deck');
+  const b1Next = at('b1-naechst', 'B1', 'b1-next-deck');
+  const nodes = [a1, a2, b1Done, b1Next];
+  const spine = nodes.map((n) => n.id);
+  const deckLevels = {
+    'a1-deck': 'A1',
+    'a1-wortliste': 'A1',
+    'a2-deck': 'A2',
+    'a2-wortliste': 'A2',
+    'b1-erst-deck': 'B1',
+    'b1-next-deck': 'B1',
+    'b1-wortliste': 'B1',
+  };
+  // Everything up to the first B1 topic is done, so the next lesson is b1-naechst.
+  const learned = { manual: 'learned' as const, readAt: 1 };
+  const reachedB1: ReviewContext = {
+    attempts: [],
+    cards: {},
+    topics: { 'a1-thema': learned, 'a2-thema': learned, 'b1-erst': learned },
+  };
+
+  test('the next lesson, then lower-level gaps lowest first, then the current level', () => {
+    const cards = [
+      card('b1-wortliste', 'Volleyball'),
+      card('b1-erst-deck', 'Verein'),
+      card('a2-wortliste', 'Ausweis'),
+      card('a1-wortliste', 'Tisch'),
+      card('b1-next-deck', 'Gesellschaft'),
+      card('a2-deck', 'Geschenk'),
+    ];
+    const order = prioritizeFreshCards(cards, spine, nodes, deckLevels, reachedB1).map(
+      (c) => c.deckId,
+    );
+    expect(order[0]).toBe('b1-next-deck');
+    expect(order.slice(1, 4)).toEqual(['a1-wortliste', ...order.slice(2, 4)]);
+    expect(new Set(order.slice(2, 4))).toEqual(new Set(['a2-deck', 'a2-wortliste']));
+    expect(order.slice(4)).toEqual(['b1-erst-deck', 'b1-wortliste']);
   });
 });
