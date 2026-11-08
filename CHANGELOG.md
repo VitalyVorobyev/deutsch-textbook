@@ -44,6 +44,10 @@ GitHub Release notes.
 
 ### Changed
 
+- **New flashcards fill the gaps of earlier levels first.** After the words of your next lesson,
+  the review now brings in the A1 and then the A2 words you have not learned yet, before the rest
+  of your current level. A learner at B1 used to meet B1 words long before the A2 words B1 texts
+  take for granted.
 - **Every topic page shows its exercises in the same three steps**, all open: **Üben** (the
   Grundübung first, then the extra practice), **Anwenden** (the same points in new sentences) and
   **Aufgaben** (the listening, dictation and document tasks, each under its skill). The targeted
