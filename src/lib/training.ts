@@ -5,6 +5,7 @@ import type { RecordingScript } from './audio';
 import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
+import { AGAIN_GAP_UNFAMILIAR, requeueAfter } from './requeue';
 
 /** A set a topic owns: the only kind training, probes and the Lernpfad serve. */
 export type TopicOwnedSet = TrainingSet & { topicId: string };
@@ -53,7 +54,8 @@ export interface TrainingSet {
 const TRAINABLE_ROLES = new Set<ExerciseRole>(['practice', 'drill']);
 
 export interface SessionItem {
-  /** `${setId}::${itemId}` — matches how attempts are keyed for priority lookup */
+  /** `${setId}::${itemId}` — matches how attempts are keyed for priority lookup; a retry's
+      uid adds `RETRY_SUFFIX`, so a queue never holds one uid twice */
   uid: string;
   setId: string;
   topicId: string;
@@ -62,6 +64,44 @@ export interface SessionItem {
   item: ExerciseItem;
   document?: VisualDocument;
   recording?: RecordingScript;
+  /** a second try at an item answered wrong earlier in this run — never logged (`withRetry`) */
+  retry?: true;
+}
+
+/** Appended to an item's uid for its in-session retry. Item and set ids are slugs, never `#`. */
+export const RETRY_SUFFIX = '#retry';
+
+/** The queue entry's uid without a retry marker: the item's own `${setId}::${itemId}`. */
+export const baseUid = (uid: string): string =>
+  uid.endsWith(RETRY_SUFFIX) ? uid.slice(0, -RETRY_SUFFIX.length) : uid;
+
+/**
+ * The queue after the entry at `index` was answered: a `translate` answered wrong comes back
+ * once, later in the same run, as the same item. Anything else returns the queue unchanged.
+ *
+ * Feedback has just shown the model answer, so the retry is retrieval practice after
+ * feedback — and an immediate one would be answered from working memory, the finding behind
+ * the flashcard rule (`recordMiss`, requeue.ts). It therefore waits `AGAIN_GAP_UNFAMILIAR`
+ * items, the flashcard gap for something not retrieved at all, or goes last when fewer remain.
+ *
+ * The retry is not evidence: the caller never logs it, so the first failure stays the logged
+ * result and the item is still last-answered-wrong for tomorrow's `buildSession`. One retry
+ * per item per run, and a retry is never itself retried.
+ */
+export function withRetry(
+  queue: readonly SessionItem[],
+  index: number,
+  correct: boolean,
+): readonly SessionItem[] {
+  const entry = queue[index];
+  if (!entry || correct || entry.retry || entry.item.type !== 'translate') return queue;
+  const uid = `${entry.uid}${RETRY_SUFFIX}`;
+  if (queue.some((e) => e.uid === uid)) return queue;
+  const retry: SessionItem = { ...entry, uid, retry: true };
+  return [
+    ...queue.slice(0, index + 1),
+    ...requeueAfter(queue.slice(index + 1), retry, AGAIN_GAP_UNFAMILIAR),
+  ];
 }
 
 /**
@@ -184,14 +224,14 @@ export function resumedQueueIsEligible(
 /**
  * Builds an interleaved session from all items across all eligible sets.
  *
- * Priority bands, filled in order:
+ * Priority bands, in order of precedence (`allocatePrioritySlots` shares the slots out):
  *   1. items whose most recent attempt was wrong — minus any that are FOSSILIZING
  *      (see below); their never-seen same-focus siblings are promoted into this band
  *      in their place,
  *   2. items whose `focus` tag is currently weak and that are not already in band 1,
  *   3. items never attempted (minus any siblings promoted into band 1),
  *   4. fossilizing items that were demoted out of band 1 (see below).
- * Bands 1–4 are each shuffled within themselves.
+ * Bands 1–4 are each shuffled within themselves (band 3 within each of its tiers).
  *
  * An item is FOSSILIZING when its last two attempts were both wrong: it has already
  * failed a retry, and dealing it again on the same footing is exactly how
@@ -212,6 +252,13 @@ export function resumedQueueIsEligible(
  * take everything (see the constant). When band 5 is short the priority bands take the
  * slack back, and vice versa; nothing is ever wasted.
  *
+ * The priority slots are shared out by `allocatePrioritySlots`, not filled band after band:
+ * band 1 alone holds every item ever answered wrong last, which on a real log is far more
+ * than a session has slots, and filled first it left weak-focus items, drills and every
+ * never-attempted item without a single slot. Within band 3, items that would arm a probe
+ * family still waiting for its first practice (`unarmedArmingKeys`) come first, then items
+ * of sets never attempted at all, then the rest; each tier is shuffled within itself.
+ *
  * Afterwards the selection is interleaved so that no two consecutive items share a set,
  * which is possible exactly when no set holds more than half the queue.
  */
@@ -219,8 +266,9 @@ export function buildSession(
   sets: readonly TopicOwnedSet[],
   count: number,
   attempts: readonly Attempt[],
-  current?: RevisionLookup,
+  options: SessionOptions,
 ): SessionItem[] {
+  const { current, unarmedArmingKeys } = options;
   // most recent attempt per item
   const lastAttempt = new Map<string, { correct: boolean; ts: number }>();
   for (const a of attempts) {
@@ -302,19 +350,94 @@ export function buildSession(
   }
   const untriedRemaining = untried.filter((p) => !promotedUids.has(p.uid));
 
-  const priority = [
-    ...shuffle([...lastWrong, ...promoted]),
-    ...shuffle(weakFocus),
-    ...shuffle(untriedRemaining),
-    ...shuffle(fossilizedDropped),
-  ];
+  // Band 3 in three tiers: what an unarmed probe family waits on, then sets never opened,
+  // then the rest.
+  const attemptedSets = new Set(attempts.map((a) => a.setId));
+  const armsFamily = untriedRemaining.filter((p) => unarmedArmingKeys.has(p.uid));
+  const unopenedSet = untriedRemaining.filter(
+    (p) => !unarmedArmingKeys.has(p.uid) && !attemptedSets.has(p.setId),
+  );
+  const restUntried = untriedRemaining.filter(
+    (p) => !unarmedArmingKeys.has(p.uid) && attemptedSets.has(p.setId),
+  );
+
+  const bands = {
+    lastWrong: shuffle([...lastWrong, ...promoted]),
+    weakFocus: shuffle(weakFocus),
+    untried: [...shuffle(armsFamily), ...shuffle(unopenedSet), ...shuffle(restUntried)],
+    fossilized: shuffle(fossilizedDropped),
+  };
   const broad = seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry);
 
   const reserved = Math.min(Math.round(count * BROAD_RETRIEVAL_SHARE), broad.length);
-  const fromPriority = priority.slice(0, Math.max(0, count - reserved));
+  const take = allocatePrioritySlots(Math.max(0, count - reserved), {
+    lastWrong: bands.lastWrong.length,
+    weakFocus: bands.weakFocus.length,
+    untried: bands.untried.length,
+    fossilized: bands.fossilized.length,
+  });
+  const fromPriority = [
+    ...bands.lastWrong.slice(0, take.lastWrong),
+    ...bands.weakFocus.slice(0, take.weakFocus),
+    ...bands.untried.slice(0, take.untried),
+    ...bands.fossilized.slice(0, take.fossilized),
+  ];
   const fromBroad = broad.slice(0, count - fromPriority.length);
 
   return interleaveByTopic([...fromPriority, ...fromBroad].slice(0, count));
+}
+
+/** What `buildSession` needs besides the pool and the log. Both callers must decide both. */
+export interface SessionOptions {
+  /** current item revisions, for the weakness signal; `undefined` turns that filter off */
+  current: RevisionLookup | undefined;
+  /**
+   * `setId::itemId` keys that would arm a probe family not armed yet (`unarmedArmingKeys` in
+   * probes.ts). Required, so no caller silently loses the ordering: pass an empty set when
+   * there are no families.
+   */
+  unarmedArmingKeys: ReadonlySet<string>;
+}
+
+/** How many items each priority band has on offer, and how many it is given. */
+export interface PriorityBands {
+  lastWrong: number;
+  weakFocus: number;
+  untried: number;
+  fossilized: number;
+}
+
+/**
+ * Shares `slots` priority slots among the four bands, proportionally, so an 8-item daily
+ * session and a 15-item training run follow one rule:
+ *
+ * 1. band 2 (weak focus, where drills are served) and band 3 (never attempted) each get one
+ *    slot when they have an item — a guarantee, taken before anything else, because without
+ *    it a large band 1 starves both completely;
+ * 2. band 1 (last answered wrong, with the siblings promoted into it) gets at most half the
+ *    slots, rounded down;
+ * 3. the slots left go to the bands in their order — band 2, band 3, then band 1 past its
+ *    half, then band 4 — so a slot a band cannot fill is never wasted.
+ *
+ * With one or two slots the two guarantees can use them all; band 1 then waits for a session
+ * with room, and its items are still there tomorrow.
+ */
+export function allocatePrioritySlots(slots: number, have: PriorityBands): PriorityBands {
+  const take: PriorityBands = { lastWrong: 0, weakFocus: 0, untried: 0, fossilized: 0 };
+  let left = slots;
+  const give = (band: keyof PriorityBands, n: number) => {
+    const k = Math.max(0, Math.min(n, have[band] - take[band], left));
+    take[band] += k;
+    left -= k;
+  };
+  give('weakFocus', 1);
+  give('untried', 1);
+  give('lastWrong', Math.floor(slots / 2));
+  give('weakFocus', left);
+  give('untried', left);
+  give('lastWrong', left);
+  give('fossilized', left);
+  return take;
 }
 
 /**

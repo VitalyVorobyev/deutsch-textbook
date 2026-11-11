@@ -213,6 +213,26 @@ export function armedAt(family: ProbeFamily, attempts: readonly Attempt[]): numb
   return earliest;
 }
 
+/**
+ * Every item key that would arm a family that has not armed yet: the same union of authored
+ * `arming` keys and `topicFocusItemKeys` that `armedAt` reads, taken over the unarmed families
+ * only. Mixed training deals these first among never-attempted items (`buildSession`), because
+ * an unarmed family's delayed check cannot start until one of them is answered, and a set the
+ * learner never opens is otherwise reached only by chance.
+ */
+export function unarmedArmingKeys(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+): Set<string> {
+  const keys = new Set<string>();
+  for (const family of families) {
+    if (armedAt(family, attempts) !== undefined) continue;
+    for (const key of family.armingItemKeys) keys.add(key);
+    for (const key of family.topicFocusItemKeys ?? []) keys.add(key);
+  }
+  return keys;
+}
+
 /** The family's probe attempts, oldest first. */
 export function probeAttempts(family: ProbeFamily, attempts: readonly Attempt[]): Attempt[] {
   return attempts.filter((a) => a.setId === family.setId).sort((a, b) => a.ts - b.ts);

@@ -24,6 +24,9 @@ import type { ExerciseItem, Level } from '@da/schema';
 import type { Attempt } from '../src/lib/store';
 import type { TopicContext } from '../src/lib/mastery';
 
+/** No probe family is waiting on any item here; the band-3 ordering is tested on its own. */
+const NO_PROBES = { current: undefined, unarmedArmingKeys: new Set<string>() };
+
 const NOW = 1_780_000_000_000;
 const HOUR = 3_600_000;
 
@@ -156,16 +159,18 @@ describe('drills from progress are served through the weak-focus band', () => {
       weakTagged(endungenDrill, 'verb-endungen').length +
       weakTagged(woWohinDrill, 'wo-wohin').length +
       weakTagged(satzklammerDrill, 'modal-satzklammer').length;
-    const queue = buildSession([...drills, distractor], wanted, weakEvidence);
+    const queue = buildSession([...drills, distractor], wanted + 1, weakEvidence, NO_PROBES);
 
     // Band 1 (last answered wrong) is empty — no pool item was ever attempted — and the
-    // broad-retrieval reservation has nothing to reserve, so a session of exactly this
-    // size must be the weak-focus band and nothing else: every slot goes to an item
-    // carrying a weak tag, and the 20 untried distractors take none of them.
-    expect(queue).toHaveLength(wanted);
-    for (const entry of queue) {
-      expect(WEAK_TAGS).toContain(entry.item.focus ?? '');
-    }
+    // broad-retrieval reservation has nothing to reserve. Never-attempted material is
+    // guaranteed one slot (`allocatePrioritySlots`), so a session one longer than the
+    // weak-focus band is that whole band plus exactly one untried item on no weak tag — one
+    // of the 20 distractors or a drill item on another tag.
+    const isWeak = (entry: { item: { focus?: string } }) =>
+      WEAK_TAGS.includes(entry.item.focus ?? '');
+    expect(queue).toHaveLength(wanted + 1);
+    expect(queue.filter(isWeak)).toHaveLength(wanted);
+    expect(queue.filter((entry) => !isWeak(entry))).toHaveLength(1);
     for (const drill of drills) {
       expect(queue.some((entry) => entry.setId === drill.setId)).toBe(true);
     }

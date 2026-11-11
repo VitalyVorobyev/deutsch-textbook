@@ -39,16 +39,12 @@ Graders, validators, measurements and the progress audit. The format and the ID 
   relative-clause translate item can hit it; `b1/leben-veraendern-produktion::uebersetzen-transfer-kollegen`
   now accepts the fronted order by hand. First step: measure how many confirmed rejections in
   the attempt log are reorderings of an unpinned clause.
-- **P23-3 · Six of the seven tags the runtime prioritises have no drill, all B1.** Cross
-  `weakFocuses` (`src/lib/weakness.ts`) with every `role: drill` item's `focus`. `weakFocuses` (last
-  ~30 attempts, ≥35% errors) and the audit's `persistent` table disagree, and neither is wrong. Take
-  one drill per evidence read, never six at once.
-- **P25-9 · Band 1 re-deals a failed item ahead of its own drill.** `buildSession`
-  (`src/lib/training.ts`) serves last-wrong items first, so `uebersetzen-waehrend-regen` was failed
-  in nine sessions running while all eight items of `drill-temporal-nebensatz` sat unserved; the
-  delayed probe on the same competence runs 2/2. The fix is selection — cap re-deals, or let a due
-  drill item of the same weak focus preempt band 1 — measured on the deal distribution before and
-  after.
+- **P23-3 · One of the two tags the runtime prioritises has no drill: `genitiv-eigenname`.**
+  `weakFocuses` (`src/lib/weakness.ts`, with `revisionLookup` as `MixedTraining` calls it) over
+  `progress/vitaly/2026-11-11.json` returns `genitiv-eigenname` (5.5 errors in 13 attempts, all 4
+  tagged items answered) and `temporal-nebensatz` (11.5 in 30, served by
+  `b1/drill-temporal-nebensatz`). The audit's `persistent` table disagrees with it, and neither is
+  wrong. Take one drill per evidence read, never several at once.
 - **P25-7 · Slip-forgiveness stops at `key_tokens`.** Four confirmed rows where every graded token
   was right and one typo elsewhere sank the rendering (`data/grading-decisions.yaml`, decided
   2026-08-11). Measure every historical confirm whose only divergence is outside `key_tokens` before
@@ -122,15 +118,15 @@ Graders, validators, measurements and the progress audit. The format and the ID 
   order items show `Prompt: —` and `Answer: —`, so the item detail cannot be read without opening
   the YAML (`bun run progress:audit --profile vitaly --item b1/probe-leben-veraendern-relativ-praeposition:variant-a`).
   First step: print the cloze `text` with its keyed gaps.
-- **INS-10 · 20 probe families have nothing to arm them.** `armedAt` arms a family from its
-  authored `arming` items or from any practice/drill item in its own topic under its `focus`; on
-  `progress/vitaly/2026-11-11.json` that still leaves 20 of 159 unarmed, the 19 A1/A2 rows
-  `bun run progress:audit --profile vitaly` marks "unarmed — needs the lesson opened" among them.
-  None was ever practised under its tag: for 14 every tagged item lies in a set the learner never
-  opened, for 5 in sets they did open but in items never answered, and 1
-  (`b1/probe-gesellschaft-zusammenleben-hoeren`) is untagged; `a1/probe-akkusativ-praepositionen`
-  nevertheless holds 2 probe attempts, so its arming once resolved and no longer does. Counted by
-  joining each family's tagged topic items against the snapshot's attempts. A serving question, not
-  an arming one, and the log does not say why those items were never answered. First step: check
-  whether the 14 sets were added after the learner finished their topics, and how a finished topic
-  serves a set added later.
+- **INS-10 · Confirm on a real snapshot that the never-practised probe families arm.** On
+  `progress/vitaly/2026-11-11.json` 20 of 159 families had no answered arming item: for 14 the
+  tagged items lay in sets added after the learner's first pass of the topic and never opened, for
+  5 in opened sets whose tagged items were never dealt, and 1
+  (`b1/probe-gesellschaft-zusammenleben-hoeren`) is untagged and arms only from its two authored
+  keys. Mixed training never reached them: band 1 held 80 or more items for 6 priority slots. It
+  now deals every unarmed family's arming keys first among never-attempted items; simulated over
+  30 daily sessions on that snapshot (30 seeds, each item answered at the learner's accuracy for
+  its type), all 20 arm within 30 sessions on every seed and a mean of 12 within 10. Still open:
+  `a1/probe-akkusativ-praepositionen` holds 2 probe attempts although it is unarmed, so its arming
+  once resolved and no longer does. First step: rerun the count on the first snapshot 30 sessions
+  out, and read that family's arming history.

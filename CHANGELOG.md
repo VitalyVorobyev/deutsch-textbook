@@ -44,6 +44,13 @@ GitHub Release notes.
 
 ### Changed
 
+- **Daily training no longer fills up with yesterday's mistakes.** Items you got wrong take at
+  most half of a session's open places; the rest go to the points you are currently weak on, their
+  targeted drills, and exercises you have never done. Among those, the exercises a delayed check
+  is still waiting for come first, then exercise sets you have never opened.
+- **A translation you get wrong comes back once in the same training run**, marked *Zweiter
+  Versuch*, a few items later. Your first answer is the one that counts; the second try is
+  practice and is not recorded.
 - **Delayed checks come for more of what you have practised.** A check on a grammar point now
   starts with any exercise in that topic that practises the point, not only with a few named
   ones, so checks that never came for some points now do.

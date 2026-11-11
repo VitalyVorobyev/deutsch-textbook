@@ -7,15 +7,19 @@ import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { recommendedNext, type TopicNode } from '../../lib/mastery';
 import {
+  RETRY_SUFFIX,
+  baseUid,
   buildSession,
   eligibleTrainingSets,
   isServed,
   isTopicOwned,
   revisionLookup,
   resumedQueueIsEligible,
+  withRetry,
   type SessionItem,
   type TrainingSet,
 } from '../../lib/training';
+import { probeFamilies, unarmedArmingKeys } from '../../lib/probes';
 import { topicPath, withBase } from '../../lib/url';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
@@ -48,6 +52,8 @@ interface Answered {
   /** attemptScore of the answer — parts-weighted for multi-part items */
   score: number;
   evidence?: 'verified' | 'practice';
+  /** a second try (`withRetry`): never logged, never scored, never counted as answered */
+  retry?: boolean;
 }
 
 interface TrainingResume {
@@ -90,9 +96,10 @@ function restoreSession(
 
   const session: SessionItem[] = [];
   for (const uid of saved.uids) {
-    const entry = byUid.get(uid);
+    // A retry is saved under its own uid and rebuilt from the item it repeats.
+    const entry = byUid.get(baseUid(uid));
     if (!entry) return null;
-    session.push(entry);
+    session.push(uid.endsWith(RETRY_SUFFIX) ? { ...entry, uid, retry: true } : entry);
   }
   return { session, answered: saved.answered };
 }
@@ -176,7 +183,12 @@ export default function MixedTraining({
         }
         // The lookup is built from all shipped sets, not the eligible subset — an item outside
         // this session's pool still carries attempts against a focus tag.
-        const s = buildSession(eligible, count, attempts, revisionLookup(sets));
+        // Every set, not the eligible ones: probe families are read off the whole corpus, and a
+        // family's arming items are what band 3 deals first.
+        const s = buildSession(eligible, count, attempts, {
+          current: revisionLookup(sets),
+          unarmedArmingKeys: unarmedArmingKeys(probeFamilies(sets), attempts),
+        });
         setSession(s);
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         if (surface && s.length > 0)
@@ -208,12 +220,17 @@ export default function MixedTraining({
         correct: result.correct,
         score: attemptScore(result),
         evidence: result.evidence,
+        ...(entry.retry ? { retry: true } : {}),
       },
     ];
+    const queue = [...withRetry(session, index, result.correct)];
     setAnswered(next);
+    if (queue.length !== session.length) setSession(queue);
     if (surface) {
-      saveResume<TrainingResume>(surface, { uids: session.map((s) => s.uid), answered: next });
+      saveResume<TrainingResume>(surface, { uids: queue.map((s) => s.uid), answered: next });
     }
+    // A second try is practice after feedback, not evidence: the first answer is the attempt.
+    if (entry.retry) return;
     void logAttemptDurably({
       setId: entry.setId,
       itemId: entry.item.id,
@@ -295,7 +312,8 @@ export default function MixedTraining({
   const finished = index >= session.length;
 
   if (finished) {
-    const verified = answered.filter((a) => a.evidence !== 'practice');
+    const counted = answered.filter((a) => !a.retry);
+    const verified = counted.filter((a) => a.evidence !== 'practice');
     const score = verified.reduce((s, a) => s + a.score, 0);
 
     // per-topic breakdown, in first-appearance order
@@ -305,7 +323,7 @@ export default function MixedTraining({
     >();
     answered.forEach((a, i) => {
       const entry = session[i];
-      if (!entry) return;
+      if (!entry || a.retry) return;
       const row = byTopic.get(entry.topicId) ?? {
         title_de: entry.title_de,
         level: entry.level,
@@ -362,7 +380,7 @@ export default function MixedTraining({
               type="button"
               onClick={() => {
                 if (surface) clearResume(surface);
-                onFinished({ answered: answered.length, correct: score });
+                onFinished({ answered: counted.length, correct: score });
               }}
               className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
             >
@@ -395,6 +413,14 @@ export default function MixedTraining({
             <span lang="de" className="truncate font-semibold text-stone-600 dark:text-stone-300">
               {entry.title_de}
             </span>
+            {entry.retry && (
+              <span
+                lang={uiLang}
+                className="shrink-0 rounded-full border border-stone-300 px-2 py-0.5 text-xs text-stone-500 dark:border-stone-600 dark:text-stone-400"
+              >
+                {t('training.secondTry', uiLang)}
+              </span>
+            )}
           </p>
         )}
         <div className="ml-auto flex shrink-0 items-center gap-1" aria-label="progress">

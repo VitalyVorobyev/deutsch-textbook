@@ -9,7 +9,8 @@ authoring rules.
 | Curriculum order and graph | `content/atlas.yaml`, `packages/content/src/curriculum.ts` | contracts/deepens tests |
 | Review queue and daily new-card budget | `src/lib/decks.ts` | review-plan tests |
 | In-session retry after "Again" or a missed LiD question | `src/lib/requeue.ts` | requeue tests, `tests/lid-question.test.tsx` |
-| Training eligibility and interleaving | `src/lib/training.ts` (`isServed`: a retired set is never served, while `revisionLookup` still resolves it) | eligibility/broad-retrieval and task-set tests |
+| Training eligibility and interleaving | `src/lib/training.ts` (`isServed`: a retired set is never served, while `revisionLookup` still resolves it; `allocatePrioritySlots`: band 1 at most half the priority slots, bands 2 and 3 one each when non-empty; band 3 deals `unarmedArmingKeys` first, then never-attempted sets) | eligibility/broad-retrieval, session-serving and task-set tests |
+| In-run retry of a failed `translate` | `src/lib/training.ts` (`withRetry`), `src/components/training/MixedTraining.tsx` | session-serving and mixed-training-retry tests |
 | Task-set playback: one recording, one play budget, transcript after the last answer | `src/components/exercises/RecordingPlayer.tsx`, `ExerciseSet.tsx` | task-set panel and audio-comprehension replay tests |
 | Mastery and navigation evidence | `src/lib/mastery.ts`, `src/lib/placement.ts` | mastery/placement tests |
 | Delayed probes | `src/lib/probes.ts` (`armedAt` is the one arming rule, for the session, Heute, Fortschritt and `progress:audit`: the earliest verified attempt on an authored `arming` item or on any practice/drill item in the family's own topic under the family's `focus`) | probe and probe-fallback-arming tests, progress audit |
@@ -50,6 +51,15 @@ authoring rules.
   8 for a word not retrieved at all, 50 for a lapse or a near miss, halved per further miss, never
   fewer than 3 (`recordMiss`). The gap orders today's queue only; FSRS alone schedules the card.
   A missed Leben-in-Deutschland question follows the same rule (`LidPractice`).
+- A `translate` answered wrong in mixed training comes back once in the same run, as the same
+  item, `AGAIN_GAP_UNFAMILIAR` items later or last (`withRetry`). The second try is **never
+  logged**: the first answer is the attempt, so `buildSession`, `lessonCompleted`, `topicTier`,
+  `weakFocuses` and `armedAt` never see it — three of those read every attempt whatever its
+  evidence class, so logging it even as practice would hide the failure. A retry is never
+  retried, and a saved run restores it under its own uid (`RETRY_SUFFIX`).
+- Mixed training shares its priority slots out (`allocatePrioritySlots`) rather than filling
+  the bands in turn: the items last answered wrong outnumber a session's slots on a real log, and
+  filled first they starved weak-focus items, drills and every never-attempted item.
 - The session pages receive the corpus as URLs of content-hashed files, never as props
   (`corpusUrl`), and an island never mounts on a missing file: `CorpusGate` shows loading or an
   error with a retry until every file has arrived, because an empty list would plan "nothing due".

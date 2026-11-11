@@ -3,6 +3,9 @@ import { BROAD_RETRIEVAL_SHARE, buildSession, type TrainingSet } from '../src/li
 import type { Attempt } from '../src/lib/store';
 import type { ExerciseItem } from '@da/schema';
 
+/** No probe family is waiting on any item here; the band-3 ordering is tested on its own. */
+const NO_PROBES = { current: undefined, unarmedArmingKeys: new Set<string>() };
+
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_780_000_000_000;
 
@@ -42,7 +45,7 @@ describe('broad-retrieval share', () => {
   );
 
   test('never-seen items cannot take the whole session', () => {
-    const queue = buildSession([oldTopic, newTopic], 8, attempts);
+    const queue = buildSession([oldTopic, newTopic], 8, attempts, NO_PROBES);
     const fromOld = queue.filter((q) => q.setId === 'a1/old');
 
     expect(queue).toHaveLength(8);
@@ -51,7 +54,7 @@ describe('broad-retrieval share', () => {
   });
 
   test('the reserved slots go to the least recently answered', () => {
-    const queue = buildSession([oldTopic, newTopic], 8, attempts);
+    const queue = buildSession([oldTopic, newTopic], 8, attempts, NO_PROBES);
     const fromOld = queue.filter((q) => q.setId === 'a1/old').map((q) => q.item.id);
     // o1 is the oldest attempt (NOW - 30d), o2 next
     expect(new Set(fromOld)).toEqual(new Set(['o1', 'o2']));
@@ -59,27 +62,32 @@ describe('broad-retrieval share', () => {
 
   test('a wrong answer still outranks broad retrieval, but not to the exclusion of it', () => {
     const withWrong = [...attempts, attempt('a1/new', 'n1', false, NOW - DAY)];
-    const queue = buildSession([oldTopic, newTopic], 8, withWrong);
+    const queue = buildSession([oldTopic, newTopic], 8, withWrong, NO_PROBES);
     expect(queue.map((q) => q.item.id)).toContain('n1'); // the wrong one is served
     expect(queue.filter((q) => q.setId === 'a1/old')).toHaveLength(2); // and the share holds
   });
 
   test('the priority bands take the slack when there is little old material', () => {
     const tiny = set('a1/old', 'old', ['o1']);
-    const queue = buildSession([tiny, newTopic], 8, [attempt('a1/old', 'o1', true, NOW - DAY)]);
+    const queue = buildSession(
+      [tiny, newTopic],
+      8,
+      [attempt('a1/old', 'o1', true, NOW - DAY)],
+      NO_PROBES,
+    );
     // only one old item exists — the session is still full, not short by a reserved slot
     expect(queue).toHaveLength(8);
     expect(queue.filter((q) => q.setId === 'a1/old')).toHaveLength(1);
   });
 
   test('broad retrieval takes the slack when the priority bands are short', () => {
-    const queue = buildSession([oldTopic], 8, attempts);
+    const queue = buildSession([oldTopic], 8, attempts, NO_PROBES);
     // nothing wrong, weak or unseen — the whole session is broad retrieval, not 25% of it
     expect(queue).toHaveLength(6);
   });
 
   test('interleaves as far as the composition allows', () => {
-    const queue = buildSession([oldTopic, newTopic], 8, attempts);
+    const queue = buildSession([oldTopic, newTopic], 8, attempts, NO_PROBES);
     const conflicts = queue.filter((q, i) => i > 0 && q.setId === queue[i - 1]!.setId).length;
 
     // Six of the eight slots come from one set, so perfect alternation is arithmetically
@@ -100,7 +108,7 @@ describe('broad-retrieval share', () => {
     const a = set('a1/a', 'a', ['a1', 'a2', 'a3', 'a4']);
     const b = set('a1/b', 'b', ['b1', 'b2', 'b3', 'b4']);
     for (let run = 0; run < 200; run++) {
-      const queue = buildSession([a, b], 8, []);
+      const queue = buildSession([a, b], 8, [], NO_PROBES);
       expect(queue).toHaveLength(8);
       for (let i = 1; i < queue.length; i++) {
         expect(queue[i]!.setId).not.toBe(queue[i - 1]!.setId);
@@ -113,7 +121,7 @@ describe('broad-retrieval share', () => {
     const b = set('a1/b', 'b', ['b1', 'b2', 'b3']);
     const c = set('a1/c', 'c', ['c1', 'c2']);
     for (let run = 0; run < 200; run++) {
-      const queue = buildSession([a, b, c], 10, []);
+      const queue = buildSession([a, b, c], 10, [], NO_PROBES);
       expect(new Set(queue.map((q) => q.uid)).size).toBe(10);
       for (let i = 1; i < queue.length; i++) {
         expect(queue[i]!.setId).not.toBe(queue[i - 1]!.setId);
@@ -131,7 +139,7 @@ describe('broad-retrieval share', () => {
     const dativB = set('a2/drill-mir-mich', 'dativ', ['m1', 'm2']);
     const akkusativ = set('a1/akkusativ', 'akkusativ', ['k1', 'k2', 'k3', 'k4']);
     for (let run = 0; run < 200; run++) {
-      const queue = buildSession([dativA, dativB, akkusativ], 8, []);
+      const queue = buildSession([dativA, dativB, akkusativ], 8, [], NO_PROBES);
       expect(queue).toHaveLength(8);
       for (let i = 1; i < queue.length; i++) {
         expect(queue[i]!.topicId).not.toBe(queue[i - 1]!.topicId);
@@ -145,7 +153,7 @@ describe('broad-retrieval share', () => {
   test('a dominant set yields the unavoidable minimum of conflicts, never a short session', () => {
     const big = set('a1/big', 'big', ['x1', 'x2', 'x3', 'x4', 'x5', 'x6']);
     const small = set('a1/small', 'small', ['y1', 'y2']);
-    const queue = buildSession([big, small], 8, []);
+    const queue = buildSession([big, small], 8, [], NO_PROBES);
     expect(queue).toHaveLength(8);
     let conflicts = 0;
     for (let i = 1; i < queue.length; i++) {
