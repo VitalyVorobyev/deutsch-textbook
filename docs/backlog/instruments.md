@@ -98,18 +98,39 @@ Graders, validators, measurements and the progress audit. The format and the ID 
 - **P12-8 · The two answer highlights come from two LCS runs** in `Translate`, so a transposition
   can mark different words on each side. Display only; return both arrays from one traversal in
   `packages/grading/src/worddiff.ts`.
-- **INS-7 · A placed-out topic never arms its probes.** 19 competences read "unarmed — needs the
-  lesson opened" (`bun run progress:audit --profile vitaly`, *Can the gate be read?*), A1
-  `nicht-position` among them, and that is exactly the error the learner still makes. A passed
-  placement never raises the tier, by design, but it also leaves retention unmeasurable. First
-  step: a proposal on whether a passed placement arms the topic's probe families.
+- **INS-7 · A passed placement arms no probe family**, so a topic the learner tested out of never
+  gets a delayed check. Not urgent: `progress/vitaly/2026-11-11.json` holds no placement attempt, so
+  arming from a pass would arm 0 families today. Arming at the moment of a pass puts every family a
+  full pass covers due on one day — 39 at A1, 64 at A2, 56 at B1 (counted by simulating a learner who
+  answers every item of one placement set right, one session a day) against 35 a week at
+  `MAX_PROBES_PER_SESSION` — so it needs a stagger, one family a day; that takes 63 days to arm a
+  full A2 pass, and a staggered clock understates reported intervals by its delay. First step:
+  open this once a learner who placed out exists.
 - **INS-8 · A cloze probe charges a misspelling to the tag.** `b1/probe-arbeit-bewerbung-adjektiv-nomen:variant-a`
   logged *Interresantes* as an `adjektiv-nomen` failure, with the capital and the *-es* both right.
   `translate` forgives a one-edit slip outside `key_tokens`, and `listen` withholds attribution
-  (`dictationSlip`), but a cloze gap whose whole answer is the graded word has neither. First step:
-  decide whether a one-edit miss in a gap's stem, with the ending intact, is `unknown` rather than
-  `failed`, then count the probe attempts it would reclassify.
+  (`dictationSlip`), but a cloze gap whose whole answer is the graded word has neither. The rule
+  "one edit, last two letters intact means `unknown`" is measured and rejected: of the 51 wrong
+  cloze probe attempts in `progress/vitaly/2026-11-11.json`, all charged `failed`, it reclassifies
+  8, and about 1 of those is a stem slip (*müssen* without its umlaut); the rest are graded or real
+  forms — a different determiner for *Seine*, *schlaft* for *schläft*, another first vowel in
+  *an dem*, another article in *in der Küche*, another vowel in *gibt*. The example above is two edits away and stays charged.
+  Counted by rebuilding each logged gap against the item at its revision. First step: a cloze gap
+  declares what it grades — a predicate per gap, or `focus_evidence` on the item — and only text
+  outside it may be forgiven.
 - **INS-9 · `progress:audit --item` prints no prompt or answer for an island item.** Cloze, table and
   order items show `Prompt: —` and `Answer: —`, so the item detail cannot be read without opening
   the YAML (`bun run progress:audit --profile vitaly --item b1/probe-leben-veraendern-relativ-praeposition:variant-a`).
   First step: print the cloze `text` with its keyed gaps.
+- **INS-10 · 20 probe families have nothing to arm them.** `armedAt` arms a family from its
+  authored `arming` items or from any practice/drill item in its own topic under its `focus`; on
+  `progress/vitaly/2026-11-11.json` that still leaves 20 of 159 unarmed, the 19 A1/A2 rows
+  `bun run progress:audit --profile vitaly` marks "unarmed — needs the lesson opened" among them.
+  None was ever practised under its tag: for 14 every tagged item lies in a set the learner never
+  opened, for 5 in sets they did open but in items never answered, and 1
+  (`b1/probe-gesellschaft-zusammenleben-hoeren`) is untagged; `a1/probe-akkusativ-praepositionen`
+  nevertheless holds 2 probe attempts, so its arming once resolved and no longer does. Counted by
+  joining each family's tagged topic items against the snapshot's attempts. A serving question, not
+  an arming one, and the log does not say why those items were never answered. First step: check
+  whether the 14 sets were added after the learner finished their topics, and how a finished topic
+  serves a set added later.

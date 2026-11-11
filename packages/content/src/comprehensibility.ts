@@ -576,7 +576,10 @@ export function itemGerman(item: Record<string, unknown>): string[] {
       push(item.columns);
       for (const r of (item.rows ?? []) as Array<Record<string, unknown>>) {
         push(r.label);
-        for (const c of (r.cells ?? []) as Array<Record<string, unknown>>) push(c.answer);
+        for (const c of (r.cells ?? []) as Array<Record<string, unknown>>) {
+          push(c.answer);
+          push(c.accept);
+        }
       }
       break;
     case 'form':

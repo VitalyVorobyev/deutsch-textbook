@@ -26,15 +26,35 @@ reads German-first. Shipping the catalogue was never a claim that a competence w
 
 ## Horizons
 
-### Now: evidence, language debt, a clean workspace
+### Now: retention before breadth
 
-1. **Read the evidence honestly.** Drain the grading queue to zero, rerun
-   `bun run progress:audit --profile vitaly --pull`, and only then read the weak-focus table. The
-   A2 checkpoint's 2/7/21-day read is the next revision trigger.
-2. **Pay the language debt** that no gate sees: the RU/UK halves of the B1 translations (C6-3) and
-   the RU/UK calque review (C6-1).
-3. **Finish the workspace restructuring.** Foundational ADRs, proposals, an area-split backlog,
-   Tonwerk as one app, and an agent layer scoped by directory.
+The course is ahead of the learner. Selection and recognition hold; building a German sentence
+around a taught structure does not, and several B1 points do not survive three weeks
+(`bun run progress:audit --profile vitaly --pull`: the *readable competences at ≥80%* lines, the
+`translate` score, the card lapses by direction). Until those figures move, a step is taken only
+when it raises delayed production retention, makes the evidence readable, or gives a tool a
+recurring job in that loop. New topics, task-set conversions in batches (CON-10), the B2 contract
+and the learner app on lab-ui wait.
+
+1. **The learning loop: production.** A failed `translate` should come back in a lighter form of
+   the same sentence, and sessions should lean toward production where selection is already
+   safe. About half of the failed translations miss the taught structure itself, the rest one
+   word beside it (counted by re-grading every logged `translate` attempt with `gradeTranslation`
+   and comparing a miss against its closest accepted rendering). Then the drills the audit names
+   (P26-11, CON-4, P23-3), and the families that never arm because their sets are never served
+   (INS-10).
+2. **Redaktion gets a weekly job.** The owner's editorial decisions come from using the course:
+   a rejected answer that was right, an item that confuses. A desk over the learner's snapshot
+   and the grading rulings, where he rules a rendering, opens the item's source or files a
+   finding, is the main build ([`backlog/redaktion.md`](backlog/redaktion.md)), shaped by what
+   he reports from using the workbench.
+3. **Tonwerk: better audio, then more of it.** A batch listening review whose verdicts reach the
+   shared queue, delivery timing in the engine (P22-14, P22-16), then the narration plan and the
+   recast, so that each recording is synthesised once
+   ([`backlog/tonwerk.md`](backlog/tonwerk.md)).
+
+The owner's entry point to all of it is the `atlas` skill: Claude opens the queue, the audit and
+the tools, and files what he says.
 
 ### Next: three initiatives, decided before they are built
 

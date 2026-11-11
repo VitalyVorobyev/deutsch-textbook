@@ -1152,7 +1152,7 @@ function delayedSummary(
       role?: string;
       arming?: string[];
       retired?: boolean;
-      items: Array<{ id: string; outcomes: string[] }>;
+      items: Array<{ id: string; outcomes: string[]; focus?: string; type?: string }>;
     }
   >();
   for (const item of catalog.values()) {
@@ -1165,7 +1165,12 @@ function delayedSummary(
       retired: item.retired,
       items: [],
     };
-    set.items.push({ id: item.id, outcomes: item.outcomes ?? [] });
+    set.items.push({
+      id: item.id,
+      outcomes: item.outcomes ?? [],
+      focus: item.focus,
+      type: item.type,
+    });
     sets.set(item.setId, set);
   }
   const families = probeFamilies([...sets.values()]);

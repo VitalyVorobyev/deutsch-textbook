@@ -81,6 +81,12 @@ export interface ProbeFamily {
    * retention clock by accident.
    */
   armingItemKeys: string[];
+  /**
+   * The fallback arming items, as `setId::itemId`: every scorable item in the family's own
+   * topic's practice and drill sets whose `focus` is the family's. Empty for an untagged family.
+   * See `armedAt` for why these join the authored list rather than stand behind it.
+   */
+  topicFocusItemKeys: string[];
   /** the parallel variants, in authoring order */
   items: { id: string; outcomes: string[] }[];
 }
@@ -91,7 +97,7 @@ interface SetLike {
   topicId?: string;
   role?: string;
   arming?: readonly string[];
-  items: readonly { id: string; outcomes: string[]; focus?: string }[];
+  items: readonly { id: string; outcomes: string[]; focus?: string; type?: string }[];
   /** a retired set is never a family: it is served nowhere */
   retired?: boolean;
 }
@@ -105,6 +111,22 @@ const attemptKey = (setId: string, itemId: string) => `${setId}::${itemId}`;
  * family probes arms it.
  */
 export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
+  // The items a topic's ordinary practice offers per focus tag — what the fallback arms from.
+  // Practice and drill only, the roles the validator allows an arming key to point at: a
+  // pretest, checkpoint or probe tests a competence rather than practising it, and open
+  // production is not verified evidence.
+  const practisedByTopicFocus = new Map<string, string[]>();
+  for (const set of sets) {
+    if (set.topicId === undefined || (set.role !== 'practice' && set.role !== 'drill')) continue;
+    for (const item of set.items) {
+      if (!item.focus || item.type === 'write' || item.type === 'speak') continue;
+      const key = `${set.topicId}\u0000${item.focus}`;
+      const keys = practisedByTopicFocus.get(key) ?? [];
+      keys.push(attemptKey(set.setId, item.id));
+      practisedByTopicFocus.set(key, keys);
+    }
+  }
+
   // A probe always names its topic (the schema requires it); the guard is what tells the types.
   const probes = sets.filter(
     (s): s is SetLike & { topicId: string } =>
@@ -113,12 +135,16 @@ export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
 
   return probes.map((s) => {
     const outcomes = [...new Set(s.items.flatMap((i) => i.outcomes))];
+    const focus = s.items[0]?.focus;
     return {
       setId: s.setId,
       topicId: s.topicId,
       outcomes,
-      focus: s.items[0]?.focus,
+      focus,
       armingItemKeys: [...(s.arming ?? [])],
+      topicFocusItemKeys: focus
+        ? [...(practisedByTopicFocus.get(`${s.topicId}\u0000${focus}`) ?? [])]
+        : [],
       items: s.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
     };
   });
@@ -143,8 +169,24 @@ export interface DueProbe {
  * guessing rather than memory.
  *
  * An attempt counts only when its stable `setId::itemId` is one of the family's authored
- * arming keys. This keeps legacy rows usable without reinterpreting their often-missing
- * outcome metadata.
+ * arming keys — or one of its `topicFocusItemKeys`: an item in the family's own topic's
+ * practice or drill sets that carries the family's `focus`. Keys, not outcome metadata, so
+ * legacy rows stay usable without reinterpreting their often-missing outcomes.
+ *
+ * The fallback exists because an authored list can name items the learner is never served.
+ * Measured on `progress/vitaly/2026-11-11.json`: 24 of 159 families had never armed, every one
+ * on a topic practised 34–160 times, because no attempt ever landed on one of their arming
+ * items. The fallback arms 4 of them; the other 20 have no answered item under their tag in
+ * their topic at all (one is untagged), so practice never measured that competence.
+ *
+ * It is a union with the authored list, not a second rule behind it, so the clock is the
+ * earliest of either and only ever moves earlier as the log grows. A fallback consulted only
+ * while the authored items are unanswered would start a clock, then restart it later the day
+ * one of them is answered — after probes had already been taken against the first one. The
+ * union's cost, on the same snapshot: 4 already-armed families start earlier (0 to 108 days),
+ * so their probes' reported intervals grow to the time since that competence was first
+ * practised. Untagged items, other topics' items and probe, pretest and checkpoint attempts
+ * never arm.
  *
  * **A pretest never arms.** It is diagnostic generation *before* the teaching, so its
  * outcomes describe what the learner is about to study, not what they have studied — and
@@ -158,7 +200,7 @@ export interface DueProbe {
  * learner who did study. It moves a great deal for one who did not, which is the point.
  */
 export function armedAt(family: ProbeFamily, attempts: readonly Attempt[]): number | undefined {
-  const armingItems = new Set(family.armingItemKeys);
+  const armingItems = new Set([...family.armingItemKeys, ...(family.topicFocusItemKeys ?? [])]);
   let earliest: number | undefined;
   for (const a of attempts) {
     if (a.setId === family.setId) continue; // a probe cannot arm itself

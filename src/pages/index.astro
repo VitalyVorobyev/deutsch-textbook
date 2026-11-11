@@ -32,7 +32,12 @@ const families = probeFamilies(
       role: e.data.role,
       arming: e.data.arming,
       retired: e.data.retired,
-      items: e.data.items.map((item) => ({ id: item.id, outcomes: item.outcomes })),
+      items: e.data.items.map((item) => ({
+        id: item.id,
+        outcomes: item.outcomes,
+        focus: item.focus,
+        type: item.type,
+      })),
     })),
 );
 

@@ -35,7 +35,9 @@ items:
   # a2/gesundheit-arzttermin does. `gehen` alone for Sie stays wrong: that is the grammar.
   - id: imperativ-drei-formen
     type: table
-    revision: 2
+    # revision 3: the du-cell also takes the long form gehe, which is standard German
+    # beside geh.
+    revision: 3
     outcomes: [stadt-wegbeschreibung-geben]
     target_mode: writing
     focus: imperativ-form
@@ -47,7 +49,7 @@ items:
     columns: ["Imperativ"]
     rows:
       - label: "du"
-        cells: [{ answer: "geh" }]
+        cells: [{ answer: "geh", accept: ["gehe"] }]
       - label: "ihr"
         cells: [{ answer: "geht" }]
       - label: "Sie"

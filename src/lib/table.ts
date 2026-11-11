@@ -1,5 +1,6 @@
 /**
- * Continuation stubs in `type: table` items.
+ * Which typed text a `type: table` cell takes — its answer, its authored `accept` forms and the
+ * continuation-stub reading below.
  *
  * A `given` cell whose text ends in `…` is a **continuation prompt**: the learner is handed the
  * first half of a sentence and types the rest into the next cell. `TableFill` draws each cell as
@@ -20,10 +21,13 @@
  * over", used by `TableFill` to widen the accepted answers and by `bun run validate` to keep the
  * answer key canonical.
  */
+import { answerMatches } from '@da/grading/cloze';
 
 /** The shape `continuationWord` needs — `tableItemSchema`'s cell, structurally. */
 export interface TableCellLike {
   answer: string;
+  /** authored alternatives, equally correct in this cell */
+  accept?: readonly string[];
   given?: boolean;
 }
 
@@ -100,9 +104,14 @@ function decapitalized(answer: string): string | undefined {
 }
 
 /**
- * Every rendering of `cells[index]` the grader accepts: the authored answer, plus the same answer
- * with the stub's trailing word restated in front of it, plus either one capitalized — and, where
- * the cell opens a sentence (`opensSentence`), either one lower-cased.
+ * Every rendering of `cells[index]` the grader accepts: the authored answer and each authored
+ * `accept` form, plus each of them with the stub's trailing word restated in front of it, plus
+ * any of those capitalized — and, where the cell opens a sentence (`opensSentence`), lower-cased.
+ *
+ * This is the one reader of a cell's key. `TableFill` grades with it and `bun run validate`
+ * checks the key with it, so the two cannot disagree about which forms a cell takes — an
+ * `accept` form read in one place and not the other would mark the learner's `gehe` right on
+ * the page and wrong in the audit, or the reverse.
  *
  * Exactly one word of tolerance, and only the word the learner was just shown. Retyping more of
  * the stub (`Ich komme nicht, weil ich heute arbeite`) still fails — the instruction asks for the
@@ -113,13 +122,42 @@ export function acceptedCellAnswers(
   index: number,
   label?: string,
 ): string[] {
-  const answer = cells[index].answer;
+  const cell = cells[index];
+  const forms = [cell.answer, ...(cell.accept ?? [])];
   const word = continuationWord(cells, index);
-  const keys = word ? [answer, `${word} ${answer}`] : [answer];
+  const keys = word ? forms.flatMap((form) => [form, `${word} ${form}`]) : forms;
   const head = opensSentence(cells, index, label);
   return keys.flatMap((key) => {
     const upper = capitalized(key);
     const lower = head ? decapitalized(key) : undefined;
     return [key, ...(upper ? [upper] : []), ...(lower ? [lower] : [])];
   });
+}
+
+/**
+ * Why each authored `accept` form on `cells[index]` is dead weight, if it is: a given cell is
+ * never asked, so its forms are never read; and a form the grader already takes — the answer
+ * itself, an earlier form, or a case or stub-word variant of either — adds nothing and hides the
+ * one form the author meant to add. Asked through `acceptedCellAnswers` and `answerMatches`, the
+ * pair `TableFill` grades with, so "already taken" means exactly what it means on the page.
+ */
+export function cellAcceptProblems(
+  cells: readonly TableCellLike[],
+  index: number,
+  label?: string,
+): string[] {
+  const cell = cells[index];
+  const accept = cell.accept ?? [];
+  if (accept.length === 0) return [];
+  if (cell.given) return [`cell "${cell.answer}" is given, so its accept list is never graded`];
+  const problems: string[] = [];
+  accept.forEach((form, k) => {
+    const before = cells.map((c, i) => (i === index ? { ...c, accept: accept.slice(0, k) } : c));
+    if (answerMatches(form, acceptedCellAnswers(before, index, label)))
+      problems.push(
+        `cell "${cell.answer}": accept form "${form}" is already accepted — it repeats the ` +
+          `answer or an earlier form up to case or the stub's word`,
+      );
+  });
+  return problems;
 }
