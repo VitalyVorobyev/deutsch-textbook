@@ -287,6 +287,9 @@ items:
       uk: "helfen вимагає Dativ: mir, а не mich — як і українське «допомогти (кому?) мені». Модальне kannst — на другому місці, helfen — у кінці."
 
   - id: uebersetzen-abholen-dich
+    # revision 2: «встречу» / «зустріну» name meeting as well as collecting, so treffen is a
+    # fair reading of those prompts; the pronoun's case is the same after both verbs.
+    revision: 2
     outcomes: [dativ-verben]
     type: translate
     focus: akkusativ-pronomen
@@ -301,6 +304,7 @@ items:
     key_tokens: ["dich"]
     accept:
       - "Ich hole dich am Bahnhof ab."
+      - "Ich treffe dich am Bahnhof."
     explain:
       en: "abholen takes the accusative: dich. The prefix ab goes to the end, and vom Bahnhof = von dem Bahnhof (dative after von)."
       ru: "abholen требует Akkusativ: dich — «встретить (кого?) тебя». Приставка ab уходит в конец, а vom Bahnhof = von dem Bahnhof (Dativ после von)."
