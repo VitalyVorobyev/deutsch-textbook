@@ -16,6 +16,9 @@ import { exerciseSetSchema } from '@da/schema';
 import type { ExerciseItem } from '@da/schema';
 import type { Attempt } from '../src/lib/store';
 
+/** No probe family is waiting on any item here; the band-3 ordering is tested on its own. */
+const NO_PROBES = { current: undefined, unarmedArmingKeys: new Set<string>() };
+
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_780_000_000_000;
 
@@ -86,7 +89,7 @@ describe('deepening topics resurface their base through the focus tag', () => {
   });
 
   test('an error in the deepening topic resurfaces the applicable base items', () => {
-    const queue = buildSession([deep, base], 8, [...history, ...errsInDeep]);
+    const queue = buildSession([deep, base], 8, [...history, ...errsInDeep], NO_PROBES);
     const fromBase = queue
       .filter((entry) => entry.setId === 'a1/base')
       .map((entry) => entry.item.id);
@@ -98,7 +101,7 @@ describe('deepening topics resurface their base through the focus tag', () => {
   });
 
   test('unrelated base content does not ride along', () => {
-    const queue = buildSession([deep, base], 8, [...history, ...errsInDeep]);
+    const queue = buildSession([deep, base], 8, [...history, ...errsInDeep], NO_PROBES);
     const unrelated = queue.filter((entry) => entry.item.focus === 'du-sie');
 
     // Priority is 4 wrong (band 1) + 2 shared-tag (band 2) = 6 of the 8 slots. The only
@@ -112,7 +115,7 @@ describe('deepening topics resurface their base through the focus tag', () => {
     // is weak, so the base's shared-tag items are just recently-passed material and lose
     // to the older ones — no revisit happens without evidence that one is needed.
     const passed = errsInDeep.map((a) => ({ ...a, correct: true }));
-    const queue = buildSession([deep, base], 4, [...history, ...passed]);
+    const queue = buildSession([deep, base], 4, [...history, ...passed], NO_PROBES);
     expect(queue.map((entry) => entry.item.id).sort()).toEqual(['u1', 'u2', 'u3', 'u4']);
   });
 });

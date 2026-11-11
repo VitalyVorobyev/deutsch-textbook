@@ -17,6 +17,9 @@ import { buildSession, type TrainingSet } from '../src/lib/training';
 import type { Attempt } from '../src/lib/store';
 import type { ExerciseItem } from '@da/schema';
 
+/** No probe family is waiting on any item here; the band-3 ordering is tested on its own. */
+const NO_PROBES = { current: undefined, unarmedArmingKeys: new Set<string>() };
+
 const NOW = 1_780_000_000_000;
 const HOUR = 3_600_000;
 
@@ -62,7 +65,7 @@ describe('fossilizing band-1 items yield to their never-seen same-focus siblings
       attempt('A', false, NOW - 2 * HOUR, 'foo'),
       attempt('A', false, NOW - 1 * HOUR, 'foo'),
     ];
-    const queue = buildSession(sets, 4, attempts);
+    const queue = buildSession(sets, 4, attempts, NO_PROBES);
 
     expect(queue).toHaveLength(4);
     expect(new Set(queue.slice(0, 2).map((q) => q.item.id))).toEqual(new Set(['B1', 'B2']));
@@ -78,7 +81,7 @@ describe('fossilizing band-1 items yield to their never-seen same-focus siblings
       ]),
     ];
     const attempts = [attempt('A', false, NOW - HOUR, 'foo')];
-    const queue = buildSession(sets, 2, attempts);
+    const queue = buildSession(sets, 2, attempts, NO_PROBES);
 
     expect(queue).toHaveLength(2);
     expect(queue[0]!.item.id).toBe('A'); // still leads — not demoted
@@ -97,7 +100,7 @@ describe('fossilizing band-1 items yield to their never-seen same-focus siblings
       attempt('A', false, NOW - 2 * HOUR, 'foo'),
       attempt('A', false, NOW - 1 * HOUR, 'foo'),
     ];
-    const queue = buildSession(sets, 2, attempts);
+    const queue = buildSession(sets, 2, attempts, NO_PROBES);
 
     expect(queue).toHaveLength(2);
     expect(queue[0]!.item.id).toBe('A'); // no 'foo' sibling to promote — retry is all there is

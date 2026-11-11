@@ -36,12 +36,12 @@ when it raises delayed production retention, makes the evidence readable, or giv
 recurring job in that loop. New topics, task-set conversions in batches (CON-10), the B2 contract
 and the learner app on lab-ui wait.
 
-1. **The learning loop: production.** A failed `translate` should come back in a lighter form of
-   the same sentence, and sessions should lean toward production where selection is already
-   safe. About half of the failed translations miss the taught structure itself, the rest one
+1. **The learning loop: production.** A failed `translate` comes back once in the same run; it
+   should come back in a lighter form of the same sentence (APP-3), and sessions should lean
+   toward production where selection is already safe. About half of the failed translations miss the taught structure itself, the rest one
    word beside it (counted by re-grading every logged `translate` attempt with `gradeTranslation`
    and comparing a miss against its closest accepted rendering). Then the drills the audit names
-   (P26-11, CON-4, P23-3), and the families that never arm because their sets are never served
+   (P26-11, CON-4, P23-3), and confirming that the families whose sets were never served now arm
    (INS-10).
 2. **Redaktion gets a weekly job.** The owner's editorial decisions come from using the course:
    a rejected answer that was right, an item that confuses. A desk over the learner's snapshot

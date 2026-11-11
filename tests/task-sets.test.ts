@@ -25,6 +25,9 @@ import {
 } from '../src/lib/training';
 import type { TopicContext, TopicNode } from '../src/lib/mastery';
 
+/** No probe family is waiting on any item here; the band-3 ordering is tested on its own. */
+const NO_PROBES = { current: undefined, unarmedArmingKeys: new Set<string>() };
+
 type Files = Record<string, string>;
 type Item = Record<string, unknown>;
 
@@ -393,7 +396,12 @@ describe('the learner app serves no retired set', () => {
 
   test('an item served alone carries its task set recording', () => {
     const script = { id: 'ls-wohnen-aufgabe-01', turns: [{ speaker: 'Lena', text: 'Hallo!' }] };
-    const [served] = buildSession([{ ...live, recording: script } as TopicOwnedSet], 1, []);
+    const [served] = buildSession(
+      [{ ...live, recording: script } as TopicOwnedSet],
+      1,
+      [],
+      NO_PROBES,
+    );
     expect(served?.recording).toEqual(script);
   });
 });

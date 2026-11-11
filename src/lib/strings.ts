@@ -142,6 +142,13 @@ export const STRINGS = {
     ru: 'Пока нечего тренировать',
     uk: 'Поки немає чого тренувати',
   },
+  // Marks a translation dealt again after it was answered wrong earlier in the same run.
+  'training.secondTry': {
+    de: 'Zweiter Versuch',
+    en: 'Second try',
+    ru: 'Вторая попытка',
+    uk: 'Друга спроба',
+  },
 
   // Reading section headers.
   'reading.questions': {
