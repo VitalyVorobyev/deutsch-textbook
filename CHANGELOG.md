@@ -44,6 +44,9 @@ GitHub Release notes.
 
 ### Changed
 
+- **Delayed checks come for more of what you have practised.** A check on a grammar point now
+  starts with any exercise in that topic that practises the point, not only with a few named
+  ones, so checks that never came for some points now do.
 - **New flashcards fill the gaps of earlier levels first.** After the words of your next lesson,
   the review now brings in the A1 and then the A2 words you have not learned yet, before the rest
   of your current level. A learner at B1 used to meet B1 words long before the A2 words B1 texts
@@ -193,6 +196,8 @@ GitHub Release notes.
 
 ### Fixed
 
+- **The long du-imperative counts in the imperative tables**: *gehe*, *bleibe* and *fahre* are
+  right beside *geh*, *bleib* and *fahr* (*nimm* has no long form).
 - **Correct answers that were marked wrong are accepted now:** *…, und ich kann heute nicht zur
   Arbeit kommen*; *mit meinem Kollegen*; *den Anschluss verpasst*; *ob es versichert ist*;
   *Ich schreibe meine Tochter ein*; *damit die Kinder alles verstehen*. The sick-note exercise also

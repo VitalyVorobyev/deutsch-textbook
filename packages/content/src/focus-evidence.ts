@@ -25,8 +25,9 @@ function combinations(slots: readonly (readonly string[])[], cap = 512): string[
  * The responses an item accepts as correct, in the shape its predicates read: the typed sentence
  * for `translate` and `listen`, the filled sentence for `cloze`, the assembled chips for `order`,
  * and the asked cells joined by ` / ` for `table` (the islands' `response`, `src/lib/evidence.ts`).
- * A table cell is read as its authored answer; the case and stub-word variants `TableFill` also
- * takes differ only in case, which predicates ignore by default, or by a word the stub prints.
+ * A table cell is read as its authored answer and each authored `accept` form; the case and
+ * stub-word variants `TableFill` also takes (`acceptedCellAnswers`) differ only in case, which
+ * predicates ignore by default, or by a word the stub prints.
  */
 function acceptedRenderings(item: ExerciseItem): string[] {
   if (item.type === 'translate') return [item.answer, ...item.accept];
@@ -38,12 +39,14 @@ function acceptedRenderings(item: ExerciseItem): string[] {
       normalizeSentence(item.words),
       ...item.accept.map((s) => normalizeSentence(s.split(/\s+/))),
     ];
-  if (item.type === 'table')
-    return [
-      item.rows
-        .flatMap((row) => row.cells.filter((cell) => !cell.given).map((cell) => cell.answer))
-        .join(' / '),
-    ];
+  if (item.type === 'table') {
+    const asked = item.rows.flatMap((row) => row.cells.filter((cell) => !cell.given));
+    return (
+      combinations(asked.map((cell) => [cell.answer, ...(cell.accept ?? [])])) ?? [
+        asked.map((cell) => cell.answer),
+      ]
+    ).map((values) => values.join(' / '));
+  }
   return [];
 }
 

@@ -18,3 +18,12 @@ The editorial workbench. The format and the ID rule are in the [backlog README](
   - all renderer fixtures;
   - integration of checkout, watcher, save, refetch and relaunch;
   - keyboard and screen-reader navigation at 1440, 1024 and 768 px.
+
+- **RED-4 · The evidence desk.** Redaktion shows nothing of what the learner did, so the owner's
+  weekly editorial work (ruling a rejected rendering, finding the item behind a confusing
+  answer) happens in a Claude session over `bun run progress:audit`. A view over the local
+  snapshot and `data/grading-decisions.yaml`: per item its attempts, score and rejected
+  renderings, worst first; from a row, accept or constrain a rendering (writes the ruling), open
+  the source, or file an Anliegen. Reuse the audit's readers (`buildAudit`,
+  `scripts/progress-audit.ts`) through `apps/redaktion/plugin/corpus.ts`; never a second grader.
+  First step: the owner's findings from a hands-on session, then the read-only list.

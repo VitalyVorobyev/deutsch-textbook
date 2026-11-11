@@ -466,6 +466,9 @@ export const tableItemSchema = z.object({
           .array(
             z.object({
               answer: z.string().min(1),
+              /** other forms that are equally correct in this cell (du-imperative `gehe` beside
+                  `geh`); never typo tolerance. Graded through `acceptedCellAnswers`. */
+              accept: z.array(z.string().min(1)).optional(),
               /** given cells are prefilled and not asked */
               given: z.boolean().default(false),
             }),

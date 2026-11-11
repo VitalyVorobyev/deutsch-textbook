@@ -135,6 +135,9 @@ items:
       de: "Zwei Relativwörter ohne Genus. Nach einen Platz, also einem Ort, steht wo für das ganze an dem — ein Wort statt Präposition und Pronomen. Nach alles gibt es kein Nomen, nach dem sich ein Pronomen richten könnte, also heißt das Relativwort was, nie das. In beiden Sätzen ist der Relativsatz ein Nebensatz, also stehen bleiben und brauche am Ende."
 
   - id: aufgabe-einwand-obwohl
+    # revision 2: «для навеса» / «для навісу» mark no definiteness, and the roof under
+    # discussion is a known one, so das Dach is as good as ein Dach.
+    revision: 2
     rung: reply
     outcomes: [einwand-ausdruecken]
     type: translate
@@ -156,6 +159,10 @@ items:
       - "Obwohl ich die Idee verstehe, ist die Ecke zu klein für ein Dach."
       - "Die Ecke ist für ein Dach zu klein, obwohl ich die Idee verstehe."
       - "Die Ecke ist zu klein für ein Dach, obwohl ich die Idee verstehe."
+      - "Obwohl ich die Idee verstehe, ist die Ecke für das Dach zu klein."
+      - "Obwohl ich die Idee verstehe, ist die Ecke zu klein für das Dach."
+      - "Die Ecke ist für das Dach zu klein, obwohl ich die Idee verstehe."
+      - "Die Ecke ist zu klein für das Dach, obwohl ich die Idee verstehe."
     key_tokens: ["Obwohl", "obwohl", "verstehe"]
     explain:
       en: "Graded are the two ends of the conjunction's rule: obwohl and verstehe at the end of its clause. English leaves its word order alone after 'although', so the hand writes obwohl ich verstehe die Idee — the collapse this tag exists to catch. Put the concession first and it fills position 1, so the main clause opens with ist; put it second and nothing else moves."

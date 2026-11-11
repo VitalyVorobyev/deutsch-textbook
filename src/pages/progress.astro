@@ -48,7 +48,12 @@ const families = probeFamilies(
     role: e.data.role,
     arming: e.data.arming,
     retired: e.data.retired,
-    items: e.data.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
+    items: e.data.items.map((i) => ({
+      id: i.id,
+      outcomes: i.outcomes,
+      focus: i.focus,
+      type: i.type,
+    })),
   })),
 );
 const titleByTopic = new Map(nodes.map((n) => [n.id, n.title_de]));

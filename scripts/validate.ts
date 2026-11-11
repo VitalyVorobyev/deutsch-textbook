@@ -54,7 +54,7 @@ import { entryRef, loadStructureSources } from '@da/content/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
 import { gradedTokenPositions } from '@da/grading/production';
-import { continuationWord } from '../src/lib/table';
+import { cellAcceptProblems, continuationWord } from '../src/lib/table';
 import { glossFieldParity, parseGlosses } from '@da/schema/gloss';
 import {
   deParityProblems,
@@ -1593,6 +1593,10 @@ for (const [setId, { file, data }] of exerciseSets) {
               `row "${row.label}" has ${row.cells.length} cells, expected ${item.columns.length}`,
             );
           asked += row.cells.filter((c) => !c.given).length;
+          row.cells.forEach((_, i) => {
+            for (const problem of cellAcceptProblems(row.cells, i, row.label))
+              fail(where, `row "${row.label}": ${problem}`);
+          });
 
           // **A trailing ellipsis in a `given` cell declares a continuation prompt.** That
           // is a contract on authors, not an inference from the rendering: `TableFill`

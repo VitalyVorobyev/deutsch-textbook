@@ -63,15 +63,19 @@ Triaged from `feedback.md`, which holds only raw capture.
   `@da/schema/headword`), both cards of a pair read `sich freuen`. Flipping to recognition is not
   retrofittable. First step: disambiguating glosses versus merging; plain `entscheiden` is
   *to settle*, not *to make up one's mind*.
-- **F-14 · A `table` cell has no `accept`**, so a correct alternative form is wrong: the
-  du-imperative *gehe*, *trinke*, *bleibe* beside *geh*, *trink*, *bleib*
-  (`a1/stadt-wege-produktion:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
-  First step: an optional `accept` on a cell, read by `acceptedCellAnswers` (`src/lib/table.ts`) so
-  `validate.ts` and `TableFill` cannot disagree.
-- **F-15 · A `table` cell has no slip allowance**, so a retyped word charges the row's focus: four
-  of five misses on `a2/nebensaetze-plaene:table-hauptsatz-zu-nebensatz` had every clause right
-  and one name wrong ("Nine" for *Nina*); that item now avoids names. First step: give cells the
-  dictation slip rule, with F-14's `acceptedCellAnswers` as the one reader.
+- **F-15 · A `table` cell has no slip allowance**, so a retyped word charges the row's focus
+  (*Nine* for a printed *Nina*, four of five misses on
+  `a2/nebensaetze-plaene:table-hauptsatz-zu-nebensatz`, which now avoids names). A shape heuristic
+  does not fix it, and was measured: each logged wrong table attempt was rebuilt by splitting its
+  `given` on ` / ` against the item's asked cells at the attempt's revision (read from `git log`),
+  and the miss counted as moving off the tag when every wrong cell was a slip. 98 of 100 wrong
+  attempts could be rebuilt. A cell of several words, one word off by one edit, no function-word
+  swap and the last three letters intact moved 6 — and forgave real forms the table grades:
+  stems behind *spricht*, *werde*, *sieht* and the superlatives *teuersten*, *billigsten*,
+  *meisten*. Adding "the word is printed in the row" and "not a vowel-for-vowel edit" made it
+  safe and moved 1, and still left *Nine* charged, because one vowel off is what *fahren* →
+  *fähren* looks like. So a slip allowance needs a cell to say which of its tokens are graded.
+  First step: per-cell `key_tokens`, then `dictationSlip` on the rest.
 
 ### Ruled, no change
 
