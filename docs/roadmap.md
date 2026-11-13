@@ -41,7 +41,7 @@ and the learner app on lab-ui wait.
    toward production where selection is already safe. About half of the failed translations miss the taught structure itself, the rest one
    word beside it (counted by re-grading every logged `translate` attempt with `gradeTranslation`
    and comparing a miss against its closest accepted rendering). Then the drills the audit names
-   (P26-11, CON-4, P23-3), and confirming that the families whose sets were never served now arm
+   (P26-11), and confirming that the families whose sets were never served now arm
    (INS-10).
 2. **Redaktion gets a weekly job.** The owner's editorial decisions come from using the course:
    a rejected answer that was right, an item that confuses. A desk over the learner's snapshot

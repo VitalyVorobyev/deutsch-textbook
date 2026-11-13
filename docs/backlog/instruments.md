@@ -39,12 +39,6 @@ Graders, validators, measurements and the progress audit. The format and the ID 
   relative-clause translate item can hit it; `b1/leben-veraendern-produktion::uebersetzen-transfer-kollegen`
   now accepts the fronted order by hand. First step: measure how many confirmed rejections in
   the attempt log are reorderings of an unpinned clause.
-- **P23-3 · One of the two tags the runtime prioritises has no drill: `genitiv-eigenname`.**
-  `weakFocuses` (`src/lib/weakness.ts`, with `revisionLookup` as `MixedTraining` calls it) over
-  `progress/vitaly/2026-11-11.json` returns `genitiv-eigenname` (5.5 errors in 13 attempts, all 4
-  tagged items answered) and `temporal-nebensatz` (11.5 in 30, served by
-  `b1/drill-temporal-nebensatz`). The audit's `persistent` table disagrees with it, and neither is
-  wrong. Take one drill per evidence read, never several at once.
 - **P25-7 · Slip-forgiveness stops at `key_tokens`.** Four confirmed rows where every graded token
   was right and one typo elsewhere sank the rendering (`data/grading-decisions.yaml`, decided
   2026-08-11). Measure every historical confirm whose only divergence is outside `key_tokens` before

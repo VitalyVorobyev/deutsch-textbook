@@ -20,9 +20,9 @@ Course content: articles, items, probes, vocabulary, readings and their language
   `a2/freunde-feste-produktion:uebersetzen-transfer-blumen-karte`). First step: list the translate
   items whose answer holds a name with more than one German spelling.
 - **P26-11 · B1 has eight drill sets** against A2's thirteen (`grep -l '^role: drill'
-  content/exercises/b1/*.yaml`), so the remediation channel is still thinner there; P23-3 sees it
-  from the other end. B1 depth reads median 7 items per confusion, 2 tags at ≤3 items, 1 tag in a
-  single file (`bun scripts/grammar-depth.ts B1`). New drills also raise the floors in
+  content/exercises/b1/*.yaml`), so the remediation channel is still thinner there. B1 depth
+  reads median 7 items per confusion, 2 tags at ≤3 items, 1 tag in a single file
+  (`bun scripts/grammar-depth.ts B1`). New drills also raise the floors in
   `tests/grammar-depth.test.ts`. Stable misconceptions in the 2026-10-17 audit, each a candidate:
   *zu* after a modal (`a2/infinitiv-mit-zu:mc-modal-ohne-zu`, 8/10 wrong), verb second after
   *während* (`b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen`, 11/12), a dropped copula in
@@ -72,10 +72,12 @@ Course content: articles, items, probes, vocabulary, readings and their language
   (`--project` before the date). passiv-modal's misses are participle forms (*überwiesen*,
   *ausgeschaltet*, *unterschrieben*), so check `partizip2-form` depth before giving it its own
   drill.
-- **CON-4 · A direction phrase stays beside its verb.** Four rulings in `data/grading-decisions.yaml`
-  show the same slip — *heute zur Arbeit nicht kommen*, *zur Oma oft gefahren* — and no item
-  grades it outside A1's `nicht-position`. First step: a drill under `nicht-position` with
-  adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
+- **CON-4 · An adverb goes in front of the direction phrase too.** One ruling in
+  `data/grading-decisions.yaml` shows *zur Oma oft gefahren* for *oft zur Oma gefahren*
+  (`grep -n 'zur Oma oft' data/grading-decisions.yaml`). `a1/drill-nicht-position` drills the same
+  place for *nicht* only, because the tag names *nicht* and an adverb under it would be a false
+  tag. First step: wait for a second item showing the slip, then decide the tag it belongs to
+  ([focus-tags.md](../authoring/focus-tags.md)).
 - **CON-5 · Original B1 practice sets.** `/pruefung/b1` serves the official sets only where the
   materials are local, so a clean build has nothing to practise there.
 - **CON-10 · Roll the task shape out** ([ADR 0016](../adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)).

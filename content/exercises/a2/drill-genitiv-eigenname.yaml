@@ -1,0 +1,213 @@
+# Drill from progress: genitiv-eigenname is one of the two tags the runtime prioritises, and the
+# topic had four tagged items to answer it with. The logged slip is the article that joins the
+# name (die Mareks Wohnung), so every name item here puts the name in a slot an article would
+# fill — subject, object, after a W-word — and its predicates charge an article in front of the
+# name to the tag, which key_tokens cannot see. The von items keep the instruction the topic's
+# own von item carries, because a full genitive is correct German the tag only recognises.
+#
+# Contexts are fresh: none re-skins Anna's bike, Marek's flat, the brother's car, the
+# neighbours' dog or the colleague's book.
+topic: man-und-besitz
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Annas Auto oder das Auto von …"
+title:
+  en: "Drill — Annas Auto or das Auto von …"
+  ru: "Тренажёр — Annas Auto или das Auto von …"
+  uk: "Тренажер — Annas Auto чи das Auto von …"
+items:
+  - id: mc-name-ohne-artikel
+    outcomes: [besitz-ausdruecken]
+    type: mc
+    focus: genitiv-eigenname
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение правильное?
+      uk: Яке речення правильне?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Das ist Lisas Auto."
+      - "Das ist das Lisas Auto."
+      - "Das ist das Auto Lisa."
+    correct: 0
+    translation:
+      en: That is Lisa's car.
+      ru: Это машина Лизы.
+      uk: Це машина Лізи.
+    explain:
+      en: "Lisas takes the article's place, so no das joins it: a noun phrase has one determiner, and here the name is it. das Auto Lisa leaves the name unmarked, so nothing says whose car it is."
+      ru: "Lisas занимает место артикля, поэтому das рядом не ставится: определитель в группе один, и здесь это имя. В das Auto Lisa имя ничем не отмечено — непонятно, чья это машина."
+      uk: "Lisas займає місце артикля, тому das поруч не ставиться: визначник у групі один, і тут це ім'я. У das Auto Lisa ім'я нічим не позначене — незрозуміло, чия це машина."
+
+  - id: cloze-s-oder-apostroph
+    outcomes: [besitz-ausdruecken]
+    type: cloze
+    focus: genitiv-eigenname
+    instruction:
+      en: "Write the name in front of the noun: Paul, then Klaus."
+      ru: "Напишите имя перед существительным: сначала Paul, потом Klaus."
+      uk: "Напишіть ім'я перед іменником: спочатку Paul, потім Klaus."
+    text: "Das ist {{Pauls}} Jacke, und das ist {{Klaus'}} Tasche."
+    translation:
+      en: "That is Paul's jacket, and that is Klaus's bag."
+      ru: "Это куртка Пауля, а это сумка Клауса."
+      uk: "Це куртка Пауля, а це сумка Клауса."
+    explain:
+      en: "Paul takes -s straight on the name: Pauls. Klaus already ends in an s-sound, so German adds no second s and writes only the apostrophe: Klaus'. Klauss and Klaus's are both wrong."
+      ru: "Paul получает -s прямо на имени: Pauls. Klaus уже оканчивается на s-звук, поэтому второе s не добавляется, а пишется только апостроф: Klaus'. Klauss и Klaus's — ошибки."
+      uk: "Paul отримує -s прямо на імені: Pauls. Klaus уже закінчується на s-звук, тому друге s не додається, а пишеться лише апостроф: Klaus'. Klauss і Klaus's — помилки."
+
+  - id: cloze-von-oder-name
+    outcomes: [besitz-ausdruecken]
+    type: cloze
+    focus: genitiv-eigenname
+    instruction:
+      en: "Say whose it is. The owner is given in brackets."
+      ru: "Скажите, чьё это. Владелец указан в скобках."
+      uk: "Скажіть, чиє це. Власника вказано в дужках."
+    text: "— Wem gehört das Auto? — Das ist das Auto {{von unserer Lehrerin|unserer Lehrerin}}. (unsere Lehrerin) — Und das Fahrrad? — Das ist {{Bens}} Fahrrad. (Ben)"
+    translation:
+      en: "— Whose car is that? — That is our teacher's car. — And the bike? — That is Ben's bike."
+      ru: "— Чья это машина? — Это машина нашей учительницы. — А велосипед? — Это велосипед Бена."
+      uk: "— Чия це машина? — Це машина нашої вчительки. — А велосипед? — Це велосипед Бена."
+    explain:
+      en: "unsere Lehrerin is not a name, so the A2 route is von + Dativ: von unserer Lehrerin (the full genitive unserer Lehrerin is correct too). Ben is a bare name, so -s and no article: Bens Fahrrad."
+      ru: "unsere Lehrerin — не имя, поэтому на A2 путь такой: von + Dativ, von unserer Lehrerin (полный Genitiv unserer Lehrerin тоже правилен). Ben — голое имя: -s и без артикля, Bens Fahrrad."
+      uk: "unsere Lehrerin — не ім'я, тому на A2 шлях такий: von + Dativ, von unserer Lehrerin (повний Genitiv unserer Lehrerin теж правильний). Ben — голе ім'я: -s і без артикля, Bens Fahrrad."
+
+  - id: uebersetzen-peters-schwester
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    # The predicates decide attribution: an article in front of the name is the logged slip and
+    # key_tokens cannot see an added word; a missing Peters (apostrophe, von) restates the pin.
+    focus_evidence:
+      failed: ["\\b(der|die|das|den|dem|des|ein|eine)\\s+Peters\\b", "^(?!.*\\bPeters\\b)"]
+      retained: ["\\bPeters Schwester\\b"]
+    instruction:
+      en: "Use the name with -s (not von)."
+      ru: "Используйте имя с -s (не von)."
+      uk: "Використайте ім'я з -s (не von)."
+    prompt_en: "Peter's sister lives in Hamburg."
+    prompt_ru: "Сестра Петера живёт в Гамбурге."
+    prompt_uk: "Сестра Петера живе в Гамбурзі."
+    answer: "Peters Schwester wohnt in Hamburg."
+    key_tokens: ["Peters"]
+    explain:
+      en: "Peters opens the sentence exactly where die would stand, and it replaces it: Peters Schwester, never die Peters Schwester. The -s goes straight onto the name, with no apostrophe."
+      ru: "Peters стоит ровно там, где стоял бы артикль die, и заменяет его: Peters Schwester, а не die Peters Schwester. По-русски имя идёт после слова («сестра Петера»), по-немецки — перед ним, с -s и без апострофа."
+      uk: "Peters стоїть рівно там, де стояв би артикль die, і заміняє його: Peters Schwester, а не die Peters Schwester. Українською ім'я йде після слова («сестра Петера»), німецькою — перед ним, з -s і без апострофа."
+
+  - id: uebersetzen-emmas-brief
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    focus_evidence:
+      failed: ["\\b(der|die|das|den|dem|des|ein|eine|einen)\\s+Emmas\\b", "^(?!.*\\bEmmas\\b)"]
+      retained: ["\\bEmmas Brief\\b"]
+    instruction:
+      en: "Use the name with -s (not von)."
+      ru: "Используйте имя с -s (не von)."
+      uk: "Використайте ім'я з -s (не von)."
+    prompt_en: "I am reading Emma's letter."
+    prompt_ru: "Я читаю письмо Эммы."
+    prompt_uk: "Я читаю лист Емми."
+    answer: "Ich lese Emmas Brief."
+    key_tokens: ["Emmas"]
+    explain:
+      en: "As an object the name still takes the article's place: Ich lese Emmas Brief, not den Emmas Brief. The name does not change for the case — Emmas stays Emmas."
+      ru: "И в роли дополнения имя занимает место артикля: Ich lese Emmas Brief, а не den Emmas Brief. Само имя по падежам не меняется: Emmas остаётся Emmas."
+      uk: "І в ролі додатка ім'я займає місце артикля: Ich lese Emmas Brief, а не den Emmas Brief. Саме ім'я за відмінками не змінюється: Emmas лишається Emmas."
+
+  - id: uebersetzen-jonas-handy
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    # Jonas ends in an s-sound, so the apostrophe alone is the form. "Jonas Handy" and
+    # "Jonass Handy" lose it and are charged; so is an article in front of the name.
+    focus_evidence:
+      failed: ["\\b(der|die|das|den|dem|des|ein|eine)\\s+Jonas", "^(?!.*\\bJonas'\\s)"]
+      retained: ["\\bJonas' (Handy|Telefon)\\b"]
+    instruction:
+      en: "Put the name in front of the noun (not von)."
+      ru: "Поставьте имя перед существительным (не von)."
+      uk: "Поставте ім'я перед іменником (не von)."
+    prompt_en: "Where is Jonas's phone?"
+    prompt_ru: "Где телефон Йонаса?"
+    prompt_uk: "Де телефон Йонаса?"
+    answer: "Wo ist Jonas' Handy?"
+    # «телефон» and "phone" name both words; the possessive does not care which.
+    accept:
+      - "Wo ist Jonas' Telefon?"
+    key_tokens: ["Jonas'"]
+    explain:
+      en: "Jonas already ends in an s-sound, so German writes only the apostrophe: Jonas' Handy. English adds 's — Jonas's — and German does not. No article either: never das Jonas' Handy."
+      ru: "Jonas уже оканчивается на s-звук, поэтому пишется только апостроф: Jonas' Handy. Второго s нет, и артикля тоже: никогда das Jonas' Handy."
+      uk: "Jonas уже закінчується на s-звук, тому пишеться лише апостроф: Jonas' Handy. Другого s немає, і артикля теж: ніколи das Jonas' Handy."
+
+  - id: uebersetzen-tasche-frau
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    instruction:
+      en: "Translate using von + Dativ."
+      ru: "Переведите, используя von + Dativ."
+      uk: "Перекладіть, використовуючи von + Dativ."
+    prompt_en: "That is my wife's bag."
+    prompt_ru: "Это сумка моей жены."
+    prompt_uk: "Це сумка моєї дружини."
+    answer: "Das ist die Tasche von meiner Frau."
+    # «сумка» marks no definiteness, and the von phrase the tag grades is the same.
+    accept:
+      - "Das ist eine Tasche von meiner Frau."
+    key_tokens: ["von"]
+    explain:
+      en: "meine Frau is not a name, so it cannot take -s. The A2 route is von + Dativ after the noun: die Tasche von meiner Frau. von always takes the dative, so meine becomes meiner."
+      ru: "meine Frau — не имя, поэтому -s невозможно. На A2 путь такой: von + Dativ после существительного — die Tasche von meiner Frau. von всегда требует Dativ, поэтому meine превращается в meiner."
+      uk: "meine Frau — не ім'я, тому -s неможливе. На A2 шлях такий: von + Dativ після іменника — die Tasche von meiner Frau. von завжди вимагає Dativ, тому meine стає meiner."
+
+  - id: uebersetzen-haus-eltern
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    instruction:
+      en: "Translate using von + Dativ."
+      ru: "Переведите, используя von + Dativ."
+      uk: "Перекладіть, використовуючи von + Dativ."
+    prompt_en: "My parents' house is old."
+    prompt_ru: "Дом моих родителей старый."
+    prompt_uk: "Будинок моїх батьків старий."
+    answer: "Das Haus von meinen Eltern ist alt."
+    key_tokens: ["von"]
+    explain:
+      en: "The whole phrase das Haus von meinen Eltern is the subject, so the verb ist comes after it. The owners are not a name, so von + Dativ, and in the dative plural meine becomes meinen."
+      ru: "Вся группа das Haus von meinen Eltern — подлежащее, поэтому глагол ist идёт после неё. Владельцы — не имя, значит von + Dativ, и во множественном числе meine превращается в meinen."
+      uk: "Уся група das Haus von meinen Eltern — підмет, тому дієслово ist іде після неї. Власники — не ім'я, отже von + Dativ, і в множині meine стає meinen."
+
+  - id: uebersetzen-name-und-von
+    outcomes: [besitz-ausdruecken]
+    type: translate
+    focus: genitiv-eigenname
+    focus_evidence:
+      failed:
+        - "\\b(der|die|das|den|dem|des|ein|eine)\\s+Toms\\b"
+        - "^(?!.*\\bToms\\b)"
+        - "^(?!.*\\bvon\\b)"
+      retained: ["\\bToms Zimmer\\b.*\\bvon\\b"]
+    instruction:
+      en: "Use -s with the name and von + Dativ for 'my son'."
+      ru: "С именем используйте -s, а для «моего сына» — von + Dativ."
+      uk: "З іменем використайте -s, а для «мого сина» — von + Dativ."
+    prompt_en: "Tom's room is small, but my son's room is big."
+    prompt_ru: "Комната Тома маленькая, а комната моего сына большая."
+    prompt_uk: "Кімната Тома маленька, а кімната мого сина велика."
+    answer: "Toms Zimmer ist klein, aber das Zimmer von meinem Sohn ist groß."
+    # «а» / «а» is "and" as much as "but": the contrast word is not what the tag grades.
+    accept:
+      - "Toms Zimmer ist klein, und das Zimmer von meinem Sohn ist groß."
+    key_tokens: ["Toms", "von"]
+    explain:
+      en: "Both routes in one sentence. Tom is a name: Toms Zimmer, with -s and no article. mein Sohn is not: das Zimmer von meinem Sohn, and the second room keeps its das."
+      ru: "Оба пути в одном предложении. Tom — имя: Toms Zimmer, с -s и без артикля. mein Sohn — не имя: das Zimmer von meinem Sohn, и у второй комнаты артикль das остаётся."
+      uk: "Обидва шляхи в одному реченні. Tom — ім'я: Toms Zimmer, з -s і без артикля. mein Sohn — не ім'я: das Zimmer von meinem Sohn, і в другої кімнати артикль das лишається."
