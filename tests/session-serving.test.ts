@@ -380,3 +380,19 @@ describe('a failed translate comes back as the same sentence in a lighter form',
     for (const tag of WORD_ORDER_FOCUS) expect(focusIntroducedBy).toHaveProperty(tag);
   });
 });
+
+describe('training deals only what it can grade', () => {
+  const open = (id: string, type: 'speak' | 'write'): ExerciseItem =>
+    ({ id, type, outcomes: [], preview: false }) as unknown as ExerciseItem;
+
+  test('a session holds no speak and no write item, however few others there are', () => {
+    const mixed = set('a2/mixed', 'mixed', [
+      open('s1', 'speak'),
+      open('w1', 'write'),
+      translate('t1'),
+      open('s2', 'speak'),
+    ]);
+    const queue = buildSession([mixed], 8, [], { current: undefined, unarmedArmingKeys: none });
+    expect(queue.map((q) => q.item.id)).toEqual(['t1']);
+  });
+});

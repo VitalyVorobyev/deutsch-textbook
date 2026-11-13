@@ -1404,7 +1404,7 @@ export const caseReferenceSchema = z.object({
   articles: z
     .array(
       z.object({
-        case: z.enum(['Nominativ', 'Akkusativ', 'Dativ']),
+        case: z.enum(['Nominativ', 'Akkusativ', 'Dativ', 'Genitiv']),
         masculine: z.string(),
         feminine: z.string(),
         neuter: z.string(),

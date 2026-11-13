@@ -411,6 +411,10 @@ export function resumedQueueIsEligible(
   return queued.every((entry) => allowed.has(entry.setId));
 }
 
+/** Training deals only what it can grade: `speak` and `write` are open production. */
+export const isGradedInTraining = (item: ExerciseItem): boolean =>
+  item.type !== 'speak' && item.type !== 'write';
+
 /**
  * Builds an interleaved session from all items across all eligible sets.
  *
@@ -486,8 +490,10 @@ export function buildSession(
 
   const weak = new Set(weakFocuses([...attempts], { current }).map((w) => w.focus));
 
+  // Open speaking and writing stay on their topic pages: neither can be graded, so in a mixed
+  // run they would only interrupt the retrieval the session is built for.
   const pool: SessionItem[] = sets.flatMap((s) =>
-    s.items.map((item) => ({
+    s.items.filter(isGradedInTraining).map((item) => ({
       uid: `${s.setId}::${item.id}`,
       setId: s.setId,
       topicId: s.topicId,

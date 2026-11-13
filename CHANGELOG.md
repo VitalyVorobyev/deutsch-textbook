@@ -51,6 +51,13 @@ GitHub Release notes.
 
 ### Changed
 
+- **Daily training has no speaking or writing tasks any more.** They stay on their topic pages;
+  a training run is only what the app can check.
+- **The Kasus & Präpositionen reference shows the Genitiv**: the article row (*des / der / des /
+  der*) and the genitive prepositions, with a link to their examples.
+- **The reference pages lost their "support, not evidence" notes.**
+- Two translation prompts say what their answer needs: *поговорил с мамой по телефону* for
+  *telefoniert*, and *на минутку* for *kurz* in a polite request.
 - **Daily training no longer fills up with yesterday's mistakes.** Items you got wrong take at
   most half of a session's open places; the rest go to the points you are currently weak on, their
   targeted drills, and exercises you have never done. Among those, the exercises a delayed check
