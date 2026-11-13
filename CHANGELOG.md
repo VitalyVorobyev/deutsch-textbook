@@ -46,6 +46,8 @@ GitHub Release notes.
   the unreal condition, the written Präteritum) get a new set of three delayed checks. Each one
   starts its clock when you do that point's drill, so the checks two, seven and 21 days later
   show whether the drill held.
+- Tonwerk has a Hörprobe view: the published dialogues play one after another, and a verdict
+  by ear (Tempo, Pausen, Stimme, Aussprache, Text) is filed into the shared review queue.
 
 ### Changed
 

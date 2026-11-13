@@ -811,3 +811,52 @@ export const revocationSchema = z.looseObject({
   note: z.string().default(''),
 });
 export type Revocation = z.infer<typeof revocationSchema>;
+
+/**
+ * `GET /api/hoerprobe`: every published dialogue, the voice behind each role, and the shared-queue
+ * entries already filed on its record. `verdicts` in an entry are the ones a Hörprobe entry names;
+ * an entry filed any other way carries none and is still shown, since it is open work on the file.
+ */
+export const hoerprobeEntrySchema = z.looseObject({
+  id: z.string(),
+  type: z.string(),
+  waiting: z.string(),
+  from: z.string().nullable(),
+  at: z.string(),
+  text: z.string(),
+  verdicts: z.array(z.string()),
+});
+export type HoerprobeEntry = z.infer<typeof hoerprobeEntrySchema>;
+
+export const hoerprobeRowSchema = z.looseObject({
+  id: z.string(),
+  level: z.string(),
+  /** The published record, repository-relative: what a verdict is filed on. */
+  file: z.string(),
+  title: z.string(),
+  scenario: z.string().nullable(),
+  duration_seconds: z.number().nullable(),
+  speakers: z.array(z.string()),
+  voices: z.array(
+    z.looseObject({
+      role: z.string(),
+      character: z.string().nullable(),
+      preset: z.string().nullable(),
+    }),
+  ),
+  /** The published audio's digest: a *gut* is remembered against these bytes, not the name. */
+  audio_sha256: z.string().nullable(),
+  entries: z.array(hoerprobeEntrySchema),
+});
+export type HoerprobeRow = z.infer<typeof hoerprobeRowSchema>;
+
+export const hoerprobeSchema = z.looseObject({
+  verdicts: z.array(z.string()),
+  rows: z.array(hoerprobeRowSchema),
+  /** Set when the queue could not be read: the recordings still play, verdicts cannot be filed. */
+  queue_error: z.string().nullable(),
+});
+export type Hoerprobe = z.infer<typeof hoerprobeSchema>;
+
+export const hoerprobeVerdictSchema = z.looseObject({ entry: hoerprobeEntrySchema });
+export type HoerprobeVerdict = z.infer<typeof hoerprobeVerdictSchema>;

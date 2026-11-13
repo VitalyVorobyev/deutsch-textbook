@@ -29,7 +29,7 @@ from pydantic import BaseModel
 from .doctor import doctor_report
 from .generative.locks import set_models_root
 from .storage import Store
-from .api import Transcriber
+from .api import QueueBridge, Transcriber
 from .api import router as studio_router
 
 
@@ -91,6 +91,7 @@ def app(
     launch_code: str | None = None,
     allow_test_adapters: bool = False,
     transcribe_fn: Transcriber | None = None,
+    queue_bridge: QueueBridge | None = None,
 ) -> FastAPI:
     api = FastAPI(title="Tonwerk engine")
     # The course repository this server was started against is also where `.models/` is looked
@@ -205,6 +206,7 @@ def app(
             repo,
             allow_test_adapters=allow_test_adapters,
             transcribe_fn=transcribe_fn,
+            queue_bridge=queue_bridge,
         )
     )
 

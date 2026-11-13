@@ -48,10 +48,10 @@ and the learner app on lab-ui wait.
    and the grading rulings, where he rules a rendering, opens the item's source or files a
    finding, is the main build ([`backlog/redaktion.md`](backlog/redaktion.md)), shaped by what
    he reports from using the workbench.
-3. **Tonwerk: better audio, then more of it.** A batch listening review whose verdicts reach the
-   shared queue, delivery timing in the engine (P22-14, P22-16), then the narration plan and the
-   recast, so that each recording is synthesised once
-   ([`backlog/tonwerk.md`](backlog/tonwerk.md)).
+3. **Tonwerk: better audio, then more of it.** The owner's Hörprobe of the published dialogues
+   first, so its verdicts can be compared after the delivery-timing change in the engine
+   (P22-14, P22-16); then the narration plan and the recast, so that each recording is
+   synthesised once ([`backlog/tonwerk.md`](backlog/tonwerk.md)).
 
 The owner's entry point to all of it is the `atlas` skill: Claude opens the queue, the audit and
 the tools, and files what he says.

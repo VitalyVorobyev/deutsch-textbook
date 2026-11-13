@@ -1,7 +1,8 @@
 /**
  * The shared queue (ADR 0014): findings, requests and questions between the owner and Claude, in
- * `data/redaktion-queue.yaml`. Redaktion and `bun run queue` write it through here, so ids, order
- * and bytes come out the same whoever writes.
+ * `data/redaktion-queue.yaml`. Redaktion, `bun run queue` and Tonwerk's Hörprobe (through
+ * `apps/tonwerk/scripts/queue-bridge.ts`) write it through here, so ids, order and bytes come out
+ * the same whoever writes.
  *
  * A queue write touches no content, so it never invalidates the content graph.
  */

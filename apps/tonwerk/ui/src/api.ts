@@ -26,6 +26,8 @@ import {
   declineResultSchema,
   narrationProfilesSchema,
   doctorSchema,
+  hoerprobeSchema,
+  hoerprobeVerdictSchema,
   qaResultSchema,
   registrySchema,
   renderPeaksSchema,
@@ -50,6 +52,8 @@ import {
   type Characters,
   type DeclineResult,
   type Doctor,
+  type Hoerprobe,
+  type HoerprobeVerdict,
   type NarrationProfiles,
   type ScenePlan,
   type QaResult,
@@ -210,6 +214,14 @@ export interface Api {
   renderVoiceDemo(voiceId: string): Promise<VoiceDemo>;
   /** Withdraw consent: future synthesis refused, recording and demos deleted. */
   revokeVoice(voiceId: string): Promise<Revocation>;
+
+  /** The published dialogues, their voices, and the queue entries already filed on each. */
+  hoerprobe(signal?: AbortSignal): Promise<Hoerprobe>;
+  /**
+   * File the problem verdicts heard on one recording, and a note, into the shared queue. *gut* is
+   * never sent: the engine refuses it, because the queue holds only what needs work.
+   */
+  hoerprobeVerdict(file: string, verdicts: string[], note: string): Promise<HoerprobeVerdict>;
 }
 
 /**
@@ -487,6 +499,14 @@ export function createApi(options: ApiOptions = {}): Api {
         body: {},
       }),
 
+    hoerprobe: (signal) => read('/api/hoerprobe', hoerprobeSchema, signal),
+
+    hoerprobeVerdict: (file, verdicts, note) =>
+      read(`${hoerprobePfad(file)}/verdict`, hoerprobeVerdictSchema, undefined, {
+        method: 'POST',
+        body: { verdicts, note },
+      }),
+
     async audioBytes(path, signal) {
       const response = await send(path, signal);
       return response.arrayBuffer();
@@ -497,6 +517,15 @@ export function createApi(options: ApiOptions = {}): Api {
       return URL.createObjectURL(await response.blob());
     },
   };
+}
+
+/**
+ * The engine address of one published recording, from its record's path
+ * (`content/listening/b1/ls-x.yaml` → `/api/hoerprobe/b1/ls-x`).
+ */
+export function hoerprobePfad(file: string): string {
+  const [, , ebene = '', name = ''] = file.split('/');
+  return `/api/hoerprobe/${encodeURIComponent(ebene)}/${encodeURIComponent(name.replace(/\.yaml$/, ''))}`;
 }
 
 /**

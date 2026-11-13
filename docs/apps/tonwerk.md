@@ -25,8 +25,8 @@ it and for the jobs Tonwerk deliberately does not carry.
 - **Apple Silicon**, for the real synthesis and sound engines — both run through MLX.
 - **Rust**, only to build the desktop app.
 
-You can start the engine and browse Übersicht, Bibliothek, Prüfung, Klangbibliothek and Figuren with no
-model weights installed at all. You need the models only to **render**.
+You can start the engine and browse Übersicht, Bibliothek, Prüfung, Hörprobe, Klangbibliothek and
+Figuren with no model weights installed at all. You need the models only to **render**.
 
 ## Install it once
 
@@ -86,7 +86,7 @@ So the token screen, *Mit der Engine verbinden*, is a fallback. You land there w
 an engine restart, or when a launch link was already spent. Start Tonwerk again, or paste the
 `API bearer token` line the engine printed at start.
 
-## The six sections
+## The seven sections
 
 The rail down the left lists them in the order the work runs.
 
@@ -96,6 +96,7 @@ The rail down the left lists them in the order the work runs.
 | **Bibliothek** | everything the studio has made or was asked to make, in one searchable table: planned recordings (owned by a unit, or by an exam practice set), Lesetext narrations, and studio scenes no plan owns, such as a fork. |
 | **Lesetexte** | the narration queue: one row per Lesetext, keyboard-driven, your position kept in the address. |
 | **Prüfung** | the review queue — every scene the machine has measured and nobody has judged, longest wait first. Reviewing is optional: a scene whose check passed can be published without it. |
+| **Hörprobe** | the published dialogues, played one after another and judged by ear; a problem goes into the shared queue. |
 | **Klangbibliothek** | every sound that can be placed, imported or generated, and the one place to make a new one. |
 | **Figuren** | the casting roster, its demo takes, and the consented cloned voices under it. |
 
@@ -214,6 +215,33 @@ entschieden* — and the order is part of what it produces.
    or approve it after all. A scene whose automatic check *failed* can only be declined here — the
    reason travels to the next version.
 
+## Walkthrough: judge a batch by ear
+
+Whether two voices can be told apart, or a pause is too long, is your judgement; no figure in the
+studio makes it. **Hörprobe** lists every published recording with two speakers or more, with the
+voice behind each role: a roster character, or a preset voice by name. *Stimmen* narrows the list
+to the recordings on preset voices or to those with roster characters.
+
+1. The pass starts at the first recording nobody has judged. **Space** plays and pauses it, **R**
+   starts it again, **J** / **K** move to the next or previous one.
+2. Give a verdict with one key: **1** *gut*, **2** *Tempo*, **3** *Pausen*, **4** *Stimme*, **5**
+   *Aussprache*, **6** *Text*. The problems combine, so press each one that applies; *gut* clears
+   them, and any problem clears *gut*.
+3. **N** opens the note, for what exactly and where. **Esc** leaves it.
+4. **Enter** files the verdict and plays the next recording nobody has judged.
+
+Every key has a button with the key printed on it. A problem verdict becomes an entry in the
+shared queue (`data/redaktion-queue.yaml`) on the recording's published record, as your finding,
+with the text `Hörprobe: Pausen, Stimme.` and your note. Claude reads it at the start of a session,
+like an entry filed in Redaktion. *gut* files nothing. Only this browser remembers it, against the
+recording's current bytes, so a re-recorded file comes up again. **Neuer Durchgang** forgets every
+*gut* and starts a new pass. A recording with an open queue entry stays judged until that entry is
+closed.
+
+The queue is written by the same module Redaktion and `bun run queue` use, which the engine runs
+with Bun. If the engine cannot find Bun on its `PATH` or in `~/.bun/bin`, the recordings still play,
+and the page says that verdicts cannot be filed.
+
 ## Publishing
 
 Publishing is the engine's, not Tonwerk's, and it takes a deliberate confirmation. A dialogue scene
@@ -236,10 +264,11 @@ whose reference clip is not on this machine are refused too, each by name.
 | --- | --- |
 | `⌘/Strg + S` | save the scene |
 | `Space` | play / pause, inside a player region |
-| `J` / `K` | next / previous row, in Lesetexte and Prüfung |
-| `Enter` | open the row |
+| `J` / `K` | next / previous row, in Lesetexte, Prüfung and Hörprobe |
+| `Enter` | open the row; in Hörprobe, file the verdict and go on |
 
-They are printed along the foot of the window rather than in a help page, and each one says where it is live.
+They are printed along the foot of the window rather than in a help page, and each one says where
+it is live. Hörprobe's own keys (`1`–`6`, `R`, `N`) are printed on its buttons.
 
 ## Models
 
