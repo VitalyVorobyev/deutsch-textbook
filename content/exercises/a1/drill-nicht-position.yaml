@@ -1,0 +1,187 @@
+# Drill from progress: the learner's rulings show nicht pushed behind a direction phrase
+# (heute zur Arbeit nicht kommen) on one item again and again. A direction phrase belongs to its
+# verb and closes the sentence, so nicht stands in front of it — after the verb, a time phrase
+# and an object. The set lives on this topic because these are the direction phrases it teaches,
+# and it keeps to the Präsens that is all the learner has met at this point.
+#
+# Each translate item pins nicht alone: it is the word that moves in every logged error, and a
+# displaced pin is attributed. A fumbled zur/zum is the preposition topic's error, not this one.
+topic: ort-richtung-praepositionen
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — nicht vor der Richtung"
+title:
+  en: "Drill — nicht before the direction"
+  ru: "Тренажёр — nicht перед направлением"
+  uk: "Тренажер — nicht перед напрямком"
+items:
+  - id: mc-nicht-ins-kino
+    outcomes: [ziel-nennen]
+    type: mc
+    focus: nicht-position
+    instruction:
+      en: Which sentence is correct?
+      ru: Какое предложение правильное?
+      uk: Яке речення правильне?
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Wir gehen nicht ins Kino."
+      - "Wir gehen ins Kino nicht."
+      - "Wir nicht gehen ins Kino."
+    correct: 0
+    translation:
+      en: We are not going to the cinema.
+      ru: Мы не идём в кино.
+      uk: Ми не йдемо в кіно.
+    explain:
+      en: "ins Kino belongs to gehen and stays at the end, so nicht goes in front of it. The verb stays in position 2: never Wir nicht gehen."
+      ru: "ins Kino относится к gehen и стоит в конце, поэтому nicht ставится перед ним. Глагол остаётся на втором месте: никогда Wir nicht gehen."
+      uk: "ins Kino належить до gehen і стоїть у кінці, тому nicht ставиться перед ним. Дієслово лишається на другому місці: ніколи Wir nicht gehen."
+
+  - id: cloze-krank
+    outcomes: [ziel-nennen]
+    type: cloze
+    focus: nicht-position
+    instruction:
+      en: Complete each sentence — more than the negation goes in the gap.
+      ru: Дополните каждое предложение — в пропуск идёт не только отрицание.
+      uk: Доповніть кожне речення — у пропуск іде не лише заперечення.
+    text: "Mein Sohn ist krank. Er geht heute {{nicht in die Schule|nicht zur Schule}}, und am Nachmittag geht er {{nicht ins Schwimmbad}}."
+    translation:
+      en: "My son is ill. He is not going to school today, and in the afternoon he is not going to the swimming pool."
+      ru: "Мой сын болеет. Сегодня он не идёт в школу, а после обеда не идёт в бассейн."
+      uk: "Мій син хворіє. Сьогодні він не йде до школи, а по обіді не йде в басейн."
+    explain:
+      en: "Each gap ends the sentence with its direction, and nicht comes first: nicht in die Schule, nicht ins Schwimmbad. in die Schule nicht is wrong."
+      ru: "Каждый пропуск закрывает предложение направлением, а nicht стоит перед ним: nicht in die Schule, nicht ins Schwimmbad. in die Schule nicht — ошибка."
+      uk: "Кожен пропуск закриває речення напрямком, а nicht стоїть перед ним: nicht in die Schule, nicht ins Schwimmbad. in die Schule nicht — помилка."
+
+  - id: uebersetzen-arbeit
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "I am not coming to work today."
+    prompt_ru: "Сегодня я не приду на работу."
+    prompt_uk: "Сьогодні я не прийду на роботу."
+    answer: "Ich komme heute nicht zur Arbeit."
+    accept:
+      - "Heute komme ich nicht zur Arbeit."
+    key_tokens: ["nicht"]
+    explain:
+      en: "zur Arbeit belongs to kommen, so nicht stands in front of it: heute nicht zur Arbeit. zur Arbeit nicht is wrong, and nicht heute would mean another day."
+      ru: "zur Arbeit относится к kommen, поэтому nicht стоит перед ним: heute nicht zur Arbeit. zur Arbeit nicht — ошибка, а nicht heute значило бы «не сегодня, а в другой день»."
+      uk: "zur Arbeit належить до kommen, тому nicht стоїть перед ним: heute nicht zur Arbeit. zur Arbeit nicht — помилка, а nicht heute означало б «не сьогодні, а іншого дня»."
+
+  - id: uebersetzen-arzt
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "My father is not going to the doctor tomorrow."
+    prompt_ru: "Мой отец завтра не идёт к врачу."
+    prompt_uk: "Мій батько завтра не йде до лікаря."
+    answer: "Mein Vater geht morgen nicht zum Arzt."
+    # "going" is gehen or fahren; each with the subject or morgen in position 1.
+    accept:
+      - "Morgen geht mein Vater nicht zum Arzt."
+      - "Mein Vater fährt morgen nicht zum Arzt."
+      - "Morgen fährt mein Vater nicht zum Arzt."
+    key_tokens: ["nicht"]
+    explain:
+      en: "The time phrase comes first, then nicht, and the direction closes the sentence: morgen nicht zum Arzt — never zum Arzt nicht."
+      ru: "Сначала время, потом nicht, а направление — в самом конце: morgen nicht zum Arzt. По-русски «не» стоит перед глаголом, а немецкое nicht — перед направлением."
+      uk: "Спершу час, потім nicht, а напрямок — у самому кінці: morgen nicht zum Arzt. Українською «не» стоїть перед дієсловом, а німецьке nicht — перед напрямком."
+
+  - id: uebersetzen-stadt
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "On Sunday we are not driving into town."
+    prompt_ru: "В воскресенье мы не едем в город."
+    prompt_uk: "У неділю ми не їдемо в місто."
+    answer: "Am Sonntag fahren wir nicht in die Stadt."
+    accept:
+      - "Wir fahren am Sonntag nicht in die Stadt."
+    key_tokens: ["nicht"]
+    explain:
+      en: "in die Stadt answers Wohin? and closes the sentence. nicht goes directly in front of it: nicht in die Stadt, never in die Stadt nicht."
+      ru: "in die Stadt отвечает на вопрос Wohin? и закрывает предложение. nicht ставится прямо перед ним: nicht in die Stadt, а не in die Stadt nicht."
+      uk: "in die Stadt відповідає на питання Wohin? і закриває речення. nicht ставиться просто перед ним: nicht in die Stadt, а не in die Stadt nicht."
+
+  - id: uebersetzen-kino-frage
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "Isn't Anna going to the cinema this evening?"
+    prompt_ru: "Анна сегодня вечером не идёт в кино?"
+    prompt_uk: "Анна сьогодні ввечері не йде в кіно?"
+    answer: "Geht Anna heute Abend nicht ins Kino?"
+    # "going" is gehen or fahren; the question leaves only one order.
+    accept:
+      - "Fährt Anna heute Abend nicht ins Kino?"
+    key_tokens: ["nicht"]
+    explain:
+      en: "In a question the verb comes first, but the rest keeps its order: heute Abend, then nicht, then ins Kino at the end."
+      ru: "В вопросе глагол выходит на первое место, но остальное не меняется: heute Abend, потом nicht, а ins Kino — в конце."
+      uk: "У питанні дієслово виходить на перше місце, але решта не змінюється: heute Abend, потім nicht, а ins Kino — у кінці."
+
+  - id: uebersetzen-nach-hause
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "I am not going home at the weekend."
+    prompt_ru: "На выходных я не еду домой."
+    prompt_uk: "На вихідних я не їду додому."
+    answer: "Ich fahre am Wochenende nicht nach Hause."
+    # "going" is gehen or fahren; each with the subject or am Wochenende in position 1.
+    accept:
+      - "Am Wochenende fahre ich nicht nach Hause."
+      - "Ich gehe am Wochenende nicht nach Hause."
+      - "Am Wochenende gehe ich nicht nach Hause."
+    key_tokens: ["nicht"]
+    explain:
+      en: "nach Hause is a direction too, so it takes the last place and nicht stands in front of it: am Wochenende nicht nach Hause."
+      ru: "nach Hause — тоже направление, поэтому оно занимает последнее место, а nicht стоит перед ним: am Wochenende nicht nach Hause."
+      uk: "nach Hause — теж напрямок, тому воно займає останнє місце, а nicht стоїть перед ним: am Wochenende nicht nach Hause."
+
+  - id: uebersetzen-brief-post
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: nicht-position
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "Today I am not taking the letter to the post office."
+    prompt_ru: "Сегодня я не отнесу письмо на почту."
+    prompt_uk: "Сьогодні я не віднесу лист на пошту."
+    answer: "Ich bringe den Brief heute nicht zur Post."
+    # The object and heute may swap in the middle; nicht stays in front of zur Post in each.
+    accept:
+      - "Ich bringe heute den Brief nicht zur Post."
+      - "Heute bringe ich den Brief nicht zur Post."
+    key_tokens: ["nicht"]
+    explain:
+      en: "nicht comes after the object den Brief, but still in front of the direction: den Brief nicht zur Post. The direction always closes the sentence."
+      ru: "nicht стоит после дополнения den Brief, но всё равно перед направлением: den Brief nicht zur Post. Направление всегда закрывает предложение."
+      uk: "nicht стоїть після додатка den Brief, але все одно перед напрямком: den Brief nicht zur Post. Напрямок завжди закриває речення."

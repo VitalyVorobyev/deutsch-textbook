@@ -73,7 +73,7 @@ describe('grammar depth', () => {
     // The A2 wave closed the three zero-item structures and all eight structure-level probe gaps.
     // Keep the corpus-wide ceilings honest: thin tags in later levels still remain editorial work,
     // but A2 may not silently recreate the debt this wave removed.
-    expect([totals.thin <= 7, totals.singleFile <= 7, totals.noProbe <= 0]).toEqual([
+    expect([totals.thin <= 7, totals.singleFile <= 6, totals.noProbe <= 0]).toEqual([
       true,
       true,
       true,

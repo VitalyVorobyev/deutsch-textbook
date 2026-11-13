@@ -36,6 +36,11 @@ GitHub Release notes.
   preposition with its relative pronoun (*die Familie, bei der …*), adjectives used as nouns
   (*ein Jugendlicher*, *der Jugendliche*), Partizip I or II in front of a noun (*spielende Kinder*,
   *die reparierte Heizung*), and *lassen* with a bare infinitive (*Wir lassen die Küche renovieren*).
+- **Two drills for slips that kept coming back**, each on its own topic page and in training: saying
+  whose something is at A2 — the name with *-s* and no article (*Peters Schwester*, *Jonas'
+  Handy*, never *die Peters Schwester*) or *von* + Dativ (*die Tasche von meiner Frau*) — and, at
+  A1, *nicht* in front of a direction (*Ich komme heute nicht zur Arbeit*, never *zur Arbeit
+  nicht*).
 - **Fresh delayed checks after the B1 drills.** Six B1 points that did not survive the delay
   (preposition with relative pronoun, adjectives as nouns, participles before a noun, *lassen*,
   the unreal condition, the written Präteritum) get a new set of three delayed checks. Each one

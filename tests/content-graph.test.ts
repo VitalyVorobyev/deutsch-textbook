@@ -27,7 +27,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(482);
+    expect(graph.sets.size).toBe(484);
     expect(graph.readings.size).toBe(91);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(148);
@@ -115,7 +115,7 @@ describe('content graph', () => {
       artikel: 57,
       checkpoint: 3,
       dokument: 17,
-      drill: 26,
+      drill: 28,
       einstufung: 3,
       entdecken: 19,
       hoertext: 148,
@@ -131,7 +131,7 @@ describe('content graph', () => {
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(972);
+    expect(graph.elements.length).toBe(974);
     // Every Hörtext the plan names is published: none is planned any more.
     expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });
@@ -147,7 +147,7 @@ describe('content graph', () => {
     expect(byStage.get('nachpruefung')).toBe(162);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(246);
+    expect(teaching).toHaveLength(248);
     expect(
       Object.fromEntries(
         LEARNING_ACTIVITIES.map((activity) => [
@@ -155,7 +155,7 @@ describe('content graph', () => {
           teaching.filter((element) => element.activity === activity).length,
         ]),
       ),
-    ).toEqual({ core: 57, extension: 23, application: 70, task: 70, remediation: 26 });
+    ).toEqual({ core: 57, extension: 23, application: 70, task: 70, remediation: 28 });
     expect(
       [...graph.topics.keys()].filter(
         (topic) =>
