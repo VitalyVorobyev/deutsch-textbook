@@ -14,13 +14,18 @@ import { describe, expect, test } from 'bun:test';
 import type { ExerciseItem } from '@da/schema';
 import {
   RETRY_SUFFIX,
+  SCAFFOLD_ORDER_MAX_WORDS,
+  WORD_ORDER_FOCUS,
   allocatePrioritySlots,
   buildSession,
+  scaffoldFor,
   withRetry,
   type SessionItem,
   type TopicOwnedSet,
 } from '../src/lib/training';
 import { AGAIN_GAP_UNFAMILIAR } from '../src/lib/requeue';
+import { normalizeSentence } from '@da/grading/cloze';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 import type { Attempt } from '../src/lib/store';
 
 const NOW = 1_780_000_000_000;
@@ -192,6 +197,7 @@ describe('a failed translate comes back once in the same run', () => {
   });
   const queue = Array.from({ length: 12 }, (_, i) => entry(`i${i}`));
 
+  // `Ja.` is one word: too short for an order, and a gap would be the whole sentence
   test('inserted once, the flashcard gap later', () => {
     const next = withRetry(queue, 1, false);
     expect(next).toHaveLength(13);
@@ -215,5 +221,162 @@ describe('a failed translate comes back once in the same run', () => {
     const retryAt = once.findIndex((e) => e.retry);
     expect(withRetry(once, retryAt, false)).toBe(once);
     expect(withRetry(once, 1, false)).toBe(once);
+  });
+});
+
+/** A translate item with exactly the fields `scaffoldFor` reads. */
+const sentence = (
+  answer: string,
+  fields: { focus?: string; key_tokens?: string[]; accept?: string[] } = {},
+): ExerciseItem =>
+  ({
+    id: 'x',
+    type: 'translate',
+    revision: 2,
+    outcomes: ['o'],
+    preview: false,
+    prompt_en: 'meaning',
+    prompt_ru: 'смысл',
+    explain: { en: 'why', ru: 'почему' },
+    answer,
+    accept: fields.accept ?? [],
+    key_tokens: fields.key_tokens ?? [],
+    focus: fields.focus,
+  }) as ExerciseItem;
+
+describe('a failed translate comes back as the same sentence in a lighter form', () => {
+  test('a form focus gaps the forms its key_tokens pin, punctuation outside the gap', () => {
+    const scaffold = scaffoldFor(
+      sentence('Ich bleibe zu Hause, weil ich keine Zeit habe.', {
+        focus: 'verb-endungen',
+        key_tokens: ['bleibe', 'habe'],
+      }),
+    );
+    expect(scaffold).toMatchObject({
+      type: 'cloze',
+      id: 'x',
+      revision: 2,
+      outcomes: ['o'],
+      focus: 'verb-endungen',
+      text: 'Ich {{bleibe}} zu Hause, weil ich keine Zeit {{habe}}.',
+      translation: { en: 'meaning', ru: 'смысл' },
+      explain: { en: 'why', ru: 'почему' },
+    });
+    expect(scaffold!.instruction).toBeDefined();
+  });
+
+  test('a rendering that differs at one gap adds its word; a key token only a rendering has is not gapped', () => {
+    const scaffold = scaffoldFor(
+      sentence('Frau Winter bringt dem Arzt einen Brief.', {
+        focus: 'dativ-artikel',
+        key_tokens: ['dem', 'einem'],
+        accept: [
+          'Frau Winter bringt einem Arzt einen Brief.',
+          'Dem Arzt bringt Frau Winter einen Brief.',
+        ],
+      }),
+    );
+    expect(scaffold).toMatchObject({
+      type: 'cloze',
+      text: 'Frau Winter bringt {{dem|einem}} Arzt einen Brief.',
+    });
+  });
+
+  test('a word-order focus is an order of the sentence, and accepts every rendering its chips can build', () => {
+    const scaffold = scaffoldFor(
+      sentence('Gestern sind wir zu Hause geblieben.', {
+        focus: 'verbzweit',
+        key_tokens: ['sind'],
+        accept: ['Wir sind gestern zu Hause geblieben.', 'Gestern sind wir daheim geblieben.'],
+      }),
+    );
+    expect(scaffold).toMatchObject({
+      type: 'order',
+      words: ['Gestern', 'sind', 'wir', 'zu', 'Hause', 'geblieben'],
+      // spelled with the chips, so the fronted `Gestern` it must use still matches; the
+      // rendering with `daheim` has a word no chip carries
+      accept: ['wir sind Gestern zu Hause geblieben'],
+    });
+    // the authored answer is what `Order` grades as its target
+    if (scaffold?.type !== 'order') throw new Error('expected an order');
+    expect(normalizeSentence(scaffold.words)).toBe('Gestern sind wir zu Hause geblieben');
+  });
+
+  test('no focus: a cloze where key_tokens allow one, else an order', () => {
+    expect(scaffoldFor(sentence('Ich wohne in Berlin.', { key_tokens: ['wohne'] }))?.type).toBe(
+      'cloze',
+    );
+    expect(scaffoldFor(sentence('Ich wohne in Berlin.'))?.type).toBe('order');
+  });
+
+  describe('null, so the retry is the translation itself, when', () => {
+    test('a form focus has no key_tokens, or none of them is in the answer — never an order', () => {
+      expect(scaffoldFor(sentence('Ich wohne in Berlin.', { focus: 'verb-endungen' }))).toBeNull();
+      expect(
+        scaffoldFor(
+          sentence('Ich wohne in Berlin.', { focus: 'verb-endungen', key_tokens: ['wohnst'] }),
+        ),
+      ).toBeNull();
+    });
+
+    test('the gaps would be most of the sentence', () => {
+      expect(
+        scaffoldFor(
+          sentence('Welche Größe brauchen Sie?', {
+            focus: 'interrogativartikel',
+            key_tokens: ['Welche', 'Größe', 'brauchen'],
+          }),
+        ),
+      ).toBeNull();
+    });
+
+    test('a rendering differs at two gaps at once', () => {
+      expect(
+        scaffoldFor(
+          sentence('Ich gebe dem Mann den Ball.', {
+            focus: 'wechsel-akk-dat',
+            key_tokens: ['dem', 'den'],
+            accept: ['Ich gebe der Frau die Tasche.', 'Ich gebe einem Mann einen Ball.'],
+          }),
+        ),
+      ).toBeNull();
+    });
+
+    test('a word-order sentence is longer than any authored order, or too short to order', () => {
+      const long = Array.from({ length: SCAFFOLD_ORDER_MAX_WORDS + 1 }, (_, i) => `w${i}`);
+      expect(
+        scaffoldFor(sentence(`${long.join(' ')}.`, { focus: 'verbzweit', key_tokens: ['w1'] })),
+      ).toBeNull();
+      expect(scaffoldFor(sentence('Komm her!', { focus: 'verbzweit' }))).toBeNull();
+    });
+
+    test('the item is not a translate', () => {
+      expect(scaffoldFor(mc('m'))).toBeNull();
+    });
+  });
+
+  test('withRetry queues the lighter form, flagged as a second try that is never logged', () => {
+    const failed: SessionItem = {
+      uid: 'a2/s::x',
+      setId: 'a2/s',
+      topicId: 't',
+      title_de: 't',
+      level: 'A2',
+      item: sentence('Ich wohne in Berlin.', { focus: 'verb-endungen', key_tokens: ['wohne'] }),
+    };
+    const next = withRetry([failed], 0, false);
+    expect(next).toHaveLength(2);
+    expect(next[1]).toMatchObject({
+      uid: `a2/s::x${RETRY_SUFFIX}`,
+      retry: true,
+      setId: 'a2/s',
+      item: { type: 'cloze', id: 'x', text: 'Ich {{wohne}} in Berlin.' },
+    });
+    // the lighter form is never itself retried
+    expect(withRetry(next, 1, false)).toBe(next);
+  });
+
+  test('every word-order focus is a registered tag', () => {
+    for (const tag of WORD_ORDER_FOCUS) expect(focusIntroducedBy).toHaveProperty(tag);
   });
 });

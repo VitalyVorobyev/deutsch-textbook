@@ -6,6 +6,7 @@ import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
 import { AGAIN_GAP_UNFAMILIAR, requeueAfter } from './requeue';
+import { normalizeTranslation } from '@da/grading/cloze';
 
 /** A set a topic owns: the only kind training, probes and the Lernpfad serve. */
 export type TopicOwnedSet = TrainingSet & { topicId: string };
@@ -64,7 +65,8 @@ export interface SessionItem {
   item: ExerciseItem;
   document?: VisualDocument;
   recording?: RecordingScript;
-  /** a second try at an item answered wrong earlier in this run — never logged (`withRetry`) */
+  /** a second try at an item answered wrong earlier in this run, its `item` the lighter form
+      where one exists — never logged (`withRetry`) */
   retry?: true;
 }
 
@@ -76,8 +78,195 @@ export const baseUid = (uid: string): string =>
   uid.endsWith(RETRY_SUFFIX) ? uid.slice(0, -RETRY_SUFFIX.length) : uid;
 
 /**
+ * Focus tags whose taught point is a position in the sentence rather than a form. A second try
+ * at such an item is an `order` of its sentence; a `cloze` would hand over the position, since
+ * the gap sits exactly where the word belongs. Every other tag names a form, and a second try at
+ * it gaps the forms its `key_tokens` pin; an `order` would show them.
+ */
+export const WORD_ORDER_FOCUS: ReadonlySet<string> = new Set([
+  'verbzweit',
+  'nicht-position',
+  'koordination-position-null',
+  'trennbar-wortstellung',
+  'trennbar-modal',
+  'modal-satzklammer',
+  'perfekt-satzklammer',
+  'nebensatz-verbende',
+  'nebensatz-vorfeld',
+  'weil-denn',
+  'konjunktionaladverb-inversion',
+  'indirekte-frage',
+  'temporal-nebensatz',
+  'obwohl-trotzdem',
+  'sodass-folge',
+  'je-desto',
+  'angaben-reihenfolge',
+  'pronomen-stellung',
+]);
+
+/** The longest authored `order` item has twelve chips; a longer sentence is not a lighter task. */
+export const SCAFFOLD_ORDER_MAX_WORDS = 12;
+
+const SCAFFOLD_INSTRUCTION = {
+  cloze: {
+    en: 'Fill in the missing words.',
+    ru: 'Вставьте пропущенные слова.',
+    uk: 'Вставте пропущені слова.',
+    de: 'Ergänze die fehlenden Wörter.',
+  },
+  order: {
+    en: 'Arrange the words into the sentence.',
+    ru: 'Составьте предложение из слов.',
+    uk: 'Складіть речення зі слів.',
+    de: 'Ordne die Wörter zu einem Satz.',
+  },
+} as const satisfies Record<string, Bilingual>;
+
+type TranslateItem = Extract<ExerciseItem, { type: 'translate' }>;
+type ClozeItem = Extract<ExerciseItem, { type: 'cloze' }>;
+type OrderItem = Extract<ExerciseItem, { type: 'order' }>;
+
+/** A raw token's surrounding punctuation and quotes, which a gap leaves outside itself. */
+const TOKEN_EDGES = /^([„“”"'‚‘’«»(]*)(.*?)([.,!?;:…„“”"'‚‘’«»)]*)$/u;
+const splitToken = (raw: string) => {
+  const [, lead = '', bare = '', trail = ''] = TOKEN_EDGES.exec(raw) ?? [];
+  return { lead, bare, trail };
+};
+const rawTokens = (s: string) => s.trim().split(/\s+/).filter(Boolean);
+const bareTokens = (s: string) => rawTokens(s).map((t) => splitToken(t).bare);
+
+/**
+ * The item's sentence with every token its `key_tokens` pin as a gap, or null. A key token
+ * absent from `answer` belongs to an `accept` rendering and is not gapped. An `accept` rendering
+ * that differs from `answer` at exactly one gap adds its word to that gap; one that differs at two
+ * gaps at once would make the gaps depend on each other, which a cloze cannot express, so the item
+ * gets no cloze. A rendering that differs outside the gaps is another sentence, and the cloze
+ * shows `answer`'s. Null too when there is nothing to gap, or the gaps would be most of the
+ * sentence — that is the translation again, not a lighter form of it.
+ */
+function clozeScaffold(item: TranslateItem): ClozeItem | null {
+  const raw = rawTokens(item.answer);
+  const parts = raw.map(splitToken);
+  const keys = new Set(item.key_tokens);
+  const gaps = parts.flatMap((p, i) => (keys.has(p.bare) && !/[{}|]/.test(p.bare) ? [i] : []));
+  if (gaps.length === 0 || gaps.length * 2 > raw.length) return null;
+
+  const answers = new Map(gaps.map((i) => [i, [parts[i]!.bare]]));
+  const bare = parts.map((p) => p.bare);
+  for (const rendering of item.accept) {
+    const other = bareTokens(rendering);
+    if (other.length !== bare.length) continue;
+    const differ = bare.flatMap((w, i) => (w !== other[i] ? [i] : []));
+    if (differ.length === 0 || !differ.every((i) => answers.has(i))) continue;
+    if (differ.length > 1) return null;
+    const i = differ[0]!;
+    const word = other[i]!;
+    if (/[{}|]/.test(word)) return null;
+    if (!answers.get(i)!.includes(word)) answers.get(i)!.push(word);
+  }
+
+  const text = parts
+    .map((p, i) => {
+      const gap = answers.get(i);
+      return gap ? `${p.lead}{{${gap.join('|')}}}${p.trail}` : raw[i];
+    })
+    .join(' ');
+  return {
+    id: item.id,
+    type: 'cloze',
+    revision: item.revision,
+    outcomes: item.outcomes,
+    preview: item.preview,
+    instruction: SCAFFOLD_INSTRUCTION.cloze,
+    explain: item.explain,
+    focus: item.focus,
+    text,
+    translation: translationOf(item),
+  };
+}
+
+/**
+ * The item's sentence as chips to arrange, or null when it is too long to be lighter. Chips
+ * carry no punctuation, as `translate` grading ignores it. Every rendering of the item made of
+ * exactly these words is accepted in the order it puts them — as the chips spell them, so a
+ * fronted `Gestern` that a rendering writes `gestern` still matches — because the chips can
+ * build it, and an `order` that rejects a sentence the item itself accepts would teach the
+ * learner a false rule.
+ */
+function orderScaffold(item: TranslateItem): OrderItem | null {
+  const words = normalizeTranslation(item.answer).split(' ').filter(Boolean);
+  if (words.length < 3 || words.length > SCAFFOLD_ORDER_MAX_WORDS) return null;
+  const sentence = words.join(' ');
+  const accept: string[] = [];
+  for (const rendering of item.accept) {
+    const spelled = spellWithChips(words, normalizeTranslation(rendering).split(' '));
+    if (spelled && spelled !== sentence && !accept.includes(spelled)) accept.push(spelled);
+  }
+  return {
+    id: item.id,
+    type: 'order',
+    revision: item.revision,
+    outcomes: item.outcomes,
+    preview: item.preview,
+    instruction: SCAFFOLD_INSTRUCTION.order,
+    explain: item.explain,
+    focus: item.focus,
+    words,
+    accept,
+    translation: translationOf(item),
+  };
+}
+
+/** `rendering` written with the chips' own spelling, or null when it uses other words. */
+function spellWithChips(chips: readonly string[], rendering: readonly string[]): string | null {
+  if (rendering.length !== chips.length) return null;
+  const used = chips.map(() => false);
+  // filled, not sparse: `every` skips the holes of `new Array(n)` and would pass a miss
+  const out: (string | undefined)[] = rendering.map(() => undefined);
+  // Exact spellings first, so a case-folded match cannot take a chip an exact one needs.
+  for (const exact of [true, false]) {
+    rendering.forEach((word, i) => {
+      if (out[i] !== undefined) return;
+      const at = chips.findIndex(
+        (chip, j) =>
+          !used[j] && (exact ? chip === word : chip.toLowerCase() === word.toLowerCase()),
+      );
+      if (at === -1) return;
+      used[at] = true;
+      out[i] = chips[at];
+    });
+  }
+  return out.every((w) => w !== undefined) ? out.join(' ') : null;
+}
+
+const translationOf = (item: TranslateItem): Bilingual => ({
+  en: item.prompt_en,
+  ru: item.prompt_ru,
+  ...(item.prompt_uk ? { uk: item.prompt_uk } : {}),
+});
+
+/**
+ * The lighter form a failed `translate` comes back in: the same sentence, with its meaning shown
+ * and its `explain` as feedback. A word-order focus gets an `order`; any other gets a `cloze` on
+ * its `key_tokens`, and an item with no focus whichever it can carry, cloze first. Null when the
+ * item's format cannot be derived — the retry is then the translation itself.
+ */
+export function scaffoldFor(item: ExerciseItem): ClozeItem | OrderItem | null {
+  if (item.type !== 'translate') return null;
+  if (item.focus === undefined) return clozeScaffold(item) ?? orderScaffold(item);
+  return WORD_ORDER_FOCUS.has(item.focus) ? orderScaffold(item) : clozeScaffold(item);
+}
+
+/** The second try at `entry`: its own uid, flagged never to be logged, in its lighter form. */
+export function retryEntry(entry: SessionItem): SessionItem {
+  const uid = `${baseUid(entry.uid)}${RETRY_SUFFIX}`;
+  return { ...entry, uid, retry: true, item: scaffoldFor(entry.item) ?? entry.item };
+}
+
+/**
  * The queue after the entry at `index` was answered: a `translate` answered wrong comes back
- * once, later in the same run, as the same item. Anything else returns the queue unchanged.
+ * once, later in the same run, as the same sentence in a lighter form where one can be derived
+ * (`scaffoldFor`), else as the same item. Anything else returns the queue unchanged.
  *
  * Feedback has just shown the model answer, so the retry is retrieval practice after
  * feedback — and an immediate one would be answered from working memory, the finding behind
@@ -85,8 +274,10 @@ export const baseUid = (uid: string): string =>
  * items, the flashcard gap for something not retrieved at all, or goes last when fewer remain.
  *
  * The retry is not evidence: the caller never logs it, so the first failure stays the logged
- * result and the item is still last-answered-wrong for tomorrow's `buildSession`. One retry
- * per item per run, and a retry is never itself retried.
+ * result and the item is still last-answered-wrong for tomorrow's `buildSession`. That holds
+ * for the lighter form above all — logged, a `cloze` or an `order` answered right would sit under
+ * the translation's key as its last attempt. One retry per item per run, and a retry is never
+ * itself retried.
  */
 export function withRetry(
   queue: readonly SessionItem[],
@@ -95,9 +286,8 @@ export function withRetry(
 ): readonly SessionItem[] {
   const entry = queue[index];
   if (!entry || correct || entry.retry || entry.item.type !== 'translate') return queue;
-  const uid = `${entry.uid}${RETRY_SUFFIX}`;
-  if (queue.some((e) => e.uid === uid)) return queue;
-  const retry: SessionItem = { ...entry, uid, retry: true };
+  const retry = retryEntry(entry);
+  if (queue.some((e) => e.uid === retry.uid)) return queue;
   return [
     ...queue.slice(0, index + 1),
     ...requeueAfter(queue.slice(index + 1), retry, AGAIN_GAP_UNFAMILIAR),
