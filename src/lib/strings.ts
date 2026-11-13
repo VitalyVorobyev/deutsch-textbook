@@ -149,6 +149,13 @@ export const STRINGS = {
     ru: 'Вторая попытка',
     uk: 'Друга спроба',
   },
+  // The same, when it comes back as a cloze or word order of its sentence (`scaffoldFor`).
+  'training.secondTryLighter': {
+    de: 'Zweiter Versuch, leichter',
+    en: 'Second try, easier',
+    ru: 'Вторая попытка, проще',
+    uk: 'Друга спроба, простіше',
+  },
 
   // Reading section headers.
   'reading.questions': {

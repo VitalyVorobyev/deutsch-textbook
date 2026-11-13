@@ -1,11 +1,14 @@
 /**
  * A translation answered wrong in mixed training comes back once, later in the same run, and
- * marked as a second try. The second try is never logged: the first answer is the attempt, so
- * the item stays last-answered-wrong for tomorrow's session and no evidence reader sees it. A
- * run saved with a second try in its queue resumes with it rather than being thrown away.
+ * marked as a second try — as a cloze or word order of the same sentence where one can be
+ * derived, else as the translation again. The second try is never logged: the first answer is
+ * the attempt, so the item stays last-answered-wrong for tomorrow's session and no evidence
+ * reader sees it. A run saved with a second try in its queue resumes with it rather than being
+ * thrown away.
  *
  * Fixtures are inline and state every field the assertions read: one opened topic, one set of
- * translate items, an empty attempt log.
+ * translate items, an empty attempt log. The plain-retry items carry a form focus and no
+ * `key_tokens`, which leaves no lighter form to derive.
  */
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
@@ -39,7 +42,7 @@ afterAll(() => {
 const PAST_SWAP_GUARD = 550;
 const PROFILE = 'retry-test';
 
-const item = (id: string) =>
+const item = (id: string, key_tokens: string[] = []) =>
   translateItemSchema.parse({
     id,
     type: 'translate',
@@ -47,19 +50,14 @@ const item = (id: string) =>
     prompt_en: `Prompt ${id}`,
     prompt_ru: `Prompt ${id}`,
     answer: 'Ich wohne in Berlin.',
-    key_tokens: ['wohne'],
+    focus: 'verb-endungen',
+    key_tokens,
   });
 
-const sets: TrainingSet[] = [
-  {
-    setId: 'a2/s',
-    topicId: 't',
-    title_de: 'Thema',
-    level: 'A2',
-    role: 'practice',
-    items: [item('a'), item('b')],
-  },
+const setOf = (items: ReturnType<typeof item>[]): TrainingSet[] => [
+  { setId: 'a2/s', topicId: 't', title_de: 'Thema', level: 'A2', role: 'practice', items },
 ];
+const sets = setOf([item('a'), item('b')]);
 const nodes = [{ id: 't', exerciseSets: ['a2/s'], readingIds: [] }] as unknown as TopicNode[];
 
 let MixedTraining: ComponentType<{
@@ -88,6 +86,7 @@ afterEach(() => {
 
 const shownPrompt = () => screen.getByText(/^Prompt [ab]$/).textContent!;
 const secondTry = () => screen.queryByText('Zweiter Versuch');
+const lighterTry = () => screen.queryByText('Zweiter Versuch, leichter');
 
 async function answerWrongAndContinue() {
   fireEvent.change(screen.getByRole('textbox'), { target: { value: 'falsch' } });
@@ -147,5 +146,32 @@ describe('a failed translate in mixed training', () => {
     expect(secondTry()).toBeTruthy();
     await answerWrongAndContinue();
     expect(logAttemptDurably).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe('a failed translate with a lighter form', () => {
+  test('comes back as a cloze of its sentence, marked lighter, and answering it logs nothing', async () => {
+    render(
+      <MixedTraining sets={setOf([item('a', ['wohne'])])} spine={['t']} nodes={nodes} count={1} />,
+    );
+    await waitFor(() => expect(screen.getByRole('textbox')).toBeTruthy());
+    await answerWrongAndContinue();
+    expect(logAttemptDurably).toHaveBeenCalledTimes(1);
+
+    // the same sentence with its key token gapped, its meaning still shown
+    expect(lighterTry()).toBeTruthy();
+    expect(secondTry()).toBeNull();
+    expect(shownPrompt()).toBe('Prompt a');
+    expect(screen.getByText(/in Berlin\./)).toBeTruthy();
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'wohne' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Prüfen' }));
+    await Bun.sleep(PAST_SWAP_GUARD);
+
+    // a logged cloze would sit under the translation's key as its last, right attempt
+    expect(logAttemptDurably).toHaveBeenCalledTimes(1);
+    expect(logAttemptDurably.mock.calls[0]![0]).toMatchObject({
+      itemType: 'translate',
+      correct: false,
+    });
   });
 });

@@ -51,12 +51,19 @@ authoring rules.
   8 for a word not retrieved at all, 50 for a lapse or a near miss, halved per further miss, never
   fewer than 3 (`recordMiss`). The gap orders today's queue only; FSRS alone schedules the card.
   A missed Leben-in-Deutschland question follows the same rule (`LidPractice`).
-- A `translate` answered wrong in mixed training comes back once in the same run, as the same
-  item, `AGAIN_GAP_UNFAMILIAR` items later or last (`withRetry`). The second try is **never
-  logged**: the first answer is the attempt, so `buildSession`, `lessonCompleted`, `topicTier`,
-  `weakFocuses` and `armedAt` never see it — three of those read every attempt whatever its
-  evidence class, so logging it even as practice would hide the failure. A retry is never
-  retried, and a saved run restores it under its own uid (`RETRY_SUFFIX`).
+- A `translate` answered wrong in mixed training comes back once in the same run,
+  `AGAIN_GAP_UNFAMILIAR` items later or last (`withRetry`), as the same sentence in a lighter
+  form derived at runtime (`scaffoldFor`): an `order` of `answer` when the focus is a word-order
+  tag (`WORD_ORDER_FOCUS`), else a `cloze` gapping its `key_tokens`; with no focus, a cloze if it
+  can, else an order. Both show the prompt as the meaning and keep `explain`. The derived order
+  accepts every `accept` rendering its chips can build, spelled as the chips spell it. Where the
+  format cannot be derived the retry is the item itself: an order over twelve words, a cloze with
+  nothing to gap, gaps over half the sentence, or a rendering that differs at two gaps at once.
+  The second try is **never logged**: the first answer is the attempt, so `buildSession`,
+  `lessonCompleted`, `topicTier`, `weakFocuses` and `armedAt` never see it — three of those read
+  every attempt whatever its evidence class, so a logged cloze answered right would become the
+  translation's last attempt and hide the failure. A retry is never retried, and a saved run
+  restores it, lighter form included, under its own uid (`RETRY_SUFFIX`, `retryEntry`).
 - Mixed training shares its priority slots out (`allocatePrioritySlots`) rather than filling
   the bands in turn: the items last answered wrong outnumber a session's slots on a real log, and
   filled first they starved weak-focus items, drills and every never-attempted item.

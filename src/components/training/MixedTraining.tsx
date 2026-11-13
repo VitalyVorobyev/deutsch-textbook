@@ -15,6 +15,7 @@ import {
   isTopicOwned,
   revisionLookup,
   resumedQueueIsEligible,
+  retryEntry,
   withRetry,
   type SessionItem,
   type TrainingSet,
@@ -96,10 +97,10 @@ function restoreSession(
 
   const session: SessionItem[] = [];
   for (const uid of saved.uids) {
-    // A retry is saved under its own uid and rebuilt from the item it repeats.
+    // A retry is saved under its own uid and rebuilt, lighter form included, from its item.
     const entry = byUid.get(baseUid(uid));
     if (!entry) return null;
-    session.push(uid.endsWith(RETRY_SUFFIX) ? { ...entry, uid, retry: true } : entry);
+    session.push(uid.endsWith(RETRY_SUFFIX) ? retryEntry(entry) : entry);
   }
   return { session, answered: saved.answered };
 }
@@ -418,7 +419,13 @@ export default function MixedTraining({
                 lang={uiLang}
                 className="shrink-0 rounded-full border border-stone-300 px-2 py-0.5 text-xs text-stone-500 dark:border-stone-600 dark:text-stone-400"
               >
-                {t('training.secondTry', uiLang)}
+                {/* only a translate is retried, so another type is its lighter form */}
+                {t(
+                  entry.item.type === 'translate'
+                    ? 'training.secondTry'
+                    : 'training.secondTryLighter',
+                  uiLang,
+                )}
               </span>
             )}
           </p>

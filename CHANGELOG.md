@@ -53,9 +53,12 @@ GitHub Release notes.
   most half of a session's open places; the rest go to the points you are currently weak on, their
   targeted drills, and exercises you have never done. Among those, the exercises a delayed check
   is still waiting for come first, then exercise sets you have never opened.
-- **A translation you get wrong comes back once in the same training run**, marked *Zweiter
-  Versuch*, a few items later. Your first answer is the one that counts; the second try is
-  practice and is not recorded.
+- **A translation you get wrong comes back once in the same training run**, a few items later,
+  as the same sentence made easier: its words to put in order when the point was word order, or
+  the sentence with the taught forms left as gaps when it was a form (*Zweiter Versuch,
+  leichter*). A sentence that allows neither comes back as the translation again (*Zweiter
+  Versuch*). Your first answer is the one that counts; the second try is practice and is not
+  recorded.
 - **Delayed checks come for more of what you have practised.** A check on a grammar point now
   starts with any exercise in that topic that practises the point, not only with a few named
   ones, so checks that never came for some points now do.

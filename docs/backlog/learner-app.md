@@ -24,20 +24,13 @@ Surfaces the learner uses, and the triaged learner feedback. The format and the 
 - **P21-2 · The written-forms material has no index.** An Entdecken piece; small.
 - **P20-1 · `/pruefung/a1` has one entry point**, and its sets declare `topic: freizeit-koennen`
   while their items span six topics — a navigation call and a schema question.
-- **APP-3 · A failed `translate` comes back as the same sentence in a lighter form.** Today it
-  comes back once, unchanged (`withRetry`, `src/lib/training.ts`). The data allows a derived
-  variant: 834 of 841 `translate` items carry `key_tokens` (415 of the 426 ever failed), so an
-  `order` item can be built from `answer` and a `cloze` by gapping its `key_tokens` (counted by
-  parsing every exercise YAML). `Order`, `Cloze` and `ItemView` take a plain item through props
-  and leave logging to the caller, so a synthesized item renders with no content file. Logging is
-  the hazard: `buildSession`'s last-attempt map, `lessonCompleted` and `topicTier`
-  (`src/lib/mastery.ts`) read every attempt whatever its evidence class, so a scaffold logged under
-  the original key, even as practice, would hide the failure, count toward the Grundübung and mark
-  the topic practised. Not logging it is the safe option; logging it needs a row in
-  [ADR 0003](../adrs/0003-the-evidence-model.md). Open: an `order` built from `answer` cannot take
-  an `accept` with other words, answers run to 22 words, a `key_tokens` gap may sit against
-  punctuation, and an `order` trains word order but not a form. First step: choose the format by
-  the kind of focus, and measure how many failed items each format can carry.
+- **APP-4 · 88 of 841 `translate` items come back unchanged after a miss** (26 of the 419 ever
+  failed): `scaffoldFor` (`src/lib/training.ts`) derives no lighter form for them — 73 form items
+  whose `key_tokens` are absent, cover over half the sentence or differ jointly in an `accept`
+  rendering, 12 word-order items over twelve words, 3 with no focus. Counted by running
+  `scaffoldFor` over every exercise YAML parsed with the `yaml` package, failures from the
+  learner's latest snapshot. First step: read the twelve long word-order items — an `order` of the
+  clause the tag is about may be the lighter form.
 - **APP-2 · Readings have no surface of their own.** All 85 readings, the 17 extensive readers
   included, are reachable only from their topic page (`src/pages/topics/[...slug].astro`; no other
   route renders `ReadingText`). An extensive reader is meant to be read straight through, so it
