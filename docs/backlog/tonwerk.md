@@ -55,9 +55,3 @@ after this queue, cast from the character records
   in the published YAML. Add the column to the question editor and `uk` to `draft_prompt`.
 - **P22-6 · Freesound URLs are matched by prefix** (`sources.py`). Parse the URL and require the
   sound-id segment to equal `sound_id`.
-- **TON-7 · No way to judge a batch by ear.** Whether two voices can be told apart, or a pause is
-  too long, is the owner's judgement, and today it reaches the queue only through a Claude
-  session. A Hörprobe view: play the published recordings in a queue, one key per verdict (gut,
-  Tempo, Pausen, Stimme, Aussprache, Text) and a note, written to `data/redaktion-queue.yaml`.
-  First step: the view over the 40 dialogues, before the delivery-timing change, so its verdicts
-  can be compared after.

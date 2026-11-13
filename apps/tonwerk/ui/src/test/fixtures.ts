@@ -759,6 +759,8 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
         reapable: { renders: 0, bytes: 0 },
       }),
     reap: refuse('reap'),
+    hoerprobe: refuse('hoerprobe'),
+    hoerprobeVerdict: refuse('hoerprobeVerdict'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
     // Read on mount by both Figuren and the scene editor's cast panel, so it is stubbed with data
     // rather than a refusal — for the same reason the three catalogs above are.
@@ -769,3 +771,51 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     ...overrides,
   } as Api;
 }
+
+/** One Hörprobe row; every field the view reads is stated by the caller that cares about it. */
+function hoerprobeZeile(
+  id: string,
+  level: string,
+  audio_sha256: string,
+  entries: { id: string; verdicts: string[]; text: string }[],
+) {
+  return {
+    id,
+    level,
+    file: `content/listening/${level.toLowerCase()}/${id}.yaml`,
+    title: `Titel ${id}`,
+    scenario: `Szenario ${id}`,
+    duration_seconds: 30,
+    speakers: ['Lena', 'Frau Kern'],
+    voices: [
+      { role: 'Lena', character: 'lena-berger', preset: null },
+      { role: 'Frau Kern', character: null, preset: 'Serena' },
+    ],
+    audio_sha256,
+    entries: entries.map((entry) => ({
+      type: 'finding',
+      waiting: 'claude',
+      from: 'owner',
+      at: '2026-11-12',
+      ...entry,
+    })),
+  };
+}
+
+/**
+ * Four dialogues, in the order the engine lists them: one with a Stimme verdict in the queue, one
+ * heard as gut on its current bytes (the spec seeds that in storage), one never judged, and one
+ * heard as gut on bytes since re-recorded — which is owed again.
+ */
+export const hoerprobeFixture = {
+  verdicts: ['Tempo', 'Pausen', 'Stimme', 'Aussprache', 'Text'],
+  queue_error: null,
+  rows: [
+    hoerprobeZeile('ls-gefunden-01', 'A1', 'a'.repeat(64), [
+      { id: 'q-0007', verdicts: ['Stimme'], text: 'Hörprobe: Stimme.' },
+    ]),
+    hoerprobeZeile('ls-gut-02', 'A2', 'b'.repeat(64), []),
+    hoerprobeZeile('ls-offen-03', 'B1', 'c'.repeat(64), []),
+    hoerprobeZeile('ls-neu-04', 'B1', 'd'.repeat(64), []),
+  ],
+};

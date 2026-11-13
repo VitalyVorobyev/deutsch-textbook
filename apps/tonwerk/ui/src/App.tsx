@@ -7,12 +7,12 @@
  * A launch code being redeemed is a state of its own, so the token field never flashes up in a
  * tab that is about to sign itself in.
  *
- * **The frame is `@vitavision/workbench`'s `AppShell`.** The six sections are a `NavRail` of links
+ * **The frame is `@vitavision/workbench`'s `AppShell`.** The seven sections are a `NavRail` of links
  * (the hash is the route, so an item is an `<a>`, never a button), the wordmark and the engine
  * sit in the header, and the page scrolls inside `main`, never the window: the shell is fixed to
  * the viewport, which is what keeps the rail and the key legend in place while a QA table scrolls.
  *
- * **The nav lists six sections and nothing else.** There is no *Folgt* group naming surfaces that
+ * **The nav lists seven sections and nothing else.** There is no *Folgt* group naming surfaces that
  * have not arrived: an empty "coming" list is not a statement, so it is not kept as a heading over
  * nothing.
  *
@@ -24,7 +24,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button } from '@vitavision/ui';
 import { AppShell, NavRail, NavRailItem, StatusBar } from '@vitavision/workbench';
-import { AudioLines, BookOpenText, ClipboardCheck, Gauge, Library, Users } from 'lucide-react';
+import { AudioLines, BookOpenText, ClipboardCheck, Ear, Gauge, Library, Users } from 'lucide-react';
 import { createApi } from './api';
 import { clearToken, getToken, setToken, type Anmeldeergebnis } from './auth';
 import { Wortmarke } from './components/Wortmarke';
@@ -34,6 +34,7 @@ import { Anmeldung } from './views/Anmeldung';
 import { Bibliothek } from './views/Bibliothek';
 import { Figuren } from './views/Figuren';
 import { Freigabe } from './views/Freigabe';
+import { Hoerprobe } from './views/Hoerprobe';
 import { Klangbibliothek } from './views/Klangbibliothek';
 import { Lesetexte } from './views/Lesetexte';
 import { Pruefung } from './views/Pruefung';
@@ -42,13 +43,14 @@ import { Uebersicht } from './views/Uebersicht';
 
 /**
  * The rail, in the order the work runs: what exists, what is being made, what is waiting for a
- * person, and the two catalogues everything is made out of.
+ * person, what is published and waits for an ear, and the two catalogues everything is made of.
  */
 const WEGE = [
   { view: 'uebersicht', name: 'Übersicht', icon: <Gauge /> },
   { view: 'bibliothek', name: 'Bibliothek', icon: <Library /> },
   { view: 'lesetexte', name: 'Lesetexte', icon: <BookOpenText /> },
   { view: 'pruefung', name: 'Prüfung', icon: <ClipboardCheck /> },
+  { view: 'hoerprobe', name: 'Hörprobe', icon: <Ear /> },
   { view: 'klangbibliothek', name: 'Klangbibliothek', icon: <AudioLines /> },
   { view: 'figuren', name: 'Figuren', icon: <Users /> },
 ] as const;
@@ -214,6 +216,8 @@ function render(view: string, id?: string): React.JSX.Element {
       // The queue and one review under one route: a Freigabe is a place inside the queue, and
       // `#/pruefung/<slug>` is the address a reviewer sends to themselves for tomorrow.
       return id ? <Freigabe slug={id} /> : <Pruefung />;
+    case 'hoerprobe':
+      return <Hoerprobe />;
     case 'klangbibliothek':
       return <Klangbibliothek />;
     case 'figuren':

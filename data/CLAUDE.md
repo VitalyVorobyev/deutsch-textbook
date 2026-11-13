@@ -7,8 +7,8 @@ writes `claude-reviewed` rows only through `bun run review:claude`; `owner-revie
 from Redaktion's Prüfen action and are never written by hand. → the `pr-cycle` skill
 
 **`redaktion-queue.yaml` is the conversation with the owner** (ADR 0014). It is written only by
-Redaktion and by `bun run queue`, never by hand, and a resolved entry is closed in the PR that
-resolves it. → the `pr-cycle` skill
+Redaktion, Tonwerk's Hörprobe and `bun run queue`, all through `@da/content/queue`, never by
+hand, and a resolved entry is closed in the PR that resolves it. → the `pr-cycle` skill
 
 **`speaker-registry.yaml` holds every speaker who is not cast, and the cast's open debts** (ADR 0016): roles, legacy names, places awaiting a continuity check, recordings awaiting a recast. Each list only shrinks, and `tests/characters.test.ts` holds the ceilings; lower a ceiling in the change that clears an entry, and raise the recast ceiling only in the change that gives a cast member a voice. → [`packages/content/src/characters.ts`](../packages/content/src/characters.ts)
 

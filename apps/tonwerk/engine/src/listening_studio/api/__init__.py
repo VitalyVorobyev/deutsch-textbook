@@ -1,7 +1,7 @@
 """The JSON API, one module per concern, all under `/api`.
 
 The split is by *what a caller is doing* rather than by what the data is: reading the corpus
-overview (`registry`), editing a scene document (`scenes`), acting on one (`workflow`), what the
+overview (`registry`), judging the published dialogues by ear (`hoerprobe`), editing a scene document (`scenes`), acting on one (`workflow`), what the
 studio holds on disk (`library`), and the libraries a scene draws on — characters and narration
 profiles (`characters`), consented voices (`voices`), acoustic profiles (`acoustics`) and sounds
 (`sounds`).
@@ -20,6 +20,7 @@ from ..storage import Store
 from . import (
     acoustics,
     characters,
+    hoerprobe,
     library,
     registry,
     scenes,
@@ -27,9 +28,10 @@ from . import (
     voices,
     workflow,
 )
+from .hoerprobe import QueueBridge
 from .workflow import Transcriber
 
-__all__ = ["Transcriber", "router"]
+__all__ = ["QueueBridge", "Transcriber", "router"]
 
 
 def router(
@@ -38,6 +40,7 @@ def router(
     *,
     allow_test_adapters: bool = False,
     transcribe_fn: Transcriber | None = None,
+    queue_bridge: QueueBridge | None = None,
 ) -> APIRouter:
     """Every `/api` route, as one router the app factory includes once."""
 
@@ -57,6 +60,7 @@ def router(
         )
     )
     api.include_router(acoustics.router(store, repo))
+    api.include_router(hoerprobe.router(store, repo, queue_bridge))
     api.include_router(
         sounds.router(store, repo, allow_test_adapters=allow_test_adapters)
     )

@@ -1418,3 +1418,26 @@
   color: var(--ton-schrift-ab);
   white-space: nowrap;
 }
+
+/* --- Die Hörprobe: six verdicts, one key each ---------------------------------------------- */
+/*
+ * The checklist's switch at a smaller scale, in a grid rather than a list: six short words read
+ * across, and the key cap sits at the end of each so the hand learns the row.
+ */
+
+.urteile {
+  display: grid;
+  gap: var(--ton-mass-2);
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+}
+
+.urteile .punkt-schalter {
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  border: 1px solid var(--ton-kante);
+}
+
+.urteile .punkt-text {
+  flex: 1;
+}
