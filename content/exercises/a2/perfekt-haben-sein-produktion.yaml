@@ -136,6 +136,9 @@ items:
       uk: "Дзеркальне відображення попереднього завдання: залишитися вдома — цілковита протилежність рухові, і все ж bleiben вимагає sein: ich bin … geblieben. Це одне з трьох дієслів-винятків, які просто заучують: bleiben, sein, passieren. Отже, допоміжне дієслово визначається не «відчуттям» фрази, а самим дієсловом."
 
   - id: uebersetzen-aufgestanden-telefoniert
+    # revision 2: «позвонил маме» / "phoned my mother" is anrufen as much as telefonieren, and
+    # the item grades telefoniert; the prompt now says talking on the phone.
+    revision: 2
     outcomes: [perfekt-partizip, perfekt-satzklammer]
     type: translate
     focus: partizip2-form
@@ -143,9 +146,9 @@ items:
       en: Translate into German. Use the Perfekt.
       ru: Переведите на немецкий. Используйте перфект.
       uk: Перекладіть німецькою. Використайте перфект.
-    prompt_en: "On Sunday I got up early and phoned my mother."
-    prompt_ru: "В воскресенье я рано встал и позвонил маме."
-    prompt_uk: "У неділю я рано встав і подзвонив мамі."
+    prompt_en: "On Sunday I got up early and talked to my mother on the phone."
+    prompt_ru: "В воскресенье я рано встал и поговорил с мамой по телефону."
+    prompt_uk: "У неділю я рано встав і поговорив з мамою по телефону."
     answer: "Am Sonntag bin ich früh aufgestanden und habe mit meiner Mutter telefoniert."
     key_tokens: ["aufgestanden", "telefoniert"]
     accept:

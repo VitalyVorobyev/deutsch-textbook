@@ -67,11 +67,9 @@ const data = zeitformenReferenceSchema.parse(entry.data);
     <TenseSystem view="comparisons" />
   </section>
 
-  <section class="mt-12 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
-    <p>
-      <span class="lang-en">This page is a map, not a learning claim — reading it changes no progress. For the forms of an individual verb see <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; to check whether you can produce a form without the table, go back to a flashcard or a translation exercise.</span>
-      <span class="lang-ru">Эта страница — карта, а не заявление об освоении: её чтение не меняет прогресс. Формы отдельного глагола смотрите в <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; чтобы проверить, что вы образуете форму без таблицы, вернитесь к карточке или упражнению на перевод.</span>
-      <span class="lang-uk">Ця сторінка — карта, а не твердження про опанування: її читання не змінює прогрес. Форми окремого дієслова дивіться у <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>; щоб перевірити, чи утворюєте ви форму без таблиці, поверніться до картки або вправи на переклад.</span>
-    </p>
-  </section>
+  <p class="mt-12 text-stone-600 dark:text-stone-300">
+    <span class="lang-en">For the forms of an individual verb see <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>.</span>
+    <span class="lang-ru">Формы отдельного глагола смотрите в <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>.</span>
+    <span class="lang-uk">Форми окремого дієслова дивіться у <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/verbformen')}>Verbformen</a>.</span>
+  </p>
 </Base>

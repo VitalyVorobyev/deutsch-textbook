@@ -3,15 +3,21 @@ import Base from '../../layouts/Base.astro';
 import TaughtIn from '../../components/reference/TaughtIn.astro';
 import CaseTable from '../../components/reference/CaseTable.astro';
 import { withBase } from '../../lib/url';
+import { getEntry } from 'astro:content';
+
+// The genitive prepositions live on the Präpositionen page's data; this page only names them.
+const prepositions = await getEntry('referenceData', 'praepositionen');
+const genitive = ((prepositions?.data as { genitive?: { form: string }[] })?.genitive ?? [])
+  .map((entry) => entry.form)
+  .join(' · ');
 ---
 
 <Base title="Kasus & Präpositionen">
   <nav class="mb-3 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a></nav>
   <header><h1 class="text-3xl font-bold">Kasus & Präpositionen</h1><p class="mt-2 text-stone-500"><span class="lang-en">The compact system for comparison. Lessons teach each part; this page only puts the forms next to each other.</span><span class="lang-ru">Компактная система для сравнения. Уроки объясняют части по отдельности; здесь формы просто собраны рядом.</span><span class="lang-uk">Компактна система для порівняння. Уроки пояснюють частини окремо; тут форми просто зібрані поряд.</span></p><TaughtIn source="cases" /></header>
-  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Artikel</h2><CaseTable view="articles-dat" /></section>
+  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Artikel</h2><CaseTable view="articles-alle" /></section>
   <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Personalpronomen</h2><div class="grid gap-6 md:grid-cols-2"><div><h3 class="mb-3 font-semibold">Akkusativ</h3><CaseTable view="pronouns-akk" /></div><div><h3 class="mb-3 font-semibold">Dativ</h3><CaseTable view="pronouns-dat" /></div></div></section>
-  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Präpositionen</h2><CaseTable view="prepositions" /></section>
+  <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Präpositionen</h2><CaseTable view="prepositions" /><p class="mt-4 text-sm text-stone-600 dark:text-stone-300"><span class="lang-en">Genitive (B1): <span lang="de">{genitive}</span> — with examples on the <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/praepositionen')}>Präpositionen</a> page.</span><span class="lang-ru">Genitiv (B1): <span lang="de">{genitive}</span> — с примерами на странице <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/praepositionen')}>Präpositionen</a>.</span><span class="lang-uk">Genitiv (B1): <span lang="de">{genitive}</span> — з прикладами на сторінці <a class="font-medium underline decoration-amber-500 underline-offset-2" href={withBase('/referenz/praepositionen')}>Präpositionen</a>.</span></p></section>
   <section class="mt-10"><h2 class="mb-4 text-2xl font-bold">Wechselpräpositionen</h2><CaseTable view="prepositions-wechsel" /></section>
-  <section class="mt-10 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25"><p><span class="lang-en">Looking something up is support, not evidence. Return to a fresh exercise when you want to check whether you can choose the form without the table.</span><span class="lang-ru">Справочник — это поддержка, а не доказательство знания. Чтобы проверить выбор без таблицы, вернитесь к новому упражнению.</span><span class="lang-uk">Довідник — це підтримка, а не доказ знання. Щоб перевірити, чи можете ви обрати форму без таблиці, поверніться до нової вправи.</span></p></section>
 </Base>
 

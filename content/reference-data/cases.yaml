@@ -1,9 +1,12 @@
 id: cases
-focus: [akkusativ-artikel, dativ-artikel, akkusativ-pronomen, dativ-pronomen, akkusativ-praepositionen, dativ-praepositionen, wechsel-akk-dat]
+focus: [akkusativ-artikel, dativ-artikel, genitiv-form, akkusativ-pronomen, dativ-pronomen, akkusativ-praepositionen, dativ-praepositionen, wechsel-akk-dat]
 articles:
   - { case: Nominativ, masculine: "der / ein / kein", feminine: "die / eine / keine", neuter: "das / ein / kein", plural: "die / — / keine" }
   - { case: Akkusativ, masculine: "den / einen / keinen", feminine: "die / eine / keine", neuter: "das / ein / kein", plural: "die / — / keine" }
   - { case: Dativ, masculine: "dem / einem / keinem", feminine: "der / einer / keiner", neuter: "dem / einem / keinem", plural: "den (+ -n) / keinen (+ -n)" }
+  # B1. Masculine and neuter nouns take -s/-es themselves; the plural has no indefinite article,
+  # so a bare plural says it with von + Dativ.
+  - { case: Genitiv, masculine: "des / eines / keines (+ -s)", feminine: "der / einer / keiner", neuter: "des / eines / keines (+ -s)", plural: "der / — / keiner" }
 pronouns:
   - { nominative: ich, accusative: mich, dative: mir }
   - { nominative: du, accusative: dich, dative: dir }

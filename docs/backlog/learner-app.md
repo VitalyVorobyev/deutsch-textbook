@@ -96,5 +96,8 @@ Recorded so they are not re-triaged.
   key is the manifest's. What the learner reads is derived — a `valence` that leads with `sich`
   shows `sich gewöhnen`; a dual valence (`beschäftigen`: `+ Akk / sich …`) stays bare.
 - `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` asks two questions on purpose.
+- *Bescheid sagen* is as correct as *Bescheid geben* and is taught: an A2 chunk
+  (`content/vocab/redemittel-chunks-a2.yaml`) and a B1 card of its own
+  (`content/vocab/kultur-freizeit.yaml`); the *Bescheid geben* card names it as the informal sibling.
 - "Fortschritt konnte nicht geladen werden" is a local IndexedDB read, never the network
   ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)).

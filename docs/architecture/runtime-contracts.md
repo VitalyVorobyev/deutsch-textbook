@@ -40,6 +40,8 @@ authoring rules.
   read of the attempt log and in `progress:audit`.
 - Historical attempts keep their logged result and revision; current answer keys never replay them.
 - Unverified writing and speaking remain practice evidence and never raise measured mastery.
+- Mixed training deals no `speak` and no `write` item (`isGradedInTraining`,
+  `src/lib/training.ts`): open production is done on its topic page, where the learner chose it.
 - Placement may advance the recommended path but never raises a topic’s measured tier.
 - Probe state is derived from the attempt log and served before contaminating practice.
 - Fresh-card introductions are budgeted per day, not per rendered queue.
