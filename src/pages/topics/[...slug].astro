@@ -19,6 +19,7 @@ import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
+import TopicExercises from '../../components/topic/TopicExercises';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { deckWords } from '../../lib/vocab-mastery';
@@ -27,8 +28,7 @@ import { getCurriculum } from '@da/content/curriculum';
 import { getSetRecording, isTopicReviewed } from '../../lib/content';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
-import { exerciseSteps, type ExerciseStepId } from '@da/content/exercise-steps';
-import type { TaskSkill } from '@da/schema';
+import { exerciseSteps } from '@da/content/exercise-steps';
 
 export async function getStaticPaths() {
   const articles = await getCollection('topics');
@@ -78,22 +78,8 @@ const exerciseSets = await Promise.all(
 );
 
 // The Übungen section is the same steps on every topic (ADR 0019): Üben, Anwenden, Aufgaben, and
-// the drills folded at the end. A step with no sets is left out.
-const STEP_LABEL = {
-  ueben: { label: 'topic.stepUeben', hint: 'topic.stepUebenHint' },
-  anwenden: { label: 'topic.stepAnwenden', hint: 'topic.stepAnwendenHint' },
-  aufgaben: { label: 'topic.stepAufgaben', hint: 'topic.stepAufgabenHint' },
-  wiederholen: { label: 'topic.stepWiederholen', hint: 'topic.stepWiederholenHint' },
-} as const satisfies Record<ExerciseStepId, { label: StringKey; hint: StringKey }>;
-const SKILL_LABEL = {
-  hoeren: 'topic.skillHoeren',
-  lesen: 'topic.skillLesen',
-  schreiben: 'topic.skillSchreiben',
-  sprechen: 'topic.skillSprechen',
-} as const satisfies Record<TaskSkill, StringKey>;
+// the drills last. A step with no sets is left out; the island shows one set at a time.
 const steps = exerciseSteps(exerciseSets);
-const numberedSteps = steps.filter((step) => step.id !== 'wiederholen');
-const drillStep = steps.find((step) => step.id === 'wiederholen');
 
 const vocabFiles = await Promise.all(
   data.vocab.map(async (id) => {
@@ -332,69 +318,11 @@ const KIND_KEY: Record<string, StringKey> = {
     exerciseSets.length > 0 && (
       <section class="mt-12">
         <h2 class="mb-5 text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
-        <ol class="flex flex-col gap-8">
-          {numberedSteps.map((step, index) => (
-            <li>
-              <section aria-labelledby={`step-${step.id}`}>
-                <div class="mb-3 flex items-start gap-3">
-                  <span
-                    class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-100 text-sm font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200"
-                    aria-hidden="true"
-                  >
-                    {index + 1}
-                  </span>
-                  <div class="min-w-0">
-                    <h3 id={`step-${step.id}`} class="text-lg font-semibold text-stone-900 dark:text-stone-100">
-                      <Chrome k={STEP_LABEL[step.id].label} />
-                    </h3>
-                    <p class="text-sm text-stone-500 dark:text-stone-400"><Chrome k={STEP_LABEL[step.id].hint} /></p>
-                  </div>
-                </div>
-                {step.skills ? (
-                  <div class="flex flex-col gap-5">
-                    {step.skills.map((group) => (
-                      <div>
-                        <h4 class="mb-2 text-xs font-semibold tracking-wide text-stone-500 uppercase dark:text-stone-400">
-                          <Chrome k={SKILL_LABEL[group.skill]} />
-                        </h4>
-                        <div class="flex flex-col gap-4">
-                          {group.sets.map((s) => (
-                            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} recording={s.recording} />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div class="flex flex-col gap-4">
-                    {step.sets.map((s) => (
-                      <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} recording={s.recording} />
-                    ))}
-                  </div>
-                )}
-              </section>
-            </li>
-          ))}
-        </ol>
-        {drillStep && (
-          <details class="group mt-8 rounded-xl border border-stone-200 bg-stone-50/60 open:bg-white dark:border-stone-700 dark:bg-stone-900/40 dark:open:bg-stone-900">
-            <summary class="flex min-h-14 cursor-pointer list-none items-center gap-3 px-4 py-3 marker:content-none">
-              <span class="text-stone-400 transition-transform group-open:rotate-90" aria-hidden="true">›</span>
-              <span class="min-w-0 flex-1">
-                <span class="block font-semibold text-stone-900 dark:text-stone-100"><Chrome k={STEP_LABEL.wiederholen.label} /></span>
-                <span class="block text-xs text-stone-500 dark:text-stone-400"><Chrome k={STEP_LABEL.wiederholen.hint} /></span>
-              </span>
-              <span class="rounded-full bg-stone-200 px-2 py-0.5 text-xs tabular-nums text-stone-600 dark:bg-stone-700 dark:text-stone-300">
-                {drillStep.sets.length}
-              </span>
-            </summary>
-            <div class="flex flex-col gap-4 border-t border-stone-200 p-3 dark:border-stone-700 sm:p-4">
-              {drillStep.sets.map((s) => (
-                <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} recording={s.recording} />
-              ))}
-            </div>
-          </details>
-        )}
+        <TopicExercises
+          client:only="react"
+          steps={steps.map((step) => ({ id: step.id, sets: step.sets }))}
+          primarySetId={manifest.elements.primary_practice}
+        />
       </section>
     )
   }

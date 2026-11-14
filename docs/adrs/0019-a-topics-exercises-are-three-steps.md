@@ -1,6 +1,6 @@
 # ADR 0019: A topic's exercises are three steps: Üben, Anwenden, Aufgaben
 
-Status: accepted · 2026-11-07
+Status: accepted · 2026-11-07 (its "each always open" presentation superseded by [0020](0020-a-topics-exercises-are-one-path.md) · 2026-11-14)
 
 ## Context
 

@@ -144,7 +144,10 @@ are not acceptable answers.
 Every one also declares `title_de`. The topic page shows the activities as the same steps on every
 topic ([ADR 0019](../adrs/0019-a-topics-exercises-are-three-steps.md)): **Üben** (`core` first, then
 `extension`), **Anwenden** (`application`), **Aufgaben** (`task`, listed Hören, Lesen, Schreiben,
-Sprechen), and **Gezielt wiederholen** (`remediation`, folded). Manifest order holds within a step.
+Sprechen), and **Gezielt wiederholen** (`remediation`, last and optional). Manifest order holds within a step. The page shows
+one set at a time, and the step lists its sets by `title_de`
+([ADR 0020](../adrs/0020-a-topics-exercises-are-one-path.md)), so a title must tell a set from its
+siblings on its own.
 
 **One kind of work per set** (validator-enforced, `packages/content/src/exercise-steps.ts`):
 

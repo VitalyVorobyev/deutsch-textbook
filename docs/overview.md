@@ -159,7 +159,7 @@ Topic-owned teaching sets follow the learning-activity contract in [ADR
 topic has exactly one 8–15-item core matching `primary_practice` and at least one productive
 application. The learner page shows the same steps on every topic ([ADR
 0019](adrs/0019-a-topics-exercises-are-three-steps.md)): Üben (`core`, `extension`), Anwenden
-(`application`), Aufgaben (`task`, by `skill`), and the `remediation` drills folded at the end. `bun run activity:audit` is the inventory; item-mix validation remains per topic.
+(`application`), Aufgaben (`task`, by `skill`), and the `remediation` drills last — as one path with a step header and one set on screen ([ADR 0020](adrs/0020-a-topics-exercises-are-one-path.md)). `bun run activity:audit` is the inventory; item-mix validation remains per topic.
 
 A passed placement is a third evidence class. It is real evidence and it removes a topic from the
 recommended path, but it is not a measurement of mastery and never raises the measured tier — a

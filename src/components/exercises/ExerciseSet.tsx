@@ -41,6 +41,10 @@ interface Props {
   recording?: RecordingScript;
   /** The exam Teile the items fall into; the progress dots are then grouped by Teil. */
   teile?: readonly Teil[] | null;
+  /** Called once the last item of a run is answered — its attempt is on its way to the log. */
+  onFinished?: () => void;
+  /** Where the learner goes from the result card, beside "try again" — the path's next set. */
+  nextAction?: { label: string; onClick: () => void };
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -196,6 +200,8 @@ export default function ExerciseSet({
   documents = {},
   recording,
   teile,
+  onFinished,
+  nextAction,
 }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
@@ -366,6 +372,7 @@ export default function ExerciseSet({
       practice: result.practice,
       ts: Date.now(),
     });
+    if (next.length >= items.length) onFinished?.();
   }
 
   function next() {
@@ -400,13 +407,28 @@ export default function ExerciseSet({
                 ? pick(lang, UI.scoreHigh)
                 : pick(lang, UI.scoreLow)}
           </p>
-          <button
-            type="button"
-            onClick={restart}
-            className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
-          >
-            {pick(lang, UI.tryAgain)}
-          </button>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={restart}
+              className={
+                nextAction
+                  ? `${ACTION_BUTTON} border border-stone-300 text-stone-600 hover:border-stone-400 dark:border-stone-600 dark:text-stone-300`
+                  : 'min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0'
+              }
+            >
+              {pick(lang, UI.tryAgain)}
+            </button>
+            {nextAction && (
+              <button
+                type="button"
+                onClick={nextAction.onClick}
+                className={`${ACTION_BUTTON} bg-amber-600 text-white hover:bg-amber-700`}
+              >
+                {nextAction.label}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
