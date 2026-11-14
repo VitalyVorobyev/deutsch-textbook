@@ -47,36 +47,41 @@ const { view } = Astro.props;
     </LearningFigure>
   ) : (
     <LearningFigure id="time-seit-vor" title="seit oder vor?" sourceClass="simulated">
-      <div slot="visual" class="px-4 py-6 sm:px-7" aria-hidden="true">
-        <div class="relative mx-auto max-w-3xl pt-10">
-          <div class="absolute top-[4.2rem] right-0 left-0 h-1 rounded-full bg-stone-300 dark:bg-stone-600" />
-          <div class="absolute top-[3.45rem] left-[22%] h-7 w-1 bg-stone-500" />
-          <div class="absolute top-[3.15rem] right-0 h-9 w-1.5 bg-sky-600" />
-          <span class="absolute top-0 left-[22%] -translate-x-1/2 text-xs font-bold text-stone-600 dark:text-stone-300">Montag</span>
-          <span class="absolute top-0 right-0 text-xs font-black uppercase tracking-wide text-sky-700 dark:text-sky-300">jetzt</span>
-          <div class="grid grid-cols-1 gap-4 pt-16 sm:grid-cols-2">
-            <section class="rounded-xl border-2 border-amber-600 bg-amber-50 p-4 dark:bg-amber-950/35">
-              <strong class="block text-lg text-amber-900 dark:text-amber-200">vor drei Tagen</strong>
-              <p class="m-0 mt-1 text-sm text-amber-950 dark:text-amber-100">ein Ereignis dort · abgeschlossen</p>
-              <div class="mt-3 text-2xl">● <span class="text-sm font-bold">Arzttermin</span></div>
-            </section>
-            <section class="rounded-xl border-2 border-sky-600 bg-sky-50 p-4 dark:bg-sky-950/35">
-              <strong class="block text-lg text-sky-900 dark:text-sky-200">seit Montag</strong>
-              <p class="m-0 mt-1 text-sm text-sky-950 dark:text-sky-100">Beginn dort · dauert bis jetzt</p>
-              <div class="mt-3 flex items-center gap-2 text-sm font-bold"><span>Montag</span><span class="h-1 flex-1 bg-sky-600" /><span>jetzt</span></div>
-            </section>
+      <div slot="visual" class="seit-vor px-4 py-5 sm:px-7" aria-hidden="true">
+        <div class="track-labels">
+          <span class="at-start">Montag</span>
+          <span class="at-now">jetzt</span>
+        </div>
+
+        <div class="relation seit">
+          <div class="track">
+            <span class="span-bar" />
+            <span class="mark start" />
+            <span class="mark now" />
           </div>
+          <p lang="de" class="sentence">Ich <b>habe</b> <strong>seit drei Tagen</strong> Husten.</p>
+          <p lang="de" class="meaning"><b>Präsens</b> · Es ist heute noch so.</p>
+        </div>
+
+        <div class="relation vor">
+          <div class="track">
+            <span class="gap-line" />
+            <span class="mark start" />
+            <span class="mark now" />
+          </div>
+          <p lang="de" class="sentence"><strong>Vor drei Tagen</strong> <b>bin</b> ich zum Arzt <b>gegangen</b>.</p>
+          <p lang="de" class="meaning"><b>Perfekt</b> · Es ist vorbei.</p>
         </div>
       </div>
 
       <p slot="caption" lang="de">
-        <strong>vor</strong> blickt auf ein abgeschlossenes Ereignis zurück;
-        <strong>seit</strong> verbindet den Beginn mit jetzt. Beide stehen mit Dativ.
+        Dieselben drei Tage, zwei Bilder: <strong>seit</strong> ist eine Linie bis jetzt,
+        <strong>vor</strong> ein Punkt in der Vergangenheit.
       </p>
       <div slot="description">
-        <p class="lang-en">The timeline marks Monday in the past and now at the right edge. vor drei Tagen points to one completed doctor’s appointment in the past. seit Montag draws a continuous line from Monday to now: the cough began then and is still present. Both prepositions take the dative.</p>
-        <p class="lang-ru">На шкале отмечены понедельник в прошлом и сейчас справа. vor drei Tagen указывает на один завершённый приём у врача. seit Montag тянет непрерывную линию от понедельника до настоящего момента: кашель начался тогда и продолжается. Оба предлога требуют Dativ.</p>
-        <p class="lang-uk">На шкалі позначено понеділок у минулому й теперішній момент праворуч. vor drei Tagen указує на завершений прийом у лікаря. seit Montag проводить безперервну лінію від понеділка дотепер: кашель почався тоді й триває. Обидва прийменники вимагають Dativ.</p>
+        <p class="lang-en">Two rows share one time axis that runs from Monday on the left to now on the right. In the first row a solid bar fills the whole stretch from Monday to now: Ich habe seit drei Tagen Husten — present tense, because the cough is still there. In the second row there is only a point at Monday and an empty dashed stretch up to now: Vor drei Tagen bin ich zum Arzt gegangen — Perfekt, because the visit is over.</p>
+        <p class="lang-ru">Две строки на одной оси времени: слева понедельник, справа «сейчас». В первой строке сплошная полоса заполняет весь отрезок от понедельника до настоящего момента: Ich habe seit drei Tagen Husten — настоящее время, потому что кашель продолжается. Во второй строке есть только точка в понедельнике и пустой пунктир до «сейчас»: Vor drei Tagen bin ich zum Arzt gegangen — Perfekt, потому что визит уже в прошлом.</p>
+        <p class="lang-uk">Два рядки на одній осі часу: ліворуч понеділок, праворуч «зараз». У першому рядку суцільна смуга заповнює весь відрізок від понеділка дотепер: Ich habe seit drei Tagen Husten — теперішній час, бо кашель триває. У другому рядку є лише точка в понеділку й порожній пунктир до «зараз»: Vor drei Tagen bin ich zum Arzt gegangen — Perfekt, бо візит уже в минулому.</p>
       </div>
     </LearningFigure>
   )
@@ -122,6 +127,139 @@ const { view } = Astro.props;
 
   :global([data-theme='dark']) .time-card b {
     color: #bae6fd;
+  }
+
+  /* seit oder vor? — both rows draw on the same axis: --start is where Monday sits, the right
+     edge is now. The bar and the lone point are the whole message; colour only repeats it. */
+  .seit-vor {
+    --start: 14%;
+    --seit: #0369a1;
+    --vor: #b45309;
+    --rule: #a8a29e;
+    display: grid;
+    gap: 1.25rem;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .seit-vor .track-labels {
+    position: relative;
+    height: 1.1rem;
+    color: #57534e;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .seit-vor .at-start {
+    position: absolute;
+    left: var(--start);
+    transform: translateX(-50%);
+  }
+
+  .seit-vor .at-now {
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .seit-vor .track {
+    position: relative;
+    height: 1.5rem;
+  }
+
+  .seit-vor .mark {
+    position: absolute;
+    top: 50%;
+  }
+
+  .seit-vor .mark.now {
+    right: 0;
+    width: 3px;
+    height: 1.5rem;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    background: var(--rule);
+  }
+
+  .seit-vor .mark.start {
+    left: var(--start);
+    width: 0.95rem;
+    height: 0.95rem;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+  }
+
+  .seit-vor .seit .mark.start,
+  .seit-vor .span-bar {
+    background: var(--seit);
+  }
+
+  .seit-vor .vor .mark.start {
+    background: var(--vor);
+  }
+
+  .seit-vor .span-bar {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: var(--start);
+    height: 0.5rem;
+    transform: translateY(-50%);
+    border-radius: 999px;
+  }
+
+  .seit-vor .gap-line {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: var(--start);
+    border-top: 2px dashed var(--rule);
+  }
+
+  .seit-vor .sentence {
+    margin: 0.5rem 0 0;
+    color: #1c1917;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .seit-vor .sentence b {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .seit-vor .seit .sentence strong,
+  .seit-vor .seit .meaning b {
+    color: var(--seit);
+  }
+
+  .seit-vor .vor .sentence strong,
+  .seit-vor .vor .meaning b {
+    color: var(--vor);
+  }
+
+  .seit-vor .meaning {
+    margin: 0.15rem 0 0;
+    color: #57534e;
+    font-size: 0.85rem;
+  }
+
+  :global([data-theme='dark']) .seit-vor {
+    --seit: #7dd3fc;
+    --vor: #fbbf24;
+    --rule: #78716c;
+  }
+
+  :global([data-theme='dark']) .seit-vor .track-labels,
+  :global([data-theme='dark']) .seit-vor .meaning {
+    color: #a8a29e;
+  }
+
+  :global([data-theme='dark']) .seit-vor .sentence {
+    color: #f5f5f4;
   }
 
   @media (max-width: 420px) {
