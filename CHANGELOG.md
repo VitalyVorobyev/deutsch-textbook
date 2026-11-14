@@ -11,6 +11,14 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Changed
+
+- **A topic's exercises are now one path instead of a long column of panels.** The steps — Üben,
+  Anwenden, Aufgaben, Gezielt wiederholen — stand across the top as in the daily session, one
+  exercise is on screen, and a finished one offers the next. The page opens on the first exercise
+  you have not worked through, ticks the ones you have, and marks the Grundübung as the one that
+  finishes the topic; everything after it is labelled optional.
+
 ### Added
 
 - **Five topics gain a recorded listening task**, three questions each: a courtyard-party poster

@@ -58,7 +58,8 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0016`](0016-lessons-are-tasks-and-a-cast-carries-them.md) | A lesson is a sequence of tasks, each built on one stimulus, and a recurring cast of people carries the stimuli (its first four names superseded by 0017, its walk-on voice pool by 0018, its frozen-identity clause in part by 0019) |
 | [`0017`](0017-the-first-four-are-the-lena-serials-cast.md) | The first four cast members are the Lena serial's own people: Lena, Mira, Timo and Frau Kern (its voiceless Frau Kern superseded by 0018) |
 | [`0018`](0018-the-twelve-roster-voices-are-the-whole-pool.md) | The twelve roster voices are the whole pool; Frau Kern speaks with the anna-keller voice |
-| [`0019`](0019-a-topics-exercises-are-three-steps.md) | A topic's exercises are three steps — Üben, Anwenden, Aufgaben — with one kind of work per set, and an item may move between sets with its history |
+| [`0019`](0019-a-topics-exercises-are-three-steps.md) | A topic's exercises are three steps — Üben, Anwenden, Aufgaben — with one kind of work per set, and an item may move between sets with its history (its always-open presentation superseded by 0020) |
+| [`0020`](0020-a-topics-exercises-are-one-path.md) | A topic's exercises are one path: a step header, one set on screen, the Grundübung marked as the set that counts |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),
