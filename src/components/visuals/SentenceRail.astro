@@ -9,100 +9,178 @@ interface Props {
 
 const { view } = Astro.props;
 
-const figures = {
-  v2: {
-    title: 'Das Verb bleibt auf Position 2',
-    label: 'Hauptsatz',
-    tokens: [['Heute', 'start'], ['arbeitet', 'finite'], ['Nina', 'middle'], ['im Büro.', 'middle']],
-    caption: 'Ein Satzteil kann nach vorn wandern; das konjugierte Verb bleibt an zweiter Stelle.',
-    en: 'Heute fills the first position. The conjugated verb arbeitet remains in position two; the subject Nina follows it.',
-    ru: 'Heute занимает первую позицию. Спрягаемый глагол arbeitet остаётся на второй, а подлежащее Nina идёт после него.',
-    uk: 'Heute займає першу позицію. Відмінюване дієслово arbeitet залишається на другій, а підмет Nina стоїть після нього.',
-  },
-  separable: {
-    title: 'Die Vorsilbe schließt den Satz',
-    label: 'Trennbares Verb',
-    tokens: [['Nina', 'start'], ['ruft', 'finite'], ['ihre Mutter', 'middle'], ['an.', 'end']],
-    caption: 'Der konjugierte Stamm steht auf Position 2; die trennbare Vorsilbe steht am Ende.',
-    en: 'The separable verb anrufen opens into two parts: finite ruft in position two and prefix an at the end.',
-    ru: 'Отделяемый глагол anrufen раскрывается в рамку: форма ruft стоит на второй позиции, приставка an — в конце.',
-    uk: 'Відокремлюване дієслово anrufen утворює рамку: форма ruft стоїть на другій позиції, префікс an — у кінці.',
-  },
-  modal: {
-    title: 'Modalverb und Infinitiv bilden eine Klammer',
-    label: 'Modalverb',
-    tokens: [['Nina', 'start'], ['muss', 'finite'], ['am Samstag', 'middle'], ['arbeiten.', 'end']],
-    caption: 'Das Modalverb ist konjugiert; der zweite Verbinfinitiv schließt den Satz.',
-    en: 'The conjugated modal muss occupies position two. The action verb arbeiten stays as an infinitive at the end.',
-    ru: 'Спрягаемый модальный глагол muss занимает вторую позицию. Смысловой глагол arbeiten остаётся инфинитивом в конце.',
-    uk: 'Відмінюване модальне дієслово muss займає другу позицію. Смислове arbeiten лишається інфінітивом у кінці.',
-  },
-  perfekt: {
-    title: 'Hilfsverb und Partizip bilden eine Klammer',
-    label: 'Perfekt',
-    tokens: [['Nina', 'start'], ['hat', 'finite'], ['den Schrank', 'middle'], ['aufgebaut.', 'end']],
-    caption: 'Das Hilfsverb steht auf Position 2; das Partizip II schließt den Satz.',
-    en: 'The auxiliary hat is conjugated in position two. The participle aufgebaut closes the clause.',
-    ru: 'Вспомогательный глагол hat стоит на второй позиции. Причастие aufgebaut закрывает предложение.',
-    uk: 'Допоміжне дієслово hat стоїть на другій позиції. Дієприкметник aufgebaut закриває речення.',
-  },
-  subordinate: {
-    title: 'Im Nebensatz geht das Verb ans Ende',
-    label: 'weil-Nebensatz',
-    tokens: [['weil', 'connector'], ['Nina', 'start'], ['am Samstag', 'middle'], ['arbeiten muss.', 'end']],
-    caption: 'Die Konjunktion öffnet den Nebensatz; der ganze Verbblock steht am Ende.',
-    en: 'weil opens a subordinate clause. Nina and the time phrase come first; the verb block arbeiten muss closes it.',
-    ru: 'weil открывает придаточное. После него идут Nina и обстоятельство времени, а блок arbeiten muss закрывает придаточное.',
-    uk: 'weil відкриває підрядне речення. Після нього стоять Nina й обставина часу, а блок arbeiten muss закриває підрядне.',
-  },
-  indirect: {
-    title: 'Die Frage wird zum Nebensatz',
-    label: 'Indirekte Frage',
-    tokens: [['Weißt du,', 'start'], ['wann', 'connector'], ['der Kurs', 'middle'], ['beginnt?', 'end']],
-    caption: 'Das Fragewort bleibt; das konjugierte Verb wandert ans Ende der indirekten Frage.',
-    en: 'The wrapper Weißt du turns the question into a subordinate clause. wann stays at its start and beginnt moves to the end.',
-    ru: 'Рамка Weißt du превращает вопрос в придаточное. wann остаётся в начале, а beginnt переходит в конец.',
-    uk: 'Рамка Weißt du перетворює питання на підрядне. wann лишається на початку, а beginnt переходить у кінець.',
-  },
-  zu: {
-    title: 'Der zu-Infinitiv schließt seinen Satz',
-    label: 'Infinitiv mit zu',
-    tokens: [['Nina', 'start'], ['versucht,', 'finite'], ['früher', 'middle'], ['aufzustehen.', 'end']],
-    caption: 'Bei trennbaren Verben steht zu zwischen Vorsilbe und Stamm: auf + zu + stehen.',
-    en: 'The governing verb versucht is conjugated. The zu-infinitive closes the clause; in aufzustehen, zu sits between prefix auf and stem stehen.',
-    ru: 'Управляющий глагол versucht спрягается. Инфинитив с zu стоит в конце; в aufzustehen частица zu вставлена между auf и stehen.',
-    uk: 'Керівне дієслово versucht відмінюється. Інфінітив із zu стоїть у кінці; в aufzustehen частка zu міститься між auf і stehen.',
-  },
-} satisfies Record<View, {
+/**
+ * A cell is its text and its role. `finite` is the conjugated verb, `close` the part of the verb
+ * that ends the clause, `signal` the word that sends the verb to the end, `gap` the slot the verb
+ * has left. Inside a text, *…* marks the conjugated verb where it shares a cell.
+ */
+type Role = 'plain' | 'finite' | 'close' | 'signal' | 'gap';
+type Cell = [text: string, role?: Role];
+
+interface Figure {
   title: string;
-  label: string;
-  tokens: [string, 'start' | 'finite' | 'middle' | 'end' | 'connector'][];
+  /** one label per column; '' leaves the column unnamed */
+  columns: string[];
+  /** every row fills the same columns, so the same slot sits under the same label */
+  rows: { label?: string; cells: Cell[] }[];
+  /** draws the bracket from the conjugated verb to the clause-final part */
+  bracket?: boolean;
   caption: string;
   en: string;
   ru: string;
   uk: string;
-}>;
+}
+
+const figures: Record<View, Figure> = {
+  v2: {
+    title: 'Das Verb bleibt auf Position 2',
+    columns: ['Position 1', 'Position 2', '', ''],
+    rows: [
+      { cells: [['Nina'], ['arbeitet', 'finite'], ['heute'], ['im Büro.']] },
+      { cells: [['Heute'], ['arbeitet', 'finite'], ['Nina'], ['im Büro.']] },
+      { cells: [['Im Büro'], ['arbeitet', 'finite'], ['Nina'], ['heute.']] },
+    ],
+    caption:
+      'Auf Position 1 steht jedes Mal etwas anderes. Das konjugierte Verb bleibt auf Position 2, und das Subjekt steht dann direkt nach dem Verb.',
+    en: 'Three versions of one sentence stand one below the other, in the same columns. The first column changes from row to row: Nina, then Heute, then Im Büro. The second column is the same in all three rows: the conjugated verb arbeitet. When Nina is not in the first column, she stands in the third, right after the verb.',
+    ru: 'Три варианта одного предложения стоят друг под другом в одних и тех же колонках. Первая колонка меняется от строки к строке: Nina, затем Heute, затем Im Büro. Вторая колонка во всех трёх строках одна и та же — спрягаемый глагол arbeitet. Когда Nina не стоит в первой колонке, она оказывается в третьей, сразу после глагола.',
+    uk: 'Три варіанти одного речення стоять одне під одним у тих самих колонках. Перша колонка змінюється від рядка до рядка: Nina, потім Heute, потім Im Büro. Друга колонка в усіх трьох рядках та сама — відмінюване дієслово arbeitet. Коли Nina не стоїть у першій колонці, вона опиняється в третій, одразу після дієслова.',
+  },
+  separable: {
+    title: 'anrufen: ruft … an',
+    columns: ['', 'Position 2', '', 'Satzende'],
+    bracket: true,
+    rows: [
+      { cells: [['Nina'], ['ruft', 'finite'], [''], ['an.', 'close']] },
+      { cells: [['Nina'], ['ruft', 'finite'], ['ihre Mutter'], ['an.', 'close']] },
+      { cells: [['Nina'], ['ruft', 'finite'], ['heute Abend ihre Mutter'], ['an.', 'close']] },
+    ],
+    caption:
+      'Das Verb teilt sich: Der konjugierte Teil steht auf Position 2, die Vorsilbe am Satzende. Alles andere steht dazwischen – egal, wie lang der Satz wird.',
+    en: 'Three sentences with anrufen stand one below the other, in the same columns. In every row ruft is in the second column and the prefix an in the last one; a bracket joins the two. Only the space between them grows: nothing, then ihre Mutter, then heute Abend ihre Mutter.',
+    ru: 'Три предложения с anrufen стоят друг под другом в одних и тех же колонках. В каждой строке ruft стоит во второй колонке, а приставка an — в последней; их соединяет скобка. Растёт только середина: сначала она пустая, потом в ней ihre Mutter, потом heute Abend ihre Mutter.',
+    uk: 'Три речення з anrufen стоять одне під одним у тих самих колонках. У кожному рядку ruft стоїть у другій колонці, а префікс an — в останній; їх з’єднує дужка. Росте лише середина: спершу вона порожня, потім у ній ihre Mutter, потім heute Abend ihre Mutter.',
+  },
+  modal: {
+    title: 'Modalverb und Infinitiv bilden eine Klammer',
+    columns: ['', 'Position 2', '', 'Satzende'],
+    bracket: true,
+    rows: [
+      { cells: [['Nina'], ['muss', 'finite'], [''], ['arbeiten.', 'close']] },
+      { cells: [['Nina'], ['muss', 'finite'], ['am Samstag'], ['arbeiten.', 'close']] },
+      { cells: [['Am Samstag'], ['muss', 'finite'], ['Nina im Büro'], ['arbeiten.', 'close']] },
+    ],
+    caption:
+      'Das Modalverb ist konjugiert und steht auf Position 2. Der Infinitiv steht am Satzende. Alles andere steht dazwischen.',
+    en: 'Three sentences stand one below the other, in the same columns. In every row the conjugated modal muss is in the second column and the infinitive arbeiten in the last one; a bracket joins the two. The rest of the sentence sits between them, and in the third row Am Samstag has moved to the front without changing either verb position.',
+    ru: 'Три предложения стоят друг под другом в одних и тех же колонках. В каждой строке спрягаемый модальный глагол muss стоит во второй колонке, а инфинитив arbeiten — в последней; их соединяет скобка. Остальные слова помещаются между ними, а в третьей строке Am Samstag вынесено в начало — и оба глагола остались на своих местах.',
+    uk: 'Три речення стоять одне під одним у тих самих колонках. У кожному рядку відмінюване модальне дієслово muss стоїть у другій колонці, а інфінітив arbeiten — в останній; їх з’єднує дужка. Решта слів уміщується між ними, а в третьому рядку Am Samstag винесено на початок — і обидва дієслова лишилися на своїх місцях.',
+  },
+  perfekt: {
+    title: 'Hilfsverb und Partizip bilden eine Klammer',
+    columns: ['', 'Position 2', '', 'Satzende'],
+    bracket: true,
+    rows: [
+      { cells: [['Nina'], ['hat', 'finite'], ['den Schrank'], ['aufgebaut.', 'close']] },
+      { cells: [['Nina'], ['hat', 'finite'], ['gestern den Schrank'], ['aufgebaut.', 'close']] },
+      { cells: [['Gestern'], ['hat', 'finite'], ['Nina den Schrank'], ['aufgebaut.', 'close']] },
+    ],
+    caption:
+      'Das Hilfsverb ist konjugiert und steht auf Position 2. Das Partizip II steht am Satzende. Alles andere steht dazwischen.',
+    en: 'Three sentences stand one below the other, in the same columns. In every row the auxiliary hat is in the second column and the participle aufgebaut in the last one; a bracket joins the two. The rest of the sentence sits between them, and in the third row Gestern has moved to the front without changing either verb position.',
+    ru: 'Три предложения стоят друг под другом в одних и тех же колонках. В каждой строке вспомогательный глагол hat стоит во второй колонке, а причастие aufgebaut — в последней; их соединяет скобка. Остальные слова помещаются между ними, а в третьей строке Gestern вынесено в начало — и обе части сказуемого остались на своих местах.',
+    uk: 'Три речення стоять одне під одним у тих самих колонках. У кожному рядку допоміжне дієслово hat стоїть у другій колонці, а дієприкметник aufgebaut — в останній; їх з’єднує дужка. Решта слів уміщується між ними, а в третьому рядку Gestern винесено на початок — і обидві частини присудка лишилися на своїх місцях.',
+  },
+  subordinate: {
+    title: 'Im Nebensatz geht das Verb ans Ende',
+    columns: ['', '', 'Position 2', '', 'Satzende'],
+    rows: [
+      {
+        label: 'Hauptsatz',
+        cells: [[''], ['Nina'], ['muss', 'finite'], ['am Samstag'], ['arbeiten.']],
+      },
+      {
+        label: 'Nebensatz',
+        cells: [['…, weil', 'signal'], ['Nina'], ['', 'gap'], ['am Samstag'], ['arbeiten *muss*.']],
+      },
+    ],
+    caption:
+      'Nach weil ist der Platz auf Position 2 leer: Das konjugierte Verb steht ganz am Ende, hinter dem Infinitiv.',
+    en: 'The same sentence stands twice, in the same columns. As a main clause, the conjugated verb muss is in the Position 2 column. As a weil clause, that slot is empty and drawn with a dashed outline; muss now stands in the last column, after arbeiten. Everything else has kept its place.',
+    ru: 'Одно и то же предложение стоит дважды в одних и тех же колонках. В главном предложении спрягаемый глагол muss стоит в колонке «Position 2». В придаточном с weil это место пустое и обведено пунктиром, а muss стоит в последней колонке, после arbeiten. Все остальные слова остались на своих местах.',
+    uk: 'Те саме речення стоїть двічі в тих самих колонках. У головному реченні відмінюване дієслово muss стоїть у колонці «Position 2». У підрядному з weil це місце порожнє й обведене пунктиром, а muss стоїть в останній колонці, після arbeiten. Усі інші слова лишилися на своїх місцях.',
+  },
+  indirect: {
+    title: 'Die Frage wird zum Nebensatz',
+    columns: ['', 'Fragewort', 'Position 2', '', 'Satzende'],
+    rows: [
+      {
+        label: 'Direkte Frage',
+        cells: [[''], ['Wann', 'signal'], ['beginnt', 'finite'], ['der Kurs?'], ['']],
+      },
+      {
+        label: 'Indirekte Frage',
+        cells: [['Weißt du,'], ['wann', 'signal'], ['', 'gap'], ['der Kurs'], ['beginnt?', 'finite']],
+      },
+    ],
+    caption:
+      'Das Fragewort bleibt am Anfang der Frage. Das konjugierte Verb verlässt Position 2 und steht am Ende.',
+    en: 'The same question stands twice, in the same columns. Asked directly, the conjugated verb beginnt follows the question word wann in the Position 2 column. After Weißt du, the question word is still first, the verb slot is empty and drawn with a dashed outline, and beginnt stands in the last column.',
+    ru: 'Один и тот же вопрос стоит дважды в одних и тех же колонках. В прямом вопросе спрягаемый глагол beginnt идёт сразу за вопросительным словом wann, в колонке «Position 2». После Weißt du вопросительное слово по-прежнему первое, место глагола пустое и обведено пунктиром, а beginnt стоит в последней колонке.',
+    uk: 'Те саме питання стоїть двічі в тих самих колонках. У прямому питанні відмінюване дієслово beginnt іде одразу за питальним словом wann, у колонці «Position 2». Після Weißt du питальне слово так само перше, місце дієслова порожнє й обведене пунктиром, а beginnt стоїть в останній колонці.',
+  },
+  zu: {
+    title: 'Der zu-Infinitiv steht am Ende',
+    columns: ['', 'Position 2', '', 'Satzende'],
+    rows: [
+      { cells: [['Nina'], ['versucht,', 'finite'], ['früher'], ['*zu* kommen.', 'close']] },
+      { cells: [['Nina'], ['versucht,', 'finite'], ['früher'], ['auf*zu*stehen.', 'close']] },
+    ],
+    caption:
+      'Der Infinitiv mit zu steht am Satzende. Bei einem trennbaren Verb steht zu zwischen Vorsilbe und Stamm: auf + zu + stehen.',
+    en: 'Two sentences stand one below the other, in the same columns. In both, the conjugated verb versucht is in the second column and the infinitive with zu in the last one. With kommen, zu is a separate word in front of the infinitive. With the separable verb aufstehen, zu is written inside the word, between auf and stehen.',
+    ru: 'Два предложения стоят друг под другом в одних и тех же колонках. В обоих спрягаемый глагол versucht стоит во второй колонке, а инфинитив с zu — в последней. С kommen частица zu пишется отдельным словом перед инфинитивом. С отделяемым глаголом aufstehen она пишется внутри слова, между auf и stehen.',
+    uk: 'Два речення стоять одне під одним у тих самих колонках. В обох відмінюване дієслово versucht стоїть у другій колонці, а інфінітив із zu — в останній. З kommen частка zu пишеться окремим словом перед інфінітивом. З відокремлюваним дієсловом aufstehen вона пишеться всередині слова, між auf і stehen.',
+  },
+};
 
 const figure = figures[view];
+const width = figure.columns.length;
+/** the column of the conjugated verb, and of the part that closes the clause, counted from 1 */
+const from = figure.columns.indexOf('Position 2') + 1;
+/** grid rows are explicit: 1 the column labels, 2 the bracket, then a label line and a line of cells per row */
+const lines = figure.rows.map((_, index) => ({ label: 3 + index * 2, cells: 4 + index * 2 }));
+const parts = (text: string) =>
+  text.split('*').map((part, index) => ({ part, marked: index % 2 === 1 }));
 ---
 
 <LearningFigure id={`sentence-rail-${view}`} title={figure.title} sourceClass="simulated">
-  <div slot="visual" class="sentence-rail px-3 py-5 sm:px-5" aria-hidden="true">
-    <div class="mb-3 text-center text-xs font-bold uppercase tracking-[0.12em] text-stone-500 dark:text-stone-400">
-      {figure.label}
-    </div>
-    <div class="grid min-w-0 grid-cols-2 gap-2 sm:flex sm:items-stretch sm:justify-center">
-      {figure.tokens.map(([text, role], index) => (
-        <div class:list={['rail-token', `rail-token--${role}`]}>
-          <small>{role === 'finite' ? 'Position 2' : role === 'end' ? 'Ende' : role === 'connector' ? 'Signal' : index + 1}</small>
-          <strong>{text}</strong>
-        </div>
+  <div slot="visual" class="rail-scroll px-2 py-5 sm:px-5" aria-hidden="true">
+    <div class="rail" style={`--columns: ${width}`}>
+      {figure.columns.map((label, index) => (
+        <span class="rail-head" style={`grid-column: ${index + 1}`}>{label}</span>
       ))}
-    </div>
-    <div class="mt-3 flex items-center justify-center gap-2 text-xs font-semibold text-stone-500 dark:text-stone-400">
-      <span class="h-px w-8 bg-amber-500" />
-      Satzanfang → Satzende
-      <span class="h-px w-8 bg-sky-500" />
+      {figure.bracket && (
+        <span class="rail-bracket" style={`grid-column: ${from} / ${width + 1}`}>
+          <i>Satzklammer</i>
+        </span>
+      )}
+      {figure.rows.map((row, line) => (
+        <>
+          {row.label && (
+            <span class="rail-label" style={`grid-row: ${lines[line]!.label}`}>{row.label}</span>
+          )}
+          {row.cells.map(([text, role = 'plain'], index) => (
+            <span
+              class:list={['rail-cell', `rail-cell--${role}`, !text && role !== 'gap' && 'rail-cell--empty']}
+              style={`grid-column: ${index + 1}; grid-row: ${lines[line]!.cells}`}
+              lang="de"
+            >
+              <span>{parts(text).map(({ part, marked }) => (marked ? <b>{part}</b> : part))}</span>
+            </span>
+          ))}
+        </>
+      ))}
     </div>
   </div>
 
@@ -116,78 +194,135 @@ const figure = figures[view];
 </LearningFigure>
 
 <style>
-  .sentence-rail {
-    background:
-      linear-gradient(90deg, rgb(245 158 11 / 8%), transparent 30%, transparent 70%, rgb(14 165 233 / 8%)),
-      repeating-linear-gradient(0deg, transparent, transparent 2.75rem, rgb(120 113 108 / 10%) 2.75rem, rgb(120 113 108 / 10%) 2.8rem);
+  /* One grid for all rows: a slot is a column, so the eye compares the rows downwards. The verb
+     columns are the only coloured ones. */
+  .rail-scroll {
+    overflow-x: auto;
   }
 
-  .rail-token {
-    display: flex;
-    min-width: 0;
-    flex: 1 1 0;
-    flex-direction: column;
+  .rail {
+    --finite: #b45309;
+    --finite-bg: #fff7ed;
+    --close: #0369a1;
+    --close-bg: #f0f9ff;
+    --line: #d6d3d1;
+    --cell: #fff;
+    --ink: #292524;
+    --muted: #78716c;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), auto);
     justify-content: center;
-    border: 2px solid #d6d3d1;
-    border-radius: 0.7rem;
-    background: rgb(255 255 255 / 92%);
-    padding: 0.55rem 0.4rem;
-    text-align: center;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+    gap: 0 0.2rem;
+    color: var(--ink);
+    font-size: clamp(0.75rem, 3.6vw, 1rem);
   }
 
-  .rail-token small {
-    color: #78716c;
-    font-size: 0.58rem;
+  .rail-head {
+    grid-row: 1;
+    align-self: end;
+    color: var(--muted);
+    font-size: clamp(0.5rem, 2.5vw, 0.62rem);
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .rail-bracket {
+    grid-row: 2;
+    height: 0.9rem;
+    margin: 0.6rem 1.1rem 0;
+    border: 2px solid var(--muted);
+    border-bottom: 0;
+    border-radius: 0.4rem 0.4rem 0 0;
+    text-align: center;
+  }
+
+  .rail-bracket i {
+    position: relative;
+    top: -0.7rem;
+    background: var(--bg, #f5f5f4);
+    padding: 0 0.4rem;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-style: normal;
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
-  .rail-token strong {
-    overflow-wrap: anywhere;
-    color: #292524;
-    font-size: clamp(0.78rem, 2.5vw, 1rem);
+  .rail-label {
+    grid-column: 1 / -1;
+    margin-top: 0.4rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .rail-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.4rem;
+    margin-top: 0.35rem;
+    border: 1.5px solid var(--line);
+    border-radius: 0.5rem;
+    background: var(--cell);
+    padding: 0.3rem clamp(0.25rem, 1.6vw, 0.6rem);
+    font-weight: 600;
     line-height: 1.2;
+    text-align: center;
+    white-space: pre-wrap;
   }
 
-  .rail-token--finite,
-  .rail-token--connector {
-    border-color: #d97706;
-    background: #fff7ed;
+  .rail-cell--empty {
+    border-color: transparent;
+    background: transparent;
   }
 
-  .rail-token--finite strong,
-  .rail-token--connector strong {
-    color: #9a3412;
+  .rail-cell--gap {
+    min-width: 2.4rem;
+    border-style: dashed;
+    border-color: var(--finite);
+    background: transparent;
   }
 
-  .rail-token--end {
-    border-color: #0284c7;
-    background: #f0f9ff;
+  .rail-cell--finite {
+    border-color: var(--finite);
+    background: var(--finite-bg);
+    color: var(--finite);
+    font-weight: 800;
   }
 
-  .rail-token--end strong {
-    color: #075985;
+  .rail-cell--close {
+    border-color: var(--close);
+    background: var(--close-bg);
+    color: var(--close);
+    font-weight: 800;
   }
 
-  :global([data-theme='dark']) .rail-token {
-    border-color: #57534e;
-    background: rgb(41 37 36 / 94%);
+  .rail-cell--signal {
+    border-color: var(--ink);
+    font-weight: 800;
   }
 
-  :global([data-theme='dark']) .rail-token strong {
-    color: #f5f5f4;
+  .rail-cell b {
+    color: var(--finite);
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
   }
 
-  :global([data-theme='dark']) .rail-token--finite,
-  :global([data-theme='dark']) .rail-token--connector {
-    border-color: #f59e0b;
-    background: rgb(120 53 15 / 35%);
-  }
-
-  :global([data-theme='dark']) .rail-token--end {
-    border-color: #38bdf8;
-    background: rgb(12 74 110 / 35%);
+  :global([data-theme='dark']) .rail {
+    --finite: #fbbf24;
+    --finite-bg: rgb(120 53 15 / 35%);
+    --close: #7dd3fc;
+    --close-bg: rgb(12 74 110 / 35%);
+    --line: #57534e;
+    --cell: #292524;
+    --ink: #f5f5f4;
+    --muted: #a8a29e;
+    --bg: #0c0a09;
   }
 </style>

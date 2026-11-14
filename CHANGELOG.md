@@ -13,6 +13,12 @@ GitHub Release notes.
 
 ### Changed
 
+- **The diagrams in nine topics are redrawn so that the picture itself shows the rule.** Word order
+  now stands as the same sentence in several rows, with the verb staying in its column or leaving
+  an empty slot behind; *seit* is a line that reaches now and *vor* a point in the past; the clock
+  for *halb neun* shows the hand on its way to the nine; and in *Mir tut der Kopf weh* the arrow
+  runs from the head to the person. Figures also lost their "Lernillustration" label.
+
 - **A topic now shows your own mistakes.** "Meine Fehler" lists the exercises of the topic you
   last answered wrong — what you wrote, what was expected and why — and an entry goes away once
   you answer that exercise correctly. The authored "Häufige Fehler" list is still there, folded

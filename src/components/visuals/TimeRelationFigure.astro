@@ -11,27 +11,34 @@ const { view } = Astro.props;
 {
   view === 'clock' ? (
     <LearningFigure id="time-half-nine" title="halb neun = 8:30" sourceClass="simulated">
-      <div slot="visual" class="grid min-w-0 items-center gap-5 px-4 py-5 sm:grid-cols-[15rem_1fr] sm:px-6" aria-hidden="true">
+      <div slot="visual" class="clock grid min-w-0 items-center gap-5 px-4 py-5 sm:grid-cols-[15rem_1fr] sm:px-6" aria-hidden="true">
         <div class="mx-auto w-full max-w-60">
           <svg viewBox="0 0 240 240" class="h-auto w-full">
-            <circle cx="120" cy="120" r="105" fill="#fafaf9" stroke="#78716c" stroke-width="5" />
+            <circle cx="120" cy="120" r="108" class="clock-face" />
             {[...Array(12)].map((_, index) => {
-              const angle = (index * 30 - 90) * Math.PI / 180;
-              const x = 120 + Math.cos(angle) * 86;
-              const y = 120 + Math.sin(angle) * 86;
-              return <circle cx={x} cy={y} r="3.5" fill="#78716c" />;
+              const hour = index + 1;
+              const angle = ((hour * 30 - 90) * Math.PI) / 180;
+              return (
+                <text
+                  x={120 + Math.cos(angle) * 88}
+                  y={120 + Math.sin(angle) * 88}
+                  class:list={['clock-hour', hour === 8 && 'clock-hour--from', hour === 9 && 'clock-hour--next']}
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                >
+                  {hour}
+                </text>
+              );
             })}
-            <line x1="120" y1="120" x2="120" y2="202" stroke="#0284c7" stroke-width="7" stroke-linecap="round" />
-            <line x1="120" y1="120" x2="70" y2="133" stroke="#d97706" stroke-width="9" stroke-linecap="round" />
-            <circle cx="120" cy="120" r="8" fill="#292524" />
-            <text x="120" y="174" text-anchor="middle" font-size="26" font-weight="850" fill="#292524">8:30</text>
-            <text x="120" y="201" text-anchor="middle" font-size="18" font-weight="750" fill="#9a3412">halb neun</text>
+            <line x1="120" y1="120" x2="120" y2="186" class="clock-minute" />
+            <line x1="120" y1="120" x2="68.8" y2="133.7" class="clock-hand" />
+            <circle cx="120" cy="120" r="7" class="clock-pin" />
           </svg>
         </div>
-        <div class="grid gap-2">
-          <div class="time-card"><strong>um</strong><span>Uhrzeit</span><b>um halb neun</b></div>
-          <div class="time-card"><strong>am</strong><span>Tag</span><b>am Montag</b></div>
-          <div class="time-card"><strong>im</strong><span>Monat / Jahreszeit</span><b>im Juli · im Sommer</b></div>
+        <div class="clock-reading">
+          <p class="clock-digits">8:30</p>
+          <p lang="de" class="clock-words">halb <b>neun</b></p>
+          <p lang="de" class="clock-note">Der kurze Zeiger ist auf halbem Weg zur <b>9</b>.</p>
         </div>
       </div>
 
@@ -40,9 +47,9 @@ const { view } = Astro.props;
         Stunde vor neun, also 8:30.
       </p>
       <div slot="description">
-        <p class="lang-en">A clock shows 8:30: the minute hand points to six and the hour hand sits halfway between eight and nine. German names the coming hour, so halb neun means half an hour before nine. The scale pairs um with a clock time, am with a day and im with a month or season.</p>
-        <p class="lang-ru">Часы показывают 8:30: минутная стрелка на шести, часовая между восьмью и девятью. Немецкое выражение называет следующий час, поэтому halb neun — половина пути к девяти. Шкала связывает um со временем на часах, am с днём, im с месяцем или временем года.</p>
-        <p class="lang-uk">Годинник показує 8:30: хвилинна стрілка на шести, годинна між восьмою та дев’ятою. Німецький вислів називає наступну годину, тому halb neun — половина шляху до дев’ятої. Шкала поєднує um із часом, am із днем, im із місяцем або порою року.</p>
+        <p class="lang-en">A clock face with all twelve numbers shows 8:30. The long hand points down to six. The short hand stands exactly halfway between eight and nine, and the nine is highlighted: German names the hour the short hand is moving towards, so 8:30 is halb neun, half of the way to nine.</p>
+        <p class="lang-ru">Циферблат со всеми двенадцатью цифрами показывает 8:30. Длинная стрелка смотрит вниз, на шесть. Короткая стоит ровно посередине между восьмёркой и девяткой, и девятка выделена: по-немецки называют тот час, к которому идёт короткая стрелка, поэтому 8:30 — это halb neun, как русское «половина девятого».</p>
+        <p class="lang-uk">Циферблат з усіма дванадцятьма цифрами показує 8:30. Довга стрілка дивиться вниз, на шістку. Коротка стоїть рівно посередині між вісімкою та дев’яткою, і дев’ятку виділено: німецькою називають ту годину, до якої йде коротка стрілка, тому 8:30 — це halb neun, пів на дев’яту.</p>
       </div>
     </LearningFigure>
   ) : (
@@ -88,45 +95,95 @@ const { view } = Astro.props;
 }
 
 <style>
-  .time-card {
-    display: grid;
-    grid-template-columns: 3.2rem minmax(5rem, 1fr) minmax(7rem, 1.4fr);
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px solid #d6d3d1;
-    border-radius: 0.7rem;
-    background: rgb(255 255 255 / 92%);
-    padding: 0.65rem 0.75rem;
+  /* halb neun — the short hand and the 9 it is heading for carry the one colour */
+  .clock {
+    --next: #b45309;
+    --ink: #292524;
+    --muted: #a8a29e;
+    --face: #fafaf9;
   }
 
-  .time-card strong {
-    color: #9a3412;
-    font-size: 1.2rem;
+  .clock-face {
+    fill: var(--face);
+    stroke: var(--muted);
+    stroke-width: 3;
   }
 
-  .time-card span {
-    color: #78716c;
-    font-size: 0.72rem;
+  .clock-hour {
+    fill: var(--muted);
+    font-size: 15px;
     font-weight: 700;
-    text-transform: uppercase;
   }
 
-  .time-card b {
-    color: #075985;
-    font-size: 0.85rem;
+  .clock-hour--from {
+    fill: var(--ink);
+    font-size: 20px;
   }
 
-  :global([data-theme='dark']) .time-card {
-    border-color: #57534e;
-    background: rgb(41 37 36 / 94%);
+  .clock-hour--next {
+    fill: var(--next);
+    font-size: 24px;
+    font-weight: 850;
   }
 
-  :global([data-theme='dark']) .time-card strong {
-    color: #fcd34d;
+  .clock-minute {
+    stroke: var(--ink);
+    stroke-width: 4;
+    stroke-linecap: round;
   }
 
-  :global([data-theme='dark']) .time-card b {
-    color: #bae6fd;
+  .clock-hand {
+    stroke: var(--next);
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  .clock-pin {
+    fill: var(--ink);
+  }
+
+  .clock-reading {
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .clock-digits {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .clock-words {
+    margin-top: 0.35rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .clock-note {
+    margin-top: 0.6rem;
+    color: #57534e;
+    font-size: 0.9rem;
+  }
+
+  .clock-reading b {
+    color: var(--next);
+  }
+
+  :global([data-theme='dark']) .clock {
+    --next: #fbbf24;
+    --ink: #f5f5f4;
+    --muted: #78716c;
+    --face: #1c1917;
+  }
+
+  :global([data-theme='dark']) .clock-note {
+    color: #d6d3d1;
+  }
+
+  @media (min-width: 640px) {
+    .clock-reading {
+      text-align: left;
+    }
   }
 
   /* seit oder vor? — both rows draw on the same axis: --start is where Monday sits, the right
