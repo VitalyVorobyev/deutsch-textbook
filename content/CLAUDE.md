@@ -66,7 +66,7 @@ H2 headings, in German, in this order:
 1. `## Kurz gesagt` — an advance organizer: the schema the article fills in, ≤ ~100 words and ≤ 5 sentences per half, not a summary of details.
 2. `## Erklärung` — the full explanation (bilingual prose, German tables).
 3. `## Beispiele` — 5–10 German sentences as blockquotes, each followed by its EN/RU translation in a Bilingual block.
-4. `## Häufige Fehler` — ❌/✅ pairs. The Ru half highlights Russian interference; the En half gets its own framing — English false friends where they exist, otherwise neutral rule statements.
+4. `## Häufige Fehler` — ❌/✅ pairs. The Ru half highlights Russian interference; the En half gets its own framing — English false friends where they exist, otherwise neutral rule statements. The page renders this section **folded**, with the learner's own wrong answers ("Meine Fehler") below it, so write it for a learner who has no attempts yet: in a new topic, at most the three strongest interference errors, and keep the heading text exactly — the fold finds it by its anchor.
 - No Übungen/Wortschatz sections — the page template renders them from the manifest.
 - **`## Erklärung` splits into `### German subsections`, one per named confusion**, plus the integrating section. The heading sits **outside** `<Bilingual>` so it stays visible in every language.
 - **Each subsection keeps its table beside its prose.**

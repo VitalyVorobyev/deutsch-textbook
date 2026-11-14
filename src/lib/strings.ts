@@ -854,6 +854,18 @@ export const STRINGS = {
     uk: 'Лексичне поле',
   },
   'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'topic.sectionOwnMistakes': {
+    de: 'Meine Fehler',
+    en: 'My mistakes',
+    ru: 'Мои ошибки',
+    uk: 'Мої помилки',
+  },
+  'topic.ownMistakesHint': {
+    de: 'Aus Ihren Antworten in diesem Thema. Ein Eintrag verschwindet, sobald Sie die Aufgabe richtig lösen.',
+    en: 'From your answers in this topic. An entry goes away once you answer the task correctly.',
+    ru: 'Из ваших ответов по этой теме. Запись исчезает, как только вы решите задание верно.',
+    uk: 'З ваших відповідей у цій темі. Запис зникає, щойно ви розв’яжете завдання правильно.',
+  },
   'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
   // The steps of a topic's Übungen section (ADR 0019) and the skills of its Aufgaben.
   'topic.stepUeben': { de: 'Üben', en: 'Practice', ru: 'Отработка', uk: 'Відпрацювання' },

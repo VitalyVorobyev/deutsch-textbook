@@ -13,6 +13,11 @@ GitHub Release notes.
 
 ### Changed
 
+- **A topic now shows your own mistakes.** "Meine Fehler" lists the exercises of the topic you
+  last answered wrong — what you wrote, what was expected and why — and an entry goes away once
+  you answer that exercise correctly. The authored "Häufige Fehler" list is still there, folded
+  under its heading.
+
 - **A topic's exercises are now one path instead of a long column of panels.** The steps — Üben,
   Anwenden, Aufgaben, Gezielt wiederholen — stand across the top as in the daily session, one
   exercise is on screen, and a finished one offers the next. The page opens on the first exercise

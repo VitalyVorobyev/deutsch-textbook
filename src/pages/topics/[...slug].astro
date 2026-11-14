@@ -20,6 +20,8 @@ import ReadingTextIsland from '../../components/reading/ReadingText';
 import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import TopicExercises from '../../components/topic/TopicExercises';
+import TopicMistakes from '../../components/topic/TopicMistakes';
+import { mistakeCatalog } from '../../lib/own-mistakes';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { deckWords } from '../../lib/vocab-mastery';
@@ -238,6 +240,36 @@ const KIND_KEY: Record<string, StringKey> = {
       components={{ Bilingual, En, Ru, Uk, De, Translation, Erklaerung, Siehe, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }}
     />
   </article>
+  <!-- The "Häufige Fehler" section renders folded: it lists the errors an author expects, and what
+       the learner did get wrong is shown from their own attempts right below. The heading and
+       everything up to the next h2 become one <details> with the heading as its summary. Inline
+       and right after the article, so it runs before first paint and nothing jumps; without
+       script the section simply stays open. -->
+  <script is:inline>
+    (() => {
+      const heading = document.getElementById('häufige-fehler');
+      if (!heading || heading.tagName !== 'H2') return;
+      const details = document.createElement('details');
+      details.className = 'fold-section';
+      const summary = document.createElement('summary');
+      heading.before(details);
+      let next = heading.nextSibling;
+      summary.append(heading);
+      details.append(summary);
+      while (next && !(next.nodeType === 1 && next.tagName === 'H2')) {
+        const following = next.nextSibling;
+        details.append(next);
+        next = following;
+      }
+      // a link to the heading must still land on an open section
+      if (decodeURIComponent(location.hash) === '#häufige-fehler') details.open = true;
+    })();
+  </script>
+
+  <TopicMistakes
+    client:only="react"
+    catalog={mistakeCatalog(exerciseSets.map((set) => ({ id: set.id, items: set.data.items })))}
+  />
 
   {
     readings.length > 0 && (

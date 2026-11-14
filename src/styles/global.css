@@ -117,6 +117,28 @@ body {
   max-width: 68ch;
 }
 
+/* A section the topic page renders folded (src/pages/topics/[...slug].astro): its heading is the
+   summary and keeps the look of every other section heading, with a chevron in front. */
+.article-prose details.fold-section > summary {
+  @apply flex cursor-pointer list-none items-baseline gap-2;
+}
+.article-prose details.fold-section > summary::-webkit-details-marker {
+  display: none;
+}
+.article-prose details.fold-section > summary::before {
+  content: '›';
+  @apply text-2xl text-stone-400 transition-transform;
+}
+.article-prose details.fold-section[open] > summary::before {
+  transform: rotate(90deg);
+}
+.article-prose details.fold-section > summary > h2 {
+  @apply my-0;
+}
+.article-prose details.fold-section {
+  @apply mt-12;
+}
+
 /* German example sentences inside articles */
 .article-prose blockquote {
   @apply border-l-4 border-amber-400 bg-amber-50 px-4 py-1 not-italic
