@@ -167,7 +167,7 @@ assets:
     legacy: true
     promptUnavailable: true
   - path: src/components/visuals/ParticipantRoleFigure.astro
-    sha256: e57c144cfb28db140373ed9c853e3b10fd8f87ea8536e7266fc613391e997df1
+    sha256: bbdd995222e78bb9746fedd52d6fee482b2462599628da6882c1b93b432bea40
     creationMode: ai-assisted
     generationTool: null
     prompt: null
@@ -190,6 +190,12 @@ assets:
         brief: data/prompts/2026-07-28-participant-giving-semantic-flow.md
         humanEdits:
           - "Vitaly selected the semantic-flow direction and required matching person tokens, one recognizable key attached to the transfer path, explicit case labels and responsive light/dark rendering."
+      - sha256: bbdd995222e78bb9746fedd52d6fee482b2462599628da6882c1b93b432bea40
+        changedAt: "2026-11-14"
+        tool: Claude Code (Anthropic)
+        brief: data/prompts/2026-11-14-figures-carry-the-rule.md
+        humanEdits:
+          - "Vitaly set the criterion that a figure must clarify a concept that can be expressed visually and left the verdict on this figure to Claude Code; he has not reviewed this redraw."
   - path: src/components/visuals/PronominalAdverbFlow.astro
     sha256: f61a52cba844772283f3b8391e2add70c4d32b6ca7dece6927319518673ebb0c
     creationMode: ai-assisted
@@ -226,7 +232,7 @@ assets:
     legacy: true
     promptUnavailable: true
   - path: src/components/visuals/SentenceRail.astro
-    sha256: 5f17aaac6d1b78de170ac73f2ac90bf128eedef42168bed7a785be54ed051d80
+    sha256: 3400efa76f02ff2f51de0814ed120496b12fa4aa6b575723ce37d99415928a31
     creationMode: ai-assisted
     generationTool: null
     prompt: null
@@ -236,8 +242,15 @@ assets:
     licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
     legacy: true
     promptUnavailable: true
+    changes:
+      - sha256: 3400efa76f02ff2f51de0814ed120496b12fa4aa6b575723ce37d99415928a31
+        changedAt: "2026-11-14"
+        tool: Claude Code (Anthropic)
+        brief: data/prompts/2026-11-14-figures-carry-the-rule.md
+        humanEdits:
+          - "Vitaly set the criterion that a figure must clarify a concept that can be expressed visually and left the verdict on this figure to Claude Code; he has not reviewed this redraw."
   - path: src/components/visuals/TimeRelationFigure.astro
-    sha256: 1e60feaa0590fd3b2b49040648cabef7637f0ffbf6103504bf210b65d8957915
+    sha256: ea105cbda813d142edc55b8020df3236a4c2937fdc18623c5fa28435e1b7b4ff
     creationMode: ai-assisted
     generationTool: null
     prompt: null
@@ -247,6 +260,13 @@ assets:
     licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
     legacy: true
     promptUnavailable: true
+    changes:
+      - sha256: ea105cbda813d142edc55b8020df3236a4c2937fdc18623c5fa28435e1b7b4ff
+        changedAt: "2026-11-14"
+        tool: Claude Code (Anthropic)
+        brief: data/prompts/2026-11-14-figures-carry-the-rule.md
+        humanEdits:
+          - "Vitaly named the seit/vor figure as unhelpful, approved its redraw from screenshots and set the criterion that a figure must clarify a concept that can be expressed visually. He has not reviewed the clock view."
   - path: src/components/visuals/WohnenWoWohin.astro
     sha256: d1f8c1d999dd8d179ecb7e08150a3e503a056b997bdb63fda52a5d0af97898da
     creationMode: ai-assisted

@@ -157,6 +157,10 @@ checklist passes:
    orientation matters; use a sourced document for document literacy.
 3. **Carry one primary relationship.** The visual complements the prose instead of repeating it.
    Split competing jobs into separate figures to protect working memory (§8/§10).
+   **The drawing itself must say the rule: take the words away and something must remain** — a
+   column that stays put from row to row, a bar against a point, an arrow from giver to receiver.
+   A sentence in boxes or a table in cards fails; delete it or redraw it, and put a real sentence
+   of the article on the geometry.
 4. **Keep semantics controllable.** Generated pixels contain no load-bearing words, arrows, case
    forms or answer cues. Exact German belongs to deterministic HTML/SVG and is checked against the
    canonical reference.

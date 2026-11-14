@@ -10,35 +10,35 @@ const { view } = Astro.props;
 
 {
   view === 'pain' ? (
-    <LearningFigure id="participant-pain" title="Wer hat Schmerzen – was tut weh?" sourceClass="simulated">
+    <LearningFigure id="participant-pain" title="Was tut wem weh?" sourceClass="simulated">
       <div slot="visual" class="role-grid" aria-hidden="true">
-        <section class="role-card">
-          <span class="role-question">Wem?</span>
-          <div class="person-icon">●</div>
-          <strong class="role-dative">mir</strong>
-          <small>Person · Dativ</small>
-        </section>
-        <div class="role-arrow"><span>→</span><b>tut</b><small>Singular</small></div>
         <section class="role-card">
           <span class="role-question">Was?</span>
           <div class="body-icon">◉</div>
           <strong>der Kopf</strong>
           <small>Subjekt · Singular</small>
         </section>
-        <div class="role-sentence"><b>Mir</b> <strong>tut</strong> der Kopf weh.</div>
-
+        <div class="role-arrow"><span>→</span><b>tut weh</b><small>Singular</small></div>
         <section class="role-card">
           <span class="role-question">Wem?</span>
           <div class="person-icon">●</div>
           <strong class="role-dative">mir</strong>
           <small>Person · Dativ</small>
         </section>
-        <div class="role-arrow"><span>→</span><b>tun</b><small>Plural</small></div>
+        <div class="role-sentence"><b>Mir</b> <strong>tut</strong> der Kopf weh.</div>
+
         <section class="role-card">
           <span class="role-question">Was?</span>
           <div class="body-icon">◉ ◉</div>
           <strong>die Augen</strong>
           <small>Subjekt · Plural</small>
+        </section>
+        <div class="role-arrow"><span>→</span><b>tun weh</b><small>Plural</small></div>
+        <section class="role-card">
+          <span class="role-question">Wem?</span>
+          <div class="person-icon">●</div>
+          <strong class="role-dative">mir</strong>
+          <small>Person · Dativ</small>
         </section>
         <div class="role-sentence"><b>Mir</b> <strong>tun</strong> die Augen weh.</div>
       </div>
@@ -47,9 +47,9 @@ const { view } = Astro.props;
         ein Teil bestimmt <strong>tut</strong>, mehrere bestimmen <strong>tun</strong>.
       </p>
       <div slot="description">
-        <p class="lang-en">Two rows separate the person in pain from the body part. In both rows the person is mir, marked as dative. In the first row der Kopf is a singular subject and therefore selects tut. In the second, die Augen is a plural subject and selects tun.</p>
-        <p class="lang-ru">Две строки отделяют человека от части тела. В обеих строках человек выражен формой mir в Dativ. В первой строке der Kopf — подлежащее в единственном числе, поэтому глагол имеет форму tut. Во второй die Augen — подлежащее во множественном числе, поэтому форма глагола — tun.</p>
-        <p class="lang-uk">Два рядки відокремлюють людину від частини тіла. В обох рядках людина виражена формою mir у Dativ. У першому рядку der Kopf — підмет в однині, тому дієслово має форму tut. У другому die Augen — підмет у множині, тому форма дієслова — tun.</p>
+        <p class="lang-en">Each of two rows runs from the body part on the left, through the verb, to the person on the right: the body part does the hurting, the person receives it. In both rows the person is mir, marked as dative. In the first row der Kopf is a singular subject and therefore selects tut. In the second, die Augen is a plural subject and selects tun.</p>
+        <p class="lang-ru">В каждой из двух строк стрелка идёт от части тела слева через глагол к человеку справа: болит часть тела, а человек — тот, кому больно. В обеих строках человек выражен формой mir в Dativ. В первой строке der Kopf — подлежащее в единственном числе, поэтому глагол имеет форму tut. Во второй die Augen — подлежащее во множественном числе, поэтому форма глагола — tun.</p>
+        <p class="lang-uk">У кожному з двох рядків стрілка йде від частини тіла ліворуч через дієслово до людини праворуч: болить частина тіла, а людина — та, кому болить. В обох рядках людина виражена формою mir у Dativ. У першому рядку der Kopf — підмет в однині, тому дієслово має форму tut. У другому die Augen — підмет у множині, тому форма дієслова — tun.</p>
       </div>
     </LearningFigure>
   ) : view === 'body-care' ? (

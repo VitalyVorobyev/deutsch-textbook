@@ -33,17 +33,9 @@ const descriptionId = `${id}-description`;
   aria-describedby={descriptionId}
 >
   <figcaption class="flex flex-wrap items-start justify-between gap-3 border-b border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-900">
-    <div>
-      <span class="block text-[0.68rem] font-bold uppercase tracking-[0.14em] text-stone-400">
-        Lernillustration
-      </span>
-      <strong id={titleId} lang="de" class="mt-0.5 block text-base text-stone-900 dark:text-stone-100">
-        {title}
-      </strong>
-    </div>
-    <span class="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium text-stone-500 dark:bg-stone-800 dark:text-stone-400">
-      {sourceClass === 'simulated' ? 'Kursmaterial · simuliert' : sourceClass}
-    </span>
+    <strong id={titleId} lang="de" class="block text-base text-stone-900 dark:text-stone-100">
+      {title}
+    </strong>
   </figcaption>
 
   <div class="min-w-0 overflow-hidden bg-stone-100 dark:bg-stone-950">
@@ -60,6 +52,9 @@ const descriptionId = `${id}-description`;
       </summary>
       <div class="mt-2 border-l-2 border-stone-200 pl-3 dark:border-stone-700">
         <slot name="description" />
+        <p class="mt-2 text-xs text-stone-500 dark:text-stone-400">
+          {sourceClass === 'simulated' ? 'Kursmaterial · simuliert' : sourceClass}
+        </p>
       </div>
     </details>
     {
