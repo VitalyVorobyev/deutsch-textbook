@@ -1,0 +1,259 @@
+# Drill from progress: retention on the lassen-verwendung probes is 2 of 9, and a grading note
+# records the learner putting zu after lassen. drill-lassen-verwendung rebuilt the frame for
+# have-done and allow in the present; this set extends it to the uses it leaves out, so that
+# every job of the verb is produced once: allow in the Präteritum and the Perfekt (ließ, fahren
+# lassen), leave (gelassen), have-done for oneself (sich etwas schicken lassen), have-done after a
+# modal (verlängern lassen), Lass mich and Lass uns, and the three imperatives.
+#
+# The zu error is what the set is for, and key_tokens cannot see an added word, so every
+# translate item whose frame ends in an infinitive declares focus_evidence: an added zu, a
+# participle in place of the infinitive, a missing lassen form or an infinitive that is not
+# last is the tag's failure; everything else (an article, a case) is a miss the tag does not
+# own. One cloze contrasts erlauben + zu with lassen without it, and its predicates charge only
+# the lassen half.
+#
+# sich lassen + Infinitiv as a passive substitute (Das lässt sich reparieren) is left out: no
+# B1 grammar point or Strukturenliste row in this course claims it, so producing it here would
+# break the level.
+#
+# Contexts are fresh: none re-skins the existing drill (Zeugnis, Dach, Möbel, Heizung, Küche,
+# Lebenslauf, Partys, Augen), the probes (Wohnung, Pizza, Schule, Mahlzeiten, Schrank, Auto
+# waschen) or the primary sets (Haare, Zähne, Pause, Arzt warten).
+topic: sucht-lebensstil
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — lassen in allen Bedeutungen"
+title:
+  en: "Drill — every use of lassen"
+  ru: "Тренажёр — все значения lassen"
+  uk: "Тренажер — усі значення lassen"
+items:
+  - id: cloze-erlauben-liess-laesst
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    instruction:
+      en: "Fill in lassen in the sense of 'allow': Präteritum in the first sentence, Präsens in the second."
+      ru: "Вставьте lassen в значении «разрешать»: в первом предложении — Präteritum, во втором — Präsens."
+      uk: "Вставте lassen у значенні «дозволяти»: у першому реченні — Präteritum, у другому — Präsens."
+    text: "Als Kind {{ließ}} mich meine Mutter nie allein in die Stadt fahren. Heute {{lässt}} sie meinen kleinen Bruder schon mit zwölf allein fahren."
+    translation:
+      en: "When I was a child, my mother never let me go into town alone. Today she lets my little brother go alone at twelve."
+      ru: "В детстве мама никогда не отпускала меня в город одного. А младшего брата она сегодня отпускает одного уже в двенадцать лет."
+      uk: "У дитинстві мама ніколи не відпускала мене самого в місто. А молодшого брата вона сьогодні вже у дванадцять років відпускає самого."
+    explain:
+      en: "lassen is a strong verb of the a – ie – a group: ließ in the Präteritum, with ß after the long ie. In the present the a takes an umlaut for er/sie: sie lässt. In both sentences the frame is the one a modal builds: lassen in position 2, the bare infinitive fahren at the very end. The person who is allowed is the accusative object: mich, meinen Bruder."
+      ru: "lassen — сильный глагол группы a – ie – a: в Präteritum ließ, с ß после долгого ie. В настоящем времени у er/sie a получает умлаут: sie lässt. В обоих предложениях рамка та же, что у модального глагола: lassen на втором месте, голый инфинитив fahren в самом конце. Тот, кому разрешают, стоит в аккузативе: mich, meinen Bruder, — хотя по-русски «разрешать» требует дательного падежа."
+      uk: "lassen — сильне дієслово групи a – ie – a: у Präteritum ließ, з ß після довгого ie. У теперішньому часі для er/sie a отримує умлаут: sie lässt. Рамка в обох реченнях та сама, що в модального дієслова: lassen на другому місці, чистий інфінітив fahren у самому кінці. Той, кому дозволяють, стоїть в акузативі: mich, meinen Bruder, хоча українське «дозволяти» вимагає давального відмінка."
+
+  - id: cloze-gelassen-oder-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    instruction:
+      en: "Both sentences are in the Perfekt. Fill in the last word: gelassen or lassen?"
+      ru: "Оба предложения — в перфекте. Вставьте последнее слово: gelassen или lassen?"
+      uk: "Обидва речення — у перфекті. Вставте останнє слово: gelassen чи lassen?"
+    text: "Am Montag habe ich mein Auto in der Werkstatt {{gelassen}}. Dort habe ich auch gleich die Reifen wechseln {{lassen}}."
+    translation:
+      en: "On Monday I left my car at the garage. While it was there, I had the tyres changed too."
+      ru: "В понедельник я оставил машину в мастерской. Заодно мне там поменяли шины."
+      uk: "У понеділок я залишив машину в майстерні. Там мені заодно поміняли шини."
+    explain:
+      en: "In the first sentence lassen stands alone and means 'leave': its Perfekt is the ordinary participle, gelassen. In the second an infinitive, wechseln, stands beside it, and then the Perfekt uses the infinitive lassen in place of gelassen: wechseln lassen, two infinitives at the end, as with modals (Ich habe arbeiten müssen). The test is simple: is there a second verb at the end? Then lassen; if not, gelassen."
+      ru: "В первом предложении lassen стоит один и значит «оставить»: его перфект — обычное причастие gelassen. Во втором рядом с ним стоит инфинитив wechseln, и тогда в перфекте вместо gelassen идёт инфинитив lassen: wechseln lassen — два инфинитива в конце, как у модальных глаголов (Ich habe arbeiten müssen). Проверка простая: есть ли в конце второй глагол? Если есть — lassen, если нет — gelassen."
+      uk: "У першому реченні lassen стоїть саме і означає «залишити»: його перфект — звичайний дієприкметник gelassen. У другому поруч стоїть інфінітив wechseln, і тоді в перфекті замість gelassen ставлять інфінітив lassen: wechseln lassen, два інфінітиви в кінці, як у модальних дієслів (Ich habe arbeiten müssen). Перевірка проста: чи стоїть у кінці ще один інфінітив? Якщо так — lassen, якщо ні — gelassen."
+
+  - id: cloze-erlauben-zu-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    # The first gap is erlauben's zu-infinitive, a zu-infinitiv decision; only the lassen half is
+    # this tag's, so a miss there alone stays unattributed.
+    focus_evidence:
+      failed: ["\\bum drei zu gehen\\b", "^(?!.*\\bum drei gehen\\b)"]
+      retained: ["\\bum drei gehen\\b"]
+    instruction:
+      en: "Fill in gehen in both gaps — with zu or without it?"
+      ru: "Вставьте gehen в оба пропуска — с zu или без него?"
+      uk: "Вставте gehen в обидва пропуски — із zu чи без нього?"
+    text: "Meine Chefin hat mir erlaubt, morgen früher {{zu gehen}}. Sie lässt mich also schon um drei {{gehen}}."
+    translation:
+      en: "My boss has allowed me to leave earlier tomorrow. So she is letting me go at three."
+      ru: "Начальница разрешила мне завтра уйти пораньше. Значит, она отпускает меня уже в три."
+      uk: "Начальниця дозволила мені завтра піти раніше. Отже, вона відпускає мене вже о третій."
+    explain:
+      en: "Both sentences say the same thing with two different verbs, and the verb decides about zu. erlauben is an ordinary verb, so its infinitive takes zu: erlaubt, früher zu gehen. lassen works like a modal and never takes zu: lässt mich … gehen. English uses 'to' after allow and nothing after let, and German draws the same line."
+      ru: "Оба предложения говорят одно и то же разными глаголами, и про zu решает глагол. erlauben — обычный глагол, поэтому его инфинитив идёт с zu: erlaubt, früher zu gehen. lassen ведёт себя как модальный и zu не берёт никогда: lässt mich … gehen. По-русски после «разрешить» и «отпустить» инфинитив стоит одинаково, без всякой частицы, а в немецком граница проходит именно между этими двумя глаголами."
+      uk: "Обидва речення кажуть одне й те саме різними дієсловами, і саме дієслово вирішує, чи потрібне zu. erlauben — звичайне дієслово, тому його інфінітив стоїть із zu: erlaubt, früher zu gehen. lassen поводиться як модальне і zu не бере ніколи: lässt mich … gehen. Українською після «дозволити» і «відпустити» інфінітив стоїть однаково, без жодної частки, а в німецькій межа проходить саме між цими двома дієсловами."
+
+  - id: cloze-imperativ-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: imperativ-form
+    instruction:
+      en: "Fill in the imperative of lassen: for du, for ihr and for Sie."
+      ru: "Вставьте повелительное наклонение lassen: для du, для ihr и для Sie."
+      uk: "Вставте наказовий спосіб lassen: для du, для ihr і для Sie."
+    text: "Es ist schon spät, Anna. {{Lass}} uns nach Hause gehen! Kinder, {{lasst}} die Katze bitte schlafen! Herr Weber, {{lassen}} Sie Ihren Mantel ruhig hier."
+    translation:
+      en: "It's late already, Anna. Let's go home! Children, please let the cat sleep! Mr Weber, do leave your coat here."
+      ru: "Уже поздно, Анна. Пойдём домой! Дети, не будите, пожалуйста, кошку! Господин Вебер, пальто можете спокойно оставить здесь."
+      uk: "Уже пізно, Анно. Ходімо додому! Діти, дайте, будь ласка, кішці поспати! Пане Вебер, пальто можете спокійно залишити тут."
+    explain:
+      en: "The du imperative is the bare stem without the umlaut: lass, never lässt — the umlaut belongs to the present (du lässt). The ihr imperative is the ihr form without the pronoun: lasst. For Sie the verb comes first and Sie stays: lassen Sie. Lass uns + infinitive is how German says 'let's': Lass uns gehen."
+      ru: "Императив для du — голая основа без умлаута: lass, но не lässt; умлаут бывает только в настоящем времени (du lässt). Императив для ihr — форма ihr без местоимения: lasst. Для Sie глагол встаёт на первое место, а Sie остаётся: lassen Sie. Lass uns + инфинитив — немецкое «давай»: Lass uns gehen — «пойдём»."
+      uk: "Наказовий спосіб для du — це основа без умлаута: lass, а не lässt; умлаут буває лише в теперішньому часі (du lässt). Для ihr це форма ihr без займенника: lasst. Для Sie дієслово стає на перше місце, а Sie лишається: lassen Sie. Lass uns + інфінітив — німецький спосіб сказати «давай»: Lass uns gehen — «ходімо»."
+
+  - id: uebersetzen-eltern-auto
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu fahren\\b", "\\bgelassen\\b", "^(?!.*\\bfahren lassen$)"]
+      retained: ["\\bfahren lassen$"]
+    instruction:
+      en: "Translate with lassen in the Perfekt. For 'drive' take fahren."
+      ru: "Переведите с lassen в перфекте. Для «водить машину» возьмите fahren."
+      uk: "Перекладіть із lassen у перфекті. Для «водити машину» візьміть fahren."
+    prompt_en: "Yesterday my parents let me drive their car."
+    prompt_ru: "Вчера родители разрешили мне поводить их машину."
+    prompt_uk: "Учора батьки дозволили мені покермувати їхньою машиною."
+    answer: "Meine Eltern haben mich gestern ihr Auto fahren lassen."
+    accept:
+      # Fronted gestern, the pronoun before or after the subject, and mit ihrem Auto for
+      # «на их машине»: the frame is the same in all of them.
+      - "Gestern haben mich meine Eltern ihr Auto fahren lassen."
+      - "Gestern haben meine Eltern mich ihr Auto fahren lassen."
+      - "Meine Eltern haben mich gestern mit ihrem Auto fahren lassen."
+      - "Gestern haben mich meine Eltern mit ihrem Auto fahren lassen."
+      - "Gestern haben meine Eltern mich mit ihrem Auto fahren lassen."
+    key_tokens: ["fahren", "lassen"]
+    explain:
+      en: "Allow in the Perfekt: haben in position 2, and two infinitives at the end, fahren lassen — not fahren gelassen, because an infinitive stands beside lassen. The person allowed is the accusative mich. Ich durfte ihr Auto fahren says the same from my side, with a modal."
+      ru: "Разрешение в перфекте: haben на втором месте, а в конце два инфинитива — fahren lassen, а не fahren gelassen, потому что рядом с lassen стоит инфинитив. Тот, кому разрешили, — в аккузативе: mich. Русское «разрешили мне» тянет к дательному mir, но lassen требует аккузатива. Ich durfte ihr Auto fahren говорит то же самое с моей стороны, через модальный глагол."
+      uk: "Дозвіл у перфекті: haben на другому місці, а в кінці два інфінітиви — fahren lassen, а не fahren gelassen, бо поруч із lassen стоїть інфінітив. Той, кому дозволили, — в акузативі: mich. Українське «дозволили мені» тягне до давального mir, але lassen вимагає акузатива. Ich durfte ihr Auto fahren каже те саме з мого боку, через модальне дієслово."
+
+  - id: uebersetzen-unterlagen-schicken
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu schicken\\b", "\\b(zu)?geschickt\\b", "^(?!.*\\b(zu)?schicken lassen$)"]
+      retained: ["\\b(zu)?schicken lassen$"]
+    instruction:
+      en: "Translate with lassen and a reflexive dative (dir). For 'send' take schicken."
+      ru: "Переведите с lassen и возвратным местоимением в дательном падеже (dir). Для «прислать» возьмите schicken."
+      uk: "Перекладіть із lassen і зворотним займенником у давальному відмінку (dir). Для «надіслати» візьміть schicken."
+    prompt_en: "Can you have the documents sent to you?"
+    prompt_ru: "Ты можешь попросить, чтобы тебе прислали документы?"
+    prompt_uk: "Ти можеш попросити, щоб тобі надіслали документи?"
+    answer: "Kannst du dir die Unterlagen schicken lassen?"
+    accept:
+      - "Kannst du dir die Dokumente schicken lassen?"
+      # zuschicken is the everyday compound for sending something to somebody.
+      - "Kannst du dir die Unterlagen zuschicken lassen?"
+      - "Kannst du dir die Dokumente zuschicken lassen?"
+    key_tokens: ["schicken", "zuschicken", "lassen"]
+    explain:
+      en: "The modal kann takes position 1 in the question, and two infinitives close the sentence: schicken lassen. dir is the person the documents go to, in the dative: you have them sent to yourself. Kannst du die Unterlagen zu schicken lassen adds a zu that neither kann nor lassen takes."
+      ru: "Модальный kann в вопросе стоит на первом месте, а предложение замыкают два инфинитива: schicken lassen. dir — тот, кому придут документы, в дательном падеже: «ты велишь прислать их себе». В вопросе «Ты можешь попросить…» по-русски нужен лишний глагол, а немецкий обходится одним lassen. Kannst du die Unterlagen zu schicken lassen добавляет zu, которого не берёт ни kann, ни lassen."
+      uk: "Модальне kann у питанні стоїть на першому місці, а речення закривають два інфінітиви: schicken lassen. dir — той, кому прийдуть документи, у давальному відмінку: ти просиш надіслати їх собі. Українською для цього потрібне ще одне дієслово, «попросити», а німецькій досить одного lassen. Kannst du die Unterlagen zu schicken lassen додає zu, якого не бере ні kann, ні lassen."
+
+  - id: uebersetzen-auto-zu-hause
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "Translate in the Perfekt, with lassen for 'leave'. For 'go by bus' take mit dem Bus fahren."
+      ru: "Переведите в перфекте, для «оставить» возьмите lassen. Для «поехать на автобусе» — mit dem Bus fahren."
+      uk: "Перекладіть у перфекті, для «залишити» візьміть lassen. Для «поїхати автобусом» — mit dem Bus fahren."
+    prompt_en: "We left the car at home and went by bus."
+    prompt_ru: "Мы оставили машину дома и поехали на автобусе."
+    prompt_uk: "Ми залишили машину вдома й поїхали автобусом."
+    answer: "Wir haben das Auto zu Hause gelassen und sind mit dem Bus gefahren."
+    accept:
+      # «машину» marks no definiteness and is our own car: unser Auto is equally right.
+      - "Wir haben unser Auto zu Hause gelassen und sind mit dem Bus gefahren."
+    key_tokens: ["gelassen"]
+    explain:
+      en: "Here lassen means 'leave' and stands alone, with no second verb, so its Perfekt is the ordinary participle: haben … gelassen. The rule from the double infinitive (fahren lassen) only applies when an infinitive stands next to lassen. The second half switches to sein, because fahren is movement: sind … gefahren."
+      ru: "Здесь lassen значит «оставить» и стоит один, без второго глагола, поэтому его перфект — обычное причастие: haben … gelassen. Правило двойного инфинитива (fahren lassen) действует, только когда рядом с lassen стоит инфинитив. Во второй половине вспомогательный глагол меняется на sein, потому что fahren — движение: sind … gefahren."
+      uk: "Тут lassen означає «залишити» і стоїть саме, без другого дієслова, тому його перфект — звичайний дієприкметник: haben … gelassen. Правило подвійного інфінітива (fahren lassen) діє лише тоді, коли поруч із lassen стоїть інфінітив. У другій половині допоміжне дієслово змінюється на sein, бо fahren — це рух: sind … gefahren."
+
+  - id: uebersetzen-lass-mich-zahlen
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu (be)?zahlen\\b", "^(?!.*\\blass\\b)", "^(?!.*\\b(be)?zahlen$)"]
+      retained: ["\\blass\\b.*\\b(be)?zahlen$"]
+    instruction:
+      en: "Translate with lassen. You are speaking to a friend."
+      ru: "Переведите с lassen. Вы обращаетесь к другу."
+      uk: "Перекладіть із lassen. Ви звертаєтеся до друга."
+    prompt_en: "Let me pay, please!"
+    prompt_ru: "Дай, пожалуйста, я заплачу!"
+    prompt_uk: "Дай, будь ласка, я заплачу!"
+    answer: "Lass mich bitte bezahlen!"
+    accept:
+      - "Lass mich bezahlen!"
+      - "Bitte lass mich bezahlen!"
+      - "Lass mich bitte zahlen!"
+      - "Lass mich zahlen!"
+      - "Bitte lass mich zahlen!"
+    key_tokens: ["Lass", "bezahlen", "zahlen"]
+    explain:
+      en: "Lass mich + infinitive asks for permission: let me do it. lass is the du imperative (no umlaut, no ending), mich is the accusative, and the infinitive goes bare to the end: Lass mich bezahlen. English 'let' takes no 'to' here either, so Lass mich zu bezahlen has no model in either language."
+      ru: "Lass mich + инфинитив — просьба разрешить: «дай я сделаю». lass — императив для du (без умлаута и без окончания), mich — аккузатив, а инфинитив без всяких добавок уходит в конец: Lass mich bezahlen. Русское «дай я заплачу» строится совсем иначе, поэтому опорой здесь служит рамка: lass в начале, инфинитив в конце и никакого zu."
+      uk: "Lass mich + інфінітив — прохання дозволити: «дай я зроблю». lass — наказовий спосіб для du (без умлаута і без закінчення), mich — акузатив, а інфінітив без жодних додатків іде в кінець: Lass mich bezahlen. Українське «дай я заплачу» побудоване зовсім інакше, тож тут тримайтеся рамки: lass на початку, інфінітив у кінці і ніякого zu."
+
+  - id: uebersetzen-lehrerin-liess
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      # \b cannot close a word that ends in ß (ß is not a regex word character), so the end of
+      # ließ is a lookahead.
+      failed: ["\\bzu gehen\\b", "^(?!.*\\bließ(?![a-zäöüß]))", "^(?!.*\\bgehen$)"]
+      retained: ["\\bließ(?![a-zäöüß]).*\\bgehen$"]
+    instruction:
+      en: "Translate as written narrative — Präteritum, with lassen."
+      ru: "Переведите как письменный рассказ — в Präteritum, с lassen."
+      uk: "Перекладіть як письмову розповідь — у Präteritum, із lassen."
+    prompt_en: "The teacher let us go home earlier."
+    prompt_ru: "Учительница отпустила нас домой пораньше."
+    prompt_uk: "Учителька відпустила нас додому раніше."
+    answer: "Die Lehrerin ließ uns früher nach Hause gehen."
+    accept:
+      # "The teacher" names no gender; «учительница» does.
+      - "Der Lehrer ließ uns früher nach Hause gehen."
+    key_tokens: ["ließ", "gehen"]
+    explain:
+      en: "In a written narrative lassen goes into the Präteritum: ließ, the a – ie – a pattern, with ß and no ending for er/sie. The frame does not change with the tense: ließ in position 2, uns as the accusative, the bare infinitive gehen at the very end. ließ uns … zu gehen borrows a zu from erlauben."
+      ru: "В письменном рассказе lassen ставится в Präteritum: ließ, образец a – ie – a, с ß и без окончания у er/sie. Рамка от времени не меняется: ließ на втором месте, uns в аккузативе, голый инфинитив gehen в самом конце. «Отпустила нас домой» по-немецки — «позволила нам пойти домой», поэтому нужен второй глагол. ließ uns … zu gehen заимствует zu у erlauben."
+      uk: "У письмовій розповіді lassen ставлять у Präteritum: ließ, зразок a – ie – a, з ß і без закінчення для er/sie. Від часу рамка не змінюється: ließ на другому місці, uns в акузативі, чистий інфінітив gehen у самому кінці. «Відпустила нас додому» німецькою — «дозволила нам піти додому», тому потрібне друге дієслово. ließ uns … zu gehen позичає zu в erlauben."
+
+  - id: uebersetzen-pass-verlaengern
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    focus_evidence:
+      failed: ["\\bzu verlängern\\b", "\\bverlängert\\b", "^(?!.*\\bverlängern lassen$)"]
+      retained: ["\\bverlängern lassen$"]
+    instruction:
+      en: "Translate with müssen and lassen: the office does the work. For 'renew' take verlängern."
+      ru: "Переведите с müssen и lassen: работу делает учреждение. Для «продлить» возьмите verlängern."
+      uk: "Перекладіть із müssen і lassen: роботу виконує установа. Для «продовжити» візьміть verlängern."
+    prompt_en: "I have to get my passport renewed."
+    prompt_ru: "Мне нужно продлить паспорт."
+    prompt_uk: "Мені треба продовжити паспорт."
+    answer: "Ich muss meinen Pass verlängern lassen."
+    accept:
+      - "Ich muss meinen Reisepass verlängern lassen."
+    key_tokens: ["verlängern", "lassen"]
+    explain:
+      en: "A modal and lassen together: muss in position 2, then two infinitives at the end, the action first and lassen last — verlängern lassen. Ich muss meinen Pass verlängern would mean you renew it yourself, which only the office can do. Neither verb at the end takes zu."
+      ru: "Модальный глагол вместе с lassen: muss на втором месте, а в конце два инфинитива — сначала действие, последним lassen: verlängern lassen. Ich muss meinen Pass verlängern значило бы, что вы продлеваете паспорт сами, а это может сделать только учреждение. Русское «продлить паспорт» об этом молчит, немецкий говорит это через lassen. Ни один из двух инфинитивов в конце не берёт zu."
+      uk: "Модальне дієслово разом із lassen: muss на другому місці, а в кінці два інфінітиви — спершу дія, останнім lassen: verlängern lassen. Ich muss meinen Pass verlängern означало б, що ви продовжуєте паспорт самі, а це може зробити лише установа. Українське «продовжити паспорт» про це мовчить, а німецька каже це через lassen. Жоден з інфінітивів у кінці не бере zu."

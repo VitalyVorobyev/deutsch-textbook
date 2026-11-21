@@ -1,0 +1,632 @@
+# Drill from progress: praeteritum-vollverben is persistent (31 wrong of 115) and partizip2-form
+# is persistent with no recovery after its last error (17 of 44). The logged forms show the
+# principal parts themselves are missing, not the rule: schiebt and schiebte for schrieb three
+# times each, sahen for saßen. Until now the strong forms were met only inside whole-sentence
+# translations, where one wrong form sinks a sentence and teaches nothing about its neighbours.
+#
+# So this set trains the forms as forms, grouped by ablaut pattern, then puts them back into
+# sentences. Each pattern block is a Präteritum table (praeteritum-vollverben) followed by a
+# Perfekt table (partizip2-form) over the same verbs; the tag follows what the cells grade.
+# The Perfekt cells carry the auxiliary, because the learner should write the whole form, but
+# the tag is about the participle: focus_evidence charges a miss to partizip2-form only when a
+# participle is missing, so hat for ist is logged wrong and unattributed rather than charged to
+# the participle (it is a haben-sein decision). Where the bare infinitive allows both
+# auxiliaries in standard German (fahren, ziehen, schwimmen with or without a destination;
+# stehen, liegen, sitzen with sein in the south), the other one is accepted.
+#
+# Two contrast tables put strong verbs beside their weak look-alikes (legen/liegen,
+# setzen/sitzen, fragen/tragen, kaufen/laufen), because the logged errors are -te laid over a
+# strong verb. Five clozes then ask the forms in context, without the pattern in the title:
+# sitzen beside sehen in one sentence, and the Perfekt clozes again keep auxiliary misses
+# unattributed.
+#
+# Verbs: the strong and mixed verbs at or below B1 on the Goethe Wortliste that the learner's
+# narratives need; every verb is asked in both forms somewhere in the set. Contexts are fresh:
+# none re-skins an item of drill-praeteritum-vollverben or the Präteritum probe family.
+topic: erfahrungen-erzaehlen
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Stammformen starker Verben"
+title:
+  en: "Drill — principal parts of strong verbs"
+  ru: "Тренажёр — основные формы сильных глаголов"
+  uk: "Тренажер — основні форми сильних дієслів"
+items:
+  - id: table-praeteritum-ei
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "ei – ie – ie · ei – i – i"
+    instruction:
+      en: "Write the Präteritum for er/sie. All six verbs change ei to i or ie."
+      ru: "Впишите Präteritum для er/sie. Во всех шести глаголах ei меняется на i или ie."
+      uk: "Впишіть Präteritum для er/sie. В усіх шести дієсловах ei змінюється на i або ie."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: schneiden
+        cells: [{ answer: schnitt }]
+      - label: schreiben
+        cells: [{ answer: schrieb }]
+      - label: bleiben
+        cells: [{ answer: blieb }]
+      - label: steigen
+        cells: [{ answer: stieg }]
+      - label: entscheiden
+        cells: [{ answer: entschied }]
+      - label: streiten
+        cells: [{ answer: stritt }]
+    explain:
+      en: "Verbs with ei in the stem go one of two ways. Most take a long ie: schreiben → schrieb, bleiben → blieb, steigen → stieg, entscheiden → entschied. A few take a short i, and then the consonant after it doubles: schneiden → schnitt, streiten → stritt. Either way the er/sie form ends in the stem — no -te, no -t. schriebte stacks a weak ending on a form whose new vowel already says 'past', and schiebt belongs to another verb altogether: schieben, to push."
+      ru: "Глаголы с ei в основе идут одним из двух путей. Большинство получает долгое ie: schreiben → schrieb, bleiben → blieb, steigen → stieg, entscheiden → entschied. Немногие получают краткое i, и тогда согласная после него удваивается: schneiden → schnitt, streiten → stritt. В обоих случаях форма er/sie кончается на основу — без -te и без -t. schriebte навешивает слабое окончание на форму, где прошедшее время уже выражено новой гласной, а schiebt — вообще другой глагол: schieben, «толкать»."
+      uk: "Дієслова з ei в основі мають два шляхи. Здебільшого ei стає довгим ie: schreiben → schrieb, bleiben → blieb, steigen → stieg, entscheiden → entschied. У кількох дієсловах з'являється коротке i, і приголосна після нього подвоюється: schneiden → schnitt, streiten → stritt. Форма er/sie в обох випадках — сама основа, без -te і без -t. У schriebte минулий час позначено двічі: голосною і ще слабким суфіксом. А schiebt — форма зовсім іншого дієслова, schieben («штовхати»)."
+
+  - id: table-perfekt-ei
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    # A miss is the participle's only when a participle is absent; a wrong auxiliary beside a
+    # right participle is a haben-sein decision and stays unattributed.
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgeschnitten\\b)"
+        - "^(?!.*\\bgeschrieben\\b)"
+        - "^(?!.*\\bgeblieben\\b)"
+        - "^(?!.*\\bgestiegen\\b)"
+        - "^(?!.*\\bentschieden\\b)"
+        - "^(?!.*\\bgestritten\\b)"
+      retained: ["\\bgeschnitten\\b", "\\bgeschrieben\\b", "\\bgeblieben\\b", "\\bgestiegen\\b", "\\bentschieden\\b", "\\bgestritten\\b"]
+    title: "ei – ie – ie · ei – i – i"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: schneiden
+        cells: [{ answer: hat geschnitten }]
+      - label: schreiben
+        cells: [{ answer: hat geschrieben }]
+      - label: bleiben
+        cells: [{ answer: ist geblieben }]
+      - label: steigen
+        cells: [{ answer: ist gestiegen }]
+      - label: entscheiden
+        cells: [{ answer: hat entschieden, accept: [hat sich entschieden] }]
+      - label: streiten
+        cells: [{ answer: hat gestritten, accept: [hat sich gestritten] }]
+    explain:
+      en: "The Partizip II keeps the vowel of the Präteritum: schrieb → geschrieben, blieb → geblieben, stritt → gestritten. Strong participles end in -en, never in -t, so geschreibt is the weak recipe again. entscheiden has an inseparable prefix and therefore no ge-: entschieden. bleiben and steigen take ist — bleiben always, steigen because it is movement (in den Bus steigen)."
+      ru: "Partizip II сохраняет гласную Präteritum: schrieb → geschrieben, blieb → geblieben, stritt → gestritten. Сильные причастия кончаются на -en, никогда на -t, так что geschreibt — снова рецепт слабого глагола. У entscheiden неотделяемая приставка, поэтому ge- нет: entschieden. bleiben и steigen идут с ist: bleiben всегда, steigen — потому что это движение (in den Bus steigen)."
+      uk: "Partizip II цих дієслів має ту саму голосну, що й Präteritum: schrieb → geschrieben, blieb → geblieben, stritt → gestritten. Сильний дієприкметник закінчується на -en, ніколи на -t: geschreibt — знову рецепт слабкого дієслова. entscheiden має невідокремлюваний префікс, тому ge- не додається: entschieden. bleiben і steigen утворюють Perfekt з ist: bleiben — завжди, steigen — бо це рух (in den Bus steigen)."
+
+  - id: table-praeteritum-ie-i
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "ie – o – o · i – a – u"
+    instruction:
+      en: "Write the Präteritum for er/sie."
+      ru: "Впишите Präteritum для er/sie."
+      uk: "Впишіть Präteritum для er/sie."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: fliegen
+        cells: [{ answer: flog }]
+      - label: verlieren
+        cells: [{ answer: verlor }]
+      - label: ziehen
+        cells: [{ answer: zog }]
+      - label: schließen
+        cells: [{ answer: schloss }]
+      - label: finden
+        cells: [{ answer: fand }]
+      - label: trinken
+        cells: [{ answer: trank }]
+      - label: singen
+        cells: [{ answer: sang }]
+    explain:
+      en: "Two patterns. ie (or long i) goes to o: fliegen → flog, verlieren → verlor, ziehen → zog, schließen → schloss — after the short o the ß becomes ss. i before n + consonant goes to a: finden → fand, trinken → trank, singen → sang. No form here has -te: findete and trinkte are the weak recipe on a strong verb."
+      ru: "Два образца. ie (или долгое i) переходит в o: fliegen → flog, verlieren → verlor, ziehen → zog, schließen → schloss — после краткого o ß превращается в ss. i перед n + согласная переходит в a: finden → fand, trinken → trank, singen → sang. Ни одна форма здесь не берёт -te: findete и trinkte — рецепт слабого глагола на сильном."
+      uk: "Тут два зразки. ie (або довге i) переходить в o: fliegen → flog, verlieren → verlor, ziehen → zog, schließen → schloss; після короткого o замість ß пишуть ss. i перед n і ще однією приголосною переходить в a: finden → fand, trinken → trank, singen → sang. Жодна з цих форм не має -te: findete і trinkte — це слабкий рецепт, накладений на сильне дієслово."
+
+  - id: table-perfekt-ie-i
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgeflogen\\b)"
+        - "^(?!.*\\bverloren\\b)"
+        - "^(?!.*\\bgezogen\\b)"
+        - "^(?!.*\\bgeschlossen\\b)"
+        - "^(?!.*\\bgefunden\\b)"
+        - "^(?!.*\\bgetrunken\\b)"
+        - "^(?!.*\\bgesungen\\b)"
+      retained: ["\\bgeflogen\\b", "\\bverloren\\b", "\\bgezogen\\b", "\\bgeschlossen\\b", "\\bgefunden\\b", "\\bgetrunken\\b", "\\bgesungen\\b"]
+    title: "ie – o – o · i – a – u"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: fliegen
+        cells: [{ answer: ist geflogen }]
+      - label: verlieren
+        cells: [{ answer: hat verloren }]
+      - label: ziehen
+        # hat for pulling (an der Tür ziehen), ist for moving house (nach Köln ziehen).
+        cells: [{ answer: hat gezogen, accept: [ist gezogen] }]
+      - label: schließen
+        cells: [{ answer: hat geschlossen }]
+      - label: finden
+        cells: [{ answer: hat gefunden }]
+      - label: trinken
+        cells: [{ answer: hat getrunken }]
+      - label: singen
+        cells: [{ answer: hat gesungen }]
+    explain:
+      en: "In the ie – o – o verbs the participle keeps the o of the Präteritum: geflogen, gezogen, geschlossen; verlieren has the inseparable ver- and so no ge-: verloren. In i – a – u the participle has its own third vowel, u: gefunden, getrunken, gesungen. ziehen takes hat when you pull something and ist when you move house (Er ist nach Köln gezogen), so both are accepted here."
+      ru: "У глаголов ie – o – o причастие сохраняет o из Präteritum: geflogen, gezogen, geschlossen; у verlieren неотделяемая приставка ver-, поэтому без ge-: verloren. В образце i – a – u у причастия своя, третья гласная — u: gefunden, getrunken, gesungen. ziehen идёт с hat, когда что-то тянут, и с ist, когда переезжают (Er ist nach Köln gezogen), поэтому здесь принимаются оба варианта."
+      uk: "У зразку ie – o – o дієприкметник зберігає o з Präteritum: geflogen, gezogen, geschlossen. verlieren має невідокремлюваний префікс ver-, тож без ge-: verloren. У зразку i – a – u дієприкметник має третю, власну голосну — u: gefunden, getrunken, gesungen. ziehen поєднується з hat, коли щось тягнуть, і з ist, коли переїжджають (Er ist nach Köln gezogen), тому тут правильні обидва варіанти."
+
+  - id: table-praeteritum-i-e
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "i – a – o · e – a – o"
+    instruction:
+      en: "Write the Präteritum for er/sie."
+      ru: "Впишите Präteritum для er/sie."
+      uk: "Впишіть Präteritum для er/sie."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: beginnen
+        cells: [{ answer: begann }]
+      - label: schwimmen
+        cells: [{ answer: schwamm }]
+      - label: gewinnen
+        cells: [{ answer: gewann }]
+      - label: nehmen
+        cells: [{ answer: nahm }]
+      - label: sprechen
+        cells: [{ answer: sprach }]
+      - label: helfen
+        cells: [{ answer: half }]
+      - label: treffen
+        cells: [{ answer: traf }]
+      - label: sterben
+        cells: [{ answer: starb }]
+    explain:
+      en: "Both groups have a in the Präteritum. beginnen, schwimmen, gewinnen keep their double consonant: begann, schwamm, gewann. nehmen, sprechen, helfen, treffen, sterben switch e to a: nahm, sprach, half, traf, starb — treffen drops one f, and nehmen gains an h. For er/sie the form is the bare stem, like ich: sie half, never sie halfte or sie hilft (that is the present)."
+      ru: "В обеих группах в Präteritum стоит a. beginnen, schwimmen, gewinnen сохраняют двойную согласную: begann, schwamm, gewann. nehmen, sprechen, helfen, treffen, sterben меняют e на a: nahm, sprach, half, traf, starb — у treffen одна f пропадает, а у nehmen появляется h. Для er/sie это голая основа, как и для ich: sie half, но не sie halfte и не sie hilft — это настоящее время."
+      uk: "Обидві групи мають у Präteritum a. beginnen, schwimmen, gewinnen зберігають подвоєну приголосну: begann, schwamm, gewann. nehmen, sprechen, helfen, treffen, sterben міняють e на a: nahm, sprach, half, traf, starb; у treffen зникає одна f, а в nehmen з'являється h. Для er/sie це гола основа, як і для ich: sie half — не sie halfte і не sie hilft, бо hilft — теперішній час."
+
+  - id: table-perfekt-i-e
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bbegonnen\\b)"
+        - "^(?!.*\\bgeschwommen\\b)"
+        - "^(?!.*\\bgewonnen\\b)"
+        - "^(?!.*\\bgenommen\\b)"
+        - "^(?!.*\\bgesprochen\\b)"
+        - "^(?!.*\\bgeholfen\\b)"
+        - "^(?!.*\\bgetroffen\\b)"
+        - "^(?!.*\\bgestorben\\b)"
+      retained: ["\\bbegonnen\\b", "\\bgeschwommen\\b", "\\bgewonnen\\b", "\\bgenommen\\b", "\\bgesprochen\\b", "\\bgeholfen\\b", "\\bgetroffen\\b", "\\bgestorben\\b"]
+    title: "i – a – o · e – a – o"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: beginnen
+        cells: [{ answer: hat begonnen }]
+      - label: schwimmen
+        # ist when the swimmer gets somewhere (über den See); hat is also standard for the
+        # activity alone, especially in the north.
+        cells: [{ answer: ist geschwommen, accept: [hat geschwommen] }]
+      - label: gewinnen
+        cells: [{ answer: hat gewonnen }]
+      - label: nehmen
+        cells: [{ answer: hat genommen }]
+      - label: sprechen
+        cells: [{ answer: hat gesprochen }]
+      - label: helfen
+        cells: [{ answer: hat geholfen }]
+      - label: treffen
+        cells: [{ answer: hat getroffen }]
+      - label: sterben
+        cells: [{ answer: ist gestorben }]
+    explain:
+      en: "These two groups end up with the same participle vowel, o: begonnen, geschwommen, gewonnen, genommen, gesprochen, geholfen, getroffen, gestorben. So the Präteritum a is not the vowel to copy here. beginnen has the inseparable be- and so no extra ge-; gewinnen's ge- is part of the verb itself. sterben takes ist: it is a change of state, like werden."
+      ru: "У этих двух групп в причастии одна и та же гласная — o: begonnen, geschwommen, gewonnen, genommen, gesprochen, geholfen, getroffen, gestorben. Значит, a из Präteritum здесь копировать нельзя. У beginnen неотделяемая приставка be-, поэтому лишнего ge- нет; ge- в gewinnen — часть самого глагола. sterben идёт с ist: это переход в другое состояние, как werden."
+      uk: "Дієприкметники обох груп мають однакову голосну — o: begonnen, geschwommen, gewonnen, genommen, gesprochen, geholfen, getroffen, gestorben. Отже, a з Präteritum сюди не переноситься. У beginnen невідокремлюваний префікс be-, тому другого ge- немає, а ge- у gewinnen — частина самого дієслова. sterben утворює Perfekt з ist: це перехід в інший стан, як у werden."
+
+  - id: table-praeteritum-e-a
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "e – a – e · a – u – a"
+    instruction:
+      en: "Write the Präteritum for er/sie."
+      ru: "Впишите Präteritum для er/sie."
+      uk: "Впишіть Präteritum для er/sie."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: geben
+        cells: [{ answer: gab }]
+      - label: lesen
+        cells: [{ answer: las }]
+      - label: essen
+        cells: [{ answer: aß }]
+      - label: vergessen
+        cells: [{ answer: vergaß }]
+      - label: fahren
+        cells: [{ answer: fuhr }]
+      - label: waschen
+        cells: [{ answer: wusch }]
+      - label: einladen
+        cells: [{ answer: lud ein }]
+    explain:
+      en: "e goes to a: geben → gab, lesen → las, essen → aß, vergessen → vergaß — after the long a the ss becomes ß. a goes to u: fahren → fuhr, waschen → wusch, laden → lud. einladen is separable, so in a main clause the prefix goes to the end: lud … ein. The present-tense vowel change (er liest, er fährt) has nothing to do with the past: er las, er fuhr."
+      ru: "e переходит в a: geben → gab, lesen → las, essen → aß, vergessen → vergaß — после долгого a ss превращается в ß. a переходит в u: fahren → fuhr, waschen → wusch, laden → lud. einladen — отделяемый глагол, поэтому в главном предложении приставка уходит в конец: lud … ein. Смена гласной в настоящем времени (er liest, er fährt) к прошедшему отношения не имеет: er las, er fuhr."
+      uk: "e переходить в a: geben → gab, lesen → las, essen → aß, vergessen → vergaß; після довгого a замість ss пишуть ß. a переходить в u: fahren → fuhr, waschen → wusch, laden → lud. einladen — дієслово з відокремлюваним префіксом, тому в головному реченні префікс іде в кінець: lud … ein. Зміна голосної в теперішньому часі (er liest, er fährt) на минулий час не впливає: er las, er fuhr."
+
+  - id: table-perfekt-e-a
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgegeben\\b)"
+        - "^(?!.*\\bgelesen\\b)"
+        - "^(?!.*\\bgegessen\\b)"
+        - "^(?!.*\\bvergessen\\b)"
+        - "^(?!.*\\bgefahren\\b)"
+        - "^(?!.*\\bgetragen\\b)"
+        - "^(?!.*\\bgewaschen\\b)"
+        - "^(?!.*\\beingeladen\\b)"
+      retained: ["\\bgegeben\\b", "\\bgelesen\\b", "\\bgegessen\\b", "\\bvergessen\\b", "\\bgefahren\\b", "\\bgetragen\\b", "\\bgewaschen\\b", "\\beingeladen\\b"]
+    title: "e – a – e · a – u – a"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: geben
+        cells: [{ answer: hat gegeben }]
+      - label: lesen
+        cells: [{ answer: hat gelesen }]
+      - label: essen
+        cells: [{ answer: hat gegessen }]
+      - label: vergessen
+        cells: [{ answer: hat vergessen }]
+      - label: fahren
+        # ist for going somewhere; hat when fahren has an object (Er hat das Auto gefahren).
+        cells: [{ answer: ist gefahren, accept: [hat gefahren] }]
+      - label: tragen
+        cells: [{ answer: hat getragen }]
+      - label: waschen
+        cells: [{ answer: hat gewaschen }]
+      - label: einladen
+        cells: [{ answer: hat eingeladen }]
+    explain:
+      en: "In these groups the participle goes back to the vowel of the infinitive: geben – gab – gegeben, fahren – fuhr – gefahren. So the middle form is the only one to learn. essen adds a g to its ge-: gegessen. vergessen has the inseparable ver-, so infinitive and participle look the same: hat vergessen. einladen puts ge between the prefix and the stem: eingeladen."
+      ru: "В этих группах причастие возвращается к гласной инфинитива: geben – gab – gegeben, fahren – fuhr – gefahren. Так что учить нужно только среднюю форму. У essen к ge- добавляется g: gegessen. У vergessen неотделяемая приставка ver-, поэтому инфинитив и причастие совпадают: hat vergessen. У einladen ge встаёт между приставкой и основой: eingeladen."
+      uk: "У цих групах дієприкметник повертається до голосної інфінітива: geben – gab – gegeben, fahren – fuhr – gefahren. Тож запам'ятати треба лише середню форму. essen додає до ge- ще g: gegessen. vergessen має невідокремлюваний префікс ver-, тому інфінітив і дієприкметник однакові: hat vergessen. У einladen ge стоїть між префіксом і основою: eingeladen."
+
+  - id: table-praeteritum-a-einzel
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "a – ie – a · Einzelgänger"
+    instruction:
+      en: "Write the Präteritum for er/sie."
+      ru: "Впишите Präteritum для er/sie."
+      uk: "Впишіть Präteritum для er/sie."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: fallen
+        cells: [{ answer: fiel }]
+      - label: schlafen
+        cells: [{ answer: schlief }]
+      - label: lassen
+        cells: [{ answer: ließ }]
+      - label: halten
+        cells: [{ answer: hielt }]
+      - label: gehen
+        cells: [{ answer: ging }]
+      - label: kommen
+        cells: [{ answer: kam }]
+      - label: stehen
+        cells: [{ answer: stand }]
+      - label: tun
+        cells: [{ answer: tat }]
+    explain:
+      en: "a goes to ie: fallen → fiel, schlafen → schlief, lassen → ließ, halten → hielt. The ll of fallen shrinks to one l, and lassen ends in ß after the long ie. The rest are loners and have to be learned one by one: gehen → ging, kommen → kam, stehen → stand, tun → tat. stand has a d that the infinitive does not show — verstehen → verstand works the same way."
+      ru: "a переходит в ie: fallen → fiel, schlafen → schlief, lassen → ließ, halten → hielt. Двойное ll у fallen сокращается до одной l, а lassen после долгого ie кончается на ß. Остальные — одиночки, их учат по одному: gehen → ging, kommen → kam, stehen → stand, tun → tat. В stand появляется d, которого в инфинитиве не видно; verstehen → verstand устроен так же."
+      uk: "a переходить в ie: fallen → fiel, schlafen → schlief, lassen → ließ, halten → hielt. Подвоєне ll у fallen скорочується до однієї l, а lassen після довгого ie закінчується на ß. Решта дієслів — одинаки, їх вивчають поодинці: gehen → ging, kommen → kam, stehen → stand, tun → tat. У stand з'являється d, якого в інфінітиві не видно; verstehen → verstand утворюється так само."
+
+  - id: table-perfekt-a-einzel
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgefallen\\b)"
+        - "^(?!.*\\bgeschlafen\\b)"
+        - "^(?!.*\\bgelassen\\b)"
+        - "^(?!.*\\bgehalten\\b)"
+        - "^(?!.*\\bgegangen\\b)"
+        - "^(?!.*\\bgekommen\\b)"
+        - "^(?!.*\\bgestanden\\b)"
+        - "^(?!.*\\bgetan\\b)"
+      retained: ["\\bgefallen\\b", "\\bgeschlafen\\b", "\\bgelassen\\b", "\\bgehalten\\b", "\\bgegangen\\b", "\\bgekommen\\b", "\\bgestanden\\b", "\\bgetan\\b"]
+    title: "a – ie – a · Einzelgänger"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: fallen
+        cells: [{ answer: ist gefallen }]
+      - label: schlafen
+        cells: [{ answer: hat geschlafen }]
+      - label: lassen
+        cells: [{ answer: hat gelassen }]
+      - label: halten
+        cells: [{ answer: hat gehalten }]
+      - label: gehen
+        cells: [{ answer: ist gegangen }]
+      - label: kommen
+        cells: [{ answer: ist gekommen }]
+      - label: stehen
+        # hat in the north; ist in southern Germany, Austria and Switzerland, and standard there.
+        cells: [{ answer: hat gestanden, accept: [ist gestanden] }]
+      - label: tun
+        cells: [{ answer: hat getan }]
+    explain:
+      en: "a – ie – a participles return to the infinitive's a: gefallen, geschlafen, gelassen, gehalten. The loners do not: gehen → gegangen and stehen → gestanden both gain a consonant, kommen → gekommen keeps its o, tun → getan takes an a. gehen, kommen and fallen take ist (movement, change of place). stehen takes hat in northern German and ist in the south and in Austria, and both are standard."
+      ru: "Причастия a – ie – a возвращаются к a инфинитива: gefallen, geschlafen, gelassen, gehalten. Одиночки — нет: gehen → gegangen и stehen → gestanden получают лишнюю согласную, kommen → gekommen сохраняет o, tun → getan берёт a. gehen, kommen и fallen идут с ist: это движение, смена места. stehen на севере идёт с hat, а на юге и в Австрии — с ist, и обе нормы литературные."
+      uk: "Дієприкметники зразка a – ie – a повертаються до a інфінітива: gefallen, geschlafen, gelassen, gehalten. В одинаків так не буває: gehen → gegangen і stehen → gestanden отримують додаткову приголосну, kommen → gekommen зберігає o, tun → getan бере a. gehen, kommen і fallen утворюють Perfekt з ist: це рух, зміна місця. stehen на півночі вживають з hat, а на півдні Німеччини та в Австрії — з ist, і обидві норми літературні."
+
+  - id: table-praeteritum-gemischt
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "Gemischte Verben"
+    instruction:
+      en: "Write the Präteritum for er/sie. These verbs change their vowel and still take -te."
+      ru: "Впишите Präteritum для er/sie. Эти глаголы меняют гласную и всё равно берут -te."
+      uk: "Впишіть Präteritum для er/sie. Ці дієслова змінюють голосну і все одно беруть -te."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: kennen
+        cells: [{ answer: kannte }]
+      - label: bringen
+        cells: [{ answer: brachte }]
+      - label: denken
+        cells: [{ answer: dachte }]
+      - label: wissen
+        cells: [{ answer: wusste }]
+      - label: rennen
+        cells: [{ answer: rannte }]
+      - label: nennen
+        cells: [{ answer: nannte }]
+    explain:
+      en: "The mixed verbs take a new vowel like strong verbs and the -te ending like weak ones. kennen, rennen and nennen all go e → a: kannte, rannte, nannte. bringen and denken change more: brachte, dachte, with ch. wissen goes to u and ss: wusste. So kennte, bringte and wisste keep the old vowel, while a bare vowel change (kann, brach) gives a different word or none at all."
+      ru: "Смешанные глаголы берут новую гласную, как сильные, и окончание -te, как слабые. kennen, rennen и nennen меняют e на a: kannte, rannte, nannte. bringen и denken меняются сильнее: brachte, dachte, с ch. wissen получает u и ss: wusste. Поэтому kennte, bringte и wisste сохраняют старую гласную, а одна смена гласной (kann, brach) даёт другое слово или вовсе ничего."
+      uk: "Змішані дієслова беруть нову голосну, як сильні, і закінчення -te, як слабкі. kennen, rennen і nennen міняють e на a: kannte, rannte, nannte. bringen і denken змінюються більше: brachte, dachte, з ch. wissen отримує u та ss: wusste. Тому kennte, bringte і wisste зберігають стару голосну, а сама лише зміна голосної (kann, brach) дає інше слово або взагалі нічого."
+
+  - id: table-perfekt-gemischt
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgekannt\\b)"
+        - "^(?!.*\\bgebracht\\b)"
+        - "^(?!.*\\bgedacht\\b)"
+        - "^(?!.*\\bgewusst\\b)"
+        - "^(?!.*\\bgerannt\\b)"
+        - "^(?!.*\\bgenannt\\b)"
+      retained: ["\\bgekannt\\b", "\\bgebracht\\b", "\\bgedacht\\b", "\\bgewusst\\b", "\\bgerannt\\b", "\\bgenannt\\b"]
+    title: "Gemischte Verben"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: kennen
+        cells: [{ answer: hat gekannt }]
+      - label: bringen
+        cells: [{ answer: hat gebracht }]
+      - label: denken
+        cells: [{ answer: hat gedacht }]
+      - label: wissen
+        cells: [{ answer: hat gewusst }]
+      - label: rennen
+        cells: [{ answer: ist gerannt }]
+      - label: nennen
+        cells: [{ answer: hat genannt }]
+    explain:
+      en: "The participle of a mixed verb keeps the Präteritum vowel and ends in -t, like a weak participle: gekannt, gebracht, gedacht, gewusst, gerannt, genannt. gebringt and gedenkt keep the old vowel; gebrachen is the strong ending on a verb that never takes it. rennen is fast movement, so it takes ist: Er ist zum Bus gerannt."
+      ru: "Причастие смешанного глагола сохраняет гласную Präteritum и кончается на -t, как у слабого: gekannt, gebracht, gedacht, gewusst, gerannt, genannt. gebringt и gedenkt сохраняют старую гласную, а gebrachen — сильное окончание у глагола, который его никогда не берёт. rennen — быстрое движение, поэтому оно идёт с ist: Er ist zum Bus gerannt."
+      uk: "Дієприкметник змішаного дієслова має голосну Präteritum і закінчення -t, як у слабкого: gekannt, gebracht, gedacht, gewusst, gerannt, genannt. У gebringt і gedenkt лишилася стара голосна, а gebrachen — сильне закінчення, якого це дієслово не бере. rennen — швидкий рух, тому з ist: Er ist zum Bus gerannt."
+
+  - id: table-praeteritum-stark-schwach
+    outcomes: [praeteritum-erzaehlen]
+    type: table
+    focus: praeteritum-vollverben
+    title: "Stark oder schwach?"
+    instruction:
+      en: "Write the Präteritum for er/sie. The verbs come in look-alike pairs: one is weak (-te), one is strong (new vowel)."
+      ru: "Впишите Präteritum для er/sie. Глаголы идут похожими парами: один слабый (-te), другой сильный (новая гласная)."
+      uk: "Впишіть Präteritum для er/sie. Дієслова йдуть схожими парами: одне слабке (-te), друге сильне (нова голосна)."
+    columns: ["er/sie (Präteritum)"]
+    rows:
+      - label: legen
+        cells: [{ answer: legte, given: true }]
+      - label: liegen
+        cells: [{ answer: lag }]
+      - label: setzen
+        cells: [{ answer: setzte }]
+      - label: sitzen
+        cells: [{ answer: saß }]
+      - label: fragen
+        cells: [{ answer: fragte }]
+      - label: tragen
+        cells: [{ answer: trug }]
+      - label: kaufen
+        cells: [{ answer: kaufte }]
+      - label: laufen
+        cells: [{ answer: lief }]
+    explain:
+      en: "Two verbs that look alike can belong to different groups, so -te has to be decided verb by verb. legen, setzen, fragen, kaufen are weak: legte, setzte, fragte, kaufte. liegen, sitzen, tragen, laufen are strong: lag, saß, trug, lief. sitzen → saß is easy to mix up with sehen → sah: saß has ß, sah has h."
+      ru: "Два похожих глагола могут относиться к разным группам, так что -te решается для каждого глагола отдельно. legen, setzen, fragen, kaufen — слабые: legte, setzte, fragte, kaufte. liegen, sitzen, tragen, laufen — сильные: lag, saß, trug, lief. sitzen → saß легко спутать с sehen → sah: в saß стоит ß, в sah — h."
+      uk: "Два схожі дієслова можуть належати до різних груп, тож про -te треба вирішувати для кожного дієслова окремо. legen, setzen, fragen, kaufen — слабкі: legte, setzte, fragte, kaufte. liegen, sitzen, tragen, laufen — сильні: lag, saß, trug, lief. sitzen → saß легко сплутати з sehen → sah: у saß пишуть ß, у sah — h."
+
+  - id: table-perfekt-stark-schwach
+    outcomes: [muendlich-nacherzaehlen]
+    type: table
+    focus: partizip2-form
+    focus_evidence:
+      failed:
+        - "^(?!.*\\bgelegen\\b)"
+        - "^(?!.*\\bgesetzt\\b)"
+        - "^(?!.*\\bgesessen\\b)"
+        - "^(?!.*\\bgekauft\\b)"
+        - "^(?!.*\\bgelaufen\\b)"
+      retained: ["\\bgelegen\\b", "\\bgesetzt\\b", "\\bgesessen\\b", "\\bgekauft\\b", "\\bgelaufen\\b"]
+    title: "-t oder -en?"
+    instruction:
+      en: "Write the Perfekt for er/sie: hat or ist, then the Partizip II. Weak verbs end in -t, strong ones in -en."
+      ru: "Впишите Perfekt для er/sie: hat или ist, затем Partizip II. У слабых глаголов окончание -t, у сильных — -en."
+      uk: "Впишіть Perfekt для er/sie: hat або ist, а тоді Partizip II. Слабкі дієслова закінчуються на -t, сильні — на -en."
+    columns: ["er/sie (Perfekt)"]
+    rows:
+      - label: legen
+        cells: [{ answer: hat gelegt, given: true }]
+      - label: liegen
+        cells: [{ answer: hat gelegen, accept: [ist gelegen] }]
+      - label: setzen
+        cells: [{ answer: hat gesetzt }]
+      - label: sitzen
+        cells: [{ answer: hat gesessen, accept: [ist gesessen] }]
+      - label: kaufen
+        cells: [{ answer: hat gekauft }]
+      - label: laufen
+        cells: [{ answer: ist gelaufen }]
+    explain:
+      en: "Weak: gelegt, gesetzt, gekauft — ge- plus the unchanged stem plus -t. Strong: gelegen, gesessen, gelaufen — -en, and sitzen also changes its vowel and its tz to ss. gelegt (someone put it there) and gelegen (it lay there) are two different verbs, as are gesetzt and gesessen. liegen and sitzen take hat in the north and ist in the south and Austria; laufen takes ist."
+      ru: "Слабые: gelegt, gesetzt, gekauft — ge- плюс неизменная основа плюс -t. Сильные: gelegen, gesessen, gelaufen — на -en, причём у sitzen меняются и гласная, и tz на ss. gelegt (кто-то положил) и gelegen (что-то лежало) — это два разных глагола, как и gesetzt и gesessen. liegen и sitzen на севере идут с hat, а на юге и в Австрии — с ist; laufen идёт с ist."
+      uk: "Слабкі: gelegt, gesetzt, gekauft — ge-, незмінна основа і -t. Сильні: gelegen, gesessen, gelaufen — на -en, а в sitzen змінюються ще й голосна та tz на ss. gelegt (хтось поклав) і gelegen (щось лежало) — два різні дієслова, так само як gesetzt і gesessen. liegen і sitzen на півночі вживають з hat, а на півдні та в Австрії — з ist; laufen завжди з ist."
+
+  - id: cloze-cafe-fenster
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written narrative: put each verb in brackets into the Präteritum."
+      ru: "Письменный рассказ: поставьте каждый глагол из скобок в Präteritum."
+      uk: "Письмова розповідь: поставте кожне дієслово з дужок у Präteritum."
+    text: "Wir {{saßen}} (sitzen) den ganzen Nachmittag im Café am Fenster und {{sahen}} (sehen) auf den Platz. Dann {{kam}} (kommen) Jonas, und ich {{schrieb}} (schreiben) ihm meine neue Adresse auf einen Zettel."
+    translation:
+      en: "We sat in the café by the window all afternoon and looked out at the square. Then Jonas came, and I wrote my new address down on a piece of paper for him."
+      ru: "Мы весь день просидели в кафе у окна и смотрели на площадь. Потом пришёл Jonas, и я написал ему на листочке свой новый адрес."
+      uk: "Ми весь день просиділи в кафе біля вікна й дивилися на площу. Потім прийшов Jonas, і я написав йому на папірці свою нову адресу."
+    explain:
+      en: "sitzen → saßen and sehen → sahen sound close and stand side by side here: saßen with ß is the sitting, sahen with h the looking. kommen → kam is a loner. schreiben → schrieb follows ei – ie – ie, and for ich it has no ending at all; schrieb is already past, so schriebte doubles the job."
+      ru: "sitzen → saßen и sehen → sahen звучат похоже и стоят здесь рядом: saßen с ß — сидели, sahen с h — смотрели. kommen → kam — одиночка. schreiben → schrieb идёт по образцу ei – ie – ie и у ich вовсе без окончания: schrieb уже прошедшее, так что schriebte выражает прошлое дважды."
+      uk: "sitzen → saßen і sehen → sahen звучать схоже, і тут вони стоять поруч: saßen з ß — сиділи, sahen з h — дивилися. kommen → kam — одинак. schreiben → schrieb іде за зразком ei – ie – ie і для ich не має закінчення взагалі: schrieb уже означає минуле, тож у schriebte минулий час позначено двічі."
+
+  - id: cloze-zug-verspaetung
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written narrative: put each verb in brackets into the Präteritum."
+      ru: "Письменный рассказ: поставьте каждый глагол из скобок в Präteritum."
+      uk: "Письмова розповідь: поставте кожне дієслово з дужок у Präteritum."
+    text: "Unser Zug {{kam}} (kommen) zwei Stunden zu spät. Wir {{tranken}} (trinken) einen Kaffee nach dem anderen, und mein Bruder {{schlief}} (schlafen) eine Stunde auf der Bank. Ich {{fand}} (finden) eine alte Zeitung und {{las}} (lesen) jede Seite."
+    translation:
+      en: "Our train was two hours late. We drank one coffee after another, and my brother slept on the bench for an hour. I found an old newspaper and read every page."
+      ru: "Наш поезд опоздал на два часа. Мы пили кофе чашку за чашкой, а брат час проспал на скамейке. Я нашёл старую газету и прочитал её от первой до последней страницы."
+      uk: "Наш потяг запізнився на дві години. Ми пили каву чашку за чашкою, а брат годину спав на лавці. Я знайшов стару газету й прочитав кожну сторінку."
+    explain:
+      en: "Five strong verbs from four patterns: kam (loner), tranken (i – a – u, plural -en), schlief (a – ie – a), fand (i – a – u), las (e – a – e). None takes -te, and for er/sie and ich the bare stem is the whole form. For wir the strong Präteritum adds only -en: tranken, not trankten."
+      ru: "Пять сильных глаголов из четырёх образцов: kam (одиночка), tranken (i – a – u, во множественном -en), schlief (a – ie – a), fand (i – a – u), las (e – a – e). Ни один не берёт -te, а у er/sie и ich голая основа и есть вся форма. Для wir сильный Präteritum добавляет только -en: tranken, а не trankten."
+      uk: "П'ять сильних дієслів із чотирьох зразків: kam (одинак), tranken (i – a – u, у множині -en), schlief (a – ie – a), fand (i – a – u), las (e – a – e). Жодне не бере -te, а для er/sie та ich уся форма — це гола основа. Для wir сильний Präteritum додає лише -en: tranken, а не trankten."
+
+  - id: cloze-rom-perfekt
+    outcomes: [muendlich-nacherzaehlen]
+    type: cloze
+    focus: partizip2-form
+    # The auxiliary gaps are haben-sein decisions; only a missing participle is the tag's.
+    focus_evidence:
+      failed: ["^(?!.*\\bgeflogen\\b)", "^(?!.*\\bgegessen\\b)", "^(?!.*\\bgesehen\\b)"]
+      retained: ["\\bgeflogen\\b", "\\bgegessen\\b", "\\bgesehen\\b"]
+    instruction:
+      en: "Telling a friend about a trip: fill in the auxiliary and the Partizip II of the verb in brackets."
+      ru: "Рассказ другу о поездке: вставьте вспомогательный глагол и Partizip II глагола из скобок."
+      uk: "Розповідь другові про подорож: вставте допоміжне дієслово і Partizip II дієслова з дужок."
+    text: "Wir {{sind}} im Mai nach Rom {{geflogen}} (fliegen). Dort {{haben}} wir jeden Tag Pizza {{gegessen}} (essen) und viele alte Kirchen {{gesehen}} (sehen)."
+    translation:
+      en: "We flew to Rome in May. We ate pizza every day there and saw a lot of old churches."
+      ru: "В мае мы летали в Рим. Там мы каждый день ели пиццу и посмотрели много старых церквей."
+      uk: "У травні ми літали до Рима. Там ми щодня їли піцу й подивилися багато старих церков."
+    explain:
+      en: "fliegen with a destination is movement, so sind … geflogen, with the o of flog. essen and sehen take haben, and both participles return to the infinitive's e: gegessen (with an extra g), gesehen. One haben serves both participles, joined by und."
+      ru: "fliegen с пунктом назначения — это движение, поэтому sind … geflogen, с o из flog. essen и sehen идут с haben, и оба причастия возвращаются к e инфинитива: gegessen (с лишней g), gesehen. Одно haben обслуживает оба причастия, соединённые через und."
+      uk: "fliegen із місцем призначення — це рух, тому sind … geflogen, з o, як у flog. essen і sehen утворюють Perfekt з haben, і обидва дієприкметники повертаються до e інфінітива: gegessen (з додатковою g), gesehen. Одне haben служить для обох дієприкметників, з'єднаних через und."
+
+  - id: cloze-see-preis
+    outcomes: [muendlich-nacherzaehlen]
+    type: cloze
+    focus: partizip2-form
+    focus_evidence:
+      failed: ["^(?!.*\\bgeschwommen\\b)", "^(?!.*\\bgeschlafen\\b)", "^(?!.*\\bgewonnen\\b)"]
+      retained: ["\\bgeschwommen\\b", "\\bgeschlafen\\b", "\\bgewonnen\\b"]
+    instruction:
+      en: "Fill in the auxiliary and the Partizip II of the verb in brackets."
+      ru: "Вставьте вспомогательный глагол и Partizip II глагола из скобок."
+      uk: "Вставте допоміжне дієслово і Partizip II дієслова з дужок."
+    text: "Lena {{ist}} am Samstag über den ganzen See {{geschwommen}} (schwimmen). Danach {{hat}} sie zwölf Stunden {{geschlafen}} (schlafen), und am Sonntag {{hat}} sie den ersten Preis {{gewonnen}} (gewinnen)."
+    translation:
+      en: "On Saturday Lena swam across the whole lake. Afterwards she slept for twelve hours, and on Sunday she won first prize."
+      ru: "В субботу Лена переплыла всё озеро. Потом она проспала двенадцать часов, а в воскресенье получила первый приз."
+      uk: "У суботу Лена перепливла все озеро. Потім вона спала дванадцять годин, а в неділю виграла перший приз."
+    explain:
+      en: "Across the lake Lena gets from one shore to the other, so schwimmen takes ist here: ist … geschwommen. schlafen and gewinnen take hat. The vowels differ: geschwommen and gewonnen have the o of the i – a – o group, while geschlafen returns to the a of the infinitive."
+      ru: "Через озеро Лена попадает с одного берега на другой, поэтому schwimmen здесь идёт с ist: ist … geschwommen. schlafen и gewinnen идут с hat. Гласные разные: в geschwommen и gewonnen стоит o группы i – a – o, а geschlafen возвращается к a инфинитива."
+      uk: "Лена пливе через озеро з одного берега на інший, тому schwimmen тут з ist: ist … geschwommen. schlafen і gewinnen — з hat. Голосні різні: у geschwommen і gewonnen стоїть o групи i – a – o, а geschlafen повертається до a інфінітива."
+
+  - id: cloze-geburtstag-gemischt
+    outcomes: [muendlich-nacherzaehlen]
+    type: cloze
+    focus: partizip2-form
+    focus_evidence:
+      failed: ["^(?!.*\\bgedacht\\b)", "^(?!.*\\bgebracht\\b)", "^(?!.*\\bgewusst\\b)"]
+      retained: ["\\bgedacht\\b", "\\bgebracht\\b", "\\bgewusst\\b"]
+    instruction:
+      en: "A short conversation: fill in the Partizip II of the verb in brackets, and the auxiliary where there is a second gap."
+      ru: "Короткий разговор: вставьте Partizip II глагола из скобок, а там, где есть второй пропуск, — вспомогательный глагол."
+      uk: "Коротка розмова: вставте Partizip II дієслова з дужок, а там, де є другий пропуск, — допоміжне дієслово."
+    text: "Hast du an Annas Geburtstag {{gedacht}} (denken)? – Ja, ich {{habe}} ihr Blumen {{gebracht}} (bringen). Und du? – Ich {{habe}} es leider nicht {{gewusst}} (wissen)."
+    translation:
+      en: "Did you remember Anna's birthday? – Yes, I brought her flowers. And you? – Unfortunately I didn't know."
+      ru: "Ты не забыл про день рождения Анны? – Нет, я принёс ей цветы. А ты? – А я, к сожалению, не знал."
+      uk: "Ти не забув про день народження Анни? – Ні, я приніс їй квіти. А ти? – А я, на жаль, не знав."
+    explain:
+      en: "All three are mixed verbs: the vowel of the Präteritum (dachte, brachte, wusste) and the weak -t at the end — gedacht, gebracht, gewusst. All three take haben. gedenkt, gebringt and gewisst keep the vowel of the infinitive, which a mixed verb never does in the participle."
+      ru: "Все три глагола смешанные: гласная из Präteritum (dachte, brachte, wusste) и слабое -t на конце — gedacht, gebracht, gewusst. Все три идут с haben. gedenkt, gebringt и gewisst сохраняют гласную инфинитива, а у смешанного глагола в причастии так не бывает никогда."
+      uk: "Усі три дієслова змішані: голосна з Präteritum (dachte, brachte, wusste) і слабке -t у кінці — gedacht, gebracht, gewusst. Усі три утворюють Perfekt з haben. У gedenkt, gebringt і gewisst лишилася голосна інфінітива, а в дієприкметнику змішаного дієслова так не буває."

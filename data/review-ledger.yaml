@@ -296,6 +296,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/exercises/a2/drill-personalpronomen.yaml
+    state: claude-reviewed
+    revision: a8049f150c47dd9cb26626a2503a423b6fb1de42
+    by: Claude Code
+    at: 2026-11-21
+    note: "New A2 pronoun drill (14 clozes) attached to verben-mit-kasus: check the tag per item (genus for das Kind → es, verb-kasus for anrufen/gratulieren/danken) and that two-pronoun gaps only model the order"
   - file: content/exercises/a2/freunde-feste-aufgabe.yaml
     state: owner-reviewed
     revision: a16a0a26484dbdb490a74ae4d629e92de6b689f5
@@ -489,6 +495,12 @@ entries:
     revision: 8651ee18211db66ba516eba286c383a2559ceaab
     by: Vitaly Vorobyev
     at: 2026-11-01
+  - file: content/exercises/b1/drill-lassen-bedeutungen.yaml
+    state: claude-reviewed
+    revision: 1594305155d6846dcbc38127d9aca3d3bfd63ed5
+    by: Claude Code
+    at: 2026-11-21
+    note: "New lassen drill (10 items, every use but sich lassen + Inf): check the double-accusative fahren lassen item, the zuschicken accepts, früher in the ließ item, and the imperativ-form tag on the imperative cloze"
   - file: content/exercises/b1/drill-lassen-verwendung.yaml
     state: owner-reviewed
     revision: f0485662cd2e889d25e2c4a1b5293104fde440cf
@@ -511,6 +523,12 @@ entries:
     revision: f4d547135646b90438b5de17e75e0498d97066c2
     by: Vitaly Vorobyev
     at: 2026-11-01
+  - file: content/exercises/b1/drill-stammformen.yaml
+    state: claude-reviewed
+    revision: 853597eab1862a4f7eb8a298ad5d227a4166e116
+    by: Claude Code
+    at: 2026-11-21
+    note: "New strong-verb drill (19 items, 47 verbs by ablaut pattern): check the aux accepts (ziehen/fahren/schwimmen hat|ist, stehen/liegen/sitzen ist), entscheiden/streiten accepting hat sich, and that the Perfekt tables' focus_evidence leaves aux misses unattributed"
   - file: content/exercises/b1/drill-temporal-nebensatz.yaml
     state: owner-reviewed
     revision: d315990fd3a406b5a78d1b82744ebb963ec7b86b
@@ -1094,6 +1112,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/topics/a2/verben-mit-kasus.topic.yaml
+    state: claude-reviewed
+    revision: 17c2d4295349803d1000908d9edf9e850b11d1a0
+    by: Claude Code
+    at: 2026-11-21
+    note: "New A2 pronoun drill (14 clozes) attached to verben-mit-kasus: check the tag per item (genus for das Kind → es, verb-kasus for anrufen/gratulieren/danken) and that two-pronoun gaps only model the order"
   - file: content/topics/b1/erfahrungen-erzaehlen.mdx
     state: owner-reviewed
     revision: 0c058eb98e73c830744d473208429e4109deb9e6
@@ -1101,11 +1125,12 @@ entries:
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/topics/b1/erfahrungen-erzaehlen.topic.yaml
-    state: owner-reviewed
-    revision: d934046312cfea8599c816fdbf5e5664a241e74c
-    by: Vitaly Vorobyev
-    at: 2026-11-01
-    note: "Carried over from the topic manifest's former status: reviewed."
+    state: claude-reviewed
+    revision: 0244ac64324df1486812d71b47cbaa66754df8b8
+    by: Claude Code
+    at: 2026-11-21
+    note: "New strong-verb drill (19 items, 47 verbs by ablaut pattern): check the aux accepts (ziehen/fahren/schwimmen hat|ist, stehen/liegen/sitzen ist), entscheiden/streiten accepting hat sich, and that the Perfekt tables' focus_evidence leaves aux misses unattributed"
+    since: d934046312cfea8599c816fdbf5e5664a241e74c
   - file: content/topics/b1/gesellschaft-zusammenleben.topic.yaml
     state: owner-reviewed
     revision: 3041fbc404ed4dfc31df98a3a3470491d7203535
@@ -1145,6 +1170,12 @@ entries:
     revision: 1a9ec5808c987a54df97040029a389a4c5c52a88
     by: Vitaly Vorobyev
     at: 2026-11-21
+  - file: content/topics/b1/sucht-lebensstil.topic.yaml
+    state: claude-reviewed
+    revision: 28cba3c1cebe96bd1f0ebb444bb94972dadd6486
+    by: Claude Code
+    at: 2026-11-21
+    note: "New lassen drill (10 items, every use but sich lassen + Inf): check the double-accusative fahren lassen item, the zuschicken accepts, früher in the ließ item, and the imperativ-form tag on the imperative cloze"
   - file: content/topics/b1/versicherungen-behoerden.topic.yaml
     state: owner-reviewed
     revision: da94ab702cc8d8cca59deaf421d15f42021f0b12
@@ -1236,10 +1267,10 @@ entries:
     note: "Figures redrawn: seit/vor now sits under its table; check that the new pictures (seit/vor, Mir tut der Kopf weh, the word-order rows, the halb-neun clock) say the rule to you, and that the provenance lines describe your part truthfully."
   - file: data/authorship-provenance.yaml
     state: claude-reviewed
-    revision: ac200af34eba1af2a6726ed429c795179d8928f3
+    revision: c29acfa8793ed98809f9a158c5421c9dd20c1e33
     by: Claude Code
-    at: 2026-11-07
-    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+    at: 2026-11-21
+    note: Two tool lines for the new drills b1/drill-stammformen and b1/drill-lassen-bedeutungen; no decision of Vitaly's recorded
   - file: data/grading-decisions.yaml
     state: claude-reviewed
     revision: d37f3ee7e42b1cd421e390d95757ca5bb17ad5fc

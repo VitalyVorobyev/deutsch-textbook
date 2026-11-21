@@ -1,0 +1,282 @@
+# Drill the learner asked for: personal pronouns by case and gender, typed. The existing sets
+# cover pieces of it — drill-mir-mich is mostly mc over mir/mich/dich/ihn, drill-du-sie is
+# register, the Dativpronomen probe has three clozes, drill-der-dem-den is articles — but no set
+# makes the learner produce the third-person and plural forms in all three cases side by side.
+#
+# Every gap is made determinate by its context: the sentence before names the noun the pronoun
+# replaces, and the verb fixes the case. Most items set a nominative beside an accusative or a
+# dative, because er/ihn/ihm and sie/ihr/ihnen are the forms that collapse in the hand. The tag
+# follows what the gaps decide:
+#   akkusativ-pronomen / dativ-pronomen — the form for a case both languages agree on;
+#   verb-kasus — anrufen + Akkusativ and gratulieren/danken + Dativ, where Russian governs the
+#     other way («позвонить ей», «поздравить её», «благодарить Вас»);
+#   genus — das Kind → es, where Russian «ребёнок» pushes er/ihn;
+#   wechsel-akk-dat — two objects in one sentence; the two-pronoun clozes print the slots in the
+#     standard order (accusative pronoun before dative pronoun), so they model that order and
+#     grade the two forms. A cloze cannot grade a position; that is the B1 tag pronomen-stellung.
+# Nouns in the non-genus items have the same gender in Russian (Pizza, Film, Schlüssel, Schirm,
+# Kleid), so a miss cannot be a gender transfer charged to a case tag.
+#
+# Attached to verben-mit-kasus, whose outcomes are exactly the person in the accusative and in
+# the dative; every tag used here is introduced earlier in the spine.
+topic: verben-mit-kasus
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — er, ihn, ihm: Personalpronomen"
+title:
+  en: "Drill — er, ihn, ihm: personal pronouns by case"
+  ru: "Тренажёр — er, ihn, ihm: личные местоимения по падежам"
+  uk: "Тренажер — er, ihn, ihm: особові займенники за відмінками"
+items:
+  - id: cloze-bruder-kiel
+    outcomes: [akkusativ-person-nennen]
+    type: cloze
+    focus: akkusativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Mein Bruder wohnt jetzt in Kiel. {{Er}} ruft mich jeden Sonntag an, und im Sommer besuche ich {{ihn}}."
+    translation:
+      en: "My brother lives in Kiel now. He calls me every Sunday, and in summer I visit him."
+      ru: "Мой брат теперь живёт в Киле. Он звонит мне каждое воскресенье, а летом я его навещаю."
+      uk: "Мій брат тепер живе в Кілі. Він дзвонить мені щонеділі, а влітку я його відвідую."
+    explain:
+      en: "mein Bruder is masculine. As the subject he is er; as the object of besuchen he is ihn, the accusative. ihm would be the dative, which besuchen does not take: you visit somebody, a plain direct object."
+      ru: "mein Bruder — мужского рода. Как подлежащее он er; как дополнение при besuchen — ihn, аккузатив. ihm — это датив, а besuchen его не требует: навещают «кого?», а не «кому?»."
+      uk: "mein Bruder — чоловічого роду. Як підмет він er; як додаток при besuchen — ihn, акузатив. ihm — це датив, а besuchen його не потребує: відвідують «кого?», а не «кому?»."
+
+  - id: cloze-grossmutter-reise
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Meine Großmutter hat bald Geburtstag. {{Sie}} wird achtzig, und wir schenken {{ihr}} eine Reise."
+    translation:
+      en: "My grandmother's birthday is coming up. She is turning eighty, and we are giving her a trip."
+      ru: "У бабушки скоро день рождения. Ей исполняется восемьдесят, и мы дарим ей поездку."
+      uk: "У бабусі скоро день народження. Їй виповнюється вісімдесят, і ми даруємо їй подорож."
+    explain:
+      en: "meine Großmutter is feminine. As the subject she is sie; as the person who receives the present she is in the dative, ihr. schenken has two objects: the thing in the accusative (eine Reise) and the person in the dative. sie after schenken would make the grandmother the present."
+      ru: "meine Großmutter — женского рода. Как подлежащее она sie; как получатель подарка — в дативе: ihr. У schenken два дополнения: вещь в аккузативе (eine Reise) и человек в дативе. sie после schenken сделало бы подарком саму бабушку."
+      uk: "meine Großmutter — жіночого роду. Як підмет вона sie; як та, хто отримує подарунок, — у дативі: ihr. У schenken два додатки: річ в акузативі (eine Reise) і людина в дативі. sie після schenken зробило б подарунком саму бабусю."
+
+  - id: cloze-kind-arzt
+    outcomes: [akkusativ-person-nennen]
+    type: cloze
+    focus: genus
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Unser Kind ist krank. Ich bringe {{es}} heute zum Arzt, {{es}} hat seit gestern Fieber."
+    translation:
+      en: "Our child is ill. I am taking him to the doctor today; he has had a temperature since yesterday."
+      ru: "Наш ребёнок заболел. Сегодня я веду его к врачу: у него со вчерашнего дня температура."
+      uk: "Наша дитина захворіла. Сьогодні я веду її до лікаря: від учора в неї температура."
+    explain:
+      en: "das Kind is neuter, so the pronoun is es — whether the child is a boy or a girl, and in the nominative and the accusative alike. English has to choose 'him' or 'her' here; German follows the grammatical gender of the noun."
+      ru: "das Kind — среднего рода, поэтому местоимение — es, будь это мальчик или девочка, и в номинативе, и в аккузативе одинаково. Русское «ребёнок» — мужского рода и тянет к er и ihn, но немецкое местоимение следует роду немецкого существительного."
+      uk: "das Kind — середнього роду, тому займенник — es, хоч би це був хлопчик чи дівчинка, і в номінативі, і в акузативі однаково. Українське «дитина» — жіночого роду й тягне до sie, але німецький займенник іде за родом німецького іменника."
+
+  - id: cloze-anrufen-gratulieren
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Frau Berg hat heute Geburtstag. Ich rufe {{sie}} gleich an und gratuliere {{ihr}}."
+    translation:
+      en: "It's Ms Berg's birthday today. I'm going to call her in a minute and wish her a happy birthday."
+      ru: "У госпожи Берг сегодня день рождения. Я сейчас ей позвоню и поздравлю её."
+      uk: "У пані Берг сьогодні день народження. Я зараз їй зателефоную і привітаю її."
+    explain:
+      en: "Both gaps are Frau Berg, and the verb decides the case. anrufen takes the accusative, sie, like English 'call her'. gratulieren takes the dative, ihr, although English congratulates her as a plain direct object. The case belongs to the verb and is learned with it."
+      ru: "Оба пропуска — это госпожа Берг, а падеж решает глагол. anrufen требует аккузатива: sie, хотя по-русски «позвонить ей». gratulieren требует датива: ihr, хотя по-русски «поздравить её». Русский здесь ведёт в обоих случаях в обратную сторону, поэтому падеж запоминают вместе с глаголом."
+      uk: "Обидва пропуски — це пані Берг, а відмінок вирішує дієслово. anrufen вимагає акузатива: sie, хоча українською «зателефонувати їй». gratulieren вимагає датива: ihr, хоча українською «привітати її». В обох випадках українська веде у протилежний бік, тому відмінок запам'ятовують разом із дієсловом."
+
+  - id: cloze-kleid-geben
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: wechsel-akk-dat
+    instruction:
+      en: "Fill in the two personal pronouns."
+      ru: "Вставьте два личных местоимения."
+      uk: "Вставте два особові займенники."
+    text: "Lena möchte morgen das neue Kleid tragen. Gibst du {{es}} {{ihr}} heute noch?"
+    translation:
+      en: "Lena wants to wear the new dress tomorrow. Will you give it to her today?"
+      ru: "Лена хочет завтра надеть новое платье. Ты отдашь его ей сегодня?"
+      uk: "Лена хоче завтра вдягнути нову сукню. Ти віддаси її їй сьогодні?"
+    explain:
+      en: "Two objects: the thing given is das Kleid, accusative neuter, es; the person who gets it is Lena, dative feminine, ihr. With two pronouns the accusative comes first: es ihr. English needs 'to' for the person; German marks it by the dative form."
+      ru: "Два дополнения: то, что отдают, — das Kleid, аккузатив среднего рода: es; та, кто получает, — Лена, датив женского рода: ihr. Когда оба дополнения — местоимения, аккузатив стоит первым: es ihr."
+      uk: "Два додатки: те, що віддають, — das Kleid, акузатив середнього роду: es; та, хто отримує, — Лена, датив жіночого роду: ihr. Коли обидва додатки — займенники, акузатив стоїть першим: es ihr. Українська «сукня» — жіночого роду, але німецький займенник іде за das Kleid."
+
+  - id: cloze-kinder-pizza
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Die Kinder essen die Pizza nicht. {{Sie}} schmeckt {{ihnen}} nicht."
+    translation:
+      en: "The children aren't eating the pizza. They don't like it."
+      ru: "Дети не едят пиццу. Она им не нравится."
+      uk: "Діти не їдять піцу. Вона їм не смакує."
+    explain:
+      en: "schmeckt is singular, so its subject is die Pizza: sie. The children are the people it tastes to, and schmecken takes them in the dative plural: ihnen. The English sentence turns this round ('they don't like it'); the German one keeps the food as the subject."
+      ru: "schmeckt стоит в единственном числе, значит, подлежащее — die Pizza: sie. Дети — те, кому не нравится её вкус, и schmecken ставит их в датив множественного числа: ihnen. Как в русском «она им не нравится»: еда — подлежащее, люди — в дательном падеже."
+      uk: "schmeckt стоїть в однині, отже, підмет — die Pizza: sie. Діти — ті, кому вона не смакує, і schmecken ставить їх у датив множини: ihnen. Так само, як в українському «вона їм не смакує»: їжа — підмет, люди — в давальному відмінку."
+
+  - id: cloze-formell-danken-anrufen
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction:
+      en: "Fill in the polite personal pronoun."
+      ru: "Вставьте вежливое личное местоимение."
+      uk: "Вставте ввічливий особовий займенник."
+    text: "Herr Roth, ich danke {{Ihnen}} für Ihre Hilfe. Darf ich {{Sie}} morgen noch einmal anrufen?"
+    translation:
+      en: "Mr Roth, thank you for your help. May I call you again tomorrow?"
+      ru: "Господин Рот, благодарю вас за помощь. Можно я позвоню вам завтра ещё раз?"
+      uk: "Пане Рот, дякую вам за допомогу. Можна я зателефоную вам завтра ще раз?"
+    explain:
+      en: "The polite pronoun has its own dative, Ihnen, and an accusative that looks like the nominative, Sie. danken takes the dative: ich danke Ihnen. anrufen takes the accusative: ich rufe Sie an. Both are written with a capital letter wherever they stand."
+      ru: "У вежливого местоимения свой датив — Ihnen, а аккузатив совпадает с номинативом — Sie. danken требует датива: ich danke Ihnen, хотя по-русски «благодарю вас». anrufen требует аккузатива: ich rufe Sie an, хотя по-русски «позвоню вам». Оба пишутся с прописной буквы, где бы ни стояли."
+      uk: "Ввічливий займенник має власний датив — Ihnen, а акузатив збігається з номінативом — Sie. danken вимагає датива: ich danke Ihnen, як і українське «дякую вам». anrufen вимагає акузатива: ich rufe Sie an, хоча українською «зателефоную вам». Обидва займенники пишуть з великої літери, де б вони не стояли."
+
+  - id: cloze-see-euch
+    outcomes: [akkusativ-person-nennen]
+    type: cloze
+    focus: akkusativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Ihr kommt doch mit zum See? Wir holen {{euch}} um acht Uhr ab, und {{ihr}} müsst nur pünktlich sein."
+    translation:
+      en: "You're coming to the lake with us, aren't you? We'll pick you up at eight, and all you have to do is be on time."
+      ru: "Вы ведь поедете с нами на озеро? Мы заедем за вами в восемь, а вам нужно только не опоздать."
+      uk: "Ви ж поїдете з нами на озеро? Ми заберемо вас о восьмій, а вам треба лише не запізнитися."
+    explain:
+      en: "ihr is the subject form for 'you' plural: ihr müsst. As the object of abholen it becomes euch: wir holen euch ab. euch is also the dative, so with ihr-people only the subject looks different. ihr in the object slot is the dative of sie (her), not a form of ihr."
+      ru: "ihr — форма подлежащего для «вы» во множественном числе: ihr müsst. Как дополнение при abholen оно становится euch: wir holen euch ab. euch — это ещё и датив, так что у ihr отличается только форма подлежащего. ihr на месте дополнения — это датив от sie («ей»), а не форма от ihr."
+      uk: "ihr — форма підмета для «ви» в множині: ihr müsst. Як додаток при abholen воно стає euch: wir holen euch ab. euch — це ще й датив, тож у ihr відрізняється лише форма підмета. ihr на місці додатка — це датив від sie («їй»), а не форма від ihr."
+
+  - id: cloze-schluessel-ihn-ihm
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: wechsel-akk-dat
+    instruction:
+      en: "Fill in the two personal pronouns."
+      ru: "Вставьте два личных местоимения."
+      uk: "Вставте два особові займенники."
+    text: "Herr Wolf braucht den Schlüssel. Kannst du {{ihn}} {{ihm}} bringen?"
+    translation:
+      en: "Mr Wolf needs the key. Can you take it to him?"
+      ru: "Господину Вольфу нужен ключ. Можешь отнести его ему?"
+      uk: "Панові Вольфу потрібен ключ. Можеш віднести його йому?"
+    explain:
+      en: "Two masculine pronouns, one letter apart. der Schlüssel is the thing brought, accusative: ihn. Herr Wolf is the person who gets it, dative: ihm. Two pronouns put the accusative first: ihn ihm."
+      ru: "Два местоимения мужского рода, которые отличаются одной буквой. der Schlüssel — то, что приносят, аккузатив: ihn. Господин Вольф — тот, кто получает, датив: ihm. При двух местоимениях аккузатив стоит первым: ihn ihm. В русском «его ему» тот же порядок."
+      uk: "Два займенники чоловічого роду, що відрізняються однією літерою. der Schlüssel — те, що приносять, акузатив: ihn. Пан Вольф — той, хто отримує, датив: ihm. Коли обидва додатки — займенники, акузатив стоїть першим: ihn ihm."
+
+  - id: cloze-fotos-dir
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: wechsel-akk-dat
+    instruction:
+      en: "Fill in the two personal pronouns."
+      ru: "Вставьте два личных местоимения."
+      uk: "Вставте два особові займенники."
+    text: "Du möchtest die Fotos vom Urlaub sehen? Ich schicke {{sie}} {{dir}} heute Abend."
+    translation:
+      en: "You'd like to see the holiday photos? I'll send them to you this evening."
+      ru: "Хочешь посмотреть фотографии из отпуска? Я пришлю их тебе сегодня вечером."
+      uk: "Хочеш подивитися фото з відпустки? Я надішлю їх тобі сьогодні ввечері."
+    explain:
+      en: "die Fotos is plural, so the accusative pronoun is sie. The person you send them to is du, in the dative: dir. Accusative pronoun first, dative pronoun second: sie dir. dich would be the accusative and would make you the thing being sent."
+      ru: "die Fotos — множественное число, поэтому местоимение в аккузативе — sie. Тот, кому их посылают, — du, в дативе: dir. Сначала местоимение в аккузативе, потом в дативе: sie dir. dich — это аккузатив, и тогда посылали бы тебя самого."
+      uk: "die Fotos — множина, тому займенник в акузативі — sie. Той, кому їх надсилають, — du, у дативі: dir. Спершу займенник в акузативі, потім у дативі: sie dir. dich — акузатив, і тоді надсилали б тебе самого."
+
+  - id: cloze-schirm-schwester
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: wechsel-akk-dat
+    instruction:
+      en: "Fill in the personal pronouns."
+      ru: "Вставьте личные местоимения."
+      uk: "Вставте особові займенники."
+    text: "Wo ist mein Schirm? – Ich habe {{ihn}} deiner Schwester gegeben. Deine Tasche habe ich {{ihr}} auch gegeben."
+    translation:
+      en: "Where's my umbrella? – I gave it to your sister. I gave her your bag as well."
+      ru: "Где мой зонт? – Я отдал его твоей сестре. Твою сумку я ей тоже отдал."
+      uk: "Де моя парасолька? – Я віддав її твоїй сестрі. Твою сумку я їй теж віддав."
+    explain:
+      en: "der Schirm is masculine and is the thing given: accusative, ihn. In the second sentence the sister is the person who gets the bag: dative, ihr. A pronoun goes before a noun whatever its case, so ihn comes before deiner Schwester."
+      ru: "der Schirm — мужского рода, и это то, что отдали: аккузатив, ihn. Во втором предложении сестра — та, кто получила сумку: датив, ihr. Местоимение стоит перед существительным, в каком бы падеже оно ни было, поэтому ihn идёт раньше deiner Schwester."
+      uk: "der Schirm — чоловічого роду, і це те, що віддали: акузатив, ihn. Українська «парасолька» — жіночого роду, але німецький займенник іде за der Schirm. У другому реченні сестра — та, хто отримала сумку: датив, ihr. Займенник стоїть перед іменником, хоч у якому відмінку він був би, тому ihn іде раніше за deiner Schwester."
+
+  - id: cloze-nachbar-helfen
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Herr Kurz wohnt neben uns. {{Er}} ist schon alt, deshalb helfe ich {{ihm}} oft beim Einkaufen."
+    translation:
+      en: "Mr Kurz lives next door to us. He is quite old, so I often help him with the shopping."
+      ru: "Господин Курц живёт по соседству с нами. Он уже пожилой, поэтому я часто помогаю ему с покупками."
+      uk: "Пан Курц живе по сусідству з нами. Він уже літній, тому я часто допомагаю йому з покупками."
+    explain:
+      en: "Herr Kurz is er as the subject. helfen takes the dative, so as its object he is ihm. ihn would be the accusative: 'help him' looks like a direct object in English, but German helfen does not take one."
+      ru: "Господин Курц как подлежащее — er. helfen требует датива, поэтому как дополнение он ihm — точно как русское «помогаю ему». ihn — аккузатив, а helfen его не берёт."
+      uk: "Пан Курц як підмет — er. helfen вимагає датива, тому як додаток він ihm — так само, як в українському «допомагаю йому». ihn — акузатив, а helfen його не бере."
+
+  - id: cloze-film-lena
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Wie findet Lena den neuen Film? – {{Er}} gefällt {{ihr}} sehr gut."
+    translation:
+      en: "What does Lena think of the new film? – She likes it very much."
+      ru: "Как Лене новый фильм? – Он ей очень нравится."
+      uk: "Як Лені новий фільм? – Він їй дуже подобається."
+    explain:
+      en: "With gefallen the film is the subject, der Film → er, and the person who likes it is in the dative: Lena → ihr. English turns the sentence round ('she likes it'), so sie for Lena is the trap. Read it as 'it pleases her'."
+      ru: "При gefallen фильм — подлежащее: der Film → er, а тот, кому он нравится, — в дативе: Лена → ihr. Это то же построение, что в русском «он ей нравится»."
+      uk: "При gefallen фільм — підмет: der Film → er, а той, кому він подобається, — у дативі: Лена → ihr. Це та сама будова, що в українському «він їй подобається»."
+
+  - id: cloze-fahrrad-nachbarin
+    outcomes: [dativ-person-nennen]
+    type: cloze
+    focus: dativ-pronomen
+    instruction:
+      en: "Fill in the personal pronoun."
+      ru: "Вставьте личное местоимение."
+      uk: "Вставте особовий займенник."
+    text: "Ist das dein Fahrrad? – Nein, es gehört nicht {{mir}}. Es gehört meiner Nachbarin, und ich bringe es {{ihr}} gleich."
+    translation:
+      en: "Is that your bike? – No, it isn't mine. It belongs to my neighbour, and I'm taking it to her in a minute."
+      ru: "Это твой велосипед? – Нет, он не мой. Он принадлежит моей соседке, и я сейчас его ей отнесу."
+      uk: "Це твій велосипед? – Ні, він не мій. Він належить моїй сусідці, і я зараз його їй віднесу."
+    explain:
+      en: "gehören takes the dative of the owner: es gehört mir, never mich. meine Nachbarin as the person the bike is brought to is dative too: ihr. das Fahrrad is neuter, so it is es throughout, and es comes before ihr."
+      ru: "gehören ставит владельца в датив: es gehört mir, никогда не mich. Соседка, которой несут велосипед, тоже в дативе: ihr. das Fahrrad — среднего рода, поэтому везде es, хотя русский «велосипед» — мужского; и es стоит перед ihr."
+      uk: "gehören ставить власника в датив: es gehört mir, ніколи не mich. Сусідка, якій несуть велосипед, теж у дативі: ihr. das Fahrrad — середнього роду, тому всюди es, хоч українське «велосипед» — чоловічого; і es стоїть перед ihr."

@@ -11,12 +11,6 @@ GitHub Release notes.
 
 ## [Unreleased]
 
-### Added
-
-- **You can choose how many new flashcards you get a day.** The profile menu offers 10, 15, 20 or
-  25 new cards per day, kept per profile; 15 stays the default. A hint under the choice says that
-  more new cards today mean more reviews in the weeks ahead.
-
 ### Changed
 
 - **A topic's exercises say how big each set is, and why the page opened where it did.** Every set
@@ -64,6 +58,22 @@ GitHub Release notes.
 
 ### Added
 
+- **You can choose how many new flashcards you get a day.** The profile menu offers 10, 15, 20 or
+  25 new cards per day, kept per profile; 15 stays the default. A hint under the choice says that
+  more new cards today mean more reviews in the weeks ahead.
+
+- **Strong verbs can now be practised as forms.** *Erfahrungen erzählen* (B1) has a new drill of
+  principal parts: forty-seven strong and mixed verbs, grouped by vowel pattern (*schreiben –
+  schrieb – geschrieben*, *finden – fand – gefunden* …), each typed in the Präteritum and in the
+  Perfekt with *hat* or *ist*, then look-alike pairs (*legte*/*lag*, *setzte*/*saß*) and short
+  stories that ask the forms in context.
+- **lassen in all its uses.** *Rauchen, Alkohol & Gewohnheiten* (B1) gains a second lassen drill:
+  allowing in the Präteritum and the Perfekt (*ließ*, *hat … fahren lassen*), leaving something
+  (*gelassen*), having something done for yourself or after a modal (*verlängern lassen*), *Lass
+  mich …* and the imperatives — and, side by side, *erlaubt, … zu gehen* against *lässt … gehen*.
+- **Personal pronouns by case.** *Verben mit Kasus* (A2) gains a drill of typed gaps for *er/ihn/
+  ihm*, *sie/ihr/ihnen*, *es*, *euch* and *Sie/Ihnen*, including two pronouns in one sentence
+  (*Kannst du ihn ihm bringen?*).
 - **Five topics gain a recorded listening task**, three questions each: a courtyard-party poster
   read aloud (A1 Wortbildung), a phone call about where someone is and is going (A1 Ort &
   Richtung), a call before a move (A2 Verben mit Kasus), two friends fixing a day to study (A2
