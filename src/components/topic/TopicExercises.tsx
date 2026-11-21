@@ -3,7 +3,7 @@ import type { ExerciseSet as ExerciseSetData, TaskSkill, VisualDocument } from '
 import type { ExerciseStepId } from '@da/content/exercise-steps';
 import type { RecordingScript } from '../../lib/audio';
 import { getAttempts, withReadRetry } from '../../lib/store';
-import { openingSet, workedSets, type PathSet } from '../../lib/exercise-path';
+import { openingSet, setsOpenedPast, workedSets, type PathSet } from '../../lib/exercise-path';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -65,6 +65,8 @@ export default function TopicExercises({ steps, primarySetId }: Props) {
   const [activeId, setActiveId] = useState(allSets[0]?.id);
   // null = the attempt log has not been read; a tick is never drawn from a guess
   const [worked, setWorked] = useState<ReadonlySet<string> | null>(null);
+  // the set the path opened on by itself, past the worked-through sets before it
+  const [openedOn, setOpenedOn] = useState<string>();
   const chose = useRef(false);
 
   useEffect(() => {
@@ -75,8 +77,11 @@ export default function TopicExercises({ steps, primarySetId }: Props) {
         const done = workedSets(allSets.map(asPathSet), attempts);
         // a set finished while the read was in flight stays finished
         setWorked((before) => new Set([...done, ...(before ?? [])]));
-        if (!chose.current)
-          setActiveId(openingSet(pathSets.map(asPathSet), done) ?? allSets[0]?.id);
+        if (!chose.current) {
+          const opening = openingSet(pathSets.map(asPathSet), done);
+          setActiveId(opening ?? allSets[0]?.id);
+          setOpenedOn(opening);
+        }
       })
       .catch(() => undefined);
     return () => {
@@ -102,6 +107,12 @@ export default function TopicExercises({ steps, primarySetId }: Props) {
   // never leads into the drills, which exist for one specific confusion each.
   const lane = activeStep.id === 'wiederholen' ? activeStep.sets : pathSets;
   const following = lane[lane.findIndex((set) => set.id === active.id) + 1];
+
+  // A path that opened past finished sets says so: opening straight onto a short later set,
+  // the page otherwise reads as if that set were the whole lesson.
+  const skipped =
+    worked && active.id === openedOn ? setsOpenedPast(pathSets, worked, openedOn) : [];
+  const itemCount = (set: TopicExerciseSet) => set.data.items.length;
 
   return (
     <div>
@@ -194,6 +205,16 @@ export default function TopicExercises({ steps, primarySetId }: Props) {
                     </span>
                   )}
                   <span lang={set.data.title_de ? 'de' : undefined}>{title(set)}</span>
+                  <span
+                    aria-hidden="true"
+                    title={t('topic.itemCount', uiLang).replace('{n}', String(itemCount(set)))}
+                    className="ml-1.5 font-normal text-stone-400 tabular-nums dark:text-stone-500"
+                  >
+                    · {itemCount(set)}
+                  </span>
+                  <span lang={uiLang} className="sr-only">
+                    {`, ${t('topic.itemCount', uiLang).replace('{n}', String(itemCount(set)))}`}
+                  </span>
                 </span>
                 {set.id === primarySetId && (
                   <span
@@ -210,6 +231,32 @@ export default function TopicExercises({ steps, primarySetId }: Props) {
           );
         })}
       </ul>
+
+      {skipped.length > 0 && (
+        <p lang={uiLang} className="mt-3 text-sm text-stone-500 dark:text-stone-400">
+          {skipped.map((set, i) => (
+            <span key={set.id}>
+              {i > 0 && ' · '}
+              <span lang={set.data.title_de ? 'de' : undefined}>{title(set)}</span>{' '}
+              <span aria-hidden="true" className="text-green-600 dark:text-green-400">
+                ✓
+              </span>
+              <span className="sr-only">{t('topic.setDone', uiLang)}</span>{' '}
+              <span className="tabular-nums">
+                {itemCount(set)}/{itemCount(set)}
+              </span>
+            </span>
+          ))}
+          {' — '}
+          {t('topic.continueWith', uiLang)}{' '}
+          <span
+            lang={active.data.title_de ? 'de' : undefined}
+            className="font-medium text-stone-700 dark:text-stone-200"
+          >
+            {title(active)}
+          </span>
+        </p>
+      )}
 
       <div className="mt-4">
         <ExerciseSet

@@ -44,7 +44,10 @@ authoring rules.
   `src/lib/training.ts`): open production is done on its topic page, where the learner chose it.
 - Placement may advance the recommended path but never raises a topic’s measured tier.
 - Probe state is derived from the attempt log and served before contaminating practice.
-- Fresh-card introductions are budgeted per day, not per rendered queue.
+- Fresh-card introductions are budgeted per day, not per rendered queue. The budget is a
+  per-profile choice of 10, 15, 20 or 25 (`da:newcards:<profileId>`, `getDailyNewCards`), 15 when
+  nothing valid is stored (`DAILY_NEW_CARDS`, `src/lib/daily-new-cards.ts`). Every gated surface
+  passes it to `planReview` as `dailyNewCap`, and a gated queue may hold the whole budget at once.
 - Queue planning reads a card's identity only (`CardRef`: id, deck, headword, direction), so
   `planReview` is generic over it. A surface that only counts (DueBadge) plans from ids rebuilt
   from headwords (`decksOf`/`deckCardRefs`) instead of inlining the built cards. It is still the

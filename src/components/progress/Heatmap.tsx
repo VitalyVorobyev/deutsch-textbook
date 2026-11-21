@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import {
   dailyActivity,
   activeDateSet,
@@ -13,7 +13,7 @@ import {
   type CardStates,
   type SessionLogEntry,
 } from '../../lib/store';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainLang } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -22,7 +22,23 @@ const UI = {
   dayStreak: { en: 'day streak', ru: 'дн. подряд' },
   exercises: { en: 'exercises', ru: 'упр.' },
   cards: { en: 'cards', ru: 'карт.' },
-} as const satisfies Record<string, { en: string; ru: string }>;
+  gridLabel: {
+    en: 'Activity by day — arrow keys move between days',
+    ru: 'Активность по дням — стрелки переходят между днями',
+    uk: 'Активність за днями — стрілки переходять між днями',
+    de: 'Aktivität nach Tagen — mit den Pfeiltasten von Tag zu Tag',
+  },
+} as const satisfies Record<string, { en: string; ru: string; uk?: string; de?: string }>;
+
+/** The day a square stands for, in the reader's language: "Mon, 3 November 2026". */
+function heatmapDateLabel(date: string, lang: ExplainLang): string {
+  return parseLocalDate(date).toLocaleDateString(lang, {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
 
 const WEEKS = 13;
 
@@ -76,6 +92,34 @@ export function Heatmap({
     weeks.push(col);
   }
 
+  // One tab stop for the whole grid (roving tabindex): today's square, or the one last moved to.
+  // The caption under the grid shows the hovered or focused day for sighted users; a screen
+  // reader hears the same text as the square's label.
+  const past = weeks.flat().filter((date) => date <= todayStr);
+  const [focused, setFocused] = useState<string>();
+  const [shown, setShown] = useState<string>();
+  const cells = useRef(new Map<string, HTMLDivElement>());
+  const tabStop = focused && past.includes(focused) ? focused : past[past.length - 1];
+
+  const label = (date: string) => {
+    const day = map.get(date);
+    return `${heatmapDateLabel(date, lang)}: ${day?.attempts ?? 0} ${pick(lang, UI.exercises)}, ${Math.max(day?.reviewed ?? 0, day?.cardReviews ?? 0)} ${pick(lang, UI.cards)}`;
+  };
+
+  function move(e: KeyboardEvent<HTMLDivElement>, date: string) {
+    const step = { ArrowUp: -1, ArrowDown: 1, ArrowLeft: -7, ArrowRight: 7 }[e.key];
+    const at = past.indexOf(date);
+    let next: string | undefined;
+    if (step !== undefined) next = past[at + step];
+    else if (e.key === 'Home') next = past[0];
+    else if (e.key === 'End') next = past[past.length - 1];
+    else return;
+    e.preventDefault();
+    if (!next) return;
+    setFocused(next);
+    cells.current.get(next)?.focus();
+  }
+
   return (
     <div>
       <div className="flex items-baseline justify-between">
@@ -86,23 +130,54 @@ export function Heatmap({
           🔥 <span className="font-semibold tabular-nums">{streak}</span> {pick(lang, UI.dayStreak)}
         </p>
       </div>
-      <div className="mt-3 overflow-x-auto">
-        <div className="flex gap-1">
+      <div className="-mx-1 mt-2 overflow-x-auto p-1">
+        <div
+          className="flex gap-1"
+          role="group"
+          aria-label={pick(lang, UI.gridLabel)}
+          onMouseLeave={() => setShown(focused)}
+        >
           {weeks.map((col, wi) => (
             <div key={wi} className="flex flex-col gap-1">
               {col.map((date) => {
                 const day = map.get(date);
-                const future = date > todayStr;
-                const cls = future ? 'bg-transparent' : intensity(day?.total ?? 0);
-                const title = future
-                  ? ''
-                  : `${date}: ${day?.attempts ?? 0} ${pick(lang, UI.exercises)}, ${Math.max(day?.reviewed ?? 0, day?.cardReviews ?? 0)} ${pick(lang, UI.cards)}`;
-                return <div key={date} title={title} className={`h-3 w-3 rounded-sm ${cls}`} />;
+                if (date > todayStr)
+                  return <div key={date} aria-hidden="true" className="h-3 w-3 rounded-sm" />;
+                const text = label(date);
+                return (
+                  <div
+                    key={date}
+                    ref={(el) => {
+                      if (el) cells.current.set(date, el);
+                      else cells.current.delete(date);
+                    }}
+                    role="img"
+                    aria-label={text}
+                    title={text}
+                    tabIndex={date === tabStop ? 0 : -1}
+                    onKeyDown={(e) => move(e, date)}
+                    onFocus={() => {
+                      setFocused(date);
+                      setShown(date);
+                    }}
+                    onBlur={() => setShown(undefined)}
+                    onMouseEnter={() => setShown(date)}
+                    className={`h-3 w-3 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 ${intensity(day?.total ?? 0)} ${
+                      date === shown ? 'ring-1 ring-stone-500 dark:ring-stone-300' : ''
+                    }`}
+                  />
+                );
               })}
             </div>
           ))}
         </div>
       </div>
+      <p
+        aria-hidden="true"
+        className="mt-1 min-h-4 text-xs text-stone-500 tabular-nums dark:text-stone-400"
+      >
+        {shown ? label(shown) : ''}
+      </p>
     </div>
   );
 }

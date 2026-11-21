@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { openingSet, workedSets } from '../src/lib/exercise-path';
+import { openingSet, setsOpenedPast, workedSets } from '../src/lib/exercise-path';
 
 const sets = [
   { id: 'a2/x', itemIds: ['a', 'b'] },
@@ -41,5 +41,35 @@ describe('openingSet', () => {
   test('opens on the first set when all are worked through, and on nothing without sets', () => {
     expect(openingSet(sets, new Set(sets.map((set) => set.id)))).toBe('a2/x');
     expect(openingSet([], new Set())).toBeUndefined();
+  });
+});
+
+describe('setsOpenedPast', () => {
+  test('names the worked sets the path skipped to reach the set it opened on', () => {
+    // the learner finished the Grundübung; an extension set added later is where the path opens
+    const worked = new Set(['a2/x']);
+    const open = openingSet(sets, worked);
+    expect(open).toBe('a2/x-transfer');
+    expect(setsOpenedPast(sets, worked, open).map((set) => set.id)).toEqual(['a2/x']);
+
+    const both = new Set(['a2/x', 'a2/x-transfer']);
+    expect(setsOpenedPast(sets, both, openingSet(sets, both)).map((set) => set.id)).toEqual([
+      'a2/x',
+      'a2/x-transfer',
+    ]);
+  });
+
+  test('says nothing when the path opens on its first set', () => {
+    expect(setsOpenedPast(sets, new Set(), openingSet(sets, new Set()))).toEqual([]);
+    // all worked through: the path opens on the first set again
+    const all = new Set(sets.map((set) => set.id));
+    expect(setsOpenedPast(sets, all, openingSet(sets, all))).toEqual([]);
+  });
+
+  test('says nothing for a set the path did not skip to, or one it does not know', () => {
+    // a2/x is not worked, so a2/x-lesen was chosen, not opened on
+    expect(setsOpenedPast(sets, new Set(['a2/x-transfer']), 'a2/x-lesen')).toEqual([]);
+    expect(setsOpenedPast(sets, new Set(['a2/x']), 'a2/elsewhere')).toEqual([]);
+    expect(setsOpenedPast(sets, new Set(['a2/x']), undefined)).toEqual([]);
   });
 });

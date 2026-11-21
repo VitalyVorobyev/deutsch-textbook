@@ -15,6 +15,7 @@ import ProgressLoadError from '../ProgressLoadError';
 import {
   cardMeaning,
   getCardInputMode,
+  getDailyNewCards,
   pick,
   setCardInputMode,
   type CardInputMode,
@@ -43,8 +44,6 @@ const UI = {
 
 interface Props {
   cards: CardDef[];
-  /** cap on never-seen cards mixed into this session */
-  newLimit?: number;
   /** when set, never-graded cards are limited to eligible decks (due cards
       always pass) — the per-deck page omits it, studying a deck is an opt-in */
   gate?: ReviewGate;
@@ -80,13 +79,7 @@ function verdictHint(v: AnswerVerdict, canonical: string, given: string): string
   return null;
 }
 
-export default function FlashcardSession({
-  cards,
-  newLimit = 15,
-  gate,
-  queue: presetQueue,
-  onFinished,
-}: Props) {
+export default function FlashcardSession({ cards, gate, queue: presetQueue, onFinished }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const [queue, setQueue] = useState<CardDef[] | null>(null);
@@ -152,7 +145,12 @@ export default function FlashcardSession({
           return;
         }
         setStates(s);
-        setQueue(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }).queue);
+        // Gated: the learner's daily budget, which also sizes this queue. Ungated (one deck
+        // studied directly) stays unrationed, as planReview defaults it.
+        const dailyNewCap = gate ? getDailyNewCards() : undefined;
+        setQueue(
+          planReview(cards, gate, { attempts, cards: s, topics, goal }, { dailyNewCap }).queue,
+        );
       },
       () => {
         if (!cancelled) setLoadError(true);
@@ -161,7 +159,7 @@ export default function FlashcardSession({
     return () => {
       cancelled = true;
     };
-  }, [cards, newLimit, gate, presetQueue, loadRound]);
+  }, [cards, gate, presetQueue, loadRound]);
 
   const card = queue?.[0];
   // 'listen' turns recognition (de-x) cards into dictation; production (x-de)

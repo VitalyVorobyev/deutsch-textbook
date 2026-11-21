@@ -25,7 +25,7 @@ import {
   type ProbeFailureToday,
 } from '../../lib/probes';
 import { remediationSetFor } from '../../lib/training';
-import { pick } from '../../lib/prefs';
+import { getDailyNewCards, pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import FlashcardSession from '../srs/FlashcardSession';
@@ -237,6 +237,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             { spine, nodes, deckLevels },
             { attempts, cards: states, topics, goal },
             {
+              dailyNewCap: getDailyNewCards(),
               maxDue: MAX_CARDS,
               maxTotal: MAX_CARDS,
               freshPolicy: { kind: 'top-up', minDue: MIN_DUE },

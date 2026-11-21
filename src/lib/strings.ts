@@ -916,6 +916,19 @@ export const STRINGS = {
   },
   'topic.nextSet': { de: 'Weiter:', en: 'Next:', ru: 'Дальше:', uk: 'Далі:' },
   'topic.setDone': { de: 'bearbeitet', en: 'worked through', ru: 'пройдено', uk: 'опрацьовано' },
+  'topic.itemCount': {
+    de: 'Aufgaben: {n}',
+    en: 'Items: {n}',
+    ru: 'Заданий: {n}',
+    uk: 'Завдань: {n}',
+  },
+  // The line above a set the path opened on because the sets before it are worked through.
+  'topic.continueWith': {
+    de: 'weiter mit:',
+    en: 'continuing with:',
+    ru: 'продолжаем:',
+    uk: 'продовжуємо:',
+  },
   'topic.skillHoeren': { de: 'Hören', en: 'Listening', ru: 'Аудирование', uk: 'Аудіювання' },
   'topic.skillLesen': { de: 'Lesen', en: 'Reading', ru: 'Чтение', uk: 'Читання' },
   'topic.skillSchreiben': { de: 'Schreiben', en: 'Writing', ru: 'Письмо', uk: 'Письмо' },
