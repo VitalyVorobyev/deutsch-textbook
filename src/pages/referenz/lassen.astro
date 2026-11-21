@@ -1,0 +1,27 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TaughtIn from '../../components/reference/TaughtIn.astro';
+import WordUses from '../../components/reference/WordUses.astro';
+import { wordUsesReferenceSchema } from '@da/schema';
+import { withBase } from '../../lib/url';
+
+const entry = await getEntry('referenceData', 'lassen');
+if (!entry) throw new Error('Missing canonical lassen reference data');
+const data = wordUsesReferenceSchema.parse(entry.data);
+---
+
+<Base title={data.word}>
+  <nav class="mb-3 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a></nav>
+  <header>
+    <h1 lang="de" class="text-3xl font-bold tracking-tight">{data.word}</h1>
+    <p class="mt-2 max-w-3xl text-stone-500 dark:text-stone-400">
+      <span class="lang-en">{data.intro.en}</span>
+      <span class="lang-ru">{data.intro.ru}</span>
+      {data.intro.uk && <span class="lang-uk">{data.intro.uk}</span>}
+      {data.intro.de && <span class="lang-de">{data.intro.de}</span>}
+    </p>
+    <TaughtIn source="lassen" />
+  </header>
+  <WordUses source="lassen" />
+</Base>

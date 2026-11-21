@@ -1,0 +1,261 @@
+id: lassen
+
+# lassen: one verb, every job it does. Schema: wordUsesReferenceSchema (packages/schema/src/index.ts).
+#
+# `focus` names the tag whose drills teach lassen; the page and the topic footers read the
+# teaching topic out of `focusIntroducedBy`, so no topic name is written here.
+#
+# `sich lassen` + infinitive (Das lässt sich reparieren) is `status: receptive`: no row of
+# data/grammar-inventory.yaml claims it at any level and no item drills it. It is here so the
+# picture is complete, and the page marks it as recognition only.
+
+word: lassen
+focus: [lassen-verwendung]
+
+intro:
+  en: "One verb with six jobs: allowing, getting something done, leaving, giving up, suggesting — and a sixth you only need to recognise. Each job has its own sentence pattern, and the two rules apply to all of them."
+  ru: "У lassen шесть значений: разрешить, поручить, оставить, бросить, предложить — и ещё одно, которое достаточно узнавать в тексте. У каждого своя схема предложения, а два правила действуют для всех."
+  uk: "lassen має шість значень: дозволити, доручити, залишити, кинути, запропонувати — і ще одне, яке досить упізнавати в тексті. Кожне має свою схему речення, а два правила діють для всіх."
+
+forms:
+  - label: Infinitiv
+    form: "lassen"
+  - label: Präsens
+    form: "ich lasse · du lässt · er/sie/es lässt · wir lassen · ihr lasst · sie/Sie lassen"
+    note:
+      en: "Umlaut only in the du- and er/sie/es-forms, as in schlafen → schläft. The ihr-form lasst has none."
+      ru: "Умлаут только у du и er/sie/es — как schlafen → schläft. У ihr lasst его нет."
+      uk: "Умлаут лише в du та er/sie/es — як schlafen → schläft. У формі ihr lasst його немає."
+  - label: Präteritum
+    form: "ich ließ · er/sie/es ließ · wir ließen"
+  - label: "Perfekt, allein"
+    form: "hat gelassen"
+    note:
+      en: "Only when lassen has no second verb: Ich habe den Schlüssel zu Hause gelassen."
+      ru: "Только когда у lassen нет второго глагола: Ich habe den Schlüssel zu Hause gelassen."
+      uk: "Лише коли в lassen немає другого дієслова: Ich habe den Schlüssel zu Hause gelassen."
+  - label: "Perfekt, mit Infinitiv"
+    form: "hat … lassen"
+    note:
+      en: "With a second verb: Ich habe mein Fahrrad reparieren lassen."
+      ru: "Со вторым глаголом: Ich habe mein Fahrrad reparieren lassen."
+      uk: "З другим дієсловом: Ich habe mein Fahrrad reparieren lassen."
+  - label: Imperativ
+    form: "lass! · lasst! · lassen Sie!"
+
+rules:
+  - id: ohne-zu
+    title:
+      de: "Kein zu vor dem Infinitiv"
+      en: "No zu before the infinitive"
+      ru: "Перед инфинитивом нет zu"
+      uk: "Перед інфінітивом немає zu"
+    explanation:
+      en: "Whenever lassen has a second verb, that verb is a bare infinitive at the end of the clause, as after können or müssen. The trap is erlauben: it means much the same as lassen in the sense of allow, but it builds a zu-infinitive and puts the person in the dative — den Kindern, mir — where lassen has the accusative: die Kinder, mich."
+      ru: "Если у lassen есть второй глагол, это голый инфинитив в конце предложения — как после können или müssen. Ловушка — erlauben: по смыслу то же «разрешать», но после него нужен инфинитив с zu, а человек стоит в дательном падеже (den Kindern, mir). У lassen он в винительном: die Kinder, mich."
+      uk: "Якщо в lassen є друге дієслово, це голий інфінітив у кінці речення — як після können чи müssen. Пастка — erlauben: значення те саме «дозволяти», але після нього потрібен інфінітив із zu, а людина стоїть у давальному відмінку (den Kindern, mir). У lassen вона в знахідному: die Kinder, mich."
+    examples:
+      - de: "Wir lassen die Kinder im Garten spielen."
+        en: "We let the children play in the garden."
+        ru: "Мы даём детям поиграть в саду."
+        uk: "Ми даємо дітям погратися в саду."
+      - de: "Wir erlauben den Kindern, im Garten zu spielen."
+        en: "We allow the children to play in the garden."
+        ru: "Мы разрешаем детям играть в саду."
+        uk: "Ми дозволяємо дітям гратися в саду."
+    wrong:
+      - "Wir lassen die Kinder im Garten zu spielen."
+
+  - id: perfekt
+    title:
+      de: "Perfekt: hat … lassen oder hat … gelassen"
+      en: "Perfekt: lassen or gelassen"
+      ru: "Perfekt: lassen или gelassen"
+      uk: "Perfekt: lassen чи gelassen"
+    explanation:
+      en: "With a second verb, lassen forms its Perfekt like a modal verb: the infinitive lassen takes the place of the participle, so the clause ends in two infinitives — hat reparieren lassen, just like hat arbeiten müssen. The participle gelassen appears only where lassen stands alone, in the sense of leave."
+      ru: "Когда у lassen есть второй глагол, Perfekt строится как у модальных: вместо причастия стоит инфинитив lassen, и предложение заканчивается двумя инфинитивами — hat reparieren lassen, как hat arbeiten müssen. Причастие gelassen бывает только там, где lassen стоит один, в значении «оставить»."
+      uk: "Коли в lassen є друге дієслово, Perfekt будується як у модальних: замість дієприкметника стоїть інфінітив lassen, тож речення закінчується двома інфінітивами — hat reparieren lassen, як hat arbeiten müssen. Дієприкметник gelassen буває тільки там, де lassen стоїть сам, у значенні «залишити»."
+    examples:
+      - de: "Ich habe mein Fahrrad reparieren lassen."
+        en: "I had my bike repaired."
+        ru: "Мне починили велосипед."
+        uk: "Мені полагодили велосипед."
+      - de: "Ich habe meine Jacke im Auto gelassen."
+        en: "I left my jacket in the car."
+        ru: "Я оставил куртку в машине."
+        uk: "Я залишив куртку в машині."
+    wrong:
+      - "Ich habe mein Fahrrad reparieren gelassen."
+
+uses:
+  - id: erlauben
+    title:
+      de: "erlauben"
+      en: "allow"
+      ru: "разрешить"
+      uk: "дозволити"
+    pattern: "jemanden (Akk.) etwas tun lassen"
+    explanation:
+      en: "This job is English let: someone permits someone else to do something. The person who is allowed is the accusative object — mich, dich, ihn — and the other verb waits at the end as a bare infinitive, exactly as in let me go. With nicht, the same sentence refuses permission: Sie lässt mich nicht rauchen."
+      ru: "Здесь lassen значит «разрешать», «отпускать», «давать что-то сделать»: Lass mich schlafen — «дай мне поспать». Тот, кому разрешают, стоит в винительном падеже: mich, dich, ihn. С nicht предложение превращается в запрет: Sie lässt mich nicht rauchen — «она не даёт мне курить»."
+      uk: "У цьому значенні lassen — це «дозволяти», «пускати», «давати щось зробити»: Lass mich schlafen — «дай мені поспати». Того, кому дозволяють, німецька ставить у знахідний відмінок: mich, dich, ihn. Із nicht речення стає забороною: Sie lässt mich nicht rauchen — «вона не дає мені курити»."
+    examples:
+      - de: "Meine Eltern lassen mich allein fahren."
+        en: "My parents let me travel on my own."
+        ru: "Родители разрешают мне ездить одному."
+        uk: "Батьки дозволяють мені їздити самому."
+      - de: "Die Lehrerin lässt uns heute früher gehen."
+        en: "The teacher is letting us go early today."
+        ru: "Сегодня учительница отпускает нас пораньше."
+        uk: "Сьогодні вчителька відпускає нас раніше."
+      - de: "Lass mich das machen!"
+        en: "Let me do that!"
+        ru: "Дай я это сделаю!"
+        uk: "Дай я це зроблю!"
+    warning:
+      en: "The person who is allowed is accusative: Sie lässt mich fahren, not mir — even though erlauben takes mir."
+      ru: "«Разрешить мне» по-русски — дательный, и рука сама пишет mir. После lassen нужен винительный: Sie lässt mich fahren."
+      uk: "«Дозволити мені» українською — давальний, і рука сама пише mir. Після lassen потрібен знахідний: Sie lässt mich fahren."
+
+  - id: veranlassen
+    title:
+      de: "machen lassen"
+      en: "have something done"
+      ru: "поручить"
+      uk: "доручити"
+    pattern: "etwas machen lassen · sich (Dat.) etwas machen lassen"
+    explanation:
+      en: "You arrange it; someone else does the work. English needs have or get plus a participle — I'm having my bike repaired — but German keeps the bare infinitive: Ich lasse mein Fahrrad reparieren. When the thing belongs to you, add the dative mir, dir, sich: Ich lasse mir die Haare schneiden. When you yourself are the one treated, the reflexive is accusative: Ich lasse mich beraten."
+      ru: "Работу делает кто-то другой, а вы её организуете. Отдельного глагола для этого в русском нет: говорят «мне починили велосипед», «я отдал велосипед в ремонт» или просто «я починил велосипед», хотя чинил мастер. Немецкий называет это прямо: Ich lasse mein Fahrrad reparieren. Если речь о вашей вещи или части тела, добавьте дательный mir: Ich lasse mir die Haare schneiden — «я стригусь». Если обслуживают вас самих, возвратное местоимение стоит в винительном: Ich lasse mich beraten — «я консультируюсь»."
+      uk: "Роботу виконує хтось інший, а ви лише домовляєтеся. Окремого дієслова для цього в українській немає: кажуть «мені полагодили велосипед», «я віддав велосипед у ремонт» або й просто «я полагодив велосипед», хоча лагодив майстер. Німецька каже, як є: Ich lasse mein Fahrrad reparieren. Коли йдеться про вашу річ чи частину тіла, додайте давальний mir: Ich lasse mir die Haare schneiden — «я стрижуся». Коли обслуговують вас самих, зворотний займенник стоїть у знахідному: Ich lasse mich beraten — «я консультуюся»."
+    examples:
+      - de: "Ich lasse mein Fahrrad reparieren."
+        en: "I'm having my bike repaired."
+        ru: "Я отдаю велосипед в ремонт."
+        uk: "Я віддаю велосипед у ремонт."
+      - de: "Ich lasse mir die Haare schneiden."
+        en: "I'm getting my hair cut."
+        ru: "Я стригусь в парикмахерской."
+        uk: "Я стрижуся в перукарні."
+      - de: "Gestern habe ich mir die Haare schneiden lassen."
+        en: "I had my hair cut yesterday."
+        ru: "Вчера я постригся."
+        uk: "Учора я підстригся."
+      - de: "Lassen Sie sich in der Apotheke beraten!"
+        en: "Get advice at the pharmacy!"
+        ru: "Проконсультируйтесь в аптеке!"
+        uk: "Проконсультуйтеся в аптеці!"
+    warning:
+      en: "No participle after lassen: Ich lasse mein Fahrrad repariert is the English pattern in German words. The infinitive reparieren goes at the end."
+      ru: "«Я постригся» — это не ich habe mich geschnitten (так говорят, когда порезались), а ich habe mir die Haare schneiden lassen."
+      uk: "«Я підстригся» — це не ich habe mich geschnitten (так кажуть, коли порізалися), а ich habe mir die Haare schneiden lassen."
+
+  - id: zuruecklassen
+    title:
+      de: "ohne zweites Verb"
+      en: "leave"
+      ru: "оставить"
+      uk: "залишити"
+    pattern: "etwas irgendwo lassen · jemanden in Ruhe lassen · Lass das!"
+    explanation:
+      en: "Without a second verb, lassen means leave: leave a thing somewhere, leave a person alone. Lass das! is the everyday Stop that! or Leave it alone! This is the only job in which lassen stands alone — and so the only one whose Perfekt uses the participle gelassen."
+      ru: "Без второго глагола lassen значит «оставить»: оставить вещь где-то, оставить человека в покое. Lass das! — «Перестань!», «Не трогай!». Только в этом значении lassen стоит один, и поэтому только здесь Perfekt строится с причастием gelassen."
+      uk: "Коли другого дієслова немає, lassen означає «залишити»: залишити річ десь, залишити людину в спокої. Lass das! — «Облиш!», «Не чіпай!». Тільки в цьому значенні lassen стоїть сам, тому тільки тут Perfekt має дієприкметник gelassen."
+    examples:
+      - de: "Ich habe den Schlüssel zu Hause gelassen."
+        en: "I left the key at home."
+        ru: "Я оставил ключ дома."
+        uk: "Я залишив ключ удома."
+      - de: "Lass mich in Ruhe!"
+        en: "Leave me alone!"
+        ru: "Оставь меня в покое!"
+        uk: "Дай мені спокій!"
+      - de: "Lass das! Das ist nicht dein Handy."
+        en: "Leave that alone! It isn't your phone."
+        ru: "Не трогай! Это не твой телефон."
+        uk: "Не чіпай! Це не твій телефон."
+    warning:
+      en: "Leaving a place, a job or a person for good is verlassen: Er hat die Firma verlassen. Plain lassen leaves a thing where it is."
+      ru: "Русское «оставить» значит ещё и «бросить, уйти»: «он оставил семью». Это уже verlassen: Er hat seine Familie verlassen. Простое lassen оставляет вещь там, где она лежит."
+      uk: "Українське «залишити» означає ще й «покинути»: «він залишив родину». Це вже verlassen: Er hat seine Familie verlassen. Просте lassen залишає річ там, де вона лежить."
+
+  - id: sein-lassen
+    title:
+      de: "sein lassen"
+      en: "give something up"
+      ru: "бросить"
+      uk: "кинути"
+    pattern: "etwas sein lassen"
+    explanation:
+      en: "With sein, lassen means stop doing something or give it up — a habit, a plan, an argument. It is everyday and informal: Ich lasse das Rauchen sein. The sentence is built like every other job: lassen in position 2, sein at the end."
+      ru: "Вместе с sein глагол lassen значит «бросить», «перестать»: курить, спорить, строить какие-то планы. Ближе всего разговорное «бросить»: Ich lasse das Rauchen sein — «бросаю курить». Предложение строится так же, как в остальных значениях: lassen на втором месте, sein в конце."
+      uk: "Разом із sein дієслово lassen означає «кинути», «облишити»: курити, сперечатися, якусь затію. Найближчий відповідник — розмовне «кинути»: Ich lasse das Rauchen sein — «кидаю курити». Речення будується так само, як в інших значеннях: lassen на другому місці, sein у кінці."
+    examples:
+      - de: "Ich lasse das Rauchen sein."
+        en: "I'm giving up smoking."
+        ru: "Я бросаю курить."
+        uk: "Я кидаю курити."
+      - de: "Ich will den Kaffee am Abend sein lassen."
+        en: "I want to stop drinking coffee in the evening."
+        ru: "Я хочу перестать пить кофе по вечерам."
+        uk: "Я хочу перестати пити каву ввечері."
+      - de: "Lass das lieber sein!"
+        en: "You'd better not!"
+        ru: "Лучше брось эту затею!"
+        uk: "Краще облиш це!"
+
+  - id: vorschlag
+    title:
+      de: "Lass uns …"
+      en: "suggest: let's"
+      ru: "предложить: давай"
+      uk: "запропонувати: давай"
+    pattern: "Lass uns / Lasst uns / Lassen Sie uns … + Infinitiv"
+    explanation:
+      en: "Lass uns with an infinitive is English let's. The imperative of lassen follows whom you are speaking to: lass uns to one friend, lasst uns to several, lassen Sie uns to people you address as Sie."
+      ru: "Lass uns с инфинитивом — это русское «давай(те) …», и совпадение почти полное: «давай» обращено к одному, «давайте» — к нескольким или на «вы». Немецкий различает то же самое, только форм три: lass uns — другу, lasst uns — компании, lassen Sie uns — тем, к кому вы обращаетесь на Sie."
+      uk: "Lass uns з інфінітивом відповідає українському «давай(те) …»: «давай» — одній людині, «давайте» — кільком або ввічливо. Німецька розрізняє так само, тільки форм три: lass uns — другові, lasst uns — компанії, lassen Sie uns — тим, до кого ви звертаєтеся на Sie."
+    examples:
+      - de: "Lass uns eine Pause machen!"
+        en: "Let's take a break!"
+        ru: "Давай сделаем перерыв!"
+        uk: "Давай зробимо перерву!"
+      - de: "Lasst uns morgen früher anfangen!"
+        en: "Let's start earlier tomorrow!"
+        ru: "Давайте завтра начнём пораньше!"
+        uk: "Давайте завтра почнемо раніше!"
+      - de: "Lassen Sie uns das am Montag besprechen."
+        en: "Let's discuss this on Monday."
+        ru: "Давайте обсудим это в понедельник."
+        uk: "Давайте обговоримо це в понеділок."
+
+  - id: sich-lassen
+    title:
+      de: "sich lassen"
+      en: "can be done"
+      ru: "можно сделать"
+      uk: "можна зробити"
+    pattern: "etwas lässt sich + Infinitiv (= kann … werden)"
+    status: receptive
+    explanation:
+      en: "Das lässt sich reparieren means it can be repaired: the subject is the thing, and nobody who does the work is named. Read it as kann … werden or man kann. No B1 lesson or exercise asks you to build this pattern; you will meet it in texts, so recognising it is enough."
+      ru: "Das lässt sich reparieren — «это можно починить». Подлежащее — сама вещь, а исполнитель не назван. Русский часто передаёт это возвратным глаголом: Das Fenster lässt sich nicht öffnen — «окно не открывается». Строить такие фразы на B1 не нужно, упражнений на них в курсе нет; достаточно узнавать: lässt sich + инфинитив = kann … werden, «можно сделать»."
+      uk: "Das lässt sich reparieren — «це можна полагодити». Підмет тут — сама річ, а хто працюватиме, не сказано. Українська часто передає це зворотним дієсловом: Das Fenster lässt sich nicht öffnen — «вікно не відчиняється». Будувати такі речення на B1 не треба, вправ на них у курсі немає; досить упізнавати: lässt sich + інфінітив = kann … werden, «можна зробити»."
+    examples:
+      - de: "Das lässt sich reparieren."
+        en: "That can be repaired."
+        ru: "Это можно починить."
+        uk: "Це можна полагодити."
+      - de: "Das Fenster lässt sich nicht öffnen."
+        en: "The window won't open."
+        ru: "Окно не открывается."
+        uk: "Вікно не відчиняється."
+      - de: "Das lässt sich leicht erklären."
+        en: "That is easy to explain."
+        ru: "Это легко объяснить."
+        uk: "Це легко пояснити."
+    warning:
+      en: "Not the same as Ich lasse mich beraten (have something done): there a person arranges something; here a thing can undergo it."
+      ru: "Не путайте с Ich lasse mich beraten («поручить»): там человек что-то организует, здесь с вещью что-то можно сделать."
+      uk: "Не плутайте з Ich lasse mich beraten («доручити»): там людина щось організовує, тут із річчю щось можна зробити."

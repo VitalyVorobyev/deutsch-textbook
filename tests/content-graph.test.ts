@@ -126,12 +126,12 @@ describe('content graph', () => {
       pretest: 57,
       probe: 159,
       pruefungspraxis: 12,
-      referenz: 7,
+      referenz: 8,
       wortfeld: 2,
       wortnetz: 10,
       wortschatz: 129,
     });
-    expect(graph.elements.length).toBe(977);
+    expect(graph.elements.length).toBe(978);
     // Every Hörtext the plan names is published: none is planned any more.
     expect(graph.elements.filter((e) => e.planned).length).toBe(0);
   });
