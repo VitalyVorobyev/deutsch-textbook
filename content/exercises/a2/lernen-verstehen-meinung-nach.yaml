@@ -2,8 +2,8 @@ topic: lernen-verstehen
 role: practice
 stage: geruest
 activity: extension
-title_de: "Grundübung — meiner Meinung nach"
-title: {en: "Core — meiner Meinung nach", ru: "Основа — meiner Meinung nach", uk: "Основа — meiner Meinung nach"}
+title_de: "Vertiefen — meiner Meinung nach"
+title: {en: "Going deeper — meiner Meinung nach", ru: "Углубление — meiner Meinung nach", uk: "Поглиблення — meiner Meinung nach"}
 items:
   - id: mc-nachgestellt
     outcomes: [meinung-kennzeichnen]
@@ -24,11 +24,12 @@ items:
     correct: 0
     explain: {en: "The complete frame fills position 1, so the finite verb ist must follow in position 2 and the subject comes after it.", ru: "Полная рамка занимает позицию 1, поэтому спрягаемое ist следует на позиции 2, затем подлежащее.", uk: "Повна рамка займає позицію 1, тому відмінюване ist іде на позиції 2, далі підмет."}
   - id: cloze-mittelfeld
+    revision: 2
     outcomes: [meinung-kennzeichnen]
     type: cloze
     focus: meinung-nachgestellt
-    instruction: {en: "Place the complete frame in the middle of the sentence.", ru: "Вставьте полную рамку в середину предложения.", uk: "Вставте повну рамку в середину речення."}
-    text: "Der Onlinekurs ist {{meiner Meinung nach}} zu schnell."
+    instruction: {en: "Build the opinion frame from the words in brackets and place it in the middle of the sentence.", ru: "Составьте рамку мнения из слов в скобках и поставьте её в середину предложения.", uk: "Складіть рамку думки зі слів у дужках і поставте її в середину речення."}
+    text: "Der Onlinekurs ist {{meiner Meinung nach}} zu schnell. (nach + meine Meinung)"
     explain: {en: "The frame can sit after the finite verb without splitting: meiner Meinung nach. It marks the evaluation as the speaker's judgement.", ru: "Рамка может стоять после спрягаемого глагола и не разделяется: meiner Meinung nach. Она помечает оценку как мнение говорящего.", uk: "Рамка може стояти після відмінюваного дієслова й не розділяється: meiner Meinung nach. Вона позначає оцінку як думку мовця."}
   - id: mc-drei-nach
     outcomes: [meinung-kennzeichnen]

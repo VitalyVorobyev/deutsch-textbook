@@ -23,9 +23,10 @@ import { Translate } from './Translate';
 import { Write } from './Write';
 import { Speak } from './Speak';
 import { AudioComprehension } from './AudioComprehension';
-import { RecordingPlayer } from './RecordingPlayer';
+import { RecordingPlayer, usePlayBudgets, type PlayBudget } from './RecordingPlayer';
 import { ACTION_BUTTON, type ItemResult } from './shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
+import { isLastOnRecording, recordingKeyOf } from '../../lib/recording-run';
 import DocumentStimulus from './DocumentStimulus';
 import type { Teil } from '../../lib/exam-practice';
 
@@ -115,6 +116,10 @@ interface ItemProps {
   recording?: RecordingScript;
   /** the set renders that recording once, beside the item, so the item renders no player */
   sharedRecording?: boolean;
+  /** the plays of the item's recording, held by the run (`usePlayBudgets`) */
+  budget?: PlayBudget;
+  /** false while a later question in the run is answered from the same recording */
+  revealOnAnswer?: boolean;
 }
 
 /**
@@ -157,6 +162,8 @@ function ItemBody({
   storageKey,
   recording,
   sharedRecording,
+  budget,
+  revealOnAnswer,
   // explicit return type so a forgotten case fails the type check
 }: ItemProps): ReactElement {
   const props = { lang, onResult, locked, onNext, nextLabel };
@@ -187,6 +194,8 @@ function ItemBody({
           item={item}
           recording={recording}
           sharedRecording={sharedRecording}
+          budget={budget}
+          revealOnAnswer={revealOnAnswer}
           {...props}
         />
       );
@@ -222,6 +231,9 @@ export default function ExerciseSet({
   const [round, setRound] = useState(0);
   // A task set opens on its listening questions, as the exam does; a resumed run is past them.
   const [started, setStarted] = useState(answered.length > 0);
+  // Several questions on one recording share its plays and reveal it only after the last of them.
+  const budgets = usePlayBudgets();
+  const recordingKeys = items.map((it) => recordingKeyOf(it, recording));
 
   const finished = index >= items.length;
   const item = items[index];
@@ -237,6 +249,7 @@ export default function ExerciseSet({
       )
     : [];
   const laterCount = items.length - listening.length;
+  const allAnswered = answered.length >= items.length;
   const readingFirst = listening.length > 0 && !started && !finished;
 
   // Every slot below keeps its position whether the questions are being read first or answered,
@@ -278,7 +291,7 @@ export default function ExerciseSet({
       <RecordingPlayer
         script={sharedRecording}
         maxReplays={set.max_replays ?? DEFAULT_MAX_REPLAYS}
-        revealed={answered.length >= items.length}
+        revealed={allAnswered}
         lang={lang}
       />
       {!readingFirst && listening.length > 0 && (
@@ -386,6 +399,7 @@ export default function ExerciseSet({
     setAnswered([]);
     setCurrentDone(false);
     setStarted(false);
+    budgets.reset();
     setRound((r) => r + 1);
   }
 
@@ -393,9 +407,9 @@ export default function ExerciseSet({
     const verified = answered.filter((a) => a.evidence !== 'practice');
     const score = verified.reduce((s, a) => s + a.score, 0);
     const pct = verified.length ? Math.round((score / verified.length) * 100) : 0;
+    // The score first, the recording and its transcript below it.
     return (
       <div className="flex flex-col gap-4">
-        {recordingPanel}
         <div className="rounded-lg border border-stone-200 bg-white p-4 text-center dark:border-stone-700 dark:bg-stone-800 sm:p-6">
           <p className="text-3xl font-bold">
             {formatScore(score, lang)} / {verified.length}
@@ -430,6 +444,7 @@ export default function ExerciseSet({
             )}
           </div>
         </div>
+        {recordingPanel}
       </div>
     );
   }
@@ -491,7 +506,13 @@ export default function ExerciseSet({
           {(activeDocument || recordingPanel) && (
             // min-w-0: a grid item is otherwise as wide as its longest unbroken line, and the
             // questions under the player are truncated on one line each below lg.
-            <div className="min-w-0 lg:sticky lg:top-4 lg:self-start">
+            // Once the last answer reveals the transcript, a single column puts the panel under
+            // the item, so its verdict is not pushed below the dialogue.
+            <div
+              className={`min-w-0 lg:sticky lg:top-4 lg:self-start ${
+                recordingPanel && allAnswered ? 'order-last lg:order-none' : ''
+              }`}
+            >
               {recordingPanel || <DocumentStimulus document={activeDocument!} />}
             </div>
           )}
@@ -508,6 +529,8 @@ export default function ExerciseSet({
               }
               storageKey={`${setId}::${item.id}`}
               sharedRecording={sharedRecording !== undefined}
+              budget={budgets.budgetFor(recordingKeys[index] ?? null)}
+              revealOnAnswer={isLastOnRecording(recordingKeys, index)}
             />
           )}
         </div>

@@ -11,25 +11,26 @@ title:
 # primaryPractice — and with it anyone's completed Lernpfad step — is untouched.
 items:
   - id: table-mich-oder-mir
+    revision: 2
     outcomes: [beschwerden-beschreiben]
     type: table
     focus: reflexiv-dativ
     title: "Ohne Objekt mich, mit Objekt mir"
     instruction:
-      en: "Add the direct object. The reflexive pronoun changes case."
-      ru: "Добавьте прямое дополнение. Возвратное местоимение меняет падеж."
-      uk: "Додайте прямий додаток. Зворотний займенник змінює відмінок."
+      en: "Add the direct object named in the row. The reflexive pronoun changes case."
+      ru: "Добавьте прямое дополнение, указанное в строке. Возвратное местоимение при этом меняет падеж."
+      uk: "Додайте прямий додаток, названий у рядку. Зворотний займенник при цьому змінює відмінок."
     columns: ["ohne Objekt (Akkusativ)", "mit Objekt (Dativ)"]
     rows:
-      - label: "waschen"
+      - label: "waschen + die Hände"
         cells:
           - { answer: "Ich wasche mich.", given: true }
           - { answer: "Ich wasche mir die Hände." }
-      - label: "anziehen"
+      - label: "anziehen + die Schuhe"
         cells:
           - { answer: "Ich ziehe mich an.", given: true }
           - { answer: "Ich ziehe mir die Schuhe an." }
-      - label: "waschen (du)"
+      - label: "waschen (du) + die Haare"
         cells:
           - { answer: "Du wäschst dich.", given: true }
           - { answer: "Du wäschst dir die Haare." }

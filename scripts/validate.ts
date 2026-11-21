@@ -94,6 +94,7 @@ import { queueProblems } from '@da/content/queue';
 import { contentGraph } from '@da/content/graph';
 import { isTaskSet, taskSetProblems } from '@da/content/task-sets';
 import { exerciseStepProblems } from '@da/content/exercise-steps';
+import { clozeCueProblems } from '@da/content/cloze-cues';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -1439,6 +1440,10 @@ for (const [setId, { file, data }] of exerciseSets) {
               `cloze gaps join to "${joined}", which is printed on the item — the item answers itself`,
             );
         }
+        // A gap of three or more words is a phrase, and with nothing on screen naming its
+        // content words the item grades which phrase the author had in mind
+        // (packages/content/src/cloze-cues.ts).
+        for (const problem of clozeCueProblems(item)) fail(where, problem);
         break;
       }
       case 'match': {

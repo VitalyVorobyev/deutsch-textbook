@@ -22,11 +22,12 @@ items:
     correct: 0
     explain: {en: "Temporal über governs the accusative. die Stunde therefore stays eine Stunde; the feminine accusative happens to look like the nominative.", ru: "Временное über требует Akkusativ. Поэтому die Stunde даёт eine Stunde; форма женского Akkusativ совпадает с Nominativ.", uk: "Часове über потребує Akkusativ. Тому die Stunde дає eine Stunde; форма жіночого Akkusativ збігається з Nominativ."}
   - id: cloze-tage-monat
+    revision: 2
     outcomes: [dauer-ueber-nennen]
     type: cloze
     focus: ueber-dauer
-    instruction: {en: "Complete the two exceeded durations.", ru: "Заполните две превышенные длительности.", uk: "Заповніть дві перевищені тривалості."}
-    text: "Die Reparatur hat {{über drei Tage}} gedauert. Wir haben {{über einen Monat}} gewartet."
+    instruction: {en: "Build the two exceeded durations from the words in brackets.", ru: "Составьте из слов в скобках две превышенные длительности.", uk: "Складіть зі слів у дужках дві перевищені тривалості."}
+    text: "Die Reparatur hat {{über drei Tage}} gedauert. (über + drei Tage) Wir haben {{über einen Monat}} gewartet. (über + ein Monat)"
     explain: {en: "über takes an accusative duration phrase. The plural drei Tage shows no article; masculine ein Monat makes the case visible as einen Monat.", ru: "über присоединяет длительность в Akkusativ. Во множественном drei Tage артикля нет; мужское ein Monat делает падеж видимым: einen Monat.", uk: "über приєднує тривалість в Akkusativ. У множині drei Tage артикля немає; чоловіче ein Monat робить відмінок видимим: einen Monat."}
   - id: mc-neutral-oder-ueber
     outcomes: [dauer-ueber-nennen]

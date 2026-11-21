@@ -49,6 +49,7 @@ items:
       de: "Die Mitarbeiter streiken selbst, also Partizip I: Infinitiv plus d, streikend. Nach die im Plural ist die Adjektivendung -en: die streikenden Mitarbeiter. Ohne d (streikenen) gibt es gar kein Partizip, und das Partizip II gestreikt hieße, dass mit ihnen etwas gemacht wurde."
 
   - id: variant-b
+    revision: 2
     outcomes: [text-zusammenfassen]
     type: translate
     focus: partizip-adjektiv
@@ -62,6 +63,8 @@ items:
     prompt_uk: "На жаль, заброньований номер ще не готовий."
     answer: "Leider ist das reservierte Zimmer noch nicht fertig."
     accept:
+      - "Leider ist das reservierte Zimmer noch nicht bereit."
+      - "Das reservierte Zimmer ist leider noch nicht bereit."
       - "Das reservierte Zimmer ist leider noch nicht fertig."
     key_tokens: ["reservierte"]
     explain:
@@ -71,19 +74,22 @@ items:
       de: "Jemand hat das Zimmer reserviert; das Zimmer selbst hat nichts getan. Also Partizip II, reserviert, ohne ge-, weil das Verb auf -ieren endet. Nach das im Nominativ ist die Endung -e: das reservierte Zimmer. Ein reservierendes Zimmer würde selbst reservieren."
 
   - id: variant-c
+    revision: 2
     outcomes: [text-zusammenfassen]
     type: translate
     focus: partizip-adjektiv
     instruction:
-      en: "Translate. Put a participle of mieten before 'car' (das Auto); for 'to the sea' take ans Meer."
-      ru: "Переведите. Поставьте причастие от mieten перед «машиной» (das Auto); для «к морю» возьмите ans Meer."
-      uk: "Перекладіть. Поставте дієприкметник від mieten перед «машиною» (das Auto); для «до моря» візьміть ans Meer."
-      de: "Übersetze. Stell ein Partizip von mieten vor das Auto; für das Ziel nimm ans Meer."
+      en: "Translate. Put a participle of mieten before 'car' (das Auto); for 'to the sea' take ans Meer. Only the participle is graded."
+      ru: "Переведите. Поставьте причастие от mieten перед «машиной» (das Auto); для «к морю» возьмите ans Meer. Оценивается только причастие."
+      uk: "Перекладіть. Поставте дієприкметник від mieten перед «машиною» (das Auto); для «до моря» візьміть ans Meer. Оцінюється лише дієприкметник."
+      de: "Übersetze. Stell ein Partizip von mieten vor das Auto; für das Ziel nimm ans Meer. Bewertet wird nur das Partizip."
     prompt_en: "We are driving to the sea in the rented car."
     prompt_ru: "Мы едем к морю на арендованной машине."
     prompt_uk: "Ми їдемо до моря на орендованій машині."
     answer: "Wir fahren mit dem gemieteten Auto ans Meer."
     accept:
+      - "Wir fahren mit einem gemieteten Auto ans Meer."
+      - "Mit einem gemieteten Auto fahren wir ans Meer."
       - "Mit dem gemieteten Auto fahren wir ans Meer."
     key_tokens: ["gemieteten"]
     explain:

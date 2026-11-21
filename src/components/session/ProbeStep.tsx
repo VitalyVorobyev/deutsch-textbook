@@ -9,6 +9,8 @@ import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
+import { usePlayBudgets } from '../exercises/RecordingPlayer';
+import { isLastOnRecording, recordingKeyOf } from '../../lib/recording-run';
 import type { ItemResult } from '../exercises/shared';
 import type { TrainingSet } from '../training/MixedTraining';
 
@@ -76,6 +78,9 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
   const [index, setIndex] = useState(0);
   const [currentDone, setCurrentDone] = useState(false);
   const [answered, setAnswered] = useState<{ correct: boolean; score: number }[]>([]);
+  // Two probes on one recording share its plays, and its transcript waits for the second.
+  const budgets = usePlayBudgets();
+  const recordingKeys = queue.map((q) => recordingKeyOf(q.item));
 
   const current = queue[index];
   const finished = index >= queue.length;
@@ -164,6 +169,8 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
           onResult={handleResult}
           locked={currentDone}
           onNext={next}
+          budget={budgets.budgetFor(recordingKeys[index] ?? null)}
+          revealOnAnswer={isLastOnRecording(recordingKeys, index)}
           nextLabel={
             index === queue.length - 1 ? t('action.doneArrow', uiLang) : t('action.next', uiLang)
           }

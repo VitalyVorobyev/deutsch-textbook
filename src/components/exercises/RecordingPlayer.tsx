@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { ListeningCue } from '@da/schema';
 import { speakGermanSequence, ttsAvailable } from '../../lib/speech';
 import {
@@ -53,6 +53,34 @@ export function turnAt(cues: readonly ListeningCue[], ms: number): number | null
   return found;
 }
 
+/** A recording's plays so far, held by whoever outlives the player. */
+export interface PlayBudget {
+  plays: number;
+  setPlays: (update: (plays: number) => number) => void;
+}
+
+/**
+ * Play counts held by a run, one per recording key (`recordingKeyOf`), so the budget of a
+ * recording asked about by several questions carries from one question to the next even though
+ * each question mounts its own player. `reset` starts a fresh run.
+ */
+export function usePlayBudgets(): {
+  budgetFor: (key: string | null) => PlayBudget | undefined;
+  reset: () => void;
+} {
+  const [plays, setPlays] = useState<Readonly<Record<string, number>>>({});
+  return {
+    budgetFor: (key) =>
+      key === null
+        ? undefined
+        : {
+            plays: plays[key] ?? 0,
+            setPlays: (update) => setPlays((all) => ({ ...all, [key]: update(all[key] ?? 0) })),
+          },
+    reset: () => setPlays({}),
+  };
+}
+
 interface Props {
   script: RecordingScript;
   /** plays allowed before `revealed`; after it, listening is free */
@@ -63,6 +91,14 @@ interface Props {
    */
   revealed: boolean;
   lang: ExplainLang;
+  /** The plays of this recording, when the run holds them; otherwise the player counts its own. */
+  budget?: PlayBudget;
+  /**
+   * What the recording is about — the question, its options and its feedback. It sits between
+   * the player and the transcript, so the verdict is read first and the transcript below it. When
+   * no audio can play, the transcript is the stimulus itself and comes first.
+   */
+  children?: ReactNode;
 }
 
 /**
@@ -76,9 +112,11 @@ interface Props {
  * a task set's script *is* its recording's transcript, so this changes the voice, never the
  * question or the score.
  */
-export function RecordingPlayer({ script, maxReplays, revealed, lang }: Props) {
+export function RecordingPlayer({ script, maxReplays, revealed, lang, budget, children }: Props) {
   const uiLang = useUiLang();
-  const [plays, setPlays] = useState(0);
+  const [ownPlays, setOwnPlays] = useState(0);
+  const plays = budget?.plays ?? ownPlays;
+  const setPlays = budget?.setPlays ?? setOwnPlays;
   const [playing, setPlaying] = useState(false);
   const [recordingFailed, setRecordingFailed] = useState(false);
   const [cues, setCues] = useState<readonly ListeningCue[] | null>(null);
@@ -221,6 +259,39 @@ export function RecordingPlayer({ script, maxReplays, revealed, lang }: Props) {
   /** A line can be replayed alone when its voice can: a cued recording, or browser TTS. */
   const turnsReplayable = revealed && (recordingUrl ? cues !== null : audioAvailable);
 
+  const transcript = (
+    <div className="mb-4 space-y-1 rounded-md border border-stone-200 p-3 text-sm dark:border-stone-700">
+      {turnsReplayable && (
+        <p className="mb-2 text-xs text-stone-500 dark:text-stone-400">
+          {pick(lang, UI.afterAnswer)}
+        </p>
+      )}
+      {turns.map((turn, i) =>
+        turnsReplayable ? (
+          <button
+            key={i}
+            type="button"
+            lang="de"
+            aria-current={activeTurn === i ? 'true' : undefined}
+            disabled={playing && activeTurn !== i}
+            onClick={() => replayTurn(i)}
+            className={`block w-full rounded px-2 py-1 text-left ${activeTurn === i ? 'bg-amber-100 dark:bg-amber-900/40' : 'hover:bg-stone-100 dark:hover:bg-stone-800'}`}
+          >
+            <span aria-hidden="true" className="mr-2 text-stone-400">
+              ▶
+            </span>
+            <span className="sr-only">{pick(lang, UI.replayTurn)}: </span>
+            <strong>{turn.speaker}:</strong> {turn.text}
+          </button>
+        ) : (
+          <p key={i} lang="de">
+            <strong>{turn.speaker}:</strong> {turn.text}
+          </p>
+        ),
+      )}
+    </div>
+  );
+
   return (
     <div>
       {recordingUrl && (
@@ -265,38 +336,11 @@ export function RecordingPlayer({ script, maxReplays, revealed, lang }: Props) {
           {pick(lang, UI.noAudio)}
         </p>
       )}
-      {(!audioAvailable || revealed) && (
-        <div className="mb-4 space-y-1 rounded-md border border-stone-200 p-3 text-sm dark:border-stone-700">
-          {turnsReplayable && (
-            <p className="mb-2 text-xs text-stone-500 dark:text-stone-400">
-              {pick(lang, UI.afterAnswer)}
-            </p>
-          )}
-          {turns.map((turn, i) =>
-            turnsReplayable ? (
-              <button
-                key={i}
-                type="button"
-                lang="de"
-                aria-current={activeTurn === i ? 'true' : undefined}
-                disabled={playing && activeTurn !== i}
-                onClick={() => replayTurn(i)}
-                className={`block w-full rounded px-2 py-1 text-left ${activeTurn === i ? 'bg-amber-100 dark:bg-amber-900/40' : 'hover:bg-stone-100 dark:hover:bg-stone-800'}`}
-              >
-                <span aria-hidden="true" className="mr-2 text-stone-400">
-                  ▶
-                </span>
-                <span className="sr-only">{pick(lang, UI.replayTurn)}: </span>
-                <strong>{turn.speaker}:</strong> {turn.text}
-              </button>
-            ) : (
-              <p key={i} lang="de">
-                <strong>{turn.speaker}:</strong> {turn.text}
-              </p>
-            ),
-          )}
-        </div>
-      )}
+      {!audioAvailable && transcript}
+      {children}
+      {audioAvailable &&
+        revealed &&
+        (children ? <div className="mt-4">{transcript}</div> : transcript)}
     </div>
   );
 }
