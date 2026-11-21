@@ -10,10 +10,10 @@ entries:
     note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
   - file: content/characters/lena.yaml
     state: claude-reviewed
-    revision: c02a286c16c2461d8b91da0dd74dc722cd59ad4e
+    revision: ae72dec128f0473d1705522746094d9c91609d19
     by: Claude Code
-    at: 2026-11-07
-    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+    at: 2026-11-21
+    note: Lena gains her portrait and three scenes (alt_de and an author description each). Check the German alt texts and whether you agree that lena-2 (workshop) opens no episode.
   - file: content/characters/mira.yaml
     state: claude-reviewed
     revision: 91c678cad61f181e788d1d694f83a623dd59c647
@@ -889,6 +889,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/reading/a2/lena-2-der-wecker-um-vier.yaml
+    state: claude-reviewed
+    revision: 68ba674b8c8014636bb66b4412af5ef0d178de5f
+    by: Claude Code
+    at: 2026-11-21
+    note: "Opens with a scene of Lena (scene:), shown beside the title: lena-2 with the bakery counter, krimi-1 with the courtyard shelter. Check that the picture answers none of the episode's questions; the text itself is unchanged."
   - file: content/reading/a2/nebensaetze-plaene.yaml
     state: owner-reviewed
     revision: ef68a6196d2928518dee6399d7a7f4c2c74ee769
@@ -957,10 +963,12 @@ entries:
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/reading/b1/krimi-1-das-leere-dach.yaml
-    state: owner-reviewed
-    revision: 6004f7f535969a8acdbdb6faca44c2f113d38f20
-    by: Vitaly Vorobyev
+    state: claude-reviewed
+    revision: bcced4ccc0e823133079ffa0c032c221c7b9a9ec
+    by: Claude Code
     at: 2026-11-21
+    note: "Opens with a scene of Lena (scene:), shown beside the title: lena-2 with the bakery counter, krimi-1 with the courtyard shelter. Check that the picture answers none of the episode's questions; the text itself is unchanged."
+    since: 6004f7f535969a8acdbdb6faca44c2f113d38f20
   - file: content/reading/b1/krimi-2-nur-zwei-monate-gefahren.yaml
     state: owner-reviewed
     revision: 8feaf802c79de632333453f35c4d51df7eddc13d
@@ -1267,10 +1275,10 @@ entries:
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: data/asset-provenance.yaml
     state: claude-reviewed
-    revision: d1e3be64b1a1d77d985b501c5015b6799696aeba
+    revision: 6476003164009132b2bb3eb166e9e69f791f7aa9
     by: Claude Code
-    at: 2026-11-14
-    note: "Figures redrawn: seit/vor now sits under its table; check that the new pictures (seit/vor, Mir tut der Kopf weh, the word-order rows, the halb-neun clock) say the rule to you, and that the provenance lines describe your part truthfully."
+    at: 2026-11-21
+    note: The character-image prompts as saved for the whole set, and four provenance records for Lena's images. The candidate count is recorded as not kept (candidateCountUnavailable); tell me the count if you know it.
   - file: data/authorship-provenance.yaml
     state: claude-reviewed
     revision: c29acfa8793ed98809f9a158c5421c9dd20c1e33
@@ -1289,6 +1297,12 @@ entries:
     by: Claude Code
     at: 2026-11-07
     note: "B1 task-shape conversion: new cast scene (Lena says Sie to Frau Kern, a new relation), task set on the gist→reply ladder, old -hoeren set retired, the single listening item removed from -produktion with its recording, a listening probe family on three new walk-on recordings; items read for determinacy, new German scanned against A1–B1. Lena and Frau Kern's voices measure 0.988 WavLM similarity: listen whether they can be told apart."
+  - file: data/prompts/2026-11-21-character-images.md
+    state: claude-reviewed
+    revision: 71664539787cf331fe561c3987b1da779f8a942d
+    by: Claude Code
+    at: 2026-11-21
+    note: The character-image prompts as saved for the whole set, and four provenance records for Lena's images. The candidate count is recorded as not kept (candidateCountUnavailable); tell me the count if you know it.
   - file: data/speaker-registry.yaml
     state: claude-reviewed
     revision: 7a4c9243ce8ea5dfe10b4f03a7b7c23d8d67bf9e

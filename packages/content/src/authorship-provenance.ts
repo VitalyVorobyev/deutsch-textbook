@@ -135,6 +135,12 @@ const assetRecordSchema = z
     licenseReview: nonEmpty,
     legacy: z.boolean(),
     promptUnavailable: z.boolean(),
+    /**
+     * The owner generated the image outside the repository, and how many candidates he generated
+     * before keeping it was not recorded. Said rather than invented: `candidateCount` stays null,
+     * and `humanSelectionReason` still says what he chose and how.
+     */
+    candidateCountUnavailable: z.boolean().default(false),
     changes: z.array(assetChangeSchema).default([]),
   })
   .superRefine((asset, ctx) => {
@@ -161,8 +167,14 @@ const assetRecordSchema = z
           message: 'must record subsequent composition or editing for a new AI-assisted asset',
         });
     }
+    if (asset.candidateCountUnavailable && (asset.legacy || asset.candidateCount !== null))
+      ctx.addIssue({
+        code: 'custom',
+        path: ['candidateCountUnavailable'],
+        message: 'is only for a new asset whose candidateCount is null',
+      });
     if (!asset.legacy && asset.creationMode === 'ai-generated-base') {
-      if (!asset.candidateCount)
+      if (!asset.candidateCount && !asset.candidateCountUnavailable)
         ctx.addIssue({
           code: 'custom',
           path: ['candidateCount'],
@@ -296,6 +308,12 @@ export function simulatedInstructionalAssetPaths(root: string): string[] {
     // This directory is reserved for course-created illustration assets. Treat
     // the directory, not a format allowlist, as the provenance boundary so a
     // future SVG, AVIF, or other supported format cannot bypass the manifest.
+    if (statSync(file).isFile()) paths.add(relative(root, file).split(sep).join('/'));
+  }
+
+  // Character portraits and scenes (`bun run characters:import`) are generated images, and so is
+  // every file in their folder, named by a record or not yet.
+  for (const file of filesRecursively(join(root, 'public/characters'))) {
     if (statSync(file).isFile()) paths.add(relative(root, file).split(sep).join('/'));
   }
 

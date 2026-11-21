@@ -6,6 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { progressWriter } from './src/integrations/progress-writer';
 import { audioBundle } from './src/integrations/audio-bundle';
 import { pwa } from './src/integrations/pwa';
+import { castPortraits } from '@da/content/characters';
+import { repoRoot } from '@da/content/repo-root';
 
 // Astro prefixes redirect *sources* with the base but emits destinations
 // literally, so subpath deployments (GitHub Pages) need the prefix here.
@@ -46,5 +48,7 @@ export default defineConfig({
   integrations: [mdx(), react(), progressWriter(), audioBundle(), pwa()],
   vite: {
     plugins: [tailwindcss()],
+    // The cast's portraits by speaker name, read from content/characters/ (src/lib/cast.ts).
+    define: { __CAST_PORTRAITS__: JSON.stringify(castPortraits(repoRoot())) },
   },
 });

@@ -5,6 +5,8 @@ import type { RecordingScript } from '../../lib/audio';
 import { shuffle } from '../../lib/shuffle';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 import { RecordingPlayer, type PlayBudget } from './RecordingPlayer';
+import { SpeakerFace } from './SpeakerFace';
+import { castPortrait } from '../../lib/cast';
 
 export { SLOW_RATE, turnAt } from './RecordingPlayer';
 
@@ -59,6 +61,11 @@ export function AudioComprehension(props: Props) {
   } = props;
   const [chosen, setChosen] = useState<number | null>(null);
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
+  // A "Wer sagt das?" item shows the portrait beside each cast member it offers (ADR 0016). Every
+  // option gets the same disc, and a face fills one before the answer only when every option has
+  // one: a lone faceless option would stand out, and here the odd one out is often the answer.
+  const faces = item.rung === 'who' && item.options.some((option) => castPortrait(option));
+  const facesBeforeAnswer = item.options.every((option) => castPortrait(option));
   const script = sharedRecording ? null : itemScript(item, recording);
   const checked = chosen !== null;
   const correct = chosen === item.correct;
@@ -81,8 +88,15 @@ export function AudioComprehension(props: Props) {
             type="button"
             disabled={checked}
             onClick={() => choose(index)}
-            className={`block min-h-11 w-full rounded-md border px-4 py-2 text-left ${checked && index === item.correct ? 'border-green-500 bg-green-50 dark:bg-green-950' : checked && index === chosen ? 'border-red-500 bg-red-50 dark:bg-red-950' : 'border-stone-300 hover:border-amber-500 dark:border-stone-600'}`}
+            className={`${faces ? 'flex items-center gap-3' : 'block'} min-h-11 w-full rounded-md border px-4 py-2 text-left ${checked && index === item.correct ? 'border-green-500 bg-green-50 dark:bg-green-950' : checked && index === chosen ? 'border-red-500 bg-red-50 dark:bg-red-950' : 'border-stone-300 hover:border-amber-500 dark:border-stone-600'}`}
           >
+            {faces && (
+              <SpeakerFace
+                name={checked || facesBeforeAnswer ? item.options[index]! : ''}
+                size={32}
+                placeholder
+              />
+            )}
             {item.options[index]}
           </button>
         ))}

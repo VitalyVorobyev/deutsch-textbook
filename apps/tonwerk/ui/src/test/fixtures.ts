@@ -222,8 +222,8 @@ export const charactersFixture = {
       voice_profile: { voice: 'Vivian', seed: 100, style: 'Sprich warm.', pace: 0.96 },
       usage_count: 3,
       demo_urls: ['/api/characters/lena/demos/0', '/api/characters/lena/demos/1'],
-      portrait_candidate_urls: [],
-      selected_portrait_url: '/api/characters/lena/portrait',
+      portrait_url: '/api/characters/lena/images/lena',
+      scene_urls: ['/api/characters/lena/images/lena-1', '/api/characters/lena/images/lena-2'],
     },
     {
       id: 'jonas',
@@ -241,8 +241,14 @@ export const charactersFixture = {
       voice_profile: { voice: 'Uncle_Fu', seed: 120, style: 'Sprich entspannt.', pace: 1 },
       usage_count: 0,
       demo_urls: [],
-      portrait_candidate_urls: [],
-      selected_portrait_url: null,
+      portrait_url: null,
+      scene_urls: [],
+      cast: {
+        id: 'timo',
+        name: 'Timo',
+        portrait_url: '/api/characters/timo/images/timo',
+        scene_urls: [],
+      },
     },
   ],
 };

@@ -75,7 +75,6 @@ class CharacterDefinition(BaseModel):
         "draft-profile", "reviewed-profile", "provisional-shared-preset", "retired"
     ]
     voice_profile: CatalogVoiceProfile
-    portrait_path: str | None = None
     demo_phrases: list[str] = Field(min_length=3, max_length=3)
     demo_hashes: list[str] = Field(default_factory=list, max_length=3)
 

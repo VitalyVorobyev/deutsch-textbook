@@ -18,6 +18,8 @@ interface Props {
   readingId: string;
   reading: Reading;
   narration?: ReadingAudioArtifact;
+  /** the cast member's scene this episode opens with (ADR 0021), resolved and base-prefixed */
+  scene?: { src: string; alt: string };
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -64,7 +66,7 @@ function renderCredit(text: string) {
  * Attempts are logged under `reading:<path-id>` so they are distinguishable
  * from exercise-set attempts in progress snapshots.
  */
-export default function ReadingText({ readingId, reading, narration }: Props) {
+export default function ReadingText({ readingId, reading, narration, scene }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const paragraphs = useMemo(() => reading.text.map((p) => parseGlosses(p).segments), [reading]);
@@ -163,23 +165,44 @@ export default function ReadingText({ readingId, reading, narration }: Props) {
 
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
-      <h3 lang="de" className="mb-1 text-xl font-semibold">
-        {reading.title_de}
-      </h3>
-
       {/*
-        An extensive reader is told what it is, because otherwise a learner treats every
-        German text on this site the same way — parsing each sentence, tapping every gloss,
-        bracing for the questions. That is the intensive reading habit, and it is exactly
-        what stops a longer text from ever being read at volume. Saying "read it once,
-        keep going, you are meant not to know everything" is the intervention.
+        A scene opens the episode beside its title, never above it: a fixed square, so the text
+        starts where it would without one and nothing moves when the image arrives. It shows a
+        place of the story and nothing a question asks about (ADR 0021).
       */}
-      {extensive && (
-        <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
-          {pick(lang, UI.extensiveNote)}
-        </p>
-      )}
-      {!extensive && <div className="mb-4" />}
+      <div className="flex items-start gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 lang="de" className="mb-1 text-xl font-semibold">
+            {reading.title_de}
+          </h3>
+
+          {/*
+            An extensive reader is told what it is, because otherwise a learner treats every
+            German text on this site the same way — parsing each sentence, tapping every gloss,
+            bracing for the questions. That is the intensive reading habit, and it is exactly
+            what stops a longer text from ever being read at volume. Saying "read it once,
+            keep going, you are meant not to know everything" is the intervention.
+          */}
+          {extensive && (
+            <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
+              {pick(lang, UI.extensiveNote)}
+            </p>
+          )}
+          {!extensive && <div className="mb-4" />}
+        </div>
+        {scene && (
+          <img
+            src={scene.src}
+            alt={scene.alt}
+            lang="de"
+            width={176}
+            height={176}
+            loading="lazy"
+            decoding="async"
+            className="mb-4 aspect-square h-auto w-24 shrink-0 rounded-md bg-stone-100 object-cover sm:w-44 dark:bg-stone-900"
+          />
+        )}
+      </div>
 
       <div className="mb-5 flex flex-wrap items-center gap-3 rounded-md border border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-700 dark:bg-stone-900">
         <button

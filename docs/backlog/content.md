@@ -96,7 +96,6 @@ Course content: articles, items, probes, vocabulary, readings and their language
     (`qa.speaker_qa.different_characters` in `data/audio-provenance/*/*.json`). Whether Lena,
     Mira and Frau Kern can be told apart is therefore the owner's judgement from listening. The
     figure cannot answer it.
-  - No portraits exist yet. ADR 0016 gives them one job: the "who said it" item.
   - First step: the audit read, then the remaining B1 topics in batches of three.
 - **CON-9 · Settle the cast's continuity debt** (`data/speaker-registry.yaml`, ADR 0016). 14 refs
   in `continuity_pending` name a cast member without having been read against the record. They

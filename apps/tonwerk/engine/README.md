@@ -233,8 +233,10 @@ a test take reaches a learner.
 | `POST /api/scenes/{slug}/decline` · `/publish` | with a reason, back to `draft`; publish one checked or approved scene, or 409 naming the gate |
 | `POST /api/scenes/{slug}/archive` · `/fork` | `{archived}` — out of the library's default view and the review queue, or back; `{slug}` — a new draft project from the head revision, recording `forked_from` as `<slug>@<revision>`, 409 when the slug is taken |
 
-**Libraries** — `GET /api/characters` (the roster, how many scenes cast each character, demos and
-portraits) and `GET /api/narration-profiles` (`api/characters.py`); `/api/voices` (`api/voices.py`);
+**Libraries** — `GET /api/characters` (the roster, how many scenes cast each character, demos,
+and the portrait and further images in `public/characters/<id>/`, served by
+`GET /api/characters/{id}/images/{name}`, with the cast member a voice speaks under another name)
+and `GET /api/narration-profiles` (`api/characters.py`); `/api/voices` (`api/voices.py`);
 `/api/acoustics` (`api/acoustics.py`); `/api/sounds` with each source's scene usage, and
 `POST /api/sounds/generate` (`api/sounds.py`).
 
@@ -529,8 +531,9 @@ attribution in the provenance manifest.
 `data/listening-characters.yaml` defines the character roster, its designed voice profiles,
 compatibility and three comparison phrases each; `data/listening-narration-profiles.yaml` the narration profiles cast from
 it. `generate-character-demos --repo ../../..` writes three pending audition takes per character,
-which Figuren plays; portrait prompts are retained under `data/prompts/` and catalog portrait paths
-remain empty until a human selects a candidate.
+which Figuren plays. Portraits and further images are not the engine's: `bun run characters:import`
+writes them into the checkout's `public/characters/<id>/` from the owner's originals, and the engine
+only reads them ([`docs/apps/tonwerk.md`](../../../docs/apps/tonwerk.md#figuren-and-their-images)).
 
 ## Validation
 

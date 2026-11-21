@@ -430,6 +430,40 @@
   color: var(--ton-ruhe);
 }
 
+.figur-portraet-klein {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* A person's further images: square thumbnails in one row, each the same fixed box. */
+.figur-bilder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ton-mass-2);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.figur-bild {
+  flex: none;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: var(--ton-rund);
+  border: 1px solid var(--ton-kante-hell);
+  object-fit: cover;
+  background: var(--ton-raum);
+}
+
+.figur-person {
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-bottom: 1px solid var(--ton-kante);
+}
+
+.figur-person .figur-bilder {
+  padding: var(--ton-mass-2) 0 0;
+  border-bottom: 0;
+}
+
 .figur-name {
   font-family: var(--ton-fassung-skript);
   font-size: var(--ton-grad-19);

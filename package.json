@@ -35,6 +35,7 @@
     "review:claude": "bun scripts/review-claude.ts",
     "gen:ipa": "bun scripts/gen-ipa.ts",
     "lid:import": "bun scripts/lid-import.ts",
+    "characters:import": "bun scripts/characters-import.ts",
     "exam:ingest": "bun scripts/exam-ingest.ts",
     "check": "astro sync && tsc --noEmit -p tsconfig.json && tsc --noEmit -p worker/tsconfig.json && bun run --cwd tools/astro-check check",
     "lint": "oxlint --deny-warnings",

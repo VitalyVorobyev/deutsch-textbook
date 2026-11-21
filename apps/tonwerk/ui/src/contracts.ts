@@ -542,8 +542,19 @@ export const characterSchema = z.looseObject({
     .optional(),
   usage_count: z.number().default(0),
   demo_urls: z.array(z.string()).default([]),
-  portrait_candidate_urls: z.array(z.string()).default([]),
-  selected_portrait_url: z.string().nullable().default(null),
+  /** The imported portrait (`public/characters/<id>/<id>.webp`), null until one exists. */
+  portrait_url: z.string().nullable().default(null),
+  /** Further images of the same person, in number order. */
+  scene_urls: z.array(z.string()).default([]),
+  /** The cast member this voice speaks when that is someone else (Timo through `jonas`). */
+  cast: z
+    .looseObject({
+      id: z.string(),
+      name: z.string(),
+      portrait_url: z.string().nullable().default(null),
+      scene_urls: z.array(z.string()).default([]),
+    })
+    .optional(),
 });
 export type Character = z.infer<typeof characterSchema>;
 

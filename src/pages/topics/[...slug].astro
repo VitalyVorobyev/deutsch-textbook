@@ -31,6 +31,8 @@ import { getSetRecording, isTopicReviewed } from '../../lib/content';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
 import { exerciseSteps } from '@da/content/exercise-steps';
+import { castScenes } from '@da/content/characters';
+import { repoRoot } from '@da/content/repo-root';
 
 export async function getStaticPaths() {
   const articles = await getCollection('topics');
@@ -91,12 +93,22 @@ const vocabFiles = await Promise.all(
   }),
 );
 
+// A serial episode may open with a cast member's scene (ADR 0021); the validator holds that it
+// resolves, so a scene missing here is a build error, not a quietly absent picture.
+const scenes = castScenes(repoRoot());
 const readings = await Promise.all(
   data.reading.map(async (id) => {
     const r = await getEntry('reading', id);
     if (!r) throw new Error(`Topic ${data.id}: reading "${id}" not found`);
     const narration = await getEntry('readingAudio', id);
-    return { id, data: r.data, narration: narration?.data };
+    const scene = r.data.scene ? scenes.get(r.data.scene) : undefined;
+    if (r.data.scene && !scene) throw new Error(`reading "${id}": scene "${r.data.scene}" not found`);
+    return {
+      id,
+      data: r.data,
+      narration: narration?.data,
+      scene: scene && { src: withBase(scene.src), alt: scene.alt },
+    };
   }),
 );
 
@@ -278,7 +290,13 @@ const KIND_KEY: Record<string, StringKey> = {
         <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionReading" /></h2>
         <div class="flex flex-col gap-6">
           {readings.map((r) => (
-            <ReadingTextIsland client:only="react" readingId={r.id} reading={r.data} narration={r.narration} />
+            <ReadingTextIsland
+              client:only="react"
+              readingId={r.id}
+              reading={r.data}
+              narration={r.narration}
+              scene={r.scene}
+            />
           ))}
         </div>
       </section>

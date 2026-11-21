@@ -11,7 +11,10 @@
  * cannot carry a header, and the engine's cookie path is legacy.
  *
  * **An absent portrait is an empty state, not an error.** The roster has to be readable before the
- * portraits are generated; a missing one says so in the frame where it will appear.
+ * portraits are generated; a missing one says so in the frame where it will appear. Portraits and
+ * the further images of a person are the files `bun run characters:import` wrote into the checkout
+ * (`public/characters/<id>/`), the same ones the learner app serves. A voice that speaks a cast
+ * member under another name (Timo through `jonas`) shows that person's images under its own.
  *
  * **Consented cloned voices live on this page too**, under the roster (`Stimmen`). They belong to
  * the same question — who can speak in this course — and putting them elsewhere would have hidden
@@ -95,8 +98,39 @@ export function Figuren(): React.JSX.Element {
   );
 }
 
+/** One image fetched with the token; until it arrives, a frame of the same size, so nothing moves. */
+function Bild({
+  url,
+  alt,
+  className,
+}: {
+  url: string;
+  alt: string;
+  className: string;
+}): React.JSX.Element {
+  const blob = useEngineBlob(url);
+  return blob ? (
+    <img className={className} src={blob} alt={alt} />
+  ) : (
+    <div className={`${className} figur-portraet-leer`} aria-hidden="true" />
+  );
+}
+
+/** A person's further images as a row of thumbnails, in number order. */
+function Bilder({ urls, name }: { urls: string[]; name: string }): React.JSX.Element | null {
+  if (urls.length === 0) return null;
+  return (
+    <div className="figur-bilder">
+      {urls.map((url, index) => (
+        <Bild key={url} url={url} alt={`${name}, Bild ${index + 1}`} className="figur-bild" />
+      ))}
+    </div>
+  );
+}
+
 function Figur({ character }: { character: Character }): React.JSX.Element {
-  const portrait = useEngineBlob(character.selected_portrait_url);
+  const portrait = useEngineBlob(character.portrait_url);
+  const person = character.cast;
 
   return (
     <article className="platte">
@@ -132,6 +166,32 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
           </div>
         </div>
       </div>
+
+      <Bilder urls={character.scene_urls} name={character.display_name} />
+
+      {person ? (
+        <div className="figur-person">
+          <div className="reihe" style={{ gap: 'var(--ton-mass-3)' }}>
+            {person.portrait_url ? (
+              <Bild
+                url={person.portrait_url}
+                alt={`Porträt von ${person.name}`}
+                className="figur-portraet figur-portraet-klein"
+              />
+            ) : (
+              // Too small for words: the empty frame says it, and the name beside it says whose.
+              <div
+                className="figur-portraet figur-portraet-klein figur-portraet-leer"
+                aria-hidden="true"
+              />
+            )}
+            <p style={{ fontSize: 'var(--ton-grad-13)' }}>
+              Spricht <strong>{person.name}</strong>
+            </p>
+          </div>
+          <Bilder urls={person.scene_urls} name={person.name} />
+        </div>
+      ) : null}
 
       <div className="platte-leib stapel-eng">
         {character.persona ? (

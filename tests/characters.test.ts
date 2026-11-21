@@ -1,12 +1,17 @@
 /**
- * The recurring cast (ADR 0016): each of the four checks fails on the break it exists for, a
+ * The recurring cast (ADR 0016): each of the five checks fails on the break it exists for, a
  * clean fixture passes, and the registry's debt lists cannot grow.
  */
 import { describe, expect, test } from 'bun:test';
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { characterProblems, loadSpeakerRegistry, voiceShare } from '@da/content/characters';
+import {
+  characterProblems,
+  loadCast,
+  loadSpeakerRegistry,
+  voiceShare,
+} from '@da/content/characters';
 import { repoRoot } from '@da/content/repo-root';
 
 type Files = Record<string, string>;
@@ -204,6 +209,72 @@ describe("4. a cast member's voice speaks nobody else", () => {
         ),
       }),
     ).toContainEqual(expect.stringContaining('whose casting is clean'));
+  });
+});
+
+describe('5. every image a record names resolves', () => {
+  const IMAGES = `portrait: /characters/lena/lena.webp
+scenes:
+  - id: lena-1
+    src: /characters/lena/lena-1.webp
+    alt_de: Lena in der Bäckerei.
+`;
+  const withImages = (record = LENA + IMAGES): Files => ({
+    'content/characters/lena.yaml': record,
+    'public/characters/lena/lena.webp': 'webp',
+    'public/characters/lena/lena-1.webp': 'webp',
+  });
+  const episode = (scene: string) => ({
+    'content/reading/a1/lena-1.yaml': `kind: extensive\nscene: ${scene}\ntext:\n  - Lena kommt aus Polen.\n`,
+  });
+
+  test('a portrait, a scene and an episode that opens with it pass', () => {
+    expect(problems({ ...withImages(), ...episode('lena-1') })).toEqual([]);
+  });
+
+  test('a character without images is unchanged', () => {
+    const [record] = loadCast(checkout(CLEAN)).cast;
+    expect(record!.data.portrait).toBeUndefined();
+    expect(record!.data.scenes).toEqual([]);
+  });
+
+  test('a portrait whose file does not exist', () => {
+    const files = withImages();
+    delete files['public/characters/lena/lena.webp'];
+    expect(problems(files)).toContainEqual(
+      expect.stringContaining('portrait /characters/lena/lena.webp does not exist under public/'),
+    );
+  });
+
+  test("an image in another character's folder", () => {
+    const record =
+      LENA + IMAGES.replace('/characters/lena/lena.webp', '/characters/mira/mira.webp');
+    expect(
+      problems({ ...withImages(record), 'public/characters/mira/mira.webp': 'webp' }),
+    ).toContainEqual(expect.stringContaining('is not in /characters/lena/'));
+  });
+
+  test('a scene whose id is not its file name', () => {
+    const record = LENA + IMAGES.replace('id: lena-1', 'id: lena-9');
+    expect(problems(withImages(record))).toContainEqual(
+      expect.stringContaining('scene lena-9 must be the file lena-9.webp'),
+    );
+  });
+
+  test('an episode naming a scene nobody lists', () => {
+    expect(problems({ ...withImages(), ...episode('lena-7') })).toContainEqual(
+      expect.stringContaining('reading:a1/lena-1: scene "lena-7" is listed by no character record'),
+    );
+  });
+
+  test('an episode the scene owner was never checked against', () => {
+    const files = {
+      ...withImages(),
+      'content/reading/a1/other.yaml': 'kind: extensive\nscene: lena-1\ntext:\n  - Ein Tag.\n',
+    };
+    expect(problems(files)).toContainEqual(
+      expect.stringContaining("reading:a1/other: opens with Lena's scene"),
+    );
   });
 });
 
