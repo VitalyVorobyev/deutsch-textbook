@@ -58,6 +58,11 @@ GitHub Release notes.
 
 ### Added
 
+- **A Referenz page for *lassen*.** Its forms, the two rules that trip learners up (no *zu* before
+  the infinitive; *hat reparieren lassen* but *hat … gelassen*) and its jobs side by side — allow,
+  have something done, leave, give up, *Lass uns …* — plus *Das lässt sich reparieren*, marked as
+  recognition only. The B1 topics that teach *lassen* link to it.
+
 - **You can choose how many new flashcards you get a day.** The profile menu offers 10, 15, 20 or
   25 new cards per day, kept per profile; 15 stays the default. A hint under the choice says that
   more new cards today mean more reviews in the weeks ahead.

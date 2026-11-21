@@ -1895,6 +1895,97 @@ export const praepositionenReferenceSchema = z.object({
 });
 export type PraepositionenReference = z.infer<typeof praepositionenReferenceSchema>;
 
+/**
+ * One word and every job it does (content/reference-data/<word>.yaml), e.g. `lassen`.
+ *
+ * Some words are hard not because of a paradigm but because one form carries several unrelated
+ * meanings, each with its own sentence pattern. A topic teaches the jobs one at a time, inside a
+ * theme; this shape puts them side by side: the forms, the rules that hold for every job, and
+ * the jobs themselves — each with its pattern line, an explanation per language, examples and
+ * an optional warning.
+ *
+ * The shape is shared, so a further word is a new id in `WORD_USES_IDS`, a YAML file and a
+ * three-line page over `src/components/reference/WordUses.astro`. A job the course does not
+ * drill may be shown, as `status: receptive`, so the picture is complete; it never claims to be
+ * taught, and the page says so beside it.
+ */
+export const WORD_USES_IDS = ['lassen'] as const;
+
+const wordUseStatusSchema = z.enum(['productive', 'receptive']);
+
+export const wordUsesReferenceSchema = z
+  .object({
+    id: z.enum(WORD_USES_IDS),
+    /** the word as the page heading prints it */
+    word: z.string().min(1),
+    /** Focus tags whose drills teach this word — the derived Referenz→topic edge (ADR 0001). */
+    focus: z.array(slug).default([]),
+    /** one or two sentences under the heading: what the page puts together */
+    intro: bilingualSchema,
+    /** the principal forms, one row per German label ("Präsens", "Perfekt") */
+    forms: z
+      .array(
+        z.object({
+          label: z.string().min(1),
+          form: z.string().min(1),
+          note: bilingualSchema.optional(),
+        }),
+      )
+      .default([]),
+    /** rules that hold for every job, each stated once with its contrast */
+    rules: z
+      .array(
+        z.object({
+          id: slug,
+          title: bilingualSchema.extend({ de: z.string().min(1) }),
+          explanation: bilingualSchema,
+          examples: z.array(referenceExampleSchema).min(1),
+          /** German sentences that break the rule, shown struck through */
+          wrong: z.array(z.string().min(1)).default([]),
+        }),
+      )
+      .default([]),
+    uses: z
+      .array(
+        z.object({
+          id: slug,
+          title: bilingualSchema.extend({ de: z.string().min(1) }),
+          /** the German sentence pattern, e.g. "jemanden etwas tun lassen" */
+          pattern: z.string().min(1),
+          status: wordUseStatusSchema.default('productive'),
+          explanation: bilingualSchema,
+          examples: z.array(referenceExampleSchema).min(1),
+          warning: bilingualSchema.optional(),
+        }),
+      )
+      .min(1),
+  })
+  .superRefine((data, ctx) => {
+    // Rules and uses share one anchor namespace on the page.
+    const seen = new Set<string>();
+    for (const [key, list] of [
+      ['rules', data.rules],
+      ['uses', data.uses],
+    ] as const) {
+      for (const [i, entry] of list.entries()) {
+        if (seen.has(entry.id))
+          ctx.addIssue({
+            code: 'custom',
+            path: [key, i, 'id'],
+            message: `duplicate id "${entry.id}"`,
+          });
+        seen.add(entry.id);
+      }
+    }
+    if (data.uses.some((use) => use.status === 'productive') && data.focus.length === 0)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['focus'],
+        message: 'a page with productive uses must name the tags that drill them',
+      });
+  });
+export type WordUsesReference = z.infer<typeof wordUsesReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
@@ -1903,6 +1994,7 @@ export const referenceDataSchema = z.discriminatedUnion('id', [
   sentenceConnectorsReferenceSchema,
   briefeReferenceSchema,
   zeitformenReferenceSchema,
+  wordUsesReferenceSchema,
 ]);
 export type ReferenceData = z.infer<typeof referenceDataSchema>;
 

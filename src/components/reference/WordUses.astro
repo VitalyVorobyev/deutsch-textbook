@@ -1,0 +1,151 @@
+---
+/**
+ * One word and every job it does (wordUsesReferenceSchema): the forms, the rules that hold
+ * for every job, and the jobs themselves. Shared by every `content/reference-data/<word>.yaml`
+ * of that shape, so a further word page is this component and a heading.
+ */
+import { getEntry } from 'astro:content';
+import { wordUsesReferenceSchema, type WORD_USES_IDS } from '@da/schema';
+
+interface Props {
+  /** reference-data id of a word-uses file */
+  source: (typeof WORD_USES_IDS)[number];
+}
+const { source } = Astro.props;
+
+const entry = await getEntry('referenceData', source);
+if (!entry) throw new Error(`Missing reference data "${source}"`);
+const data = wordUsesReferenceSchema.parse(entry.data);
+
+const receptiveLabel = {
+  en: 'recognise only — not produced at B1',
+  ru: 'только узнавать — на B1 не строим',
+  uk: 'лише впізнавати — на B1 не будуємо',
+  de: 'rezeptiv',
+};
+---
+
+{data.forms.length > 0 && (
+  <section class="mt-8">
+    <h2 class="mb-4 text-2xl font-bold">Formen</h2>
+    <div class="overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+      <table class="w-full border-collapse text-sm">
+        <tbody>
+          {data.forms.map((row, i) => (
+            <tr class:list={['align-top', i > 0 && 'border-t border-stone-200 dark:border-stone-700']}>
+              <th lang="de" class="w-1/3 bg-stone-50 px-4 py-3 text-left font-semibold dark:bg-stone-800">{row.label}</th>
+              <td class="px-4 py-3">
+                <span lang="de" class="font-medium">{row.form}</span>
+                {row.note && (
+                  <p class="mt-1 text-xs text-stone-500">
+                    <span class="lang-en">{row.note.en}</span>
+                    <span class="lang-ru">{row.note.ru}</span>
+                    {row.note.uk && <span class="lang-uk">{row.note.uk}</span>}
+                    {row.note.de && <span class="lang-de">{row.note.de}</span>}
+                  </p>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+)}
+
+{data.rules.length > 0 && (
+  <section class="mt-10">
+    <h2 class="mb-4 text-2xl font-bold">Regeln für alle Aufgaben</h2>
+    <div class="grid gap-4 md:grid-cols-2">
+      {data.rules.map((rule) => (
+        <article id={rule.id} class="scroll-mt-6 rounded-xl border-2 border-amber-400 bg-white p-5 dark:border-amber-600 dark:bg-stone-800">
+          <h3 lang="de" class="text-lg font-bold">{rule.title.de}</h3>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+            <span class="lang-en">{rule.title.en}</span>
+            <span class="lang-ru">{rule.title.ru}</span>
+            {rule.title.uk && <span class="lang-uk">{rule.title.uk}</span>}
+          </p>
+          <p class="mt-3 text-sm leading-relaxed">
+            <span class="lang-en">{rule.explanation.en}</span>
+            <span class="lang-ru">{rule.explanation.ru}</span>
+            {rule.explanation.uk && <span class="lang-uk">{rule.explanation.uk}</span>}
+            {rule.explanation.de && <span class="lang-de">{rule.explanation.de}</span>}
+          </p>
+          <div class="mt-4 grid gap-2">
+            {rule.examples.map((example) => (
+              <div class="rounded-lg bg-stone-50 p-3 dark:bg-stone-900/60">
+                <p lang="de" class="font-medium">✅ {example.de}</p>
+                <p class="mt-1 text-xs text-stone-500">
+                  <span class="lang-en">{example.en}</span>
+                  <span class="lang-ru">{example.ru}</span>
+                  {example.uk && <span class="lang-uk">{example.uk}</span>}
+                </p>
+              </div>
+            ))}
+            {rule.wrong.map((sentence) => (
+              <p lang="de" class="px-3 text-sm text-stone-500"><span aria-hidden="true">❌ </span><s>{sentence}</s></p>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
+
+<section class="mt-10">
+  <h2 class="text-2xl font-bold" lang="de">Die Aufgaben von {data.word}</h2>
+  <div class="mb-6 mt-4 flex flex-wrap gap-2">
+    {data.uses.map((use) => (
+      <a href={`#${use.id}`} lang="de" class="rounded-full border border-stone-200 px-3 py-1 text-sm hover:border-amber-500 hover:text-amber-700 dark:border-stone-600">{use.title.de}</a>
+    ))}
+  </div>
+  <div class="grid gap-5">
+    {data.uses.map((use) => (
+      <article id={use.id} class="scroll-mt-6 rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <h3 lang="de" class="text-lg font-bold">{use.title.de}</h3>
+          {use.status === 'receptive' && (
+            <span class="rounded bg-stone-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-stone-500 dark:bg-stone-700 dark:text-stone-300">
+              <span class="lang-en">{receptiveLabel.en}</span>
+              <span class="lang-ru">{receptiveLabel.ru}</span>
+              <span class="lang-uk">{receptiveLabel.uk}</span>
+              <span class="lang-de">{receptiveLabel.de}</span>
+            </span>
+          )}
+        </div>
+        <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+          <span class="lang-en">{use.title.en}</span>
+          <span class="lang-ru">{use.title.ru}</span>
+          {use.title.uk && <span class="lang-uk">{use.title.uk}</span>}
+        </p>
+        <p class="mt-3"><code lang="de" class="text-sm leading-relaxed">{use.pattern}</code></p>
+        <p class="mt-3 text-sm leading-relaxed">
+          <span class="lang-en">{use.explanation.en}</span>
+          <span class="lang-ru">{use.explanation.ru}</span>
+          {use.explanation.uk && <span class="lang-uk">{use.explanation.uk}</span>}
+          {use.explanation.de && <span class="lang-de">{use.explanation.de}</span>}
+        </p>
+        <div class:list={['mt-4 grid gap-3', use.examples.length === 4 ? 'sm:grid-cols-2' : 'lg:grid-cols-3']}>
+          {use.examples.map((example) => (
+            <div class="rounded-lg bg-stone-50 p-4 dark:bg-stone-900/60">
+              <p lang="de" class="font-medium">{example.de}</p>
+              <p class="mt-2 text-xs text-stone-500">
+                <span class="lang-en">{example.en}</span>
+                <span class="lang-ru">{example.ru}</span>
+                {example.uk && <span class="lang-uk">{example.uk}</span>}
+              </p>
+            </div>
+          ))}
+        </div>
+        {use.warning && (
+          <p class="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm dark:border-amber-800 dark:bg-amber-950/40">
+            <span class="lang-en">{use.warning.en}</span>
+            <span class="lang-ru">{use.warning.ru}</span>
+            {use.warning.uk && <span class="lang-uk">{use.warning.uk}</span>}
+            {use.warning.de && <span class="lang-de">{use.warning.de}</span>}
+          </p>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
