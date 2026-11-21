@@ -1,5 +1,6 @@
 /** Client-side preferences persisted in localStorage and mirrored as <html> attributes. */
 
+import { DAILY_NEW_CARDS, dailyNewCardsChoice, type DailyNewCards } from './daily-new-cards';
 import { getActiveProfileId } from './profile';
 import type { UiLang } from './strings';
 
@@ -84,6 +85,34 @@ export function setExplainLang(lang: ExplainLang): void {
 /** Pinned to 'de' — see resolveUiLang above. */
 export function getUiLang(): UiLang {
   return 'de';
+}
+
+/** Per-profile daily new-card budget: `da:newcards:<profileId>`. Profile-scoped and
+    device-local, like the learning language and the Leben-in-Deutschland allowance
+    (`da:lid-new-per-day:<profileId>`): a choice about one learner's workload. */
+export const NEW_CARDS_KEY = 'da:newcards';
+
+export function newCardsKeyFor(profileId: string): string {
+  return `${NEW_CARDS_KEY}:${profileId}`;
+}
+
+/** The active profile's daily new-card budget; the default when nothing valid is stored. */
+export function getDailyNewCards(): DailyNewCards {
+  if (typeof localStorage === 'undefined') return DAILY_NEW_CARDS;
+  try {
+    return dailyNewCardsChoice(localStorage.getItem(newCardsKeyFor(getActiveProfileId())));
+  } catch {
+    return DAILY_NEW_CARDS;
+  }
+}
+
+export function setDailyNewCards(n: DailyNewCards): void {
+  try {
+    localStorage.setItem(newCardsKeyFor(getActiveProfileId()), String(n));
+  } catch {
+    // storage blocked — the choice holds for this page only
+  }
+  window.dispatchEvent(new CustomEvent('da:newcardschange', { detail: n }));
 }
 
 export function setTheme(theme: Theme): void {

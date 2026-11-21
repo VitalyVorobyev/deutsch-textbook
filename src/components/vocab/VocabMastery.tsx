@@ -7,12 +7,13 @@ import {
   deckCardRefs,
   masteryCounts,
   rollupWords,
+  STRONG_INTERVAL_DAYS,
   type DeckWords,
   type MasteryCounts,
   type WordMastery,
   type WordRollup,
 } from '../../lib/vocab-mastery';
-import { pick } from '../../lib/prefs';
+import { pick, type ExplainText } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 
@@ -28,6 +29,34 @@ const LABELS: Record<WordMastery, { en: string; ru: string }> = {
   learning: { en: 'Learning', ru: 'Изучаются' },
   established: { en: 'Established', ru: 'Закрепляются' },
   strong: { en: 'Strong', ru: 'Прочные' },
+};
+
+/** What each counted status means — the rule `wordMastery` applies, worded for the learner. */
+const DEFINITIONS: Record<Exclude<WordMastery, 'new'>, ExplainText> = {
+  learning: {
+    en: 'Learning — practised, but not yet past the learning steps in every direction',
+    ru: 'Изучаются — уже в работе, но ещё не прошли этап заучивания во всех направлениях',
+    uk: 'Вивчаються — уже в роботі, але ще не пройшли етап заучування в усіх напрямках',
+    de: 'Im Lernen — schon geübt, aber noch nicht in jeder Richtung über die Lernschritte hinaus',
+  },
+  established: {
+    en: 'Established — in regular review in every direction, interval under {d} days',
+    ru: 'Закрепляются — во всех направлениях в регулярном повторении, интервал меньше {d} дней',
+    uk: 'Закріплюються — в усіх напрямках у регулярному повторенні, інтервал менше ніж {d} днів',
+    de: 'Gefestigt — in jeder Richtung in der regelmäßigen Wiederholung, Abstand unter {d} Tagen',
+  },
+  strong: {
+    en: 'Strong — in regular review in every direction, interval {d} days or more',
+    ru: 'Прочные — во всех направлениях в регулярном повторении, интервал от {d} дней',
+    uk: 'Міцні — в усіх напрямках у регулярному повторенні, інтервал від {d} днів',
+    de: 'Sicher — in jeder Richtung in der regelmäßigen Wiederholung, Abstand ab {d} Tagen',
+  },
+};
+const COUNTED = ['learning', 'established', 'strong'] as const;
+const NUMBER_COLORS: Record<(typeof COUNTED)[number], string> = {
+  learning: 'text-amber-700 dark:text-amber-400',
+  established: 'text-sky-700 dark:text-sky-400',
+  strong: 'text-emerald-700 dark:text-emerald-400',
 };
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -47,7 +76,13 @@ const UI = {
     en: 'One card only: this word is here to be understood, not produced.',
     ru: 'Только одна карточка: это слово нужно понимать, а не воспроизводить.',
   },
-} as const satisfies Record<string, { en: string; ru: string }>;
+  areaTotal: {
+    en: 'Words in this area',
+    ru: 'Слов в этом разделе',
+    uk: 'Слів у цьому розділі',
+    de: 'Wörter in diesem Bereich',
+  },
+} as const satisfies Record<string, ExplainText>;
 
 function MasteryLegend() {
   const lang = useExplainLang();
@@ -360,15 +395,41 @@ export function VocabularyProgress({
             cards.filter((card) => ids.has(card.id)),
             states,
           );
-          return words.length ? (
+          if (!words.length) return null;
+          const counts = masteryCounts(words);
+          return (
             <div key={item.id} className="rounded-md bg-stone-50 p-3 dark:bg-stone-900/50">
-              <div className="mb-2 flex justify-between gap-2 text-sm">
-                <span className="font-medium">{item.label}</span>
-                <span className="text-stone-400">{words.length}</span>
+              <div className="mb-2 flex items-baseline justify-between gap-2 text-sm">
+                <span className="min-w-0 font-medium">{item.label}</span>
+                {/* learning – established – strong / total; the bar's own label reads the
+                    statuses out, so a screen reader is given the total only */}
+                <span className="shrink-0 whitespace-nowrap text-xs tabular-nums text-stone-400">
+                  <span aria-hidden="true">
+                    {COUNTED.map((status, i) => (
+                      <span key={status}>
+                        {i > 0 && ' – '}
+                        <span
+                          title={pick(lang, DEFINITIONS[status]).replace(
+                            '{d}',
+                            String(STRONG_INTERVAL_DAYS),
+                          )}
+                          className={`cursor-help ${NUMBER_COLORS[status]}`}
+                        >
+                          {counts[status]}
+                        </span>
+                      </span>
+                    ))}
+                    {' / '}
+                    <span title={pick(lang, UI.areaTotal)} className="cursor-help">
+                      {words.length}
+                    </span>
+                  </span>
+                  <span className="sr-only">{`${pick(lang, UI.areaTotal)}: ${words.length}`}</span>
+                </span>
               </div>
-              <MasteryBar counts={masteryCounts(words)} compact />
+              <MasteryBar counts={counts} compact />
             </div>
-          ) : null;
+          );
         })}
       </div>
     </div>

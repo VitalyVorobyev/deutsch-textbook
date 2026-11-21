@@ -6,6 +6,11 @@ import {
   type ReviewGate,
 } from '../src/lib/decks';
 import type { TopicNode } from '../src/lib/mastery';
+import {
+  DAILY_NEW_CARD_CHOICES,
+  DAILY_NEW_CARDS,
+  dailyNewCardsChoice,
+} from '../src/lib/daily-new-cards';
 import { gradeCard, Rating, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
 
@@ -319,6 +324,38 @@ describe('the daily new-card budget survives a reload', () => {
     const plan = planReview([...dueCards, ...fresh(30)], gate, ctx(states), { newLimit: 15 });
     expect(plan.dueCount).toBe(2);
     expect(plan.freshCount).toBe(0);
+  });
+});
+
+describe("the daily new-card budget is the learner's choice", () => {
+  test('nothing stored, or anything that is not a choice, reads as the default of 15', () => {
+    expect(DAILY_NEW_CARDS).toBe(15);
+    expect([...DAILY_NEW_CARD_CHOICES]).toEqual([10, 15, 20, 25]);
+    for (const stored of [null, undefined, '', 'abc', '0', '12', '-10', '25.0', '1e1', 30, 15.5])
+      expect(dailyNewCardsChoice(stored)).toBe(15);
+  });
+
+  test('every offered choice reads back as itself, stored as text or as a number', () => {
+    for (const n of DAILY_NEW_CARD_CHOICES) {
+      expect(dailyNewCardsChoice(String(n))).toBe(n);
+      expect(dailyNewCardsChoice(n)).toBe(n);
+    }
+  });
+
+  test('a gated plan with no cap given deals exactly the default, as before the setting', () => {
+    expect(planReview(fresh(60), gate, ctx({})).freshCount).toBe(15);
+  });
+
+  test('a chosen budget sizes the queue too, so 25 a day is 25 in one sitting', () => {
+    expect(planReview(fresh(60), gate, ctx({}), { dailyNewCap: 25 }).freshCount).toBe(25);
+    expect(planReview(fresh(60), gate, ctx({}), { dailyNewCap: 10 }).freshCount).toBe(10);
+    // and the day stays rationed at the chosen number
+    const states = Object.fromEntries(fresh(20).map((c) => [c.id, introduced(today())]));
+    expect(planReview(fresh(60), gate, ctx(states), { dailyNewCap: 25 }).freshCount).toBe(5);
+  });
+
+  test('the ungated per-deck queue keeps its 15 whatever the budget', () => {
+    expect(planReview(fresh(60), undefined, ctx({})).freshCount).toBe(15);
   });
 });
 

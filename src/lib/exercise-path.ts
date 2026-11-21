@@ -45,3 +45,20 @@ export function openingSet(
 ): string | undefined {
   return (sets.find((set) => !worked.has(set.id)) ?? sets[0])?.id;
 }
+
+/**
+ * The worked-through sets the path skipped to open on `openId` — what the page names in one line
+ * so that a path opening on a short later set does not read as the whole lesson. Empty when the
+ * path opens on its first set, and when any earlier set is not worked through (the learner chose
+ * this set; the path did not skip to it).
+ */
+export function setsOpenedPast<S extends Pick<PathSet, 'id'>>(
+  sets: readonly S[],
+  worked: ReadonlySet<string>,
+  openId: string | undefined,
+): S[] {
+  const at = sets.findIndex((set) => set.id === openId);
+  if (at <= 0) return [];
+  const before = sets.slice(0, at);
+  return before.every((set) => worked.has(set.id)) ? before : [];
+}

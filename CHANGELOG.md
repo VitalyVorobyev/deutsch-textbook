@@ -11,7 +11,26 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Added
+
+- **You can choose how many new flashcards you get a day.** The profile menu offers 10, 15, 20 or
+  25 new cards per day, kept per profile; 15 stays the default. A hint under the choice says that
+  more new cards today mean more reviews in the weeks ahead.
+
 ### Changed
+
+- **A topic's exercises say how big each set is, and why the page opened where it did.** Every set
+  shows its number of items beside its name. When the page opens on a later set because the ones
+  before it are done, a line above it names them with their items and the set you continue with,
+  so a short added set no longer looks like the whole lesson.
+
+- **The activity squares on the progress page show their date.** Hovering a square, or moving
+  between them with the arrow keys, shows the day in your language with that day's exercises and
+  cards; screen readers read the same.
+
+- **The vocabulary bars on the progress page carry their numbers.** Each area shows how many words
+  are learning, established and strong out of its total, and each number explains on hover what
+  it counts.
 
 - **A recording's transcript now waits for the last question.** Where several questions share one
   recording, the transcript appears only after the last of them, and below your answer and its

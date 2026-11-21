@@ -10,6 +10,7 @@ import {
   type CardRef,
 } from './srs';
 import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
+import { DAILY_NEW_CARDS } from './daily-new-cards';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
 
@@ -139,16 +140,13 @@ export interface ReviewContext extends TopicContext {
   goal?: LearningGoal;
 }
 
-/**
- * How many never-seen cards a learner may be dealt in one day, across every gated
- * surface together. `newLimit` caps a single queue *build* and `planReview` re-runs
- * on every mount, so without this a reload of /ueben/wiederholen simply dealt the
- * next 15 — five reloads, 75 new cards, and a review debt FSRS delivers for months.
- */
-export const DAILY_NEW_CARDS = 15;
+export { DAILY_NEW_CARDS };
 
 export interface ReviewPlanOpts {
-  /** cap on never-graded cards mixed into this one queue (default 15) */
+  /**
+   * Cap on never-graded cards mixed into this one queue. Defaults to the daily cap when there is
+   * one, so a learner who chose 25 a day can be dealt 25 in one sitting, and to 15 without one.
+   */
   newLimit?: number;
   /**
    * Cap on never-graded cards introduced *today*, counted across surfaces from the
@@ -200,8 +198,8 @@ export function planReview<C extends CardRef>(
   opts: ReviewPlanOpts = {},
 ): ReviewPlanResult<C> {
   const {
-    newLimit = 15,
     dailyNewCap = gate ? DAILY_NEW_CARDS : Infinity,
+    newLimit = Number.isFinite(dailyNewCap) ? dailyNewCap : 15,
     maxDue = Infinity,
     maxTotal = Infinity,
     freshPolicy = { kind: 'always' },

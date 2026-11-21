@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import {
   listProfiles,
   getActiveProfileId,
@@ -8,7 +8,15 @@ import {
   resolveProfileState,
   type Profile,
 } from '../lib/profile';
-import { EXPLAIN_LANGS, pick, setExplainLang } from '../lib/prefs';
+import {
+  EXPLAIN_LANGS,
+  getDailyNewCards,
+  pick,
+  setDailyNewCards,
+  setExplainLang,
+  type ExplainText,
+} from '../lib/prefs';
+import { DAILY_NEW_CARD_CHOICES, type DailyNewCards } from '../lib/daily-new-cards';
 import { getSession, readSyncState, type RemoteSession } from '../lib/sync-remote';
 import { flushRemoteSync } from '../lib/autosync';
 import { t } from '../lib/strings';
@@ -46,7 +54,19 @@ const UI = {
   syncUnbound: { en: 'Cloud sync not connected', ru: 'Облачная синхронизация не подключена' },
   syncOtherProfile: { en: 'Syncing a different profile', ru: 'Синхронизируется другой профиль' },
   syncNever: { en: 'Not synced yet', ru: 'Ещё не синхронизировано' },
-} as const satisfies Record<string, { en: string; ru: string }>;
+  newCardsPerDay: {
+    en: 'New cards per day',
+    ru: 'Новых карточек в день',
+    uk: 'Нових карток на день',
+    de: 'Neue Karten pro Tag',
+  },
+  newCardsHint: {
+    en: 'More new cards today means more reviews in the weeks ahead.',
+    ru: 'Чем больше новых карточек сегодня, тем больше повторений в ближайшие недели.',
+    uk: 'Що більше нових карток сьогодні, то більше повторень у найближчі тижні.',
+    de: 'Mehr neue Karten heute bedeuten mehr Wiederholungen in den nächsten Wochen.',
+  },
+} as const satisfies Record<string, ExplainText>;
 
 /**
  * The sync state the profile menu can show without a single network request
@@ -114,6 +134,8 @@ export default function ProfileSwitcher() {
   // in the effect below, never during render.
   const [menuSync, setMenuSync] = useState<SyncMenuStatus>({ kind: 'hidden' });
   const [now, setNow] = useState(0);
+  const [newCards, setNewCards] = useState<DailyNewCards>();
+  const newCardsHintId = useId();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -139,6 +161,7 @@ export default function ProfileSwitcher() {
     queueMicrotask(() => {
       setNow(Date.now());
       setMenuSync(syncMenuStatus(session, readSyncState(), activeId));
+      setNewCards(getDailyNewCards());
     });
   }, [open, session, activeId]);
 
@@ -297,6 +320,44 @@ export default function ProfileSwitcher() {
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">
+            <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
+              {pick(lang, UI.newCardsPerDay)}
+            </p>
+            <div
+              className="flex gap-1 px-2"
+              role="radiogroup"
+              aria-label={pick(lang, UI.newCardsPerDay)}
+              aria-describedby={newCardsHintId}
+            >
+              {DAILY_NEW_CARD_CHOICES.map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  role="radio"
+                  aria-checked={n === newCards}
+                  onClick={() => {
+                    setDailyNewCards(n);
+                    setNewCards(n);
+                  }}
+                  className={`flex-1 rounded px-1.5 py-1 text-xs font-semibold tabular-nums ${
+                    n === newCards
+                      ? 'bg-amber-600 text-white'
+                      : 'text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-700'
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            <p
+              id={newCardsHintId}
+              className="px-2 pt-1 pb-1 text-[11px] leading-snug text-stone-400"
+            >
+              {pick(lang, UI.newCardsHint)}
+            </p>
           </div>
 
           <div className="mt-1 border-t border-stone-200 pt-1 dark:border-stone-700">

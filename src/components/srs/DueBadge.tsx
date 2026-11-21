@@ -9,7 +9,7 @@ import {
   withReadRetry,
 } from '../../lib/store';
 import { deckCardRefs, type DeckWords } from '../../lib/vocab-mastery';
-import { pick } from '../../lib/prefs';
+import { getDailyNewCards, pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 
@@ -33,17 +33,21 @@ interface Props {
       gate of the queue this badge advertises (the compact variant never
       shows fresh, so per-deck badges don't need it) */
   gate?: ReviewGate;
-  /** fresh-card cap of the queue this badge advertises — the same value the
-      review page passes to FlashcardSession, so the numbers agree */
-  newLimit?: number;
 }
 
-export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 15 }: Props) {
+export default function DueBadge({ decks, variant = 'compact', gate }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const cards = useMemo(() => decks.flatMap(deckCardRefs), [decks]);
   const [plan, setPlan] = useState<ReviewPlanResult<CardRef> | null>(null);
   const [started, setStarted] = useState(true);
+  // A budget changed in the profile menu re-plans the badge on the page it was changed on.
+  const [capRound, setCapRound] = useState(0);
+  useEffect(() => {
+    const onChange = () => setCapRound((n) => n + 1);
+    window.addEventListener('da:newcardschange', onChange);
+    return () => window.removeEventListener('da:newcardschange', onChange);
+  }, []);
 
   useEffect(() => {
     // A stalled read leaves `plan` null and the badge renders nothing. That is the
@@ -61,13 +65,15 @@ export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 
     ).then(
       ([s, attempts, topics, goal]) => {
         setStarted(Object.keys(s).length > 0);
-        setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }));
+        // The same daily budget the review page plans with, so the numbers agree.
+        const dailyNewCap = gate ? getDailyNewCards() : undefined;
+        setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { dailyNewCap }));
       },
       () => {
         setPlan(null);
       },
     );
-  }, [cards, gate, newLimit]);
+  }, [cards, gate, capRound]);
 
   if (!plan) return null;
 
