@@ -90,6 +90,7 @@ items:
       uk: "Усі три варіанти намагаються передати ту саму основну причину, тому правильність тут визначає синтаксис. denn поєднує головне речення: muss лишається на другому місці, а aufstehen замикає його, як у Ich muss morgen früh aufstehen. У варіанті denn ich morgen früh aufstehen muss сполучник denn отримав порядок підрядного; у варіанті weil ich muss morgen früh aufstehen сполучник weil отримав порядок головного. Сполучник і структура частини мають збігатися."
 
   - id: uebersetzen-vorfeld-museum
+    revision: 2
     outcomes: [nebensatz-vorfeld-stellung]
     type: translate
     focus: nebensatz-vorfeld
@@ -102,6 +103,8 @@ items:
     prompt_uk: "Якщо погода буде погана, ми підемо в музей."
     answer: "Wenn das Wetter schlecht ist, gehen wir ins Museum."
     accept:
+      - "Wenn das Wetter schlecht wird, gehen wir ins Museum."
+      - "Wenn das Wetter schlecht wird, dann gehen wir ins Museum."
       - "Wenn das Wetter schlecht ist, dann gehen wir ins Museum."
     key_tokens: ["gehen"]
     explain:
@@ -162,13 +165,14 @@ items:
       uk: "У підрядному два дієслова, а відмінюється лише одне — muss. weil відправляє відмінюване дієслово в самий кінець, тому воно стає за інфінітивом: arbeiten muss. Проговоріть спочатку головне речення (Ich muss am Samstag arbeiten) — і побачите, як ці два слова міняються місцями, щойно попереду з'являється weil. Оцінюється тут лише muss: правило говорить про те, куди приземляється відмінюване дієслово, а не про те, яке саме це дієслово."
 
   - id: uebersetzen-modal-hauptsatz-kontrast
+    revision: 2
     outcomes: [weil-grund]
     type: translate
     focus: modal-satzklammer
     instruction:
-      en: "The same two verbs as in the item before — but this time there is no conjunction. Translate into German."
-      ru: "Те же два глагола, что и в предыдущем задании, — но союза здесь нет. Переведите на немецкий."
-      uk: "Ті самі два дієслова, що й у попередньому завданні, — але сполучника тут немає. Перекладіть німецькою."
+      en: "A main clause with two verbs, müssen and arbeiten, and no conjunction. Translate into German."
+      ru: "Главное предложение с двумя глаголами, müssen и arbeiten, и без союза. Переведите на немецкий."
+      uk: "Головне речення з двома дієсловами, müssen і arbeiten, і без сполучника. Перекладіть німецькою."
     prompt_en: "On Saturday I have to work until eight."
     prompt_ru: "В субботу мне нужно работать до восьми."
     prompt_uk: "У суботу мені треба працювати до восьмої."
@@ -177,9 +181,9 @@ items:
       - "Ich muss am Samstag bis acht arbeiten."
     key_tokens: ["muss", "arbeiten"]
     explain:
-      en: "Compare this with the sentence you have just written. The verbs are the same — müssen and arbeiten — and their order is the exact reverse. This is a main clause, so the modal claims position 2 and the infinitive waits at the very end: Am Samstag muss ich bis acht arbeiten. Put weil in front of it and the bracket collapses onto the end of the clause: weil ich am Samstag bis acht arbeiten muss. Nothing about the verbs changes; the conjunction alone decides whether muss stands second or last, and that is the one thing worth taking away from both items. Note the inversion too: Am Samstag fills position 1, so the subject ich drops in behind the verb."
-      ru: "Сравните это предложение с тем, которое вы только что написали. Глаголы те же — müssen и arbeiten, — а порядок их прямо противоположный. Здесь главное предложение, поэтому модальный глагол занимает второе место, а инфинитив ждёт в самом конце: Am Samstag muss ich bis acht arbeiten. Поставьте впереди weil — и рамка схлопнется в конец придаточного: weil ich am Samstag bis acht arbeiten muss. С самими глаголами не происходит ничего; всё решает союз — именно он определяет, стоит muss вторым или последним, и это единственное, что стоит вынести из обоих заданий. Обратите внимание и на инверсию: первое место занято обстоятельством Am Samstag, поэтому подлежащее ich уходит за глагол."
-      uk: "Порівняйте це речення з тим, яке ви щойно написали. Дієслова ті самі — müssen і arbeiten, — а порядок їхній прямо протилежний. Тут головне речення, тому модальне дієслово займає друге місце, а інфінітив чекає в самому кінці: Am Samstag muss ich bis acht arbeiten. Поставте попереду weil — і рамка схлопнеться в кінець підрядного: weil ich am Samstag bis acht arbeiten muss. Із самими дієсловами не відбувається нічого; усе вирішує сполучник — саме він визначає, стоїть muss другим чи останнім, і це єдине, що варто винести з обох завдань. Зверніть увагу й на інверсію: перше місце зайняте обставиною Am Samstag, тому підмет ich іде за дієслово."
+      en: "Compare this main clause with its weil-version, spelled out below: the verbs are the same — müssen and arbeiten — and their order is the exact reverse. This is a main clause, so the modal claims position 2 and the infinitive waits at the very end: Am Samstag muss ich bis acht arbeiten. Put weil in front of it and the bracket collapses onto the end of the clause: weil ich am Samstag bis acht arbeiten muss. Nothing about the verbs changes; the conjunction alone decides whether muss stands second or last, and that is the one thing worth taking away from the pair. Note the inversion too: Am Samstag fills position 1, so the subject ich drops in behind the verb."
+      ru: "Сравните это главное предложение с его вариантом с weil, который приведён ниже: глаголы те же — müssen и arbeiten, — а порядок их прямо противоположный. Здесь главное предложение, поэтому модальный глагол занимает второе место, а инфинитив ждёт в самом конце: Am Samstag muss ich bis acht arbeiten. Поставьте впереди weil — и рамка схлопнется в конец придаточного: weil ich am Samstag bis acht arbeiten muss. С самими глаголами не происходит ничего; всё решает союз — именно он определяет, стоит muss вторым или последним, и это единственное, что стоит вынести из этой пары. Обратите внимание и на инверсию: первое место занято обстоятельством Am Samstag, поэтому подлежащее ich уходит за глагол."
+      uk: "Порівняйте це головне речення з його варіантом із weil, наведеним нижче: дієслова ті самі — müssen і arbeiten, — а порядок їхній прямо протилежний. Тут головне речення, тому модальне дієслово займає друге місце, а інфінітив чекає в самому кінці: Am Samstag muss ich bis acht arbeiten. Поставте попереду weil — і рамка схлопнеться в кінець підрядного: weil ich am Samstag bis acht arbeiten muss. Із самими дієсловами не відбувається нічого; усе вирішує сполучник — саме він визначає, стоїть muss другим чи останнім, і це єдине, що варто винести з цієї пари. Зверніть увагу й на інверсію: перше місце зайняте обставиною Am Samstag, тому підмет ich іде за дієслово."
 
   - id: schreiben-absage-mit-vorschlag
     outcomes: [dass-satz, weil-grund, wenn-bedingung]

@@ -77,7 +77,7 @@ items:
       uk: "У трьох перших половинах із чотирьох стоїть заперечення, але виправляє його друга половина лише у двох випадках. Анна відкидає свою квартиру і називає іншу: bei Yusuf займає місце bei mir — значить, sondern. Юсуф відкидає напої і називає замість них торт — той самий хід, те саме слово. Том — пастка: keine Zeit він справді каже, але дзвінок не замінює той час, якого в нього немає. Прийти він усе одно не зможе, а дзвінок просто додається зверху. Дві речі стоять поряд, і обидві правдиві: aber. А в репліці Ніни заперечення немає зовсім, тож питання й не виникає. Правило звучить не як «є заперечення — став sondern», а так: чи стає друга половина на те місце, яке звільнила перша?"
 
   - id: uebersetzen-aber-sondern-chat
-    revision: 5
+    revision: 6
     outcomes: [absprachen-aushandeln]
     type: translate
     focus: aber-sondern
@@ -94,6 +94,7 @@ items:
     # correct German ellipsis; kein vs nicht is not what this tag grades. Its uncontracted
     # expansion is equally valid and paired here.
     accept:
+      - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe Getränke, aber nicht den Kuchen."
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe keinen Kuchen mit."
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber den Kuchen nicht."
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe den Kuchen nicht mit."

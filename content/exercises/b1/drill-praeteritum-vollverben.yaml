@@ -132,6 +132,7 @@ items:
       de: "Drei Erzählverben, zwei Rezepte. erzählen und lachen sind schwach: erzählte für Lena, lachten für alle, mit der Pluralendung -ten. verstehen ist stark — es ist stehen mit Vorsilbe, und aus stehen wird stand, also aus verstehen verstand, ohne -te und ohne Endung bei er."
 
   - id: uebersetzen-stadt-gefiel
+    revision: 2
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: praeteritum-vollverben
@@ -145,6 +146,10 @@ items:
     prompt_uk: "Місто нам дуже сподобалося, і ми забронювали ще дві ночі."
     answer: "Die Stadt gefiel uns sehr gut, und wir buchten noch zwei Nächte."
     accept:
+      - "Die Stadt gefiel uns sehr, und wir buchten zwei Nächte mehr."
+      - "Die Stadt gefiel uns sehr gut, und wir buchten zwei Nächte mehr."
+      - "Uns gefiel die Stadt sehr, und wir buchten zwei Nächte mehr."
+      - "Uns gefiel die Stadt sehr gut, und wir buchten zwei Nächte mehr."
       # sehr and sehr gut both carry 'very much' with gefallen; uns may open the clause.
       - "Die Stadt gefiel uns sehr, und wir buchten noch zwei Nächte."
       - "Uns gefiel die Stadt sehr gut, und wir buchten noch zwei Nächte."

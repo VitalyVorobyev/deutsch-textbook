@@ -26,6 +26,8 @@ import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 import { ItemView } from '../exercises/ExerciseSet';
+import { usePlayBudgets } from '../exercises/RecordingPlayer';
+import { isLastOnRecording, recordingKeyOf } from '../../lib/recording-run';
 import type { ItemResult } from '../exercises/shared';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import DocumentStimulus from '../exercises/DocumentStimulus';
@@ -151,6 +153,9 @@ export default function MixedTraining({
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
   const [loadError, setLoadError] = useState(false);
+  // Questions on one recording dealt into the same session share its plays, and its transcript
+  // waits for the last of them.
+  const budgets = usePlayBudgets();
 
   useEffect(() => {
     let cancelled = false;
@@ -263,6 +268,7 @@ export default function MixedTraining({
     setIndex(0);
     setAnswered([]);
     setCurrentDone(false);
+    budgets.reset();
     setRound((r) => r + 1);
   }
 
@@ -402,6 +408,7 @@ export default function MixedTraining({
   }
 
   const entry = session[index];
+  const recordingKeys = session.map((s) => recordingKeyOf(s.item, s.recording));
 
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
@@ -472,6 +479,8 @@ export default function MixedTraining({
             }
             storageKey={entry.uid}
             recording={entry.recording}
+            budget={budgets.budgetFor(recordingKeys[index] ?? null)}
+            revealOnAnswer={isLastOnRecording(recordingKeys, index)}
           />
         </div>
       )}

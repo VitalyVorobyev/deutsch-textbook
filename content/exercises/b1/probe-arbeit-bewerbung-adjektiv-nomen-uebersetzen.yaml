@@ -79,6 +79,7 @@ items:
       de: "ein hat im Maskulinum Nominativ keine Endung und kann das Genus nicht zeigen, also muss das Nomen es tun: ein Bekannter, mit dem starken -er. Bekannte nach ein ist gar keine Form: Sie gehört zu eine (eine Bekannte, eine Frau) oder zum Plural; nach der fällt das -er wieder weg (der Bekannte), weil der das Genus schon zeigt."
 
   - id: variant-c
+    revision: 2
     outcomes: [erfahrung-praesentieren]
     type: translate
     focus: adjektiv-nomen
@@ -92,6 +93,8 @@ items:
     prompt_uk: "Узимку в лікаря завжди багато хворих."
     answer: "Im Winter gibt es beim Arzt immer viele Kranke."
     accept:
+      - "Im Winter sind immer beim Arzt viele Kranke."
+      - "Im Winter gibt es immer beim Arzt viele Kranke."
       - "Beim Arzt gibt es im Winter immer viele Kranke."
       - "Im Winter gibt es immer viele Kranke beim Arzt."
       - "Im Winter sind beim Arzt immer viele Kranke."

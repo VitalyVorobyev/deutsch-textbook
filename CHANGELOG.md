@@ -13,6 +13,19 @@ GitHub Release notes.
 
 ### Changed
 
+- **A recording's transcript now waits for the last question.** Where several questions share one
+  recording, the transcript appears only after the last of them, and below your answer and its
+  feedback rather than above the question. The three plays belong to the recording, so they no
+  longer start again with each question.
+
+- **Gaps that asked for a whole phrase now name their words.** Seven gaps and one table in A2 asked
+  for phrases such as *zwischen dem ersten und dem dritten Mai* with nothing on screen naming them;
+  each now gives its base words in brackets. Two translation tasks accept more correct German
+  (*mit einem gemieteten Auto*, *Wenn das Wetter schlecht wird*, among others), one no longer
+  refers to "the previous task", and the cards for *zahlen* / *bezahlen* and *Beleg* / *Bon* can be
+  told apart from their prompts. The second practice set of *Lernen & Verstehen* is labelled
+  "Vertiefen", not a second "Grundübung".
+
 - **The diagrams in nine topics are redrawn so that the picture itself shows the rule.** Word order
   now stands as the same sentence in several rows, with the verb staying in its column or leaving
   an empty slot behind; *seit* is a line that reaches now and *vor* a point in the past; the clock

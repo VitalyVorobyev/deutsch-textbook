@@ -130,6 +130,7 @@ items:
       uk: "Цільовий контраст курсу: Wo bist du aufgewachsen? з Perfekt і Warst du dort glücklich? із частотним Präteritum від sein. Форма для du — warst, і в питанні вона виходить уперед. Bist du dort glücklich gewesen? граматично, але це не той продуктивний варіант регістру, який перевіряє завдання."
 
   - id: uebersetzen-portraet-heute
+    revision: 2
     outcomes: [profil-schreiben, lebensstationen-ordnen]
     type: translate
     focus: verbzweit
@@ -142,6 +143,8 @@ items:
     prompt_uk: "Сьогодні Ніна працює вчителькою в Лейпцигу."
     answer: "Heute arbeitet Nina als Lehrerin in Leipzig."
     accept:
+      - "Heute arbeitet Nina in Leipzig als Lehrerin."
+      - "Nina arbeitet heute in Leipzig als Lehrerin."
       - "Nina arbeitet heute als Lehrerin in Leipzig."
     key_tokens: ["arbeitet"]
     explain:

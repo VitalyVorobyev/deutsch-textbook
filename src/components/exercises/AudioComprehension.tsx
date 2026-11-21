@@ -4,7 +4,7 @@ import type { audioComprehensionItemSchema } from '@da/schema';
 import type { RecordingScript } from '../../lib/audio';
 import { shuffle } from '../../lib/shuffle';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
-import { RecordingPlayer } from './RecordingPlayer';
+import { RecordingPlayer, type PlayBudget } from './RecordingPlayer';
 
 export { SLOW_RATE, turnAt } from './RecordingPlayer';
 
@@ -21,6 +21,16 @@ interface Props extends ItemProps<AudioItem> {
    * question and options, and the set owns the one player and the one play budget.
    */
   sharedRecording?: boolean;
+  /**
+   * The plays of this item's recording, held by the run that serves it, so the budget carries
+   * across every question on the same recording. Absent, the item's player counts its own.
+   */
+  budget?: PlayBudget;
+  /**
+   * Whether answering this item reveals the transcript: false while a later question in the same
+   * run is still to be answered from this recording, since the transcript would answer it.
+   */
+  revealOnAnswer?: boolean;
 }
 
 /** The script an item plays: its own `source`, or the set recording it was handed. */
@@ -35,7 +45,18 @@ export function itemScript(item: AudioItem, recording?: RecordingScript): Record
 }
 
 export function AudioComprehension(props: Props) {
-  const { item, lang, onResult, locked, onNext, nextLabel, recording, sharedRecording } = props;
+  const {
+    item,
+    lang,
+    onResult,
+    locked,
+    onNext,
+    nextLabel,
+    recording,
+    sharedRecording,
+    budget,
+    revealOnAnswer = true,
+  } = props;
   const [chosen, setChosen] = useState<number | null>(null);
   const order = useMemo(() => shuffle(item.options.map((_, i) => i)), [item]);
   const script = sharedRecording ? null : itemScript(item, recording);
@@ -48,17 +69,8 @@ export function AudioComprehension(props: Props) {
     onResult({ correct: index === item.correct, given: item.options[index]! });
   }
 
-  return (
-    <div>
-      <Instruction text={item.instruction} lang={lang} />
-      {script && (
-        <RecordingPlayer
-          script={script}
-          maxReplays={item.max_replays}
-          revealed={checked}
-          lang={lang}
-        />
-      )}
+  const task = (
+    <>
       <p lang="de" className="mb-3 text-lg font-medium">
         {item.question}
       </p>
@@ -84,6 +96,27 @@ export function AudioComprehension(props: Props) {
           explain={item.explain}
           lang={lang}
         />
+      )}
+    </>
+  );
+
+  return (
+    <div>
+      <Instruction text={item.instruction} lang={lang} />
+      {script ? (
+        // The question, its verdict and its feedback sit between the player and the transcript,
+        // so the result is read without scrolling past the dialogue.
+        <RecordingPlayer
+          script={script}
+          maxReplays={item.max_replays}
+          revealed={checked && revealOnAnswer}
+          lang={lang}
+          budget={budget}
+        >
+          {task}
+        </RecordingPlayer>
+      ) : (
+        task
       )}
     </div>
   );

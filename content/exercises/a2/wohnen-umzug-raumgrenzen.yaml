@@ -14,18 +14,20 @@ items:
     correct: 0
     explain: {en: "The flat lies beyond the centre's boundary, so außerhalb is the relevant relation and des Zentrums makes its genitive visible.", ru: "Квартира находится за границей центра, поэтому нужно außerhalb; форма des Zentrums явно показывает Genitiv.", uk: "Квартира розташована за межею центру, тому потрібне außerhalb; форма des Zentrums явно показує Genitiv."}
   - id: cloze-gegen
+    revision: 2
     outcomes: [wohnung-beschreiben]
     type: cloze
     focus: raumgrenze-pfad
-    instruction: {en: "Complete the contact path and its case.", ru: "Дополните направление к контакту и падеж.", uk: "Доповніть напрямок до контакту та відмінок."}
-    text: "Beim Tragen stößt der Schrank {{gegen die Wand}}."
+    instruction: {en: "Build the phrase from the words in brackets, in the right case.", ru: "Составьте сочетание из слов в скобках в нужном падеже.", uk: "Складіть сполучення зі слів у дужках у потрібному відмінку."}
+    text: "Beim Tragen stößt der Schrank {{gegen die Wand}}. (gegen + die Wand)"
     explain: {en: "gegen points towards contact and always governs the accusative: die Wand stays die Wand.", ru: "gegen направляет к контакту и всегда требует Akkusativ: die Wand сохраняет форму die Wand.", uk: "gegen спрямовує до контакту й завжди потребує Akkusativ: die Wand зберігає форму die Wand."}
   - id: cloze-um-herum
+    revision: 2
     outcomes: [wohnung-beschreiben]
     type: cloze
     focus: raumgrenze-pfad
-    instruction: {en: "Complete the full frame around the masculine noun.", ru: "Дополните полную рамку вокруг существительного мужского рода.", uk: "Доповніть повну рамку навколо іменника чоловічого роду."}
-    text: "Wir gehen {{um den Park herum}}, weil der direkte Weg gesperrt ist."
+    instruction: {en: "Build the full frame from the words in brackets, in the right case.", ru: "Составьте полную рамку из слов в скобках в нужном падеже.", uk: "Складіть повну рамку зі слів у дужках у потрібному відмінку."}
+    text: "Wir gehen {{um den Park herum}}, weil der direkte Weg gesperrt ist. (um … herum + der Park)"
     explain: {en: "um opens the frame, herum closes it, and the masculine object shows the accusative as den Park.", ru: "um открывает рамку, herum закрывает её, а мужской род показывает Akkusativ формой den Park.", uk: "um відкриває рамку, herum закриває її, а чоловічий рід показує Akkusativ формою den Park."}
   - id: mc-kein-wechselkasus
     outcomes: [wohnung-beschreiben]
