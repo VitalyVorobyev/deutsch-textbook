@@ -11,6 +11,7 @@ import { withBase } from '../../lib/url';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
+import { SpeakerLabel } from './SpeakerFace';
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
@@ -281,11 +282,11 @@ export function RecordingPlayer({ script, maxReplays, revealed, lang, budget, ch
               ▶
             </span>
             <span className="sr-only">{pick(lang, UI.replayTurn)}: </span>
-            <strong>{turn.speaker}:</strong> {turn.text}
+            <SpeakerLabel name={turn.speaker} /> {turn.text}
           </button>
         ) : (
           <p key={i} lang="de">
-            <strong>{turn.speaker}:</strong> {turn.text}
+            <SpeakerLabel name={turn.speaker} /> {turn.text}
           </p>
         ),
       )}

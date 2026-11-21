@@ -246,6 +246,44 @@ describe('authorship provenance', () => {
     ).toBe(true);
   });
 
+  test('a generated base records its candidate count, or says it was not recorded', () => {
+    const base = {
+      path: 'public/characters/lena/lena.webp',
+      sha256: 'a'.repeat(64),
+      creationMode: 'ai-generated-base',
+      generationTool: 'ChatGPT image generation (OpenAI)',
+      prompt: 'data/prompts/2026-11-21-character-images.md',
+      candidateCount: null,
+      humanSelectionReason: 'Vitaly kept this image as the portrait.',
+      humanEdits: ['Scaled and encoded as WebP; nothing else changed.'],
+      licenseReview: 'Course-specific generated asset covered by content/LICENSE.',
+      legacy: false,
+      promptUnavailable: false,
+    };
+    const parses = (asset: Record<string, unknown>) =>
+      assetProvenanceManifestSchema.safeParse({ version: 1, assets: [asset] }).success;
+    expect(parses(base)).toBe(false);
+    expect(parses({ ...base, candidateCountUnavailable: true })).toBe(true);
+    expect(parses({ ...base, candidateCount: 3 })).toBe(true);
+    expect(parses({ ...base, candidateCount: 3, candidateCountUnavailable: true })).toBe(false);
+  });
+
+  test('every file in a character folder enters the provenance boundary', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'atlas-characters-'));
+    try {
+      const folder = join(dir, 'public/characters/lena');
+      mkdirSync(folder, { recursive: true });
+      writeFileSync(join(folder, 'lena.webp'), 'fixture');
+      writeFileSync(join(folder, 'lena-1.webp'), 'fixture');
+      expect(simulatedInstructionalAssetPaths(dir)).toEqual([
+        'public/characters/lena/lena-1.webp',
+        'public/characters/lena/lena.webp',
+      ]);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   test('visual discovery does not depend on sourceClass prop serialization', () => {
     expect(isLearningFigureComponent('<LearningFigure sourceClass="simulated">')).toBe(true);
     expect(isLearningFigureComponent("<LearningFigure sourceClass={'simulated'}>")).toBe(true);

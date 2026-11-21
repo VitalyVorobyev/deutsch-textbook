@@ -4,7 +4,7 @@
  * A character record (`content/characters/<id>.yaml`) holds the facts about one person, each
  * pinned to the text that states it, and the one roster voice that speaks that person. The
  * speaker registry (`data/speaker-registry.yaml`) holds every other speaker name and the cast's
- * open debts. Four checks hold the two together:
+ * open debts. Five checks hold the two together:
  *
  * 1. a record resolves: its voice is on the roster and belongs to nobody else, its relations name
  *    other records, and every ref names a shipped file;
@@ -13,7 +13,9 @@
  * 3. every place a cast member's name occurs has been checked against the record, or waits in
  *    `continuity_pending`;
  * 4. a cast member's voice speaks only that person, and that person speaks only in that voice,
- *    or the recording waits in `recast_pending`.
+ *    or the recording waits in `recast_pending`;
+ * 5. every portrait and scene a record names is a file under `public/characters/<id>/`, and an
+ *    episode that opens with a scene names one a record lists, of a person read against it.
  *
  * Every registry list may only shrink: an entry that matches nothing is itself an error.
  *
@@ -151,6 +153,75 @@ export function readingOccurrences(root: string, names: readonly string[]): Occu
   return into;
 }
 
+/** Each cast member's portrait, by the name the texts use: what a speaker label shows. */
+export function castPortraits(root: string): Record<string, string> {
+  return Object.fromEntries(
+    loadCast(root).cast.flatMap(({ data }) => (data.portrait ? [[data.name, data.portrait]] : [])),
+  );
+}
+
+/** Every cast member's scene by its id, as an episode that opens with one renders it. */
+export function castScenes(root: string): Map<string, { src: string; alt: string }> {
+  return new Map(
+    loadCast(root).cast.flatMap(({ data }) =>
+      data.scenes.map((scene) => [scene.id, { src: scene.src, alt: scene.alt_de }] as const),
+    ),
+  );
+}
+
+/** The episodes that open with a cast member's scene: the reading's ref and the scene it names. */
+export function readingScenes(root: string): { ref: string; scene: string }[] {
+  const found: { ref: string; scene: string }[] = [];
+  for (const level of LEVELS) {
+    const dir = join(root, 'content/reading', level);
+    for (const file of yamlFiles(dir)) {
+      const data = parseYaml(join(dir, file)) as { scene?: unknown };
+      if (typeof data.scene === 'string')
+        found.push({ ref: `reading:${level}/${basename(file, '.yaml')}`, scene: data.scene });
+    }
+  }
+  return found;
+}
+
+/**
+ * Everything wrong with the images the records name (ADR 0021): each file exists under `public/`
+ * in the folder of the record that names it, a scene's id is its file name, and an episode that
+ * opens with a scene names one a record lists, of a person checked against that episode.
+ */
+export function characterImageProblems(root: string, cast: readonly CastRecord[]): string[] {
+  const problems: string[] = [];
+  const scenes = new Map<string, CastRecord>();
+  for (const record of cast) {
+    const { file, data } = record;
+    const images = [
+      ...(data.portrait ? [{ what: 'portrait', src: data.portrait }] : []),
+      ...data.scenes.map((scene) => ({ what: `scene ${scene.id}`, src: scene.src })),
+    ];
+    for (const { what, src } of images) {
+      if (!src.startsWith(`/characters/${data.id}/`))
+        problems.push(`${file}: ${what} ${src} is not in /characters/${data.id}/`);
+      if (!existsSync(join(root, 'public', src)))
+        problems.push(`${file}: ${what} ${src} does not exist under public/`);
+    }
+    for (const scene of data.scenes) {
+      if (basename(scene.src, '.webp') !== scene.id)
+        problems.push(`${file}: scene ${scene.id} must be the file ${scene.id}.webp`);
+      const owner = scenes.get(scene.id);
+      if (owner) problems.push(`${file}: scene ${scene.id} is already listed by ${owner.file}`);
+      else scenes.set(scene.id, record);
+    }
+  }
+  for (const { ref, scene } of readingScenes(root)) {
+    const owner = scenes.get(scene);
+    if (!owner) problems.push(`${ref}: scene "${scene}" is listed by no character record`);
+    else if (!owner.data.appearances.includes(ref))
+      problems.push(
+        `${ref}: opens with ${owner.data.name}'s scene, but ${owner.file} has not read it`,
+      );
+  }
+  return problems;
+}
+
 /** Which roster voice speaks which role, per published recording that records its casting. */
 export function recordingCasts(root: string): Map<string, { character: string; role: string }[]> {
   const casts = new Map<string, { character: string; role: string }[]>();
@@ -177,7 +248,7 @@ function rosterVoices(root: string): Set<string> {
   return new Set((data.characters ?? []).map((character) => character.id));
 }
 
-/** Everything the four checks find wrong, one line each. */
+/** Everything the five checks find wrong, one line each. */
 export function characterProblems(root: string): string[] {
   const { cast, problems } = loadCast(root);
   const registry = loadSpeakerRegistry(root);
@@ -276,6 +347,9 @@ export function characterProblems(root: string): string[] {
   for (const recording of recast)
     if (!breaking.has(recording))
       problems.push(`${registryFile}: recast_pending lists ${recording}, whose casting is clean`);
+
+  // 5. Every image a record names exists, and every episode's scene resolves.
+  problems.push(...characterImageProblems(root, cast));
 
   return problems;
 }

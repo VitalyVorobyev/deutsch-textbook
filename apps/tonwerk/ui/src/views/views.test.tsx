@@ -178,4 +178,18 @@ describe('Figuren', () => {
     expect(roster(container).getAllByText('kein Porträt').length).toBeGreaterThan(0);
     expect(roster(container).getByText('Noch keine Hörprobe erzeugt.')).toBeTruthy();
   });
+
+  test('a portrait and its scenes are shown, and a voice shows the cast member it speaks', async () => {
+    const { container } = mount(
+      <Figuren />,
+      stubApi({ characters: async () => charactersFixture as never }),
+    );
+
+    await screen.findByText('Lena');
+    await waitFor(() => expect(roster(container).getByAltText('Porträt von Lena')).toBeTruthy());
+    await waitFor(() => expect(roster(container).getAllByAltText(/^Lena, Bild/)).toHaveLength(2));
+    // Jonas has no face of his own, but his voice speaks Timo, whose portrait is on the card.
+    expect(roster(container).getByText('Timo')).toBeTruthy();
+    await waitFor(() => expect(roster(container).getByAltText('Porträt von Timo')).toBeTruthy());
+  });
 });

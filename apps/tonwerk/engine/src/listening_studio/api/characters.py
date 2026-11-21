@@ -1,49 +1,63 @@
 """The character roster and the narration profiles cast from it.
 
-`GET /api/characters` is the roster with how many scenes cast each character, its audition demos
-and its portrait; `GET /api/narration-profiles` is the catalog the Lesetexte queue picks a
-narration profile from.
+`GET /api/characters` is the roster with how many scenes cast each character, its audition demos,
+its portrait and further images, and the cast member a voice speaks when that is someone else;
+`GET /api/narration-profiles` is the catalog the Lesetexte queue picks a narration profile from.
 """
 
 from __future__ import annotations
 
-import hashlib
 import json
-from io import BytesIO
+import re
 from pathlib import Path
 from typing import Any
 
+import yaml
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import FileResponse, Response
-from PIL import Image
-from pydantic import BaseModel, Field
+from fastapi.responses import FileResponse
 
-from ..catalogs import load_character_catalog, load_narration_catalog
+from ..catalogs import CharacterDefinition, load_character_catalog, load_narration_catalog
 from ..storage import Store
 
 
-class PortraitSelectionRequest(BaseModel):
-    candidate_id: str = Field(pattern=r"^[A-Z]$")
-    editor: str = Field(min_length=1)
-    reason: str = Field(min_length=8)
+_IMAGE_NAME = re.compile(r"^[a-z0-9-]+$")
 
 
-def _portrait_crop(source: Path, index: int) -> bytes:
-    with Image.open(source) as sheet:
-        cell_width = sheet.width // 4
-        cell_height = sheet.height // 3
-        column, row = index % 4, index // 4
-        crop = sheet.crop(
-            (
-                column * cell_width,
-                row * cell_height,
-                (column + 1) * cell_width,
-                (row + 1) * cell_height,
-            )
-        )
-        output = BytesIO()
-        crop.save(output, format="PNG")
-    return output.getvalue()
+def _images(repo: Path, folder_id: str) -> dict[str, Any]:
+    """The portrait and further images of one person, as `bun run characters:import` wrote them.
+
+    They live in the repository, `public/characters/<id>/<id>.webp` and `<id>-<n>.webp`, because
+    the learner app serves the same files; the studio only reads them. Scenes come in number order.
+    """
+    folder = repo / "public" / "characters" / folder_id
+    if not folder.is_dir():
+        return {"portrait_url": None, "scene_urls": []}
+    numbered = sorted(
+        (int(path.stem[len(folder_id) + 1 :]), path.stem)
+        for path in folder.glob(f"{folder_id}-*.webp")
+        if path.stem[len(folder_id) + 1 :].isdigit()
+    )
+    base = f"/api/characters/{folder_id}/images"
+    return {
+        "portrait_url": f"{base}/{folder_id}" if (folder / f"{folder_id}.webp").exists() else None,
+        "scene_urls": [f"{base}/{stem}" for _, stem in numbered],
+    }
+
+
+def _cast_by_voice(repo: Path) -> dict[str, dict[str, Any]]:
+    """The cast member each roster voice speaks, where it is someone else's name (Timo for `jonas`).
+
+    Read off the records rather than validated: the learner app's validator owns their shape, and a
+    record this build cannot read must not hide the roster.
+    """
+    people: dict[str, dict[str, Any]] = {}
+    for path in sorted((repo / "content" / "characters").glob("*.yaml")):
+        record = yaml.safe_load(path.read_text()) or {}
+        voice, person, name = record.get("voice"), record.get("id"), record.get("name")
+        if isinstance(voice, str) and isinstance(person, str) and isinstance(name, str):
+            if person != voice:
+                people[voice] = {"id": person, "name": name}
+    return people
 
 
 def router(store: Store, repo: Path) -> APIRouter:
@@ -68,92 +82,39 @@ def router(store: Store, repo: Path) -> APIRouter:
             }
             for character_id in cast & usage.keys():
                 usage[character_id] += 1
-        candidate_manifest = store.root / "characters" / "portrait-candidates.json"
-        candidate_ids = [
-            str(item["id"])
-            for item in json.loads(candidate_manifest.read_text()).get("candidates", [])
-        ] if candidate_manifest.exists() else []
-        # `exclude_none`: a designed profile has no style, and an absent key is what Tonwerk's
-        # character contract reads as "none"; a JSON null there would fail its parse.
-        return {"version": catalog.version, "characters": [row.model_dump(mode="json", exclude_none=True) | {"usage_count": usage[row.id], "demo_urls": [f"/api/characters/{row.id}/demos/{index}" for index in range(3) if (store.root / "characters" / row.id / f"demo-{index + 1}.wav").exists()], "portrait_candidate_urls": [f"/api/characters/{row.id}/portrait-candidates/{candidate_id}" for candidate_id in candidate_ids], "selected_portrait_url": f"/api/characters/{row.id}/portrait" if (store.root / "characters" / row.id / "portrait.png").exists() else None} for row in catalog.characters]}
+        voiced = _cast_by_voice(repo)
 
-    @api.get("/characters/{character_id}/portrait")
-    def selected_character_portrait(character_id: str) -> FileResponse:
-        target = store.root / "characters" / character_id / "portrait.png"
-        if not target.exists():
-            raise HTTPException(404, "no portrait has been selected")
-        return FileResponse(target, media_type="image/png")
+        def row_of(row: CharacterDefinition) -> dict[str, Any]:
+            person = voiced.get(row.id)
+            return (
+                # `exclude_none`: a designed profile has no style, and an absent key is what
+                # Tonwerk's character contract reads as "none"; a JSON null there would fail it.
+                row.model_dump(mode="json", exclude_none=True)
+                | {
+                    "usage_count": usage[row.id],
+                    "demo_urls": [
+                        f"/api/characters/{row.id}/demos/{index}"
+                        for index in range(3)
+                        if (store.root / "characters" / row.id / f"demo-{index + 1}.wav").exists()
+                    ],
+                }
+                | _images(repo, row.id)
+                | ({"cast": person | _images(repo, person["id"])} if person else {})
+            )
 
-    @api.get("/characters/{character_id}/portrait-candidates/{candidate_id}")
-    def character_portrait_candidate(character_id: str, candidate_id: str) -> Response:
-        catalog = load_character_catalog(repo)
-        ids = [row.id for row in catalog.characters]
-        if character_id not in ids:
-            raise HTTPException(404, "character does not exist")
-        manifest_path = store.root / "characters" / "portrait-candidates.json"
-        if not manifest_path.exists():
-            raise HTTPException(404, "portrait candidates have not been generated")
-        manifest = json.loads(manifest_path.read_text())
-        candidate = next(
-            (row for row in manifest.get("candidates", []) if row.get("id") == candidate_id),
-            None,
-        )
-        if candidate is None:
-            raise HTTPException(404, "portrait candidate does not exist")
-        source = Path(str(candidate["path"]))
-        if not source.exists():
-            raise HTTPException(404, "portrait candidate file is missing")
-        return Response(_portrait_crop(source, ids.index(character_id)), media_type="image/png")
-
-    @api.put("/characters/{character_id}/portrait-selection")
-    def select_character_portrait(
-        character_id: str, selection: PortraitSelectionRequest
-    ) -> dict[str, Any]:
-        catalog = load_character_catalog(repo)
-        ids = [row.id for row in catalog.characters]
-        if character_id not in ids:
-            raise HTTPException(404, "character does not exist")
-        manifest_path = store.root / "characters" / "portrait-candidates.json"
-        if not manifest_path.exists():
-            raise HTTPException(409, "portrait candidates have not been generated")
-        manifest = json.loads(manifest_path.read_text())
-        candidate = next(
-            (
-                row
-                for row in manifest.get("candidates", [])
-                if row.get("id") == selection.candidate_id
-            ),
-            None,
-        )
-        if candidate is None:
-            raise HTTPException(409, "unknown portrait candidate")
-        source = Path(str(candidate["path"]))
-        if not source.exists():
-            raise HTTPException(409, "portrait candidate file is missing")
-        if hashlib.sha256(source.read_bytes()).hexdigest() != candidate["sha256"]:
-            raise HTTPException(409, "portrait candidate bytes changed after generation")
-        crop = _portrait_crop(source, ids.index(character_id))
-        target = store.root / "characters" / character_id
-        target.mkdir(parents=True, exist_ok=True)
-        (target / "portrait.png").write_bytes(crop)
-        record = {
-            "character_id": character_id,
-            "character_version": next(
-                row.version for row in catalog.characters if row.id == character_id
-            ),
-            "candidate_id": selection.candidate_id,
-            "candidate_count": len(manifest.get("candidates", [])),
-            "selection_reason": selection.reason,
-            "selected_by": selection.editor,
-            "source_sha256": candidate["sha256"],
-            "portrait_sha256": hashlib.sha256(crop).hexdigest(),
-            "prompt_source": manifest["prompt_source"],
-            "status": "selected-pending-catalog-publication",
+        return {
+            "version": catalog.version,
+            "characters": [row_of(row) for row in catalog.characters],
         }
-        (target / "portrait-selection.json").write_text(
-            json.dumps(record, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-        )
-        return record
+
+    @api.get("/characters/{folder_id}/images/{name}")
+    def character_image(folder_id: str, name: str) -> FileResponse:
+        if not _IMAGE_NAME.match(folder_id) or not _IMAGE_NAME.match(name):
+            raise HTTPException(404, "image does not exist")
+        target = repo / "public" / "characters" / folder_id / f"{name}.webp"
+        if not target.is_file():
+            raise HTTPException(404, "image does not exist")
+        return FileResponse(target, media_type="image/webp")
 
     @api.get("/characters/{character_id}/demos/{demo_index}")
     def character_demo(character_id: str, demo_index: int) -> FileResponse:

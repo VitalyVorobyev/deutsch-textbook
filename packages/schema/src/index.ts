@@ -1101,6 +1101,12 @@ export const readingSchema = z
      */
     attribution: z.string().min(1).optional(),
     license: z.string().min(1).optional(),
+    /**
+     * A cast member's scene that opens this episode (`lena-1`), shown above the text (ADR 0021).
+     * Only for a serial episode, and only a scene that shows nothing a question asks about; the
+     * validator holds that a character record lists the scene and has read this text.
+     */
+    scene: slug.optional(),
   })
   .superRefine((reading, ctx) => {
     // Readings carry no sourceClass (unlike documents), so the reachable rule is
@@ -1110,6 +1116,15 @@ export const readingSchema = z
         code: 'custom',
         message:
           'attribution and license come together — an adapted reading ships with both or is not adapted',
+      });
+    }
+    // An intensive text is a task the learner works through, and its picture would be one more
+    // thing to account for; a scene opens a serial episode, which is read for its story.
+    if (reading.scene && reading.kind !== 'extensive') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['scene'],
+        message: 'a scene opens an extensive reading (a serial episode) only',
       });
     }
   });
@@ -2328,6 +2343,35 @@ export const characterRefSchema = z
 export const CHARACTER_AGE_BANDS = ['child', 'young-adult', 'adult', 'older-adult'] as const;
 
 /**
+ * A character image as the site serves it: `/characters/<character-id>/<file>.webp`, a file under
+ * `public/` that `bun run characters:import` writes. The validator holds that the file exists and
+ * lives in the folder of the record that names it.
+ */
+export const characterImagePathSchema = z
+  .string()
+  .regex(
+    /^\/characters\/[a-z0-9-]+\/[a-z0-9-]+\.webp$/,
+    'is /characters/<character-id>/<file>.webp',
+  );
+
+/**
+ * A scene of a cast member: the same person in a place the serial uses (ADR 0021). It may open
+ * an episode that names it, and only if it shows nothing a question asks about.
+ */
+export const characterSceneSchema = z
+  .object({
+    /** The image's file name without extension, `lena-1`; what an episode's `scene` names. */
+    id: slug,
+    src: characterImagePathSchema,
+    /** A short German alt text: who is where, doing what. */
+    alt_de: z.string().min(1),
+    /** What the image shows, for the author matching it to an episode; never rendered. */
+    description: z.string().min(1).optional(),
+  })
+  .strict();
+export type CharacterScene = z.infer<typeof characterSceneSchema>;
+
+/**
  * A person of the recurring cast. A person is content and a voice is casting: `voice` names the
  * one roster voice (`data/listening-characters.yaml`) that speaks this person and nobody else.
  * It is absent until a designed voice exists for the person.
@@ -2359,6 +2403,13 @@ export const characterSchema = z
       )
       .default([]),
     appearances: z.array(characterRefSchema).min(1),
+    /**
+     * Head and shoulders: what tells this speaker apart where the course names them (ADR 0016).
+     * Absent, the person is shown by name alone.
+     */
+    portrait: characterImagePathSchema.optional(),
+    /** The same person in the serial's places; an episode may open with one (ADR 0021). */
+    scenes: z.array(characterSceneSchema).default([]),
   })
   .strict();
 export type Character = z.infer<typeof characterSchema>;

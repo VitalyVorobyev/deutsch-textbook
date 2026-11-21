@@ -37,8 +37,8 @@ const CHARACTERS = {
       demo_phrases: ['Heute treffen wir uns um halb sechs am Bahnhof.'],
       usage_count: 0,
       demo_urls: [],
-      portrait_candidate_urls: [],
-      selected_portrait_url: null,
+      portrait_url: null,
+      scene_urls: [],
     },
   ],
 };

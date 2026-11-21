@@ -62,6 +62,11 @@ GitHub Release notes.
   the infinitive; *hat reparieren lassen* but *hat … gelassen*) and its jobs side by side — allow,
   have something done, leave, give up, *Lass uns …* — plus *Das lässt sich reparieren*, marked as
   recognition only. The B1 topics that teach *lassen* link to it.
+- **Lena has a face.** Her portrait stands beside her name in the transcript of a recording she
+  speaks in, and beside her name among the answers of a "Wer sagt das?" question, once you have
+  answered. Two episodes open with a picture of her beside the title: *Der Wecker um vier* behind
+  the bakery counter before sunrise, and *Das leere Dach* in the courtyard under the new bicycle
+  shelter. The other people of the course follow as their pictures are made.
 
 - **You can choose how many new flashcards you get a day.** The profile menu offers 10, 15, 20 or
   25 new cards per day, kept per profile; 15 stays the default. A hint under the choice says that

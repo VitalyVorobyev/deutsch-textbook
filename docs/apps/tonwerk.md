@@ -98,7 +98,7 @@ The rail down the left lists them in the order the work runs.
 | **Prüfung** | the review queue — every scene the machine has measured and nobody has judged, longest wait first. Reviewing is optional: a scene whose check passed can be published without it. |
 | **Hörprobe** | the published dialogues, played one after another and judged by ear; a problem goes into the shared queue. |
 | **Klangbibliothek** | every sound that can be placed, imported or generated, and the one place to make a new one. |
-| **Figuren** | the casting roster, its demo takes, and the consented cloned voices under it. |
+| **Figuren** | the casting roster, its demo takes, each person's portrait and further images, and the consented cloned voices under it. |
 
 On Übersicht a tick on the level meter opens the Bibliothek filtered to that status. Every
 Bibliothek filter lives in the URL, so "every stale B1 row" is a link rather than a set of
@@ -242,6 +242,43 @@ The queue is written by the same module Redaktion and `bun run queue` use, which
 with Bun. If the engine cannot find Bun on its `PATH` or in `~/.bun/bin`, the recordings still play,
 and the page says that verdicts cannot be filed.
 
+## Figuren and their images
+
+Each person of the course has a portrait and may have further images of the same person: scenes
+for the serial characters, variants for the other roster voices. You generate them in ChatGPT from
+the prompts in `data/prompts/2026-11-21-character-images.md` and save the full-size originals as
+
+```
+assets/images/<id>/<id>.png      the portrait
+assets/images/<id>/<id>-1.png    the first further image, then -2, -3, …
+```
+
+where `<id>` is a cast record's id (`lena`, `timo`, `frau-kern`) or a roster voice's (`jonas`,
+`anna-keller`). `assets/` stays on your machine; it is never committed. Then:
+
+```sh
+bun run characters:import            # every character that has a folder
+bun run characters:import -- timo    # one character
+bun run characters:import -- --check # what would change; writes nothing
+```
+
+The import writes the WebP files the course serves, `public/characters/<id>/` (a portrait 512 px
+square, a further image 1024 px on its long side, each under 120 KB), and one record per file in
+`data/asset-provenance.yaml`. It is safe to run again: an unchanged original writes nothing. It
+lists the ids that have no folder yet, skips a file that does not follow the naming and says why,
+and skips a character the prompt file has no prompt for.
+
+Figuren shows the portrait on its card and the further images under it. A voice that speaks a cast
+member under another name shows that person too: the `jonas` card shows Timo, the `anna-keller`
+card Frau Kern.
+
+The import never edits a character record. It says what to add to `content/characters/<id>.yaml`:
+a `portrait:` line, which shows the face beside the person's name in listening transcripts and
+"Wer sagt das?" questions; and, for a scene you want an episode to open with, an entry under
+`scenes:` with a German `alt_de`. An extensive reading then names it as `scene: <id>-<n>`, only if
+the picture answers none of that episode's questions
+([ADR 0021](../adrs/0021-a-scene-of-the-cast-may-open-a-serial-episode.md)).
+
 ## Publishing
 
 Publishing is the engine's, not Tonwerk's, and it takes a deliberate confirmation. A dialogue scene
@@ -288,7 +325,8 @@ Both installers pin a revision, and both pins are checked before a generation ru
 ## Which CLI commands you actually type
 
 > **`bun run tonwerk:app` or `bun run tonwerk:start`, `models`, and `scene publish-checked`.
-> Everything else happens in Tonwerk.**
+> Everything else happens in Tonwerk**, except bringing in images, which is
+> `bun run characters:import` ([above](#figuren-and-their-images)).
 
 The rest of `atlas-listening` serves the same scene pipeline from a shell:
 

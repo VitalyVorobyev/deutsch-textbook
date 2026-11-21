@@ -84,6 +84,21 @@ Triaged from `feedback.md`, which holds only raw capture.
   *fähren* looks like. So a slip allowance needs a cell to say which of its tokens are graded.
   First step: per-cell `key_tokens`, then `dictationSlip` on the rest.
 
+- **F-16 · The daily session holds at most 15 cards**, and adds new ones only when fewer than 5
+  are due (`SessionFlow`), so a new-cards-per-day setting above 15 is spent mostly on
+  `/ueben/wiederholen`. First step: decide whether the session's size follows the setting.
+- **F-17 · The new-cards-per-day setting is device-local** (`da:newcards:<profileId>`), like the
+  learning language. Travelling with the snapshot needs a snapshot schema version.
+- **F-18 · `temporal-nebensatz` stays weak although its drill exists** (33 of 82 attempts wrong,
+  no recovery; `bun run progress:audit --profile vitaly`). First step: `--item` on the drill's
+  items to see whether the errors are the conjunction, the tense or the verb position, before
+  writing anything.
+- **F-19 · Thirteen cast members have no images.** Prompts for all fourteen are in
+  `data/prompts/2026-11-21-character-images.md`; `bun run characters:import` brings a folder in.
+  The workshop scene of Lena opens no episode, because it answers a question in two of them.
+- **F-20 · Scene files are 1024 px and shown at most 176 px wide.** Either serve a smaller
+  rendition or give the scene a larger place.
+
 ### Ruled, no change
 
 Recorded so they are not re-triaged.

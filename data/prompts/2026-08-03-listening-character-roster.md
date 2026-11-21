@@ -1,6 +1,7 @@
 # Listening Studio character roster — portrait candidates
 
-Status: draft candidates; no portrait is selected or approved.
+Status: superseded by `2026-11-21-character-images.md`, one image per message instead of a contact
+sheet; no candidate from this brief was selected.
 
 Shared art direction: calm editorial illustration for a high-quality German language-learning
 product; head-and-shoulders portrait; warm off-white paper background; restrained natural
