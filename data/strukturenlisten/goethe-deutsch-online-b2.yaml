@@ -1,0 +1,143 @@
+# Goethe-Institut · Deutsch Online B2, Inhalt Kapitel 1 bis 12 — the grammar column.
+#
+# WHAT THIS IS, AND WHAT IT IS NOT. No free, formal B2 grammar inventory exists. The
+# Goethe-Zertifikat B2 Prüfungsziele (§ 4.4) delegates grammar and vocabulary to *Profile deutsch*,
+# a purchased book this course does not hold and will not buy; the telc Deutsch B2
+# Lernzielbeschreibung (2019, § 4) declines to list either; and the BAMF Lernzielkatalog for the
+# Berufssprachkurse states that its goals give no grammatical or lexical progression. This file is
+# therefore the nearest thing the exam's own issuer publishes free: the table of contents of the
+# Goethe-Institut's B2 online course, whose fourth column names the grammar of each lesson.
+#
+# IT IS A SYLLABUS, so `source.kind: syllabus`. A syllabus is one course's choice of what to teach,
+# not a statement of what an exam requires, and `bun scripts/structures.ts B2` reports it as
+# counts, never as a percentage (ADR 0024). An entry here is evidence that the Goethe-Institut
+# teaches the structure at B2. Its absence here is evidence of nothing: the reference-grammar
+# scope of B2 is wider, and docs/curriculum/b1-b2.md names what this course adds beyond it.
+#
+# THE TABLE. Seven pages; pages 2–7 hold one table per two chapters with the columns
+# Sprachhandlungen, Themen und Texte, Wortschatz, Grammatik and a narrow Aussprache column. Only
+# the Grammatik column is transcribed, in the document's order, one section per chapter. Twelve
+# chapters of three lessons; a lesson with an empty Grammatik cell contributes no entry, which is
+# why the sections hold two or three entries each. The other columns are lesson-specific
+# (a Sprachhandlung there is "understand statements about chatbots") and anchor nothing.
+#
+# ONE LABEL IS CUT OFF IN THE SOURCE. The cell on page 7 prints "Wiederholung: Fragewörter wo(r)
+# und Präpositionalpronomen d" and the table's edge ends it there. `de` completes it to da(r),
+# the only reading the grammar allows, and `printed` records what the page says.
+#
+# MODE IS `unstated`. The course trains all four skills and the column says nothing about whether
+# a structure is to be understood or produced.
+#
+# BOUNDARY (ADR 0009 / ADR 0004): labels only, in the source's own order. No lesson texts, no
+# example sentences, no wording from the other columns.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/DT_online_B2_Inhalt_1-12_de.pdf -
+# Reference from a grammar-inventory row: `claims: [goethe-deutsch-online-b2:<key>]`.
+
+source:
+  id: goethe-deutsch-online-b2
+  title: "Deutsch Online B2 — Inhalt, Kapitel 1 bis 12"
+  publisher: "Goethe-Institut e.V."
+  chapter: "Spalte Grammatik"
+  pages: "2–7"
+  pdf_pages: "2–7"
+  levels: [B2]
+  kind: syllabus
+  audience: erwachsene
+  mode: unstated
+  url: "https://lernen.goethe.de/deutschonline/B2/PDF/DT_online_B2_Inhalt_1-12_de.pdf"
+  local: "docs/GeotheInstitute/DT_online_B2_Inhalt_1-12_de.pdf"
+  retrieved: "2026-11-22"
+
+sections:
+  - id: kapitel-1-beziehungen
+    de: "Kapitel 1 · Beziehungen"
+    page: 2
+    entries:
+      - { key: adjektivdeklination, level: B2, de: "Adjektivdeklination" }
+      - { key: nomen-mit-praepositionen, level: B2, de: "Nomen mit Präpositionen" }
+
+  - id: kapitel-2-bleiben-sie-gesund
+    de: "Kapitel 2 · Bleiben Sie gesund!"
+    page: 2
+    entries:
+      - { key: kausale-zusammenhaenge, level: B2, de: "Kausale Zusammenhänge" }
+      - { key: vergleichssaetze-je-desto, level: B2, de: "Vergleichssätze mit je … desto" }
+      - { key: negation-un-los, level: B2, de: "Negation mit un- und -los" }
+
+  - id: kapitel-3-gesellschaft-im-wandel
+    de: "Kapitel 3 · Gesellschaft im Wandel?"
+    page: 3
+    entries:
+      - { key: passiv-praesens-vergangenheit, level: B2, de: "Passiv: Präsens und Vergangenheitsformen" }
+      - { key: relativsaetze-relativpronomen, level: B2, de: "Relativsätze und Relativpronomen" }
+
+  - id: kapitel-4-wie-wohnen-wir
+    de: "Kapitel 4 · Wie wohnen wir?"
+    page: 3
+    entries:
+      - { key: generalisierende-relativsaetze, level: B2, de: "Generalisierende Relativsätze" }
+      - { key: passiv-mit-modalverb, level: B2, de: "Passiv mit Modalverb (Präsens, Präteritum)" }
+      - { key: angaben-im-mittelfeld, level: B2, de: "Angaben im Mittelfeld" }
+
+  - id: kapitel-5-alles-digital
+    de: "Kapitel 5 · Alles digital?"
+    page: 4
+    entries:
+      - { key: partizip-als-adjektiv, level: B2, de: "Partizip I und II als Adjektiv" }
+      - { key: zweiteilige-konnektoren, level: B2, de: "Zweiteilige Konnektoren" }
+
+  - id: kapitel-6-wissenschaft-und-gesellschaft
+    de: "Kapitel 6 · Wissenschaft und Gesellschaft"
+    page: 4
+    entries:
+      - { key: passiversatzformen, level: B2, de: "Passiversatzformen: lassen + Inf., sein + zu + Inf., Adjektiv + -bar" }
+      - { key: konsekutive-zusammenhaenge, level: B2, de: "Konsekutive Zusammenhänge" }
+
+  - id: kapitel-7-schoenheit
+    de: "Kapitel 7 · Schönheit"
+    page: 5
+    entries:
+      - { key: infinitivsaetze, level: B2, de: "Infinitivsätze" }
+      - { key: um-ohne-statt-zu, level: B2, de: "um zu, ohne zu und (an)statt zu + Infinitiv" }
+
+  - id: kapitel-8-arbeitswelt
+    de: "Kapitel 8 · Arbeitswelt"
+    page: 5
+    entries:
+      - { key: modalsaetze-indem-dadurch-dass, level: B2, de: "Modalsätze mit indem und dadurch, dass" }
+      - { key: adjektive-mit-praeposition, level: B2, de: "Adjektive mit Präposition" }
+
+  - id: kapitel-9-kunst-und-kultur
+    de: "Kapitel 9 · Kunst und Kultur"
+    page: 6
+    entries:
+      - { key: konzessive-zusammenhaenge, level: B2, de: "Konzessive Zusammenhänge" }
+      - { key: temporalsaetze, level: B2, de: "Temporalsätze" }
+      - { key: textzusammenhang-herstellen, level: B2, de: "einen Textzusammenhang herstellen" }
+
+  - id: kapitel-10-gefuehle-und-sinne
+    de: "Kapitel 10 · Gefühle und Sinne"
+    page: 6
+    entries:
+      - { key: irreale-vergleichssaetze, level: B2, de: "Irreale Vergleichssätze" }
+      - { key: adversative-verbindungen, level: B2, de: "Adversative Verbindungen" }
+      - { key: modalpartikeln, level: B2, de: "Modalpartikeln" }
+
+  - id: kapitel-11-reisen-heute
+    de: "Kapitel 11 · Reisen heute"
+    page: 7
+    entries:
+      - { key: konditionale-zusammenhaenge, level: B2, de: "Konditionale Zusammenhänge" }
+      - key: fragewoerter-wo-praepositionalpronomen-da
+        level: B2
+        de: "Wiederholung: Fragewörter wo(r) und Präpositionalpronomen da(r)"
+        printed: "Wiederholung: Fragewörter wo(r) und Präpositionalpronomen d"
+        note: "The table's edge cuts the cell off after the d; da(r) is the only completion the grammar allows."
+
+  - id: kapitel-12-geschichte-und-zukunft
+    de: "Kapitel 12 · Geschichte und Zukunft"
+    page: 7
+    entries:
+      - { key: temporale-praepositionen-adverbien, level: B2, de: "Temporale Präpositionen und Adverbien" }
+      - { key: indirekte-rede, level: B2, de: "Indirekte Rede" }

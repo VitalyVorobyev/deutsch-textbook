@@ -172,7 +172,12 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
               <Bar value={structures.claimed.length} max={structures.total} tone="info" />
             </div>
             <p className="tabular mt-1 text-xs text-fg-muted">
-              {structures.claimed.length}/{structures.total} · {structures.percent}%
+              {/* A level anchored only by a course syllabus is a count: the list is one
+                  course's choice, so a percentage of it would claim a completeness nobody
+                  published. */}
+              {structures.sources.every((source) => source.kind === 'syllabus')
+                ? `${structures.claimed.length} von ${structures.total} Einträgen eines Kursprogramms`
+                : `${structures.claimed.length}/${structures.total} · ${structures.percent}%`}
             </p>
             {/* Load-bearing, not decoration: A2 read 138/138 = 100% for a day against the exam for
                 teenagers, and nothing in the report said whose exam it was. */}

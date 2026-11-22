@@ -83,6 +83,20 @@ describe('inventory anchors', () => {
    * themes. The size is pinned because the source is fixed: an entry added or lost is a
    * transcription change, never a coverage one. No floor yet — no B2 topic exists to claim one.
    */
+  /**
+   * B2's structural source is the grammar column of the Goethe-Institut's B2 course: a syllabus,
+   * so the level is anchored and its report is a count, never a percentage. 28 is the
+   * transcription's size; a different number is a transcription change.
+   */
+  test('B2 structures are anchored by a syllabus, and say so', () => {
+    const coverage = structureCoverage('B2');
+    expect(coverage.anchored).toBe(true);
+    expect(coverage.total).toBe(28);
+    expect(coverage.sources.map((s) => [s.id, s.kind])).toEqual([
+      ['goethe-deutsch-online-b2', 'syllabus'],
+    ]);
+  });
+
   test('B2 Themen are anchored by the fourteen Prüfungsthemen', () => {
     const coverage = themaCoverage('B2');
     expect(coverage.anchored).toBe(true);
@@ -105,9 +119,8 @@ describe('inventory anchors', () => {
         ).toBe(true);
       }
     }
-    // *Anchored* levels only, and the distinction is the point: B2 has no source at all, because
-    // Goethe delegates its inventory to a book. Asserting over every level would turn one
-    // unbought document into a failing test, which is the blind-spot-as-finding mistake
+    // *Anchored* levels only, and the distinction is the point: a level with no source at all
+    // must not become a failing test, which is the blind-spot-as-finding mistake
     // `anchored: false` exists to prevent.
     const anchored = LEVELS.map((level) => structureCoverage(level)).filter((c) => c.anchored);
     expect(anchored.length).toBeGreaterThan(0);

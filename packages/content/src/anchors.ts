@@ -74,6 +74,13 @@ export interface AnchorSourceMeta {
   /** `retired` marks a superseded exam: real evidence about a level's shape, not a requirement. */
   status?: 'current' | 'retired';
   /**
+   * What kind of document the list comes from. An exam's `inventory` (the default) states what a
+   * level requires. A `syllabus` is one course's choice of what to teach: evidence that a
+   * structure is taught at the level, never a statement that the level is those structures and no
+   * others. A level anchored only by a syllabus is reported in counts, never as a percentage.
+   */
+  kind?: 'inventory' | 'syllabus';
+  /**
    * Who sits the exam. Load-bearing, not decoration: for one day A2 read 138/138 = 100% and the
    * list it was 100% of was *Fit in Deutsch 2*, the exam for teenagers, because the adult A2
    * Prüfungsziele is not published free and nothing in the report said so.
