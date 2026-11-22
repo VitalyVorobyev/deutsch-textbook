@@ -107,7 +107,7 @@ const readings = await Promise.all(
       id,
       data: r.data,
       narration: narration?.data,
-      scene: scene && { src: withBase(scene.src), alt: scene.alt },
+      scene: scene && { src: withBase(scene.src), small: withBase(scene.small), alt: scene.alt },
     };
   }),
 );

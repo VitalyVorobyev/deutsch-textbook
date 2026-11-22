@@ -223,6 +223,7 @@ scenes:
     'content/characters/lena.yaml': record,
     'public/characters/lena/lena.webp': 'webp',
     'public/characters/lena/lena-1.webp': 'webp',
+    'public/characters/lena/lena-1-640.webp': 'webp',
   });
   const episode = (scene: string) => ({
     'content/reading/a1/lena-1.yaml': `kind: extensive\nscene: ${scene}\ntext:\n  - Lena kommt aus Polen.\n`,
@@ -243,6 +244,14 @@ scenes:
     delete files['public/characters/lena/lena.webp'];
     expect(problems(files)).toContainEqual(
       expect.stringContaining('portrait /characters/lena/lena.webp does not exist under public/'),
+    );
+  });
+
+  test('a scene without its small rendition', () => {
+    const files = withImages();
+    delete files['public/characters/lena/lena-1-640.webp'];
+    expect(problems(files)).toContainEqual(
+      expect.stringContaining('scene lena-1 has no /characters/lena/lena-1-640.webp under public/'),
     );
   });
 
