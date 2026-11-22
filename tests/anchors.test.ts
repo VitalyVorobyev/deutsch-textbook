@@ -84,16 +84,19 @@ describe('inventory anchors', () => {
    * transcription change, never a coverage one. No floor yet — no B2 topic exists to claim one.
    */
   /**
-   * B2's structural source is the grammar column of the Goethe-Institut's B2 course: a syllabus,
-   * so the level is anchored and its report is a count, never a percentage. 28 is the
-   * transcription's size; a different number is a transcription change.
+   * B2's structural sources are three course syllabi: the grammar labels of the Goethe-Institut's
+   * B2 online course and of two coursebooks' contents pages. The level is anchored and its report
+   * is a count, never a percentage. 75 is the three transcriptions' size (28 + 20 + 27); a
+   * different number is a transcription change.
    */
-  test('B2 structures are anchored by a syllabus, and say so', () => {
+  test('B2 structures are anchored by three syllabi, and say so', () => {
     const coverage = structureCoverage('B2');
     expect(coverage.anchored).toBe(true);
-    expect(coverage.total).toBe(28);
+    expect(coverage.total).toBe(75);
     expect(coverage.sources.map((s) => [s.id, s.kind])).toEqual([
       ['goethe-deutsch-online-b2', 'syllabus'],
+      ['klett-aspekte-neu-b2', 'syllabus'],
+      ['schubert-erkundungen-b2', 'syllabus'],
     ]);
   });
 

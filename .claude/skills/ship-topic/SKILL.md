@@ -7,7 +7,7 @@ description: Author and ship a new Deutsch-Atlas topic or unit end to end — ma
 
 The contract is the nine-line checklist under *Shipping a topic* in `content/CLAUDE.md`. Each
 line's reasoning is in `docs/authoring/authoring-checklists.md`, and what the unit owns and may not
-touch is in `docs/curriculum/`. This skill is the **procedure** that has shipped every B1 unit. For a B2 unit, the scope is in `docs/curriculum/b1-b2.md`; its structures are held against a syllabus (`bun scripts/structures.ts B2`, counts only).
+touch is in `docs/curriculum/`. This skill is the **procedure** that has shipped every B1 unit. For a B2 unit, the scope is in `docs/curriculum/b1-b2.md`; its structures are held against three syllabi (`bun scripts/structures.ts B2`, counts only), and a unit's rows cite the entries its **Grammar** and **Also claims** lines name.
 
 ## 0. Before drafting
 

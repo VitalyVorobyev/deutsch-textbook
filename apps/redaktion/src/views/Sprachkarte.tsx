@@ -176,7 +176,7 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
                   course's choice, so a percentage of it would claim a completeness nobody
                   published. */}
               {structures.sources.every((source) => source.kind === 'syllabus')
-                ? `${structures.claimed.length} von ${structures.total} Einträgen eines Kursprogramms`
+                ? `${structures.claimed.length} von ${structures.total} Einträgen aus ${structures.sources.length === 1 ? 'einem Kursprogramm' : `${structures.sources.length} Kursprogrammen`}`
                 : `${structures.claimed.length}/${structures.total} · ${structures.percent}%`}
             </p>
             {/* Load-bearing, not decoration: A2 read 138/138 = 100% for a day against the exam for

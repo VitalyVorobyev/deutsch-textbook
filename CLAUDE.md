@@ -6,7 +6,7 @@ denominators closed: Wortliste 673/673 · 1449/1449 · 3416/3416, internal gramm
 32/32, DTZ structures 93/93 · 300/300 · 164/164, Themen 70/70 and Sprachhandlungen 38/41 (the
 three left — interkulturelle Begegnung, Wissensdivergenz, Gefühle ausdrücken — want a topic of
 their own). The learner (Vitaly) aims at B2, which is open: thirteen units contracted in
-`docs/curriculum/b1-b2.md`, none authored, its structures held against a syllabus in counts (ADR 0024). Explanations are bilingual **EN + RU**, with an
+`docs/curriculum/b1-b2.md`, none authored, its structures held against three syllabi in counts (ADR 0024, 0025). Explanations are bilingual **EN + RU**, with an
 optional **UK** half and, from B1 onward, an optional German-medium half. The repo is both the
 knowledge base (`content/`) and the Astro site that renders it.
 

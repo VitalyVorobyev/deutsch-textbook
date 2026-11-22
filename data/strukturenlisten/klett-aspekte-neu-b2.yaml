@@ -1,0 +1,116 @@
+# Ernst Klett Sprachen · Aspekte neu B2, Lehrbuch — the grammar labels of its table of contents.
+#
+# WHAT THIS IS, AND WHAT IT IS NOT. A second B2 syllabus beside the Goethe-Institut's online
+# course (goethe-deutsch-online-b2.yaml): the contents pages a publisher offers as a free download
+# for a coursebook that prepares for the Goethe-Zertifikat B2, telc Deutsch B2 and ÖSD B2. It is
+# one course's choice of what to teach, so `source.kind: syllabus`, and `bun scripts/structures.ts
+# B2` reports it in counts, never as a percentage (ADR 0024, ADR 0025). Two syllabi that name the
+# same structure show common teaching practice at the level. Neither says what an exam requires.
+#
+# THE TABLE. Five pages, two chapters to a page, ten chapters. Each chapter has four modules; a
+# module's line may end in "Grammatik: …" or "Strategie: …". Only the Grammatik labels are
+# transcribed, in the document's order, one section per chapter: modules 1 and 3 carry one each,
+# which is why every section holds two entries. Module titles, the can-do lines under them and the
+# Strategie labels are lesson-specific and anchor nothing.
+#
+# THREE LABELS BREAK ACROSS A LINE in the narrow column: "Nomen-Verb-/Verbindungen",
+# "Indefinit-/pronomen" and "Textzusammen-/hang". `de` joins them. The check reaches across a
+# line-break hyphen by itself; `printed` records the one compound whose own hyphen ends the line.
+#
+# MODE IS `unstated`. The column does not say whether a structure is to be understood or produced.
+#
+# BOUNDARY (ADR 0009 / ADR 0004): labels only, in the source's own order. No module titles, no
+# can-do lines, no example sentences.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/klett_aspekte_neu_b2_inhalt.pdf -
+# Reference from a grammar-inventory row: `claims: [klett-aspekte-neu-b2:<key>]`.
+#
+source:
+  id: klett-aspekte-neu-b2
+  title: "Aspekte neu B2 — Lehrbuch, Inhaltsverzeichnis"
+  publisher: "Ernst Klett Sprachen GmbH"
+  chapter: "Zeilen „Grammatik:“ der Module 1 und 3"
+  pages: "1–5"
+  pdf_pages: "1–5"
+  levels: [B2]
+  kind: syllabus
+  audience: erwachsene
+  mode: unstated
+  url: "https://www.klett-sprachen.de/downloads/5861/lehrbuch-inhaltsverzeichnis-aspekte-neu-b2/pdf"
+  local: "docs/GeotheInstitute/klett_aspekte_neu_b2_inhalt.pdf"
+  retrieved: "2026-11-22"
+
+sections:
+  - id: kapitel-1-heimat-ist
+    de: "Kapitel 1 · Heimat ist …"
+    page: 1
+    entries:
+      - { key: wortstellung-im-satz, level: B2, de: "Wortstellung im Satz" }
+      - { key: negation, level: B2, de: "Negation" }
+
+  - id: kapitel-2-sprich-mit-mir
+    de: "Kapitel 2 · Sprich mit mir!"
+    page: 1
+    entries:
+      - { key: vergleichssaetze-als-wie-je-desto, level: B2, de: "Vergleichssätze mit als, wie und je …, desto/umso …" }
+      - { key: das-wort-es, level: B2, de: "das Wort es" }
+
+  - id: kapitel-3-arbeit-ist-das-halbe-leben
+    de: "Kapitel 3 · Arbeit ist das halbe Leben?"
+    page: 2
+    entries:
+      - { key: zweiteilige-konnektoren, level: B2, de: "zweiteilige Konnektoren" }
+      - { key: um-ohne-statt-zu-und-alternativen, level: B2, de: "Konnektoren um zu, ohne zu, (an)statt zu + Infinitiv und Alternativen" }
+
+  - id: kapitel-4-zusammen-leben
+    de: "Kapitel 4 · Zusammen leben"
+    page: 2
+    entries:
+      - { key: relativsaetze-mit-wer, level: B2, de: "Relativsätze mit wer" }
+      - key: nomen-verb-verbindungen
+        level: B2
+        de: "Nomen-Verb-Verbindungen"
+        printed: "Nomen-Verb- Verbindungen"
+        note: "The column breaks the compound after its second hyphen."
+
+  - id: kapitel-5-wer-wissen-schafft
+    de: "Kapitel 5 · Wer Wissen schafft, macht Wissenschaft"
+    page: 3
+    entries:
+      - { key: passiv-und-passiversatzformen, level: B2, de: "Passiv und Passiversatzformen" }
+      - { key: indefinitpronomen, level: B2, de: "Indefinitpronomen" }
+
+  - id: kapitel-6-fit-fuer
+    de: "Kapitel 6 · Fit für …"
+    page: 3
+    entries:
+      - { key: passiv-mit-sein, level: B2, de: "Passiv mit sein" }
+      - { key: vergleichssaetze-als-ob-konjunktiv-2, level: B2, de: "Vergleichssätze mit als, als ob und als wenn im Konjunktiv II" }
+
+  - id: kapitel-7-kulturwelten
+    de: "Kapitel 7 · Kulturwelten"
+    page: 4
+    entries:
+      - { key: textzusammenhang, level: B2, de: "Textzusammenhang" }
+      - { key: modalsaetze-dadurch-dass-indem, level: B2, de: "Modalsätze mit dadurch, dass und indem" }
+
+  - id: kapitel-8-das-machte-geschichte
+    de: "Kapitel 8 · Das macht(e) Geschichte"
+    page: 4
+    entries:
+      - { key: nomen-verben-adjektive-mit-praepositionen, level: B2, de: "Nomen, Verben und Adjektive mit Präpositionen" }
+      - { key: indirekte-rede-konjunktiv-1, level: B2, de: "Indirekte Rede mit Konjunktiv I" }
+
+  - id: kapitel-9-mit-viel-gefuehl
+    de: "Kapitel 9 · Mit viel Gefühl …"
+    page: 5
+    entries:
+      - { key: nominalisierung-von-verben, level: B2, de: "Nominalisierung von Verben" }
+      - { key: modalpartikeln, level: B2, de: "Modalpartikeln" }
+
+  - id: kapitel-10-ein-blick-in-die-zukunft
+    de: "Kapitel 10 · Ein Blick in die Zukunft"
+    page: 5
+    entries:
+      - { key: partizipien-als-adjektive, level: B2, de: "Partizipien als Adjektive" }
+      - { key: waehrend-praepositionen-mit-genitiv, level: B2, de: "Konnektor während, Präpositionen mit Genitiv" }

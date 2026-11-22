@@ -54,7 +54,7 @@ for (const level of levels) {
   const syllabusOnly = coverage.sources.every((s) => s.kind === 'syllabus');
   console.log(
     syllabusOnly
-      ? `\n## ${level} structures — ${coverage.claimed.length} of ${coverage.total} syllabus entries claimed (a course syllabus, not an exam inventory: no percentage)`
+      ? `\n## ${level} structures — ${coverage.claimed.length} of ${coverage.total} syllabus entries claimed (${coverage.sources.length === 1 ? 'a course syllabus' : `${coverage.sources.length} course syllabi, which overlap`}, not an exam inventory: no percentage)`
       : `\n## ${level} structures — ${coverage.claimed.length}/${coverage.total} claimed (${coverage.percent}%)`,
   );
   console.log(
