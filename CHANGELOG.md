@@ -13,6 +13,12 @@ GitHub Release notes.
 
 ### Changed
 
+- **Mira, Timo and Frau Kern have faces.** Like Lena, each now has a portrait beside their name
+  where they speak, and four more episodes of the serials open with a picture of them: Mira's
+  party, Timo at the Roland, Frau Kern at her window and at the meeting in the courtyard.
+
+- **The picture that opens a serial episode is large enough to look at.** It sits beside the text
+  on a wide window and across the column on a phone, and opens at full size when you click it.
 - **Fortschritt is one page.** The sub-tabs are gone: activity, the vocabulary bars and the delayed
   checks sit on one screen. The delayed checks list only the topics where a check failed, the most
   recent first, each linking to its topic. The session history table, the checkpoint panels and

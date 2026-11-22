@@ -4,10 +4,10 @@ version: 1
 entries:
   - file: content/characters/frau-kern.yaml
     state: claude-reviewed
-    revision: 8558e3185362e244361fe70683078e1d100140f5
+    revision: afa27e6f3ec3cff34b7dfc901173752e972536cf
     by: Claude Code
-    at: 2026-11-07
-    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+    at: 2026-11-22
+    note: Each scene's alt_de and description against the picture; six scenes open no episode and say why
   - file: content/characters/lena.yaml
     state: claude-reviewed
     revision: ae72dec128f0473d1705522746094d9c91609d19
@@ -16,16 +16,16 @@ entries:
     note: Lena gains her portrait and three scenes (alt_de and an author description each). Check the German alt texts and whether you agree that lena-2 (workshop) opens no episode.
   - file: content/characters/mira.yaml
     state: claude-reviewed
-    revision: 91c678cad61f181e788d1d694f83a623dd59c647
+    revision: 5e68d6448eb4eab38f9501ddfe38da39e2031fd2
     by: Claude Code
-    at: 2026-11-07
-    note: "Krimi serial episodes 4-6 (Ein Fall für den Hof): read the clue payoffs (gate number, van, Gartenstraße, Mira, frame number, bell), Herr Hansen's clearing and the new Lena, Frau Kern and Mira facts against the records"
+    at: 2026-11-22
+    note: Each scene's alt_de and description against the picture; six scenes open no episode and say why
   - file: content/characters/timo.yaml
     state: claude-reviewed
-    revision: b616fa5a323ef9e8f2db1ba20b3cb0201d707665
+    revision: 35ef8ccfdf7c9e8577e95b19726bab3aa4b53816
     by: Claude Code
-    at: 2026-11-07
-    note: "Krimi serial episodes 2 and 3 (Ein Fall für den Hof): read the van clue, the gate-number clue, the insurance strand and the new Lena, Timo and Mira facts against the records"
+    at: 2026-11-22
+    note: Each scene's alt_de and description against the picture; six scenes open no episode and say why
   - file: content/discovery/a1/ampelmaennchen.mdx
     state: owner-reviewed
     revision: 4e2e14446b18b30135d26005e9260091a756044e
@@ -901,6 +901,24 @@ entries:
     by: Claude Code
     at: 2026-11-21
     note: "Opens with a scene of Lena (scene:), shown beside the title: lena-2 with the bakery counter, krimi-1 with the courtyard shelter. Check that the picture answers none of the episode's questions; the text itself is unchanged."
+  - file: content/reading/a2/lena-4-miras-fest.yaml
+    state: claude-reviewed
+    revision: e78637b57476385bbddc0d5b85d3f7d6a235654a
+    by: Claude Code
+    at: 2026-11-22
+    note: "Opens with a scene now: does the picture give away or contradict anything in the episode?"
+  - file: content/reading/a2/lena-5-der-mann-aus-stein.yaml
+    state: claude-reviewed
+    revision: 20fb9d1ff1b8a802e1ce2738eb5081fdb1c83142
+    by: Claude Code
+    at: 2026-11-22
+    note: "Opens with a scene now: does the picture give away or contradict anything in the episode?"
+  - file: content/reading/a2/lena-7-ein-brief-fuer-den-hof.yaml
+    state: claude-reviewed
+    revision: 0b06ef1b7e9c512a137b09b5dc8c9e3de1651d52
+    by: Claude Code
+    at: 2026-11-22
+    note: "Opens with a scene now: does the picture give away or contradict anything in the episode?"
   - file: content/reading/a2/nebensaetze-plaene.yaml
     state: owner-reviewed
     revision: ef68a6196d2928518dee6399d7a7f4c2c74ee769
@@ -996,10 +1014,12 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-21
   - file: content/reading/b1/krimi-6-ein-dach-fuer-alle.yaml
-    state: owner-reviewed
-    revision: 2a61649531fd9f95868e1761a603a0ddb8b76fb2
-    by: Vitaly Vorobyev
-    at: 2026-11-21
+    state: claude-reviewed
+    revision: 91a5da9d704afec660f38c6883a597bd9b3e8ae8
+    by: Claude Code
+    at: 2026-11-22
+    note: "Opens with a scene now: does the picture give away or contradict anything in the episode?"
+    since: 2a61649531fd9f95868e1761a603a0ddb8b76fb2
   - file: content/reading/b1/leben-veraendern.yaml
     state: owner-reviewed
     revision: f196659d025f349ed1ac0805667562edbdf71a78

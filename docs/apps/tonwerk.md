@@ -263,8 +263,9 @@ bun run characters:import -- --check # what would change; writes nothing
 ```
 
 The import writes the WebP files the course serves, `public/characters/<id>/` (a portrait 512 px
-square, a further image 1024 px on its long side, each under 120 KB), and one record per file in
-`data/asset-provenance.yaml`. It is safe to run again: an unchanged original writes nothing. It
+square under 120 KB; a further image twice: `<id>-<n>.webp`, 1024 px on its long side under 120 KB,
+and `<id>-<n>-640.webp`, 640 px under 60 KB, which small screens are sent), and one record per
+file in `data/asset-provenance.yaml`. It is safe to run again: an unchanged original writes nothing. It
 lists the ids that have no folder yet, skips a file that does not follow the naming and says why,
 and skips a character the prompt file has no prompt for.
 

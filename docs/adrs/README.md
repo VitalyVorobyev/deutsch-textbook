@@ -60,8 +60,9 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0018`](0018-the-twelve-roster-voices-are-the-whole-pool.md) | The twelve roster voices are the whole pool; Frau Kern speaks with the anna-keller voice |
 | [`0019`](0019-a-topics-exercises-are-three-steps.md) | A topic's exercises are three steps — Üben, Anwenden, Aufgaben — with one kind of work per set, and an item may move between sets with its history (its always-open presentation superseded by 0020) |
 | [`0020`](0020-a-topics-exercises-are-one-path.md) | A topic's exercises are one path: a step header, one set on screen, the Grundübung marked as the set that counts |
-| [`0021`](0021-a-scene-of-the-cast-may-open-a-serial-episode.md) | A scene of a cast member may open a serial episode, showing nothing a question asks about; the portrait keeps its one job |
+| [`0021`](0021-a-scene-of-the-cast-may-open-a-serial-episode.md) | A scene of a cast member may open a serial episode, showing nothing a question asks about; the portrait keeps its one job (its fixed-square clause superseded by 0023) |
 | [`0022`](0022-the-account-is-its-own-page-fortschritt-is-one-page.md) | The account is its own page, `/konto`; Fortschritt is one page that describes learning only |
+| [`0023`](0023-a-scene-has-room-at-the-head-of-its-episode.md) | A scene has room at the head of its episode: large, its box reserved, served in two sizes |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),

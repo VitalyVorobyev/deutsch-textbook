@@ -93,11 +93,18 @@ Triaged from `feedback.md`, which holds only raw capture.
   no recovery; `bun run progress:audit --profile vitaly`). First step: `--item` on the drill's
   items to see whether the errors are the conjunction, the tense or the verb position, before
   writing anything.
-- **F-19 · Thirteen cast members have no images.** Prompts for all fourteen are in
+- **F-19 · Ten roster voices have no images**: amir, anna-keller, david, emil-wagner, herr-wu,
+  jonas, klara, noa, paul, so-yeon-park. Prompts are in
   `data/prompts/2026-11-21-character-images.md`; `bun run characters:import` brings a folder in.
-  The workshop scene of Lena opens no episode, because it answers a question in two of them.
-- **F-20 · Scene files are 1024 px and shown at most 176 px wide.** Either serve a smaller
-  rendition or give the scene a larger place.
+  Six scenes open no episode (lena-2, mira-1, mira-2, timo-1, timo-3, frau-kern-2); each
+  record's `description` says why.
+- **F-21 · The three Timo scene originals carry a thin white border on three edges** that
+  survives into the served files (`public/characters/timo/timo-1.webp`, `-2`, `-3`). First step:
+  regenerate or crop the originals in `assets/images/timo/` and re-run the import.
+- **F-22 · `public/lid/general-130.png` is 1.6 MB**, the largest image the site serves
+  (`find public/lid -name '*.png' -exec du -k {} + | sort -n | tail -3`); every other LiD picture
+  is under 330 KB. It is an official bank picture, so first step: check whether the LiD generator
+  may re-encode a picture without changing what it shows.
 
 ### Ruled, no change
 

@@ -9,7 +9,8 @@
  * `assets/images/<id>/<id>.png` (the portrait) and `<id>-1.png`, `<id>-2.png`, … (scenes or
  * variants of the same person). `assets/` is gitignored. For each image this writes the WebP the
  * site serves, `public/characters/<id>/<stem>.webp`, and its record in
- * `data/asset-provenance.yaml`, naming the saved prompt.
+ * `data/asset-provenance.yaml`, naming the saved prompt. A scene is written twice: at full size,
+ * and as `<stem>-640.webp` for the place it has at the head of an episode on a desktop window.
  *
  * - A known id is a cast record (`content/characters/`) or a roster voice
  *   (`data/listening-characters.yaml`). A known id without a folder is reported, not an error:
@@ -39,6 +40,12 @@ const PROVENANCE_FILE = join('data', 'asset-provenance.yaml');
 /** The long side of each kind, in pixels; a portrait is square. */
 export const PORTRAIT_SIZE = 512;
 export const SCENE_SIZE = 1024;
+/** The scene as an episode shows it beside its text: twice the 320 px it is drawn at. */
+export const SCENE_SMALL_SIZE = 640;
+/** The small rendition's own ceiling: it exists to be lighter than the full-size file. */
+export const SCENE_SMALL_MAX_BYTES = 60 * 1024;
+/** What the small rendition's file name adds to the scene's stem. */
+export const SCENE_SMALL_SUFFIX = `-${SCENE_SMALL_SIZE}`;
 /** Every file stays under this, well below the 150 KB budget; the encoder steps its quality down until it does. */
 export const MAX_BYTES = 120 * 1024;
 const QUALITIES = [80, 75, 70, 65, 60, 55, 50];
@@ -110,6 +117,8 @@ export interface ProvenanceEntry {
   id: string;
   kind: 'portrait' | 'scene';
   file: string;
+  /** the long side the file was scaled to, where it is not its kind's own size */
+  size?: number;
 }
 
 const quote = (text: string) => JSON.stringify(text);
@@ -120,7 +129,8 @@ export function provenanceBlock(entry: ProvenanceEntry): string {
     entry.kind === 'portrait'
       ? `as the portrait of ${entry.id}`
       : `as ${basename(entry.path, '.webp')}, a further image of ${entry.id}`;
-  const size = entry.kind === 'portrait' ? `${PORTRAIT_SIZE} px square` : `${SCENE_SIZE} px`;
+  const size =
+    entry.kind === 'portrait' ? `${PORTRAIT_SIZE} px square` : `${entry.size ?? SCENE_SIZE} px`;
   return [
     `  - path: ${entry.path}`,
     `    sha256: ${entry.sha256}`,
@@ -158,15 +168,17 @@ export function upsertProvenance(manifest: string, entries: readonly ProvenanceE
 async function encode(
   source: string,
   kind: 'portrait' | 'scene',
+  size: number = kind === 'portrait' ? PORTRAIT_SIZE : SCENE_SIZE,
+  maxBytes: number = MAX_BYTES,
 ): Promise<{ bytes: Buffer; quality: number }> {
   const resized =
     kind === 'portrait'
-      ? sharp(source).resize(PORTRAIT_SIZE, PORTRAIT_SIZE, { fit: 'cover' })
-      : sharp(source).resize(SCENE_SIZE, SCENE_SIZE, { fit: 'inside', withoutEnlargement: true });
+      ? sharp(source).resize(size, size, { fit: 'cover' })
+      : sharp(source).resize(size, size, { fit: 'inside', withoutEnlargement: true });
   let last: Buffer | undefined;
   for (const quality of QUALITIES) {
     last = await resized.clone().webp({ quality, effort: 6, smartSubsample: true }).toBuffer();
-    if (last.byteLength <= MAX_BYTES) return { bytes: last, quality };
+    if (last.byteLength <= maxBytes) return { bytes: last, quality };
   }
   throw new Error(`${source}: still ${last!.byteLength} bytes at quality ${QUALITIES.at(-1)}`);
 }
@@ -211,10 +223,23 @@ async function main(args: string[]): Promise<void> {
       notes.push(`${SOURCE_DIR}/${id}/${file}: skipped, ${reason}`);
     const images = [
       ...(found.portrait ? [{ file: found.portrait, stem: id, kind: 'portrait' as const }] : []),
-      ...found.scenes.map((scene) => ({ ...scene, kind: 'scene' as const })),
+      ...found.scenes.flatMap((scene) => [
+        { ...scene, kind: 'scene' as const },
+        {
+          file: scene.file,
+          stem: `${scene.stem}${SCENE_SMALL_SUFFIX}`,
+          kind: 'scene' as const,
+          size: SCENE_SMALL_SIZE,
+        },
+      ]),
     ];
     for (const image of images) {
-      const { bytes, quality } = await encode(join(folder, image.file), image.kind);
+      const { bytes, quality } = await encode(
+        join(folder, image.file),
+        image.kind,
+        'size' in image ? image.size : undefined,
+        'size' in image ? SCENE_SMALL_MAX_BYTES : undefined,
+      );
       const path = `${TARGET_DIR}/${id}/${image.stem}.webp`;
       const target = join(root, path);
       const same = existsSync(target) && readFileSync(target).equals(bytes);
@@ -229,7 +254,14 @@ async function main(args: string[]): Promise<void> {
       console.log(
         `${same ? '  =' : check ? '  ~' : '  +'} ${path}  ${(bytes.byteLength / 1024).toFixed(0)} KB, quality ${quality}`,
       );
-      entries.push({ path, sha256: sha256(bytes), id, kind: image.kind, file: image.file });
+      entries.push({
+        path,
+        sha256: sha256(bytes),
+        id,
+        kind: image.kind,
+        file: image.file,
+        ...('size' in image ? { size: image.size } : {}),
+      });
     }
 
     const record = cast.get(id);

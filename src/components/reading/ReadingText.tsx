@@ -19,7 +19,7 @@ interface Props {
   reading: Reading;
   narration?: ReadingAudioArtifact;
   /** the cast member's scene this episode opens with (ADR 0021), resolved and base-prefixed */
-  scene?: { src: string; alt: string };
+  scene?: { src: string; small: string; alt: string };
 }
 
 /** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
@@ -166,43 +166,50 @@ export default function ReadingText({ readingId, reading, narration, scene }: Pr
   return (
     <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-6">
       {/*
-        A scene opens the episode beside its title, never above it: a fixed square, so the text
-        starts where it would without one and nothing moves when the image arrives. It shows a
-        place of the story and nothing a question asks about (ADR 0021).
+        A scene opens the episode (ADR 0023): beside the text on a wide window, where the text
+        flows around it, and across the column on a phone, under nothing but the card's edge.
+        Its box is square before the file arrives, so nothing moves when it does. It shows a
+        place of the story and nothing a question asks about (ADR 0021). The link opens the
+        full-size picture.
       */}
-      <div className="flex items-start gap-4">
-        <div className="min-w-0 flex-1">
-          <h3 lang="de" className="mb-1 text-xl font-semibold">
-            {reading.title_de}
-          </h3>
-
-          {/*
-            An extensive reader is told what it is, because otherwise a learner treats every
-            German text on this site the same way — parsing each sentence, tapping every gloss,
-            bracing for the questions. That is the intensive reading habit, and it is exactly
-            what stops a longer text from ever being read at volume. Saying "read it once,
-            keep going, you are meant not to know everything" is the intervention.
-          */}
-          {extensive && (
-            <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
-              {pick(lang, UI.extensiveNote)}
-            </p>
-          )}
-          {!extensive && <div className="mb-4" />}
-        </div>
-        {scene && (
+      {scene && (
+        <a
+          href={scene.src}
+          target="_blank"
+          rel="noopener"
+          className="mb-4 block sm:float-right sm:mb-3 sm:ml-5 sm:w-72 lg:w-80"
+        >
           <img
-            src={scene.src}
+            src={scene.small}
+            srcSet={`${scene.small} 640w, ${scene.src} 1024w`}
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 288px, 100vw"
             alt={scene.alt}
             lang="de"
-            width={176}
-            height={176}
+            width={640}
+            height={640}
             loading="lazy"
             decoding="async"
-            className="mb-4 aspect-square h-auto w-24 shrink-0 rounded-md bg-stone-100 object-cover sm:w-44 dark:bg-stone-900"
+            className="aspect-square h-auto w-full rounded-md bg-stone-100 object-cover dark:bg-stone-900"
           />
-        )}
-      </div>
+        </a>
+      )}
+      <h3 lang="de" className="mb-1 text-xl font-semibold">
+        {reading.title_de}
+      </h3>
+
+      {/*
+        An extensive reader is told what it is, because otherwise a learner treats every
+        German text on this site the same way — parsing each sentence, tapping every gloss,
+        bracing for the questions. That is the intensive reading habit, and it is exactly
+        what stops a longer text from ever being read at volume. Saying "read it once,
+        keep going, you are meant not to know everything" is the intervention.
+      */}
+      {extensive && (
+        <p className="mb-4 text-sm text-stone-500 dark:text-stone-400">
+          {pick(lang, UI.extensiveNote)}
+        </p>
+      )}
+      {!extensive && <div className="mb-4" />}
 
       <div className="mb-5 flex flex-wrap items-center gap-3 rounded-md border border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-700 dark:bg-stone-900">
         <button
@@ -231,7 +238,9 @@ export default function ReadingText({ readingId, reading, narration, scene }: Pr
         )}
       </div>
 
-      <div lang="de" className="flex flex-col gap-4 leading-relaxed">
+      {/* Block paragraphs, not a flex column: a flex container would keep the scene's width
+          free down its whole height instead of letting the text close up under the picture. */}
+      <div lang="de" className="space-y-4 leading-relaxed">
         {paragraphs.map((segments, pi) => (
           <p
             key={pi}

@@ -160,11 +160,20 @@ export function castPortraits(root: string): Record<string, string> {
   );
 }
 
+/** The 640 px rendition `bun run characters:import` writes beside every scene file. */
+export const sceneSmallSrc = (src: string) => src.replace(/\.webp$/, '-640.webp');
+
 /** Every cast member's scene by its id, as an episode that opens with one renders it. */
-export function castScenes(root: string): Map<string, { src: string; alt: string }> {
+export function castScenes(root: string): Map<string, { src: string; small: string; alt: string }> {
   return new Map(
     loadCast(root).cast.flatMap(({ data }) =>
-      data.scenes.map((scene) => [scene.id, { src: scene.src, alt: scene.alt_de }] as const),
+      data.scenes.map(
+        (scene) =>
+          [
+            scene.id,
+            { src: scene.src, small: sceneSmallSrc(scene.src), alt: scene.alt_de },
+          ] as const,
+      ),
     ),
   );
 }
@@ -185,7 +194,8 @@ export function readingScenes(root: string): { ref: string; scene: string }[] {
 
 /**
  * Everything wrong with the images the records name (ADR 0021): each file exists under `public/`
- * in the folder of the record that names it, a scene's id is its file name, and an episode that
+ * in the folder of the record that names it, a scene has its small rendition beside it and its id
+ * is its file name, and an episode that
  * opens with a scene names one a record lists, of a person checked against that episode.
  */
 export function characterImageProblems(root: string, cast: readonly CastRecord[]): string[] {
@@ -204,6 +214,11 @@ export function characterImageProblems(root: string, cast: readonly CastRecord[]
         problems.push(`${file}: ${what} ${src} does not exist under public/`);
     }
     for (const scene of data.scenes) {
+      const small = sceneSmallSrc(scene.src);
+      if (!existsSync(join(root, 'public', small)))
+        problems.push(
+          `${file}: scene ${scene.id} has no ${small} under public/; run \`bun run characters:import\``,
+        );
       if (basename(scene.src, '.webp') !== scene.id)
         problems.push(`${file}: scene ${scene.id} must be the file ${scene.id}.webp`);
       const owner = scenes.get(scene.id);
