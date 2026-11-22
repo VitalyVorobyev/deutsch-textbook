@@ -14,16 +14,31 @@ a level can have several authorities and a row has to be able to say which one i
 | `goethe-a2-fit2.yaml` | A2 | **Jugendliche** | unstated | 102 | current | yes |
 | `goethe-start-deutsch-2.yaml` | A2 | Erwachsene | reception | 36 | **retired** | yes |
 | `goethe-dtz.yaml` | A2 **+ B1** | Erwachsene | **production** | 164 | current | yes |
-| — | A2 (Erwachsene) | — | — | — | current | no — Prüfungsziele not published free |
-| — | B1 (Zertifikat) | — | — | — | current | no — ISBN 978-3-19-031868-1 |
-| — | B2 | — | — | — | current | no — Goethe delegates to *Profile deutsch*, ISBN 978-3-468-49410-9 |
+| `goethe-deutsch-online-b2.yaml` | B2 | Erwachsene | unstated | 28 | current | yes — a course **syllabus** |
+| — | A2 (Erwachsene) | — | — | — | current | no — Prüfungsziele not published free; not held, will not be bought |
+| — | B1 (Zertifikat) | — | — | — | current | no — ISBN 978-3-19-031868-1; not held, will not be bought |
+| — | B2 (Zertifikat) | — | — | — | current | no — Goethe delegates the exam's inventory to *Profile deutsch*, ISBN 978-3-468-49410-9; not held, will not be bought |
 | — | C1+ | — | — | — | — | Goethe states no inventory exists, and why |
 
 The empty rows are the honest state of the world, not a to-do list that was forgotten: B2's
 Prüfungsziele §4.4 says the inventory "findet sich auf der CD-ROM zu Profile deutsch (2005)", and
 C1's §4.4 says inventories "gibt es aus folgenden Gründen nicht". A level with no anchor here is
 measured against the coursebook progression alone, and `bun scripts/structures.ts` reports its rows
-as `beyond` rather than pretending otherwise.
+as `beyond` rather than pretending otherwise. B2 is anchored, but by a course **syllabus** (the
+Goethe *Deutsch online* B2 contents), not by the exam's inventory: `structures.ts B2` reports it as
+counts of entries claimed, never a percentage ([ADR 0024](../../docs/adrs/0024-b2-denominators-are-compiled-from-free-sources.md)).
+No book is held for any empty row, and none will be bought.
+
+### What was looked for at B2 and does not exist free
+
+- A newer Goethe B2 *Prüfungsziele*: only the 2007 handbook is a free PDF.
+- telc *Deutsch B2* Lernzielbeschreibung (2019): declines to list grammar or vocabulary.
+- BAMF *Lernzielkatalog* for the Berufssprachkurse (2019): Sprachhandlungen with a B2 column, and
+  states it gives no grammatical or lexical progression. Held locally, not transcribed.
+- ÖSD ZB2: exam regulations only.
+- A Goethe B2 Wortliste: none is published.
+- DeReWo (IDS Mannheim): its terms allow passing a list on only with its documentation and
+  forbid commercial use, which an open repository cannot promise.
 
 ## Whose exam is the denominator? — read the `audience` column first
 
@@ -97,12 +112,12 @@ corrected — it is made unverifiable.
   claims: [goethe-a1-sd1:pron-personal-dativ-verben, goethe-a2-fit2:pron-personal-dativ]
 ```
 
-`bun scripts/structures.ts <A1|A2|B1>` then sorts every entry into three classes:
+`bun scripts/structures.ts <A1|A2|B1|B2>` then sorts every entry into three classes:
 
 - **claimed** — a source entry some inventory row covers;
 - **unclaimed** — a source entry no row covers, i.e. a hole in the denominator;
-- **beyond** — an inventory row citing no source entry at this level. Legitimate: this course aims
-  at B1 and follows a coursebook progression, so it teaches structures Start Deutsch never tested.
+- **beyond** — an inventory row citing no source entry at this level. Legitimate: this course
+  follows a coursebook progression, so it teaches structures Start Deutsch never tested.
   It must be *visible* as a choice rather than invisible as an assumption.
 
 ## Adding a source

@@ -22,75 +22,56 @@ boundaries hold throughout:
 A1, A2 and B1 are authored and their denominators closed. The current figures are the commands
 listed in [`CLAUDE.md`](../CLAUDE.md) (`coverage.ts`, `grammar-coverage.ts`, `structures.ts`,
 `themen.ts`, `handlungen.ts`). Every B1 topic has had its topic-quality pass, and every B1 article
-reads German-first. Shipping the catalogue was never a claim that a competence was retained.
+reads German-first with an English translation; Russian and Ukrainian halves are not authored for
+B1 articles. Shipping the catalogue was never a claim that a competence was retained.
+
+**B2 is open by the owner's ruling, not by the retention gate.** When it was opened, `translate`
+stood at 47% and the readable competences at ≥80% retention at 8 of 24 in A1, 14 of 46 in A2 and
+9 of 35 in B1 (`bun run progress:audit --profile vitaly`, snapshot 2026-11-21). The gate below is
+still read, and a miss still opens revision work.
 
 ## Horizons
 
-### Now: retention before breadth
+### Now: B2, authored once and in its final shape
 
-The course is ahead of the learner. Selection and recognition hold; building a German sentence
-around a taught structure does not, and several B1 points do not survive three weeks
-(`bun run progress:audit --profile vitaly --pull`: the *readable competences at ≥80%* lines, the
-`translate` score, the card lapses by direction). Until those figures move, a step is taken only
-when it raises delayed production retention, makes the evidence readable, or gives a tool a
-recurring job in that loop. New topics, task-set conversions in batches (CON-10), the B2 contract
-and the learner app on lab-ui wait.
-
-1. **The learning loop: production.** A failed `translate` comes back once in the same run as
-   a lighter form of the same sentence; next, sessions should lean toward production where
-   selection is already safe. About half of the failed translations miss the taught structure itself, the rest one
-   word beside it (counted by re-grading every logged `translate` attempt with `gradeTranslation`
-   and comparing a miss against its closest accepted rendering). Then the drills the audit names
-   (P26-11), and confirming that the families whose sets were never served now arm
-   (INS-10).
-2. **Redaktion gets a weekly job.** The owner's editorial decisions come from using the course:
-   a rejected answer that was right, an item that confuses. A desk over the learner's snapshot
-   and the grading rulings, where he rules a rendering, opens the item's source or files a
-   finding, is the main build ([`backlog/redaktion.md`](backlog/redaktion.md)), shaped by what
-   he reports from using the workbench.
-3. **Tonwerk: better audio, then more of it.** The owner's Hörprobe of the published dialogues
-   first, so its verdicts can be compared after the delivery-timing change in the engine
-   (P22-14, P22-16); then the narration plan and the recast, so that each recording is
-   synthesised once ([`backlog/tonwerk.md`](backlog/tonwerk.md)).
+The B2 contract is [`curriculum/b1-b2.md`](curriculum/b1-b2.md): its anchors, its rules and its
+units. B2 has no purchased inventory behind it; its denominators are compiled from free formal
+sources, which that file and [`data/strukturenlisten/README.md`](../data/strukturenlisten/README.md)
+name ([ADR 0024](adrs/0024-b2-denominators-are-compiled-from-free-sources.md)). Each unit is
+authored in the task shape of [ADR 0016](adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)
+from B2.1, with the `ship-topic` skill, one unit per PR. The queue is
+[`backlog/content.md`](backlog/content.md).
 
 The owner's entry point to all of it is the `atlas` skill: Claude opens the queue, the audit and
 the tools, and files what he says.
 
-### Next: three initiatives, decided before they are built
+### Beside it: three streams that B2 does not wait for
 
-Each goes **proposal → ADR → backlog** and starts only when its ADR is accepted. The owner sets
-the order. The suggested order follows the dependencies:
-
-1. **The tools on lab-ui** ([proposal](proposals/ui-on-lab-ui.md)). Tonwerk and Redaktion are on
-   it: both frames are `@vitavision/workbench`, and each app's look is a theme of `@vitavision/ui`
-   ([ADR 0011](adrs/0011-shared-ui-from-vitavision-packages.md)). The learner app comes last. The
-   **Tonwerk studio** ([ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md),
-   [queue](backlog/tonwerk.md)) and Redaktion's governance work ([queue](backlog/redaktion.md))
-   continue on that base.
-2. **The lesson task system and the recurring cast**, decided together in
-   [ADR 0016](adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md). A lesson becomes tasks
-   built on one stimulus each. A character becomes content, and a voice stays casting. Genre lives
-   in the reading serials. The first four people, Lena, Mira, Timo and Frau Kern
-   ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records that the
-   validator holds. Each speaks through one of the twelve roster voices, and the rest speak the
-   walk-on roles ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)). What
-   remains is the rollout of the task shape that the A2 and B1 pilots proved (CON-10). Each
-   conversion also clears its topic's last recasts (TON-6) and continuity places (CON-9). The B1
-   Krimi serial *Ein Fall für den Hof* is written (CON-7).
-3. **The learner app on lab-ui**, once its visual language is written down and the tools have
-   proved the theme layer.
-
-### Then: B2
-
-B2 starts from the same evidence contracts as A1–B1. Before any B2 topic is authored, the course
-needs:
-
-- the units of the curriculum contract, [`curriculum/b1-b2.md`](curriculum/b1-b2.md). Its anchors
-  and rules are written, and its units are not;
-- the lexical and structural anchor. Goethe publishes no B2 list and points to *Profile deutsch*
-  instead (P26-7, to buy);
-- the task shape, which A2 `freunde-feste` and B1 `gesellschaft-zusammenleben` now pilot, so that
-  B2.1 is authored once, in its final shape.
+1. **The learning loop: production.** Selection and recognition hold; building a German sentence
+   around a taught structure does not, and several B1 points do not survive three weeks (the
+   *readable competences at ≥80%* lines, the `translate` score and the card lapses by direction in
+   `bun run progress:audit --profile vitaly --pull`). A failed `translate` comes back once in the
+   same run as a lighter form of the same sentence. About half of the failed translations miss
+   the taught structure itself, the rest one word beside it (counted by re-grading every logged
+   `translate` attempt with `gradeTranslation` and comparing a miss against its closest accepted
+   rendering). Open: sessions that lean toward production where selection is already safe, the
+   drills the audit names (P26-11), and confirming that the families whose sets were never served
+   now arm (INS-10).
+2. **The task shape and the cast in A1–B1**
+   ([ADR 0016](adrs/0016-lessons-are-tasks-and-a-cast-carries-them.md)). A lesson is tasks built
+   on one stimulus each, and a character is content while a voice stays casting. The four serial
+   characters, Lena, Mira, Timo and Frau Kern
+   ([ADR 0017](adrs/0017-the-first-four-are-the-lena-serials-cast.md)), have records, voices
+   ([ADR 0018](adrs/0018-the-twelve-roster-voices-are-the-whole-pool.md)) and faces. Two topics
+   are converted; the rollout over the rest (CON-10) clears each topic's recasts (TON-6) and
+   continuity places (CON-9) as it goes, in batches, as recording time allows.
+3. **The tools.** Redaktion gets a weekly job: a desk over the learner's snapshot and the grading
+   rulings, where the owner rules a rendering, opens the item's source or files a finding
+   ([`backlog/redaktion.md`](backlog/redaktion.md)). Tonwerk: the owner's Hörprobe of the
+   published dialogues, then the narration plan and the recast, so that each recording is
+   synthesised once ([`backlog/tonwerk.md`](backlog/tonwerk.md)). Both are on lab-ui
+   ([ADR 0011](adrs/0011-shared-ui-from-vitavision-packages.md)); the learner app follows once its
+   visual language is written down ([proposal](proposals/ui-on-lab-ui.md)).
 
 ## Tools at full power
 

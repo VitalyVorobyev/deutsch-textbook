@@ -59,7 +59,7 @@ nobody thought of is absent from both and the figure reads 100% anyway. This ins
 list against published standards.
 
 ```
-bun scripts/structures.ts A1 A2 [--unclaimed-only] [--beyond]
+bun scripts/structures.ts A1 A2 B2 [--unclaimed-only] [--beyond]
 ```
 
 `data/strukturenlisten/<source-id>.yaml` holds one file per **source document** — structure labels
@@ -70,8 +70,8 @@ hole in the denominator) or **beyond** (a row citing no source — legitimate, s
 follows a coursebook progression, but visible rather than assumed). A dangling `claims:` ref fails
 validation.
 
-**A level with no source reports `anchored: false`, never 100% of nothing.** B2–C2 are in that
-state. The DTZ is cumulative and names an A2–B1 production repertoire, so its A2 entries stay in
+**A level with no source reports `anchored: false`, never 100% of nothing.** C1–C2 are in that
+state; B2 is anchored by a course syllabus and reports counts, never a percentage ([ADR 0024](../adrs/0024-b2-denominators-are-compiled-from-free-sources.md)). The DTZ is cumulative and names an A2–B1 production repertoire, so its A2 entries stay in
 scope at B1. `data/strukturenlisten/README.md` names the missing higher-level documents.
 
 Today: **A1 93/93 · A2 300/300 · B1 164/164** claimed. B1 is `100% des DTZ-Inventars`, never "all

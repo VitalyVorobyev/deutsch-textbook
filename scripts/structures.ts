@@ -10,7 +10,7 @@
  * never disagree, the same split the two coverage instruments already use.
  *
  * Usage:
- *   bun scripts/structures.ts [A1|A2|B1] [--unclaimed-only] [--beyond]
+ *   bun scripts/structures.ts [A1|A2|B1|B2] [--unclaimed-only] [--beyond]
  */
 import { structureCoverage, loadStructureSources, type EntryResult } from '@da/content/structures';
 import type { Level } from '@da/schema';
@@ -49,8 +49,13 @@ for (const level of levels) {
   }
   anyAnchored = true;
 
+  // A level anchored only by a course syllabus has no denominator a percentage could be of: the
+  // list is one course's choice, so the report is a count and says what it counts.
+  const syllabusOnly = coverage.sources.every((s) => s.kind === 'syllabus');
   console.log(
-    `\n## ${level} structures — ${coverage.claimed.length}/${coverage.total} claimed (${coverage.percent}%)`,
+    syllabusOnly
+      ? `\n## ${level} structures — ${coverage.claimed.length} of ${coverage.total} syllabus entries claimed (a course syllabus, not an exam inventory: no percentage)`
+      : `\n## ${level} structures — ${coverage.claimed.length}/${coverage.total} claimed (${coverage.percent}%)`,
   );
   console.log(
     `   ${coverage.unclaimed.length} unclaimed · ${coverage.beyond.length} inventory rows beyond the source`,
@@ -63,7 +68,7 @@ for (const level of levels) {
       // only current, free, adult standard covering A2 is the DTZ. A percentage that does not say
       // whose exam it is measured against is not a percentage anybody can act on.
       `   source: ${s.id} — ${s.title}${s.pages ? `, S. ${s.pages}` : ''}` +
-        `${s.status === 'retired' ? '  [RETIRED]' : ''}${s.audience ? `  [${s.audience}]` : ''}` +
+        `${s.status === 'retired' ? '  [RETIRED]' : ''}${s.kind === 'syllabus' ? '  [SYLLABUS]' : ''}${s.audience ? `  [${s.audience}]` : ''}` +
         `${s.mode ? `  [${s.mode}]` : ''}${s.cumulative ? '  [kumulativ A2–B1]' : ''}`,
     );
   console.log();

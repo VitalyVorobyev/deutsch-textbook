@@ -90,6 +90,9 @@ GitHub Release notes.
 
 ### Added
 
+- **B2 is planned.** Thirteen B2 units are laid out, from reported speech to talking about change
+  and the future. None is written yet, so nothing changes in the app.
+
 - **A Referenz page for *lassen*.** Its forms, the two rules that trip learners up (no *zu* before
   the infinitive; *hat reparieren lassen* but *hat … gelassen*) and its jobs side by side — allow,
   have something done, leave, give up, *Lass uns …* — plus *Das lässt sich reparieren*, marked as

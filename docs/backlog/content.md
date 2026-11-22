@@ -2,11 +2,6 @@
 
 Course content: articles, items, probes, vocabulary, readings and their language. The format and the ID rule are in the [backlog README](README.md).
 
-- **C6-3 · RU/UK translation halves for the B1 German-first articles**
-  ([ADR 0005](../adrs/0005-explanation-languages.md)). All 20 articles carry an English
-  `<Translation>` per section; a Russian or Ukrainian reader falls back to it. Write `<Ru>` and `<Uk>`
-  from the German, never from the English, all-or-none per file (`germanFirstTopicProblems`
-  enforces it), and give them the same fresh sentence-level check against the German.
 - **C6-1 · RU/UK calque review.** Instrument: the `textbook-text-reviewer` → `textbook-text-editor`
   loop ([article-prose.md](../authoring/article-prose.md)), then a fresh verify; two edit cycles at
   most. Eight B1 units remain — all but `digitales-leben`, `kultur-freizeit`, `geld-vertraege`,
@@ -61,8 +56,9 @@ Course content: articles, items, probes, vocabulary, readings and their language
   review argued for `taːtˈzɛçlɪç`. Settle against Duden's primary entry, then apply to other
   `-lich` adjectives built on a compound.
 - **CON-2 · Three Sprachhandlungen have no outcome** — interkulturelle Begegnung, Wissensdivergenz, Gefühle
-  ausdrücken (`bun scripts/handlungen.ts B1 --unclaimed-only`). Not turn management, so not
-  `gespraech-steuern`'s; they want a topic of their own.
+  ausdrücken (`bun scripts/handlungen.ts B1 --unclaimed-only`). The B2 contract gives them their
+  outcomes: the first two in B2.1 `sprache-verstaendigung`, the third in B2.2
+  `beziehungen-generationen` ([units](../curriculum/b1-b2.md#units)). Closed by those units.
 - **CON-3 · B1 competences that do not survive the delay.** Seven B1 rows retain 0–20% at 21–30
   days: adjektiv-nomen, irreale-bedingung, lassen-verwendung, partizip-adjektiv,
   relativ-praeposition, passiv-modal, praeteritum-vollverben (`bun run progress:audit --profile
@@ -121,21 +117,22 @@ Course content: articles, items, probes, vocabulary, readings and their language
     under the courtyard's bike roof, is the candidate fifth cast member. He has no record: he
     stays described, never voiced, until a task needs him (ADR 0016, 0018), and the first text
     that needs him adds the record with the facts episodes 1, 4 and 6 state.
-  - **A B2 serial** waits on the B2 units (CON-8): the same rule holds, each episode on a topic
+  - **A B2 serial** waits on the first B2 units (CON-11): the same rule holds, each episode on a topic
     of its own, recycling one the learner has met.
   - **Narration** of the serial belongs to the narration plan (TON-5), not here.
-- **CON-8 · Contract the B2 units** ([curriculum/b1-b2.md](../curriculum/b1-b2.md)). The anchors
-  and the inherited rules are written, and no unit is. Each unit needs a mission, owned structures
-  and exclusions, like B1's. Units wait on *Profile deutsch* (P26-7) for the structures they own.
-  The Themen denominator is `data/themenlisten/goethe-b2.yaml` (the 14 Prüfungsthemen of §4.3, all
-  `unclaimed`). Next step: the unit list in `b1-b2.md`, each unit naming the Prüfungsthemen its
-  topics will claim.
-- **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
-  978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9), which is also B2's only
-  lexical and structural anchor; also the adult Goethe A2 *Prüfungsziele* (the free A2 list is the
-  youth exam), and the current Goethe B2 *Prüfungsziele*: the local copy is the 2007 handbook, and
-  the 2025 Modellsatz cites a newer edition. Each becomes one
-  `data/strukturenlisten/*.yaml` whose entries start `unclaimed`.
+- **CON-11 · Author B2.1 `sprache-verstaendigung`** ([contract](../curriculum/b1-b2.md#units)), the
+  first B2 unit: Konjunktiv I produced in reported speech, and the reference words that make a
+  text. It is the first unit authored in the task shape from the start, and the first under
+  `content/topics/b2/`, so it also proves the level's plumbing: the B2 group and unit in
+  `content/atlas.yaml`, the first B2 inventory rows and focus tags, a B2 deck. First step: the
+  `ship-topic` skill, with the unit's inventory rows claiming their syllabus entries
+  (`bun scripts/structures.ts B2`). The other twelve units follow in path order, one per PR.
+- **CON-12 · Transcribe the B2 Sprachhandlungen** from the BAMF goal catalogue for the
+  Berufssprachkurse (held locally as `docs/GeotheInstitute/bamf_lernzielkatalog_bsk.pdf`, 248
+  pages, [ADR 0024](../adrs/0024-b2-denominators-are-compiled-from-free-sources.md)). It becomes
+  one `data/handlungslisten/*.yaml`. First step: decide the cut. The four general fields of
+  action (social contact, dissent and conflict, feelings and opinions, exchange of information)
+  fit a general course; the seven vocational ones are a different course's programme.
 
 Findings on single files, below the material bar, live in the shared queue (`bun run queue`,
 [ADR 0014](../adrs/0014-material-governance.md)), not here.
