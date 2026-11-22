@@ -11,7 +11,7 @@ is what makes that first sign-in an approved owner rather than a pending learner
 
 1. Finish the [server setup](../architecture/cloud-sync.md#setup) (D1, R2, both OAuth apps, six
    secrets, migrations). `OWNER_EMAILS` must contain the address you will sign in with.
-2. On the device that already holds your progress, open **Fortschritt → Daten → Export** and keep
+2. On the device that already holds your progress, open `/konto` from the profile menu and use **Export progress**, and keep
    the file. This is a safety net, not a required step — step 5 needs it only if you are moving to
    a different browser.
 3. Open the profile menu in the header → **Anmelden**, and sign in. You should land on `/konto` as

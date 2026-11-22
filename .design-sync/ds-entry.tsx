@@ -29,7 +29,6 @@ export { TierBadge, SelfAssessedMark, PlacedMark } from '../src/components/topic
 export { EvidenceChips, EvidenceChipRow } from '../src/components/topic/EvidenceChips';
 
 // ── Progress ───────────────────────────────────────────────────────────────
-export { Sparkline } from '../src/components/progress/Sparkline';
 
 // ── Atlas ──────────────────────────────────────────────────────────────────
 export { TopicDetail } from '../src/components/atlas/TopicDetail';

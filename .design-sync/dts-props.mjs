@@ -313,18 +313,6 @@ const props = {
   }>;
   className?: string;`,
 
-  Sparkline: `
-  /** Series in [0,1]; higher values sit nearer the top.
-      A null is a bucket with no data and it BREAKS the line — the stroke stops
-      and restarts after the gap, rather than running through it, so the chart
-      never draws a trend across a period nothing was measured in. A run of a
-      single point therefore draws no line at all; its dot still marks it. */
-  values: Array<number | null>;
-  width?: number;
-  height?: number;
-  /** Inherits its color from the parent via currentColor. */
-  className?: string;`,
-
   TopicDetail: `
   /** The topic being shown: its outcomes and its place in the atlas. */
   topic: ${COURSE_TOPIC};

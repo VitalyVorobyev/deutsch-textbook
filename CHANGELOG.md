@@ -13,6 +13,22 @@ GitHub Release notes.
 
 ### Changed
 
+- **Fortschritt is one page.** The sub-tabs are gone: activity, the vocabulary bars and the delayed
+  checks sit on one screen. The delayed checks list only the topics where a check failed, the most
+  recent first, each linking to its topic. The session history table, the checkpoint panels and
+  the weakness trends are no longer shown.
+
+- **The account has its own page, Konto.** Export and import, the sync folder, the storage
+  diagnostics and the cloud account moved out of Fortschritt. Open it from the profile menu in the
+  header; old links to the Daten tab land there.
+
+- **The numbers on the vocabulary bars explain themselves everywhere.** The hint that says what
+  Learning, Established and Strong count now opens on hover, on keyboard focus and on tap, in the
+  desktop app and on a phone too. It did not open at all in the desktop app.
+
+- **Clearer word cards for look-alikes.** *abfahren*, *losfahren* and *verreisen* each say how they
+  differ from the other two, and *der Bon*, *die Quittung* and *der Beleg* likewise.
+
 - **A topic's exercises say how big each set is, and why the page opened where it did.** Every set
   shows its number of items beside its name. When the page opens on a later set because the ones
   before it are done, a line above it names them with their items and the set you continue with,
@@ -58,6 +74,12 @@ GitHub Release notes.
 
 - A recording's provenance record now says itself whether its script's prompt was kept; a prompt
   file exists only for a prompt that was.
+
+### Fixed
+
+- **A dative exercise no longer warns about the wrong thing.** The gap text "Nach … Umzug bestellt
+  Jonas Pizza" told you to watch for an accusative preposition, although both gaps are dative. Its
+  instruction now asks only for the two missing articles.
 
 ### Added
 

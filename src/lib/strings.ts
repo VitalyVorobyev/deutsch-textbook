@@ -292,21 +292,12 @@ export const STRINGS = {
   },
   'strand.vocabulary': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
 
-  // Fortschritt island (ProgressPanel sub-tabs).
-  'progress.tabUebersicht': { de: 'Übersicht', en: 'Overview', ru: 'Обзор', uk: 'Огляд' },
-  'progress.tabNachweise': { de: 'Nachweise', en: 'Evidence', ru: 'Показатели', uk: 'Показники' },
-  'progress.tabDaten': { de: 'Daten', en: 'Data', ru: 'Данные', uk: 'Дані' },
+  // Konto page (KontoPanel).
   'progress.datenLocal': {
     de: 'Dieses Gerät',
     en: 'This device',
     ru: 'Это устройство',
     uk: 'Цей пристрій',
-  },
-  'progress.viewsAria': {
-    de: 'Fortschrittsansicht',
-    en: 'Progress view',
-    ru: 'Вид страницы прогресса',
-    uk: 'Вигляд сторінки прогресу',
   },
 
   // Konto island (AccountPanel / DeviceTokens / OwnerUsers).
@@ -314,6 +305,7 @@ export const STRINGS = {
   // explanation language and live as pick() records in the components — the
   // classification rule at the top of this file.
   'account.title': { de: 'Konto', en: 'Account', ru: 'Аккаунт', uk: 'Обліковий запис' },
+  'account.cloudTitle': { de: 'Cloud', en: 'Cloud', ru: 'Облако', uk: 'Хмара' },
   'account.signIn': { de: 'Anmelden', en: 'Sign in', ru: 'Войти', uk: 'Увійти' },
   'account.signOut': { de: 'Abmelden', en: 'Sign out', ru: 'Выйти', uk: 'Вийти' },
   'account.sync': {
