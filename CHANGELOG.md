@@ -19,6 +19,7 @@ GitHub Release notes.
 
 - **The picture that opens a serial episode is large enough to look at.** It sits beside the text
   on a wide window and across the column on a phone, and opens at full size when you click it.
+
 - **Fortschritt is one page.** The sub-tabs are gone: activity, the vocabulary bars and the delayed
   checks sit on one screen. The delayed checks list only the topics where a check failed, the most
   recent first, each linking to its topic. The session history table, the checkpoint panels and
