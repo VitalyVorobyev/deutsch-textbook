@@ -56,6 +56,9 @@ GitHub Release notes.
   you have not worked through, ticks the ones you have, and marks the Grundübung as the one that
   finishes the topic; everything after it is labelled optional.
 
+- A recording's provenance record now says itself whether its script's prompt was kept; a prompt
+  file exists only for a prompt that was.
+
 ### Added
 
 - **A Referenz page for *lassen*.** Its forms, the two rules that trip learners up (no *zu* before

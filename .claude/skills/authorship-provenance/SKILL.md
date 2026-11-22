@@ -54,4 +54,12 @@ review decisions after the fact.
    entry for the new SHA-256 with the real tool, saved brief and human edit/direction. The legacy
    exemption covers missing creation history only.
 
+## Listening recordings
+
+A recording's manifest in `data/audio-provenance/` states its script's brief as
+`generation_brief.status`: `retained`, `not-retained` or `manual`, defined in
+`docs/authoring/product-protection.md`. Only `retained` has a file under `data/prompts/`, and the
+Tonwerk publisher writes it from the scene's own `generation_prompt`. Never write a brief file for
+the other two, and never turn `not-retained` into `retained` with a prompt rebuilt after the fact.
+
 Run `bun run validate` and `bun test` after changing either manifest.

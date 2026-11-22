@@ -297,11 +297,16 @@ def scene_from_dialogue(
         script=script,
         timeline=timeline,
         acoustics=SceneAcoustics(lead_in_ms=int(settings["assembly"]["lead_in_ms"])),
-        # Every manifest names and hashes a generation brief, so a model drafted the script and
-        # `generated` is earned. `generation_prompt` stays None on purpose: the brief document is
-        # not the prompt string, and rebuilding one from the published payload would be
-        # provenance stating a generation history that did not happen.
-        authoring="generated",
+        # The manifest's `generation_brief.status` says who wrote the script: `manual` stays
+        # manual, and a model-drafted one is `generated`. `generation_prompt` stays None on
+        # purpose: rebuilding one from the published payload would be provenance stating a
+        # generation history that did not happen, and a retained prompt is refused at publish
+        # until an editor puts it on the scene (`generation-prompt`).
+        authoring=(
+            "manual"
+            if (provenance.get("generation_brief") or {}).get("status") == "manual"
+            else "generated"
+        ),
         generation_prompt=None,
     )
     attachment = ExerciseAttachment(

@@ -63,10 +63,24 @@ The repository skill [`.claude/skills/authorship-provenance/SKILL.md`](../../.cl
 is the operational handoff for authors and visual generators.
 
 Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.
-It retains the exact generation brief, immutable model and adapter revisions, model licences,
-separate training-data evidence notes, versioned character voice profiles, script and audio hashes,
-speaker-similarity QA model revision/results, and — when a person approved it — the identity and
-separation listening checklist.
+It records what became of the script's generation brief, immutable model and adapter revisions,
+model licences, separate training-data evidence notes, versioned character voice profiles, script
+and audio hashes, speaker-similarity QA model revision/results, and — when a person approved it —
+the identity and separation listening checklist.
+
+The brief is `generation_brief.status`, one of three:
+
+- `retained`: a model drafted the script, and the exact prompt submitted is saved at
+  `data/prompts/<yyyy-mm-dd>-<id>-listening.md`, named by the manifest's `path` and `sha256`.
+- `not-retained`: a model drafted the script and its prompt was not saved. The prompt is
+  deliberately not reconstructed from the final script, which would describe the edited text,
+  not the model's input.
+- `manual`: no prompt was submitted to a language model for the script, and the model lock in the
+  manifest covers the speech synthesis only.
+
+Only a retained brief has a file. `bun run validate` fails a retained brief that is missing or has
+changed, a fileless status that names a path, and a `*-listening.md` brief that no manifest
+retains.
 A permissive model licence is never presented as verified
 training-data or speaker-consent provenance. Unverified voices and music remain outside the
 supported authoring path; voice cloning from a consented reference is a supported path and is

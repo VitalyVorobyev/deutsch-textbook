@@ -26,6 +26,7 @@ const common = {
   dependency_lock_sha256: HEX('c'),
   model_lock_sha256: HEX('d'),
   models: MODELS,
+  generation_brief: { status: 'not-retained' },
 };
 
 const v1 = (overrides: Record<string, unknown> = {}) => ({
@@ -109,6 +110,43 @@ describe('audio provenance', () => {
     expect(problems(v2({ cleared_by: 'human-approval', approval: APPROVAL }))).toEqual([]);
     expect(problems(v2({ cleared_by: 'human-approval' }))).toEqual([
       'committed listening audio requires completed human approval',
+    ]);
+  });
+
+  test('a generation brief says whether it was retained, and only a retained one has a file', () => {
+    const retained = {
+      status: 'retained',
+      path: 'data/prompts/2026-08-02-ls-fixture-01-listening.md',
+      sha256: HEX('7'),
+    };
+    for (const brief of [retained, { status: 'not-retained' }, { status: 'manual' }]) {
+      expect(problems(v1({ generation_brief: brief }))).toEqual([]);
+      expect(problems(v2({ generation_brief: brief }))).toEqual([]);
+    }
+    expect(problems(v2({ generation_brief: undefined }))).toEqual([
+      'generation_brief.status is retained, not-retained or manual',
+    ]);
+    // The shape before the status existed: a file for every record, stub or not.
+    expect(problems(v2({ generation_brief: { path: retained.path, sha256: HEX('7') } }))).toEqual([
+      'generation_brief.status is retained, not-retained or manual',
+    ]);
+    expect(problems(v2({ generation_brief: { status: 'manual', path: retained.path } }))).toEqual([
+      'a manual generation brief has no file, so it names no path or sha256',
+    ]);
+    expect(
+      problems(
+        v1({
+          generation_brief: {
+            ...retained,
+            path: 'data/prompts/2026-08-02-ls-other-01-listening.md',
+          },
+        }),
+      ),
+    ).toEqual([
+      'a retained generation brief lives at data/prompts/<yyyy-mm-dd>-ls-fixture-01-listening.md',
+    ]);
+    expect(problems(v2({ generation_brief: { ...retained, sha256: 'abc' } }))).toEqual([
+      'a retained generation brief names its 64-hex sha256',
     ]);
   });
 

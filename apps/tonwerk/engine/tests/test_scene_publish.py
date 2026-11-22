@@ -73,9 +73,9 @@ CONSENT_SHA = "c" * 64
 def fixture_repo(tmp_path: Path) -> Path:
     """A course repo holding exactly what a render, a publish and the registry read.
 
-    Six files, and each one is read by something under test: the two acoustic catalogs by the
-    renderer, the listening plan by the registry, and `data/prompts/` by the registry's `brief`
-    derivation. `content/exercises/` stays empty on purpose — the `exercise-turns` gate has its own
+    Each file is read by something under test: the two acoustic catalogs by the renderer, the
+    listening plan by the registry, and `data/prompts/` by the registry's `brief` derivation and
+    by a publish that retains a brief. `content/exercises/` stays empty on purpose — the `exercise-turns` gate has its own
     test, which writes the set it needs.
     """
 
@@ -205,7 +205,6 @@ def test_a_published_scene_writes_a_valid_artifact_its_audio_and_a_scene_manifes
         "content/listening/a2/fixture-cafe.yaml",
         "content/listening/a2/fixture-cafe.mp3",
         "data/audio-provenance/a2/fixture-cafe.json",
-        f"data/prompts/{str(plan.manifest['created_at'])[:10]}-fixture-cafe-listening.md",
     ]
     for path in written:
         assert path.exists(), path
@@ -256,9 +255,10 @@ def test_a_published_scene_writes_a_valid_artifact_its_audio_and_a_scene_manifes
         (repo / "content/listening/a2/fixture-cafe.mp3").read_bytes()
     ).hexdigest()
     assert manifest["render"]["nodes"] and manifest["render"]["timing"]
-    assert manifest["generation_brief"]["sha256"] == hashlib.sha256(
-        (repo / manifest["generation_brief"]["path"]).read_bytes()
-    ).hexdigest()
+    # The fixture scene is manual: no prompt was submitted, so the status is the whole record and
+    # no brief file is written.
+    assert manifest["generation_brief"] == {"status": "manual"}
+    assert list((repo / "data" / "prompts").iterdir()) == []
 
     # A preset-voice scene: no cloning, no consent, and the claims say so as facts computed from
     # the render's voices map rather than as constants.
@@ -561,7 +561,7 @@ def test_a_failed_write_leaves_the_repository_exactly_as_it_was(
 
     def flaky(self: Path, target: Any) -> Any:
         calls["n"] += 1
-        if calls["n"] == 4:
+        if calls["n"] == 3:
             raise OSError("no space left on device")
         return real_replace(self, target)
 
@@ -608,6 +608,76 @@ def test_replacing_a_published_artifact_needs_somewhere_to_put_the_old_one(appro
     backup = store.root / "replaced" / "two"
     write_publish(replacement, repo, backup_root=backup)
     assert (backup / plan.targets.artifact).read_text() == "id: von-hand-geaendert\n"
+
+
+# -- the generation brief ----------------------------------------------------
+
+PROMPT = "Schreib einen kurzen Dialog im Café auf A2."
+
+
+def test_a_model_drafted_script_states_its_brief_status_and_only_a_retained_prompt_has_a_file(
+    tmp_path: Path,
+) -> None:
+    _http, store, repo, scene = checked_fixture(
+        tmp_path / "lost", fixture_scene(authoring="generated")
+    )
+    plan, written = publish_scene(store, repo, scene.slug, allow_test_audio=True)
+    assert plan.manifest["generation_brief"] == {"status": "not-retained"}
+    assert plan.targets.brief is None and "generation-brief" not in plan.files().values()
+    assert len(written) == 3 and list((repo / "data" / "prompts").iterdir()) == []
+
+    _http, store, repo, scene = checked_fixture(
+        tmp_path / "kept", fixture_scene(authoring="generated", generation_prompt=PROMPT)
+    )
+    plan, written = publish_scene(store, repo, scene.slug, allow_test_audio=True)
+    brief = plan.manifest["generation_brief"]
+    assert brief["status"] == "retained" and plan.targets.brief is not None
+    assert brief["path"] == plan.targets.brief.as_posix()
+    assert repo / brief["path"] in written
+    text = (repo / brief["path"]).read_text()
+    assert PROMPT in text
+    assert brief["sha256"] == hashlib.sha256(text.encode()).hexdigest()
+
+
+def test_a_republished_retained_brief_retires_the_one_it_supersedes(tmp_path: Path) -> None:
+    """A brief no record retains fails `scripts/validate.ts`, so the publisher removes it."""
+
+    _http, store, repo, scene = checked_fixture(
+        tmp_path, fixture_scene(authoring="generated", generation_prompt=PROMPT)
+    )
+    # Written without the stage transition, so the same scene can be planned again.
+    plan = plan_publish(store, repo, scene.slug, allow_test_audio=True)
+    write_publish(plan, repo)
+    assert plan.targets.brief is not None
+    # As if the first publish had happened on an earlier day.
+    earlier = plan.targets.brief.with_name("2026-01-01-fixture-cafe-listening.md")
+    (repo / plan.targets.brief).rename(repo / earlier)
+    manifest_path = repo / plan.targets.manifest
+    manifest = json.loads(manifest_path.read_text())
+    manifest["generation_brief"]["path"] = earlier.as_posix()
+    manifest_path.write_text(json.dumps(manifest))
+
+    replacement = plan_publish(store, repo, scene.slug, allow_test_audio=True)
+    assert replacement.retires == [earlier] and earlier in replacement.replaces
+    backup = store.root / "replaced" / "brief"
+    write_publish(replacement, repo, backup_root=backup)
+    assert not (repo / earlier).exists() and (backup / earlier).exists()
+    assert [path.name for path in (repo / "data" / "prompts").iterdir()] == [
+        plan.targets.brief.name
+    ]
+
+
+def test_a_scene_with_no_prompt_cannot_publish_over_a_retained_one(tmp_path: Path) -> None:
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    brief = Path("data/prompts/2026-01-01-fixture-cafe-listening.md")
+    (repo / brief).write_text(f"# Listening generation brief — fixture-cafe\n\n{PROMPT}\n")
+    (repo / "data" / "audio-provenance" / "a2").mkdir(parents=True)
+    (repo / "data" / "audio-provenance" / "a2" / "fixture-cafe.json").write_text(
+        json.dumps(
+            {"generation_brief": {"status": "retained", "path": brief.as_posix(), "sha256": "0" * 64}}
+        )
+    )
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "generation-prompt"
 
 
 # -- the registry's stale signal ----------------------------------------------

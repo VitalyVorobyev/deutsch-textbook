@@ -660,6 +660,8 @@ const plannedListening = new Map<string, { level: string }>([
 ]);
 
 const listeningArtifacts = new Map<string, { file: string; data: ListeningArtifact }>();
+// Every retained listening brief a record points at; a brief file nothing points at fails below.
+const retainedListeningBriefs = new Set<string>();
 const fileSha256 = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
 for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
@@ -694,7 +696,7 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   else {
     const manifest = JSON.parse(readFileSync(provenance, 'utf8')) as {
       published_audio_sha256?: string;
-      generation_brief?: { path?: string; sha256?: string };
+      generation_brief?: { status?: string; path?: string; sha256?: string };
       contextual_sources?: Array<{
         sound_id?: number;
         license?: string;
@@ -731,14 +733,26 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
       )
         fail(rel(file), `contextual source ${source.sound_id} is missing or changed`);
     }
-    const brief = manifest.generation_brief?.path ? join(ROOT, manifest.generation_brief.path) : '';
-    if (!brief || !existsSync(brief)) fail(rel(file), 'saved generation brief does not resolve');
-    else if (manifest.generation_brief?.sha256 !== fileSha256(brief))
-      fail(rel(file), 'saved generation brief hash does not match provenance');
+    // Only a retained brief has a file; its shape (and the fileless statuses') is checked above.
+    const brief = manifest.generation_brief;
+    if (brief?.status === 'retained' && brief.path) {
+      retainedListeningBriefs.add(brief.path);
+      if (!existsSync(join(ROOT, brief.path)))
+        fail(rel(file), `retained generation brief "${brief.path}" does not resolve`);
+      else if (brief.sha256 !== fileSha256(join(ROOT, brief.path)))
+        fail(rel(file), 'retained generation brief hash does not match provenance');
+    }
   }
   for (const problem of listeningCueProblems(data)) fail(rel(file), problem);
   listeningArtifacts.set(id, { file: rel(file), data });
 }
+// A listening brief file exists only because a record retains it; one nobody points at is a
+// superseded or stray brief that would read as provenance of nothing.
+for (const name of readdirSync(join(ROOT, 'data', 'prompts')).filter((name) =>
+  name.endsWith('-listening.md'),
+))
+  if (!retainedListeningBriefs.has(`data/prompts/${name}`))
+    fail(`data/prompts/${name}`, 'no listening provenance record retains this brief');
 
 const readings = new Map<string, { file: string; data: Reading }>();
 for (const file of listFiles(join(CONTENT, 'reading'), '.yaml')) {

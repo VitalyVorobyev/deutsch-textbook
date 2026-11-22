@@ -643,6 +643,7 @@ def router(
             "dry_run": request.dry_run,
             "files": plan.files(),
             "replaces": [path.as_posix() for path in plan.replaces],
+            "retires": [path.as_posix() for path in plan.retires],
             "claims": plan.manifest["claims"],
             "cleared_by": plan.cleared_by,
             "duration_seconds": plan.artifact["duration_seconds"],
