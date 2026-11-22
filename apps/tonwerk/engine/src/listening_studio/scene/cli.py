@@ -604,6 +604,7 @@ def _plan_payload(plan: PublishPlan, *, dry_run: bool) -> dict[str, Any]:
         "dry_run": dry_run,
         "files": plan.files(),
         "replaces": [path.as_posix() for path in plan.replaces],
+        "retires": [path.as_posix() for path in plan.retires],
         "claims": plan.manifest["claims"],
         "duration_seconds": plan.artifact["duration_seconds"],
     }
@@ -619,6 +620,8 @@ def _print_plan(plan: PublishPlan, *, dry_run: bool) -> None:
     for target, kind in plan.files().items():
         mark = " (replaces)" if Path(target) in plan.replaces else ""
         typer.echo(f"  {verb} {target}  [{kind}]{mark}")
+    for retired in plan.retires:
+        typer.echo(f"  {'Would remove' if dry_run else 'Removed'} {retired.as_posix()}  [superseded generation-brief]")
 
 
 @app.command("publish")

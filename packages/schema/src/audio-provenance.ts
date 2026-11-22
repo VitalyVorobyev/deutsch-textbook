@@ -11,9 +11,22 @@
  * speaker. A designed voice is synthetic and names its reference digest and description; a
  * consented clone is a person and names the consent it was published under. The claims have to
  * agree with that list, because they are computed from it.
+ *
+ * Both versions say what became of the script's generation brief, in `generation_brief.status`:
+ * `retained` names the saved brief by `path` and `sha256`, and only it has a file; `not-retained`
+ * and `manual` carry nothing else. What each status means is stated in
+ * `docs/authoring/product-protection.md`.
  */
 
 const SHA256 = /^[0-9a-f]{64}$/;
+
+export const GENERATION_BRIEF_STATUSES = ['retained', 'not-retained', 'manual'] as const;
+
+/** Where a retained brief lives: `data/prompts/<yyyy-mm-dd>-<artifact id>-listening.md`. */
+export const listeningBriefPath = (artifactId: string): RegExp =>
+  new RegExp(
+    `^data/prompts/\\d{4}-\\d{2}-\\d{2}-${artifactId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-listening\\.md$`,
+  );
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -57,6 +70,24 @@ function voiceProblems(voice: unknown, index: number): string[] {
   return [`${label} must say whether it is synthetic`];
 }
 
+function generationBriefProblems(brief: unknown, artifactId: string): string[] {
+  if (!isRecord(brief) || !(GENERATION_BRIEF_STATUSES as readonly unknown[]).includes(brief.status))
+    return ['generation_brief.status is retained, not-retained or manual'];
+  if (brief.status === 'retained') {
+    const problems: string[] = [];
+    if (typeof brief.path !== 'string' || !listeningBriefPath(artifactId).test(brief.path))
+      problems.push(
+        `a retained generation brief lives at data/prompts/<yyyy-mm-dd>-${artifactId}-listening.md`,
+      );
+    if (typeof brief.sha256 !== 'string' || !SHA256.test(brief.sha256))
+      problems.push('a retained generation brief names its 64-hex sha256');
+    return problems;
+  }
+  if (Object.keys(brief).some((key) => key !== 'status'))
+    return [`a ${brief.status} generation brief has no file, so it names no path or sha256`];
+  return [];
+}
+
 export function audioProvenanceProblems(manifest: unknown, artifactId: string): string[] {
   if (!isRecord(manifest)) return ['provenance is not a JSON object'];
   const problems: string[] = [];
@@ -81,6 +112,7 @@ export function audioProvenanceProblems(manifest: unknown, artifactId: string): 
   const claims = isRecord(manifest.claims) ? manifest.claims : {};
   if (claims.model_license_is_training_data_provenance !== false)
     problems.push('provenance must keep licence evidence apart from training-data provenance');
+  problems.push(...generationBriefProblems(manifest.generation_brief, artifactId));
 
   if (manifest.version === 1) {
     problems.push(...approvalProblems(manifest.approval));

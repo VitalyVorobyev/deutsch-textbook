@@ -8,13 +8,15 @@ there is no bundle beside it:
 | `content/listening/<level>/<id>.yaml` | the artifact record (`listeningArtifactSchema`) |
 | `content/listening/<level>/<id>.mp3` | the render's own `publish.mp3` |
 | `data/audio-provenance/<level>/<id>.json` | the scene-native manifest, version 2 |
-| `data/prompts/<date>-<id>-listening.md` | the generation brief |
+| `data/prompts/<date>-<id>-listening.md` | the generation brief, only when it was retained |
 
-The fourth is not in the brief for this publisher and is written anyway, for one measured reason:
-`scripts/validate.ts` fails a listening artifact whose provenance names no resolvable
-`generation_brief`, so a publisher that skipped it would leave the repository invalid. It is
-derived from the **scene's own** `authoring`/`generation_prompt` (`generation_brief`'s three
-branches) and never reconstructed from the finished script.
+The manifest's `generation_brief.status` says what became of the brief, from the **scene's own**
+`authoring`/`generation_prompt` (`brief_status`): `retained` when a model drafted the script and
+its exact prompt is on the scene, `not-retained` when a model drafted it and the prompt is gone,
+`manual` when no prompt was submitted. Only `retained` names a file, and the prompt is never
+reconstructed from the finished script. `scripts/validate.ts` fails a retained brief that does
+not resolve and a brief file no record retains, so a replacement that moves a retained brief
+retires the one it supersedes, and one that would drop a retained prompt is refused.
 
 **Every field of every target is derived from the scene and the render.** Nothing is read out of
 the artifact record already in the repository: a publisher that copied a field forward would keep
@@ -49,6 +51,7 @@ than parse a sentence, and Tonwerk can render German for a gate id it knows:
 | `test-audio` | a render made by a test engine, cleared by QA alone — no person vouched for it |
 | `level` | a level that cannot be derived and was not given |
 | `brief` | no scenario — only the brief carries one |
+| `generation-prompt` | a scene with no prompt, over a published record that retains the prompt that drafted it |
 | `speakers` | a cast outside the 1–4 the artifact schema allows |
 | `voice-unknown` | a cast voice reference this studio does not have |
 | `voice-revoked` | a cast voice whose consent was withdrawn |
@@ -72,7 +75,7 @@ import tempfile
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any, Literal, Mapping, Sequence
 
 import yaml
 
@@ -129,15 +132,19 @@ class PublishRefusal(ValueError):
 
 @dataclass(frozen=True)
 class PublishTargets:
-    """Where the four files go, relative to the repository root."""
+    """Where the files go, relative to the repository root. `brief` is None unless it was retained."""
 
     artifact: Path
     audio: Path
     manifest: Path
-    brief: Path
+    brief: Path | None
 
     def all(self) -> list[Path]:
-        return [self.artifact, self.audio, self.manifest, self.brief]
+        return [
+            target
+            for target in (self.artifact, self.audio, self.manifest, self.brief)
+            if target is not None
+        ]
 
 
 @dataclass(frozen=True)
@@ -160,21 +167,27 @@ class PublishPlan:
     render_dir: Path
     artifact: dict[str, Any]
     manifest: dict[str, Any]
-    brief: str
+    #: The retained brief's text, or None when `generation_brief.status` names no file.
+    brief: str | None
     targets: PublishTargets
-    #: Which targets already exist in the repository holding different bytes. Non-empty means this
-    #: is a replacement, and a replacement needs a backup directory.
+    #: Which targets already exist in the repository holding different bytes, and any file in
+    #: `retires`. Non-empty means this is a replacement, and a replacement needs a backup directory.
     replaces: list[Path]
+    #: A retained brief the record being replaced points at and this publish does not: it is
+    #: backed up and removed, because a brief no record retains fails `scripts/validate.ts`.
+    retires: list[Path]
 
     def files(self) -> dict[str, str]:
         """Target path → what it is, for a `--json` envelope and for a dry run's report."""
 
-        return {
+        files = {
             self.targets.artifact.as_posix(): "artifact",
             self.targets.audio.as_posix(): "audio",
             self.targets.manifest.as_posix(): "provenance",
-            self.targets.brief.as_posix(): "generation-brief",
         }
+        if self.targets.brief is not None:
+            files[self.targets.brief.as_posix()] = "generation-brief"
+        return files
 
 
 # -- reading the render -------------------------------------------------------
@@ -314,39 +327,48 @@ def listening_record(
     }
 
 
-def generation_brief(scene: Scene) -> str:
-    """The brief document, in the scene's own words about its own authoring.
+BriefStatus = Literal["retained", "not-retained", "manual"]
 
-    Three branches, because printing a prompt rebuilt from the finished script publishes a
-    generation history that did not happen, and calling a model-drafted script "manually authored"
-    is the same fabrication pointed the other way. A converted dialogue takes the middle branch and that is the truth —
-    the 40 published scripts were drafted by a model whose prompt was not retained.
+
+def brief_status(scene: Scene) -> BriefStatus:
+    """What became of the script's generation brief, in the scene's own words about its authoring.
+
+    Three statuses, because printing a prompt rebuilt from the finished script publishes a
+    generation history that did not happen, and calling a model-drafted script manual is the same
+    fabrication pointed the other way. What each one means is stated once, in
+    `docs/authoring/product-protection.md`.
     """
 
-    header = f"# Listening generation brief — {scene.slug}\n\n"
     if scene.authoring == "generated" and scene.generation_prompt:
-        return (
-            header
-            + "## Exact prompt, as submitted\n\n"
-            + f"{scene.generation_prompt}\n\n"
-            + "The script below was revised editorially after generation; this prompt is the "
-            "input that produced the draft, not a description of the final text.\n"
-        )
+        return "retained"
     if scene.authoring == "generated":
-        return (
-            header
-            + "## Model-drafted; the submitted brief was not retained\n\n"
-            + "This script was drafted by a language model, but the prompt that produced it was "
-            "not saved and cannot be recovered. It is deliberately not reconstructed from the "
-            "final scene: that string would describe the edited text, not the model's input.\n"
-        )
+        return "not-retained"
+    return "manual"
+
+
+def generation_brief(scene: Scene) -> str | None:
+    """The brief document for a retained prompt; None for the two statuses that have no file."""
+
+    if brief_status(scene) != "retained":
+        return None
     return (
-        header
-        + "## Manually authored\n\n"
-        + "No prompt was submitted to a language model for this script. It was written by the "
-        "editor, and the model lock in this recording's provenance covers the speech synthesis "
-        "only.\n"
+        f"# Listening generation brief — {scene.slug}\n\n"
+        + "## Exact prompt, as submitted\n\n"
+        + f"{scene.generation_prompt}\n\n"
+        + "The script below was revised editorially after generation; this prompt is the "
+        "input that produced the draft, not a description of the final text.\n"
     )
+
+
+def _published_brief(repo: Path, manifest: Path) -> Path | None:
+    """The retained brief the record already at `manifest` points at, or None."""
+
+    if not (repo / manifest).exists():
+        return None
+    brief = json.loads((repo / manifest).read_text()).get("generation_brief")
+    if isinstance(brief, dict) and brief.get("status") == "retained" and brief.get("path"):
+        return Path(str(brief["path"]))
+    return None
 
 
 # -- the provenance manifest --------------------------------------------------
@@ -849,21 +871,45 @@ def plan_publish(
         # and `src/integrations/audio-bundle.ts` copies from here into any build that asks.
         audio=Path("content") / "listening" / level_dir / f"{scene.slug}.mp3",
         manifest=Path(provenance_ref),
-        brief=Path("data") / "prompts" / f"{review_date}-{scene.slug}-listening.md",
+        brief=(
+            Path("data") / "prompts" / f"{review_date}-{scene.slug}-listening.md"
+            if brief_status(scene) == "retained"
+            else None
+        ),
     )
     brief_text = generation_brief(scene)
-    manifest["generation_brief"] = {
-        "path": targets.brief.as_posix(),
-        "sha256": hashlib.sha256(brief_text.encode()).hexdigest(),
-    }
+    published_brief = _published_brief(repo, targets.manifest)
+    if published_brief is not None and targets.brief is None:
+        raise PublishRefusal(
+            "generation-prompt",
+            f"{scene.slug} is published with its drafting prompt retained in "
+            f"{published_brief.as_posix()}, and this scene carries no generation_prompt; put that "
+            "prompt on the scene rather than publish over it as not retained",
+        )
+    if targets.brief is not None and brief_text is not None:
+        manifest["generation_brief"] = {
+            "status": "retained",
+            "path": targets.brief.as_posix(),
+            "sha256": hashlib.sha256(brief_text.encode()).hexdigest(),
+        }
+    else:
+        manifest["generation_brief"] = {"status": brief_status(scene)}
+    retires = (
+        [published_brief]
+        if published_brief is not None
+        and published_brief != targets.brief
+        and (repo / published_brief).exists()
+        else []
+    )
 
     staged = {
         targets.artifact: dump_yaml(artifact).encode(),
         targets.manifest: (
             json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         ).encode(),
-        targets.brief: brief_text.encode(),
     }
+    if targets.brief is not None and brief_text is not None:
+        staged[targets.brief] = brief_text.encode()
     replaces = [
         target
         for target, content in staged.items()
@@ -871,6 +917,7 @@ def plan_publish(
     ]
     if (repo / targets.audio).exists() and sha256(repo / targets.audio) != published_sha:
         replaces.append(targets.audio)
+    replaces.extend(retires)
 
     return PublishPlan(
         slug=scene.slug,
@@ -885,6 +932,7 @@ def plan_publish(
         brief=brief_text,
         targets=targets,
         replaces=sorted(replaces),
+        retires=retires,
     )
 
 
@@ -906,8 +954,9 @@ def stage_publish(plan: PublishPlan, stage: Path) -> list[tuple[Path, Path]]:
             plan.targets.manifest,
             (json.dumps(plan.manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode(),
         ),
-        (plan.targets.brief, plan.brief.encode()),
     ]
+    if plan.targets.brief is not None and plan.brief is not None:
+        bodies.append((plan.targets.brief, plan.brief.encode()))
     for index, (target, body) in enumerate(bodies):
         candidate = stage / f"{index}{target.suffix}"
         candidate.write_bytes(body)
@@ -928,8 +977,9 @@ def write_publish(plan: PublishPlan, repo: Path, *, backup_root: Path | None = N
       file if the process dies mid-copy, and a half-published recording is worse than none — it
       validates as an artifact and plays as noise. The staging directory is a fresh temporary one
       per publish, so nothing from an earlier attempt can ride along.
-    * **Roll back on failure.** If the fourth rename fails the first three are put back, from the
-      backup where there was one and by deletion where there was not.
+    * **Roll back on failure.** If the last rename fails the ones before it are put back, from the
+      backup where there was one and by deletion where there was not; a retired brief comes back
+      from the backup.
     * **Back up before replacing.** Under app-data, not under the repository: a backup inside the
       tree being published to is a file the next `bun run validate` has to be taught to ignore.
     """
@@ -944,7 +994,7 @@ def write_publish(plan: PublishPlan, repo: Path, *, backup_root: Path | None = N
         )
     if backup_root is not None:
         backup_root.mkdir(parents=True, exist_ok=False)
-        for target in plan.targets.all():
+        for target in [*plan.targets.all(), *plan.retires]:
             source = repo / target
             if not source.exists():
                 continue
@@ -964,6 +1014,11 @@ def write_publish(plan: PublishPlan, repo: Path, *, backup_root: Path | None = N
                     (destination, saved if saved is not None and saved.exists() else None)
                 )
                 candidate.replace(destination)
+        for retired in plan.retires:
+            destination = repo / retired
+            saved = (backup_root / retired) if backup_root is not None else None
+            replaced.append((destination, saved if saved is not None and saved.exists() else None))
+            destination.unlink(missing_ok=True)
     except Exception:
         for destination, saved in reversed(replaced):
             if saved is not None:

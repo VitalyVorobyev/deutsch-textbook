@@ -399,7 +399,10 @@ every voice that is not a preset speaker under `voices`. A designed voice is
 synthetic: true}`; a consented clone is its bound identity with `consent_sha256` and
 `synthetic: false`. The claims are computed from that list: `voice_cloning_used` says whether a
 consented clone is in it, `consent_sha256` lists their consents, and `reference_audio_used` says
-whether any voice was cloned from a reference. `bun run validate` checks the same record
+whether any voice was cloned from a reference. `generation_brief.status` comes from the scene's
+`authoring` and `generation_prompt` — `retained`, `not-retained` or `manual`, defined in
+[`docs/authoring/product-protection.md`](../../../docs/authoring/product-protection.md) — and only
+a retained brief is written to `data/prompts/`. `bun run validate` checks the same record
 (`packages/schema/src/audio-provenance.ts`), for version 1 and version 2 alike.
 
 ## Designed voices
