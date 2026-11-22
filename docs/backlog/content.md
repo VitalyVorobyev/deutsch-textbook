@@ -121,12 +121,12 @@ Course content: articles, items, probes, vocabulary, readings and their language
     of its own, recycling one the learner has met.
   - **Narration** of the serial belongs to the narration plan (TON-5), not here.
 - **CON-11 · Author B2.1 `sprache-verstaendigung`** ([contract](../curriculum/b1-b2.md#units)), the
-  first B2 unit: Konjunktiv I produced in reported speech, and the reference words that make a
-  text. It is the first unit authored in the task shape from the start, and the first under
+  first B2 unit: Konjunktiv I produced in reported speech, *sollen* for a passed-on claim, and
+  the reference words that make a text. It is the first unit authored in the task shape from the start, and the first under
   `content/topics/b2/`, so it also proves the level's plumbing: the B2 group and unit in
   `content/atlas.yaml`, the first B2 inventory rows and focus tags, a B2 deck. First step: the
-  `ship-topic` skill, with the unit's inventory rows claiming their syllabus entries
-  (`bun scripts/structures.ts B2`). The other twelve units follow in path order, one per PR.
+  `ship-topic` skill, with the unit's inventory rows claiming the entries its contract names in all three
+  syllabi (`bun scripts/structures.ts B2`). The other twelve units follow in path order, one per PR.
 - **CON-12 · Transcribe the B2 Sprachhandlungen** from the BAMF goal catalogue for the
   Berufssprachkurse (held locally as `docs/GeotheInstitute/bamf_lernzielkatalog_bsk.pdf`, 248
   pages, [ADR 0024](../adrs/0024-b2-denominators-are-compiled-from-free-sources.md)). It becomes

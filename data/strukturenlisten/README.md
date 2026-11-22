@@ -15,6 +15,8 @@ a level can have several authorities and a row has to be able to say which one i
 | `goethe-start-deutsch-2.yaml` | A2 | Erwachsene | reception | 36 | **retired** | yes |
 | `goethe-dtz.yaml` | A2 **+ B1** | Erwachsene | **production** | 164 | current | yes |
 | `goethe-deutsch-online-b2.yaml` | B2 | Erwachsene | unstated | 28 | current | yes — a course **syllabus** |
+| `klett-aspekte-neu-b2.yaml` | B2 | Erwachsene | unstated | 20 | current | yes — a coursebook's contents, a **syllabus** |
+| `schubert-erkundungen-b2.yaml` | B2 | Erwachsene | unstated | 27 | current | yes — a coursebook's contents, a **syllabus** |
 | — | A2 (Erwachsene) | — | — | — | current | no — Prüfungsziele not published free; not held, will not be bought |
 | — | B1 (Zertifikat) | — | — | — | current | no — ISBN 978-3-19-031868-1; not held, will not be bought |
 | — | B2 (Zertifikat) | — | — | — | current | no — Goethe delegates the exam's inventory to *Profile deutsch*, ISBN 978-3-468-49410-9; not held, will not be bought |
@@ -24,9 +26,11 @@ The empty rows are the honest state of the world, not a to-do list that was forg
 Prüfungsziele §4.4 says the inventory "findet sich auf der CD-ROM zu Profile deutsch (2005)", and
 C1's §4.4 says inventories "gibt es aus folgenden Gründen nicht". A level with no anchor here is
 measured against the coursebook progression alone, and `bun scripts/structures.ts` reports its rows
-as `beyond` rather than pretending otherwise. B2 is anchored, but by a course **syllabus** (the
-Goethe *Deutsch online* B2 contents), not by the exam's inventory: `structures.ts B2` reports it as
-counts of entries claimed, never a percentage ([ADR 0024](../../docs/adrs/0024-b2-denominators-are-compiled-from-free-sources.md)).
+as `beyond` rather than pretending otherwise. B2 is anchored, but by three course **syllabi** (the
+Goethe *Deutsch online* B2 contents and the contents pages of two coursebooks), not by the exam's
+inventory: `structures.ts B2` reports them as counts of entries claimed, never a percentage
+([ADR 0024](../../docs/adrs/0024-b2-denominators-are-compiled-from-free-sources.md),
+[ADR 0025](../../docs/adrs/0025-b2-structures-are-held-against-three-syllabi.md)).
 No book is held for any empty row, and none will be bought.
 
 ### What was looked for at B2 and does not exist free
@@ -39,6 +43,14 @@ No book is held for any empty row, and none will be bought.
 - A Goethe B2 Wortliste: none is published.
 - DeReWo (IDS Mannheim): its terms allow passing a list on only with its documentation and
   forbid commercial use, which an open repository cannot promise.
+
+### What exists free at B2 and is not an anchor
+
+- telc *Einfach besser! 500* Wortschatzliste (35 pages): the glossary of one vocational course
+  (*Lohnfortzahlung*, *Malerbetrieb*). It is not a B2 word list, and B2 vocabulary keeps no
+  denominator.
+- The "Sprachliche Handlungen" lines of the *Erkundungen B2* contents: they describe that book's
+  lessons ("eine Städtetour planen"), not functions of the level.
 
 ## Whose exam is the denominator? — read the `audience` column first
 

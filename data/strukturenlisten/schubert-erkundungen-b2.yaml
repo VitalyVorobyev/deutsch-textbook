@@ -1,0 +1,114 @@
+# Schubert-Verlag · Erkundungen B2, integriertes Kurs- und Arbeitsbuch — the grammar sections of
+# its table of contents.
+#
+# WHAT THIS IS, AND WHAT IT IS NOT. A third B2 syllabus beside the Goethe-Institut's online course
+# and Aspekte neu B2: the contents pages a publisher offers as a free download for a coursebook
+# that leads to the Goethe-Zertifikat B2. It is one course's choice of what to teach, so
+# `source.kind: syllabus`, and `bun scripts/structures.ts B2` reports it in counts, never as a
+# percentage (ADR 0024, ADR 0025).
+#
+# THE TABLE. Page 2 of the PDF is the Inhaltsverzeichnis: eight chapters, each with Teil A (texts
+# and themes), Teil B (optional), Teil C (grammar exercises) and Teil D (review). Only the Teil C
+# headings are transcribed, in the document's order, one section per chapter. Pages 3 to 5 repeat
+# the grammar per chapter in a Kursübersicht beside "Sprachliche Handlungen" and "Wortschatz"
+# lines; those are lesson-specific (a Handlung there is "eine Städtetour planen") and anchor
+# nothing. Where the Kursübersicht words a structure more fully than Teil C does, Teil C stands:
+# it is the list the book's own exercises follow.
+#
+# THIS SYLLABUS REPEATS B1. The book opens with past tenses, modal verbs and adjective declension,
+# and names the n-declension and comparison. An entry here that an A1–B1 inventory row already
+# owns is revision in this book and is not a B2 structure of this course.
+#
+# MODE IS `unstated`.
+#
+# BOUNDARY (ADR 0009 / ADR 0004): labels only, in the source's own order. No module titles, no
+# can-do lines, no example sentences.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/schubert_erkundungen_b2_inhalt.pdf -
+# Reference from a grammar-inventory row: `claims: [schubert-erkundungen-b2:<key>]`.
+#
+source:
+  id: schubert-erkundungen-b2
+  title: "Erkundungen Deutsch als Fremdsprache B2 — Inhaltsverzeichnis"
+  publisher: "SCHUBERT-Verlag"
+  chapter: "Inhaltsverzeichnis, Teil C je Kapitel"
+  pages: "2"
+  pdf_pages: "2"
+  levels: [B2]
+  kind: syllabus
+  audience: erwachsene
+  mode: unstated
+  url: "https://www.schubert-verlag.de/pdf/erkund_b2_inhalt.pdf"
+  local: "docs/GeotheInstitute/schubert_erkundungen_b2_inhalt.pdf"
+  retrieved: "2026-11-22"
+
+sections:
+  - id: kapitel-1-personen-und-berufe
+    de: "Kapitel 1 · Personen und Berufe"
+    page: 2
+    entries:
+      - { key: vergangenheitsformen-der-verben, level: B2, de: "Vergangenheitsformen der Verben" }
+      - { key: modalverben, level: B2, de: "Modalverben" }
+      - { key: deklination-der-adjektive, level: B2, de: "Die Deklination der Adjektive" }
+
+  - id: kapitel-2-daheim-und-unterwegs
+    de: "Kapitel 2 · Daheim und unterwegs"
+    page: 2
+    entries:
+      - { key: lokalangaben, level: B2, de: "Lokalangaben" }
+      - { key: das-passiv, level: B2, de: "Das Passiv" }
+
+  - id: kapitel-3-erfahrungen-und-perspektiven
+    de: "Kapitel 3 · Erfahrungen und Perspektiven"
+    page: 2
+    entries:
+      - { key: wortbildung-der-nomen, level: B2, de: "Wortbildung der Nomen" }
+      - { key: n-deklination-der-nomen, level: B2, de: "n-Deklination der Nomen" }
+      - { key: kausal-und-konsekutivangaben, level: B2, de: "Kausal- und Konsekutivangaben" }
+      - { key: verben-mit-praepositionalem-kasus, level: B2, de: "Verben mit präpositionalem Kasus" }
+
+  - id: kapitel-4-konsum-und-wirtschaft
+    de: "Kapitel 4 · Konsum und Wirtschaft"
+    page: 2
+    entries:
+      - { key: konjunktiv-2-hoeflichkeit-irrealitaet, level: B2, de: "Konjunktiv II: Höflichkeit und Irrealität" }
+      - key: rektion-der-verben
+        level: B2
+        de: "Rektion der Verben"
+        note: "The heading continues with a sentence as its subtitle, which is the book's wording and is not taken."
+      - { key: wortstellung-im-satz, level: B2, de: "Die Wortstellung im Satz" }
+
+  - id: kapitel-5-zeit-und-taetigkeit
+    de: "Kapitel 5 · Zeit und Tätigkeit"
+    page: 2
+    entries:
+      - { key: temporalangaben, level: B2, de: "Temporalangaben" }
+      - { key: finalangaben, level: B2, de: "Finalangaben" }
+      - { key: konditionalangaben, level: B2, de: "Konditionalangaben" }
+
+  - id: kapitel-6-information-und-gesellschaft
+    de: "Kapitel 6 · Information und Gesellschaft"
+    page: 2
+    entries:
+      - { key: konjunktiv-1-indirekte-rede, level: B2, de: "Konjunktiv I: Indirekte Rede" }
+      - { key: sollen-weitergabe-von-informationen, level: B2, de: "Sollen zur Weitergabe von Informationen" }
+      - { key: nomen-verb-verbindungen, level: B2, de: "Nomen-Verb-Verbindungen" }
+      - { key: verschiedene-praepositionen, level: B2, de: "Verschiedene Präpositionen" }
+
+  - id: kapitel-7-technik-und-zukunftsaussichten
+    de: "Kapitel 7 · Technik und Zukunftsaussichten"
+    page: 2
+    entries:
+      - { key: passiv-und-passiversatzformen, level: B2, de: "Passiv und Passiversatzformen" }
+      - { key: komparation-der-adjektive, level: B2, de: "Komparation der Adjektive" }
+      - { key: partizipien-als-adjektive, level: B2, de: "Partizipien als Adjektive" }
+      - { key: partizipien-als-nomen, level: B2, de: "Partizipien als Nomen" }
+      - { key: modalangaben, level: B2, de: "Modalangaben" }
+
+  - id: kapitel-8-gesundheit-und-umwelt
+    de: "Kapitel 8 · Gesundheit und Umwelt"
+    page: 2
+    entries:
+      - { key: konzessivangaben, level: B2, de: "Konzessivangaben" }
+      - { key: erweiterte-partizipien, level: B2, de: "Erweiterte Partizipien" }
+      - { key: funktionen-von-werden, level: B2, de: "Die Funktionen von werden" }

@@ -71,7 +71,7 @@ follows a coursebook progression, but visible rather than assumed). A dangling `
 validation.
 
 **A level with no source reports `anchored: false`, never 100% of nothing.** C1–C2 are in that
-state; B2 is anchored by a course syllabus and reports counts, never a percentage ([ADR 0024](../adrs/0024-b2-denominators-are-compiled-from-free-sources.md)). The DTZ is cumulative and names an A2–B1 production repertoire, so its A2 entries stay in
+state; B2 is anchored by three course syllabi and reports counts, never a percentage ([ADR 0024](../adrs/0024-b2-denominators-are-compiled-from-free-sources.md), [0025](../adrs/0025-b2-structures-are-held-against-three-syllabi.md)). The DTZ is cumulative and names an A2–B1 production repertoire, so its A2 entries stay in
 scope at B1. `data/strukturenlisten/README.md` names the missing higher-level documents.
 
 Today: **A1 93/93 · A2 300/300 · B1 164/164** claimed. B1 is `100% des DTZ-Inventars`, never "all

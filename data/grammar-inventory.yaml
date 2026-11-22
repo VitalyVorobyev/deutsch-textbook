@@ -400,6 +400,7 @@ points:
       - goethe-a2-fit2:modal-wollen
       - goethe-a2-fit2:satzklammer
       - goethe-dtz:satzklammer
+      - schubert-erkundungen-b2:modalverben
     note: "A1 (freizeit-koennen) teaches the conjugation pattern and the bracket with können/möchten; the A2 modalverben topic deepens it to the full six-modal paradigm with the darf-nicht/muss-nicht split and the polite möchte register — a spiral, like perfekt below, not a misplaced level."
 
   - id: duerfen-muessen
@@ -1004,6 +1005,7 @@ points:
       - goethe-a2-fit2:erg-nominativ
       - goethe-a2-fit2:erg-qualitativ
       - goethe-dtz:verb-akkusativ
+      - schubert-erkundungen-b2:rektion-der-verben
     deepens: [dativ-verben]
     note: "A different question from either neighbour here, and the one the Goethe A2 verb list leaves implicit: `dativ-verben` grades membership of the dative list (does helfen take the dative?), `verb-praeposition` grades which preposition a verb brings (warten auf, träumen von) — neither asks the learner to CHOOSE between the accusative default and the dative club with both on the table, nor covers the rule that the case inside a chunk is fixed even for a Wechselpräposition (warten auf + Akkusativ wherever the waiting happens). Added 2026-08-12 with `verben-mit-kasus`, the topic that closes it; the A2 denominator moved 31 → 32 in the same change."
 
@@ -1276,6 +1278,7 @@ points:
       - goethe-dtz:praeteritum-aktiv
       - goethe-start-deutsch-2:praeteritum-kommen
       - goethe-start-deutsch-2:praeteritum-sagen
+      - schubert-erkundungen-b2:vergangenheitsformen-der-verben
     deepens: [praeteritum]
     note: "A2 teaches only war, hatte and the modals, because those are the Präteritum German actually speaks. B1 adds the rest for written narrative, which is a genuinely new competence and not a completion of the A2 one."
 
@@ -1414,6 +1417,7 @@ points:
     focus: [n-deklination]
     claims:
       - goethe-dtz:n-deklination
+      - schubert-erkundungen-b2:n-deklination-der-nomen
 
   - id: adjektiv-nomen
     strand: nominalgruppe
@@ -1426,6 +1430,7 @@ points:
     note: "Partly pre-empted by A2 vocabulary, which already teaches Angestellte, Verwandte and Erwachsene as headwords with an accept list. B1 owes the rule those entries are exceptions to."
     claims:
       - goethe-dtz:partizipien-als-nomen
+      - schubert-erkundungen-b2:partizipien-als-nomen
 
   - id: komparativ-attributiv
     strand: nominalgruppe
@@ -1436,6 +1441,8 @@ points:
     focus: [komparativ-attributiv]
     deepens: [komparativ, adjektiv-bestimmt]
     note: "A2 teaches comparison predicatively (komparativ-als, superlativ-am). Putting a compared adjective in front of the noun also requires the declension endings, which is why the standard places it later."
+    claims:
+      - schubert-erkundungen-b2:komparation-der-adjektive
 
   - id: partizip-adjektiv
     strand: nominalgruppe
@@ -1484,6 +1491,7 @@ points:
       - goethe-dtz:indefinitpronomen-alles
       - goethe-dtz:indefinitpronomen-irgendjemand
       - goethe-dtz:jeder-alle
+      - klett-aspekte-neu-b2:indefinitpronomen
 
   - id: temporalsatz
     strand: satzverbindung

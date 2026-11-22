@@ -64,6 +64,7 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0022`](0022-the-account-is-its-own-page-fortschritt-is-one-page.md) | The account is its own page, `/konto`; Fortschritt is one page that describes learning only |
 | [`0023`](0023-a-scene-has-room-at-the-head-of-its-episode.md) | A scene has room at the head of its episode: large, its box reserved, served in two sizes |
 | [`0024`](0024-b2-denominators-are-compiled-from-free-sources.md) | B2's denominators are compiled from free sources, and a syllabus is reported as counts, never a percentage |
+| [`0025`](0025-b2-structures-are-held-against-three-syllabi.md) | B2's structures are held against three syllabi; a lower row claims what a B2 book repeats |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),

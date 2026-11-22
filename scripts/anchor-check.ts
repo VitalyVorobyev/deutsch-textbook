@@ -79,6 +79,8 @@ interface Anchor {
 const words = (text: string): string[] =>
   text
     .toLowerCase()
+    // A PDF's dot leaders can leave a control character glued to the next word.
+    .replace(/\p{Cc}/gu, ' ')
     .replace(/[„“"»«()[\],;:!?.…]/g, ' ')
     .replace(/[/|]/g, ' ')
     .split(/\s+/)
