@@ -280,6 +280,12 @@ entries:
     by: Claude Code
     at: 2026-11-21
     note: Wider accept lists from the grading rulings of 2026-11-21. Check that each new rendering is correct German and still shows the graded form; in nebensaetze-plaene-produktion also read the rewritten instruction of the main-clause contrast item.
+  - file: content/exercises/a2/dativ-produktion.yaml
+    state: claude-reviewed
+    revision: d25ed777a846f6a2cba29bd0932ab989aaac0348
+    by: Claude Code
+    at: 2026-11-22
+    note: "cloze-nach-umzug-pizza: the instruction no longer warns about an accusative preposition; check it now matches the two dative gaps"
   - file: content/exercises/a2/drill-genitiv-eigenname.yaml
     state: owner-reviewed
     revision: e2c75b963809f37e7e306d54e49256181429c38c
@@ -1201,6 +1207,12 @@ entries:
     by: Claude Code
     at: 2026-11-21
     note: New glosses for zahlen, bezahlen and Beleg. Check that each prompt now calls for exactly one word.
+  - file: content/vocab/einkaufen-reklamation.yaml
+    state: claude-reviewed
+    revision: ac9fca5ac7945c0ccfafcefdddd385551a024c98
+    by: Claude Code
+    at: 2026-11-22
+    note: "Bon / Quittung / Beleg: do the three notes now tell the words apart?"
   - file: content/vocab/erfahrungen-erzaehlen.yaml
     state: owner-reviewed
     revision: edb352a3289d3869da9dede1673804e951fdde25
@@ -1227,10 +1239,10 @@ entries:
     note: "Carried over from the topic manifest's former status: reviewed."
   - file: content/vocab/konsum-umwelt.yaml
     state: claude-reviewed
-    revision: 5c31c193a944ea3de9ff74760df450e050140350
+    revision: 5c651377427ba5fb9a840bd928aabeb553ada346
     by: Claude Code
-    at: 2026-11-21
-    note: New glosses for zahlen, bezahlen and Beleg. Check that each prompt now calls for exactly one word.
+    at: 2026-11-22
+    note: "Bon / Quittung / Beleg: do the three notes now tell the words apart?"
   - file: content/vocab/leben-veraendern.yaml
     state: owner-reviewed
     revision: 4eeb7eca5930ca01ecdccf1a564d04b2aa4f9132
@@ -1249,18 +1261,31 @@ entries:
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/vocab/reisen-probleme.yaml
+    state: claude-reviewed
+    revision: f0ca0479c07c0a7c46c978a5cdb3c027a631f87f
+    by: Claude Code
+    at: 2026-11-22
+    note: "abfahren / losfahren / verreisen: do the three notes now tell the verbs apart?"
   - file: content/vocab/reisen-verkehr.yaml
-    state: owner-reviewed
-    revision: 746305646faeb11e763970296231afd3e6d00f3c
-    by: Vitaly Vorobyev
-    at: 2026-11-01
-    note: "Carried over from the topic manifest's former status: reviewed."
+    state: claude-reviewed
+    revision: 51b6d9e87023cf839e4628498961959e0f60bb64
+    by: Claude Code
+    at: 2026-11-22
+    note: "abfahren / losfahren / verreisen: do the three notes now tell the verbs apart?"
+    since: 746305646faeb11e763970296231afd3e6d00f3c
   - file: content/vocab/stadt-wege.yaml
     state: owner-reviewed
     revision: d5907d37daec1919da0b68886ba075c486c72330
     by: Vitaly Vorobyev
     at: 2026-11-01
     note: "Carried over from the topic manifest's former status: reviewed."
+  - file: content/vocab/trennbare-a1-verben.yaml
+    state: claude-reviewed
+    revision: 9670d2fb2f551205c465ef7c8db85eea2cffec32
+    by: Claude Code
+    at: 2026-11-22
+    note: "abfahren / losfahren / verreisen: do the three notes now tell the verbs apart?"
   - file: content/vocab/wohnen.yaml
     state: owner-reviewed
     revision: 337e5084148fec89147dc15751666cb39c1c329e

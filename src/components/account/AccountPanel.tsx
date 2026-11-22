@@ -225,10 +225,9 @@ export default function AccountPanel() {
   if (!session.signedIn || !user) {
     return (
       <div className="space-y-4">
-        {/* Its own heading since ADR 0007: the panel sits on the Daten tab now,
-            no longer under a /konto page h1. */}
+        {/* Its own heading: the panel is one section of /konto, below the local copy. */}
         <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-          {t('account.title', uiLang)}
+          {t('account.cloudTitle', uiLang)}
         </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.localFirst)}</p>
         {isTauri() ? (
@@ -253,7 +252,7 @@ export default function AccountPanel() {
               <a
                 key={provider}
                 href={withBase(
-                  `/api/auth/${provider}/start?returnTo=${encodeURIComponent('/progress?tab=daten')}`,
+                  `/api/auth/${provider}/start?returnTo=${encodeURIComponent('/konto')}`,
                 )}
                 className="min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
               >
@@ -272,7 +271,7 @@ export default function AccountPanel() {
   return (
     <div className="space-y-4">
       <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-        {t('account.title', uiLang)}
+        {t('account.cloudTitle', uiLang)}
       </h2>
       <section className="rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
         <div className="flex flex-wrap items-baseline gap-2">

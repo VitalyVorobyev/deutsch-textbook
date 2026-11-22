@@ -2,8 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
 import ProgressPanel from '../components/progress/ProgressPanel';
-import { getCheckpoints, getTopicNodes } from '../lib/content';
-import { getCurriculum } from '@da/content/curriculum';
+import { getTopicNodes } from '../lib/content';
 import { getAllCards } from '../lib/content';
 import { decksOf } from '../lib/vocab-mastery';
 import { getCollection } from 'astro:content';
@@ -36,10 +35,6 @@ const vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }> = [
     items: [...new Set(cards.map((card) => card.pos))].sort().map((pos) => ({ id: pos, label: pos, cardIds: cards.filter((card) => card.pos === pos).map((card) => card.id) })),
   },
 ];
-const curriculum = getCurriculum();
-const outcomeModes = Object.fromEntries(
-  curriculum.nodes.flatMap((node) => node.outcomes.map((outcome) => [outcome.id, outcome.mode])),
-);
 const exercises = await getCollection('exercises');
 const families = probeFamilies(
   exercises.map((e) => ({
@@ -61,24 +56,6 @@ const probeLabels = Object.fromEntries(
   families.map((f) => [f.setId, titleByTopic.get(f.topicId) ?? f.topicId]),
 );
 const probeTopicPaths = Object.fromEntries(nodes.map((node) => [node.id, node.path]));
-// One results panel per checkpoint in the content; each renders nothing until it
-// has been taken, so a level whose checkpoint is untouched stays silent.
-const checkpoints = (await getCheckpoints()).map(({ setId, title, path, items }) => ({
-  setId,
-  title,
-  path,
-  items,
-}));
-// All four halves travel: uk is the optional translation, and the outcome's
-// `de` is the German can-do itself — exactly what 'de' mode should show.
-const outcomeLabels = Object.fromEntries(
-  curriculum.nodes.flatMap((node) =>
-    node.outcomes.map((outcome) => [
-      outcome.id,
-      { en: outcome.en, ru: outcome.ru, uk: outcome.uk, de: outcome.de },
-    ]),
-  ),
-);
 ---
 
 <Base title="Fortschritt">
@@ -86,6 +63,6 @@ const outcomeLabels = Object.fromEntries(
   <h1 class="sr-only"><Chrome k="nav.fortschritt" /></h1>
 
   <div>
-    <ProgressPanel client:only="react" outcomeModes={outcomeModes} decks={decksOf(cards)} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} probeTopicPaths={probeTopicPaths} />
+    <ProgressPanel client:only="react" decks={decksOf(cards)} vocabularyGroups={vocabularyGroups} probeFamilies={families} probeLabels={probeLabels} probeTopicPaths={probeTopicPaths} />
   </div>
 </Base>

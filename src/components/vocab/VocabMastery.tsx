@@ -16,6 +16,7 @@ import {
 import { pick, type ExplainText } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
+import { Tip } from '../Tip';
 
 const ORDER: WordMastery[] = ['new', 'learning', 'established', 'strong'];
 const COLORS: Record<WordMastery, string> = {
@@ -94,7 +95,17 @@ function MasteryLegend() {
       {ORDER.map((status) => (
         <span key={status}>
           <i className={`mr-1 inline-block h-2.5 w-2.5 rounded-full ${COLORS[status]}`} />
-          {pick(lang, LABELS[status])}
+          {status === 'new' ? (
+            pick(lang, LABELS[status])
+          ) : (
+            <Tip
+              align="left"
+              text={pick(lang, DEFINITIONS[status]).replace('{d}', String(STRONG_INTERVAL_DAYS))}
+              className="underline decoration-dotted underline-offset-2"
+            >
+              {pick(lang, LABELS[status])}
+            </Tip>
+          )}
         </span>
       ))}
     </div>
@@ -408,21 +419,19 @@ export function VocabularyProgress({
                     {COUNTED.map((status, i) => (
                       <span key={status}>
                         {i > 0 && ' – '}
-                        <span
-                          title={pick(lang, DEFINITIONS[status]).replace(
+                        <Tip
+                          text={pick(lang, DEFINITIONS[status]).replace(
                             '{d}',
                             String(STRONG_INTERVAL_DAYS),
                           )}
-                          className={`cursor-help ${NUMBER_COLORS[status]}`}
+                          className={NUMBER_COLORS[status]}
                         >
                           {counts[status]}
-                        </span>
+                        </Tip>
                       </span>
                     ))}
                     {' / '}
-                    <span title={pick(lang, UI.areaTotal)} className="cursor-help">
-                      {words.length}
-                    </span>
+                    <Tip text={pick(lang, UI.areaTotal)}>{words.length}</Tip>
                   </span>
                   <span className="sr-only">{`${pick(lang, UI.areaTotal)}: ${words.length}`}</span>
                 </span>
@@ -438,11 +447,14 @@ export function VocabularyProgress({
   return (
     <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
-        {t('vocab.byArea', uiLang)}
+        <Tip
+          align="left"
+          text={pick(lang, UI.uniqueWords)}
+          className="underline decoration-dotted underline-offset-2"
+        >
+          {t('vocab.byArea', uiLang)}
+        </Tip>
       </h2>
-      <p className="mt-2 max-w-3xl text-xs leading-relaxed text-stone-500 dark:text-stone-400">
-        {pick(lang, UI.uniqueWords)}
-      </p>
       <div className="mt-3">
         <MasteryLegend />
       </div>

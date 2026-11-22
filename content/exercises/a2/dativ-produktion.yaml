@@ -59,13 +59,16 @@ items:
       uk: "Два дієслова поруч — два різні відмінки: sehen вимагає Akkusativ (ihn — кого вона бачить?), а helfen — Dativ (ihm — кому вона допомагає?). Українська тут підказує правильно: «бачить (кого?) його» — знахідний, «допомагає (кому?) йому» — давальний. Небезпека в іншому: форми ihn та ihm відрізняються однією літерою, і німецькою їх легко сплутати. beim Auto і mit der Kiste — теж Dativ: bei та mit входять до списку семи прийменників."
 
   - id: cloze-nach-umzug-pizza
+    revision: 2
     outcomes: [dativ-artikel, dativ-praepositionen]
     type: cloze
     focus: dativ-artikel
+    # The instruction names only what the gaps ask for. A warning about für sent the learner
+    # looking for an accusative among two gaps that are both dative.
     instruction:
-      en: "Fill in the two articles. Careful — one preposition in this text takes the accusative."
-      ru: "Вставьте два артикля. Осторожно: один предлог в этом тексте требует Akkusativ."
-      uk: "Вставте два артиклі. Обережно: один прийменник у цьому тексті вимагає Akkusativ."
+      en: "Fill in the two missing articles."
+      ru: "Вставьте два пропущенных артикля."
+      uk: "Вставте два пропущені артиклі."
     text: "Nach {{dem}} Umzug bestellt Jonas Pizza für seine Freunde. Die Pizza schmeckt {{den}} Freunden sehr gut."
     translation:
       en: "After the move Jonas orders pizza for his friends. The friends like the pizza a lot."

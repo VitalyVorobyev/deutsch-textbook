@@ -1,9 +1,7 @@
 /** Time-series rollups over the attempt/session logs for the progress dashboard. */
 import type { Attempt, CardStates, SessionLogEntry } from './store';
 import { localDateString } from './store';
-import { attemptScore, isVerifiedEvidence } from './scoring';
-
-const DAY_MS = 86_400_000;
+import { attemptScore } from './scoring';
 
 function startOfLocalDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -105,76 +103,4 @@ export function currentStreak(active: Set<string>, today = new Date()): number {
     cursor.setDate(cursor.getDate() - 1);
   }
   return streak;
-}
-
-// ---------------------------------------------------------------------------
-// Weakness trends (per focus tag, time-bucketed error rate)
-// ---------------------------------------------------------------------------
-
-export interface TrendBucket {
-  start: string; // first local date of the bucket
-  attempts: number;
-  /** parts-weighted errors (fractional with partial credit) */
-  errors: number;
-  errorRate: number | null; // null when no attempts in the bucket
-}
-
-export interface FocusTrend {
-  focus: string;
-  buckets: TrendBucket[];
-  total: number; // attempts across the whole window
-  /** error rate of the most recent non-empty bucket */
-  latestErrorRate: number | null;
-}
-
-export interface FocusTrendOpts {
-  bucketDays?: number;
-  buckets?: number;
-  today?: Date;
-}
-
-/** Per-focus error-rate series over the last `buckets` windows of `bucketDays` each. */
-export function focusTrends(attempts: Attempt[], opts: FocusTrendOpts = {}): FocusTrend[] {
-  const { bucketDays = 7, buckets = 8, today = new Date() } = opts;
-  const startOfToday = startOfLocalDay(today).getTime();
-  const windowStart = startOfToday - (buckets * bucketDays - 1) * DAY_MS;
-
-  const byFocus = new Map<string, Attempt[]>();
-  for (const a of attempts) {
-    if (!a.focus || !isVerifiedEvidence(a) || a.ts < windowStart) continue;
-    const arr = byFocus.get(a.focus) ?? [];
-    arr.push(a);
-    byFocus.set(a.focus, arr);
-  }
-
-  const out: FocusTrend[] = [];
-  for (const [focus, arr] of byFocus) {
-    const b: TrendBucket[] = Array.from({ length: buckets }, (_, idx) => {
-      const fromEnd = buckets - 1 - idx;
-      const startTs = startOfToday - (fromEnd * bucketDays + bucketDays - 1) * DAY_MS;
-      return { start: localDateString(new Date(startTs)), attempts: 0, errors: 0, errorRate: null };
-    });
-    for (const a of arr) {
-      const dayStart = startOfLocalDay(new Date(a.ts)).getTime();
-      const daysAgo = Math.round((startOfToday - dayStart) / DAY_MS);
-      const fromEnd = Math.floor(daysAgo / bucketDays);
-      if (fromEnd < 0 || fromEnd >= buckets) continue;
-      const idx = buckets - 1 - fromEnd;
-      b[idx].attempts++;
-      b[idx].errors += 1 - attemptScore(a);
-    }
-    let latest: number | null = null;
-    for (const bucket of b) {
-      if (bucket.attempts > 0) {
-        bucket.errorRate = bucket.errors / bucket.attempts;
-        latest = bucket.errorRate;
-      }
-    }
-    out.push({ focus, buckets: b, total: arr.length, latestErrorRate: latest });
-  }
-
-  // Worst current error rate first, then most evidence.
-  return out.sort(
-    (x, y) => (y.latestErrorRate ?? -1) - (x.latestErrorRate ?? -1) || y.total - x.total,
-  );
 }

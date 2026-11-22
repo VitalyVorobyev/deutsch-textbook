@@ -4,7 +4,7 @@ The desktop shell and the learner store. The format and the ID rule are in the [
 
 - **P29-1 · A bundle-less run uses a second WebKit container** (`~/Library/WebKit/deutsch-atlas/`
   instead of `dev.nonvision.deutsch-atlas/`), holding a frozen copy of the profile. It is detected
-  and reported on Fortschritt → Daten (`legacy_webkit_container`, `src-tauri/src/main.rs`); what the
+  and reported on `/konto` (`legacy_webkit_container`, `src-tauri/src/main.rs`); what the
   learner should do about it is undecided, and merging two histories must never be automatic.
 - **P29-3 · `AccountPanel.bind()` decides a warning from an unguarded read.** A stalled
   `getAttempts()` reads as "nothing to merge" and binds a device with history silently. Fix with

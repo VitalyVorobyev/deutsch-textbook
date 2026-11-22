@@ -75,15 +75,6 @@ worth browsing. When adding a preview, take the item from a real YAML set.
 
 ## Findings in the app itself
 
-- **`Sparkline` drew a line across buckets with no data — fixed in #96.**
-  `getFocusTrends` emits `errorRate: null` for a week with no attempts and
-  `WeaknessTrends` passed that straight through, so the chart interpolated a
-  trend across weeks nothing was measured in, under a caption telling the learner
-  a falling line means improvement. A point now starts a new subpath unless the
-  bucket before it had data. `tests/sparkline.test.tsx` pins it. **If that
-  behaviour is ever changed back, the synced `.d.ts` for `Sparkline` and
-  `previews/Sparkline.tsx` both describe the current behaviour and must move
-  with it.**
 - **`accept` is dereferenced during render by `Order`, `Listen` and `Translate`**
   (and `key_tokens` by `Translate`), even though the Zod schema marks them
   `.default([])`. **This is not an app bug** — exercise sets are parsed through
